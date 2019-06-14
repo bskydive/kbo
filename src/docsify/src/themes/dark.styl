@@ -1,0 +1,257 @@
+// @import url('https://fonts.googleapis.com/css?family=Roboto+Mono|Source+Sans+Pro:300,400,600')
+
+// $color-primary = #ea6f5a
+$color-primary = #4caf50
+$color-bg = #3f3f3f
+$color-text = #c8c8c8
+$sidebar-width = 300px
+
+@import 'basic/_layout'
+@import 'basic/_coverpage'
+
+body
+	background-color $color-bg
+
+.medium-zoom-image
+	max-width 200px
+	max-height 200px
+
+/* sidebar */
+.sidebar
+	background-color $color-bg
+	color #c8c8c8
+	font-weight 400
+	font-size 14px
+
+	ul
+		li
+			margin-left 20px
+			font-weight 600
+			font-size 18px
+			line-height 1.4
+
+			a
+				overflow hidden
+				color #c8c8c8
+				text-decoration none
+				text-overflow ellipsis
+				white-space nowrap
+
+				&:hover
+					text-decoration underline
+
+			&.active > a
+				color var(--theme-color, $color-primary)
+				font-weight 600
+
+			ul
+				padding 0
+
+				li
+					margin-left 20px
+					font-weight 400
+					font-size 15px
+					line-height 1.3
+
+					a
+						&:hover
+							text-decoration underline
+
+/* markdown content found on pages */
+.markdown-section
+	tr
+		&:nth-child(2n)
+			background-color #585858
+
+	h1, h2, h3, h4, strong
+		color #657b83
+		font-weight 600
+
+	a
+		color var(--theme-color, $color-primary)
+		text-decoration none
+		font-weight 600
+
+		&:hover, &:active
+			text-decoration underline
+
+	h1
+		margin 0 0 1rem
+		font-size 2rem
+
+	h2
+		margin 45px 0 0.8rem
+		font-size 1.75rem
+
+	h3
+		margin 40px 0 0.6rem
+		font-size 1.3rem
+
+	h4
+		font-size 1rem
+
+	h5
+		font-size 1rem
+
+	h6
+		color #777
+		font-size 1rem
+
+	figure, p, ul, ol
+		margin 1.2em 0
+
+	p, ul, ol
+		word-spacing 0.05rem
+		line-height 1.6rem
+
+	p.tip
+		background-color #282828
+		color #657b83
+
+	ul, ol
+		padding-left 1.5rem
+
+	blockquote
+		margin 2em 0
+		padding-left 20px
+		border-left 4px solid var(--theme-color, $color-primary)
+		color #858585
+
+	margin-left 0
+	font-weight 600
+	blockquote p
+	iframe
+	margin 1em 0
+	em
+	color #7f8c8d
+
+	code
+		margin 0 2px
+		padding 3px 5px
+		border-radius 2px
+		background-color #282828
+		color #657b83
+		white-space pre-wrap
+		font-size 0.8rem
+		font-family monospace
+
+		&::after, &::before
+			letter-spacing 0.05rem
+
+	pre
+		position relative
+		overflow auto
+		margin 1.2em 0
+		padding 0 1.4rem
+		min-width 30px
+		background-color #282828
+		word-wrap normal
+		font-family monospace
+		line-height 1.5rem
+		-moz-osx-font-smoothing initial
+		-webkit-font-smoothing initial
+
+		&>code
+			display block
+			overflow inherit
+			margin 0 2px
+			padding 2.2em 5px
+			max-width inherit
+			border-radius 2px
+			background-color #282828
+			color #657b83
+			white-space inherit
+			font-size 0.8rem
+			font-family monospace
+			line-height inherit
+			-moz-osx-font-smoothing initial
+			-webkit-font-smoothing initial
+
+/* code highlight */
+.token
+	&.comment, &.prolog, &.doctype, &.cdata
+		color #8e908c
+
+.token.namespace
+	opacity 0.7
+
+.token.boolean
+	color #cddc39
+
+.token.number
+	color #e91e63
+
+.token.punctuation
+	color #525252
+
+.token.property
+	color #c08b30
+
+.token.tag
+	color #2973b7
+
+.token.string
+	color #4caf50
+
+.token.selector
+	color #6679cc
+
+.token.attr-name
+	color #2973b7
+
+.token.entity, .token.url, .language-css .token.string, .style .token.string
+	color #22a2c9
+
+.token.attr-value, .token.control, .token.directive, .token.unit
+	color var(--theme-color, $color-primary)
+
+.token.keyword
+	color #e96900
+
+.token.statement, .token.regex, .token.atrule
+	color #22a2c9
+
+.token.placeholder, .token.variable
+	color #3d8fd1
+
+.token.deleted
+	text-decoration line-through
+
+.token.inserted
+	border-bottom 1px dotted #202746
+	text-decoration none
+
+.token.italic
+	font-style italic
+
+.token.important, .token.bold
+	font-weight bold
+
+.token.important
+	color #c94922
+
+.token.entity
+	cursor help
+
+code .token
+	min-height 1.5rem
+	-moz-osx-font-smoothing initial
+	-webkit-font-smoothing initial
+
+pre::after
+	position absolute
+	top 0
+	right 0
+	padding 5px 10px 0
+	height 15px
+	color #ccc
+	content attr(data-lang)
+	text-align right
+	font-weight 600
+	font-size 0.6rem
+	line-height 15px
+
+input[type='search']
+	border-color #4f4f4f
+	background #4f4f4f
+	color #c8c8c8
