@@ -1,5 +1,5 @@
  * [Главная](/index.md)
- * [инструменты](/kb/инструменты/инструменты)
+ * [инструменты](/kb/инструменты/инструменты.md)
  * Соглашения по коду
 	 * [общие](/kb/conventions/conventions.md)
 	 * [angular](/kb/conventions/angular.md)
@@ -69,7 +69,6 @@
 	 * [redmine](/kb/admin/redmine.md)
 	 * [маршрутизаторы](/kb/admin/router.md)	 
 	 * [nginx-passenger](/kb/admin/nginx-passenger.md)
-	 <!-- * [security](/kb/admin/security) -->
 	 * [SystemD](/kb/admin/systemd.md)
 	 * [ubuntu](/kb/admin/ubuntu)
 	 * [XMPP](/kb/admin/xmpp.md)
@@ -87,8 +86,8 @@
  	 * [планирование](/kb/планирование/планирование.md)
 	 * [здоровье](/kb/здоровье/здоровье)
  * Вещи
-	 * [](/kb/вещи/химия)
-	 * [](/kb/вещи/часы)
-	 * [](/kb/вещи/велосипед)
+	 * [химия](/kb/вещи/химия)
+	 * [часы](/kb/вещи/часы)
+	 * [велосипед](/kb/вещи/велосипед)
 	 <!-- * [](/kb/вещи/) -->
 
