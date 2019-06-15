@@ -1,1 +1,1 @@
-index.md
+static/index.md
