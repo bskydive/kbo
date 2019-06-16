@@ -12,11 +12,11 @@
 
 ## Как увидеть рабочий проект?
 
-* https://kbo.stepanovv.ru
+* https://stepanovv.ru/kb
 
 ## Как запустить у себя?
 
- * git clone https://bitbucket.org/bskydive/kbo.bitbucket.io.git
+ * git clone https://bitbucket.org/bskydive/kb.git
  * cd kb
  * npm install -g docsify-cli
  * npm run start

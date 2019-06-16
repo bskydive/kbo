@@ -485,12 +485,15 @@ x11uselocalhost no
 
 ## firefox
 
+* выключенные дополнения 
+
+```
 about:config
 xpinstall.signatures.required - false
+extensions.legacy.enabled - true
+```
 
-h1. Firefox
-
-[читаемые ссылки utf-8](https://addons.mozilla.org/ru/firefox/addon/pure-url/?src=search)
+* [читаемые ссылки utf-8](https://addons.mozilla.org/ru/firefox/addon/pure-url/?src=search)
 
 ```
 unMHT
