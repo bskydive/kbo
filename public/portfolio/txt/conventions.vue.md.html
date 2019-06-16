@@ -1,0 +1,45 @@
+<h1 id="-">Соглашения про Ангуляр</h1>
+<h2 id="-"><a href="/txt/conventions.md.html">Соглашения</a></h2>
+<h2 id="-javascript-dom-bom"><a href="/txt/conventions.js.md.html">Соглашения про javaScript, DOM, BOM</a></h2>
+<h2 id="-less-css"><a href="/txt/conventions.less.md.html">Соглашения про LESS/CSS</a></h2>
+<h2 id="-"><a href="/txt/conventions.angular.md.html">Соглашения про Ангуляр</a></h2>
+<h2 id="-vue"><a href="/txt/conventions.vue.md.html">Соглашения про VUE</a></h2>
+<h2 id="-"><a href="/txt/conventions.draft.md.html">Соглашения - черновик</a></h2>
+<h2 id="-">ДОКИ</h2>
+<ul>
+<li><a href="https://discordapp.com/channels/325477692906536972/325479107012067328">https://discordapp.com/channels/325477692906536972/325479107012067328</a></li>
+<li><a href="https://vuejs.org/v2/guide/installation.html">https://vuejs.org/v2/guide/installation.html</a></li>
+<li><a href="https://github.com/vuejs/vue/tree/dev/examples">https://github.com/vuejs/vue/tree/dev/examples</a></li>
+<li><a href="https://vuejs.org/v2/api/">https://vuejs.org/v2/api/</a></li>
+<li><a href="https://vuejs.org/v2/style-guide/">https://vuejs.org/v2/style-guide/</a></li>
+</ul>
+<h2 id="-">Ограничения</h2>
+<ol>
+<li>правила переиспользуемых компонентов
+<a href="https://vuejs.org/v2/guide/components.html#Authoring-Reusable-Components">https://vuejs.org/v2/guide/components.html#Authoring-Reusable-Components</a></li>
+<li>взаимодействие компонентов: props down, events up
+ <a href="https://vuejs.org/v2/guide/components.html#Composing-Components">https://vuejs.org/v2/guide/components.html#Composing-Components</a></li>
+<li>v-for на списках необходимо делать через vue.set()
+  <a href="https://vuejs.org/v2/guide/list.html#Caveats">https://vuejs.org/v2/guide/list.html#Caveats</a></li>
+<li>при использовании стрелочных функций не видны переменные из data,methods</li>
+<li>Можно использовать только ограниченные способы изменения массивов
+<a href="https://vuejs.org/v2/guide/list.html#Array-Change-Detection">https://vuejs.org/v2/guide/list.html#Array-Change-Detection</a></li>
+<li>Невозможно отследить неправильное объявление переменных даже с плагином vue в браузере. При ошибках js плагин не активируется.</li>
+<li>При использовании watch для массивов из data, значения newValue и oldValue будут одинаковыми
+ <a href="https://vuejs.org/v2/api/#Instance-Methods-Data">https://vuejs.org/v2/api/#Instance-Methods-Data</a>  </li>
+<li>Внутри new Promise(()=&gt;{}) теряется контекст, и становится невидим экземпляр vm=new Vue()</li>
+</ol>
+<h2 id="-">Приёмы</h2>
+<ol>
+<li>Для обхода костылей рендеринга и сохранения использования PUG необходимо использовать script
+<a href="https://vuejs.org/v2/guide/components.html#X-Templates">https://vuejs.org/v2/guide/components.html#X-Templates</a>
+<a href="https://vuejs.org/v2/guide/components.html#DOM-Template-Parsing-Caveats">https://vuejs.org/v2/guide/components.html#DOM-Template-Parsing-Caveats</a></li>
+<li>Для обхода ограничений изменения массивов необходимо оборачивать их в computed setter
+  <a href="https://vuejs.org/v2/guide/list.html#Array-Change-Detection">https://vuejs.org/v2/guide/list.html#Array-Change-Detection</a> </li>
+<li>для реактивного рендеринга DOM необходимо в контроллере(root) data объявить переменные.
+ переменные вне контроллера необходимо синхронизировать вручную через methods.
+ реактивность НЕ будет работать при объявлении через methods,computed
+ реактивность НЕ будет работать, если объявить переменную в data во время исполнения
+ нельзя навесить обёртку computed на реактивную переменную data 
+<a href="https://vuejs.org/v2/guide/reactivity.html#Declaring-Reactive-Properties">https://vuejs.org/v2/guide/reactivity.html#Declaring-Reactive-Properties</a></li>
+</ol>

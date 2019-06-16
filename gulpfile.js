@@ -53,38 +53,40 @@ let exec = require('gulp-exec');
 
 /*================================================CONFIG===================================================*/
 
+//для хостинга с особенностями нужен длинный префикс
+let staticPath = 'public/portfolio';
 //путь во все подпапки заставляет галп делать подпапки на выходе /**/ поэтому надо вписывать все названия файлов
-let pathImgSrc = ['src/img/*'];//['src/img/*.png', 'src/img/*.jpg', 'src/img/*.gif', 'src/img/*.jpeg']
-let pathImgClean = ['static/img/*'];
-let pathImgDest = './static/img';
+let pathImgSrc = [`src/img/*`];//['src/img/*.png', 'src/img/*.jpg', 'src/img/*.gif', 'src/img/*.jpeg']
+let pathImgClean = [`${staticPath}/img/*`];
+let pathImgDest = `./${staticPath}/img`;
 
-let pathJsClean = ['static/js/*'];
-let pathJsSrc = ['src/js/*.js', 'src/app/timer/timer.js', 'src/app/portfolio/portfolio.js', 'src/app/quotes/quotes.js', 'src/app/weather/weather.js'];
-let pathJsDest = './static/js';
+let pathJsClean = [`${staticPath}/js/*`];
+let pathJsSrc = [`src/js/*.js`, `src/app/timer/timer.js`, `src/app/portfolio/portfolio.js`, `src/app/quotes/quotes.js`, `src/app/weather/weather.js`];
+let pathJsDest = `./${staticPath}/js`;
 
 //отдельный css для уже скомпилированных вендорных. Могут конфликтовать между собой в пространстве имён
-let pathStylusSrcWatch = ['src/fonts/**/*.styl', 'src/app/**/*.styl', 'src/styles/**/*.styl'];
-let pathStylusSrc = ['src/fonts/**/*.styl', 'src/app/**/*.styl', 'src/styles/**/*.styl'];
-let pathCssClean = ['static/css/*'];
-let pathCssSrc = ['src/styles/**/*.css'];
-let pathCssDest = './static/css';
+let pathStylusSrcWatch = [`src/fonts/**/*.styl`, `src/app/**/*.styl`, `src/styles/**/*.styl`];
+let pathStylusSrc = [`src/fonts/**/*.styl`, `src/app/**/*.styl`, `src/styles/**/*.styl`];
+let pathCssClean = [`${staticPath}/css/*`];
+let pathCssSrc = [`src/styles/**/*.css`];
+let pathCssDest = `./${staticPath}/css`;
 
-let pathFontsClean = ['static/fonts/*'];
-let pathFontsSrc = ['src/fonts/**/*.ttf', 'src/fonts/**/*.woff', 'src/fonts/**/*.eot', 'src/fonts/**/*.woff2', 'src/fonts/**/*.svg', 'src/fonts/**/*.otf'];
-let pathFontsDest = './static/fonts';
+let pathFontsClean = [`${staticPath}/fonts/*`];
+let pathFontsSrc = [`src/fonts/**/*.ttf`, `src/fonts/**/*.woff`, `src/fonts/**/*.eot`, `src/fonts/**/*.woff2`, `src/fonts/**/*.svg`, `src/fonts/**/*.otf`];
+let pathFontsDest = `./${staticPath}/fonts`;
 
-let pathSoundsClean = ['static/sounds/*'];
-let pathSoundsSrc = ['src/sounds/*'];
-let pathSoundsDest = './static/sounds';
+let pathSoundsClean = [`${staticPath}/sounds/*`];
+let pathSoundsSrc = [`src/sounds/*`];
+let pathSoundsDest = `./${staticPath}/sounds`;
 
-let pathHtmlClean = ['static/*.html'];
-let pathPugSrcWatch = ['src/app/portfolio/**/*.pug'];
-let pathPugSrc = ['src/app/timer/timer.pug', 'src/app/portfolio/portfolio.pug', 'src/app/quotes/quotes.pug', 'src/app/weather/weather.pug'];
-let pathHtmlDest = './static';
+let pathHtmlClean = [`${staticPath}/*.html`];
+let pathPugSrcWatch = [`src/app/portfolio/**/*.pug`];
+let pathPugSrc = [`src/app/timer/timer.pug`, `src/app/portfolio/portfolio.pug`, `src/app/quotes/quotes.pug`, `src/app/weather/weather.pug`];
+let pathHtmlDest = `./${staticPath}`;
 
-let pathTxtClean = ['static/txt/*'];
-let pathTxtSrc = ['src/app/portfolio/*.md', 'src/app/quotes/*.md', 'src/app/weather/*.md', 'src/app/timer/*.md', 'src/app/conventions/**/*.md'];
-let pathTxtDest = './static/txt';
+let pathTxtClean = [`${staticPath}/txt/*`];
+let pathTxtSrc = [`src/app/portfolio/*.md`, `src/app/quotes/*.md`, `src/app/weather/*.md`, `src/app/timer/*.md`, `src/app/conventions/**/*.md`];
+let pathTxtDest = `./${staticPath}/txt`;
 
 /*================================================ERROR====================================================*/
 function handleError(err) {
