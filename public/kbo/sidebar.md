@@ -49,12 +49,12 @@
 	 * [sql](/kb/backend/sql.md)
  * Инфраструктура
 	 * [aix](/kb/admin/aix)
-     * [android](/kb/admin/android)
+	 * [android](/kb/admin/android)
 	 * [backup](/kb/admin/backup.md)
 	 * [bash](/kb/admin/bash.md)
 	 * [centos](/kb/admin/centos.md)
 	 * [debian](/kb/admin/debian)
-     * [devops](/kb/admin/devops.md)
+	 * [devops](/kb/admin/devops.md)
 	 * [docker](/kb/admin/docker)
 	 * [filesystems](/kb/admin/filesystems.md)
 	 * [home-cloud](/kb/admin/home-cloud.md)
@@ -69,7 +69,6 @@
 	 * [redmine](/kb/admin/redmine.md)
 	 * [маршрутизаторы](/kb/admin/router.md)	 
 	 * [nginx-passenger](/kb/admin/nginx-passenger.md)
-	 <!-- * [security](/kb/admin/security) -->
 	 * [SystemD](/kb/admin/systemd.md)
 	 * [ubuntu](/kb/admin/ubuntu)
 	 * [XMPP](/kb/admin/xmpp.md)
@@ -85,13 +84,10 @@
 	 
  * Планирование
  	 * [планирование](/kb/планирование/планирование.md)
-	 <!-- * [карьера](/kb/карьера/карьера) -->
-	 <!-- * [проекты](/kb/карьера/проекты) -->
-	 <!-- * [статьи](/kb/карьера/статьи) -->
 	 * [здоровье](/kb/здоровье/здоровье)
  * Вещи
-	 * [](/kb/вещи/химия)
-	 * [](/kb/вещи/часы)
-	 * [](/kb/вещи/велосипед)
+	 * [химия](/kb/вещи/химия)
+	 * [часы](/kb/вещи/часы)
+	 * [велосипед](/kb/вещи/велосипед)
 	 <!-- * [](/kb/вещи/) -->
 
