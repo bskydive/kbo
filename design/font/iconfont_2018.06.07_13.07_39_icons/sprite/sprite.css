@@ -1,0 +1,201 @@
+.icon {
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-image: url(sprite.svg);
+}
+.icon-icq {
+  width: 32px;
+  height: 32px;
+  background-position: 0 0;
+}
+.icon-hourglass-start {
+  width: 27px;
+  height: 32px;
+  background-position: -48px 0;
+}
+.icon-refresh {
+  width: 24px;
+  height: 28px;
+  background-position: 0 -48px;
+}
+.icon-envelope-o {
+  width: 28px;
+  height: 28px;
+  background-position: -44px -48px;
+}
+.icon-heart {
+  width: 28px;
+  height: 28px;
+  background-position: -88px -48px;
+}
+.icon-star {
+  width: 26px;
+  height: 28px;
+  background-position: -132px -48px;
+}
+.icon-star-o {
+  width: 26px;
+  height: 28px;
+  background-position: -176px -48px;
+}
+.icon-signal {
+  width: 28px;
+  height: 28px;
+  background-position: -220px -48px;
+}
+.icon-gear {
+  width: 24px;
+  height: 28px;
+  background-position: -264px -48px;
+}
+.icon-home {
+  width: 26px;
+  height: 28px;
+  background-position: -308px -48px;
+}
+.icon-clock-o {
+  width: 24px;
+  height: 28px;
+  background-position: -352px -48px;
+}
+.icon-gears {
+  width: 30px;
+  height: 28px;
+  background-position: -396px -48px;
+}
+.icon-comments {
+  width: 28px;
+  height: 28px;
+  background-position: -440px -48px;
+}
+.icon-globe {
+  width: 24px;
+  height: 28px;
+  background-position: -484px -48px;
+}
+.icon-briefcase {
+  width: 28px;
+  height: 28px;
+  background-position: -528px -48px;
+}
+.icon-group {
+  width: 30px;
+  height: 28px;
+  background-position: -572px -48px;
+}
+.icon-cloud {
+  width: 30px;
+  height: 28px;
+  background-position: -616px -48px;
+}
+.icon-envelope {
+  width: 28px;
+  height: 28px;
+  background-position: 0 -92px;
+}
+.icon-sitemap {
+  width: 28px;
+  height: 28px;
+  background-position: -44px -92px;
+}
+.icon-bell {
+  width: 28px;
+  height: 28px;
+  background-position: -88px -92px;
+}
+.icon-building-o {
+  width: 22px;
+  height: 28px;
+  background-position: -132px -92px;
+}
+.icon-laptop {
+  width: 30px;
+  height: 28px;
+  background-position: -176px -92px;
+}
+.icon-mobile {
+  width: 12px;
+  height: 28px;
+  background-position: -220px -92px;
+}
+.icon-rss-square {
+  width: 24px;
+  height: 28px;
+  background-position: -264px -92px;
+}
+.icon-rub {
+  width: 20px;
+  height: 28px;
+  background-position: -308px -92px;
+}
+.icon-vk {
+  width: 31px;
+  height: 28px;
+  background-position: -352px -92px;
+}
+.icon-building {
+  width: 22px;
+  height: 28px;
+  background-position: -396px -92px;
+}
+.icon-binoculars {
+  width: 28px;
+  height: 28px;
+  background-position: -440px -92px;
+}
+.icon-line-chart {
+  width: 32px;
+  height: 28px;
+  background-position: -484px -92px;
+}
+.icon-monitor {
+  width: 30px;
+  height: 28px;
+  background-position: -528px -92px;
+}
+.icon-handshake-o {
+  width: 36px;
+  height: 28px;
+  background-position: -572px -92px;
+}
+.icon-search {
+  width: 26px;
+  height: 28px;
+  background-position: -616px -92px;
+}
+.icon-github-alt {
+  width: 26px;
+  height: 28px;
+  background-position: -660px -92px;
+}
+.icon-bitbucket {
+  width: 22px;
+  height: 28px;
+  background-position: 0 -136px;
+}
+.icon-skype {
+  width: 24px;
+  height: 28px;
+  background-position: -44px -136px;
+}
+.icon-git-square {
+  width: 24px;
+  height: 28px;
+  background-position: -88px -136px;
+}
+.icon-hourglass-empty {
+  width: 24px;
+  height: 28px;
+  background-position: -132px -136px;
+}
+.icon-hourglass-half {
+  width: 24px;
+  height: 28px;
+  background-position: -176px -136px;
+}
+.icon-hourglass-end {
+  width: 24px;
+  height: 28px;
+  background-position: -220px -136px;
+}
+

@@ -1,0 +1,537 @@
+.c-portfolio
+	//=============================================================VARS===========================================================
+
+	//1.618/1.2
+	$var-width-desktop = 768 //размер при котором кнопки увеличиваются
+
+	$var-width-max = ($var-width-desktop - 1) //media (max-width)
+	$var-width-min = $var-width-desktop //media (min-width)
+
+	$var-font-bs = 15 //минимальный размер шрифта и горизонтального отступа
+
+	$var-k = 1.618
+	//$var-k = 1.414
+	$var-k-small = 1.414
+	//$var-k-small = 1.2
+
+	$var-size-b = $var-font-bs
+	$var-size-l1 = $var-size-b * $var-k
+	$var-size-l2 = $var-size-l1 * $var-k-small
+	$var-size-l3 = $var-size-l2 * $var-k-small
+	$var-size-l4 = $var-size-l3 * $var-k-small
+	//
+	/*
+	1.618
+		12
+		19.416px
+		31.415px
+		50.83px
+
+	1.2
+		12
+		14.4px
+		17.28px
+		20.736px
+		24.883px
+		29.86px
+		35.832px
+		42.998px
+	    */
+
+	$var-width-s = 375
+	$var-width-s-below = ($var-width-s - 1)
+	$var-width-s-padding = $var-font-bs
+	$var-width-m = 768
+	$var-width-m-below = ($var-width-m - 1)
+	$var-width-m-padding = ($var-font-bs * 2)
+	$var-width-l = 992
+	$var-width-l-below = ($var-width-l - 1)
+	$var-width-l-padding = ($var-font-bs * 2)
+	$var-width-xl = 1200
+	$var-width-xl-below = ($var-width-xl - 1)
+	$var-width-xl-padding = ($var-font-bs * 2)
+
+	//@media (min-width 375px)//375-30=355
+	//	width 355px
+	//
+	//@media (min-width 768px)//768-60=708
+	//	width 708px
+	//
+	//@media (min-width 992px)//992-60=932
+	//	width 932px
+	//
+	//@media (min-width 1200px)//1200-60=1140
+	//	width 1140px
+
+	//1.618(можно сделать светлые тона для hover через 1,2 добавочно)
+	//$var-color-gray-4=#bebebe //190
+	//$var-color-gray-3=#767676 //118
+	//$var-color-gray-4=#494949 //73
+
+	//material
+	$var-color-white = #FFFFFF
+	$var-color-gray-1 = #F5F5F5 //245
+	$var-color-gray-2 = #A4A4A4 //164
+	$var-color-gray-3 = #757575 //117
+	$var-color-gray-4 = #494949 //73
+	$var-color-black = #000000
+
+	//=============================================================COMMON=========================================================
+
+
+	mixin-shadow(vx, vy, vblur, vspread, vcolor)
+		box-shadow vx vy vblur vspread vcolor
+		-webkit-box-shadow vx vy vblur vspread vcolor
+		-moz-box-shadow vx vy vblur vspread vcolor
+		-o-box-shadow vx vy vblur vspread vcolor
+
+	&-vert-align
+		display table-cell
+		vertical-align middle
+
+	mixin-font-header(size-min)
+		@media (max-width $var-width-max px)
+			font-size (size-min / $var-k-small) px
+			line-height (size-min) px
+			font-weight 600
+
+		@media (min-width $var-width-min px)
+			font-size size-min px
+			line-height (size-min * $var-k-small) px
+			font-weight 600
+
+	&-header //=============================================================HEADERS
+
+		h1
+			mixin-font-header($var-size-l2)
+
+		h2
+			text-align center
+			mixin-font-header($var-size-l2)
+
+	&-spacer
+		mixin-font-spacer(size-min)
+			@media (max-width $var-width-max px)
+				padding-top size-min px
+
+			@media (min-width $var-width-min px)
+				padding-top size-min * $var-k px
+
+		&-b
+			mixin-font-spacer($var-size-b)
+
+		&-l1
+			mixin-font-spacer($var-size-l1)
+
+		&-l2
+			mixin-font-spacer($var-size-l2)
+
+	&-divider
+		border-bottom-color black
+		border-bottom-width 2px
+		border-bottom-style solid
+		height 16px
+
+	&-anchor-offset
+		display block
+		position relative
+
+		@media (max-width 446px)
+			top -80px
+
+		@media (min-width 447px)
+			top -47px
+
+
+	//=============================================================THUMBNAIL
+	&-thumbnails
+		li
+			background none
+			margin 10px
+			padding 0
+			box-sizing border-box
+			display inline-table
+			vertical-align top
+			text-align center
+			box-sizing border-box
+
+			a
+				box-sizing border-box
+				position relative
+				display inline-table
+				width 160px
+				// height 226px
+				height 160 * $var-k px
+				padding 5px
+				color inherit
+				text-decoration none
+				background-color $var-color-gray-3
+				color $var-color-white
+				text-align center
+				mixin-shadow(4px, 4px, 4px, 0, $var-color-black)
+				
+				&:hover
+					background-color $var-color-gray-4
+					text-decoration none
+					cursor pointer
+
+				&:active
+					top 4px
+					left 4px
+					box-shadow none
+					text-decoration none
+					cursor pointer
+					-webkit-box-shadow none
+					-moz-box-shadow none
+
+				img
+					display table-cell
+					vertical-align top
+					height 113px
+					width 150px
+
+				p
+					display block
+					text-align center
+					margin 0
+					font-weight 400
+					padding-top ($var-font-bs * $var-k-small) px
+					font-size ($var-font-bs) px
+					line-height ($var-font-bs * $var-k-small) px
+
+	//=============================================================BUTTON
+	//todo слить избыточный код -button и -features, разделить миксин на части, чтобы вынести display, т.к. в -features display:block и li вместо a
+	//сложная стркутура: в li margin для межкнопочных интервалов, в button/a/span table-cell для корректного выравнивания текста с иконкой по вертикали
+	//поэтому нельзя просто сделать width:100% - либо фон не растянется, либо не будет центрирования текста из-за table-cell
+	//для растягивания на малых разрешениях кнопок необходимо добавлять ещё один контейнер поверх button/a/span
+	//todo добавить класс для растягивания кнопок на 100% на малых разрешениях
+	
+	&-button
+		text-align center
+		color $var-color-white
+
+		mixin-font-button(size-min)
+			//функционал уменьшения для того, чтобы уменьшить высоту текста
+			//@media (max-width $var-width-max px)
+			//	a, button, span
+			//		font-size size-min px
+			//		line-height size-min * $var-k px
+			//		padding-left ($var-font-bs / $var-k) px
+			//		padding-right ($var-font-bs / $var-k) px
+			//
+			//		i
+			//			font-size (size-min - 3) px
+			//			width  size-min * $var-k px
+			//
+			//@media (min-width $var-width-min px)
+			//	a, button, span
+			//		font-size size-min * $var-k-small px
+			//		line-height size-min * $var-k-small * $var-k px
+			//		padding-left $var-font-bs px
+			//		padding-right $var-font-bs px
+			//
+			//		i
+			//			font-size (size-min * $var-k-small - 3) px
+			//			width size-min * $var-k-small * $var-k px
+			a, button, span
+				list-style-type none
+				display block
+				vertical-align middle
+				background-color $var-color-gray-4
+				color $var-color-white
+				font-family inherit
+
+				@media (max-width $var-width-max px)
+					font-size $var-font-bs px
+					line-height ($var-font-bs * $var-k) px
+					padding-left ($var-font-bs / $var-k) px
+					padding-right ($var-font-bs / $var-k) px
+					margin-top ($var-font-bs / $var-k) px
+
+				@media (min-width $var-width-min px)
+					font-size ($var-font-bs * $var-k-small) px
+					line-height ($var-font-bs * $var-k * $var-k-small) px
+					padding-left ($var-font-bs / $var-k * $var-k-small) px
+					padding-right ($var-font-bs / $var-k * $var-k-small) px
+					margin-top ($var-font-bs / $var-k * $var-k-small) px
+
+				i //иконка внутри ссылки
+					display table-cell
+					color inherit
+					vertical-align text-bottom
+					margin 0
+					padding 0
+					text-align left
+					background-color inherit
+
+					@media (max-width $var-width-max px)
+						font-size ($var-font-bs /  $var-k-small) px
+						width ($var-font-bs * $var-k-small) px
+
+					@media (min-width $var-width-min px)
+						font-size ($var-font-bs) px
+						width ($var-font-bs * $var-k) px
+
+		&-b
+			mixin-font-button($var-size-b)
+
+		&-l1
+			mixin-font-button($var-size-l1)
+
+		&-l2
+			mixin-font-button($var-size-l2)
+
+		ul
+			display inline-block
+			margin 0
+			padding 0
+
+			li
+				display inline-block
+				text-align center
+				margin-right 10px
+				list-style-type none
+				vertical-align middle
+				color $var-color-white
+				
+				button
+					border-style none
+					padding-top 0
+					padding-bottom 0
+
+				a, button
+					display inline-block
+					background-color $var-color-gray-3
+					width max-content
+					mixin-shadow(4px, 4px, 4px, 0, $var-color-black)
+					color inherit
+					text-decoration none
+					position relative
+
+					&:hover
+						background-color $var-color-gray-4
+						cursor pointer
+						text-decoration none
+
+					&:active
+						cursor pointer
+						text-decoration none
+						top 4px
+						left 4px
+						box-shadow none
+						-webkit-box-shadow none
+						-moz-box-shadow none
+
+					p //для текста внутри ссылки
+						color inherit
+						line-height inherit
+						background-color inherit
+						font-size inherit
+						margin 0
+						display table-cell
+
+				span //для выключенной кнопки
+					background-color $var-color-gray-3
+					color inherit
+					display inline-block
+					width max-content
+
+					&:hover, &:active
+						cursor auto
+
+					p
+						margin 0
+
+	//=============================================================TEXT
+	&-text
+		text-align center
+
+		mixin-font-text(size-min)
+			font-size size-min px
+			line-height size-min * $var-k-small px
+
+		&-b
+			mixin-font-text($var-size-b)
+
+		&-l1
+			mixin-font-text($var-size-l1)
+
+		&-l2
+			mixin-font-text($var-size-l2)
+
+	//=============================================================NAV=============================================================
+
+	&-nav
+		z-index 1024
+		position fixed
+		background-color rgba(255, 255, 255, 90%)
+		box-sizing border-box
+		width 100%
+		text-align center
+		padding-bottom $var-font-bs px
+		overflow hidden //убирает белую полосу при смахивании влево уже 376
+		border-bottom-color black
+		border-bottom-width 2px
+		border-bottom-style solid
+
+		@media (max-width $var-width-s-below px)
+			display none
+
+		ul
+			display table
+			margin-left auto
+			margin-right auto
+			margin-bottom 0
+			margin-top 0
+			padding 0
+
+	//=============================================================TEASER==========================================================
+	&-teaser
+		text-align center
+
+		&-background
+			background url("../img/background_tizer_samsung_1920_400_dark_blur.jpg")
+			height 400px
+
+		&-img
+			@media (max-width $var-width-s-below px)
+				display inline-block
+				width 100%
+				text-align center
+				margin-bottom $var-font-bs px
+
+			@media (min-width $var-width-s px)
+				display table-cell
+
+		&-text
+			display table
+			margin-left auto
+			margin-right auto
+			height 100%
+			//padding-top 143px//vertical align не везде работает
+
+			h1
+				display table-cell
+				vertical-align middle
+				color $var-color-gray-1
+				text-align left
+				padding-left 40px
+
+				p
+					display table-cell
+					color $var-color-gray-1
+					font-weight 400
+					text-align left
+
+					a
+						display inline-block
+						color $var-color-gray-1
+						font-weight 400
+						text-align left
+						text-decoration underline
+						cursor pointer
+						padding-top 10px
+
+						&:hover, &:active
+							color $var-color-gray-1
+							text-decoration underline
+							cursor pointer
+	//=============================================================SKILLS==========================================================
+	&-skills
+		display block
+
+	//=============================================================EXAMPLES========================================================
+	&-examples
+		display block
+
+		ul
+			margin 0
+			padding 0
+
+		&-content
+			text-align center
+
+	//=============================================================TOOLS===========================================================
+	&-kb
+		display block
+
+		ul
+			margin 0
+			padding 0
+
+		&-content
+			text-align center
+
+	//=============================================================FEATURES========================================================
+	&-features
+		display block
+
+		&-list
+			text-align left
+
+			ul
+				display table
+				margin-left auto
+				margin-right auto
+				margin-bottom 0
+				margin-top 0
+				padding 0
+
+				li
+					list-style-type none
+					display block
+					vertical-align middle
+					background-color $var-color-gray-4
+					color $var-color-white
+
+					@media (max-width $var-width-max px)
+						font-size $var-font-bs px
+						line-height ($var-font-bs * $var-k) px
+						padding-left ($var-font-bs / $var-k) px
+						padding-right ($var-font-bs / $var-k) px
+						margin-top ($var-font-bs / $var-k-small) px
+
+					@media (min-width $var-width-min px)
+						font-size ($var-font-bs * $var-k-small) px
+						line-height ($var-font-bs * $var-k * $var-k-small) px
+						padding-left ($var-font-bs / $var-k * $var-k-small) px
+						padding-right ($var-font-bs / $var-k * $var-k-small) px
+						margin-top ($var-font-bs / $var-k) px
+
+					i
+						display table-cell
+						color inherit
+						vertical-align text-bottom
+						margin 0
+						padding 0
+
+						@media (max-width $var-width-max px)
+							font-size ($var-font-bs /  $var-k-small) px
+							width ($var-font-bs * $var-k-small) px
+
+						@media (min-width $var-width-min px)
+							font-size ($var-font-bs) px
+							width ($var-font-bs * $var-k) px
+					p
+						font-size inherit
+						display table-cell
+						color inherit
+						text-align left
+						line-height inherit
+						margin 0
+						padding 0
+
+	//=============================================================CONTACTS========================================================
+	&-contacts
+		display block
+		text-align center
+
+	//=============================================================FOOTER==========================================================
+	&-footer
+		&-spacer
+			padding-bottom 70em
+
+			@media (max-width $var-width-s-below px)
+				display none
+
+//на маленьких экранах выключена навигация, потому ни к чему это

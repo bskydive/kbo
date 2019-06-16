@@ -1,0 +1,2 @@
+группа про sweethome3d.com https://vk.com/sweet_home_3d_club22025046
+Дополнительные модели мебели и текстуры: http://lanindes.ru/sweet-home-3d-biblioteka-tekstur.html http://lanindes.ru/sweet-home-3d-biblioteki.html

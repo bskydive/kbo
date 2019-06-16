@@ -1,18 +1,27 @@
 {
-	"name": "kb",
-	"version": "1.0.0",
-	"description": "markdown knowledge base",
+	"name": "portfolio.stepanovv.ru",
+	"version": "1.9.0",
+	"description": "Yet another web developer portfolio",
 	"main": "index.html",
-	"scripts": {
-		"start": "docsify serve ./static",
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"dark": "cd ./src/docsify/src/themes;stylus -c < ./dark.styl > ../../lib/themes/dark1.css"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+ssh://git@bitbucket.org/bskydive/kb.git"
-	},
 	"author": "stepanovv.ru",
-	"license": "ISC",
-	"homepage": "https://bitbucket.org/bskydive/kb#readme"
+	"license": "MIT",
+	"dependencies": {},
+	"devDependencies": {
+		"gulp": "^3.9.1",
+		"gulp-clean": "^0.4.0",
+		"gulp-cli": "^2.0.1",
+		"gulp-concat": "^2.6.1",
+		"gulp-exec": "^3.0.1",
+		"gulp-imagemin": "^4.0.0",
+		"gulp-less": "^3.3.2",
+		"gulp-markdown": "^2.0.1",
+		"gulp-markdown-it": "^0.1.1",
+		"gulp-pug": "^4.0.1",
+		"gulp-rename": "^1.2.2",
+		"gulp-replace": "^0.6.1",
+		"gulp-strip-comments": "^2.5.1",
+		"gulp-stylus": "^2.7.0",
+		"gulp-sync": "^0.1.4",
+		"vue-styleguidist": "^1.7.7"
+	}
 }

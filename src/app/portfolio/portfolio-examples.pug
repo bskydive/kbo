@@ -1,0 +1,63 @@
+//======================================================EXAMPLES=======================================================
+section.c-portfolio-examples
+	.c-btstrp-row.c-portfolio-header
+		h2.c-portfolio-spacer-l1 Примеры работ:
+	.c-btstrp-row
+		.c-portfolio-examples-content.c-portfolio-thumbnails
+			ul
+				mixin card(url,imgFileName,altText,text, url2, text2)
+					li
+						a(href= url, target="_blank")
+							img(src="img/" + imgFileName, alt= altText)
+							.c-portfolio-thumbnail-label.c-portfolio-text-b
+								p= text
+
+				+card(
+				"https://profgallery.ru","pg_thumb.jpg","Thumbnail of screenshot",
+				"HR портал на angularJS")
+				+card(
+				"https://stepanovv.ru/store","bookstoreclient_thumb.png","Thumbnail of screenshot",
+				"Веб-клиент сервиса книжного магазина на Angular5")
+				+card(
+				"//stepanovv.ru/bookStoreServer/apiv1/booklist","rest-server_thumb.jpeg", "Thumbnail of screenshot",
+				"NodeJS REST сервер сервиса книжного магазина")
+				// с","//www.ssllabs.com/ssltest/analyze.html?d=stepanovv.ru","SSL A+")
+				+card(
+				"/timer.html","timer_preview1_thumb.jpeg", "Thumbnail of screenshot",
+				"Таймер «POMODORO»")
+				+card(
+				"/quotes.html","quotes_preview1_thumb.jpeg","Thumbnail of screenshot",
+				"Генератор цитат с твитами")
+				+card(
+				"/weather.html","weather_preview1_thumb.jpeg","Thumbnail of screenshot",
+				"Погода за окном на VueJS")
+				//
+				//нужен префикс http чтобы не сыпались ошибки сертификатов, т.к. он переходит по https без префикса
+				//
+				//
+					+card(
+					"//bitbucket.org/bskydive/portfoliojs","JSsrc_preview1_thumb.jpeg","Thumbnail of screenshot",
+					"Исходный код сайта-портфолио")
+					+card(
+					"https://bitbucket.org/bskydive/bookstore-server/overview","JSsrc_preview1_thumb.jpeg","Thumbnail of screenshot",
+					"Исходный код NodeJS REST сервера сервиса книжного магазина")
+					+card(
+					"https://bitbucket.org/bskydive/bookstore-client/overview","JSsrc_preview1_thumb.jpeg","Thumbnail of screenshot",
+					"Исходный код веб-клиента сервиса книжного магазина на vue.js")
+					+card(
+					"//github.com/bskydive/ssh-agentless-monitoring","monitoring_preview_thumb.jpeg","Thumbnail of screenshot",
+					"Bash скрипт мониторинга")
+					+card(
+					"//github.com/bskydive/mysql_bash_highload_test",	"dbtest_preview_thumb.jpeg", "Thumbnail of screenshot",
+					"Bash скрипт многопоточного тестирования Mysql")
+					+card(
+					"//github.com/bskydive/JavaSECorePractice",
+					"javase_preview_thumb.jpeg", "Thumbnail of screenshot",
+					"Исходный код JavaSE")
+					+card(
+					"/txt/conventions.md.html","conventions_preview.jpeg","Thumbnail of screenshot",
+					"Соглашения по коду")
+					+card(
+					"//img/pixel-perfect_diff.png","pixel-perfect_diff-thumb.png","Thumbnail of screenshot",
+					"PixelPerfect вёрстка по шаблону psd")
+	.c-portfolio-divider

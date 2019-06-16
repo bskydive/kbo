@@ -1,0 +1,192 @@
+<h1 id="-">Соглашения про Ангуляр</h1>
+<h2 id="-"><a href="/txt/conventions.md.html">Соглашения</a></h2>
+<h2 id="-javascript-dom-bom"><a href="/txt/conventions.js.md.html">Соглашения про javaScript, DOM, BOM</a></h2>
+<h2 id="-less-css"><a href="/txt/conventions.less.md.html">Соглашения про LESS/CSS</a></h2>
+<h2 id="-"><a href="/txt/conventions.angular.md.html">Соглашения про Ангуляр</a></h2>
+<h2 id="-"><a href="/txt/conventions.draft.md.html">Соглашения - черновик</a></h2>
+<h2 id="ui-bootstrap">ui-bootstrap</h2>
+<ol>
+<li><p>Перед реализацией нового компонента освежаем знания чтением документации. Она устаревает.</p>
+<ul>
+<li><a href="https://angular-ui.github.io/bootstrap/">ui-bootstrap</a></li>
+<li><a href="https://ui-router.github.io/docs/">ui-router</a><ul>
+<li><a href="https://ui-router.github.io/ng1/docs/latest/modules/directives.html">https://ui-router.github.io/ng1/docs/latest/modules/directives.html</a></li>
+<li><a href="https://github.com/angular-ui/ui-router/wiki/Quick-Reference#ui-sref">https://github.com/angular-ui/ui-router/wiki/Quick-Reference#ui-sref</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/angular-ui">angular-ui</a></li>
+<li><a href="https://docs.angularjs.org/api">api docs</a></li>
+</ul>
+</li>
+<li><p>Для реализации всплывающей подсказки с текстом <a href="https://angular-ui.github.io/bootstrap/#!#popover">достаточно</a> трёх дата-тэгов</p>
+<pre><code class="lang-jade">     a(href=&#39;&#39; ng-if=&#39;!company.isVerified || !$edit.company.isVerified&#39;
+     uib-popover=&quot;После модерации регистрационных данных вы сможете опубликовать свои вакансии&quot;
+     popover-placement=&quot;top&quot;
+     type=&quot;button&quot;
+     popover-trigger=&quot;&#39;outsideClick&#39;&quot;
+     ) Редактирование профиля
+</code></pre>
+</li>
+<li><p>Для реализации всплывающей подсказки с HTML <a href="https://angular-ui.github.io/bootstrap/#!#popover">достаточно</a> использовать: <code>uib-popover-html=&quot;&#39;...&#39;&quot;</code>
+ Обязательно обернуть внутренности в одинарные кавычки!</p>
+<pre><code class="lang-jade">     a(href=&#39;&#39; ng-if=&#39;!company.isVerified || !$edit.company.isVerified&#39;
+     uib-popover-html=&quot;&#39;&lt;div&gt;&lt;h4&gt;Модерация&lt;/h4&gt;&lt;/div&gt;&quot; +
+     &quot;&lt;p&gt; Ваша компания проходит модерацию. Редактирование информации будет доступно после одобрения службой технической поддержки. В связи с большим объёмом заявок&quot; +
+     &quot; срок модерации - до 5 рабочих дней. Приносим извинения за доставленные неудобства.&lt;/p&gt;&lt;/div&gt;&#39;&quot;
+     popover-placement=&quot;bottom-left&quot;
+     type=&quot;button&quot;
+     popover-trigger=&quot;&#39;outsideClick&#39;&quot;
+     ) Редактирование профиля
+</code></pre>
+</li>
+<li><p>Для коррекции стиля подсказки необходимо добавить опцию <code>popover-class</code></p>
+<pre><code class="lang-jade">     .c-bootstrap-body-help-icon(
+     uib-popover=&quot;После модерации регистрационных данных вы сможете опубликовать свои вакансии&quot;
+     popover-placement=&quot;top&quot;
+     type=&quot;button&quot;
+     popover-trigger=&quot;&#39;outsideClick&#39;&quot;
+     popover-class=&quot;.c-bootstrap-body-help-icon-uibfix&quot;
+     )
+</code></pre>
+<pre><code class="lang-less">     .c-bootstrap-body-help-icon{
+         position: fixed;
+         top:93% !important;
+
+         &amp;-uibfix {//костыль для правильного позиционирования подсказки .uib-popover-popup
+             position: fixed;
+             top:93% !important;
+         }
+     }
+</code></pre>
+</li>
+<li><p>Для добавления нестандартных сочетаний открытия/закрытия подсказок:
+ <a href="http://plnkr.co/edit/ufB0QvsiL1G2sOp99Pd8?p=preview">пример</a><br> <a href="https://github.com/angular-ui/bootstrap/tree/master/src/tooltip/docs">доки</a></p>
+<pre><code class="lang-js">     //для вызова самописного триггера можно сделать инъекцию $element и вызвать $element.triggerHandler(&#39;outsideClick&#39;);
+     //объявляем в настройках компонента
+     module.exports = angular
+             .module(&#39;common&#39;)
+             .config(function setIt($uibTooltipProvider){
+
+                 $uibTooltipProvider.setTriggers([{
+                     //&#39;триггер для открытия&#39;:&#39;триггер для закрытия&#39;
+                        //mouseenter, mouseleave, click, outsideClick, focus, blur, none
+                     &#39;outsideClick&#39;:&#39;outsideClick&#39;,
+                     //другой вариант
+                     show:&#39;outsideClick&#39;,
+                     hide:&#39;outsideClick&#39;
+                 }]);
+             }).name;
+</code></pre>
+<p> можно <a href="https://github.com/angular-ui/bootstrap/issues/590">обернуть</a> в <a href="http://plnkr.co/edit/94ZHgQ?p=preview">директиву</a> через <code>.compile</code>
+ и переписать поведение</p>
+</li>
+<li><p>Для сокрытия залипшей в мобильном режиме подсказки необходимо скрыть её в коде контроллера. 
+ Встроенный атрибут <code>popover-is-open</code> не всегда работает</p>
+<pre><code class="lang-js">     window.document.querySelector(&#39;i#id-recruiter-profile-edit-help-icon+div.popover&#39;).style.visibility=&#39;hidden&#39;;//костыль от залипания подсказки
+</code></pre>
+</li>
+</ol>
+<h2 id="angular">Angular</h2>
+<ol>
+<li><p>Использовать для разделителей элементов списков <code>&lt;li&gt;</code> css атрибут <code>content</code>
+ вместо их сборки внутри директив <code>inlineList(items,separator)</code>. Это уменьшит код
+ и предотвратит ошибки, например, пропадание лидирующего пробела в <code>&lt;span&gt; * &lt;/span&gt;</code></p>
+<pre><code class="lang-less">     li:not(:first-child) {
+         span:before {
+             content: @var-list-separator-icon;
+             font-size:16px;
+         }
+     }
+</code></pre>
+</li>
+<li><p>Нежелательно устаналивать заголовки глобально, т.к. их необходимо очищать после вызовов</p>
+<pre><code class="lang-js">     $http.defaults.headers.common.relations = &#39;lastExperience&#39;; 
+</code></pre>
+<p> Для экономии кода и предотвращения ошибок лучше описывать их в <code>options</code>.
+ Сервис <a href="https://docs.angularjs.org/#setting-http-headers">http</a> должен корректно их добавить в вызов    </p>
+<pre><code class="lang-js">     let options = {};
+     options.headers = {
+         &#39;relations&#39;: &#39;lastExperience&#39;
+         };
+     return apiService.call(&#39;GET&#39;, `/message/thread/${req}`, options)
+</code></pre>
+</li>
+<li><p>Нельзя называть компоненты именами тэгов. При вызове section/header/и т.д. будут скомпилированы компоненты вместо тэгов.
+  Для предотвращения можно настроить линтеры или ввести префиксы a-(angular).</p>
+<pre><code class="lang-js">     module.exports = angular
+             .module(&#39;a-main-header-module&#39;)
+             .component(&#39;a-main-header&#39;, {
+                 controller: mainHeaderController,
+                 controllerAs: &#39;$amh&#39;,
+                 templateUrl: require(&#39;./a-main-header-view.jade&#39;),
+                 bindings: {}
+             })
+             .name;
+</code></pre>
+</li>
+<li><p>Шаблон для контроллера компонента</p>
+<pre><code class="lang-js">     &#39;use strict&#39;;
+     /**
+      * PG-1746
+      *
+      * Описание:
+      *
+      * Структура блоков HTML:
+      *
+      * Ограничения:
+      *
+      * Примеры:
+      *
+      * */
+
+     require(&#39;./list-stacked-view.less&#39;);
+
+     function listStackedController(dataTypeService,
+                                    errorService) {
+
+         let vm = this;
+
+         /**
+          * Инициализирует и очищает от некорректных значений входные данные
+          */
+         function parseValues() {
+
+         }
+
+         function init() {
+             parseValues();
+         };
+
+         /**
+          * bindings изменились, нужно переинициализировать данные
+          */
+         vm.$onChanges = function () {
+             parseValues();
+         };
+
+         init();
+
+     }
+
+     module.exports = angular
+             .module(&#39;common&#39;)
+             .component(&#39;listStacked&#39;, {
+                 controller: listStackedController,
+                 controllerAs: &#39;$ls&#39;,
+                 templateUrl: require(&#39;./list-stacked-view.jade&#39;),
+                 bindings: {}
+             })
+             .name;
+</code></pre>
+</li>
+<li><p>Параметры вложенных компонентов должны либо транслироваться наружу, до самого верхнего, либо прятаться внутри. 
+ Лишние bindings замедляют приложение, а искать где передаётся параметр внутри вложений будет усложнять рефакторинг, приводить к неочевидному поведению компонентов. </p>
+</li>
+<li><p>Название параметров должны согласовываться с поведением по-умолчанию. 
+ <code>isSomethingVisible</code> в случае её отсутствия должно быть устаноылено в <code>false</code>, т.е. скрыто
+ И наоборот, <code>isSomethingHidden</code> по-умолчанию <code>false</code>, т.е. показано</p>
+</li>
+<li><p>необходимо переносить максимум кода внутрь js из html для облегчения отладки, поиска и валидации
+ параметры компонентов необходимо передавать как один объект в html коде, и работать с его свойствами в js     </p>
+</li>
+</ol>

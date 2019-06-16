@@ -1,0 +1,43 @@
+//======================================================CONTACTS=======================================================
+section.c-portfolio-contacts
+	.c-btstrp-row.c-portfolio-header
+		h2.c-portfolio-spacer-l1 Контакты:
+	.c-btstrp-row.c-portfolio-button.c-portfolio-button-b
+		mixin a-btn(vurl, vicon, vtext)
+			li
+				a(href=vurl, target="_blank")
+					i(class=vicon)
+					p=vtext
+		ul
+			li
+				button(onclick="copyToClipboard('stepanovv.ru@yandex.ru')")
+					i.icon-envelope
+					p Скопировать адрес
+			+a-btn(
+			"mailto:stepanovv.ru@yandex.ru?Subject=Заинтересовались%20вашим%20портфолио",
+			"icon-envelope-o",
+			"Написать письмо")
+			//
+				+a-btn(
+				"//vk.com/bskydive",
+				"icon-vk",
+				"Открыть профиль")
+			+a-btn(
+			"//vk.com/write97395242",
+			"icon-vk",
+			"Написать в ВК")
+			+a-btn(
+			"skype:bskydive?chat",
+			"icon-skype",
+			"Написать в Skype")
+			//	
+				+a-btn(
+				"icq://people/304234629",
+				"icon-icq",
+				"Написать в ICQ")
+			//
+				+a-btn(
+				"//icq.com/people/304234629",
+				"icon-icq",
+				"Открыть профиль ICQ")
+	.c-portfolio-divider

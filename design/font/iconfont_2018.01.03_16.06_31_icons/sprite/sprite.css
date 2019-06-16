@@ -1,0 +1,161 @@
+.icon {
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-image: url(sprite.svg);
+}
+.icon-refresh {
+  width: 24px;
+  height: 28px;
+  background-position: 0 0;
+}
+.icon-envelope-o {
+  width: 28px;
+  height: 28px;
+  background-position: -44px 0;
+}
+.icon-heart {
+  width: 28px;
+  height: 28px;
+  background-position: -88px 0;
+}
+.icon-star {
+  width: 26px;
+  height: 28px;
+  background-position: -132px 0;
+}
+.icon-star-o {
+  width: 26px;
+  height: 28px;
+  background-position: -176px 0;
+}
+.icon-signal {
+  width: 28px;
+  height: 28px;
+  background-position: -220px 0;
+}
+.icon-gear {
+  width: 24px;
+  height: 28px;
+  background-position: -264px 0;
+}
+.icon-home {
+  width: 26px;
+  height: 28px;
+  background-position: -308px 0;
+}
+.icon-clock-o {
+  width: 24px;
+  height: 28px;
+  background-position: -352px 0;
+}
+.icon-gears {
+  width: 30px;
+  height: 28px;
+  background-position: -396px 0;
+}
+.icon-comments {
+  width: 28px;
+  height: 28px;
+  background-position: -440px 0;
+}
+.icon-globe {
+  width: 24px;
+  height: 28px;
+  background-position: -484px 0;
+}
+.icon-briefcase {
+  width: 28px;
+  height: 28px;
+  background-position: -528px 0;
+}
+.icon-group {
+  width: 30px;
+  height: 28px;
+  background-position: -572px 0;
+}
+.icon-cloud {
+  width: 30px;
+  height: 28px;
+  background-position: -616px 0;
+}
+.icon-envelope {
+  width: 28px;
+  height: 28px;
+  background-position: 0 -44px;
+}
+.icon-sitemap {
+  width: 28px;
+  height: 28px;
+  background-position: -44px -44px;
+}
+.icon-bell {
+  width: 28px;
+  height: 28px;
+  background-position: -88px -44px;
+}
+.icon-building-o {
+  width: 22px;
+  height: 28px;
+  background-position: -132px -44px;
+}
+.icon-laptop {
+  width: 30px;
+  height: 28px;
+  background-position: -176px -44px;
+}
+.icon-mobile {
+  width: 12px;
+  height: 28px;
+  background-position: -220px -44px;
+}
+.icon-rss-square {
+  width: 24px;
+  height: 28px;
+  background-position: -264px -44px;
+}
+.icon-rub {
+  width: 20px;
+  height: 28px;
+  background-position: -308px -44px;
+}
+.icon-bug {
+  width: 26px;
+  height: 28px;
+  background-position: -352px -44px;
+}
+.icon-vk {
+  width: 31px;
+  height: 28px;
+  background-position: -396px -44px;
+}
+.icon-building {
+  width: 22px;
+  height: 28px;
+  background-position: -440px -44px;
+}
+.icon-paper-plane {
+  width: 28px;
+  height: 28px;
+  background-position: -484px -44px;
+}
+.icon-binoculars {
+  width: 28px;
+  height: 28px;
+  background-position: -528px -44px;
+}
+.icon-line-chart {
+  width: 32px;
+  height: 28px;
+  background-position: -572px -44px;
+}
+.icon-monitor {
+  width: 30px;
+  height: 28px;
+  background-position: -616px -44px;
+}
+.icon-handshake-o {
+  width: 36px;
+  height: 28px;
+  background-position: 0 -88px;
+}
+

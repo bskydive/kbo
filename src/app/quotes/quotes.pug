@@ -1,0 +1,43 @@
+doctype html
+html
+	head
+		meta(lang='ru-ru')
+		meta(charset='UTF-8')
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+		title Генератор цитат
+		link(rel='shortcut icon', type='image/png', href='img/favicon_star.png')
+		link(rel='stylesheet', type='text/css', href='css/portfolio.css')
+		link(rel='stylesheet', type='text/css', href='css/bootstrap-theme.min.css')
+		link(rel='stylesheet', type='text/css', href='css/bootstrap.min.css')
+	body.c-quotes-background-main
+		.bg-overlay
+			.container-fluid.c-quotes-container-main
+				.row
+					.col-md-1
+					.c-quotes-column-center.col-md-6.c-quotes-row-header
+						noscript
+							.alert.alert-danger(role='alert')
+								strong Warning!
+								|  Please, enable JavaScript to see correct
+								|                                                 markup.
+						a#id_headerCaption.btn.btn-link(href='txt/quotes.readme.md.html', target='_blank', role='button')
+							| Генератор цитат
+							sup β
+						span#id_divHeaderText
+						a#id_getQuoteBtn.btn.btn-default(role='button')
+							i.fa.fa-graduation-cap.fa-fw
+							|  Ещё цитату
+						|
+						|
+						a#id_twitOutBtn.btn.btn-default(role='button', href='http://twitter.com/home/?status=', target='_blank')
+							i.fa.fa-twitter.fa-fw
+							|  Поделиться
+					.col-md-1
+				.row
+					.col-md-1
+					.c-quotes-column-center.col-md-6.c-quotes-row-text
+						p#id-p-quoteText Генератор устал. Отдохните и вы.
+						a#id-a-quoteAuthor(href='#')
+					.col-md-1
+	script(type='text/javascript', src='js/quotes.js')
+	script(type='text/javascript', src='https://platform.twitter.com/widgets.js')

@@ -1,0 +1,100 @@
+doctype html
+html
+	head
+		meta(charset='UTF-8')
+		meta(lang='en-us')
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+		title Weather
+		link(rel='shortcut icon', type='image/png', href='img/favicon_star.png')
+		link(rel='stylesheet', type='text/css', href='css/portfolio.css')
+		link(rel='stylesheet', type='text/css', href='css/bootstrap-theme.min.css')
+		link(rel='stylesheet', type='text/css', href='css/bootstrap.min.css')
+	body
+		main#vue-main-controller.c-weather
+			.c-weather-section.container-fluid.text-center
+				noscript
+					.alert.alert-danger(role='alert')
+						strong Warning!
+						|  Please, enable JavaScript to see correct markup.
+				a.btn.btn-link(href='txt/weather.README.md.html', role='button')
+					| Weather
+					sup β
+				//================================================================================================Выбор API сервера
+				.btn-group(role='group')
+					button.btn.btn-default.active(type='button') OpenWeatherMap
+					button.btn.btn-default.disabled(type='button') NarodMon
+				//================================================================================================Координаты вручную
+				label {{localization.locationLatDesc[langIdActive]}}
+					input.input.input-default(
+					type='text'
+					placeholder='00.00'
+					v-model='inputLat')
+				label {{localization.locationLonDesc[langIdActive]}}
+					input.input.input-default(
+					type='text'
+					placeholder='00.00'
+					v-model='inputLon')
+				button.btn.btn-default(
+				type='text'
+				v-on:click='refreshData')
+					i.icon-refresh
+				button.btn.btn-default(
+				type='text'
+				v-on:click='clearCoordsLocal')
+					i.c-weather-icon X
+			.c-weather-section.container-fluid.text-center
+				//================================================================================================Заголовок списка
+				.container-fluid.text-center.c-weather-list-header
+					span {{locationHeader}}
+					span {{this.locationLabels[this.locationIdActive]}}
+				//================================================================================================Список значений
+				ul.list-unstyled.c-weather-list
+					//list-component(v-for='weatherItem in weatherList' :key='weatherItem.value' v-bind:item='weatherItem')
+					li(v-for='item in weatherList[locationIdActive]')
+						span.c-weather-list-value(v-if='item.value' v-html='item.value')
+						img.c-weather-list-img(v-if='item.img' v-bind:src='item.img')
+						span.c-weather-list-description {{item.description}}
+			.c-weather-section.container-fluid.text-center
+				//================================================================================================Язык
+				.btn-group(role='group', data-toggle='buttons')
+					button.btn.btn-default(
+					type='button'
+					v-on:click='setLangEn'
+					v-bind:class='{active: isLangEn()}'
+					)
+						| EN
+					button.btn.btn-default(
+					type='button'
+					v-on:click='setLangRu'
+					v-bind:class='{active: isLangRu()}'
+					)
+						| РФ
+				//================================================================================================Активная локация
+				.btn-group(role='group', data-toggle='buttons')
+					button.btn.btn-default(
+					type='button'
+					v-for='(item, index) in locationLabels'
+					v-bind:class='{active: isLocationActive(index)}'
+					v-on:click='setLocationIdActive(index)'
+					)
+						i.icon-globe
+						|
+						|
+						span {{item}}
+				//================================================================================================Единицы измерения
+				.btn-group(role='group', data-toggle='buttons')
+					button.btn.btn-default(
+					type='button'
+					v-bind:class='{active: isUnitNameMetric()}'
+					v-on:click='setUnitNameMetric')
+						| {{localization.unitNameMetric[this.langIdActive]}}
+					button.btn.btn-default(
+					type='button'
+					v-bind:class='{active: isUnitNameImperial()}'
+					v-on:click='setUnitNameImperial')
+						| {{localization.unitNameImperial[this.langIdActive]}}
+	script(type='text/javascript', src='js/es6-promise.auto.min.js')
+	script(type='text/javascript', src='js/vue.js')
+	//script(type='text/javascript', src='js/vue.min.js')
+	//script(type='text/javascript', src="https://cdn.jsdelivr.net/npm/vue@2.5.15/dist/vue.js")
+	script(type='text/javascript', src='js/weather.js')

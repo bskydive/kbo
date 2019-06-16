@@ -1,0 +1,18 @@
+{
+	"name": "kb",
+	"version": "1.0.0",
+	"description": "markdown knowledge base",
+	"main": "index.html",
+	"scripts": {
+		"start": "docsify serve ./static",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dark": "cd ./src/docsify/src/themes;stylus -c < ./dark.styl > ../../lib/themes/dark1.css"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@bitbucket.org/bskydive/kb.git"
+	},
+	"author": "stepanovv.ru",
+	"license": "ISC",
+	"homepage": "https://bitbucket.org/bskydive/kb#readme"
+}

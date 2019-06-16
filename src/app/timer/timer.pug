@@ -1,0 +1,47 @@
+doctype html
+html
+	head
+		meta(lang='en-us')
+		meta(charset='utf-8')
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+		title#id_titleText Таймер Pomodoro
+		link(rel='shortcut icon', type='image/png', href='img/favicon_star.png')
+		link(rel='stylesheet', type='text/css', href='css/portfolio.css')
+		link(rel='stylesheet', type='text/css', href='css/bootstrap-theme.min.css')
+		link(rel='stylesheet', type='text/css', href='css/bootstrap.min.css')
+	body
+		.c-timer.c-btstrp-container
+			noscript
+				.alert.alert-danger(role='alert')
+					strong Warning!
+					|
+					|  Please, enable JavaScript to see correct markup.
+			.c-timer-header
+				a#id_headerCaption(href='http://pomodorotechnique.com/', role='button')
+					| Таймер Pomodoro
+					sup β
+				.c-timer-header-buttons
+					.c-btstrp-btn-stacked(role='group', aria-label='...')
+						button#id_btnTimerDec.c-btstrp-btn.c-btstrp-btn-default(type='button')
+							| −
+						button#id_btnTimer.c-btstrp-btn.c-btstrp-btn-default(type='button')
+							i.c-btstrp-icon.icon-briefcase
+							span 50
+						button#id_btnTimerInc.c-btstrp-btn.c-btstrp-btn-default(type='button')
+							| &plus;
+					.c-btstrp-btn-stacked(role='group', aria-label='...')
+						button#id_btnSmallPauseDec.c-btstrp-btn.c-btstrp-btn-default(type='button')
+							| −
+						button#id_btnSmallPause.c-btstrp-btn.c-btstrp-btn-default(type='button')
+							i.c-btstrp-icon.icon-bell
+							span 10
+						button#id_btnSmallPauseInc.c-btstrp-btn.c-btstrp-btn-default(type='button')
+							| &plus;
+			#id_timeText.c-timer-time
+				p 00:00
+			.c-timer-history-line
+			#id_divListHistoryHeader.c-timer-history
+				p История действий за
+					span 00ч:00м
+				ul#id_listHistory
+	script(type='text/javascript', src='js/timer.js')
