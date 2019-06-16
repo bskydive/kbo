@@ -38,10 +38,8 @@ Also, I'm using it as a bookmarking service.
 * System and icons fonts
 * Responsive design
 * noScript warning
-* VPS hosting
-* [SSL A+](https://www.ssllabs.com/ssltest/analyze.html?d=stepanovv.ru)
-* Identical environment for Prod & Test
-* Open repository on bitbucket
+* free hosting
+* Open repository on gitlab
 * Gulp, Stylus, PUG, JS
 * CSS-first design. Less js code for animation and interaction.
 * Modular structure. One component - one folder.
