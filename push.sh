@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
 
-#git add -A ./
-#git commit -am ${1}
+git add -A ./*
+git commit -am "${1} add files"
+git push gl master
+git push gh master
+git push bb master
 #сначала в облако, на сервере потом будем из него качать по хуку
-git push --prune origin develop
+#git push --prune origin develop
 #теперь запускаем хук
-git push --prune svv develop
+#git push --prune svv develop
 git status
 
 
