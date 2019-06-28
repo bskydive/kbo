@@ -21,7 +21,7 @@ origin="origin-bb"
 
 feature=`git branch | grep '*' | awk -F'* ' '{print $2}'`
 
-git add -A
+git add -A ./public/* ./src/*
 git commit -am "${feature}: ${comment}"
 
 git checkout "${dev}"
