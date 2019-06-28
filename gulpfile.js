@@ -214,8 +214,8 @@ gulp.task('version-prod', function (done) {
 	return gulp.src(pathHtmlDest)
 		//.pipe(exec("git log -1 --format='%cd #%h' --date=format:'%a %d.%m.%Y %H.%M.%S' > version.txt", { continueOnError: true }));
 		//сохраняем если что-то забыли
-		.pipe(exec("git commit -am 'commit-prod'", { continueOnError: true }))
-		.pipe(exec.reporter(reportOptions))
+		// .pipe(exec("git commit -am 'commit-prod'", { continueOnError: true }))
+		// .pipe(exec.reporter(reportOptions))
 		//пишем версию коммита
 		.pipe(exec("cd " + pathHtmlDest + ";git log -1 --format='%cd #%h' --date=format:'%c' > version.txt", { continueOnError: true }))
 		.pipe(exec.reporter(reportOptions))
