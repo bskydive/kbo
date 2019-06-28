@@ -36,59 +36,63 @@
 
 'use strict';
 
-let gulp = require('gulp');
-let pug = require('gulp-pug');
-let clean = require('gulp-clean');
-let imagemin = require('gulp-imagemin');
-let sync = require('gulp-sync')(gulp);
-let replace = require('gulp-replace');
-//let less = require('gulp-less');
-let stylus = require('gulp-stylus');
-let concat = require('gulp-concat');
-let strip = require('gulp-strip-comments');
-let markdown = require('gulp-markdown');
-let markdownit = require('gulp-markdown-it');
-let rename = require('gulp-rename');
-let exec = require('gulp-exec');
+const gulp = require('gulp');
+const pug = require('gulp-pug');
+const clean = require('gulp-clean');
+const imagemin = require('gulp-imagemin');
+const sync = require('gulp-sync')(gulp);
+const replace = require('gulp-replace');
+//const less = require('gulp-less');
+const stylus = require('gulp-stylus');
+const concat = require('gulp-concat');
+const strip = require('gulp-strip-comments');
+const markdown = require('gulp-markdown');
+const markdownit = require('gulp-markdown-it');
+const rename = require('gulp-rename');
+const exec = require('gulp-exec');
 
 /*================================================CONFIG===================================================*/
 
 //для хостинга с особенностями нужен длинный префикс
-let staticPath = 'public/portfolio';
+const staticPath = 'public/portfolio';
 // сайт имеет статические подсайты, потому корень выше папки сборки
-let webServePath = 'public';
-//путь во все подпапки заставляет галп делать подпапки на выходе /**/ поэтому надо вписывать все названия файлов
-let pathImgSrc = [`src/img/*`];//['src/img/*.png', 'src/img/*.jpg', 'src/img/*.gif', 'src/img/*.jpeg']
-let pathImgClean = [`${staticPath}/img/*`];
-let pathImgDest = `./${staticPath}/img`;
+const webServePath = 'public';
+//репозитории
+const gitRemoteMain = 'gl';
+const gitremoteReserve = 'bb';
 
-let pathJsClean = [`${staticPath}/js/*`];
-let pathJsSrc = [`src/js/*.js`, `src/app/timer/timer.js`, `src/app/portfolio/portfolio.js`, `src/app/quotes/quotes.js`, `src/app/weather/weather.js`];
-let pathJsDest = `./${staticPath}/js`;
+//путь во все подпапки заставляет галп делать подпапки на выходе /**/ поэтому надо вписывать все названия файлов
+const pathImgSrc = [`src/img/*`];//['src/img/*.png', 'src/img/*.jpg', 'src/img/*.gif', 'src/img/*.jpeg']
+const pathImgClean = [`${staticPath}/img/*`];
+const pathImgDest = `./${staticPath}/img`;
+
+const pathJsClean = [`${staticPath}/js/*`];
+const pathJsSrc = [`src/js/*.js`, `src/app/timer/timer.js`, `src/app/portfolio/portfolio.js`, `src/app/quotes/quotes.js`, `src/app/weather/weather.js`];
+const pathJsDest = `./${staticPath}/js`;
 
 //отдельный css для уже скомпилированных вендорных. Могут конфликтовать между собой в пространстве имён
-let pathStylusSrcWatch = [`src/fonts/**/*.styl`, `src/app/**/*.styl`, `src/styles/**/*.styl`];
-let pathStylusSrc = [`src/fonts/**/*.styl`, `src/app/**/*.styl`, `src/styles/**/*.styl`];
-let pathCssClean = [`${staticPath}/css/*`];
-let pathCssSrc = [`src/styles/**/*.css`];
-let pathCssDest = `./${staticPath}/css`;
+const pathStylusSrcWatch = [`src/fonts/**/*.styl`, `src/app/**/*.styl`, `src/styles/**/*.styl`];
+const pathStylusSrc = [`src/fonts/**/*.styl`, `src/app/**/*.styl`, `src/styles/**/*.styl`];
+const pathCssClean = [`${staticPath}/css/*`];
+const pathCssSrc = [`src/styles/**/*.css`];
+const pathCssDest = `./${staticPath}/css`;
 
-let pathFontsClean = [`${staticPath}/fonts/*`];
-let pathFontsSrc = [`src/fonts/**/*.ttf`, `src/fonts/**/*.woff`, `src/fonts/**/*.eot`, `src/fonts/**/*.woff2`, `src/fonts/**/*.svg`, `src/fonts/**/*.otf`];
-let pathFontsDest = `./${staticPath}/fonts`;
+const pathFontsClean = [`${staticPath}/fonts/*`];
+const pathFontsSrc = [`src/fonts/**/*.ttf`, `src/fonts/**/*.woff`, `src/fonts/**/*.eot`, `src/fonts/**/*.woff2`, `src/fonts/**/*.svg`, `src/fonts/**/*.otf`];
+const pathFontsDest = `./${staticPath}/fonts`;
 
-let pathSoundsClean = [`${staticPath}/sounds/*`];
-let pathSoundsSrc = [`src/sounds/*`];
-let pathSoundsDest = `./${staticPath}/sounds`;
+const pathSoundsClean = [`${staticPath}/sounds/*`];
+const pathSoundsSrc = [`src/sounds/*`];
+const pathSoundsDest = `./${staticPath}/sounds`;
 
-let pathHtmlClean = [`${staticPath}/*.html`];
-let pathPugSrcWatch = [`src/app/portfolio/**/*.pug`];
-let pathPugSrc = [`src/app/timer/timer.pug`, `src/app/portfolio/portfolio.pug`, `src/app/quotes/quotes.pug`, `src/app/weather/weather.pug`];
-let pathHtmlDest = `./${staticPath}`;
+const pathHtmlClean = [`${staticPath}/*.html`];
+const pathPugSrcWatch = [`src/app/portfolio/**/*.pug`];
+const pathPugSrc = [`src/app/timer/timer.pug`, `src/app/portfolio/portfolio.pug`, `src/app/quotes/quotes.pug`, `src/app/weather/weather.pug`];
+const pathHtmlDest = `./${staticPath}`;
 
-let pathTxtClean = [`${staticPath}/txt/*`];
-let pathTxtSrc = [`src/app/portfolio/*.md`, `src/app/quotes/*.md`, `src/app/weather/*.md`, `src/app/timer/*.md`, `src/app/conventions/**/*.md`];
-let pathTxtDest = `./${staticPath}/txt`;
+const pathTxtClean = [`${staticPath}/txt/*`];
+const pathTxtSrc = [`src/app/portfolio/*.md`, `src/app/quotes/*.md`, `src/app/weather/*.md`, `src/app/timer/*.md`, `src/app/conventions/**/*.md`];
+const pathTxtDest = `./${staticPath}/txt`;
 
 /*================================================ERROR====================================================*/
 function handleError(err) {
@@ -222,7 +226,7 @@ gulp.task('version-prod', function (done) {
 		.pipe(exec("cd " + pathHtmlDest + ";grep -E 'DEV:|version' portfolio.html", {continueOnError: true}))
 		.pipe(exec.reporter(reportOptions))
 		//отправляем на сервер в develop
-		.pipe(exec("git commit -am 'commit-version';git push origin develop;git push svv develop", { continueOnError: true }))
+		.pipe(exec(`git commit -am 'commit-version';git push ${gitRemoteMain} develop;git push ${gitremoteReserve} develop`, { continueOnError: true }))
 		.pipe(exec.reporter(reportOptions));
 	// done();
 });
