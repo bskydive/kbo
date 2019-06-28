@@ -1,4 +1,4 @@
- * [Главная](/index.md)
+ * [Главная](index.md)
  * Приёмка помещения
 	 * [Ошибки при ремонте](kb/remont/common_mistakes)
 	 * [Общие правила приёмки квартиры в новостройке](kb/remont/priyomka_flat)
