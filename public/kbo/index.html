@@ -39,7 +39,7 @@
  			noCompileLinks: [
  				//https://github.com/QingWei-Li/docsify/blob/9b3b4454de43340d1c0cc7125f7246858cfe9efe/docs/configuration.md#nocompilelinks
 				'/files/.*',
-				'/kb/files/.*'
+				'/kbo/files/.*'
 			],
 			// alias:{
 			// 	'/files/.*':'/'
@@ -64,7 +64,7 @@
 			plugins: [
 				function (hook, vm) {
 					hook.beforeEach(function (html) {
-						var url = 'https://bitbucket.org/bskydive/kb/src/master/static/' + vm.route.file
+						var url = 'https://gitlab.com/bskydive/kbo/src/master/static/' + vm.route.file
 						var editHtml = '[Редактировать](' + url + ')\n'
 						return html + '\n\n----\n\n' + '| Изменён {docsify-updated} | ' + editHtml + ' | '
 					})

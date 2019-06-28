@@ -53,7 +53,7 @@ clear_env = no # выключить очистку глобальных пере
 
 ## datetime
 
-[datetime](/kb/admin/zabbix#datetime)
+[datetime](/kbo/admin/zabbix#datetime)
 
 ## selinux
 

@@ -55,6 +55,8 @@ let exec = require('gulp-exec');
 
 //для хостинга с особенностями нужен длинный префикс
 let staticPath = 'public/portfolio';
+// сайт имеет статические подсайты, потому корень выше папки сборки
+let webServePath = 'public';
 //путь во все подпапки заставляет галп делать подпапки на выходе /**/ поэтому надо вписывать все названия файлов
 let pathImgSrc = [`src/img/*`];//['src/img/*.png', 'src/img/*.jpg', 'src/img/*.gif', 'src/img/*.jpeg']
 let pathImgClean = [`${staticPath}/img/*`];
@@ -237,13 +239,13 @@ gulp.task('version-prod', function (done) {
 //	'pm2 info http-server'
 
 gulp.task('web-stop', function () {
-	return gulp.src(pathHtmlDest)
+	return gulp.src(webServePath)
 			.pipe(exec('bash web-stop.sh', {continueOnError: true}));
 });
 
 gulp.task('web-start', ['web-stop'], function () {
-	return gulp.src(pathHtmlDest)
-			.pipe(exec('bash web-start.sh ' + pathHtmlDest, {continueOnError: true}));
+	return gulp.src(webServePath)
+			.pipe(exec('bash web-start.sh ' + webServePath, {continueOnError: true}));
 });
 
 /*================================================STYLUS===================================================*/

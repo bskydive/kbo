@@ -16,7 +16,7 @@
 
 ## Как запустить у себя?
 
- * git clone https://bitbucket.org/bskydive/kb.git
+ * git clone git@gitlab.com:stepanovv/kbo.git
  * cd kb
  * npm install -g docsify-cli
  * npm run start
@@ -47,8 +47,8 @@
         ```md
         * ОГЛАВЛЕНИЕ
             * Соглашения по коду
-                * [общие](/kb/conventions/conventions.md)
-                * [angular](/kb/conventions/angular.md)
+                * [общие](kb/conventions/conventions.md)
+                * [angular](kb/conventions/angular.md)
         ```
     * Пути указываются от корня ./static/
     * Подзаголовки в оглавлении будут добавлены автоматически

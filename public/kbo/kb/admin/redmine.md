@@ -172,7 +172,7 @@ export RAILS_ENV=production
 
 ## Установка ruby стэка
 
- * [ruby](/kb/backend/ruby)
+ * [ruby](/kbo/backend/ruby)
 
  * https://habrahabr.ru/post/278843/
 
@@ -306,7 +306,7 @@ mv /distr/redmine-$version /opt
 ln -s /opt/redmine-$version /opt/redmine
 ```
 
-## [nginx-passenger](/kb/admin/nginx-passenger)
+## [nginx-passenger](/kbo/admin/nginx-passenger)
 
 
 ## создаем БД

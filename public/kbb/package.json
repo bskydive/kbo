@@ -10,9 +10,9 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+ssh://git@bitbucket.org/bskydive/kbb.git"
+		"url": "git+ssh://git@gitlab.com:stepanovv/kbo.git"
 	},
 	"author": "stepanovv.ru",
 	"license": "ISC",
-	"homepage": "https://bitbucket.org/bskydive/kbb#readme"
+	"homepage": "https://gitlab.com/stepanovv/kbo/blob/master/public/kbo/index.md"
 }

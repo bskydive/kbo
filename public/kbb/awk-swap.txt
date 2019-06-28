@@ -1,9 +1,9 @@
 #!/usr/bin/awk -f
 #{match($0, /([a-zA-Z0-9]+)\|([a-zA-Z0-9]+)/, res);print "[" res[2] "](" res[1] ")";}
 
-#cat ./docs/kb/remont/shtukaturka.md | awk '{l=split($0,t,/(["<>("]+)||(["|"]+)||([")"]+)/,res); print l "[" t[3] "](" t[2] ")" $0}' > res.md
+#cat ./docs/kbo/remont/shtukaturka.md | awk '{l=split($0,t,/(["<>("]+)||(["|"]+)||([")"]+)/,res); print l "[" t[3] "](" t[2] ")" $0}' > res.md
 
-#cat ./docs/kb/remont/shtukaturka.md | awk '{l=split($0,t,/(\<\>\([:alnum:]+\|)||(\|[:alnum:]+\))/,res); print l "[" t[3] "](" t[2] ")" $0}' > res.md
+#cat ./docs/kbo/remont/shtukaturka.md | awk '{l=split($0,t,/(\<\>\([:alnum:]+\|)||(\|[:alnum:]+\))/,res); print l "[" t[3] "](" t[2] ")" $0}' > res.md
 
 
 {

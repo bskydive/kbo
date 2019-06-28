@@ -62,6 +62,11 @@
  * есть локальные плагины для IDE https://marketplace.visualstudio.com/items?itemName=mkloubert.vscode-kanban
  * 
 
+### статьи
+
+ * [советы от timedoctor](https://www.timedoctor.com/blog/how-to-use-trello/)
+ * https://trello.com/tour
+
 ### Zapier
 
 * 5 минут интервал
@@ -143,3 +148,7 @@
 * `heroku logs --tail`
 * `heroku labs:enable log-runtime-metrics`
 
+## time camp
+
+ * https://appimage.github.io/TimeCampDesktop/
+ * `zypper in libappindicator1 libdbus-1-3 libgtk-2_0-0 libindicator7 liblzma5 libnotify4 libsqlcipher-3_20_1-0 libsqlite3-0 libudev1 libX11-6 libXss1 ImageMagick`

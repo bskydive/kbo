@@ -35,7 +35,7 @@
 
 ### pulse
 
- * [pulseaudio-equalizer](/kb/files/equalizer-preset.png)
+ * [pulseaudio-equalizer](/kbo/files/equalizer-preset.png)
  * в pavucontrol выбрать воспроизведение через LADSPA Plugin, чтобы эквалайзер заработал
  * удаление pulseaudio-equalizer
     ```

@@ -427,7 +427,7 @@ https://gist.github.com/esoupy/3823712
 	cd repo
 	touch ./.git/git-daemon-export-ok
 	git config daemon.receivepack true
-	git config --global user.name "bskydive"
+	git config --global user.name "stepanovv"
 	git config --global user.email stepanovv.ru@yandex.ru
 
 	cat >> file
