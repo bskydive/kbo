@@ -747,44 +747,6 @@
   padding-right: 15px;
 }
 
-.c-weather {
-  font-family: Arial, Helvetica, monospace;
-}
-.c-weather-icon {
-  font-size: 1em;
-  font-style: normal;
-  font-weight: bold;
-}
-.c-weather-section {
-  border-top: 1px solid #808080;
-  padding: 1em;
-}
-.c-weather-list {
-  text-align: left;
-  width: 22em;
-  margin: 0 auto;
-}
-.c-weather-list li {
-  padding: 0.5em 5em 0.5em 0.5em;
-  background: #ddd;
-  margin-bottom: 1px;
-  position: relative;
-}
-.c-weather-list-description {
-  position: absolute;
-  right: 1em;
-  top: 1em;
-  font-size: 0.75em;
-}
-.c-weather-list-header {
-  text-transform: uppercase;
-  letter-spacing: 0.25em;
-  font-weight: bold;
-  font-size: 1em;
-  margin-bottom: 1.25em;
-  padding-top: 1.25em;
-}
-
 .c-timer {
   font-family: Arial, Helvetica, monospace;
   font-size: 14px;
@@ -855,6 +817,44 @@
   position: relative;
   font-size: 0.75em;
   float: right;
+}
+
+.c-weather {
+  font-family: Arial, Helvetica, monospace;
+}
+.c-weather-icon {
+  font-size: 1em;
+  font-style: normal;
+  font-weight: bold;
+}
+.c-weather-section {
+  border-top: 1px solid #808080;
+  padding: 1em;
+}
+.c-weather-list {
+  text-align: left;
+  width: 22em;
+  margin: 0 auto;
+}
+.c-weather-list li {
+  padding: 0.5em 5em 0.5em 0.5em;
+  background: #ddd;
+  margin-bottom: 1px;
+  position: relative;
+}
+.c-weather-list-description {
+  position: absolute;
+  right: 1em;
+  top: 1em;
+  font-size: 0.75em;
+}
+.c-weather-list-header {
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-weight: bold;
+  font-size: 1em;
+  margin-bottom: 1.25em;
+  padding-top: 1.25em;
 }
 
 .c-btstrp-clearing {
