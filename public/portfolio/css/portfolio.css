@@ -158,78 +158,6 @@
   padding-right: 15px;
 }
 
-.c-timer {
-  font-family: Arial, Helvetica, monospace;
-  font-size: 14px;
-  line-height: 1.42857143;
-  color: #333;
-}
-.c-timer-header {
-  display: inline-block;
-  line-height: 30px;
-  width: 100%;
-  padding-top: 10px;
-}
-.c-timer-header>a {
-  float: left;
-}
-.c-timer-header-buttons {
-  display: inline-block;
-  float: right;
-}
-.c-timer-header-buttons button {
-  font-weight: 700;
-}
-.c-timer-header-buttons i {
-  vertical-align: text-top;
-}
-.c-timer-time {
-  padding: 0;
-  margin: 0;
-  font-size: 24px;
-  border-top: 1px solid #808080;
-  text-align: center;
-}
-.c-timer-time p {
-  margin: 0;
-  padding-top: 14px;
-  padding-bottom: 14px;
-}
-.c-timer-header-caption {
-  padding: 1em;
-}
-.c-timer-history {
-  margin-bottom: 1.25em;
-  padding-top: 1.25em;
-  width: 25em;
-  margin-left: auto;
-  margin-right: auto;
-}
-.c-timer-history p {
-  text-align: left;
-  padding: 0.5em;
-}
-.c-timer-history-line {
-  border-top: 1px solid #808080;
-}
-.c-timer-history ul {
-  text-align: left;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.c-timer-history ul li {
-  padding: 0.5em;
-  background: #ddd;
-  margin-bottom: 1px;
-  position: relative;
-}
-.c-timer-history span {
-  position: relative;
-  font-size: 0.75em;
-  float: right;
-}
-
 .c-portfolio-vert-align {
   display: table-cell;
   vertical-align: middle;
@@ -817,6 +745,78 @@
   .c-portfolio-footer-spacer {
     display: none;
   }
+}
+
+.c-timer {
+  font-family: Arial, Helvetica, monospace;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+}
+.c-timer-header {
+  display: inline-block;
+  line-height: 30px;
+  width: 100%;
+  padding-top: 10px;
+}
+.c-timer-header>a {
+  float: left;
+}
+.c-timer-header-buttons {
+  display: inline-block;
+  float: right;
+}
+.c-timer-header-buttons button {
+  font-weight: 700;
+}
+.c-timer-header-buttons i {
+  vertical-align: text-top;
+}
+.c-timer-time {
+  padding: 0;
+  margin: 0;
+  font-size: 24px;
+  border-top: 1px solid #808080;
+  text-align: center;
+}
+.c-timer-time p {
+  margin: 0;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+.c-timer-header-caption {
+  padding: 1em;
+}
+.c-timer-history {
+  margin-bottom: 1.25em;
+  padding-top: 1.25em;
+  width: 25em;
+  margin-left: auto;
+  margin-right: auto;
+}
+.c-timer-history p {
+  text-align: left;
+  padding: 0.5em;
+}
+.c-timer-history-line {
+  border-top: 1px solid #808080;
+}
+.c-timer-history ul {
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.c-timer-history ul li {
+  padding: 0.5em;
+  background: #ddd;
+  margin-bottom: 1px;
+  position: relative;
+}
+.c-timer-history span {
+  position: relative;
+  font-size: 0.75em;
+  float: right;
 }
 
 .c-weather {
