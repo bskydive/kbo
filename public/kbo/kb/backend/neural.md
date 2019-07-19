@@ -19,15 +19,22 @@
  * https://proglib.io/p/deep-learning-tricks/
  * [лекции по ИИ московского энергитического института http://vuz.exponenta.ru/](https://www.youtube.com/watch?v=W7ux1RfOQeM&list=PLPltKsCTLqkxxwRUJGapnp3JzwYH8auSc)
  
+## зрение
+
+ * [ИИ, которое не пускает в дом кота с уличной добычей](https://habr.com/ru/post/458582/)
+
 ## железо
 
  * [Прямой репортаж с рождения крупного игрока в аппаратном AI, который ускоряет TensorFlow и конкурирует с NVidia](https://habr.com/post/414163/)
+ * [vOICe vision звуковое зрение](https://habr.com/ru/post/458532/)
+ * https://www.dailytechinfo.org/
  
 ## собес
 
  * [Чему я научился, пройдя множество собеседований в компаниях и стартапах из сферы ИИ](https://habr.com/company/everydaytools/blog/413941/)
     * https://blog.usejournal.com/what-i-learned-from-interviewing-at-multiple-ai-companies-and-start-ups-a9620415e4cc 
- 
+ * [Опыт разработки требований к профессиональным качествам data scientist](https://habr.com/ru/post/457630/)
+
 ## проверка данных толока
  
  * https://habr.com/company/yandex/blog/305956/

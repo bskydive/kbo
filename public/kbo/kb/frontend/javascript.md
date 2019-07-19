@@ -45,6 +45,7 @@
  * https://medium.com/@DmitrySoshnikov
  * [параллельные конкурентные потоки многопоточность](https://hacks.mozilla.org/2017/06/a-crash-course-in-memory-management/)
  * [Основы движков JavaScript: общие формы и Inline кэширование. Часть 2](https://habr.com/ru/company/otus/blog/447220/)
+ * [Функциональный JavaScript: пять способов нахождения среднего арифметического элементов массива и метод .reduce()](https://habr.com/ru/company/ruvds/blog/458030/)
 
 ## алгоритмы
 
@@ -90,6 +91,7 @@
  * https://github.com/Microsoft/TypeScript-React-Conversion-Guide#typescript-react-conversion-guide
  * http://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html
  * https://habrahabr.ru/company/piter/blog/347364/
+ * [typescript на node сервере](https://habr.com/ru/post/328466/)
 
 ##  шаблоны patterns
 

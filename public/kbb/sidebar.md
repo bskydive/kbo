@@ -1,11 +1,15 @@
  * [Главная](index.md)
+	 * [](kb/remont/распродажа)
  * Приёмка помещения
 	 * [Ошибки при ремонте](kb/remont/common_mistakes)
 	 * [Общие правила приёмки квартиры в новостройке](kb/remont/priyomka_flat)
 	 * [Замеры помещения](kb/remont/zamer_flat)
- * Проектирование
+ * Планирование
+	 * [Последовательность работ](kb/remont/etapi_remonta)
+	 * [Наём рабочих](kb/remont/naem_rabochih)
+	 * [Закупка и расчёт материалов](kb/remont/zakupka_calc)
 	 * [SweetHome3D](kb/remont/sweethome3d)
- * Дизайн
+	 * [смета](kb/remont/смета)
 	 * [Дизайн помещения](kb/remont/flat_design)
  * Инструмент 
 	 * [перфоратор](kb/remont/perforator)
@@ -18,11 +22,6 @@
 	 * [разметочный инструмент](kb/remont/разметочный_инструмент)
 	 * [миксер](kb/remont/миксер)
 	 * [рулетка](kb/remont/рулетка)
- * Планирование
-	 * [Последовательность работ](kb/remont/etapi_remonta)
-	 * [Наём рабочих](kb/remont/naem_rabochih)
-	 * [Закупка и расчёт материалов](kb/remont/zakupka_calc)
-	 * [](kb/remont/смета)
  * Подготовка помещения к ремонту
 	 * [экипировка](kb/remont/экипировка)
 	 * [Черновая электрика](kb/remont/draft_electric)
