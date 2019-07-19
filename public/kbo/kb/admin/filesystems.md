@@ -1,5 +1,9 @@
 # Filesystems
 
+## тестирование производительности
+
+ * [Как оценить производительность СХД на Linux: бенчмаркинг с помощью открытых инструментов](https://habr.com/ru/company/1cloud/blog/458204/)
+
 ## iso to usb
 
 http://www.osforensics.com/tools/create-disk-images.html
