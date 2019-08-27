@@ -13,6 +13,7 @@
  
 ##  как измерить
 
+ * https://webhint.io/
  * https://habrahabr.ru/company/tensor/blog/345434/
  * https://habrahabr.ru/post/345212/
  * https://www.machmetrics.com/

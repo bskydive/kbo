@@ -4,6 +4,7 @@
 
  * [правила хорошего интерфейса](https://habrahabr.ru/post/277399/)
  * [используй дизайн-гайдлайны, унифицируй компоненты, прикладывай шрифты](https://habrahabr.ru/post/311800/)
+ * [Модульная сетка макета с нуля: анализ, расчет и построение](https://habr.com/ru/post/344910/)
 
 ##  designer IDE
 
@@ -14,6 +15,14 @@
  * [figma](https://www.figma.com/features)
  * zeplin
 
+## Figma
+
+ * [Правила подготовки макетов в Figma](https://habr.com/ru/post/463061/)
+ * [разрешение конфликтов дизайнера и верстальщика в «Фигме»](https://habr.com/ru/post/464115/)
+ * [ограничения figma](https://habr.com/ru/post/463181/)
+ * [лучшие практики figma](https://www.figma.com/blog/component-styles-and-shared-library-best-practices/)
+ * [посты про figma](https://habr.com/ru/users/kamushken/posts/)
+ 
 ## элементы дизайна
 
  * параллакс

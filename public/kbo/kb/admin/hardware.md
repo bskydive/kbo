@@ -5,6 +5,7 @@
  * https://seasonic.com/wattage-calculator
  * http://www.jonnyguru.com
  * http://www.logicalincrements.com/
+ * https://cpu.userbenchmark.com/
 
 ## Бесперебойник APC
 
@@ -53,7 +54,3 @@
 ## периферия
 
  * https://www.nix.ru/autocatalog/mouse_sven/SVEN-Optical-Mouse-RX-555-Silent-Antistress-Green-RTL-USB-3btn-plus-Roll_211056.html
- 
-## конфигураторы
-
- * https://cpu.userbenchmark.com/
