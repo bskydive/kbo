@@ -202,6 +202,12 @@ https://521dimensions.com/open-source/amplitudejs
  * http://stackoverflow.com/questions/18052529/bootstrap-datetimepicker-convert-selected-local-date-to-utc
  * http://stackoverflow.com/questions/1576753/parse-datetime-string-in-javascript
  * [nodejs+browser date](https://github.com/teamweek/instadate)
+ * ``` Ошибаются в инкрементах на неделю, месяц, год в последних днях месяца. 31-01-2019 + 1 месяц = 31-02-2019 = 03-03-2019. Иногда забывают про високосные годы.
+Ошибки инкремента даты делают при переходах между зимним и летним временем. Мы же помним, что время подвластно политикам и правила могут меняться год от года.
+Отдельная тема — часовые пояса. Какой сейчас день? А где именно? Вот уж действительно начинаешь понимать, что живёшь в пространственно-временном континууме. Чтобы определить «когда» нужно знать «во сколько» и «где». Хранить информацию о времени в unix timestamp может быть не лучшей идеей. Нужно сто раз взвесить, прежде чем решать приводить все к UTC.
+На самом деле, не имея информации о часовом поясе и актуальной версии tzdata вы мало, что можете правильно посчитать. Рассчет на сервере и на клиенте может давать разные результаты. После очередного апдейта tzdata результаты могут сильно измениться.
+Так же хлопот доставляют форматы записи дат в разных локалях. 10/11/12 без контекста не распарить. ```
+ * [о типичных ошибках в работе со временем](https://habr.com/ru/company/yandex/blog/463203/)
 
 ###  bootstrap datepicker
 
@@ -215,6 +221,7 @@ https://521dimensions.com/open-source/amplitudejs
  * http://w3c.github.io/svgwg/specs/svg-authoring/
  * https://blog.prototypr.io/align-svg-icons-to-text-and-say-goodbye-to-font-icons-d44b3d7b26b4
  * [svg gradient map filter](https://yoksel.github.io/svg-gradient-map/#/)
+ * [календарь из svg](https://habr.com/ru/company/yandex/blog/461571/)
 
 ### анимация и рисование svg
 
