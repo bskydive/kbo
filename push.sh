@@ -5,6 +5,8 @@ git commit -am "${1} add files"
 git push gl develop
 git push gh develop
 git push bb develop
+echo "проверить на одинаковость два index.html для bb+gl"
+echo "сделать ПР https://gitlab.com/stepanovv/kbo/merge_requests и проверить сборку https://gitlab.com/stepanovv/kbo/pipelines"
 #сначала в облако, на сервере потом будем из него качать по хуку
 #git push --prune origin develop
 #теперь запускаем хук
