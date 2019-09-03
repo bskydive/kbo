@@ -22,6 +22,8 @@
  * [ограничения figma](https://habr.com/ru/post/463181/)
  * [лучшие практики figma](https://www.figma.com/blog/component-styles-and-shared-library-best-practices/)
  * [посты про figma](https://habr.com/ru/users/kamushken/posts/)
+ * плагины:
+	* https://www.figma.com/c/plugin/732240841094697441/%E2%9A%A1%EF%B8%8F-Viewports
  
 ## элементы дизайна
 

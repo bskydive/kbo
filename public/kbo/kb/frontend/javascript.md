@@ -93,6 +93,7 @@
  * http://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html
  * https://habrahabr.ru/company/piter/blog/347364/
  * [typescript на node сервере](https://habr.com/ru/post/328466/)
+ * [расширенный ликбез 2019](https://www.youtube.com/watch?v=_-tSzfGkrew)
 
 ##  шаблоны patterns
 
