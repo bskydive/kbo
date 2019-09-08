@@ -153,3 +153,28 @@
 
  * https://appimage.github.io/TimeCampDesktop/
  * `zypper in libappindicator1 libdbus-1-3 libgtk-2_0-0 libindicator7 liblzma5 libnotify4 libsqlcipher-3_20_1-0 libsqlite3-0 libudev1 libX11-6 libXss1 ImageMagick`
+
+## gitlab pages
+
+ * надо сделать репу в гитлаб, можно приватную. 
+ * Там вот сделать каталог public, в ём отгородить index.html и 404.html. Симлинки вроде не катят.
+ * закопать .gitlab-ci.yml в корень проекта:
+	```
+		image: alpine:latest
+
+		pages:
+		stage: deploy
+		script:
+		- echo 'Nothing to do...'
+		artifacts:
+			paths:
+			- public
+		only:
+		- master
+	```
+ * Потом настроить на вкладке CI/CD pipeline
+ * для bitbucket надо index+404 разместить в корне
+ 
+## готовые дизайн системы и библиотеки кода
+
+ * https://akveo.github.io/ngx-admin/

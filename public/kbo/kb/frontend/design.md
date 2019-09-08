@@ -48,6 +48,8 @@
  * [storybook](https://www.conductor.com/nightlight/создание-библиотеки-компонентов-с-ис/)
  * [figma](https://www.figma.com/features)
  * https://github.com/kitze/JSUI
+ * https://eva.design/components
+ * https://akveo.github.io/ngx-admin/
 
 ##  компонентный подход component way
 
