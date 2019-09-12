@@ -7,6 +7,7 @@
 	https://www.html5rocks.com/ru/tutorials/dnd/basics/
  * https://developers.google.com/web/
  * https://www.smashingmagazine.com/2019/01/html5-input-types/
+ * [DOM](https://proglib.io/p/ne-pasi-zadnih-ispolzuy-dom-kak-professional-2019-09-11)
 
 ##  http2 sprites
 

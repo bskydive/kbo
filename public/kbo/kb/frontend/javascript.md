@@ -55,7 +55,7 @@
  
 ## ООП prototype наследование
 
- * (Каждый программист на javascript должен написать свою реализацию классов)[https://habr.com/post/132698/#comment_4404597]
+ * [Каждый программист на javascript должен написать свою реализацию классов](https://habr.com/post/132698/#comment_4404597)
 
 ##  курсы
 
@@ -94,6 +94,7 @@
  * https://habrahabr.ru/company/piter/blog/347364/
  * [typescript на node сервере](https://habr.com/ru/post/328466/)
  * [расширенный ликбез 2019](https://www.youtube.com/watch?v=_-tSzfGkrew)
+ * [TypeScript. Магия выражений](typescript)
 
 ##  шаблоны patterns
 
