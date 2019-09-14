@@ -48,6 +48,16 @@
  * [Функциональный JavaScript: пять способов нахождения среднего арифметического элементов массива и метод .reduce()](https://habr.com/ru/company/ruvds/blog/458030/)
  * [Часто задаваемые вопросы о системах типов](https://habr.com/ru/company/ruvds/blog/462481/)
 
+## загрузка сторонних скриптов 
+
+ * http://www.lukasjakob.com/how-to-dynamically-load-external-scripts-in-angular/
+ * использовать jsonp callback
+	```html
+		<script src="https://apis.google.com/js/platform.js?onload=onLoadCallback" async defer></script>
+	```
+ * можно указать в html `<script>` со скриптом загрузчика скриптов, если требуется обновление мобильного приложения внутри phonegap
+ * https://stackoverflow.com/questions/34489916/how-to-load-external-scripts-dynamically-in-angular?noredirect=1
+
 ## алгоритмы
 
  * [двоичное дерево](https://www.nickang.com/binary-search-tree-explained/)
@@ -214,11 +224,6 @@ https://stateofjs.com/2017/front-end/results
  * redux
  * mobx-tree-store
 
-##  очереди
-
- * [трансдьюсеры](https://habrahabr.ru/company/ruvds/blog/329536/)
- * https://medium.com/@roman01la/understanding-transducers-in-javascript-3500d3bd9624
-
 ##  большие числа
 
  * https://habrahabr.ru/post/308874/
@@ -289,6 +294,8 @@ startPromise(a,b,c)
 
 ## очереди queue
 
+ * [трансдьюсеры](https://habrahabr.ru/company/ruvds/blog/329536/)
+ * https://medium.com/@roman01la/understanding-transducers-in-javascript-3500d3bd9624
  * [быстрая очередь](https://www.nickang.com/implementing-queue-javascript/)
  
 ```js
