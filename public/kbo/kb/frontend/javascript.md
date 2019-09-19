@@ -37,7 +37,6 @@
 
  * https://eslint.org/docs/rules/
  * https://palantir.github.io/tslint/rules/
- * https://github.com/Gillespie59/eslint-plugin-angular
  
 ## ботанство
 
