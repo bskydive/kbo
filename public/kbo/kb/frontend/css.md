@@ -152,8 +152,9 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 	```
  * https://tobiasahlin.com/blog/common-flexbox-patterns/
 
-## css тилизация прокрутки
-
+## css стилизация прокрутки
+* https://www.filamentgroup.com/lab/scrollbars/
+* 
 	```scss
 		& ::-webkit-scrollbar {
 			//https://css-tricks.com/custom-scrollbars-in-webkit/
