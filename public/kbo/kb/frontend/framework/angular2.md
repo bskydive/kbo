@@ -524,6 +524,7 @@ count.subscribe(x => console.log(x));
 
  * Basic level - [Angular Elements – A Practical Introduction To Web Components With Angular 6](https://www.tsmean.com/articles/angular/pitfalls/)
  * [angular faq](https://rahulrsingh09.github.io/AngularConcepts/faq)
+ * [обход подводных камней angular](https://habr.com/ru/company/ruvds/blog/459304/)
 
 ### drag перетаскивание resize
 

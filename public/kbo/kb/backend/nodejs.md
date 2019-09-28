@@ -71,6 +71,7 @@ WantedBy=multi-user.target
 
  * [cors](https://expressjs.com/en/resources/middleware/cors.html)
  * [helmet](https://www.npmjs.com/package/helmet)
+ * [Руководство по аутентификации в Node.js без passport.js и сторонних сервисов](https://habr.com/ru/company/ruvds/blog/457700/)
 
 ## db
 
