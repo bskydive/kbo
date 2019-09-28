@@ -97,6 +97,7 @@
  * https://habrahabr.ru/company/mailru/blog/309212/
  * https://tproger.ru/digest/web-dev-tools-1/
  * https://github.com/melnik909/frontend-whitelist/blob/master/README.md
+ * [Вы не гугл - обзор ограничений популярных технологий](https://habr.com/ru/post/450230/)
 
 ##  трюки
 

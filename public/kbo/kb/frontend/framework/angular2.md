@@ -184,6 +184,7 @@ processOutsideAngularZone() {
 		@Input() vData; 
 		}
 ```
+ * [Оптимизация обработки событий в Angular EventManagerPlugin](https://habr.com/ru/company/tinkoff/blog/429692/)
 
 ## webworker
 
