@@ -46,6 +46,7 @@
  * [Основы движков JavaScript: общие формы и Inline кэширование. Часть 2](https://habr.com/ru/company/otus/blog/447220/)
  * [Функциональный JavaScript: пять способов нахождения среднего арифметического элементов массива и метод .reduce()](https://habr.com/ru/company/ruvds/blog/458030/)
  * [Часто задаваемые вопросы о системах типов](https://habr.com/ru/company/ruvds/blog/462481/)
+ * [производительность javascript](https://habr.com/ru/company/mailru/blog/321748/)
 
 ## загрузка сторонних скриптов 
 
@@ -215,6 +216,8 @@ https://stateofjs.com/2017/front-end/results
 
  * https://www.safaribooksonline.com/library/view/high-performance-javascript/9781449382308/ch04s03.html
  * http://voidcanvas.com/javascript-performant-coding-tips/
+ * [измерение производительности javascript](https://habr.com/ru/company/mailru/blog/272087/)
+ * [убийцы оптимизации](https://habr.com/ru/company/mailru/blog/273839/)
 
 ##  state management
 

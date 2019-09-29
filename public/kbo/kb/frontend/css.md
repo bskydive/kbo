@@ -5,6 +5,12 @@
  * https://medium.com/web-standards/critical-and-progressive-css-d6611f034d7d
  * [https://github.com/GoogleChromeLabs/css-paint-polyfill](https://github.com/GoogleChromeLabs/css-paint-polyfill)
 
+## css шлюзы gateway
+
+для расчёта адаптива
+
+ * [Математика CSS-шлюзов](https://habr.com/ru/company/mailru/blog/315196/)
+
 ## DOM/BOM API
 
  * [houdini/csstom](https://medium.com/@lucyhackwrench/поддержка-css-typed-om-появилась-в-chrome-как-это-облегчит-жизнь-разработчикам-31b086851465/)
@@ -32,7 +38,7 @@
 
 ### решение проблем
  
- * [Шпаргалка по верстке 2012](https://habr.com/post/163871/)
+ * [Шпаргалка по вёрстке 2012](https://habr.com/post/163871/)
  * [шпаргалка по специфичности селекторов](http://css-live.ru/css/pravilnaya-shpargalka-po-css-kaskadu.html)
  
 #### схлопывание 
@@ -58,7 +64,6 @@
     border: 100px solid;//ширина основания
     border-bottom-color: blue;//определяем направление стрелки
     }
- 
  ```
  
 #### границы-рисунки
