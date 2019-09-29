@@ -13,6 +13,7 @@
  * [WEB-оливье: небольшой микс из опасностей и ошибок разработчика](http://habrahabr.ru/company/bonjoin/blog/274221/)
  * [перевод https://umaar.com/dev-tips/](https://habrahabr.ru/company/mailru/blog/278021/)
  * [Дайджест](https://habrahabr.ru/company/zfort/)
+ * [Чему я научился на своём горьком опыте (за 30 лет в разработке ПО)]. [orig](https://blog.juliobiason.net/books/things-i-learnt/)
 
 ### блоги, журналы
  
