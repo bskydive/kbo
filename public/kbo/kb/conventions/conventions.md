@@ -115,13 +115,15 @@
 
 ## Организация кода
 
+1. По возможности сразу определите единый стиль отступов. Табуляция позволяет разным людям видеть код так, как им удобно, а более того, на разных устройствах/IDE по-разному. Те, кто предпочитают пробелы всё равно ставят их табом через автозамену или автоформатом IDE. Наиболее популярные стили кода и отступов, судя по всему, написаны с учётом унаследованного кода из времён проблем с размером мониторов и кодировкой. Кроме того, более старые стили кода [позволяют](https://wiki.sc/wikipedia/Отступ_(программирование)#Стиль_«K&R») использовать смешанные отступы.
+
 1. Используется единое пространство имён, чтобы понимать для каких компонентов в других видах файлов написан кусок кода.
 	Все подписи коммитов, компоненты, переменные, папки, классы должны содержать одинаковые слова для обозначения одинаковых или взаимосвязанных элементов.
 	Одинаковые слова должны быть описаны в справочнике, связывающем между собой бизнес-понятия, вёрстку, код, дизайн.
 	Менеджер, дизайнер, программист и тестировщик должны одинаково понимать эти слова.
 
 1. Правила именования должны облегчать рефакторинг, чтобы можно было за один раз легко менять названия. 
-    Пример:
+	Пример:
 	```
 		formControlUserName
 		formControlUserRole
@@ -143,45 +145,45 @@
 
 1. Шрифты хранятся в отдельной папке для всех шрифтов, с подпапками для каждого шрифта. В подпапке также хранится файл less для @font-face шрифта.
 
-1. Необходимо убирать лишний код и комментарии при рефакторинге. Главные комментарии пишутся в jsDoc перед методами и в начале файла.
+1. Необходимо убирать лишний код и [комментарии](https://habr.com/ru/company/mailru/blog/349978/) при рефакторинге. Главные комментарии пишутся в jsDoc перед методами и в начале файла.
 	* Если комментарии необходимо временно оставить, то заводим задачу в JIRA в истории про рефакторинг.
 	* Указываем в задаче ссылку на место в коде с временным комментарием.
 	* Указываем в комментарии в коде ссылку на задачу JIRA
 1. При именовании объектов необходимо давать самодокументируемые названия, и прикрывать все выходы и входы интерфейсами. Должно быть как можно меньше одинаковых названий, иначе при комбинированни данных вырастает риск ошибки подмены данных пользователя, т.к. легко перепутать first.params[].id и second.id при объединении их в один объект.А вот firstId и secondId легче защитить интерфейсами.
-    ```ts
-    setProfile(){
-        if (
-            typeof this.profile.dataModified.profileId === string &&
-            this.profile.dataModified.profileId.length > 0 &&
-            typeof this.profile.dataModified.profileNotes === string &&
-            typeof this.profile.dataModified.login === string &&
-            typeof this.profile.dataModified.role === string &&
-        ){
-        return this.api.call.setProfile.run({
-                    loaderTriggerVarName: 'isLoading', context: this.loader, token: this.auth.getTokenSync(), errorVarName: 'loadingErrorText',
-                    requestParams: {
-                        profileId: this.profile.dataModified.profileId,
-                        profileNotes: this.profile.dataModified.profileNotes,
-                        login: this.profile.dataModified.login,
-                        role: this.profile.dataModified.role,
-                    } as IProfileUpdateParams
-                    });
-        } else {
-            this.errorService.log({
-                data: {profile: this.profile},
-                desc: 'Валидатор не одобряэ',
-                src: '/src/app/main/profile/profile.component.ts:111',
-                mtd: 'setProfile'
-            });
-        }
-    }
-    ```
+	```ts
+	setProfile(){
+		if (
+			typeof this.profile.dataModified.profileId === string &&
+			this.profile.dataModified.profileId.length > 0 &&
+			typeof this.profile.dataModified.profileNotes === string &&
+			typeof this.profile.dataModified.login === string &&
+			typeof this.profile.dataModified.role === string &&
+		){
+		return this.api.call.setProfile.run({
+					loaderTriggerVarName: 'isLoading', context: this.loader, token: this.auth.getTokenSync(), errorVarName: 'loadingErrorText',
+					requestParams: {
+						profileId: this.profile.dataModified.profileId,
+						profileNotes: this.profile.dataModified.profileNotes,
+						login: this.profile.dataModified.login,
+						role: this.profile.dataModified.role,
+					} as IProfileUpdateParams
+					});
+		} else {
+			this.errorService.log({
+				data: {profile: this.profile},
+				desc: 'Валидатор не одобряэ',
+				src: '/src/app/main/profile/profile.component.ts:111',
+				mtd: 'setProfile'
+			});
+		}
+	}
+	```
 1. Тестовые данные должны помогать документировать и тестировать код. Достаточно привести к самодокументируемым данные одного дерева объекта для тестирования.
-    ```js
-    itemId:'номер-элемента-11'
-    itemNotes:'Заметки для элемента 11'
-    itemName:'Название элемента 11'
-    ```
+	```js
+		itemId:'номер-элемента-11'
+		itemNotes:'Заметки для элемента 11'
+		itemName:'Название элемента 11'
+	```
 1. Создание компонента начинается с модели данных, чтобы на старте понять возможные ограничения и возможности, под которые будет сделан интерфейс и сервисы. Также можно добавить *_RAW параметры и данные, если модель на сервере не соответствует соглашениям об именовании или требует конвертирования. Например, устарела или использует даты в собственном формате. Лучше переложить как можно больше конвертирования данных в модель, чтобы разгрузить DOM/события, и уменьшить объём кода там, где его больше всего - в компонентах. Запятая в завершающей строке облегчает работу в колоночном режиме.
 
 ```ts
@@ -318,7 +320,7 @@
 
 1. После выполнения какой-либо части работ обязательно делается commit и push в соответствующую ветку.
 
-1. После завершения работ над задачей делается пулреквест(запрос о слиянии) в ветку релиза.
+1. После завершения работ над задачей делается [пулреквест(запрос о слиянии)](https://habr.com/ru/company/mailru/blog/359246/) в ветку релиза.
 
 1. После тестирования ветки релиза делается запрос слияния с веткой продуктива.
 

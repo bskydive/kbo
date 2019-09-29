@@ -17,6 +17,10 @@
  * http://bradfrost.com/blog/link/whats-wrong-with-css-in-js/
  * https://micahgodbolt.com/blog/what-s-right-with-css-in-js/
 
+## styled components
+
+ * [эволюция css](https://habr.com/ru/company/mailru/blog/319956/)
+
 ## фигуры
 
 [стрелки](https://freebiesupply.com/blog/css-arrows/)
@@ -40,6 +44,7 @@
  
  * [Шпаргалка по вёрстке 2012](https://habr.com/post/163871/)
  * [шпаргалка по специфичности селекторов](http://css-live.ru/css/pravilnaya-shpargalka-po-css-kaskadu.html)
+ * [набор простых приёмов на 30 секунд](https://habr.com/ru/company/mailru/blog/350160/)
  
 #### схлопывание 
 

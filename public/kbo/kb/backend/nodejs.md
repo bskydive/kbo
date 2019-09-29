@@ -214,3 +214,4 @@ npm dist-tag @user/pkg@2.0.0 coolestversion //можно назначить на
 ## json
 
  * [парсинг json](https://habr.com/ru/company/mailru/blog/314014)
+ * [json parsing is a minefield](http://seriot.ch/json/parsing.html#29)

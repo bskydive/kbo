@@ -47,6 +47,10 @@
  * [Функциональный JavaScript: пять способов нахождения среднего арифметического элементов массива и метод .reduce()](https://habr.com/ru/company/ruvds/blog/458030/)
  * [Часто задаваемые вопросы о системах типов](https://habr.com/ru/company/ruvds/blog/462481/)
  * [производительность javascript](https://habr.com/ru/company/mailru/blog/321748/)
+ * [функциональное программирование](https://habr.com/ru/company/mailru/blog/327522/)
+ * [глюки javascript](https://habr.com/ru/company/mailru/blog/335292/)
+ * [история развития инструментов для  javascript](https://habr.com/ru/company/mailru/blog/340922/)
+ * [ошибочное понимание DRY](https://habr.com/ru/company/mailru/blog/349978/)
 
 ## загрузка сторонних скриптов 
 
@@ -110,6 +114,7 @@
 
  * [инструменты проектирование](/kbo/инструменты/инструменты#проектирование)
  * [Создание архитектуры программы или как проектировать табуретку](https://habr.com/post/276593/)
+ * [синглтоны и общие экземпляры](https://habr.com/ru/company/mailru/blog/334078/)
  * [SOLID ](info.javarush.ru/translation/2013/08/06/Пять-основных-принципов-дизайна-классов-S-O-L-I-D-в-Java.html)
     * [источник](http://howtodoinjava.com/2013/06/07/5-class-design-principles-solid-in-java/)
 
