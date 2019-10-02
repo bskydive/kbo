@@ -93,6 +93,8 @@
  | Tight coupling |  | сильная связность |
  | boilerplate |  | заготовка |
  | holywar | священная война | горячий спор, горячая спорная тема |
+ | function expression |  | функциональное выражение |
+ | function declaration |  | объявляемая функция |
  |  |  |  |
  |  |  |  |  |
 
