@@ -5,11 +5,21 @@
  * https://medium.com/web-standards/critical-and-progressive-css-d6611f034d7d
  * [https://github.com/GoogleChromeLabs/css-paint-polyfill](https://github.com/GoogleChromeLabs/css-paint-polyfill)
 
+## css шлюзы gateway
+
+для расчёта адаптива
+
+ * [Математика CSS-шлюзов](https://habr.com/ru/company/mailru/blog/315196/)
+
 ## DOM/BOM API
 
  * [houdini/csstom](https://medium.com/@lucyhackwrench/поддержка-css-typed-om-появилась-в-chrome-как-это-облегчит-жизнь-разработчикам-31b086851465/)
  * http://bradfrost.com/blog/link/whats-wrong-with-css-in-js/
  * https://micahgodbolt.com/blog/what-s-right-with-css-in-js/
+
+## styled components
+
+ * [эволюция css](https://habr.com/ru/company/mailru/blog/319956/)
 
 ## фигуры
 
@@ -32,8 +42,9 @@
 
 ### решение проблем
  
- * [Шпаргалка по верстке 2012](https://habr.com/post/163871/)
+ * [Шпаргалка по вёрстке 2012](https://habr.com/post/163871/)
  * [шпаргалка по специфичности селекторов](http://css-live.ru/css/pravilnaya-shpargalka-po-css-kaskadu.html)
+ * [набор простых приёмов на 30 секунд](https://habr.com/ru/company/mailru/blog/350160/)
  
 #### схлопывание 
 
@@ -58,7 +69,6 @@
     border: 100px solid;//ширина основания
     border-bottom-color: blue;//определяем направление стрелки
     }
- 
  ```
  
 #### границы-рисунки
@@ -152,8 +162,9 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 	```
  * https://tobiasahlin.com/blog/common-flexbox-patterns/
 
-## css тилизация прокрутки
-
+## css стилизация прокрутки
+* https://www.filamentgroup.com/lab/scrollbars/
+* 
 	```scss
 		& ::-webkit-scrollbar {
 			//https://css-tricks.com/custom-scrollbars-in-webkit/

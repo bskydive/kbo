@@ -33,3 +33,6 @@ https://material.angularjs.org/latest/
  * https://github.com/angular-ui/ui-router/wiki/Nested-States-and-Nested-Views
  * https://ui-router.github.io/guide/ng1/migrate-to-1_0
 
+ ## lint
+
+ * [AngularJS eslint](https://github.com/Gillespie59/eslint-plugin-angular)

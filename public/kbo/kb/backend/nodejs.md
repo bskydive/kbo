@@ -71,6 +71,7 @@ WantedBy=multi-user.target
 
  * [cors](https://expressjs.com/en/resources/middleware/cors.html)
  * [helmet](https://www.npmjs.com/package/helmet)
+ * [Руководство по аутентификации в Node.js без passport.js и сторонних сервисов](https://habr.com/ru/company/ruvds/blog/457700/)
 
 ## db
 
@@ -79,8 +80,9 @@ WantedBy=multi-user.target
 
 ## многопоточность
 
-потоки бьют входные данные на части, и позволяют обрабатывать их не дожидаясь полной загрузки.
+ * потоки бьют входные данные на части, и позволяют обрабатывать их не дожидаясь полной загрузки.
 pipe добавляют последовательные конвейеры.
+ * [события events в nodejs](https://habr.com/ru/company/mailru/blog/330048/)
 
 ## cluster
 
@@ -207,3 +209,9 @@ npm dist-tag @user/pkg@2.0.0 coolestversion //можно назначить на
 ## test
 
  * [CodeceptJS — современные end2end тесты для NodeJS 2017](https://habrahabr.ru/post/319656/)
+
+
+## json
+
+ * [парсинг json](https://habr.com/ru/company/mailru/blog/314014)
+ * [json parsing is a minefield](http://seriot.ch/json/parsing.html#29)

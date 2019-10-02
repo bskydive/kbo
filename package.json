@@ -5,8 +5,29 @@
 	"main": "index.html",
 	"author": "stepanovv.ru",
 	"license": "MIT",
+	"scripts": {
+		"w": "gulp img; gulp w",
+		"dev": "gulp dev",
+		"prod": "gulp prod",
+		"img": "gulp img",
+		"web-stop": "gulp web-stop",
+		"web-start": "gulp web-start",
+		"web-list": "pm2 l"
+	},
+	"engines": {
+		"node": "10.15.3"
+	},
 	"dependencies": {},
 	"devDependencies": {
+		"@types/node": "^12.7.1",
+		"@typescript-eslint/parser": "^2.1.0",
+		"codelyzer": "^5.1.0",
+		"eslint": "^6.1.0",
+		"eslint-config-standard": "^14.1.0",
+		"eslint-plugin-import": "^2.18.2",
+		"eslint-plugin-node": "^9.1.0",
+		"eslint-plugin-promise": "^4.2.1",
+		"eslint-plugin-standard": "^4.0.0",
 		"gulp": "^3.9.1",
 		"gulp-clean": "^0.4.0",
 		"gulp-cli": "^2.0.1",
@@ -22,6 +43,11 @@
 		"gulp-strip-comments": "^2.5.1",
 		"gulp-stylus": "^2.7.0",
 		"gulp-sync": "^0.1.4",
+		"rxjs-tslint-rules": "^4.24.3",
+		"ts-node": "^8.3.0",
+		"tslint": "^5.18.0",
+		"tslint-angular": "^3.0.2",
+		"typescript": "^3.5.3",
 		"vue-styleguidist": "^1.7.7"
 	}
 }

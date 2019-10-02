@@ -37,7 +37,6 @@
 
  * https://eslint.org/docs/rules/
  * https://palantir.github.io/tslint/rules/
- * https://github.com/Gillespie59/eslint-plugin-angular
  
 ## ботанство
 
@@ -47,6 +46,21 @@
  * [Основы движков JavaScript: общие формы и Inline кэширование. Часть 2](https://habr.com/ru/company/otus/blog/447220/)
  * [Функциональный JavaScript: пять способов нахождения среднего арифметического элементов массива и метод .reduce()](https://habr.com/ru/company/ruvds/blog/458030/)
  * [Часто задаваемые вопросы о системах типов](https://habr.com/ru/company/ruvds/blog/462481/)
+ * [производительность javascript](https://habr.com/ru/company/mailru/blog/321748/)
+ * [функциональное программирование](https://habr.com/ru/company/mailru/blog/327522/)
+ * [глюки javascript](https://habr.com/ru/company/mailru/blog/335292/)
+ * [история развития инструментов для  javascript](https://habr.com/ru/company/mailru/blog/340922/)
+ * [ошибочное понимание DRY](https://habr.com/ru/company/mailru/blog/349978/)
+
+## загрузка сторонних скриптов 
+
+ * http://www.lukasjakob.com/how-to-dynamically-load-external-scripts-in-angular/
+ * использовать jsonp callback
+	```html
+		<script src="https://apis.google.com/js/platform.js?onload=onLoadCallback" async defer></script>
+	```
+ * можно указать в html `<script>` со скриптом загрузчика скриптов, если требуется обновление мобильного приложения внутри phonegap
+ * https://stackoverflow.com/questions/34489916/how-to-load-external-scripts-dynamically-in-angular?noredirect=1
 
 ## алгоритмы
 
@@ -55,7 +69,7 @@
  
 ## ООП prototype наследование
 
- * (Каждый программист на javascript должен написать свою реализацию классов)[https://habr.com/post/132698/#comment_4404597]
+ * [Каждый программист на javascript должен написать свою реализацию классов](https://habr.com/post/132698/#comment_4404597)
 
 ##  курсы
 
@@ -93,11 +107,14 @@
  * http://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html
  * https://habrahabr.ru/company/piter/blog/347364/
  * [typescript на node сервере](https://habr.com/ru/post/328466/)
+ * [расширенный ликбез 2019](https://www.youtube.com/watch?v=_-tSzfGkrew)
+ * [TypeScript. Магия выражений](typescript)
 
 ##  шаблоны patterns
 
  * [инструменты проектирование](/kbo/инструменты/инструменты#проектирование)
  * [Создание архитектуры программы или как проектировать табуретку](https://habr.com/post/276593/)
+ * [синглтоны и общие экземпляры](https://habr.com/ru/company/mailru/blog/334078/)
  * [SOLID ](info.javarush.ru/translation/2013/08/06/Пять-основных-принципов-дизайна-классов-S-O-L-I-D-в-Java.html)
     * [источник](http://howtodoinjava.com/2013/06/07/5-class-design-principles-solid-in-java/)
 
@@ -204,6 +221,8 @@ https://stateofjs.com/2017/front-end/results
 
  * https://www.safaribooksonline.com/library/view/high-performance-javascript/9781449382308/ch04s03.html
  * http://voidcanvas.com/javascript-performant-coding-tips/
+ * [измерение производительности javascript](https://habr.com/ru/company/mailru/blog/272087/)
+ * [убийцы оптимизации](https://habr.com/ru/company/mailru/blog/273839/)
 
 ##  state management
 
@@ -211,11 +230,6 @@ https://stateofjs.com/2017/front-end/results
  * [vibe.js](https://habrahabr.ru/post/341126/)
  * redux
  * mobx-tree-store
-
-##  очереди
-
- * [трансдьюсеры](https://habrahabr.ru/company/ruvds/blog/329536/)
- * https://medium.com/@roman01la/understanding-transducers-in-javascript-3500d3bd9624
 
 ##  большие числа
 
@@ -287,6 +301,8 @@ startPromise(a,b,c)
 
 ## очереди queue
 
+ * [трансдьюсеры](https://habrahabr.ru/company/ruvds/blog/329536/)
+ * https://medium.com/@roman01la/understanding-transducers-in-javascript-3500d3bd9624
  * [быстрая очередь](https://www.nickang.com/implementing-queue-javascript/)
  
 ```js

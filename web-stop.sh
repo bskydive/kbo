@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/bin/bash
 #bash web-staop.sh
 
 pm2 stop http-server

@@ -1,3 +1,10 @@
+# network сеть
+
+* [отладка сетевого стека linux](https://habr.com/ru/company/mailru/blog/314168)
+
+## HTTP
+
+ * [HTTP-заголовки для ответственного разработчика](https://habr.com/ru/company/mailru/blog/450816/)
 
 ## netstat
 

@@ -68,7 +68,7 @@ https://habrahabr.ru/post/244721/
  * [три инструмента анализа](https://webpack.js.org/api/cli/#common-options)
  * [webpack 4 angular 7](https://medium.freecodecamp.org/how-to-configure-webpack-4-with-angular-7-a-complete-guide-9a23c879f471)
  * [webpack для статических сайтов](https://github.com/tr1s/tris-webpack-boilerplate)
- 
+ * [ Удаляем лишний код из рантайма CSS Modules при помощи webpack](https://www.youtube.com/watch?v=J1gHHmABk44) [код](https://github.com/kisenka/webpack-workshop)
 
 #### v3
  * [ускорение сборки webpack ](https://habrahabr.ru/company/skbkontur/blog/351080/)

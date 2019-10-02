@@ -34,7 +34,8 @@
 
 ## Задачи
 
-https://habrahabr.ru/post/181033/
+* https://proglib.io/p/sql-questions/
+* https://habrahabr.ru/post/181033/
 
 ```sql
 create table department;

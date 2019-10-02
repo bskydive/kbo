@@ -4,6 +4,7 @@
 
 * angular in depth(aggrid)
 * https://tyapk.ru/blog/category/angular
+* https://tyapk.ru/blog/category/rxjs
 
 ## документация
 
@@ -183,6 +184,7 @@ processOutsideAngularZone() {
 		@Input() vData; 
 		}
 ```
+ * [Оптимизация обработки событий в Angular EventManagerPlugin](https://habr.com/ru/company/tinkoff/blog/429692/)
 
 ## webworker
 
@@ -216,6 +218,8 @@ export function main() {
 ```
 ## курсы
 
+ * https://codelabs.developers.google.com/
+ * https://www.codewars.com/?language=typescript
  * https://ultimateangular.com/#
  * https://blog.angularindepth.com/
  * https://basarat.gitbooks.io/typescript/content/docs/types/type-assertion.html
@@ -251,10 +255,31 @@ https://stackblitz.com/edit/angular-jhutmd?file=app%2Fapp.component.html
  * https://github.com/angular/in-memory-web-api
 
 ## rxjs реактивное программирование reactive observable
- 
-## блоги
 
-* https://tyapk.ru/blog/category/rxjs
+
+## tslint eslint линтеры
+
+ * [tslint](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin) 
+ * [eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) 
+ * devdependencies
+```json
+ 		"@typescript-eslint/parser": "^1.13.0",
+		"codelyzer": "~4.5.0",
+		"eslint": "^6.1.0",
+		"eslint-config-standard": "^13.0.1",
+		"eslint-plugin-import": "^2.18.2",
+		"eslint-plugin-node": "^9.1.0",
+		"eslint-plugin-promise": "^4.2.1",
+		"eslint-plugin-standard": "^4.0.0",
+		"rxjs-tslint-rules": "^4.24.3",
+		"ts-node": "~7.0.0",
+		"tslint": "^5.18.0",
+		"tslint-angular": "^3.0.2",
+		"typescript": "^3.2.4"
+```
+ * [A preset with TSLint rules for development of Angular applications. The preset contains both, tslint core rules, and codelyzer rules, which are going to perform Angular specific linting.](https://github.com/mgechev/tslint-angular)
+ * [A set of tslint rules for static code analysis of Angular TypeScript projects.](https://github.com/mgechev/codelyzer)
+ * [миграция ещё не закончена](https://github.com/angular-eslint/angular-eslint)
 
 ## ликбез
 
@@ -499,6 +524,7 @@ count.subscribe(x => console.log(x));
 
  * Basic level - [Angular Elements – A Practical Introduction To Web Components With Angular 6](https://www.tsmean.com/articles/angular/pitfalls/)
  * [angular faq](https://rahulrsingh09.github.io/AngularConcepts/faq)
+ * [обход подводных камней angular](https://habr.com/ru/company/ruvds/blog/459304/)
 
 ### drag перетаскивание resize
 
