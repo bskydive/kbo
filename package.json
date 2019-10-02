@@ -5,6 +5,18 @@
 	"main": "index.html",
 	"author": "stepanovv.ru",
 	"license": "MIT",
+	"scripts": {
+		"w": "gulp img; gulp w",
+		"dev": "gulp dev",
+		"prod": "gulp prod",
+		"img": "gulp img",
+		"web-stop": "gulp web-stop",
+		"web-start": "gulp web-start",
+		"web-list": "pm2 l"
+	},
+	"engines": {
+		"node": "10.15.3"
+	},
 	"dependencies": {},
 	"devDependencies": {
 		"@types/node": "^12.7.1",
