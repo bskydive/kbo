@@ -17,13 +17,16 @@ Also, I'm using it as a bookmarking service.
 
 ### How do I get set up? ###
 
+* !!! Currently gulp can run on node version 10 `nvm install 10;nvm use 10`
+* Install global dependencies `npm i -g pm2 http-server`
 * Install dependencies `npm i` in the `portfolio/` directory.
-* After editing `src/*` run `gulp img; gulp w` from the `portfolio/` directory.
+* Run `npm run w`
 * Open in browser `http://127.0.0.1:8080/portfolio.html` 
 
 ### How can I contribute? ###
 
 * Currently I'm not ready to maintain contributing processes
+* Sources are in `src/*`, build output dir is `public/*`
 
 ## Where is the documentation for code?
 
@@ -50,5 +53,5 @@ Also, I'm using it as a bookmarking service.
 
 ### How I can ask my questions? ###
 
-* [Contacts](https://stepanovv.ru/#contacts)
+* [Contacts](https://stepanovv.ru/portfolio/portfolio.html#id-contacts)
 
