@@ -12,7 +12,7 @@
 
 ## Как увидеть рабочий проект?
 
-* https://stepanovv.ru/kb
+* https://stepanovv.ru/kbo
 
 ## Как запустить у себя?
 
@@ -71,4 +71,4 @@
 
 ## Как задать вопрос по проекту?
 
-* [Контакты](https://stepanovv.ru/#contacts)
+* [Контакты](https://stepanovv.ru/portfolio/portfolio.html#id-contacts)
