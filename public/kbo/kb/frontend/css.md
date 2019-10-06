@@ -27,6 +27,7 @@
 
 ## обзоры, лучшие практики
 
+ * [раскладки layout](https://every-layout.dev/)
  * https://www.joeforshaw.com/blog/css-the-bad-bits-and-how-to-avoid-them
  * https://medium.com/@ABatickaya/хорошие-и-плохие-css-практики-для-начинающих-619289ce8bae/
  * [архитектура css](https://web-standards.ru/articles/css-architecture/)
