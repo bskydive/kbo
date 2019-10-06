@@ -283,6 +283,7 @@ gulp.task('web-stop', function () {
 });
 
 gulp.task('web-start', ['web-stop'], function () {
+	// console.log('http://localhost:8080/portfolio.html')
 	return gulp.src(webServePath)
 		.pipe(exec('bash web-start.sh ' + webServePath, {
 			continueOnError: true
