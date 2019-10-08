@@ -250,6 +250,10 @@ git merge upstream/master
 		git config --system receive.denyNonFastforwards true
 		git config --system receive.denyDeletes true
 	```
+ * кириллица без конвертации
+	```bash
+		git config core.quotepath off
+	```
 
 ### edit commit message
 
