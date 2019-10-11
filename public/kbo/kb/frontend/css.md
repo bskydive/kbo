@@ -1,4 +1,4 @@
-#  css
+#	css
 
 ## производительность и оптимизация 
 
@@ -50,12 +50,12 @@
 #### схлопывание 
 
  * схлопывание не работает в следующих случаях:
-    * с «плавающими» блоками, которые используют свойство float;
-    * с корневыми элементами(html, body);
-    * с абсолютно позиционируемыми элементами, имеющих свойство и значение position:absolute;
-    * в строчных элементах.
-    * Если элементы имеют значение свойства overflow, отличимое от visible, то в таких элементах не схлопываются отступы с отступами их наследников.
-    * Элементы со свойством cleared не схлопываются верхними отступами с нижними отступами их родителей.
+	* с «плавающими» блоками, которые используют свойство float;
+	* с корневыми элементами(html, body);
+	* с абсолютно позиционируемыми элементами, имеющих свойство и значение position:absolute;
+	* в строчных элементах.
+	* Если элементы имеют значение свойства overflow, отличимое от visible, то в таких элементах не схлопываются отступы с отступами их наследников.
+	* Элементы со свойством cleared не схлопываются верхними отступами с нижними отступами их родителей.
  * [Победа над неочевидным. Схлопывание внешних отступов](https://habr.com/post/257327/)
  * [Схлопывание внешних отступов mdn](https://developer.mozilla.org/ru/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing)
  
@@ -64,12 +64,12 @@
  * [Все о свойстве border http://net.tutsplus.com/tutorials/html-css-techniques/css-refreshers-borders/ ](https://habr.com/post/141658/)
  
  ```css
-    .arrow {//треугольная стрелка вверх ^
-    width: 0; 
-    height: 0;
-    border: 100px solid;//ширина основания
-    border-bottom-color: blue;//определяем направление стрелки
-    }
+	.arrow {//треугольная стрелка вверх ^
+		width: 0; 
+		height: 0;
+		border: 100px solid;//ширина основания
+		border-bottom-color: blue;//определяем направление стрелки
+	}
  ```
  
 #### границы-рисунки
@@ -89,14 +89,14 @@
  * smacss
  * oocss
  * https://medium.com/@stepanovv.ru/правильный-css-oocss-smacss-bem-и-sass-49351a119283/
-    
+	
 ## cascade css and inheritance
 
  * https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Cascade_and_inheritance
 
 ## layout
 
-###  adaptive vs responsive layout
+### adaptive vs responsive layout
 
 http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-engine,-twitter-bootstrap
 
@@ -105,7 +105,7 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
  * https://wireframe.cc/
  * http://www.shoelace.io/
 
-##  css flexbox
+##	css flexbox
 
  * https://frontender.info/a-guide-to-flexbox/
  * https://kyusuf.com/post/almost-complete-guide-to-flexbox-without-flexbox
@@ -224,11 +224,11 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 		}
 	```
 
-##  Анимация css 
+##	Анимация css 
 
-60 FPS  https://habrahabr.ru/post/308006/
+60 FPS	https://habrahabr.ru/post/308006/
 
-##  css grid
+##	css grid
 
  * https://www.smashingmagazine.com/2018/05/future-of-web-design/
  * [Becoming a CSS Grid Ninja 05.2018](https://medium.com/@elad/becoming-a-css-grid-ninja-f4c6db018cc1)
@@ -293,18 +293,18 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 
 ```css
 @mixin button-reset {
-  padding: 0;
-  border: none;
-  font: inherit;
-  color: inherit;
-  background-color: transparent;
-  cursor: pointer;
+	padding: 0;
+	border: none;
+	font: inherit;
+	color: inherit;
+	background-color: transparent;
+	cursor: pointer;
 }
 
 .my-custom-button {
-  @include button-reset;
-  padding: 10px;
-  background-color: skyblue;
+	@include button-reset;
+	padding: 10px;
+	background-color: skyblue;
 }
 
 
@@ -314,137 +314,137 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 
 ```css
 .btn {
-  /* default for <button>, but useful for <a> */
-  display: inline-block;
-  text-align: center;
-  text-decoration: none;
+	/* default for <button>, but useful for <a> */
+	display: inline-block;
+	text-align: center;
+	text-decoration: none;
 
-  /* create a small space when buttons wrap on 2 lines */
-  margin: 2px 0;
+	/* create a small space when buttons wrap on 2 lines */
+	margin: 2px 0;
 
-  /* invisible border (will be colored on hover/focus) */
-  border: solid 1px transparent;
-  border-radius: 4px;
+	/* invisible border (will be colored on hover/focus) */
+	border: solid 1px transparent;
+	border-radius: 4px;
 
-  /* size comes from text & padding (no width/height) */
-  padding: 0.5em 1em;
+	/* size comes from text & padding (no width/height) */
+	padding: 0.5em 1em;
 
-  /* make sure colors have enough contrast! */
-  color: #ffffff;
-  background-color: #9555af;
+	/* make sure colors have enough contrast! */
+	color: #ffffff;
+	background-color: #9555af;
 }
 /* old-school "down" effect on clic + color tweak */
 .btn:active {
-  transform: translateY(1px);
-  filter: saturate(150%);
+	transform: translateY(1px);
+	filter: saturate(150%);
 }
 /* inverse colors on mouse-over and focus */
 .btn:hover,
 .btn:focus {
-  color: #9555af;
-  border-color: currentColor;
-  background-color: white;
+	color: #9555af;
+	border-color: currentColor;
+	background-color: white;
 }
 .btn {
-  /* ... */
-  /* all browsers: remove the default outline since
-      we are rolling our own focus styles */
-  outline: none;
+	/* ... */
+	/* all browsers: remove the default outline since
+		we are rolling our own focus styles */
+	outline: none;
 }
 
 /* Firefox: removes the inner border shown on focus */
 .btn::-moz-focus-inner {
-  border: none;
+	border: none;
 }
 /* inverse colors on hover */
 .btn:hover {
-  color: #9050AA;
-  border-color: currentColor;
-  background-color: white;
+	color: #9050AA;
+	border-color: currentColor;
+	background-color: white;
 }
 
 /* make sure we have a visible focus ring */
 .btn:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.5),
-    0 0 0 1.5px rgba(255, 105, 180, 0.5);
+	outline: none;
+	box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.5),
+	0 0 0 1.5px rgba(255, 105, 180, 0.5);
 }
 /* hide focus style if not from keyboard navigation */
 .js-focus-visible .btn:focus:not(.focus-visible) {
-  box-shadow: none;
+	box-shadow: none;
 }
 
 ```
 
 ```css
-    /**
-     * Reset button styles
-     * It takes some work to achieve a “blank slate” look.
-     */
-    button {
-      padding: 0;
-      border: none;
-      font: inherit;
-      color: inherit;
-      background-color: transparent;
-      /* show a hand cursor on hover; some argue that we
-      should keep the default arrow cursor for buttons */
-      cursor: pointer;
-    }
+	/**
+	 * Reset button styles
+	 * It takes some work to achieve a “blank slate” look.
+	 */
+	button {
+		padding: 0;
+		border: none;
+		font: inherit;
+		color: inherit;
+		background-color: transparent;
+		/* show a hand cursor on hover; some argue that we
+		should keep the default arrow cursor for buttons */
+		cursor: pointer;
+	}
 
-    /**
-     * Button component
-     */
-    .btn {
-      /* default for <button>, but needed for <a> */
-      display: inline-block;
-      text-align: center;
-      text-decoration: none;
+	/**
+	 * Button component
+	 */
+	.btn {
+		/* default for <button>, but needed for <a> */
+		display: inline-block;
+		text-align: center;
+		text-decoration: none;
 
-      /* create a small space when buttons wrap on 2 lines */
-      margin: 2px 0;
+		/* create a small space when buttons wrap on 2 lines */
+		margin: 2px 0;
 
-      /* invisible border (will be colored on hover/focus) */
-      border: solid 1px transparent;
-      border-radius: 4px;
+		/* invisible border (will be colored on hover/focus) */
+		border: solid 1px transparent;
+		border-radius: 4px;
 
-      /* button size comes from text + padding, avoid height */
-      padding: 0.5em 1em;
+		/* button size comes from text + padding, avoid height */
+		padding: 0.5em 1em;
 
-      /* make sure colors have enough contrast! */
-      color: #FFFFFF;
-      background-color: #9555AF;
-    }
+		/* make sure colors have enough contrast! */
+		color: #FFFFFF;
+		background-color: #9555AF;
+	}
 
-    /* old-school "down" effect on clic + color tweak */
-    .btn:active {
-      transform: translateY(1px);
-      filter: saturate(150%);
-    }
+	/* old-school "down" effect on clic + color tweak */
+	.btn:active {
+		transform: translateY(1px);
+		filter: saturate(150%);
+	}
 
-    /* inverse colors on hover */
-    .btn:hover {
-      color: #9050AA;
-      border-color: currentColor;
-      background-color: white;
-    }
+	/* inverse colors on hover */
+	.btn:hover {
+		color: #9050AA;
+		border-color: currentColor;
+		background-color: white;
+	}
 
-    /* Firefox: remove the inner border shown on focus */
-    .btn::-moz-focus-inner {
-      border: none;
-    }
+	/* Firefox: remove the inner border shown on focus */
+	.btn::-moz-focus-inner {
+		border: none;
+	}
 
-    /* make sure we have a visible focus ring */
-    .btn:focus {
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.5),
-        0 0 0 1.5px rgba(255, 105, 180, 0.5);
-    }
+	/* make sure we have a visible focus ring */
+	.btn:focus {
+		outline: none;
+		box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.5),
+		0 0 0 1.5px rgba(255, 105, 180, 0.5);
+	}
 
-    /* hide focus style if not from keyboard navigation */
-    .js-focus-visible .btn:focus:not(.focus-visible) {
-      box-shadow: none;
-    }
+	/* hide focus style if not from keyboard navigation */
+	.js-focus-visible .btn:focus:not(.focus-visible) {
+		box-shadow: none;
+	}
 
 ```
 
@@ -458,7 +458,7 @@ https://bitsofco.de/how-display-contents-works/
 
 https://medium.com/eightshapes-llc/cropping-away-negative-impacts-of-line-height-84d744e016ce
 
-###  css text
+###	css text
 
  * http://ecard.enter-media.org/css-text-effects/
  * троеточие
@@ -469,15 +469,15 @@ https://medium.com/eightshapes-llc/cropping-away-negative-impacts-of-line-height
 	```
  * [переносы текста](https://justmarkup.com/log/2019/01/a-look-at-css-hyphenation-in-2019/)
 
-###  css images
+###	css images
 
 https://bennettfeely.com/clippy/
 
-###  media max min width
+###	media max min width
 
 https://stackoverflow.com/questions/16647380/max-width-vs-min-width
 
-##  справочинки
+##	справочинки
 
  * http://cssreference.io/positioning/
  * https://float-layout.glitch.me/
@@ -507,12 +507,12 @@ https://stackoverflow.com/questions/16647380/max-width-vs-min-width
  * http://meyerweb.com/eric/tools/css/reset/reset200802.css
  * https://necolas.github.io/normalize.css/
 
-##  adblock
+##	adblock
 
  * http://w3guy.com/detecting-adblock/
  * https://github.com/sitexw/FuckAdBlock/blob/master/fuckadblock.js
 
-##  вёрстка почтовых рассылок e-mail письма
+##	вёрстка почтовых рассылок e-mail письма
 
  * https://www.smashingmagazine.com/2017/01/introduction-building-sending-html-email-for-web-developers/
  * https://habrahabr.ru/post/252279/
@@ -536,7 +536,7 @@ https://stackoverflow.com/questions/16647380/max-width-vs-min-width
  * https://daverupert.com/2017/11/happier-html5-forms/
  * http://html5pattern.com/
 
-##  шаблонизаторы препроцессоры
+##	шаблонизаторы препроцессоры
 
  * [шаблонизатор temple](https://habrahabr.ru/company/oleg-bunin/blog/310868/)
 
