@@ -3,6 +3,7 @@
 ##  лучшие практики
 
 [стили](/kbo/developer/frontend.md)
+ * https://proglib.io/p/12-javascript-tricks
 
 ## links
 

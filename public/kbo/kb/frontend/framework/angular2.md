@@ -576,8 +576,6 @@ count.subscribe(x => console.log(x));
  	* [ngrx route resolve](https://hackernoon.com/angular-ngrx-resolving-route-data-53f88e0b8a5d)
  * текущий маршрут
 	```ts
-	
-
 	constructor(
 		private router: Router,
 		private route: ActivatedRoute,
@@ -1024,9 +1022,7 @@ count.subscribe(x => console.log(x));
  * [формы ориентированные на шаблон(много логики в html-->ngModel](https://youtu.be/cPpghyAoV0w?t=2877)
  * [вложенные компоненты](https://codecraft.tv/courses/angular/quickstart/nesting-components-and-inputs/)
 
-## lang
-
-### httpCLient
+## httpCLient
 
  * запрос на html файл `responseType: 'text' as 'text'`
 
@@ -1067,7 +1063,7 @@ const httpOptions = {
 
 ```
 
-### interceptors
+## interceptors
 
  * https://medium.com/@ryanchenkie_40935/angular-authentication-using-the-http-client-and-http-interceptors-2f9d1540eb8
  * http://stepansuvorov.com/blog/2014/04/angularjs-interceptors-%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D1%80%D1%8B/
