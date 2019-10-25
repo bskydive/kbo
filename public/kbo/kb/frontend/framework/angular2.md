@@ -259,6 +259,8 @@ https://stackblitz.com/edit/angular-jhutmd?file=app%2Fapp.component.html
 
 ## tslint eslint линтеры
 
+ * [migrate-angular-8-from-tslint-to-eslint](https://medium.com/create-code/migrate-angular-8-from-tslint-to-eslint-4b0c44c8ae38)
+ * [tslint-to-eslint-config](https://github.com/typescript-eslint/tslint-to-eslint-config)
  * [tslint](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin) 
  * [eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) 
  * devdependencies

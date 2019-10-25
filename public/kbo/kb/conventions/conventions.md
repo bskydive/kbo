@@ -96,6 +96,62 @@
  | function expression |  | функциональное выражение |
  | function declaration |  | объявляемая функция |
  | end-to-end |  | сквозной |
+ | disclose |  | раскрывать |
+ | burden |  | обуза |
+ | perseption |  | представление |
+ | aware |  | осознавать |
+ | be aware |  | примите к сведению |
+ | beware |  | остерегаться |
+ | awareness |  | осведомлённость |
+ | lurking |  | притаиться |
+ | jeopardize |  | ставить под удар |
+ | utmost |  | предельно |
+ | posession |  | владение |
+ | rigorous |  | строгий |
+ | confuze |  | путать |
+ | vigilance |  | бдительность |
+ | harmless |  | безвредный |
+ | ploy |  | хитрость |
+ | disposal |  | уничтожение |
+ | surplus |  | излишки |
+ | intentional |  | преднамеренный |
+ | appraisal |  | заключение |
+ | inquiry |  | обследование |
+ | distinct |  | отчётливый |
+ | charitable |  | сниходительный |
+ | honest |  | честный |
+ | asset | ценный актив | ресурс |
+ | judgement |  | обоснование |
+ | conduct |  | руководство |
+ | excellence |  | совершенство |
+ | raise |  | повышение |
+ | faith |  | вера |
+ | concerns | причиндалы | затруднения |
+ | encourage |  | вдохновлять |
+ | retaliate |  | отплатить |
+ | fair |  | добросовестный |
+ | modest |  | небольшой |
+ | reasonable |  | адекватный |
+ | abide |  | придерживаться |
+ | competitor |  | соперник |
+ | modestly |  | скромно |
+ | stationery |  | канцелярские принадлежности |
+ | retain |  | удерживать |
+ | disclosure |  | раскрытие |
+ | obligate |  | обязать |
+ | intent |  | намерение |
+ | essence |  | сущность |
+ | compliance | соответствие стандартам | стандарт |
+ | evaluation |  | аттестация |
+ | involve |  | вовлекать |
+ | denote |  | обозначать |
+ | intervene |  | вмешиваться |
+ | hesitate |  | стесняться |
+ | force |  | принуждать |
+ | regreat |  | сожалеть |
+ | strive |  | чтремиться |
+ | endure |  | перетерпеть |
+ |  |  |  |
  |  |  |  |
  |  |  |  |  |
 
