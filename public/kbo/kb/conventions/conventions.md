@@ -162,7 +162,13 @@
  | intention |  | намерение |
  | trail |  | след |
  | contradictory |  | противоречивый |
- |  |  |  |
+ | severity |  | важность |
+ | Containment |  | изоляция |
+ | Defect Containment Effectiveness |  | Эффективность изоляции дефектов |
+ | flaw |  | дефект |
+ | slippery |  | ускользающий |
+ | intermittent error |  | плавающая ошибка |
+ | embrace |  | осваивать |
  |  |  |  |
  |  |  |  |  |
 
