@@ -151,6 +151,17 @@
  | regreat |  | сожалеть |
  | strive |  | чтремиться |
  | endure |  | перетерпеть |
+ | reimbursable |  | оплачиваемый |
+ | least |  | наименьший |
+ | effort |  | попытка |
+ | reliable |  | надёжный |
+ | unreliable |  | ненадёжный |
+ | conceal |  | прятать |
+ | substitute |  | заменитель |
+ | essentials |  | сущность |
+ | intention |  | намерение |
+ | trail |  | след |
+ | contradictory |  | противоречивый |
  |  |  |  |
  |  |  |  |
  |  |  |  |  |
