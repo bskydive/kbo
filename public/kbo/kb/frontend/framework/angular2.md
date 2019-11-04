@@ -5,6 +5,7 @@
 * angular in depth(aggrid)
 * https://tyapk.ru/blog/category/angular
 * https://tyapk.ru/blog/category/rxjs
+* [состояние angular 2019](https://blog.bitsrc.io/the-state-of-angular-in-2019-b5fb7783a1c6)
 
 ## документация
 
@@ -15,6 +16,11 @@
 ## инструменты
 
  * [библиотека ng-packagr](https://www.youtube.com/watch?v=cgQILJjeDw0)
+
+## angular backend
+
+ * [nestJS node backend](https://nestjs.com/)
+ * [angularFire backend](https://github.com/angular/angularfire/blob/master/docs/install-and-setup.md)
 
 ## оптимизация
 
@@ -186,7 +192,7 @@ processOutsideAngularZone() {
 ```
  * [Оптимизация обработки событий в Angular EventManagerPlugin](https://habr.com/ru/company/tinkoff/blog/429692/)
 
-## webworker
+## web workers
 
  * https://blog.angularindepth.com/angular-with-web-workers-step-by-step-dc11d5872135
  * https://angular.io/api/platform-webworker

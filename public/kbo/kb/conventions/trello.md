@@ -178,3 +178,9 @@
 ## готовые дизайн системы и библиотеки кода
 
  * https://akveo.github.io/ngx-admin/
+
+## микрофоны видеокамеры гарнитуры для конференций
+
+ * [Опыт записи подкастов Веб-стандарты и devSchacht 2018](https://www.youtube.com/watch?v=_ChmShmST-s)
+ * [Мегаобзор микрофонов для записи подкастов 2015](https://habr.com/ru/company/audiomania/blog/385995/)
+ * []()
