@@ -346,9 +346,11 @@ http://techbase.kde.org/Projects/Plasma/Plasmoids
 
 http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/
 
-
-
-
+* зависает при выключении
+	```bash
+		systemctl disable lvm2-monitor.service
+		systemctl stop lvm2-monitor.service
+	```
 
 * pavucontrol
 * pulseaudio-equalizer
@@ -606,6 +608,16 @@ tar -czSf file.tar.gz file
 
 pigz
 pbzip2
+
+### external folder
+
+[Mounts all shares to /home/user1/shares](https://docs.vmware.com/en/VMware-Workstation-Pro/14.0/com.vmware.ws.using.doc/GUID-AB5C80FE-9B8A-4899-8186-3DB8201B1758.html)
+
+```bash
+/usr/bin/vmhgfs-fuse .host:/ /home/user1/shares -o subtype=vmhgfs-fuse,allow_other
+```
+по-умолчанию `mnt/hgfs`
+
 
 ## grub2
 

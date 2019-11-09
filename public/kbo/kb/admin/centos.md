@@ -92,6 +92,7 @@ yum install elasticsearch-5.0.2-1
 
 ## SSH
 
+ * [https://habr.com/ru/company/vdsina/blog/472746/](Терминальный сервер для админа; Ни единого SSH-разрыва)
  * [Магия SSH](https://habr.com/post/331348/)
 
 ```bash

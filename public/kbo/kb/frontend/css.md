@@ -96,6 +96,8 @@
 
 ## layout
 
+ * [Нетривиальная расстановка элементов на flexbox без media-запросов	](https://habr.com/ru/post/473186/)
+
 ### adaptive vs responsive layout
 
 http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-engine,-twitter-bootstrap
@@ -535,6 +537,10 @@ https://stackoverflow.com/questions/16647380/max-width-vs-min-width
  * https://css-tricks.com/form-validation-part-1-constraint-validation-html/
  * https://daverupert.com/2017/11/happier-html5-forms/
  * http://html5pattern.com/
+
+## <select>
+
+ * [стилизация select 2019](https://css-tricks.com/the-current-state-of-styling-selects-in-2019/)
 
 ##	шаблонизаторы препроцессоры
 
