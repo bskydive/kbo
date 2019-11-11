@@ -27,7 +27,8 @@ ping добавляет 28 бит!
 
 ## VPN
 
-https://habrahabr.ru/post/310646/
+ * [Запуск отдельных приложений через OpenVPN без контейнеров и виртуализации - network namespace](https://habrahabr.ru/post/310646/)
+ * [Заворачиваем весь трафик локальной сети в vpn без ограничения скорости - pfsense](https://habr.com/ru/company/postuf/blog/475068/)
 
 ## DNS
 
