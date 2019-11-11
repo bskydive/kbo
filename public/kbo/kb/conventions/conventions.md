@@ -53,7 +53,6 @@
  | gullible | доверчивый | |
  | Roughly speaking | грубо говоря | |
  | bounds | границы | |
- | Intentional | намеренный | |
  | lack | нехватка | |
  | Thus | соответственно | |
  | crucial | ключевой | |
@@ -114,11 +113,10 @@
  | ploy |  | хитрость |
  | disposal |  | уничтожение |
  | surplus |  | излишки |
- | intentional |  | преднамеренный |
  | appraisal |  | заключение |
  | inquiry |  | обследование |
  | distinct |  | отчётливый |
- | charitable |  | сниходительный |
+ | charitable |  | снисходительный |
  | honest |  | честный |
  | asset | ценный актив | ресурс |
  | judgement |  | обоснование |
@@ -139,7 +137,8 @@
  | retain |  | удерживать |
  | disclosure |  | раскрытие |
  | obligate |  | обязать |
- | intent |  | намерение |
+ | intention |  | намерение |
+ | intentional |  | преднамеренный |
  | essence |  | сущность |
  | compliance | соответствие стандартам | стандарт |
  | evaluation |  | аттестация |
@@ -149,7 +148,7 @@
  | hesitate |  | стесняться |
  | force |  | принуждать |
  | regreat |  | сожалеть |
- | strive |  | чтремиться |
+ | strive |  | стремиться |
  | endure |  | перетерпеть |
  | reimbursable |  | оплачиваемый |
  | least |  | наименьший |
@@ -159,7 +158,6 @@
  | conceal |  | прятать |
  | substitute |  | заменитель |
  | essentials |  | сущность |
- | intention |  | намерение |
  | trail |  | след |
  | contradictory |  | противоречивый |
  | severity |  | важность |
@@ -169,6 +167,11 @@
  | slippery |  | ускользающий |
  | intermittent error |  | плавающая ошибка |
  | embrace |  | осваивать |
+ | disparity |  | диспропорция |
+ | domain area |  | предметная область |
+ | refinement |  | уточнение |
+ | stakeholder | акционер | заинтересованное лицо, владелец бюджета |
+ | crucial |  | решающий |
  |  |  |  |
  |  |  |  |  |
 
