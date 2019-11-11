@@ -48,3 +48,11 @@
 ## речь
 
  * [Огромный открытый датасет русской речи версия 1.0](https://habr.com/ru/post/474462)
+
+## закон робототехники
+
+ * [для программистов](https://habr.com/ru/company/southbridge/blog/469927)
+
+## инструменты
+
+ * [google colab выборы в питере](https://habr.com/ru/post/475258)
