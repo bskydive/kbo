@@ -106,7 +106,22 @@
  * https://sentry.io/integrations/
  * [похоже, что интеграция не работает. Кнопки создать карточку нет](https://forum.sentry.io/t/trello-integration-setup/3433)
  * [slack](https://github.com/getsentry/sentry/tree/master/src/sentry/integrations/slack)
- * нужны: фильтры, предпросмотр json в списках, события в чятик, создание карточек из событий, сбор системной информации, свои тэги
+ * админка: фильтры, предпросмотр json в списках, события в чятик, создание карточек из событий, сбор системной информации, свои тэги
+ * если надо будет вручную писать агент для сбора данных, добавить в него вручную информацию о браузере: user-agent, размер окна
+ * ТЗ на админку сервиса логирования ошибок: фильтр по типам, тэгам(desc/lvl/data/...), дате
+ * ТЗ на сервис сбора ошибок: приём и разбор по тэгам(desc/lvl/data/...) post запроса с телом json
+ * приём сообщений: запрос post, тело json, внутри парсинг по тэгам.
+	```js
+		error.log({data:this.data, desc:'error happens' });
+		error.log({
+			data:this.data,
+			desc:'error happens',
+			lvl: this.error.ELvl.warn,
+			src:'src/app/services/error.service.ts:61',
+			mtd:'log()',
+			task:'0000'
+			});
+	```
 
 ## swagger
 

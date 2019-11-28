@@ -1,4 +1,4 @@
-##  security
+#  security
 
  * https://www.html5rocks.com/en/tutorials/security/content-security-policy/
  * [случайные числа](https://medium.com/@frontman/случайные-числа-не-случайны-252e08e60828/)
@@ -24,6 +24,10 @@ body {
 ```
  * https://css-tricks.com/snippets/css/font-stacks/
  
+
+## Теория
+
+ * [Учебное пособие по защите информации кафедры радиотехники и систем управления МФТИ](https://github.com/vlsergey/infosec)
 
 ## платежи
 

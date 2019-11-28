@@ -351,7 +351,7 @@ http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceName
 		systemctl disable lvm2-monitor.service
 		systemctl stop lvm2-monitor.service
 	```
-
+* flatpak `flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo` далее `Discover`
 * pavucontrol
 * pulseaudio-equalizer
 * digikam
@@ -578,10 +578,14 @@ rmmod loop && modprobe loop && echo okok
 
 ### net
 
-linux network
+ * http://www.liberidu.com/blog/2006/09/29/solving-vmware-network-problems-on-linux-vmware-guests/
+
+```bash
+#linux network
 vi /etc/sysconfig/network-scripts/ifcfg-eth0
 onboot=yes
 /etc/init.d/network restart
+```
 
 ```bash
 Remove the kernel’s networking interface rules file so that it can be regenerated
