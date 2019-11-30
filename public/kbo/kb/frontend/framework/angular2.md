@@ -63,6 +63,9 @@
 
 ## Zone
 
+
+ * https://www.mokkapps.de/blog/the-last-guide-for-angular-change-detection-you-will-ever-need
+
 ```ts
 processOutsideAngularZone() { 
 	this.progress = 0; 
