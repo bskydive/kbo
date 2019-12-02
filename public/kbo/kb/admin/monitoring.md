@@ -36,3 +36,4 @@ pidstat -utdrhl |sort -k9 |less
 */10 * * * * root /usr/local/lib/sa/sa1 1 1
 53 23 * * * root /usr/local/lib/sa/sa2 -A
  ```
+ 
