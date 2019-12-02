@@ -249,6 +249,7 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
  * [Responsive tables, revisited](http://lea.verou.me/2018/05/responsive-tables-revisited/)
  * [выбор между технологиями CSS Grid Layout и CSS Flexbox Layout](https://habr.com/ru/company/ruvds/blog/448916/)
  * [Простой генератор CSS-гридов Сары Дрэснер](https://cssgrid-generator.netlify.com/)
+ * [A Complete Guide to Grid 2019](https://css-tricks.com/snippets/css/complete-guide-grid/)
 
 ## clearing очистка стилей
 

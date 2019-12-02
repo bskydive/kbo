@@ -167,8 +167,11 @@ lsFunc1(process.argv[2],process.argv[3], function (err,data) {
 });
 ```
 
-## http
+## http сервер
 
+* [lite-server](https://github.com/johnpapa/lite-server) Lightweight development only node server that serves a web app, opens it in the browser, refreshes when html or javascript change, injects CSS changes using sockets, and has a fallback page when a route is not found
+* []()
+* []()
 ```js
  var http = require('http')  
        
