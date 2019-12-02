@@ -8,6 +8,7 @@
  * [opentsdb](http://opentsdb.net/)
  * [nagios](https://www.nagios.org/)
  * [sensu](https://sensuapp.org/)
+ * [monitorix](https://www.monitorix.org/features.html)
 
 ## linux monitoring performance
 
@@ -52,3 +53,7 @@ pidstat -utdrhl |sort -k9 |less
 ### iostat
 
  * [iostat gnuplot](https://github.com/markcurtis1970/graph-iostats)
+
+### psacct
+
+ * https://www.tecmint.com/how-to-monitor-user-activity-with-psacct-or-acct-tools/
