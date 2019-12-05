@@ -84,6 +84,7 @@
 	 * [moodle](kb/admin/moodle.md)
 	 * [openmeetings](kb/admin/openmeetings.md)
 	 * [виртуализация](kb/admin/virtual.md)
+	 * [мониторинг/производительность](kb/admin/monitoring.md)
  * Планирование
  	 * [планирование](kb/планирование/планирование.md)
 	 * [здоровье](kb/здоровье/здоровье)
