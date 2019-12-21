@@ -33,7 +33,7 @@
  | collaboration, teamwork | сотрудничество, совместная работа | |
  | feature | особенность | полезная особенность |
  | feedback | отзыв | обратная связь |
- | hype | ажиотаж | |
+ | hype | ажиотаж, шумиха, манипуляция | |
  | merit | заслуга | |
  | prohibit, deny | запрещать | |
  | overwhelmed, impressed | ошеломлённый | |
@@ -53,7 +53,6 @@
  | gullible | доверчивый | |
  | Roughly speaking | грубо говоря | |
  | bounds | границы | |
- | Intentional | намеренный | |
  | lack | нехватка | |
  | Thus | соответственно | |
  | crucial | ключевой | |
@@ -83,7 +82,7 @@
  | dispatch |  | отправка |
  | flow |  | жизненный цикл |
  | section | раздел | структура |
- | inject |  | внедрение(зависимостей) |
+ | injection |  | внедрение(зависимостей) |
  | pipe |  | конвейер |
  | slice | ломтик, срез | фрагмент |
  | inconsistent | нелогичный | несогласованный |
@@ -95,6 +94,84 @@
  | holywar | священная война | горячий спор, горячая спорная тема |
  | function expression |  | функциональное выражение |
  | function declaration |  | объявляемая функция |
+ | end-to-end |  | сквозной |
+ | disclose |  | раскрывать |
+ | burden |  | обуза |
+ | perseption |  | представление |
+ | aware |  | осознавать |
+ | be aware |  | примите к сведению |
+ | beware |  | остерегаться |
+ | awareness |  | осведомлённость |
+ | lurking |  | притаиться |
+ | jeopardize |  | ставить под удар |
+ | utmost |  | предельно |
+ | posession |  | владение |
+ | rigorous |  | строгий |
+ | confuze |  | путать |
+ | vigilance |  | бдительность |
+ | harmless |  | безвредный |
+ | ploy |  | хитрость |
+ | disposal |  | уничтожение |
+ | surplus |  | излишки |
+ | appraisal |  | заключение |
+ | inquiry |  | обследование |
+ | distinct |  | отчётливый |
+ | charitable |  | снисходительный |
+ | honest |  | честный |
+ | asset | ценный актив | ресурс |
+ | judgement |  | обоснование |
+ | conduct |  | руководство |
+ | excellence |  | совершенство |
+ | raise |  | повышение |
+ | faith |  | вера |
+ | concerns | причиндалы | затруднения |
+ | encourage |  | вдохновлять |
+ | retaliate |  | отплатить |
+ | fair |  | добросовестный |
+ | modest |  | небольшой |
+ | reasonable |  | адекватный |
+ | abide |  | придерживаться |
+ | competitor |  | соперник |
+ | modestly |  | скромно |
+ | stationery |  | канцелярские принадлежности |
+ | retain |  | удерживать |
+ | disclosure |  | раскрытие |
+ | obligate |  | обязать |
+ | intention |  | намерение |
+ | intentional |  | преднамеренный |
+ | essence |  | сущность |
+ | compliance | соответствие стандартам | стандарт |
+ | evaluation |  | аттестация |
+ | involve |  | вовлекать |
+ | denote |  | обозначать |
+ | intervene |  | вмешиваться |
+ | hesitate |  | стесняться |
+ | force |  | принуждать |
+ | regreat |  | сожалеть |
+ | strive |  | стремиться |
+ | endure |  | перетерпеть |
+ | reimbursable |  | оплачиваемый |
+ | least |  | наименьший |
+ | effort |  | попытка |
+ | reliable |  | надёжный |
+ | unreliable |  | ненадёжный |
+ | conceal |  | прятать |
+ | substitute |  | заменитель |
+ | essentials |  | сущность |
+ | trail |  | след |
+ | contradictory |  | противоречивый |
+ | severity |  | важность |
+ | Containment |  | изоляция |
+ | Defect Containment Effectiveness |  | Эффективность изоляции дефектов |
+ | flaw |  | дефект |
+ | slippery |  | ускользающий |
+ | intermittent error |  | плавающая ошибка |
+ | embrace |  | осваивать |
+ | disparity |  | диспропорция |
+ | domain area |  | предметная область |
+ | refinement |  | уточнение |
+ | stakeholder | акционер | заинтересованное лицо, владелец бюджета |
+ | crucial |  | решающий |
  |  |  |  |
  |  |  |  |  |
 

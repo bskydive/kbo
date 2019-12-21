@@ -1,4 +1,4 @@
-# yEd
+# yEd блок-схемы
 
  * [incremental mode of the hierarchic layout](https://live.yworks.com/demos/layout/incrementalhierarchic/index.html)
  * 
@@ -11,3 +11,4 @@
  * [кнопки в узлах](https://live.yworks.com/demos/complete/uml/index.html)
  * [алгоритм](https://live.yworks.com/demos/complete/uml/index.html)
 
+ * [mxGraph](https://habr.com/ru/post/474094/)

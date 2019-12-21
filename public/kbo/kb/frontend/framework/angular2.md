@@ -5,6 +5,7 @@
 * angular in depth(aggrid)
 * https://tyapk.ru/blog/category/angular
 * https://tyapk.ru/blog/category/rxjs
+* [состояние angular 2019](https://blog.bitsrc.io/the-state-of-angular-in-2019-b5fb7783a1c6)
 
 ## документация
 
@@ -15,6 +16,11 @@
 ## инструменты
 
  * [библиотека ng-packagr](https://www.youtube.com/watch?v=cgQILJjeDw0)
+
+## angular backend
+
+ * [nestJS node backend](https://nestjs.com/)
+ * [angularFire backend](https://github.com/angular/angularfire/blob/master/docs/install-and-setup.md)
 
 ## оптимизация
 
@@ -56,6 +62,9 @@
  * много ограничений, не поддерживает стрелочные функции
 
 ## Zone
+
+
+ * https://www.mokkapps.de/blog/the-last-guide-for-angular-change-detection-you-will-ever-need
 
 ```ts
 processOutsideAngularZone() { 
@@ -186,7 +195,7 @@ processOutsideAngularZone() {
 ```
  * [Оптимизация обработки событий в Angular EventManagerPlugin](https://habr.com/ru/company/tinkoff/blog/429692/)
 
-## webworker
+## web workers
 
  * https://blog.angularindepth.com/angular-with-web-workers-step-by-step-dc11d5872135
  * https://angular.io/api/platform-webworker
@@ -259,6 +268,8 @@ https://stackblitz.com/edit/angular-jhutmd?file=app%2Fapp.component.html
 
 ## tslint eslint линтеры
 
+ * [migrate-angular-8-from-tslint-to-eslint](https://medium.com/create-code/migrate-angular-8-from-tslint-to-eslint-4b0c44c8ae38)
+ * [tslint-to-eslint-config](https://github.com/typescript-eslint/tslint-to-eslint-config)
  * [tslint](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin) 
  * [eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) 
  * devdependencies
@@ -576,8 +587,6 @@ count.subscribe(x => console.log(x));
  	* [ngrx route resolve](https://hackernoon.com/angular-ngrx-resolving-route-data-53f88e0b8a5d)
  * текущий маршрут
 	```ts
-	
-
 	constructor(
 		private router: Router,
 		private route: ActivatedRoute,
@@ -1024,9 +1033,7 @@ count.subscribe(x => console.log(x));
  * [формы ориентированные на шаблон(много логики в html-->ngModel](https://youtu.be/cPpghyAoV0w?t=2877)
  * [вложенные компоненты](https://codecraft.tv/courses/angular/quickstart/nesting-components-and-inputs/)
 
-## lang
-
-### httpCLient
+## httpCLient
 
  * запрос на html файл `responseType: 'text' as 'text'`
 
@@ -1067,7 +1074,7 @@ const httpOptions = {
 
 ```
 
-### interceptors
+## interceptors
 
  * https://medium.com/@ryanchenkie_40935/angular-authentication-using-the-http-client-and-http-interceptors-2f9d1540eb8
  * http://stepansuvorov.com/blog/2014/04/angularjs-interceptors-%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D1%80%D1%8B/

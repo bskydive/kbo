@@ -3,6 +3,7 @@
 ##  лучшие практики
 
 [стили](/kbo/developer/frontend.md)
+ * https://proglib.io/p/12-javascript-tricks
 
 ## links
 
@@ -250,6 +251,7 @@ https://stateofjs.com/2017/front-end/results
 
  * https://blog.sessionstack.com/how-javascript-works-the-mechanics-of-web-push-notifications-290176c5c55d
  * [The difference between ServiceWorkers, WebWorkers and WebSockets](https://aarontgrogg.com/blog/2015/07/20/the-difference-between-service-workers-web-workers-and-websockets/)
+ * [Как заставить ваши веб-приложения работать в автономном режиме](https://habr.com/ru/company/edison/blog/474374/)
 
 
 ##  async await

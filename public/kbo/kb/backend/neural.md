@@ -18,7 +18,12 @@
  * https://www.kaggle.com/
  * https://proglib.io/p/deep-learning-tricks/
  * [лекции по ИИ московского энергитического института http://vuz.exponenta.ru/](https://www.youtube.com/watch?v=W7ux1RfOQeM&list=PLPltKsCTLqkxxwRUJGapnp3JzwYH8auSc)
- 
+ * [Временные ряды в прогнозировании спроса, нагрузки на КЦ, товарных рекомендациях и поиске аномалий](https://habr.com/ru/post/477206)
+
+## биоинформатика
+
+ * [разговор с Гольфандом](https://habr.com/ru/post/476164)
+
 ## зрение
 
  * [ИИ, которое не пускает в дом кота с уличной добычей](https://habr.com/ru/post/458582/)
@@ -44,3 +49,16 @@
 ## математика
  
 * http://usdp.ru/
+* [Методы наименьших квадратов без слёз и боли](https://habr.com/ru/post/429980/)
+
+## речь
+
+ * [Огромный открытый датасет русской речи версия 1.0](https://habr.com/ru/post/474462)
+
+## закон робототехники
+
+ * [для программистов](https://habr.com/ru/company/southbridge/blog/469927)
+
+## инструменты
+
+ * [google colab выборы в питере](https://habr.com/ru/post/475258)

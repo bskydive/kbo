@@ -67,6 +67,27 @@ set-default-source noechosource
 Можно добавить эти строки в /etc/pulse/default.pa куда-нибудь в конец, чтобы они выполнялись каждый раз при запуске pulseaudio.
 ```
 
+ * https://bugs.freedesktop.org/show_bug.cgi?id=94167
+
+ ```
+	userB doesn't have access to /run/user/1000/pulse/native, which is why userB tries to start its own pulseaudio instance. And even if userB has access to the socket, pulseaudio will reject the connection attempt by a different user. There are a few steps to make this work:
+
+Copy /etc/pulse/default.pa to /home/userA/.config/pulse/default.pa and change this line
+
+    load-module module-native-protocol-unix
+
+to
+
+    load-module module-native-protocol-unix auth-anonymous=true
+
+After that change anyone having access to the socket will be allowed to connect. Then give userB access to /run/user/1000/pulse/native (setfacl can probably be used to grant access to only that user, but I don't know the exact command).
+
+It's probably also a good idea to not rely on the x11 property to point userB to userA's pulseaudio socket, so you can add "default-server = /run/user/1000/pulse/native" to /home/userB/.config/pulse/client.conf (I'm assuming that userB is only used from within userA's login sessions, so we don't need to support the case where userB logs in separately).
+
+If you wish to have the socket somewhere else, you can pass socket=/somewhere/else to module-native-protocol-unix the same way you pass auth-anonymous=true.
+
+ ```
+
 ### ogg to mp3
 
 ```bash
@@ -346,10 +367,12 @@ http://techbase.kde.org/Projects/Plasma/Plasmoids
 
 http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/
 
-
-
-
-
+* зависает при выключении
+	```bash
+		systemctl disable lvm2-monitor.service
+		systemctl stop lvm2-monitor.service
+	```
+* flatpak `flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo` далее `Discover`
 * pavucontrol
 * pulseaudio-equalizer
 * digikam
@@ -576,10 +599,14 @@ rmmod loop && modprobe loop && echo okok
 
 ### net
 
-linux network
+ * http://www.liberidu.com/blog/2006/09/29/solving-vmware-network-problems-on-linux-vmware-guests/
+
+```bash
+#linux network
 vi /etc/sysconfig/network-scripts/ifcfg-eth0
 onboot=yes
 /etc/init.d/network restart
+```
 
 ```bash
 Remove the kernel’s networking interface rules file so that it can be regenerated
@@ -606,6 +633,16 @@ tar -czSf file.tar.gz file
 
 pigz
 pbzip2
+
+### external folder
+
+[Mounts all shares to /home/user1/shares](https://docs.vmware.com/en/VMware-Workstation-Pro/14.0/com.vmware.ws.using.doc/GUID-AB5C80FE-9B8A-4899-8186-3DB8201B1758.html)
+
+```bash
+/usr/bin/vmhgfs-fuse .host:/ /home/user1/shares -o subtype=vmhgfs-fuse,allow_other
+```
+по-умолчанию `mnt/hgfs`
+
 
 ## grub2
 

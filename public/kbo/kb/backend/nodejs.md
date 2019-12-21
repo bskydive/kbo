@@ -6,6 +6,7 @@ https://nodejs.org/en/foundation/education/
 
 ## links
 
+ * [критика nodejs](https://habr.com/ru/post/305832/)
  * https://www.digitalocean.com/community/tutorials/how-to-deploy-node-js-applications-using-systemd-and-nginx
  * https://www.digitalocean.com/community/tutorials/how-to-setup-a-node-js-development-environment-on-a-vps-for-a-team
  * https://www.nginx.com/blog/nginx-nodejs-websockets-socketio/
@@ -53,8 +54,9 @@ WantedBy=multi-user.target
 
 ## npm local server
 
- * https://github.com/an9eldust/packrat
+ * https://github.com/verdaccio/verdaccio
  * https://www.npmjs.com/package/sinopia
+ * https://github.com/an9eldust/packrat
 
 ## REST
 
@@ -72,6 +74,7 @@ WantedBy=multi-user.target
  * [cors](https://expressjs.com/en/resources/middleware/cors.html)
  * [helmet](https://www.npmjs.com/package/helmet)
  * [Руководство по аутентификации в Node.js без passport.js и сторонних сервисов](https://habr.com/ru/company/ruvds/blog/457700/)
+ * [Full Stack Authentication: Cookies and Local Storage React+express](https://www.taniarascia.com/full-stack-cookies-localstorage-react-express/)
 
 ## db
 
@@ -164,8 +167,11 @@ lsFunc1(process.argv[2],process.argv[3], function (err,data) {
 });
 ```
 
-## http
+## http сервер
 
+* [lite-server](https://github.com/johnpapa/lite-server) Lightweight development only node server that serves a web app, opens it in the browser, refreshes when html or javascript change, injects CSS changes using sockets, and has a fallback page when a route is not found
+* []()
+* []()
 ```js
  var http = require('http')  
        
@@ -215,3 +221,4 @@ npm dist-tag @user/pkg@2.0.0 coolestversion //можно назначить на
 
  * [парсинг json](https://habr.com/ru/company/mailru/blog/314014)
  * [json parsing is a minefield](http://seriot.ch/json/parsing.html#29)
+ * [JsonDiscovery: Changing a way we’re viewing JSON in a browser](https://blog.usejournal.com/changing-a-way-were-viewing-json-in-a-browser-51eda9103fa2) [плагин](https://github.com/discoveryjs/browser-extension-json-discovery)

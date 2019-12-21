@@ -48,6 +48,7 @@
      * [ruby](kb/backend/ruby.md)
 	 * [python](kb/backend/python.md)     
 	 * [sql](kb/backend/sql.md)
+	 * [.net](kb/backend/.net.md)
  * Инфраструктура
 	 * [aix](kb/admin/aix)
 	 * [android](kb/admin/android)
@@ -83,12 +84,14 @@
 	 * [moodle](kb/admin/moodle.md)
 	 * [openmeetings](kb/admin/openmeetings.md)
 	 * [виртуализация](kb/admin/virtual.md)
+	 * [мониторинг/производительность](kb/admin/monitoring.md)
  * Планирование
  	 * [планирование](kb/планирование/планирование.md)
 	 * [здоровье](kb/здоровье/здоровье)
  * Карьера
 	 * [вопросы работодателю](kb/карьера/вопросы-работодателю.md)
 	 * [тестирование](kb/карьера/тестирование.md)
+	 * [писатель](kb/карьера/писатель.md)
  * Вещи
 	 * [химия](kb/вещи/химия)
 	 * [часы](kb/вещи/часы)
