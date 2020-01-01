@@ -19,7 +19,8 @@ https://booking.design/implementing-system-fonts-on-booking-com-a-lesson-learned
 
 ##  variative fonts варативные шрифты
 
-http://css-live.ru/articles/kak-ispolzovat-variativnye-shrifty-v-realnom-mire.html
+ * http://css-live.ru/articles/kak-ispolzovat-variativnye-shrifty-v-realnom-mire.html
+ * https://medium.com/web-standards/введение-в-вариативные-шрифты-3f2b6123e1cd
 
 ##  загрузка шрифтов
 
