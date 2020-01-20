@@ -63,6 +63,9 @@
 
 ## Zone
 
+
+ * https://www.mokkapps.de/blog/the-last-guide-for-angular-change-detection-you-will-ever-need
+
 ```ts
 processOutsideAngularZone() { 
 	this.progress = 0; 
@@ -1222,6 +1225,7 @@ tsconfig.json
  * [Webix ](webix.com)
  * [Fluent design ](https://en.wikipedia.org/wiki/Fluent_Design_System)
  * [PrimeNg ](https://primefaces.org/primeng/#/dialog)
+ * [bit+angular библиотека компонентов](https://blog.bitsrc.io/sharing-components-with-angular-and-bit-b68896806c18)
  
 ## angular material
 
