@@ -30,6 +30,11 @@
  * [javascript git](https://github.com/isomorphic-git/isomorphic-git)
  * [оценка производительности разработчика gitlean](https://www.youtube.com/watch?v=-yDLzoX4re4)
  * [скрипты git-extras](https://github.com/tj/git-extras)
+ * https://github.com/IonicaBizau/git-stats
+ * 
+ * 
+ * [строк кода на дату]()
+ * []()
  
 ## сеть
 
@@ -99,16 +104,32 @@
 
 ### log
 
- * Комментарии на дату
+ * коммиты и Комментарии на дату ститистика
 
 ```bash
 	g log  --pretty=format:%s --after="2018-07-27"
 	g log  --pretty=format:%s --after="2018-08-17 8:00" --before="2018-08-18 8:00"
+	# стендап
+	g shortlog --author="Valeriy Stepanov" --after="2019-12-09 8:00" --before="2019-12-16 8:00"
+	
 	g shortlog -sn --after="2019-01-01 8:00" --before="2019-04-01 8:00"
 	git shortlog -scn \-- src/
+
 	# список участников
 	git log --pretty="%an %ae%n%cn %ce" | sort | uniq
+	#[список разработчиков](https://stackoverflow.com/questions/9597410/list-all-developers-on-a-project-in-git)
+	git shortlog --summary --numbered --email 
+
+	#
 	mcedit .mailmap
+
+	#[список строк автора](https://stackoverflow.com/questions/1265040/how-to-count-total-lines-changed-by-a-specific-author-in-a-git-repository) 
+	git log --author="Valeriy Stepanov" --oneline --shortstat
+	git log --author="Valeriy Stepanov" --oneline --numstat
+	git log --author="Valeriy Stepanov" --oneline --stat
+
+	git diff --stat feature-000 develop
+
 ```
 
  * крайний коммит

@@ -97,6 +97,7 @@
 ## layout
 
  * [Нетривиальная расстановка элементов на flexbox без media-запросов	](https://habr.com/ru/post/473186/)
+ * https://www.developerdrive.com/holy-grail-layout-flexbox/
 
 ### adaptive vs responsive layout
 

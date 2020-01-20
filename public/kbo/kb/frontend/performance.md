@@ -26,6 +26,7 @@
  * https://habrahabr.ru/post/308026/
  * https://developers.google.com/web/updates/2018/05/first-input-delay
  * [google lighthouse](https://developers.google.com/web/updates/2018/05/lighthouse)
+ * https://nooshu.github.io/blog/2019/10/02/how-to-read-a-wpt-waterfall-chart/ https://nooshu.github.io/blog/2019/12/30/how-to-read-a-wpt-connection-view-chart/ 
 
 ##  chrome-dev-tools chrome dev toools
 
