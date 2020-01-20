@@ -260,6 +260,28 @@ https://stackblitz.com/edit/angular-jhutmd?file=app%2Fapp.component.html
  * https://simontest.net/
  * https://github.com/angular/in-memory-web-api
 
+### Karma/jasmine
+
+ * [Настройка VSCdode debug test](https://stackoverflow.com/questions/43916649/debug-tests-in-ng-test/44308743#44308743)
+ * [запуск одного теста](https://stackoverflow.com/questions/26552729/karma-run-single-test)
+ * проверка сложных объектов
+ https://rav.pw/jasmine-custom-matchers/
+ https://masonwebdev.wordpress.com/2016/05/10/jasmine-spy-matching-functions-and-testing-with-es6/
+ https://github.com/JamieMason/Jasmine-Matchers
+ https://jasmine.github.io/tutorials/custom_argument_matchers
+
+для автоподстановки
+
+ ```ts
+declare global {
+    namespace jasmine {
+        interface Matchers<T> {
+            toBeSomeEqual: (expected: IData) => any;
+        }
+    }
+}
+ ```
+
 ## rxjs реактивное программирование reactive observable
 
 

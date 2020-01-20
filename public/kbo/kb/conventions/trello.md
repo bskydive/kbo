@@ -12,6 +12,14 @@
 * бесплатный хостинг: heroku
 * zoom.us - видеоконференции
 
+## справочная
+
+| № | ФИО | роль | город | время MSK+X | рабочее время MSK | на связи MSK | skype(резервная связь) | тел(экстренная связь) | gmail(для сервисов/календарей) | примечание |
+| --- | --- 				| --- 		| --- 			| --- | --- | --- | --- 			| --- 			| --- 						| --- 	|
+| 10 |               		|        	| Москва 		| +0 |  9-18 |  9-18 |          	| 8  | @gmail.com				| 		|
+| 11 |               		|        	| Москва 		| +0 |  9-18 |  9-18 |          	| 8  | @gmail.com				| 		|
+| 12 |               		|        	| Москва 		| +0 |  9-18 |  9-18 |          	| 8  | @gmail.com				| 		|
+
 ## planning poker
 
  * [чёткая треня](https://play.planningpoker.com/plans) [бесплатно](http://www.votingpoker.com)
@@ -127,6 +135,47 @@
 
 * https://github.com/swagger-api/swagger-codegen
 * https://app.swaggerhub.com/
+* Java server
+```
+Лучшим инструментом для редактирования swagger в yaml является плагин для Intellij IDEA под названием Swagger от некоего Zalando и плагин Swagger к плагину Swagger от Zalando.
+Это единственный бесплатный плагин поддерживающий спецификацию openapi 3.0.
+Но при копирование любых блоков пересчитывайте отступы. Т.к. интеллисенсе в плагине не идеально и он задвигает некоторые блоки на недопустимую глубину. В yaml вложеность блоков прописана на уровне синтаксиса элементов.
+
+Не трогайте SwaggerHub от swagger.io . Если тронули, то неверьте его higlight-ингу - он бежбожно врет, особенно когда выдает странные ошибки "здесь должа быть стринг".
+Если и это вас не напугало, то к редактированию документа приступайте, только после верификации email, иначе потеряете все что сделали после 10 минут после начала работы.
+
+После редактирования файла его надо проверять по swagger-ui на валидность. Нужно будет прочитать все созданные методы в swagger-ui и проверить, что метод получает и возвращается все что вы прописали.
+После swagger-ui надо проверить на ошибки при помощи генератора сервера и клиента, в процессе генерации они выдают ошибки.
+
+
+Пример конфигурационного json для бэкенда(gen_opt.json):
+```json
+{
+	"modelPackage":"ru.voicecom.maics.services.auth.dto", 
+	"apiPackage":"ru.voicecom.maics.services.auth.api",
+	"invokerPackage":"ru.voicecom.maics.services.auth",
+	"groupId":"ru.voicecom.maics",
+	"artifactId":"auth",
+	"artifactVersion": "0.1-snapshot",
+	"localVariablePrefix": "",
+	"serializableModel": true,
+	"hideGenerationTimestamp": true,
+	"java8": true,
+	"useBeanValidation": true
+}
+```
+
+команда по генерации сервера по yaml(при помощи swagger-codegen-cli):
+```bash
+  java -jar /d/bin/swagger-codegen/modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate \
+  -i maics/servers/api/api.yaml \
+  -l spring --library spring-mvc \
+  -c gen_opt.json \
+  -o auth-now2
+```
+
+swagger-codegen-cli можно взять с https://github.com/swagger-api/swagger-codegen
+```
 
 ## wakatime.com
 
