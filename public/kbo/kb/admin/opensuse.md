@@ -384,8 +384,9 @@ http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceName
 		systemctl stop lvm2-monitor.service
 	```
 * flatpak `flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo` далее `Discover`
-* pavucontrol
+* pavucontrol - можно вместо него использовать kde плагин plasma
 * pulseaudio-equalizer
+* paprefs - для проигрывания звука по сети https://askubuntu.com/questions/28039/how-to-stream-music-over-the-network-to-multiple-computers 
 * digikam
 * kate
 * konsole
