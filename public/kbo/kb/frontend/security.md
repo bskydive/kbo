@@ -29,9 +29,10 @@ body {
 
  * [Учебное пособие по защите информации кафедры радиотехники и систем управления МФТИ](https://github.com/vlsergey/infosec)
 
-## платежи
+## платежи payments
 
  * [Как работает безопасный прием платежей в интернет-магазине](https://habr.com/ru/post/241413/)
+ * [invoices workflow](https://stripe.com/docs/billing/invoices/workflow)
 
 ## cors
 

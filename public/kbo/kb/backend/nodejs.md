@@ -222,3 +222,4 @@ npm dist-tag @user/pkg@2.0.0 coolestversion //можно назначить на
  * [парсинг json](https://habr.com/ru/company/mailru/blog/314014)
  * [json parsing is a minefield](http://seriot.ch/json/parsing.html#29)
  * [JsonDiscovery: Changing a way we’re viewing JSON in a browser](https://blog.usejournal.com/changing-a-way-were-viewing-json-in-a-browser-51eda9103fa2) [плагин](https://github.com/discoveryjs/browser-extension-json-discovery)
+ * форматирование json в командной строке linux - yajl - `cat myfile.json |  json_reformat > myfile.formatted.json` https://unix.stackexchange.com/questions/444610/how-can-i-pretty-format-a-json-file-with-all-the-correct-indents-and-everything

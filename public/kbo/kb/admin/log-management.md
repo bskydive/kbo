@@ -4,6 +4,7 @@
 
  * [Девять граблей Elasticsearch, на которые я наступил](https://habr.com/company/yamoney/blog/419041/)
  * [Elasticsearch — поиск похожих слов](https://habr.com/post/433070/)
+ * [Как переписать фасетный поиск с Solr на Elastic / Денис Сотников (Lamoda)](https://www.youtube.com/watch?v=uWWcCm5qWWU)
 
 ## logstash
 

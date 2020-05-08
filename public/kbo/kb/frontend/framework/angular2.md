@@ -689,7 +689,7 @@ count.subscribe(x => console.log(x));
 	</nav>
 ```
  
-### oncahnge mat-select dropdown
+### onchange mat-select dropdown
 
  * реакция на выбор
     * https://stackoverflow.com/questions/50222738/angular-6-material-mat-select-change-method-removed
@@ -777,10 +777,33 @@ count.subscribe(x => console.log(x));
 ### mat-datepicker
 
  * блокирование ручного ввода даты
+
  ```html
     <input 
     (keydown)="$event.stopPropagation();$event.preventDefault()"
     >
+ ```
+
+ * генерация нескольких mat-datepicker [внутри ngFor](https://stackoverflow.com/questions/49451678/mat-datepicker-inside-ngfor)
+
+ ```html
+<div
+	*ngFor="let item of itemList; let itemIndex = index; let datePickerRef = index"
+>
+	<mat-form-field class="material-datepicker">
+		<input
+			matInput
+			[matDatepicker]="datePickerRef"
+			placeholder="MM/DD/YY"
+			[formControl]="getControlDateList().controls[Index]"
+		>
+		<mat-datepicker-toggle
+			matSuffix
+			[for]="datePickerRef"
+		></mat-datepicker-toggle>
+		<mat-datepicker #datePickerRef></mat-datepicker>
+	</mat-form-field>
+</div>
  ```
  
 ### moment date
@@ -1250,7 +1273,7 @@ tsconfig.json
  * [наставление](https://material.io/design/color/the-color-system.html#color-usage-palettes)
  * [очень ограниченный инструмент для просмотра сгенерированных тем](https://material.io/tools/color/)
  * [подробнее про расширенный набор из 12 категорий цвета](https://material.io/design/material-theming/implementing-your-theme.html)
- 
+
 ### типографика шрифты font
 
  * точно так же необходимо сгенерировать пары: размер шрифта+высота строки+толщина, также можно добавить межсимвольные интервалы
@@ -1259,7 +1282,7 @@ tsconfig.json
  * [наставление](https://material.io/guidelines/style/typography.html)
  * [рекомендации по контрасту](https://material.io/design/usability/accessibility.html#color-contrast)
  * [подробнее про 13 категорий текста](https://material.io/design/material-theming/implementing-your-theme.html#typography)
- 
+
 ### иконки
 
  * http://google.github.io/material-design-icons/#icon-font-for-the-web

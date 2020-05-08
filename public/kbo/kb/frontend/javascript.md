@@ -52,6 +52,7 @@
  * [глюки javascript](https://habr.com/ru/company/mailru/blog/335292/)
  * [история развития инструментов для  javascript](https://habr.com/ru/company/mailru/blog/340922/)
  * [ошибочное понимание DRY](https://habr.com/ru/company/mailru/blog/349978/)
+ * [сборник ошибок JS](https://habr.com/ru/company/jugru/blog/494256/)
 
 ## загрузка сторонних скриптов 
 

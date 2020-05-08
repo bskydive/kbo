@@ -57,3 +57,7 @@ pidstat -utdrhl |sort -k9 |less
 ### psacct
 
  * https://www.tecmint.com/how-to-monitor-user-activity-with-psacct-or-acct-tools/
+
+## баланс сотового
+
+```

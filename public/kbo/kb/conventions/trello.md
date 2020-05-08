@@ -22,7 +22,8 @@
 
 ## planning poker
 
- * [чёткая треня](https://play.planningpoker.com/plans) [бесплатно](http://www.votingpoker.com)
+ * [тренажёр](https://play.planningpoker.com/plans) 
+ * [бесплатно тренажёр](http://www.votingpoker.com)
  * [жирный плагин](https://marketplace.atlassian.com/apps/700473/agile-poker-estimation-tool-for-jira)
 
 ## trello
@@ -136,7 +137,7 @@
 * https://github.com/swagger-api/swagger-codegen
 * https://app.swaggerhub.com/
 * Java server
-```
+
 Лучшим инструментом для редактирования swagger в yaml является плагин для Intellij IDEA под названием Swagger от некоего Zalando и плагин Swagger к плагину Swagger от Zalando.
 Это единственный бесплатный плагин поддерживающий спецификацию openapi 3.0.
 Но при копирование любых блоков пересчитывайте отступы. Т.к. интеллисенсе в плагине не идеально и он задвигает некоторые блоки на недопустимую глубину. В yaml вложеность блоков прописана на уровне синтаксиса элементов.
@@ -175,7 +176,7 @@
 ```
 
 swagger-codegen-cli можно взять с https://github.com/swagger-api/swagger-codegen
-```
+
 
 ## wakatime.com
 

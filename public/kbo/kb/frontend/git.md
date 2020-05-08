@@ -101,6 +101,7 @@
 ## справочник команд
 
  * [малоизвестные команды](https://habr.com/ru/company/mailru/blog/318508/)
+ * http://mindspill.net/computing/linux-notes/git-notes/
 
 ### log
 

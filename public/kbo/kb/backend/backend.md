@@ -20,6 +20,18 @@ https://any-api.com/
 
 https://apiary.io/
 
+
+* Официальный архитектурный гайд M$ про API design
+https://docs.microsoft.com/en-us/azure/architecture/best-practices/api-design
+https://docs.microsoft.com/en-us/azure/architecture/best-practices/api-implementation
+https://github.com/Microsoft/api-guidelines/blob/master/Guidelines.md
+
+* Платформа google
+https://cloud.google.com/apigee/
+https://apigee.com/about/cp/api-design-best-practices
+
+
+
 ##  DB Хранение данных
 
 https://habrahabr.ru/company/badoo/blog/342564/

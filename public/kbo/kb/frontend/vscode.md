@@ -13,6 +13,10 @@
 	```
  * 	`"terminal.integrated.setLocaleVariables": true`
  * [gtk ibus emoji подменяет ctrl+shift+e](https://github.com/Microsoft/vscode/issues/48480)
+ * не работает [буфер Linux](https://github.com/microsoft/vscode/issues/90297#issuecomment-583779433)
+ ```
+	editor.action.selectionClipboardPaste
+ ```
 
  ## обучение
 

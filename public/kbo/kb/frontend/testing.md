@@ -16,6 +16,11 @@
  * [Тестирование вёрстки на визуальные регрессии с помощью PhantomCSS, grunt](http://habrahabr.ru/post/271379/)
  * [тестирование вёрстки gulp+makeup](https://habrahabr.ru/company/2gis/blog/277457/)
 
+## Selenium
+
+ * [Кому еще нужен Selenium? Использует ли кто BDD в 2020? Машинное обучение в Selenium](https://habr.com/ru/company/jugru/blog/494256/)
+ * [Человек-маркировщик вместо тестировщика? Стоит ли изучать Selenium в 2020?](https://habr.com/ru/post/499658/)
+
 ##  CI
 
  * [Тестирование кода перед коммитом с помощью Jenkins и IDE от Jetbrains (IDEA, PhpStorm...)](http://habrahabr.ru/post/182042/)
