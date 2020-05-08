@@ -1,5 +1,9 @@
 # Windows
 
+## WSL windows susbsytem for linux
+
+ * https://zellwk.com/blog/windows-wsl/
+
 ## skype ads
 
 
