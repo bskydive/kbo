@@ -1,5 +1,7 @@
 # Железо
 
+https://github.com/hsoft/collapseos
+
 ## конфигураторы
 
  * https://seasonic.com/wattage-calculator

@@ -60,4 +60,11 @@ pidstat -utdrhl |sort -k9 |less
 
 ## баланс сотового
 
+ * [мегафон](https://habr.com/ru/post/357610/)
+ * [скрипт на несколько операторов](https://github.com/svetlyak40wt/mobile-balance)
+ * [модем](https://www.linux.org.ru/forum/general/9934896)
+ * [Мониторинг балансов сотовых телефонов, провайдеров ](https://habr.com/ru/post/114177/) zabbix
+ * https://github.com/GreyCat/spmon
+ * [Nagios мониторинг баланса мобильного телефона](https://habr.com/ru/post/113878/)
+
 ```

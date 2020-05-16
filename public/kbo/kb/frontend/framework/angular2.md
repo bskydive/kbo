@@ -16,13 +16,20 @@
 ## инструменты
 
  * [библиотека ng-packagr](https://www.youtube.com/watch?v=cgQILJjeDw0)
+ * [Google Maps is now an Angular component](https://medium.com/angular-in-depth/google-maps-is-now-an-angular-component-821ec61d2a0)
+ * [Как сделать пошаговый гайд вашего приложения (если ваш проект на Angular)](https://habr.com/ru/company/veeam/blog/486994/) подсказочник туториал обучениеи @material/cdk/overlay
 
 ## angular backend
 
  * [nestJS node backend](https://nestjs.com/)
  * [angularFire backend](https://github.com/angular/angularfire/blob/master/docs/install-and-setup.md)
 
-## оптимизация
+## лучшие практики
+
+ * [Clean Code Checklist in Angular](https://itnext.io/clean-code-checklist-in-angular-%EF%B8%8F-10d4db877f74)
+ * [SOLID: The Dependency Inversion Principle in Angular](https://blog.bitsrc.io/solid-the-dependency-inversion-principle-in-angular-6e4b9c484960?gi=d54f2b80e982)
+
+## performance оптимизация и утечки памяти
 
  * https://github.com/Angular-RU/change-detection-tree
  * [bazel в помощь webpack](https://codeburst.io/bazel-an-experimental-and-unofficial-feature-of-angular-6-946e880b4637)
@@ -54,6 +61,30 @@
  * [20 тысяч лье по Angular 4». Александр Трищенко, DataArt](https://www.youtube.com/watch?v=TIMUy9WDuS0)
  * https://github.com/mgechev/angular-performance-checklist
  * https://www.lucidchart.com/techblog/2016/05/04/angular-2-best-practices-change-detector-performance/
+ * [передвинуть](https://netbasal.com/angular-services-do-not-have-to-be-singletons-ffa879e62082?gi=c6b3d97473d8) объявления из ngModule в компонент или очистить в ngOnDestroy
+
+ ```ts
+	@NgModule({
+	providers: [AdminService, AdminDataService]
+	})
+
+	@NgModule({
+	providers: [AdminService, AdminDataService]
+	})
+ ```
+ * if we call NgModuleRef.destroy() or PlatformRef.destroy() then ngOnDestroy method of singleton providers will be also executed
+ * [How to create a memory leak in Angular](https://medium.com/angular-in-depth/how-to-create-a-memory-leak-in-angular-4c583ad78b8b)
+ * [Главные причины медленной работы Angular-приложений](https://habr.com/ru/company/ruvds/blog/485642/)
+ * для статических параметров лучше использовать @Attribute
+	```ts
+	@Component({
+	...
+	})
+	export class BlogComponent {
+	constructor(@Attribute("type") private type: string ) {}
+	}
+	```
+ * [Tree-shakable dependencies in Angular projects](https://indepth.dev/tree-shakable-dependencies-in-angular-projects/)
 
 ## AOT ahead of time compilation
 
@@ -61,47 +92,10 @@
  * https://angular.io/guide/aot-compiler
  * много ограничений, не поддерживает стрелочные функции
 
-## Zone
+## NGRX REDUX state management 
 
-
- * https://www.mokkapps.de/blog/the-last-guide-for-angular-change-detection-you-will-ever-need
-
-```ts
-processOutsideAngularZone() { 
-	this.progress = 0; 
-	this.zone.runOutsideAngular(//выполнить вне зоны, без CD
-		() => {
-			this.increaseProgress(//сделать что-то
-				() => { 
-					this.zone.run(//запустить проверку CD
-						() => { 
-							console.log('Outside Done!'); 
-						}
-					); 
-				}
-			); 
-		}
-	); 
-} 
-
-```
-
-```ts
- constructor(private cd: ChangeDetectorRef) {} 
-
- ngOnInit() { 
-	 this.addItemStream.subscribe(
-		() => { 
-			 this.counter++; // application state changed 
-			 this.cd.markForCheck(); // marks path 
-			}
-		) 
-	} 
-} 
-```
-
-## state management NGRX REDUX
-
+ * [Introducing @ngrx/entity](https://medium.com/ngrx/introducing-ngrx-entity-598176456e15)
+ * [Angular NgRx Entity - Complete Practical Guide](https://blog.angular-university.io/ngrx-entity/)
  * [Manage Action Flow(http/api) in @ngrx with @ngrx/effects](https://blog.nextzy.me/manage-action-flow-in-ngrx-with-ngrx-effects-1fda3fa06c2f)
  * [State Management in Angular with @ngrx](https://blog.nextzy.me/state-management-in-angular-with-ngrx-da57e59c7c89)
  *  ofType uses filter operator of rxjs library, meaning that `this.action$.ofType(CREATE_TASK)` can be expanded to `this.action$.filter(action => action.type === CREATE_TASK)`
@@ -177,9 +171,10 @@ processOutsideAngularZone() {
 		];
 	```
 
-## CD change detection
+## CD change detection ZoneJS
 
  * abstract syntax tree
+ * [The Last Guide For Angular Change Detection You'll Ever Need 2019](https://www.mokkapps.de/blog/the-last-guide-for-angular-change-detection-you-will-ever-need)
  * https://blog.thoughtram.io/angular/2016/02/22/angular-2-change-detection-explained.html
  * https://angular.io/api/core/ChangeDetectionStrategy
 
@@ -194,6 +189,41 @@ processOutsideAngularZone() {
 		}
 ```
  * [Оптимизация обработки событий в Angular EventManagerPlugin](https://habr.com/ru/company/tinkoff/blog/429692/)
+ * https://www.mokkapps.de/blog/the-last-guide-for-angular-change-detection-you-will-ever-need
+
+```ts
+processOutsideAngularZone() { 
+	this.progress = 0; 
+	this.zone.runOutsideAngular(//выполнить вне зоны, без CD
+		() => {
+			this.increaseProgress(//сделать что-то
+				() => { 
+					this.zone.run(//запустить проверку CD
+						() => { 
+							console.log('Outside Done!'); 
+						}
+					); 
+				}
+			); 
+		}
+	); 
+} 
+
+```
+
+```ts
+ constructor(private cd: ChangeDetectorRef) {} 
+
+ ngOnInit() { 
+	 this.addItemStream.subscribe(
+		() => { 
+			 this.counter++; // application state changed 
+			 this.cd.markForCheck(); // marks path 
+			}
+		) 
+	} 
+} 
+```
 
 ## web workers
 
@@ -249,6 +279,7 @@ export function main() {
  * reactive driven привязывают данные в js при помощи специальных классов, поэтому можно писать свои валидаторы, делать синхронные и асинхронные(через собственный наблюдатель) валидации
  * [forms validation](https://netbasal.com/make-your-angular-forms-error-messages-magically-appear-1e32350b7fa5)
  * [ошибка линтера Angular FormControl.errors.required](https://github.com/angular/vscode-ng-language-service/issues/149)
+ * [Angular Forms: Useful Tips](https://medium.com/angular-in-depth/angular-forms-useful-tips-9f3a9826292e) 2020
 
 ## angular6
 
@@ -258,13 +289,16 @@ export function main() {
 
 https://stackblitz.com/edit/angular-jhutmd?file=app%2Fapp.component.html
 
-## тест
+## testing тест
 
  * https://simontest.net/
  * https://github.com/angular/in-memory-web-api
+ * [Angular: Интеграционное тестирование (Shallow testing)](https://habr.com/ru/company/veeam/blog/486994/)
+ * [Three Ways to Test Angular Components](https://vsavkin.com/three-ways-to-test-angular-2-components-dcea8e90bd8d) isolated/shallow/integration
 
-### Karma/jasmine
+*Karma/Jasmine*
 
+ * [Angular: Unit Testing Jasmine, Karma (step by step)](https://medium.com/swlh/angular-unit-testing-jasmine-karma-step-by-step-e3376d110ab4)
  * [Настройка VSCdode debug test](https://stackoverflow.com/questions/43916649/debug-tests-in-ng-test/44308743#44308743)
  * [запуск одного теста](https://stackoverflow.com/questions/26552729/karma-run-single-test)
  * проверка сложных объектов
@@ -288,35 +322,12 @@ declare global {
 ## rxjs реактивное программирование reactive observable
 
 
-## tslint eslint линтеры
-
- * [migrate-angular-8-from-tslint-to-eslint](https://medium.com/create-code/migrate-angular-8-from-tslint-to-eslint-4b0c44c8ae38)
- * [tslint-to-eslint-config](https://github.com/typescript-eslint/tslint-to-eslint-config)
- * [tslint](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin) 
- * [eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) 
- * devdependencies
-```json
- 		"@typescript-eslint/parser": "^1.13.0",
-		"codelyzer": "~4.5.0",
-		"eslint": "^6.1.0",
-		"eslint-config-standard": "^13.0.1",
-		"eslint-plugin-import": "^2.18.2",
-		"eslint-plugin-node": "^9.1.0",
-		"eslint-plugin-promise": "^4.2.1",
-		"eslint-plugin-standard": "^4.0.0",
-		"rxjs-tslint-rules": "^4.24.3",
-		"ts-node": "~7.0.0",
-		"tslint": "^5.18.0",
-		"tslint-angular": "^3.0.2",
-		"typescript": "^3.2.4"
-```
- * [A preset with TSLint rules for development of Angular applications. The preset contains both, tslint core rules, and codelyzer rules, which are going to perform Angular specific linting.](https://github.com/mgechev/tslint-angular)
- * [A set of tslint rules for static code analysis of Angular TypeScript projects.](https://github.com/mgechev/codelyzer)
- * [миграция ещё не закончена](https://github.com/angular-eslint/angular-eslint)
-
-## ликбез
+### ликбез
 
  * сделано для обработки асинхронных непрерывных потоков данных
+ * [The introduction to Reactive Programming you've been missing](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754)
+ * [View Facades + RxJS](https://medium.com/angular-in-depth/angular-you-may-not-need-ngrx-e80546cc56ee)
+ * [reactive manifesto](https://www.reactivemanifesto.org/)
  * [The introduction to Reactive Programming you've been missing](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754)
  * http://rxmarbles.com/
  * http://reactivex.io/documentation/operators/flatmap.html
@@ -346,7 +357,34 @@ declare global {
  * https://blog.callstack.io/manage-async-code-like-a-pro-with-rxjs-43e22c6880af
  * https://github.com/JayKan/RxJS-Playground
  * [вечнозелёная документация для людей](http://reactive.how/)
+ * [RxJS: How to Observe an Object](https://ncjamieson.com/how-to-observe-an-object/)
 
+
+### tslint eslint линтеры
+
+ * [migrate-angular-8-from-tslint-to-eslint](https://medium.com/create-code/migrate-angular-8-from-tslint-to-eslint-4b0c44c8ae38)
+ * [tslint-to-eslint-config](https://github.com/typescript-eslint/tslint-to-eslint-config)
+ * [tslint](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin) 
+ * [eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) 
+ * devdependencies
+```json
+ 		"@typescript-eslint/parser": "^1.13.0",
+		"codelyzer": "~4.5.0",
+		"eslint": "^6.1.0",
+		"eslint-config-standard": "^13.0.1",
+		"eslint-plugin-import": "^2.18.2",
+		"eslint-plugin-node": "^9.1.0",
+		"eslint-plugin-promise": "^4.2.1",
+		"eslint-plugin-standard": "^4.0.0",
+		"rxjs-tslint-rules": "^4.24.3",
+		"ts-node": "~7.0.0",
+		"tslint": "^5.18.0",
+		"tslint-angular": "^3.0.2",
+		"typescript": "^3.2.4"
+```
+ * [A preset with TSLint rules for development of Angular applications. The preset contains both, tslint core rules, and codelyzer rules, which are going to perform Angular specific linting.](https://github.com/mgechev/tslint-angular)
+ * [A set of tslint rules for static code analysis of Angular TypeScript projects.](https://github.com/mgechev/codelyzer)
+ * [миграция ещё не закончена](https://github.com/angular-eslint/angular-eslint)
 
 ### rxjs v5-v6
 
@@ -558,11 +596,15 @@ count.subscribe(x => console.log(x));
  * Basic level - [Angular Elements – A Practical Introduction To Web Components With Angular 6](https://www.tsmean.com/articles/angular/pitfalls/)
  * [angular faq](https://rahulrsingh09.github.io/AngularConcepts/faq)
  * [обход подводных камней angular](https://habr.com/ru/company/ruvds/blog/459304/)
+ * [подводные камни angular 2019](https://habr.com/ru/company/ruvds/blog/459304/)
+ * [Angular Dependency Injection, Singleton Services, and A Loading Indicator](https://medium.com/@weswhite/angular-singleton-service-and-a-loading-indicator-ca3cc7892722)
 
 ### drag перетаскивание resize
 
  * https://embed.plnkr.co/plunk/ewAxhp
- 
+
+
+
 ### CORS
 
  * [нельзя отловить 302](https://stackoverflow.com/questions/37671166/angular2-how-to-prevent-from-http-redirection) вываливается JSON parse error, приходится ловить catchError, и внутри код 200 - это ошибка+302
@@ -806,37 +848,6 @@ count.subscribe(x => console.log(x));
 </div>
  ```
  
-### moment date
-
-```js
-	import * as moment from 'moment';
-	
-	
-	// https://momentjs.com/docs/#/displaying/format/
-	
-	export const DATE_FORMAT = {
-		emptyDataText: '',
-		parse: {
-			dateInput: 'X',
-			// dateInput: 'YYYY MM DD HH:mm:SS',
-		},
-		display: {
-			dateInput: 'DD.MM.YYYY',
-			dateOutput: 'YYYY MM DD HH:mm:SS',
-			monthYearLabel: 'MMM YYYY',
-			// locale: 'ru'
-			// dateA11yLabel: 'YYYY MM DD HH:mm:SS',
-			// monthYearA11yLabel: 'MMMM YYYY',
-		},
-	};
-	moment().format('X'));
-	moment().unix();
-	moment(date, DATE_FORMAT.parse.dateInput).format(DATE_FORMAT.display.dateInput);
-	moment(params.toDate, DATE_FORMAT.parse.dateInput).day()
-	moment().add(1,'day').format(DATE_FORMAT.display.dateOutput);
-
-```
- 
 ### tree дерево
 
  * сложный тип https://material.angular.io/components/tree
@@ -998,7 +1009,7 @@ count.subscribe(x => console.log(x));
 ```
 
  * функция с выбором из 2 типов
- 
+
 ```ts
 	func<T extends (IInterface1|IInterface2)>(params: { param1: T[], param2: string[] }) {
 		let result: T[] = [];
@@ -1020,8 +1031,10 @@ count.subscribe(x => console.log(x));
 ### css
  
  * глобальные стили css
-	* https://stackoverflow.com/questions/37689673/angular2-styling-issues-caused-by-dom-attributes-ngcontent-vs-nghost
-	* https://angular.io/guide/component-styles#view-encapsulation
+	* [styles.css](https://github.com/angular/angular-cli/wiki/stories-global-styles) 
+	* https://github.com/angular/angular-cli/issues/10007
+	* [Angular2 styling issues caused by DOM attributes _ngcontent-* vs. _nghost-*](https://stackoverflow.com/questions/37689673/angular2-styling-issues-caused-by-dom-attributes-ngcontent-vs-nghost)
+	* [view encapsulation](https://angular.io/guide/component-styles#view-encapsulation)
 	* ```ts
 		import {Component, ViewEncapsulation} from 'angular2/core'
 
@@ -1038,13 +1051,27 @@ count.subscribe(x => console.log(x));
 	button#foo.bar(#myVar='' md-raised-button='' '[disabled]'="isDisabled" '(click)'="boom") text
 	```
  * [property binding](https://angular.io/guide/template-syntax#attribute-binding)
- ```html 
-	<tr><td [attr.colspan]="1 + 1">One-Two</td></tr>
- ```	
+	```html 
+		<tr><td [attr.colspan]="1 + 1">One-Two</td></tr>
+	```
 
 ### внешние апи
 
  * [сравнение concatmap mergemap forkjoin](https://blog.angularindepth.com/practical-rxjs-in-the-wild-requests-with-concatmap-vs-mergemap-vs-forkjoin-11e5b2efe293?gi=1816e10164d)
+
+### tsconfig
+
+ * [import json](https://medium.com/@berrow/angular-7-import-json-14f8bba534af) https://stackoverflow.com/questions/52888238/import-json-in-angular-7-project https://stackoverflow.com/questions/46991237/how-to-import-json-file-into-a-typescript-file
+	```json
+	{
+	"compilerOptions": {
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"resolveJsonModule": true,
+		AND more compiler options here
+	}
+	}
+	```
 
 ### зависимости
 
@@ -1224,18 +1251,26 @@ tsconfig.json
 иденитификаторы после хэш необходимо брать в кавычки, чтобы их не переделало в id=''
 ```
 
-## graphQL
+## graphQL API query libs
 
  * https://medium.com/@sergeyfetiskin/testing-apollo-graphql-in-your-angular-application-595f0a04aad3
  * [что не так с graphql](https://habr.com/post/425041/)
+ * [The production-ready GraphQL client for React](https://relay.dev/)
+ * [A JavaScript library for efficient data fetching](https://netflix.github.io/falcor/)
+ * [Дизайн GraphQL-схем — строим схемы правильно (версия 2) / Павел Черторогов (ps.kz)](https://www.youtube.com/watch?v=tASEYJXdO_c) 
+ * [Дизайн GraphQL-схем — делаем АПИ удобным](https://github.com/nodkz/conf-talks/tree/master/articles/graphql/schema-design)
+ * [Переход от Rest API к GraphQL на примере реальных проектов / Антон Морев (Wormsoft)](https://www.youtube.com/watch?v=iiI5L6b0Uvo)
  
 ## internatiolization перевод locale translate
 
  * http://www.ngx-translate.com/
  * [мультиязычность в ангуляр](https://www.creativebloq.com/how-to/add-multi-language-support-to-angular)
  
-## UI/UX framework фреймворки
+## UI/UX framework фреймворки библиотеки
 
+ * [HTML UI layout for Angular applications; using Flexbox and a Responsive API ](https://github.com/angular/flex-layout)
+ * https://bit.dev/
+ * [add bootstrap grid into material](https://www.amadousall.com/the-good-parts-of-bootstrap-4-you-are-missing-in-your-angular-material-projects/)
  * [Clarity ](https://vmware.github.io/clarity/)
  * [Bootstrap ](getbootstrap.ru)
  * [Material Design ](https://material.io/develop/web/)
@@ -1249,7 +1284,21 @@ tsconfig.json
  * [Fluent design ](https://en.wikipedia.org/wiki/Fluent_Design_System)
  * [PrimeNg ](https://primefaces.org/primeng/#/dialog)
  * [bit+angular библиотека компонентов](https://blog.bitsrc.io/sharing-components-with-angular-and-bit-b68896806c18)
- 
+ * [How I Created The Angular Wrapper For Kendo UI Controls](https://medium.com/@bilalhaidar/how-i-created-the-angular-wrapper-for-kendo-ui-controls-4e422926f477)
+ * [Основы верстки в Angular c Redux и Nx. Часть 1. Верстка Header и Navbar.](https://medium.com/fafnur/%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D1%8B-%D0%B2%D0%B5%D1%80%D1%81%D1%82%D0%BA%D0%B8-%D0%B2-angular-c-redux-%D0%B8-nx-2da5e0b8e3e8) - анимации и store без @input
+
+ * [multiple ng-content](https://medium.com/disney-streaming/content-projection-with-angular-dbc61c6c181#e0c3)
+	```html
+	<div class="header-title">
+	<ng-content select=".title"></ng-content>
+	</div>
+	...
+	<app-header-expanded>
+	<h1 class="title">This is the title</h1>
+	<p>Other Injected Content</p>
+	</app-header-expanded>
+	```
+
 ## angular material
 
 ### генераторы
@@ -1294,3 +1343,74 @@ tsconfig.json
  * [спецификация состояний поля ввода](https://material.io/design/components/text-fields.html#spec)
  * [общие правила применения состояний](https://material.io/design/interaction/states.html#)
  
+## SEO
+
+ * title
+	```ts
+	import { Title } from "@angular/platform-browser"@Component({
+	...
+	})
+	export class LoginComponent implements OnInit {
+	constructor(private title: Title) {}    ngOnInit() {
+		title.setTitle("Login")
+	}
+	}
+	```
+ * meta
+	```ts
+	import { Meta } from "@angular/platform-browser"@Component({
+		...
+	})
+	export class BlogComponent implements OnInit {
+		constructor(private meta: Meta) {}    ngOnInit() {
+			meta.updateTag({name: "title", content: ""})
+			meta.updateTag({name: "description", content: "Lorem ipsum dolor"})
+			meta.updateTag({name: "image", content: "./assets/blog-image.jpg"})
+			meta.updateTag({name: "site", content: "My Site"})
+		}
+	}
+	```
+ * заменить фигурные скобки
+	```ts
+	Стандартный интерполятор в шаблонах — {{}}. Если вписать переменную между {{ и }}, её значение отобразится в итоговом DOM.
+
+	Знаете ли вы, что есть возможность переопределить стандартные разделители инкапсуляции на какие угодно символы? Это просто. Необходимо лишь указать новые значения в свойстве интерполяции в декораторе Component.
+
+	@Component({
+	interpolation: ["((","))"]
+	})
+	export class AppComponent {}
+
+
+	Интерполяция используемая в шаблоне AppComponent изменилась на (()), а {{}} больше не работает.
+
+	@Component({
+	template: `
+		<div>
+			((data))
+		</div>
+	`,
+	interpolation: ["((","))"]
+	})
+	export class AppComponent {
+	data: any = "dataVar"
+	}
+
+
+	В браузере вы увидите, что строка «dataVar» будет отображена на месте ((data)).
+	```
+ * DOM
+	```ts
+		import { Title } from "@angular/platform-browser"@Component({
+		...
+		})
+		export class LoginComponent implements OnInit {
+		constructor(private title: Title) {}    ngOnInit() {
+			title.setTitle("Login")
+		}
+		}
+	```
+
+## logging логирование 
+
+ * https://medium.com/javascript-in-plain-english/error-logging-with-sentry-on-angular-a73fe04b3999

@@ -48,6 +48,10 @@
 
  * http://blog.dynamicdrive.com/5-brilliant-ways-to-lazy-load-images-for-faster-page-loads/
 
+## кэш
+
+ * [Продуманные запросы: стратегии кэширования в век PWA](https://habr.com/ru/company/ruvds/blog/478326/)
+
 ##  сжатие изображений 
 
  * wepb

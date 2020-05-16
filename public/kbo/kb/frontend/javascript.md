@@ -2,19 +2,21 @@
 
 ##  лучшие практики
 
-[стили](/kbo/developer/frontend.md)
+ * [стили](/kbo/developer/frontend.md)
  * https://proglib.io/p/12-javascript-tricks
+ * [Концепции чистого кода адаптированные для TypeScript, вдохновленные clean-code-javascript](https://github.com/Real001/clean-code-typescript)
+ * [You don't (may not) need Lodash/Underscore](https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore)
 
 ## links
 
  * [ES6](https://medium.com/p/3d28884c59d4)
  * https://mbeaudru.github.io/modern-js-cheatsheet/
- * [ООП js](https://www.youtube.com/watch?v=Qn3Qah7W6Vs)
  * [современный жс](http://courses.angularclass.com/courses/modern-javascript)
  * [блог ведущего курсы обучения smartjs](https://medium.com/@xanf)
  * [события](http://latentflip.com/loupe/)
  * https://tproger.ru/translations/event-emitter-javascript/
  * http://www.2ality.com/2016/10/understanding-promises.html
+ * [наставления с примерами по созданию популярных сервисов ](https://github.com/danistefanovic/build-your-own-x)
 
 ## обучение
 
@@ -24,6 +26,7 @@
  * http://frontender.info/es6-in-depth-iterators-and-the-for-of-loop/
  * http://frontender.info/es6-in-depth-generators/
  * http://frontender.info/promises/
+ * https://proglib.io/p/javascript-junior
 
 ## инструменты 
 
@@ -54,6 +57,10 @@
  * [ошибочное понимание DRY](https://habr.com/ru/company/mailru/blog/349978/)
  * [сборник ошибок JS](https://habr.com/ru/company/jugru/blog/494256/)
 
+## вопросы интервью
+
+ * https://proglib.io/p/9-js-questions
+
 ## загрузка сторонних скриптов 
 
  * http://www.lukasjakob.com/how-to-dynamically-load-external-scripts-in-angular/
@@ -67,11 +74,15 @@
 ## алгоритмы
 
  * [двоичное дерево](https://www.nickang.com/binary-search-tree-explained/)
- 
+ * [JavaScript Algorithms and Data Structures](https://github.com/trekhleb/javascript-algorithms)
+ * [multi-month study plan for going from web developer to software engineer for a large company](https://github.com/jwasham/coding-interview-university)
+ * [Data structures introduction](https://www.youtube.com/watch?v=Qmt0QwzEmh0&list=PLDV1Zeh2NRsB6SWUrDFW2RmDotAfPbeHu)
  
 ## ООП prototype наследование
 
  * [Каждый программист на javascript должен написать свою реализацию классов](https://habr.com/post/132698/#comment_4404597)
+ * [Распространённые заблуждения о наследовании в JavaScript](https://medium.com/devschacht/eric-elliott-common-misconceptions-about-inheritance-in-javascript-f6137fc3a45a)
+ * [Александр Самиляк об ООП в яваскрипте. Часть первая](https://www.youtube.com/watch?v=Qn3Qah7W6Vs) artlebedev
 
 ##  курсы
 
@@ -101,7 +112,6 @@
  * https://www.sitepen.com/blog/2014/08/22/advanced-typescript-concepts-classes-types/
  * https://www.sitepen.com/blog/2013/12/31/definitive-guide-to-typescript/
  * [доки](https://www.gitbook.com/book/basarat/typescript)
- * https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html
  * http://2ality.com/2018/03/javascript-typescript-reasonml.html
  * https://medium.freecodecamp.org/typescript-javascript-with-super-powers-a333b0fcabc9
   * https://www.typescriptlang.org/index.html#download-links
@@ -111,12 +121,21 @@
  * [typescript на node сервере](https://habr.com/ru/post/328466/)
  * [расширенный ликбез 2019](https://www.youtube.com/watch?v=_-tSzfGkrew)
  * [TypeScript. Магия выражений](typescript)
+ * [typescript deep dive](https://habr.com/ru/company/oleg-bunin/blog/499634/) Михаил Башуров (saitonakamura) — Senior Frontend Engineer в компании WiseBits
+ * [Runtime type checking with io-ts in Typescript](https://medium.com/@ottoki/runtime-type-checking-with-io-ts-in-typescript-14465169fb02) https://github.com/gcanti/io-ts
 
 ##  шаблоны patterns
 
+ * [Шаблоны проектирования в JavaScript простыми словами](https://proglib.io/p/js-design-patterns/)
+ * [Паттерны JavaScript: курс, который упростит разработку](https://proglib.io/p/javascript-patterns/)
+ * [Шаблоны проектирования простым языком. Часть вторая. Структурные шаблоны](https://tproger.ru/translations/design-patterns-simple-words-2/)
+ * [Шаблоны проектирования простым языком. Часть первая. Порождающие шаблоны](https://tproger.ru/translations/design-patterns-simple-words-1/)
+ * [Шаблоны проектирования с человеческим лицом](https://habr.com/ru/company/mailru/blog/325492/)
  * [инструменты проектирование](/kbo/инструменты/инструменты#проектирование)
  * [Создание архитектуры программы или как проектировать табуретку](https://habr.com/post/276593/)
  * [синглтоны и общие экземпляры](https://habr.com/ru/company/mailru/blog/334078/)
+ * [шпаргалка по шалонам проектирования](https://habr.com/ru/post/210288/)
+ * [Структурные шаблоны проектирования в ES6+ на примере Игры престолов](https://habr.com/ru/post/496148/)
  * [SOLID ](https://info.javarush.ru/translation/2013/08/06/Пять-основных-принципов-дизайна-классов-S-O-L-I-D-в-Java.html)
     * [источник](http://howtodoinjava.com/2013/06/07/5-class-design-principles-solid-in-java/)
 
@@ -130,6 +149,41 @@
 | | | |
 | | | | |
  
+ * [GRASP паттерны проектирования](https://habr.com/ru/post/92570/)
+ * GoF - gang of four
+
+### momentjs date дата 
+
+```js
+	import * as moment from 'moment';
+	
+	
+	// https://momentjs.com/docs/#/displaying/format/
+	
+	export const DATE_FORMAT = {
+		emptyDataText: '',
+		parse: {
+			dateInput: 'X',
+			// dateInput: 'YYYY MM DD HH:mm:SS',
+		},
+		display: {
+			dateInput: 'DD.MM.YYYY',
+			dateOutput: 'YYYY MM DD HH:mm:SS',
+			monthYearLabel: 'MMM YYYY',
+			// locale: 'ru'
+			// dateA11yLabel: 'YYYY MM DD HH:mm:SS',
+			// monthYearA11yLabel: 'MMMM YYYY',
+		},
+	};
+	moment().format('X'));
+	moment().unix();
+	moment(date, DATE_FORMAT.parse.dateInput).format(DATE_FORMAT.display.dateInput);
+	moment(params.toDate, DATE_FORMAT.parse.dateInput).day()
+	moment().add(1,'day').format(DATE_FORMAT.display.dateOutput);
+
+```
+ * [You Dont Need Momentjs](https://github.com/you-dont-need/You-Dont-Need-Momentjs)  Moment.js/Luxon/date-fns/dayjs/vanillajs comparison and samples
+
 ##  UUID
 
 https://github.com/kelektiv/node-uuid/
@@ -260,6 +314,10 @@ https://stateofjs.com/2017/front-end/results
  * https://habrahabr.ru/company/ruvds/blog/353658/
  * [JavaScript. Работаем с исключениями и данными в конструкциях async/await без блоков try-catch](https://habr.com/post/358896/)
 
+## IIFE 
+
+ * 
+
 ##  promise
 
 ```js
@@ -296,7 +354,17 @@ startPromise(a,b,c)
         function loop(){setTimeout(loop,0)}
     ```
  * браузер задерживает очередь рендеринга
- * https://www.youtube.com/watch?v=j4_9BZezSUA
+ * [Jake Archibald: все что я знаю про Event Loop в JavaScript (2018)](https://www.youtube.com/watch?v=j4_9BZezSUA)
+	* очередь задач, очередь задач анимации(requestAnimationFrame), очередь микрозадач(promise)
+	* либо задачи, либо задачи анимации+рендеринг(стили, раскладка, рисование)
+	* рендеринг запускается не раньше 1/60 секунды, т.к. нет смысла обновляться чаще чем монитор
+	* очередь задач пополняется(запускает рендеринг) после выполнения текущей задачи
+	* очередь задач анимации пополняется(запускает рендеринг) после очистки зафиксированной текущей очереди
+	* очередь микрозадач пополняется(запускает рендеринг) всей очереди
+	* запуск задач не из браузерного апи, в коде тестов, блокируется до окончания выполнения текущей задачи
+ * [Филипп Робертс: Что за чертовщина такая event loop? | JSConf EU 2014](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
+	* асинхронные задачи setTimeout,XHR выполняются браузером в отдельных очередях
+ * [Further Adventures of the Event Loop - Erin Zimmer - JSConf EU 2018](https://www.youtube.com/watch?v=u1kqx6AenYw)
  
 ## массивы loop for
 
@@ -519,13 +587,15 @@ let clone = cloneDeep(orig);
 https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Functions/Arrow_functions$revision/1236769 
 Объявление через => - это синтаксический сахар для сокращения кода с огромной кучей ограничений.
 
-##  Замыкание
+##  Замыкание closure
 
  * Это функции с отдельной областью видимости, сохраняющие все ссылки на внешние переменные. Используются для экономии кода при массовом использовании одной функции с разными входными значениями. Опасна сложностью в понимании принципов её работы, и, как следствие, нивелировании экономии на написании кода поиском причин нештатной работы этого кода.
  * в JavaScript область действия переменной определяется по её расположению в коде (это очевидно лексически), и вложенные функции имеют доступ к переменным, объявленным вовне. Этот механизм и называется Lexical scoping (область действия, ограниченная лексически).
  * https://developer.mozilla.org/ru/docs/Web/JavaScript/Closures
  * https://habrahabr.ru/company/ruvds/blog/340194/
  * https://medium.com/dailyjs/i-never-understood-javascript-closures-9663703368e8
+ * https://proglib.io/p/js-closures-1/
+ * https://proglib.io/p/js-closures-2/
 
 
 ##  Поднятие пременных

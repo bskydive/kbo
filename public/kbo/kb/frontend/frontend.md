@@ -150,6 +150,22 @@
  * [яндекс - почему находится всё](https://habr.com/ru/company/webasyst/blog/124968/)
  * [Omnichannel Analytics for Angular - сбор SEO аналитики](https://angulartics.github.io/angulartics2/)
 
+## desktop web app
+
+### webassembly
+
+ * https://webassembly.org/getting-started/developers-guide/
+ * [WebAssembly: что и как 2019](https://habr.com/ru/post/475778/)
+
+### PWA
+
+ * PWA — это сайты, которые отображаются как мобильные приложения
+ * [Всё, что нужно знать о Progressive Web App (PWA)](https://habr.com/ru/company/wrike/blog/481240/) wrike 2019
+ * [До свидания, Electron. Здравствуйте, настольные PWA](https://habr.com/ru/company/ruvds/blog/429836/) 2018
+ * [Прогрессивные веб-приложения в 2020](https://habr.com/ru/post/482772/)
+ * https://web.dev/progressive-web-apps/
+ * https://web.dev/what-are-pwas/
+ * https://medium.com/@the_manifest/11-examples-of-progressive-web-apps-944f6db25a5a
 
 ##  валидация кода
 
@@ -159,8 +175,9 @@
  * http://eslint.org/
  * jshint
 
-##   Debug tools
+## Debug tools
 
+ * [ Средства консоли Chrome, которыми вы, возможно, никогда не пользовались](https://habr.com/ru/company/ruvds/blog/486692/)
  * https://developers.google.com/web/tools/chrome-devtools/javascript/reference#stepping
  * https://hackernoon.com/please-stop-using-console-log-its-broken-b5d7d396cf15
  * http://getfirebug.com/wiki/index.php/Console_API
@@ -282,7 +299,7 @@ http://glivera-team.github.io/svg/2016/06/13/svg-sprites-2.html
  
  ### api codegen
 
-
+ * https://github.com/jnwltr/swagger-angular-generator
  * [UI редактор апи](https://stoplight.io/studio/)
  * [Build OpenAPI3.0 specification from HAR](https://www.avantation.in/)
  * [swagger](https://github.com/wcandillon/swagger-js-codegen)

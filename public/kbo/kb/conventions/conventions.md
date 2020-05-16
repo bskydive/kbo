@@ -40,6 +40,7 @@
  | keen, interested in | заинтересован | |
  | convince | убеждать | |
  | implicit | неявный | |
+ | explicit | явный | |
  | assertion | утверждение | |
  | intrinsic | принадлежащий | |
  | observable | обозреватель | сборщик |

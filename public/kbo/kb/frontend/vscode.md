@@ -1,3 +1,5 @@
+# VSCode
+
 ## sync
 
  * [Настройки в github](https://gist.github.com/bskydive/8878b3d6d3e679358935d34983d9ffe1)
@@ -21,3 +23,7 @@
  ## обучение
 
   * https://code.visualstudio.com/docs/nodejs/angular-tutorial
+
+## hotkeys
+
+ * https://tproger.ru/translations/useful-hotkeys-for-vs-code/

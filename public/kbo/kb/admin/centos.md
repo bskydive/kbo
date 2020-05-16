@@ -1,6 +1,7 @@
 
 ## centos7
 
+## [bash](kbo/kb/admin/bash.md)
 
 ### urandom
 
@@ -68,16 +69,19 @@ clear_env = no # выключить очистку глобальных пере
 
 ## datetime
 
-[datetime](/kbo/admin/zabbix#datetime)
+ * [datetime](/kbo/admin/zabbix#datetime)
 
 ## selinux
 
+```
 seenforce 0
 mcedit /etc/selinux/config
 disable
+```
 
 ## yum rpm
 
+```
 yum history list
 yum history info 25
 yum history undo 25
@@ -89,6 +93,7 @@ minrate=100 # default is 1000
 
 yum --showduplicates list elasticsearch | expand
 yum install elasticsearch-5.0.2-1
+```
 
 ## SSH
 

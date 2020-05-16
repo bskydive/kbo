@@ -226,6 +226,24 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 			}
 		}
 	```
+ * Hiding ugly scrollbars in the browser
+	```css
+	/* Hide scrollbar for Chrome, Safari, and Opera */
+	html::-webkit-scrollbar {
+	display: none;
+	}
+
+	/* Hide scrollbar for IE and Edge */
+	html {
+	-ms-overflow-style: none;
+	}
+
+	/* Remove Scrollbar Firefox Fix, suggested in the comments */
+	html {
+	overflow: auto;
+	scrollbar-width: none;
+	}
+	```
 
 ##	Анимация css 
 
@@ -454,6 +472,10 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 
 ## css свойства
 
+### cursor курсор
+
+https://css-tricks.com/can-you-rotate-the-cursor-in-css/
+
 ### css display
 
 https://bitsofco.de/how-display-contents-works/
@@ -472,6 +494,39 @@ https://medium.com/eightshapes-llc/cropping-away-negative-impacts-of-line-height
 	white-space: nowrap;
 	```
  * [переносы текста](https://justmarkup.com/log/2019/01/a-look-at-css-hyphenation-in-2019/)
+ * Disable selecting text of an element
+	```css
+	element {
+	-webkit-user-select: none; /* Safari */
+	-ms-user-select: none; /* IE 10+ and Edge */
+	user-select: none; /* Standard syntax */
+	}
+	```
+ * Change the text-selection background color
+	```css
+	::selection {
+	color: #ececec;
+	background: #222831;
+	}
+
+	```
+ * Breaking the text in lines without br
+	```css
+	element {
+	white-space: pre-wrap; /*pre-wrap*/
+	white-space: pre-line; /*pre-line*/
+	}
+	```
+ * Creating space between words
+	```css
+	element {
+	word-spacing: 6px; /* word spacing wow such */
+	}
+	```
+ * 
+ ```css
+ ```
+ * []()
 
 ###	css images
 
@@ -483,6 +538,32 @@ https://stackoverflow.com/questions/16647380/max-width-vs-min-width
 
 ##	справочинки
 
+ * [You Don't Need JavaScript](https://github.com/you-dont-need/You-Dont-Need-JavaScript)
+ ```
+    Accordion / Toggle
+    Carousel
+    Counter of checked check-boxes
+    Flip on click
+    Floating label on Textfield
+    Font-Face (Latin)
+    Info on hover/ Popover
+    Image Gallery
+    Menu
+    Mobile menu off canvas
+    Burger menu
+    Fancy menu
+    Modal/Popup
+    Mouse tracking
+    Parallax scrolling
+    Tabs
+    Todo List
+    Tooltips
+    Treeview
+    Twitter Heart Animation
+    Dynamic Image Colorizing
+    Ripple Effect
+    Responsive Counter Showing # of Items That Didn't Fit Screen
+ ```
  * http://cssreference.io/positioning/
  * https://float-layout.glitch.me/
  * vertical align
