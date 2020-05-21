@@ -487,6 +487,7 @@ https://medium.com/eightshapes-llc/cropping-away-negative-impacts-of-line-height
 ###	css text
 
  * http://ecard.enter-media.org/css-text-effects/
+ * [высота строки текста](https://css-tricks.com/how-to-tame-line-height-in-css/)
  * троеточие
 	```css
 	overflow: hidden;
