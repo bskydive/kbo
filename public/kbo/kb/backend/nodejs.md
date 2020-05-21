@@ -2,7 +2,8 @@
 
 ## courses
 
-https://nodejs.org/en/foundation/education/
+ * https://nodejs.org/en/foundation/education/
+  * https://frontendmasters.com/learn/node-js/?utm_source=css-tricks&utm_medium=website&utm_campaign=css-tricks-tags-sidebar
 
 ## links
 
@@ -58,7 +59,13 @@ WantedBy=multi-user.target
  * https://www.npmjs.com/package/sinopia
  * https://github.com/an9eldust/packrat
 
-## REST
+
+## API
+
+ * [Портирование API на TypeScript как способ решения проблем](https://habr.com/ru/company/ruvds/blog/499664/)
+ * [открытые API ](https://github.com/public-apis/public-apis)
+
+## REST API
 
  * http://www.tutorialspoint.com/nodejs/nodejs_restful_api.htm
  * https://stormpath.com/blog/tutorial-build-rest-api-mobile-apps-using-node-js
@@ -106,6 +113,8 @@ pipe добавляют последовательные конвейеры.
  * [10 привычек довольного разраба](https://habrahabr.ru/post/277707/#habracut)
  * [трудных 5 лет](https://habrahabr.ru/post/327058/)
  * [вы не знаете node](https://habrahabr.ru/company/mailru/blog/283228/)
+ * [Node.js Best Practices — Using Modern Features 2020](https://levelup.gitconnected.com/node-js-best-practices-using-modern-features-1f5a4a189ec8)
+ * [Node.js в 2020: Выйди и зайди нормально](https://habr.com/ru/post/497090/)
 
 ## кол-во новых строк в файле
 
@@ -222,3 +231,4 @@ npm dist-tag @user/pkg@2.0.0 coolestversion //можно назначить на
  * [парсинг json](https://habr.com/ru/company/mailru/blog/314014)
  * [json parsing is a minefield](http://seriot.ch/json/parsing.html#29)
  * [JsonDiscovery: Changing a way we’re viewing JSON in a browser](https://blog.usejournal.com/changing-a-way-were-viewing-json-in-a-browser-51eda9103fa2) [плагин](https://github.com/discoveryjs/browser-extension-json-discovery)
+ * форматирование json в командной строке linux - yajl - `cat myfile.json |  json_reformat > myfile.formatted.json` https://unix.stackexchange.com/questions/444610/how-can-i-pretty-format-a-json-file-with-all-the-correct-indents-and-everything

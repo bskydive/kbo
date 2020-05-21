@@ -31,11 +31,15 @@
  * [оценка производительности разработчика gitlean](https://www.youtube.com/watch?v=-yDLzoX4re4)
  * [скрипты git-extras](https://github.com/tj/git-extras)
  * https://github.com/IonicaBizau/git-stats
- * 
+ * [gitk](https://www.atlassian.com/git/tutorials/gitk)
  * 
  * [строк кода на дату]()
  * []()
  
+## gitignore
+
+ * [A collection of .gitignore templates](https://github.com/github/gitignore)
+
 ## сеть
 
  * [git-retry](https://stackoverflow.com/questions/35014012/git-retry-if-http-request-failed)
@@ -58,7 +62,7 @@
 ## gitlab
 
  * http://doc.gitlab.com/ce/
-
+ 
 ### backup
 
  * http://doc.gitlab.com/ce/raketasks/README.html
@@ -101,6 +105,7 @@
 ## справочник команд
 
  * [малоизвестные команды](https://habr.com/ru/company/mailru/blog/318508/)
+ * http://mindspill.net/computing/linux-notes/git-notes/
 
 ### log
 
@@ -310,7 +315,8 @@ git merge upstream/master
  * http://endoflineblog.com/follow-up-to-gitflow-considered-harmful
  * https://habrahabr.ru/post/106912/ - это модель для гиков или документации, или огромной ко, или для предметной области, где от выпускаемого ПО зависит жизнь человека, или высоконагруженный проект
  * [GitHub flow](https://guides.github.com/introduction/flow/)
- * [у 2gis есть видео о внедрении ](https://www.youtube.com/watch?v=EwdXZXfQdQY)
+ * [Github-flow - немного сложнее, чем на бумаге. 2gis](https://www.youtube.com/watch?v=EwdXZXfQdQY)
+ * [Introduction to GitLab Flow](https://docs.gitlab.com/ee/topics/gitlab_flow.html)
  * [git flow](http://danielkummer.github.io/git-flow-cheatsheet/index.ru_RU.html)
  * [git flow ](http://internetdevels.ru/blog/git-flow-model)
 
@@ -331,6 +337,7 @@ GitHub flow ставит своей целью короткий релизный
 Кто отвечает за сливание upstream'а сhromium'a? Как организован сам процесс?
 Мы подсмотрели у гугла. У хромиума по всем исходникам разложены файлы owners, в них записаны кто из разработчиков отвечает за конкретную папку или подсистему. Тот кто знает как эта часть работает. Т.е. во-первых знаем кого звать на ревью кода, а во вторых на кого повесить операцию разруливания конфликтов, если такое случилось при мерже. т.е. owner кусочка кода разрешает конфликты при мерже.
 
+ * [merging-vs-rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
 
 
 ## git server
@@ -500,6 +507,8 @@ https://gist.github.com/esoupy/3823712
 
 ## github
 
+ * [github CLI](https://hub.github.com/)
+ * [15 советов по работе с Github](https://habr.com/ru/company/mailru/blog/359246/)
  * https://help.github.com/articles/duplicating-a-repository/
  * .git директория над проектом!
 

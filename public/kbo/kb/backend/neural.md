@@ -28,6 +28,7 @@
 
  * [ИИ, которое не пускает в дом кота с уличной добычей](https://habr.com/ru/post/458582/)
  * [Формирование изображений без объективов](https://habr.com/ru/company/mailru/blog/410345/)
+ * [Сила PWA: Система видеонаблюдения с нейросетью в 300 строчек JS-кода](https://habr.com/ru/post/492006/) на основе https://nanonets.com/blog/object-detection-tensorflow-js/
 
 ## железо
 

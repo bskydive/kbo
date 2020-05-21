@@ -21,6 +21,8 @@ https://dzone.com/articles/jpa-basic-projections
 
 ## установка jre
 
+Можно использовать сборки бесплатно Corretto, Liberica, OpenJDK, Zulu см https://sdkman.io/jdks
+
 http://stackoverflow.com/questions/10268583/downloading-java-jdk-on-linux-via-wget-is-shown-license-page-instead#10959815
 
 ```java

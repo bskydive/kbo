@@ -1,4 +1,6 @@
 
+# bash
+
 ## unlimited bash history
 
 
@@ -54,6 +56,7 @@ http://habrahabr.ru/company/selectel/blog/248207/
 ## tips
 
  * [подводные камни bash](https://habr.com/ru/company/mailru/blog/311762)
+ * https://github.com/you-dont-need/You-Dont-Need-GUI#find-a-stale-file
  * [Bash-скрипты, часть 2: циклы](https://habrahabr.ru/company/ruvds/blog/325928/)
  * [10 (or so) bash Tricks I can’t live without](http://axixmiqui.wordpress.com/bash-tricks/)
 

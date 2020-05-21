@@ -6,6 +6,10 @@
  * [используй дизайн-гайдлайны, унифицируй компоненты, прикладывай шрифты](https://habrahabr.ru/post/311800/)
  * [Модульная сетка макета с нуля: анализ, расчет и построение](https://habr.com/ru/post/344910/)
 
+## блоги
+
+ * https://medium.com/slashdesigner
+
 ##  designer IDE
 
  * [создание сайтов](https://webflow.com/)

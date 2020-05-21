@@ -35,6 +35,17 @@
 
 ### pulse
 
+ * по сети rtp
+	* paprefs
+ 	* https://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/Network/RTP/
+	 ```
+	 	tcpdump -n net 224.0.0.0/8 -c 10
+		tcpdump -n net 192.0.0.0/8 -c 10
+		22:19:59.578022 IP 192.168.0.197.57664 > 224.0.0.56.46862: UDP, length 1292
+		vlc rtp://@0.0.0.0:46444/
+
+	 ```
+
  * [pulseaudio-equalizer](files/equalizer-preset.png)
  * в pavucontrol выбрать воспроизведение через LADSPA Plugin, чтобы эквалайзер заработал
  * удаление pulseaudio-equalizer
