@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>статья.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%D0%BE%D1%82-%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%D0%B0-%D0%B4%D0%BE-%D0%BA%D0%BE%D0%B4%D0%B0-%D0%B1%D0%B5%D0%B7-%D1%81%D0%BE%D0%B2%D0%B5%D1%89%D0%B0%D0%BD%D0%B8%D0%B9-%D1%81%D1%82%D1%80%D0%B0%D1%88%D0%BD%D0%B0%D1%8F-%D1%81%D0%B8%D0%BB%D0%B0-%D0%BA%D1%80%D0%B0%D1%81%D0%BE%D1%82%D1%8B">От дизайна до кода без совещаний. Страшная сила красоты.</h1>
+<h1 id="%D1%82%D1%80%D1%83%D0%B4%D0%BD%D0%BE-%D0%B1%D1%8B%D1%82%D1%8C-%D1%81%D1%82%D0%B0%D1%80%D1%82%D0%B0%D0%BF%D0%BE%D0%BC-%D1%87%D0%B0%D1%81%D1%82%D1%8C-3">Трудно быть стартапом. Часть 3.</h1>
+<ul>
+<li><img src="arkanar-beauty.jpeg" alt="картинка"></li>
+<li>Демонстрация красоты и богатства на Арканарский манер. Кадр из фильма &quot;Трудно быть богом&quot; по рассказу братьев Стругацких</li>
+</ul>
+<h2 id="%D0%B2%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5">введение</h2>
+<p>Для кого статья: для разработчиков фронта(frontend) и тыла(backend), аналитиков, лидов, дизайнеров.</p>
+<p>О чём статья: О процессах и инструментах веб-разработки в стартапах с фронтом(frontend) на Angular.</p>
+<p>Учимся автоматизировать и ускорять совместную работу над:</p>
+<ul>
+<li><a href="https://www.youtube.com/playlist?list=PLM2Q6lcZo4MexclJrYxA0Is42qWBBuHpB">дизайном/макетом</a></li>
+<li><a href="https://drive.google.com/file/d/1pzX_z1zasMKX8ZKJ90BpsI0curb2ka-a/view?usp=sharing">разработкой</a> макета, фронта(frontend) и тыла(backend) через <a href="https://www.figma.com/file/xzyZ3aWHP3t0Sh4hW2Psvm/gbook-dark-green?node-id=83131%3A0">макет</a> или <a href="https://drive.google.com/file/d/126bf-4MQwgwjX-jLlTpnCQ0ZIvsr-Dm-/view?usp=sharing">схему</a></li>
+<li><a href="https://github.com/OpenAPITools/OpenAPI-generator/tree/master/samples/client/petstore">генерацией кода</a> сервисов API через <a href="https://github.com/raml-org/raml-spec/blob/master/versions/raml-10/raml-10.md/">спецификацию</a> и <a href="https://learning.getpostman.com/docs/postman/launching_postman/installation_and_updates">специальные IDE</a>.</li>
+</ul>
+<p>Статья получилась очень длинной и сборной из нескольких тем: дизайн, проектирование, API. Эти темы крепко, но неочевидно связаны, т.к. их связь построена через несколько, обычно последовательных, ролей. Объёма также добавило то, что по ходу написания я руками делаю примеры реализации.</p>
+<p>Рассматривая их в одной статье я даю больше поводов к комбинации и поиску идей, которые подойдут в конкретном проекте. Проекты разные, в первую очередь, из-за различий между возможностями людей в проекте. Потому для маленьких и молодых команд в стартапах важно уметь собирать, ремонтировать и ездить на велосипедах.</p>
+<p>Признаться, я также отгрузил сюда многовато ссылок на статьи и инструменты из своей базы знаний. Заливать их в каждом новом проекте в отдельную базу знаний - тот ещё подвиг Геракла. А тут, сдобренные красивыми словесами и картинками, они зайдут намного лучше.</p>
+<p>По-хорошему также надо затронуть тему совместного управления задачами в trello/bitbucket, т.к. к удобным инструментам совместной работы вроде редактирования в реальном времени и заметок требуются не менее удобные и асинхронные редакторы задач. Так, чтобы задачи можно было удобно редактировать и передавать, формируя персональные списки с приоритетами. Но я решил пожалеть {username} и {authorname}.</p>
+<p>Более основательным товарищам предлагаю заварить себе чашечку чая, и взять побольше французских булочек, прежде чем продолжить чтение.</p>
+<h2 id="%D0%B2-%D0%BF%D0%BE%D0%B8%D1%81%D0%BA%D0%B0%D1%85-%D0%B8%D0%B4%D0%B5%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B3%D0%BE-%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81%D0%B0-%D1%86%D0%B5%D0%BD%D0%B8%D1%82%D0%B5%D0%BB%D1%8C-%D0%BA%D1%80%D0%B0%D1%81%D0%BE%D1%82%D1%8B">в поисках идеального интерфейса: ценитель красоты</h2>
+<p>Предположим, что мы делаем приложение для пользователей. Как же заставить пользователей рассказать какое приложение им нужно? Ну то есть поговорить-то можно, однако нельзя на выходе разговора получить технический документ. А ещё более нельзя получить документ, который продержится хотя бы месяц после составления без правок. С одной стороны, пользователи не могут быть поголовно аналитиками, чтобы писать понятно для разработчиков, с другой - психологами, чтобы осознавать свои потребности, с третьей - экономистами, чтобы прогнозировать ограничения своих потребностей хотя бы на год вперёд.</p>
+<p>Между пользователем и разработчиком обычно пролегает пропасть. Потому и выстраивается длинная цепочка из специалистов в виде живого моста через неё. В пространстве моста играется игра &quot;испорченный телефон&quot;, во времени - <a href="https://www.youtube.com/watch?v=rmyF-XTrHeU">сказка о его потере</a>. Возникает понятный соблазн разрубить этот гордиев узел волевым решением. Посмотреть на соседский огород, подтянуть здравый смысл, сделать продукт удобным и красивым.</p>
+<p>Именно с красоты проще всего начать проектирование. Она понятна, не требует специальных знаний, и выпытывания требований из &quot;бизнеса&quot;. Необходимость думать можно заменить на &quot;у всех так&quot; и &quot;ну очевидно же&quot;. Вот тут появляются менеджеры/владельцы/лиды, которые и берут на себя бремя принятия решений. А проще говоря угадывают, рискуют предположить как будет хорошо и пользователям, и команде разработки. Как сделать нечто полезное, и не слишком сложное в реализации, чтобы успеть в срок.</p>
+<p>Отсюда вытекает простое следствие. Аксиома: дизайн должен нравиться тем кто берёт на себя роль ценителя красоты. И второе мгновенное озарение: если потребности пользователя могут внезапно меняться, то дизайн тоже должен подвергаться изменениям. Смирившись с этим, нам остаётся лишь найти способ как генерировать дизайн, который сразу нравится рисковым ценителям.</p>
+<p>С чего же начать? Ну, есть много вариантов готового дизайна, а ещё лучше - дизайн систем. Можно просто ткнуть пальцем в любой вариант потолще. Однако, придётся за него заплатить, и немного вникнуть в лицензионный договор на предмет коммерческого использования и правок.</p>
+<ul>
+<li><a href="http://demo.oxygenna.com/portal">библиотека дизайна на основе material, с библиотекой компонентов Angular</a></li>
+<li><a href="https://elements.envato.com/ru/web-templates/admin-templates">подборка шаблонов/библиотек 1</a></li>
+<li><a href="https://themeforest.net/">подборка шаблонов/библиотек 2</a></li>
+<li><a href="https://wonw.xyz/iotask/#all-pages">пример большой библиотеки дизайна</a></li>
+<li><a href="https://material.io/design/color/dark-theme.html#implementation">бесплатный пример реализации тёмной темы с разбором от material.io</a></li>
+<li><a href="https://www.figma.com/blog/material-design-figma-styles/">бесплатный готовый конфигурируемый figma пример библиотеки дизайна material</a></li>
+<li><a href="https://www.sketchappsources.com/free-source/597-google-material-design-ui-sketch-app.html">бесплатный большой набор компонентов material для sketch/figma</a></li>
+</ul>
+<p>Это - действительно хороший старт, который экономит месяцы поиска &quot;специалиста по UX&quot;, которые на моей практике заканчивались нахождением &quot;ну хотя бы по UI&quot;, а в итоге - дорисовыванием одного из популярных шаблонов. И ладно бы заканчивалось. Со временем оказывается, что шаблон не нравится, дизайнер занят бесконечным переделыванием деталей, а разработчики помогают разгонять эту весёлую карусель. До тех пор, пока внезапно не заканчиваются деньги.</p>
+<p>Чтобы сделать следующие после выбора шаблона/дизайн-системы шаги не напрасными, необходимо договориться о подходе, признаках, которые можно легко выделить &quot;на глаз&quot; из любого варианта дизайна. Без согласований и споров. Можно выбрать несколько похожих шаблонов, которые нравятся ценителю красоты, и на их основе организовать процесс формализации требований: плотно/воздушно, светло/темно/контрастно, горизонтально/вертикально, мобильно/десктопно.</p>
+<p>Дизайнеры также практикуют набор и согласование визуальных образцов, которые нравятся в отдельный <a href="https://studio.everypixel.com/ru/blog/tips-for-creating-mood-boards/">mood board</a> / <a href="https://blog.mann-ivanov-ferber.ru/2018/01/03/mudbord-sozdayom-plany-na-budushhee/">inspiration board</a>.</p>
+<p>Можно пойти от обратного - сначала найти дизайнера, но сосредоточиться не на магических навыках-аббревиатурах и толщине портфолио, а на том, что относится к конкретному проекту. Искать дизайнера без готовых требований, значит искать себе приключения с дизайном, который не нравится. И тут возникает проблема с исполнением роли аналитика. Как и кому писать эти требования?</p>
+<h2 id="%D1%83%D0%BD%D0%B8%D0%B2%D0%B5%D1%80%D1%81%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D0%B4%D0%B8%D0%B0%D0%BB%D0%B5%D0%BA%D1%82-%D1%81%D1%85%D0%B5%D0%BC%D0%B0-%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85">универсальный диалект: схема данных</h2>
+<p>Если двинуться дальше по мосту из мягких тел, от дизайна к разработке, то можно прийти к удивительному выводу. Изменения в дизайне напрямую влияют на API. Т.е. подвигав кнопочки вы загрузите работой не только фронтальную, но и тыловую часть. Т.е. буквально всех. Может возникнуть потребность поменять архитектуру или инфраструктуру, докупить серверов, нанять ещё разработчиков. А самое плохое, что это всё происходит не внезапным всеобщим озарением, а постепенно, по цепочке, спустя дни, недели, месяцы.</p>
+<p>Не хочу вдаваться в подробности конкретных примеров, потому давайте примем за рабочую гипотезу, что &quot;так бывает&quot;, и подумаем в каком месте пути &quot;дизайн--фронт(frontend)--API--тыл(backend)--инфраструктура&quot; можно срезать углы. Сразу подскажу, что позвать всех на совещание - это так себе вариант. Слишком велика разница в языках разных ролей разработки. Их нужно уравнять в понимании, сделать универсальный диалект.</p>
+<p>Самый простой и понятный - это картинки. Совсем картинки показывать нельзя, ведь их информационная ёмкость/скорость небольшая. А вот картинки с текстом - самое то. А конкретнее - схема. Схема того, что одинаково и в картинках дизайнера, и в контрактах API. Это описание данных, их типов, ограничений, направления. Тогда можно не грузить менеджеров и дизайнеров программированием, а программистов и админов дизайном. Каждая роль увидит один и тот же минимум - поставку данных между сервером и пользователем.</p>
+<p>Я пробовал организовать поверх графического макета стрелочки-циферки(булавочки), которые указывают какие конкретно данные нужно выводить в поля. Не взлетело.</p>
+<ul>
+<li><img src="булавки-таблица.jpeg" alt=""></li>
+<li><img src="булавки-макет.jpeg" alt=""></li>
+<li><a href="https://www.figma.com/file/xzyZ3aWHP3t0Sh4hW2Psvm/gbook-dark-green?node-id=83131%3A0">указатели типов данных на макете</a></li>
+</ul>
+<p>Лучший вариант - это подобие спецификации, когда согласованную схему отправляют как задание на разработку дизайна, компонентов, API. Отправляют асинхронно(т.е. всем), что может теоретически в несколько раз ускорить выдачу кода/картинок.</p>
+<ul>
+<li><img src="схема-процессы.jpeg" alt=""></li>
+<li><a href="https://drive.google.com/file/d/1pzX_z1zasMKX8ZKJ90BpsI0curb2ka-a/view?usp=sharing">Схема процессов разработки через схему данных</a></li>
+</ul>
+<p>Если немного отвлечься от темы, то можно вспомнить о саботажниках. Они найдут как слить всю накопленную экономию. Борьба с саботажем входит в процесс обучения команды совместной работе:
+* В первую очередь делаем задачи тормозящие работу коллег, т.е. весь проект.
+* Ищем компромисс, уступаем, договариваемся, держим слово.
+* Интересуемся проблемами коллег, помогаем, облегчаем и автоматизируем повторяющиеся взаимодействия.</p>
+<p>Итак, вернёмся обратно к нашей цепочке разработчиков. Разорвать цепь, т.е. сделать работу асинхронной поможет диалект &quot;схема данных&quot;: схемы для связывания полей ввода/вывода в интерфейсе, типов данных на фронте(frontend), параметров/контрактов API.</p>
+<p>Делаем список количества, типов, ограничений данных с разбивкой по экранам, при необходимости обрисовываем их рамочками, соединяем стрелочками. В итоге согласуется значительно быстрее картинок макетирования, т.к. модель могут сходу понять и/или сделать любые роли в проекте.</p>
+<p>Самый простой инструмент для одновременной совместной работы над такой моделью - <a href="https://chrome.google.com/webstore/detail/drawio-diagrams/onlkggianjhjenigcpigpjehhpplldkc">draw.io из Google docs</a>. Работает в любом Chrome/Firefox.</p>
+<ul>
+<li><img src="схема-данные.jpeg" alt=""></li>
+<li><a href="https://drive.google.com/file/d/126bf-4MQwgwjX-jLlTpnCQ0ZIvsr-Dm-/view?usp=sharing">Схема данных в Google docs / draw.io</a></li>
+</ul>
+<p>Полноценный, упитанный и шелковистый процесс проектирования, конечно должен включать в себя сценарии(use case) работы пользователя, функциональные и не очень требования, ограничения, и много чего ещё. Много месяцев работы команды аналитиков перед тем, как писать первую строчку кода. Тут подразумевается промышленное/коммерческое приложение, не влезающее в &quot;коробочные&quot; решения магазинов и парикмахерских. Ну а самый навороченный вариант, откуда можно бесконечно черпать идеи велосипедостроения - это инструменты проектирования предметной области, например, <a href="https://habr.com/ru/company/yandex/blog/457810/">Alloy</a>.</p>
+<p>В более простом варианте необходимо выдать хоть что-то согласованное с ключевыми ролями проекта для реализации дизайна/фронта(frontend)/тыла(backend). И главное: нельзя приступать к проектированию интерфейса, а тем более нанимать дизайнера без доступного эксперта в предметной области, готовых описаний сценариев и модели данных. Что-то одно должно быть обязательно, иначе будет потеряно много времени. Потому что через некоторое время после явления чудных картинок начнут прилетать внезапные &quot;а вот это мы не сможем&quot;.</p>
+<p>Неочевидное преимущество. Использование готовых дизайн систем и моделей данных позволяет, за счёт упрощения, ускорить и затолкать процессы в гибкую методологию. Становится легче делать короткие итерации с готовым решением на выходе. Иначе эволюция дизайна не успевает за реализацией компонентов, и проект превращается в разнородную массу.</p>
+<h2 id="%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BC%D0%B5%D0%BD%D1%82-%D1%82%D0%B2%D0%BE%D1%80%D1%86%D0%B0-figma">инструмент творца: figma</h2>
+<p>Итак, у нас есть годное описание задачи, можно приступать к творчеству. Давайте же поищем подходящие для творца инструменты. Ну и поскольку мы имеем в виду стартап/прототип, то инструменты должны быть соответствующие: бесплатные, групповые, кроссплатформенные/облачные.</p>
+<p>Из подходящих флагман - <a href="https://help.figma.com/category/9-getting-started">figma</a>. Также можно посмотреть на <a href="https://www.sketch.com/docs/prototyping/">Google sketch</a>.</p>
+<p>Единственное существенное её ограничение, с которым мне пришлось бороться - это <a href="https://help.figma.com/article/355-manage-missing-fonts">отсутствующие шрифты</a>. В макетах от креаклов иногда прилетают специфические для Mac/Win/Lin экземпляры, и их необходимо руками доустанавливать. Есть плагин для <a href="https://www.figma.com/c/plugin/745394880974490845/Missing-Font-Selector">поиска</a> и <a href="https://www.figma.com/c/plugin/738840446766071906/Font-Replacer">замены</a> таких шрифтов. Есть ещё облачное приложение-компаньон - zeplin, но он не позволяет редактировать макет.</p>
+<p>Редактор прожорлив, потому стоит проверить <a href="https://help.figma.com/article/11-configuring-your-browser">настройки браузера</a></p>
+<p>Относительно недавно у неё появилась и бурно развивается система плагинов. Вот некоторые, которые мне пригодились или понравились:</p>
+<ul>
+<li>выбор элементов с одинаковыми атрибутами <a href="https://www.figma.com/c/plugin/735733267883397781/Similayer">similayer</a>. Для изменения, например, цвета. Я использовал для замены захардкоженых цветов на <a href="https://www.figma.com/blog/component-styles-and-shared-library-best-practices/#style-tips">библиотечные</a>.</li>
+<li><a href="https://www.figma.com/c/plugin/739978920241977182/Find-%26-Focus">поиск</a></li>
+<li><a href="https://www.figma.com/c/plugin/735072959812183643/Find-and-Replace">замена</a></li>
+<li><a href="https://www.figma.com/c/plugin/733159460536249875/Color-Contrast-Checker">проверка контраста</a></li>
+<li><a href="https://www.figma.com/c/plugin/732240841094697441/%E2%9A%A1%EF%B8%8F-Viewports">выбор разрешений экрана</a></li>
+<li><a href="https://www.figma.com/c/plugin/731271836271143349/Rename-It">переименование объектов по шаблону</a> - для наведения порядка в пространстве имён</li>
+</ul>
+<p>Отмечу также пару важных приёмов:</p>
+<ul>
+<li>результат работы дизайнера желательно делать <a href="https://help.figma.com/article/199-getting-started-with-prototyping">интерактивным</a>, т.е. содержать переходы между меню и экранами, смену состояний.</li>
+<li><a href="https://help.figma.com/article/102-alignment-and-distribution">выравнивание группы объектов</a></li>
+<li><a href="https://help.figma.com/article/322-importing-sketch-files">импорт Google sketch</a> - таких файлов много, ищутся <a href="https://www.sketchappsources.com/">тут</a></li>
+<li><a href="https://help.figma.com/article/55-layout-grids">сетка</a></li>
+<li><a href="https://www.figma.com/c/plugin/735770583268406934">синхронизация с гугло таблицами</a>. Это позволяет передать любому члену команды роль наполнения контентом макетов.</li>
+</ul>
+<p>И пару хороших статей:</p>
+<ul>
+<li><a href="https://habr.com/ru/post/463061/">Правила подготовки макетов в Figma</a></li>
+<li><a href="https://habr.com/ru/post/463181/">ограничения figma</a></li>
+<li><a href="https://www.figma.com/blog/component-styles-and-shared-library-best-practices/">лучшие практики figma</a></li>
+</ul>
+<p>Главная трудность, с которой я столкнулся - это нежелание осваивать figma технически подкованными людьми. Даже пришлось записывать скринкаст. Потому поискал и нашёл отличный <a href="https://www.youtube.com/playlist?list=PLM2Q6lcZo4MexclJrYxA0Is42qWBBuHpB">видеокурс по figma</a>.</p>
+<p>Есть иной подход, когда макеты рисуются для поиска идей и экспериментов, но как финальный результат не используются. Сразу пишется/генерируется код вёрстки. Тогда <a href="https://www.youtube.com/watch?v=AJU9IyIC3cc">дизайнер может заменить верстальщика</a> при помощи генератора вёрстки(дизайн системы) <a href="https://whitepaper.tools/">whitepaper</a>. Я не пошёл в эту сторону, т.к. там недостаточно развесистый стартовый комплект элементов, и недостаточно подробные по отношению к material наставления. Это оставляет открытыми риски неудачного/тупикового креатива в процессе согласования. Будет много переделок, и много потерянного времени. Этот инструмент привнёс ощутимые выгоды в крупных проектах. Но в стартапе, в виде +1 требования в вакансии дизайнера он добавляет в и без того переполненную корзину рисков. Впрочем, если дизайнера нет, а имеющийся верстальщик сможет его применить по делу, то это поможет сделать прототип чуть быстрее.</p>
+<p>В том же направлении, но со стороны верстальщика копают в проекте <a href="https://app.uibakery.io/tools/yxS4wFMums/builder">uibakery</a> - это визуальный редактор с генератором Angular проекта на выходе. Проект ещё мал, компоненты дорисовывают по требованию.</p>
+<p>Оба подхода очень хорошо сочетается с концепцией разделения компонентов на тупые(DUMB/UI) и умные(SMART/LOGIC).</p>
+<h2 id="%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0-%D0%BD%D0%B0%D1%81%D1%82%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F-%D0%BC%D0%B0%D0%BA%D0%B5%D1%82%D1%8B-%D0%B1%D0%B8%D0%B1%D0%BB%D0%B8%D0%BE%D1%82%D0%B5%D0%BA%D0%B8">дизайн система: наставления, макеты, библиотеки</h2>
+<p>В хорошей статье про разрешение конфликтов между <a href="https://habr.com/ru/post/464115/">верстальщиком и дизайнером</a> компактно собраны лучшие практики. Центральный из них - это дизайн система. Она состоит из наборов: размеров экрана, компонентов, шрифтов, цветов, правил наименований, иконок, данных-заглушек, сеток, инструментов совместной работы. На выходе из системы вырастает набор макетов/экранов интерфейса пользователя.</p>
+<p>Есть готовые бесплатные варианты реализации наставлений. Вместо крутых, но бесполезных для стартапа <a href="http://www.designsystemsclub.ru/">наборов</a> мы рассмотрим вполне годные для скоротечного боя.</p>
+<p>Начнём рассмотрение дизайн системы с самого простого - правил именования.</p>
+<h3 id="%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE-%D0%B8%D0%BC%D1%91%D0%BD%D1%82%D0%B0%D0%BA%D1%81%D0%BE%D0%BD%D0%BE%D0%BC%D0%B8%D1%8F">пространство имён(таксономия)</h3>
+<p>Пространство имён формируют правила, а в итоге получается словарь предметной области. Словарь, ну или справочник, нужен, чтобы связать между собой бизнес-понятия, вёрстку, код, дизайн. Туда можно подсматривать не только для обучения, но и для сокращения времени на создание и поиск кода.</p>
+<p>И благо здесь не только в том, что менеджеру не надо учить термины программистов, но и в том, например, что слова на английском банально пишутся без ошибок. Да, даже среди разработчиков мне встречались те, кто допускает много таких ошибок. И те, кто не хотел включать проверку орфографии, т.к. ноут подтормаживал.</p>
+<p>В пространство имён(таксономию/taxonomy) можно добавить <a href="https://www.colorhexa.com/color-names">названия цветов</a> на английском, которые сразу позволяют обозначать переменные в css. В идеале все подписи коммитов, компоненты, переменные, папки, классы должны содержать одинаковые слова для обозначения одинаковых или взаимосвязанных элементов. Чтобы менеджер, дизайнер, программист и тестировщик одинаково их понимали.</p>
+<h3 id="ui---%D1%83%D1%87%D0%B8%D0%BC%D1%81%D1%8F-%D0%B4%D0%B5%D0%BB%D0%B0%D1%82%D1%8C-%D0%BA%D1%80%D0%B0%D1%81%D0%B8%D0%B2%D0%BE">UI - учимся делать красиво</h3>
+<p>Во время разработки мы коллективом состыковываем разные сущности: наставления material, картинки в figma, и код Angular. Это и ограничители фантазий ценителя красоты, и точка истины в спорах, и суровый бухгалтер, который не даст слить в пустоту драгоценное время разработчиков. Однако, они должны входить в прокрустово ложе ограничений и продукта, и команды.</p>
+<p>Точка входа в эти ограничения - документация, а точнее - наставления(guides). Например, по <a href="https://material.io/">Google material design</a>.</p>
+<p>Вот пара важных моментов, просто для обзора ширины и глубины этого произведения:</p>
+<ul>
+<li><a href="https://material.io/design/interaction/states.html#">общие правила применения состояний компонента</a></li>
+<li><a href="https://material.io/design/components/text-fields.html#spec">спецификация состояний компонента поле ввода</a></li>
+</ul>
+<p>А вот и пример того, как не стыкуется вроде бы стыкуемое. Как умная маша ты изучаешь наставления. Потом скачиваешь <a href="https://material.io/design/color/dark-theme.html#implementation">готовый конструктор</a> для дизайна. Рисуешь и согласуешь дизайн. Подключаешь в проект готовый набор компонентов. Начинаешь их верстать, и понимаешь, что одно с другим ну никак не сходится.</p>
+<ul>
+<li>
+<p><img src="material-angular-input.jpeg" alt=""></p>
+</li>
+<li>
+<p><a href="https://material.angular.io/components/input/overview">в библиотеке кода</a></p>
+</li>
+<li>
+<p><img src="material-input.jpeg" alt=""></p>
+</li>
+<li>
+<p><a href="https://material.io/components/text-fields/#specs">в наставлении</a></p>
+</li>
+</ul>
+<p>Верь глазам своим!</p>
+<ul>
+<li><img src="material-design-input.jpeg" alt=""></li>
+<li>И подключай компоненты, подходящие под макет.</li>
+</ul>
+<p>В нашем случае это - <a href="https://material.io/develop/web/">material mdc web</a> с <a href="https://material-components.github.io/material-components-web-catalog/#/">каталогом</a>. И помни, что везде есть свои ограничения.</p>
+<p>Например, material считают экосистемой, в первую очередь, для мобильных устройств. Слишком крупной для большого количества информации.</p>
+<h3 id="%D1%80%D0%B0%D0%B7%D0%BC%D0%B5%D1%80-%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0">размер экрана</h3>
+<p>Реализация макета начинается с выбора размера экрана. Например, экрана макбука заказчика. Но по-хорошему надо смотреть на <a href="https://material.io/resources/devices/">устройства пользователей</a>. Для этого есть удобный <a href="https://www.figma.com/c/plugin/732240841094697441/%E2%9A%A1%EF%B8%8F-Viewports">плагин figma</a>.</p>
+<p>Также есть простой демонстратор готовых сайтов под <a href="https://material.io/resources/resizer">разными экранами</a>, а есть то же самое для <a href="https://www.figma.com/c/plugin/743654854885744527/Responsify-%E2%9A%A1%EF%B8%8F">макетов в figma</a></p>
+<p>Выбрав размеры экрана, приступают к <a href="https://habr.com/ru/post/344910/">сетке</a>. В наставлениях <a href="https://material.io/design/layout/responsive-layout-grid.html#breakpoints">material сетка</a> также описана достаточно полно. В итоге я <a href="https://www.figma.com/file/xzyZ3aWHP3t0Sh4hW2Psvm/gbook-dark-green?node-id=83052%3A29795">сделал</a> базовую 4px, 12 колонок по центру 80px с канавкой(gutter) 16px, строки по 36px с канавкой 16px.</p>
+<p>Тут есть нюанс - не все размеры экрана/подложки делятся нацело на шаг сетки. Необходимо округлить размер подложки до шага базовой сетки(4px), чтобы корректно работало выравнивание набора колонок сетки(модулей) по центру. Либо натянуть отдельный слой с сеткой, и увеличить его до ближайшего кратного шагу. Размер подложки не меняется, а выравнивание по центру попадает в сетку. Пример: подложка/экран 1366, слой с сеткой 1368, сетка 4пх + 12 столбцов 80пх по центру.</p>
+<h3 id="%D1%86%D0%B2%D0%B5%D1%82%D0%B0">цвета</h3>
+<p>Пожалуй, наименее болезненная в изменениях тема. Перекрасить что-то без боли можно даже в готовом приложении, а не только в макете.</p>
+<p>К упрощению процесса перекрашивания также есть много вполне простых методик и инструментов.</p>
+<p>Теория:</p>
+<ul>
+<li><a href="https://material.io/design/color/the-color-system.html#color-usage-palettes">наставление</a></li>
+<li><a href="https://material.io/design/material-theming/implementing-your-theme.html">подробнее про расширенный набор из 12 категорий цвета</a></li>
+<li><a href="https://material.io/design/usability/accessibility.html#color-contrast">рекомендации по контрасту</a></li>
+</ul>
+<h3 id="%D1%82%D0%B8%D0%BF%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%B0-%D0%B8-%D1%88%D1%80%D0%B8%D1%84%D1%82%D1%8B">типографика и шрифты</h3>
+<p>Самая смешная тема. Чтобы не доходило до &quot;поиграйся со шрифтами&quot;, необходимо сразу опереться на крепкие принципы:</p>
+<ul>
+<li><a href="https://material.io/guidelines/style/typography.html">наставление</a></li>
+<li><a href="https://material.io/design/material-theming/implementing-your-theme.html#typography">подробнее про 13 категорий текста</a></li>
+<li>генерировать пары: размер шрифта+высота строки+толщина, также можно добавить межсимвольные интервалы</li>
+<li>прикинуть как они будут смотреться на трёх основных фонах: primary/secondary/accent, т.е. комбинация размер+толщина+цвет фона+межсимвольный интервал. Пока я не нашёл инструментов для расчёта таких контрастов.</li>
+</ul>
+<h3 id="%D0%B8%D0%BA%D0%BE%D0%BD%D0%BA%D0%B8">иконки</h3>
+<p>Иконки можно смело выделять в отдельную категорию. Они трансформируются в отдельный код - svg, с отдельными приёмами и редакторами. Впрочем, редактор svg уже взяли на борт все топовые инструменты, в том числе и figma. Открывать отдельно <a href="https://inkscape.org/">inkscape</a> теперь требуется для более тонких работ: оптимизации и доводки.</p>
+<p>Базовый набор советов по оптимизации процессов редактирования иконок можно взять из <a href="https://habr.com/ru/company/sibirix/blog/428489/">хорошей статьи</a>: попадайте  в pixel-grid, только целые значения position и size, не используйте для svg Rotate или Flip, переводите все контуры или шрифты для svg в единый контур, сводите слои.</p>
+<p>Вот ещё <a href="https://blog.prototypr.io/align-svg-icons-to-text-and-say-goodbye-to-font-icons-d44b3d7b26b4">годная статья</a> для тех, кто хочет перейти со шрифтов на svg. Лично я не против иконочных шрифтов, но они уже плохо вписываются в современные редакторы дизайн систем. И процессы их создания <a href="https://stepanovv.ru/kbo/#/kb/conventions/less?id=%D0%A8%D1%80%D0%B8%D1%84%D1%82%D1%8B">весьма развесистые</a>.</p>
+<p>Добавлю ещё кое-чего, что очень хотел бы видеть в руках своих коллег:</p>
+<ul>
+<li>Для лёгкого масштабирования иконки должны быть квадратными. Иначе мы добавляем себе проблем с <a href="https://habr.com/ru/post/340258/">визуальным выравниванием</a></li>
+<li>если в проекте будет иконочный шрифт, можно почитать про его использование в <a href="http://google.github.io/material-design-icons/#icon-font-for-the-web">Google material icon font</a></li>
+<li>иконки должны быть выложены в виде svg и вписаны в квадрат 32<em>32 или 64</em>64, с соблюдением центрирования по обеим осям. Иначе будет ад отступов при попытке их выровнять.</li>
+<li>Svg - это текст. Минимальная структура svg:<pre class="hljs"><code><div>	<span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.w3.org/2000/svg"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"path1"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 24 24"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">d</span>=<span class="hljs-string">"..."</span>/&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+</div></code></pre>
+</li>
+<li>предпросмотр всех вариантов иконок. Для иконочных шрифтов есть старичок <a href="https://icomoon.io/app/">icomoon</a>, который генерирует <a href="https://icomoon.io/docs.html">всё что надо</a>.</li>
+<li>названия иконок должны описывать иконки, а не их действия(привязку к месту использования), чтобы можно было их найти по названию или использовать в любом месте</li>
+<li>Выбираем для иконок svg подключение по url, хранение в отдельных файлах, т.к. в спрайтах сложно понять что изменилось глядя в git.</li>
+</ul>
+<h3 id="%D0%B2%D0%B8%D0%B7%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5ui-%D0%BA%D0%BE%D0%BC%D0%BF%D0%BE%D0%BD%D0%B5%D0%BD%D1%82%D1%8B">визуальные(UI) компоненты</h3>
+<p>Самая трудоёмкая часть системы - это макеты UI компонентов и код для них. Их много, очень много. Их количество смело умножается на 4 состояния: базовое, наведение(hover), нажато(pressed), выключено(disabled) или <a href="https://material.io/design/interaction/states.html">даже на 7</a>. Каждое состояние необходимо рисовать и кодить.</p>
+<p>Можно схитрить, договориться, например, что выключено - это всегда затенение(opacity) на 15%. Но к этому необходимо подобрать достаточно яркие и контрастные базовые цвета текста, линий, иконок.</p>
+<p>Для примера несколько статей про настройку библиотеки компонентов material.angular.io:</p>
+<ul>
+<li><a href="https://material.angular.io/guide/theming-your-components">настройка общих стилей цветов и шрифтов для конкретного компонента</a></li>
+<li><a href="https://material.angular.io/guide/theming">выбор преднастроенных общих стилей</a></li>
+<li><a href="https://github.com/angular/material2-builds/blob/master/core/theming/_theming.scss">исходники преднастроенных общих стилей</a> - хороший пример и пособие по темизации с помощью scss</li>
+<li><a href="http://blog.bogdancarpean.com/create-custom-color-theme-on-angular-material/">создание палитры цветов для компонентов</a></li>
+<li><a href="http://mcg.mbitson.com/#!?mcgpalette1=%2330c103&amp;mcgpalette2=%23121212&amp;mcgpalette3=%23000000&amp;themename=gbook-palette">генератор палитры material на основе одного цвета</a></li>
+<li><a href="https://material.io/tools/color/">очень ограниченный инструмент для просмотра сгенерированных тем</a></li>
+<li>делаем тему на основе сгенерированной палитры(primary/secondary/accent). <a href="https://blog.thoughtram.io/angular/2017/05/23/custom-themes-with-angular-material.html">полное руководство</a></li>
+<li>присваиваем на все стили <a href="https://stackoverflow.com/questions/47497743/how-to-create-a-custom-color-theme-with-angular5-and-angular-materials">вручную из переменных палитры</a></li>
+<li><a href="https://github.com/angular/material2-builds/blob/master/core/typography/_typography.scss">переменные для настройки шрифтов</a></li>
+</ul>
+<p>Тут во весь рост задействуются возможности <a href="https://sass-lang.com/guide">scss</a>.</p>
+<p>Также есть готовые реализации библиотек компонентов:</p>
+<ul>
+<li><a href="https://www.akveo.com/ngx-admin/pages/dashboard">ngx admin</a></li>
+<li><a href="https://www.primefaces.org/primeng/#/">prime ng</a></li>
+<li><a href="http://demo.oxygenna.com/portal">oxygenna</a></li>
+</ul>
+<p>Перед использование готовых библиотек компонентов необходимо решить проблему рисования дизайн системы под неё. Либо взять готовый комплект: код и дизайн. Либо взять код свёрстанный под одну из популярных дизайн систем. Также важно помнить о лицензионных <a href="https://github.com/akveo/ngx-admin/blob/master/LICENSE">ограничениях</a>, и о том, что готовые библиотеки кода <a href="https://www.primefaces.org/primeng/#/support">зарабатывают</a> на их доработках под нужды конкретного проекта.</p>
+<h3 id="ux---%D1%83%D0%B4%D0%BE%D0%B1%D1%81%D1%82%D0%B2%D0%BE-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F">UX - удобство использования</h3>
+<p>Красота требует жертв. Обычно в жертву приносят удобство, а потом передумывают, и жертвуют красотой. А потом неожиданно выясняется, что пожертвовали ещё чем-то незапланированным. И так много раз по кругу.</p>
+<p>Удобство - это самое загадочное, а оттого спорное, с чем приходится сталкиваться стартапу при проектировании интерфейса. Рискну предложить ряд приёмов для упрощения создания и сопровождения интерфейсов. Расскажу про то, что требовало неоднократно переделывать большие объёмы работы.</p>
+<p>Кроме очевидного - регулирования удобства взаимодействия с пользователем, оно также всплывает в неочевидных местах. В частности, при сохранении и восстановлении состояний элементов и приложения целиком. Банальная перезагрузка страницы по требованию или после обрыва соединения порождает ворох проблем, которые прорастают как в код клиента, так и на сторону сервера.</p>
+<p>Например, сохранять состояние элементов конкретного пользователя необходимо, как минимум, при перезагрузке страницы. Лучше всего в local storage, т.к. session storage бывает очень глючно править вручную при отладке. Url можно использовать для хранения весьма ограниченно, только для навигации, т.к. он автоматом <a href="https://habr.com/ru/company/webasyst/blog/124968/">сливается</a> в облако подсказок Google/Яндекс через браузер или его плагины. Т.е. в url храним обезличенную информацию, и маршрут открытых/выделенных элементов, чтобы пользователь мог сохранить/поделиться ссылкой.</p>
+<p>Добавлю, что это рецепт &quot;на скорую руку&quot;. Вот тут более <a href="https://www.youtube.com/watch?v=q7NZ_VWcAEI">подробный разбор</a> авторизации(authentication) со свежей конференции по Angular.</p>
+<p>Ещё один неочевидный резерв для упрощения - обучение пользователя. Мало того, что интерфейс должен быть сразу понятным, но и давать представление о своих ограничениях/возможностях внедрения сервисов подсказок. Поэтому, например, предпочтительнее применять состояние &quot;выключено&quot; для компонентов, чем делать их исчезающими. Если подумать дальше, то можно сразу избегать блеклых тонов в палитре для элементов управления, чтобы их можно было затенять.</p>
+<p>Вот ещё несколько приёмов, более сухо, ибо &quot;рука бойца колоть устала&quot;:</p>
+<ul>
+<li>при редактировании одного объекта необходимо затенять/блокировать изменение родительских/дочерних/смежных объектов</li>
+<li>компоненты для редактирования информации нежелательно использовать для её отображения, т.к. у них потребуется делать специальный режим &quot;только для чтения&quot;, который отличается от &quot;редактирование заблокировано&quot;.</li>
+<li>резервировать статическое место под появляющиеся кнопки. Всплывающая панель скроет контент, будет необходимо добавить пустое место. Если добавлять панель в текущем потоке динамически - прокрутка прыгнет. Самое надёжное место - справа от заголовка.</li>
+<li>избегать второго уровня всплытия(модалок) при использовании всплывающих элементов. Проще заменить их на вкладки или новый экран.</li>
+<li>всегда показывать состояние управляющих элементов. Скрывать его только в крайнем случае, т.к. это потребует дополнительно добавлять иконки/цвет/текст для отображения состояния в скрытом виде, например, фильтров или сортировки.</li>
+<li>Явно сообщать пользователю где он находится и какую информацию читает/правит. В заголовке модалки, окна, вкладки.</li>
+<li>делать интерфейс как можно более плоским и последовательным для исключения ошибок в логике взаимодействия. Меньше модалок, менюшек под иконкой. Если требуется изобретать новые цвета состояний - это уже тревожный звоночек.</li>
+</ul>
+<p>И ещё раз напоследок акцентирую: красота, как и удобство очень сильно зависят от вкусов и предпочтений/ограничений конкретного человека.</p>
+<h2 id="%D1%81%D0%B5%D0%BA%D1%80%D0%B5%D1%82%D0%BD%D0%B0%D1%8F-%D1%80%D0%B0%D0%B7%D0%B2%D0%B8%D0%BB%D0%BA%D0%B0-%D0%B3%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%BA%D0%BE%D0%B4%D0%B0-%D0%BA%D0%BB%D0%B8%D0%B5%D0%BD%D1%82%D0%B0-%D0%B8-%D1%81%D0%B5%D1%80%D0%B2%D0%B5%D1%80%D0%B0">секретная развилка: генерация кода клиента и сервера</h2>
+<p>Как только отгремели согласования параметров графического макета, аналитики, и устоялся набор моделей/схем данных, можно приступать к реализации собственно дизайна макетов, фронта, и тыла. И тут нас поджидает самая секретная развилка, которую очень легко проскочить после напряжённых боёв за дизайн и архитектуру.</p>
+<p>Секрет развилки простой: необходимо сделать машиночитаемую схему API, из которой может автоматически выйти безошибочно подходящий друг другу код одновременно для клиента и сервера. И к ней уже есть удобные инструменты для совместной работы, которые позволяют не только навалиться всей гурьбой, но и пнуть её мячиком в сторону самого горящего глазами или самого свободного руками бойца.</p>
+<p>На входе у нас простенькая <a href="https://drive.google.com/file/d/126bf-4MQwgwjX-jLlTpnCQ0ZIvsr-Dm-/view?usp=sharing">схема данных</a>. Для фронта(frontend) и тыла(backend) маловато будет, поскольку в итоге нужна гораздо более развесистая спецификация.</p>
+<p>Там не только про данные, но и про безопасность, состояния(коды возврата) и протоколы. Чтобы ускорить процесс необходимо подобрать инструмент, который поможет автоматизировать создание развесистых спек, конвертирование их в графический портал для просмотра всеми членами команды, ручных и автоматических тестов,код специфичный для языков/Фреймворков фронта(frontend) и тыла(backend).</p>
+<p>Тогда можно будет удобно организовать совместную асинхронную работу над API. Можно назначить &quot;основного&quot; мастера API, который будет создавать первые версии, и &quot;ведомого&quot;, который будет дополнять необходимыми с его стороны/Фреймворка прибамбасами. И самое главное - появится перспектива для менее болезненного роста сложности API, вплоть до микросервисов.</p>
+<p>Также есть другие подходы, для более сложных/больших API. С применением <a href="https://graphql.org/">языка запросов</a> на фронте(frontend) вместо статических контрактов.</p>
+<ul>
+<li>
+<p>Лирическое отступление.
+В статье идёт речь не про рефакторинг, а про создание приложения с нуля. При создании приложения с нуля, как обычно, и команда создаётся также с нуля. Там не проще получать внезапные вводные от тыловиков(backend developer). Фронтовику(frontend developer) прилетает с двух сторон - со стороны дизайна/аналитики, а также со стороны тыла(backend). Вот, я сделал API, проверяй, удивляйся.</p>
+<p>Приходится на фронте(frontend) стыковать нестыкуемое. Аналитика не знает про ограничения тыла, тыл не смотрит в картинки и таблицы, и с обоих сторон идёт поток человеческих ошибок. Всё это умножает поток доработок в месте &quot;стыка&quot;.</p>
+<p>Поток доработок не монолитен, он разбит на задачи, к которым добавляются случайные задержки: посмотрел, обсудил, проверил, исправил. Растущий поток доработок сдвигает сроки, толкая вроде бы коллег в позицию конфликта. Создаётся возможность и суровый соблазн/давление спихнуть часть работы на коллегу.</p>
+</li>
+</ul>
+<p>Возьмём для примера готовый <a href="https://developers.google.com/books/docs/v1/using#PerformingSearch">API Google books</a>. Я сделал на его основе <a href="https://drive.google.com/file/d/126bf-4MQwgwjX-jLlTpnCQ0ZIvsr-Dm-/view?usp=sharing">схему данных</a> для простенького приложения поиска книг. В этом случае, когда API уже по сути создано, мне пришлось выбирать между самодокументируемостью кода, названий параметров, и совместимостью с существующим API.</p>
+<p>Если написать <code>isForSale: boolean</code>вместо <code>saleability: &quot;NOT_FOR_SALE&quot; | &quot;FOR_SALE&quot; | &quot;FREE&quot;;</code>, то сразу будет понятно о чём речь в любом куске кода фронта(frontend). Однако, это потребует написания кода парсера/конвертера значений, и, возможно, затруднит масштабирование параметров API на другие предметные области.</p>
+<p>Впрочем, это эмулирует реальную боевую ситуацию, когда есть два варианта API - удобный для фронта(frontend), и удобный для тыла(backend). Ну и парсер между ними. Так сложилось, как говорится.</p>
+<h3 id="%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B8-%D0%B8-%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F-api">Системы разработки и редактирования API</h3>
+<p>Я потрогал некоторые из топовых систем. В них, как правило, входят: редактор, линтер, тест-сервер с заглушками, генератор документации, редактор заглушек, тестирование сервера API. Зачастую функционал разбит на ряд утилит, а также имеется собственный язык для описания всего этого добрища. Также встречаются системы с полноценным мониторингом состояния сервера API, т.е. автоматика запуска и анализа результатов тестов. Это уже для больших и взрослых систем.</p>
+<p>В редакторах есть разделы: авторизации, моделей/схем, путей, документации. Т.е. они похожи на полноценные IDE.</p>
+<p>Меня более всего интересовало:</p>
+<ul>
+<li>Конфигуратор API - то, что облегчает создание и рефакторинг кода: рубрикатор, подсветка, подстановка.</li>
+<li>Экспорт и импорт. Возможность конвертирования формата в/из <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/IMPLEMENTATIONS.md">OpenAPI 3.0</a>. Это самый популярный формат в облачных порталах и генераторах кода.</li>
+</ul>
+<p>Показалось менее важным:</p>
+<ul>
+<li>Возможность генерирования SDK - кода фронта(frontend)/тыла(backend), и возможность его использования после генерации без доработки. На все популярные Фреймворки/языки генераторы уже написаны, как минимум, из/в OpenAPI. Так что при наличии конвертера проблем возникнуть не должно. Однако конвертеры тяжело поддерживать. Поэтому, зачастую они уже <a href="https://github.com/wing328/swagger-codegen/tree/2.3.0/samples/client/petstore/">устарели</a> по версиям <a href="https://docs.apimatic.io/changelog-by-platform/angularjs/">Фреймворка</a>.</li>
+<li>Возможность формата API разбиваться на файлы, т.е. ссылки/импорты. Неважно, т.к. во всех популярных(OpenAPI/raml/blueprint) форматах есть возможность import/include для разбивки на файлы.</li>
+<li>Ручное тестирование: отправил запрос, посмотрел результат. Часто необходимо при совместной работе над созданием API. Этот функционал может быть вынесен отдельно - в сервер заглушек(mock server) или в онлайн портал с интерактивной документацией типа локального сервера <a href="https://swagger.io/tools/swagger-ui/">swagger ui</a>, онлайн облачного <a href="https://app.swaggerhub.com/sear">swagger hub</a> или <a href="https://marketplace.visualstudio.com/items?itemName=Arjun.swagger-viewer">плагина VSCode</a>.</li>
+<li>Переменные окружения. Это важно для защиты информации, чтобы не оставить в репозитории ключи.</li>
+</ul>
+<p>Также есть много отдельных генераторов кода, зачастую они есть в плагинах IDE:</p>
+<ul>
+<li><a href="https://github.com/cyclosproject/ng-OpenAPI-gen">angular 6</a></li>
+<li>большой набор, включая <a href="https://github.com/OpenAPITools/OpenAPI-generator/tree/master/samples/client/petstore">angular 8</a></li>
+<li><a href="https://github.com/horiuchi/dtsgenerator">OpenAPI/Swagger в typescript d.ts</a></li>
+<li><a href="https://apis.guru/awesome-OpenAPI3/category.html#sdk">ещё генераторы</a></li>
+</ul>
+<p>Конвертеры форматов API:</p>
+<ul>
+<li><a href="https://www.apimatic.io/transformer">онлайн во все популярные форматы</a></li>
+<li>локальный cli для <a href="https://github.com/apimatic/apimatic-cli">онлайн во все популярные форматы</a></li>
+<li><a href="https://mermade.org.uk/OpenAPI-converter">онлайн Swagger 2.0 to OpenAPI 3.0.0</a></li>
+<li><a href="https://apis.guru/awesome-OpenAPI3/category.html#converters">пачка конвертеров 1</a></li>
+<li><a href="https://apiblueprint.org/tools.html#converters">пачка конвертеров 2</a></li>
+</ul>
+<p>Отрезав от функционала самой сложной группы утилит - редакторов всё ненужное, можно приступить к их детальному рассмотрению и выбору.</p>
+<h3 id="vscode"><a href="https://code.visualstudio.com/">VSCode</a></h3>
+<p>Самый простой вариант - без лишних плюшек, только код. Можно ожидать рубрикаторов/навигации, подсветки, подстановки кода(code snippets).</p>
+<p>Имеются плагины для форматов:</p>
+<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-OpenAPI">OpenAPI</a> - json/yaml</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=blzjns.vscode-raml">raml</a> - yaml</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=vncz.vscode-apielements">blueprint</a> - markdown+json/mson(markdown)</li>
+</ul>
+<p>А ещё есть приятная плюшечка - <a href="http://apidocjs.com/">аналог аннотаций jsdoc</a>.</p>
+<h3 id="postman"><a href="https://www.getpostman.com/">postman</a></h3>
+<p>Текущий флагман, за который я решил взяться первым. Уклон в сторону тестирования, есть свой язык автоматизации. Ориентирован на GUI и свой формат.</p>
+<p>Напрягает:</p>
+<ul>
+<li>Переусложнённый интерфейс. Лучше всего зашли уроки из интерактивного учебника <a href="https://f1dc5e0a-73b7-4848-b796-ed8505670bc3.mock.pstmn.io">bootcamp</a></li>
+<li>нет встроенного предпросмотра json результата с подсчётом элементов массива и свёртыванием параметров</li>
+<li>не хватает выбора значений параметров API из списка</li>
+<li>нет подстановки адреса сервера: бой/тест/заглушки. На каждый маршрут отдельная копия.</li>
+<li>нельзя просто выставить API в интернет без регистрации и смс</li>
+</ul>
+<p>Функции:</p>
+<ul>
+<li><a href="https://www.getpostman.com/downloads/">IDE</a> и <a href="https://web.postman.co/">веб-версия</a> и коллекция шаблонов API.</li>
+<li><a href="https://learning.getpostman.com/docs/postman/sending_api_requests/responses">Примеры ответов</a> - здесь они называются examples, и очень неудобны к просмотру, открываются только по отдельной кнопке в новой вкладке, хотя ничего не мешает им быть справа в окне response.</li>
+<li><a href="https://learning.getpostman.com/docs/postman/collections/data_formats/#exporting-postman-data">экспорт в файл</a> своего формата</li>
+<li><a href="https://learning.getpostman.com/docs/postman/environments_and_globals/intro_to_environments_and_globals">переменные окружения</a></li>
+<li>мониторинг</li>
+<li><a href="https://stackoverflow.com/questions/33793629/postman-how-to-see-request-with-headers-and-body-data-with-variables-substitut">qraphQl</a></li>
+<li>Нужно открыть <a href="https://stackoverflow.com/questions/33793629/postman-how-to-see-request-with-headers-and-body-data-with-variables-substitut">консоль</a>, чтобы посмотреть только что отработавший запрос.</li>
+<li>Может парсить <a href="https://stackoverflow.com/questions/33793629/postman-how-to-see-request-with-headers-and-body-data-with-variables-substitut">API из curl</a></li>
+<li><a href="https://www.npmjs.com/package/newman">cli</a> для автоматизации CI</li>
+<li>сделан в <a href="https://learning.getpostman.com/docs/postman/sending_api_requests/debugging_and_logs">chromium</a>, потому жрёт и подтормаживает.</li>
+<li>есть бета режима, где главным будет язык <a href="https://learning.getpostman.com/docs/postman/design_and_develop_apis/introduction_to_apis">схемы API</a>, на выбор OpenAPI, raml, graphql.</li>
+</ul>
+<h3 id="blueprint"><a href="https://apiblueprint.org/tools.html#editors">blueprint</a></h3>
+<p>Ориентирован на формат <a href="https://apiblueprint.org/documentation/tutorial.html">blueprint</a>
+Внутри общего документа markdown вставки <a href="https://apiblueprint.org/documentation/examples/real-world-api.html">json</a> или <a href="https://github.com/apiaryio/mson#example-1">mson</a></p>
+<p>Функции:</p>
+<ul>
+<li><a href="https://app.apiary.io/">онлайн редактор apiary</a> - неудобная раскладка, предпросмотр результатов без объектов, но с diff</li>
+<li><a href="http://apiworkbench.com/docs/">API workbench</a> - плагин для <a href="https://atom.io/">atom</a></li>
+<li><a href="https://www.mulesoft.com/platform/api/anypoint-designer">оффлайн редактор</a>. Работает в браузере <code>localhost:3000</code>, ставится через npm. Нужно доставить пакет <code>require</code>. Бедный функционал.</li>
+<li>есть ещё много <a href="https://apiblueprint.org/tools.html#editors">плагинов для IDE</a></li>
+<li>привязка к github</li>
+<li><a href="https://apiblueprint.org/documentation/">документация</a></li>
+</ul>
+<h3 id="stoplight"><a href="https://stoplight.io/">stoplight</a></h3>
+<p>Ориентирован на json/yaml <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md">OAS/OpenAPI/Swagger 2</a></p>
+<ul>
+<li><a href="https://stoplight.io/studio/">локальный клиент</a>. Chromium, подглючивает, но выручает полноценный chrome dev tools для исследования запросов</li>
+<li><a href="https://stoplight.io/p/studio/gh/stoplightio/studio">веб клиент</a></li>
+<li>есть тёмная тема: шестерёнка слева внизу</li>
+<li>можно демонстрировать публично API в редакторе, но требуется привязка к github</li>
+<li>локальный сервер заглушек <a href="https://github.com/stoplightio/prism">prism</a></li>
+<li><a href="https://support.stoplight.io/hc/en-us/articles/360033381752-Working-with-Projects">документации</a> пара страниц</li>
+<li>можно выбирать сервера для запросов</li>
+<li>экспорта нет, сразу пишутся файлы OpenAPI 2/3</li>
+<li>импорт только из OpenAPI 2/3</li>
+<li>есть <a href="https://help.stoplight.io/docs/continuous-integration/circle-ci">пример</a> интеграции в <a href="https://circleci.com/">circleCI</a></li>
+</ul>
+<h3 id="apimatic"><a href="https://www.apimatic.io/">apimatic</a></h3>
+<p>Ориентирован на <a href="https://github.com/raml-org/raml-spec/blob/master/versions/raml-10/raml-10.md/">RAML 1.0</a>
+Внутри yaml 1.2</p>
+<ul>
+<li><a href="https://www.apimatic.io/transformer">конвертер форматов</a></li>
+<li><a href="https://api-notebook.anypoint.mulesoft.com/#examples">облачный портал</a> для документации API</li>
+</ul>
+<h3 id="insomnia"><a href="https://github.com/getinsomnia/insomnia">insomnia</a></h3>
+<p>Ориентирован на собственный формат API.</p>
+<ul>
+<li>Есть приспособы <a href="https://support.insomnia.rest/article/61-graphql">для GraphQL</a></li>
+<li><a href="https://github.com/getinsomnia/insomnia/tree/develop/packages/insomnia-importers">импорт</a> форматов Insomnia 1/2, Postman v2, HAR, and Curl</li>
+<li><a href="https://support.insomnia.rest/article/52-importing-and-exporting-data">экспорт</a> в HAR, Postman, OpenAPI, Curl.</li>
+<li>бедная документация</li>
+<li>облачная <a href="https://support.insomnia.rest/article/47-insomnia-plus">синхронизация</a> за деньги</li>
+<li>можно писать <a href="https://support.insomnia.rest/article/26-plugins">плагины</a> на nodejs</li>
+</ul>
+<h3 id="%D0%B8%D1%82%D0%BE%D0%B3%D0%BE-%D0%BF%D1%80%D0%BE-%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%82%D0%BE%D1%80%D1%8B">итого про редакторы</h3>
+<p>приблизительно так:</p>
+<ul>
+<li>postman - неудобный богатый GUI, флагман для QA спецов. Если apimatic прилёг, не сможете конвертировать в OpenAPI</li>
+<li>stoplight - Есть GUI и текст. Сразу OpenAPI. Глючный, но удобный.</li>
+<li>API workbench - Текстовый, любителям atom и raml.</li>
+<li>insomnia -  Есть GUI и текст. Маловато функционала. Можно писать плагины на nodejs</li>
+</ul>
+<p>Вот хорошая <a href="https://stackshare.io/api-tools">точка старта</a> для поисков утилит для API.</p>
+<h2 id="%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D0%B5">послесловие</h2>
+<ul>
+<li><img src="команда.jpeg" alt=""></li>
+</ul>
+<p>Помните о том, что хорошую команду связывают не только правила, но и тёплые, дружеские <a href="https://habr.com/ru/company/mailru/blog/448956/">отношения</a>.</p>
+
+</body>
+</html>

@@ -138,6 +138,7 @@
  * [Структурные шаблоны проектирования в ES6+ на примере Игры престолов](https://habr.com/ru/post/496148/)
  * [SOLID ](https://info.javarush.ru/translation/2013/08/06/Пять-основных-принципов-дизайна-классов-S-O-L-I-D-в-Java.html)
     * [источник](http://howtodoinjava.com/2013/06/07/5-class-design-principles-solid-in-java/)
+ * SOLID:
 
 | смысл | название | перевод |
 | --- | --- | --- |
@@ -289,7 +290,7 @@ https://stateofjs.com/2017/front-end/results
 
 ##  большие числа
 
- * https://habrahabr.ru/post/308874/
+ * [64-битная арифметика в браузере и WebAssembly](https://habrahabr.ru/post/308874/)
  * [bigint](https://habr.com/post/354930/)
  * [The Essential Guide To JavaScript’s Newest Data Type: BigInt 2019](https://www.smashingmagazine.com/2019/07/essential-guide-javascript-newest-data-type-bigint/)
  * https://github.com/MikeMcl/bignumber.js/

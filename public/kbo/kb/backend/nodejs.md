@@ -115,6 +115,7 @@ pipe добавляют последовательные конвейеры.
  * [вы не знаете node](https://habrahabr.ru/company/mailru/blog/283228/)
  * [Node.js Best Practices — Using Modern Features 2020](https://levelup.gitconnected.com/node-js-best-practices-using-modern-features-1f5a4a189ec8)
  * [Node.js в 2020: Выйди и зайди нормально](https://habr.com/ru/post/497090/)
+ * [функциональное программирование в nodejs](https://nodefunction.com/functional-programming/functional-programming-in-javascript-nodejs-explained-with-example/)
 
 ## кол-во новых строк в файле
 

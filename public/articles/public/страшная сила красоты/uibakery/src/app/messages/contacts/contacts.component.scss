@@ -1,0 +1,49 @@
+:host {
+  display: block;
+  width: 100%;
+  margin: 0 0 24px 0;
+}
+
+.space-component {
+  height: auto;
+  min-height: 3rem;
+  overflow: visible;
+}
+
+.image {
+  width: 40px;
+  margin: 4px 0;
+  border-radius: 100px;
+  object-fit: fill;
+}
+
+.space-component1 {
+  height: auto;
+  min-height: 3rem;
+  padding: 0 0 0 12px;
+  overflow: visible;
+}
+
+.image1 {
+  width: 40px;
+  height: 40px;
+  border-radius: 100px;
+  object-fit: cover;
+}
+
+.space-component2 {
+  height: auto;
+  min-height: 3rem;
+  padding: 4px 0;
+  overflow: visible;
+}
+
+.image2 {
+  width: 40px;
+  border-radius: 100px;
+  object-fit: fill;
+}
+
+.card {
+  width: 100%;
+}

@@ -28,6 +28,7 @@
 
  * [Clean Code Checklist in Angular](https://itnext.io/clean-code-checklist-in-angular-%EF%B8%8F-10d4db877f74)
  * [SOLID: The Dependency Inversion Principle in Angular](https://blog.bitsrc.io/solid-the-dependency-inversion-principle-in-angular-6e4b9c484960?gi=d54f2b80e982)
+ * [SOLID php](https://habr.com/ru/company/mailru/blog/412699/)
 
 ## performance оптимизация и утечки памяти
 
