@@ -150,6 +150,10 @@
  * [яндекс - почему находится всё](https://habr.com/ru/company/webasyst/blog/124968/)
  * [Omnichannel Analytics for Angular - сбор SEO аналитики](https://angulartics.github.io/angulartics2/)
 
+## mac ios iphone ipad
+
+ * [ngrok port forwarding](https://joshwcomeau.com/blog/local-testing-on-an-iphone/)
+
 ## desktop web app
 
 ### webassembly

@@ -28,7 +28,7 @@
 
  * [Clean Code Checklist in Angular](https://itnext.io/clean-code-checklist-in-angular-%EF%B8%8F-10d4db877f74)
  * [SOLID: The Dependency Inversion Principle in Angular](https://blog.bitsrc.io/solid-the-dependency-inversion-principle-in-angular-6e4b9c484960?gi=d54f2b80e982)
- * [SOLID php](https://habr.com/ru/company/mailru/blog/412699/)
+
 
 ## performance оптимизация и утечки памяти
 
@@ -177,6 +177,17 @@
  * abstract syntax tree
  * [The Last Guide For Angular Change Detection You'll Ever Need 2019](https://www.mokkapps.de/blog/the-last-guide-for-angular-change-detection-you-will-ever-need)
  * https://blog.thoughtram.io/angular/2016/02/22/angular-2-change-detection-explained.html
+ * https://angular.io/guide/zone
+ ```
+When apps update HTML:
+ + Component initialization - loads the bootstrap component and triggers the ApplicationRef.tick() to call change detection and View Rendering
+ + Event listener - <button (click)="onClickMe()">
+ + HTTP Data Request
+ + MacroTasks, such as setTimeout() or setInterval()
+ + MicroTasks, such as Promise.then()
+ + Other async operations. Some examples include WebSocket.onmessage() and Canvas.toBlob()
+
+ ```
  * https://angular.io/api/core/ChangeDetectionStrategy
 
 ```ts
@@ -1091,6 +1102,7 @@ count.subscribe(x => console.log(x));
 	* https://angular.io/guide/dependency-injection-in-action
 	* https://stackoverflow.com/questions/39062930/what-is-difference-between-declarations-providers-and-import-in-ngmodule#39063231
  * https://blog.angularindepth.com/angular-dependency-injection-and-tree-shakeable-tokens-4588a8f70d5d
+
  * https://hacks.mozilla.org/2015/08/es6-in-depth-modules/
  * https://angular.io/guide/ngmodule-vs-jsmodule
 

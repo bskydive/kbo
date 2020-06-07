@@ -56,6 +56,29 @@
  * [история развития инструментов для  javascript](https://habr.com/ru/company/mailru/blog/340922/)
  * [ошибочное понимание DRY](https://habr.com/ru/company/mailru/blog/349978/)
  * [сборник ошибок JS](https://habr.com/ru/company/jugru/blog/494256/)
+ * [mark and sweep GC garbage collection](https://www.geeksforgeeks.org/mark-and-sweep-garbage-collection-algorithm/)
+ * [Как работает JavaScript: часть вторая GC утечки](https://geekbrains.ru/posts/javascript_internals_part2)
+ ```js
+	var theThing = null;
+	var replaceThing = function () {
+		var originalThing = theThing;
+		var unused = function () {
+			if (originalThing) // a reference to 'originalThing'
+				console.log("hi");
+			};
+
+			theThing = {
+				longStr: new Array(1000000).join('*'),
+				someMethod: function () {
+					console.log("message");
+			}
+		};
+	};
+
+	setInterval(replaceThing, 1000);
+
+ ```
+ * [How JavaScript works: Event loop and the rise of Async programming + 5 ways to better coding with async/await Alexander Zlatkov](https://blog.sessionstack.com/how-javascript-works-event-loop-and-the-rise-of-async-programming-5-ways-to-better-coding-with-2f077c4438b5)
 
 ## вопросы интервью
 
@@ -114,7 +137,7 @@
  * [доки](https://www.gitbook.com/book/basarat/typescript)
  * http://2ality.com/2018/03/javascript-typescript-reasonml.html
  * https://medium.freecodecamp.org/typescript-javascript-with-super-powers-a333b0fcabc9
-  * https://www.typescriptlang.org/index.html#download-links
+ * https://www.typescriptlang.org/index.html#download-links
  * https://github.com/Microsoft/TypeScript-React-Conversion-Guide#typescript-react-conversion-guide
  * http://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html
  * https://habrahabr.ru/company/piter/blog/347364/
@@ -128,8 +151,10 @@
 
  * [Шаблоны проектирования в JavaScript простыми словами](https://proglib.io/p/js-design-patterns/)
  * [Паттерны JavaScript: курс, который упростит разработку](https://proglib.io/p/javascript-patterns/)
- * [Шаблоны проектирования простым языком. Часть вторая. Структурные шаблоны](https://tproger.ru/translations/design-patterns-simple-words-2/)
- * [Шаблоны проектирования простым языком. Часть первая. Порождающие шаблоны](https://tproger.ru/translations/design-patterns-simple-words-1/)
+ * Шаблоны проектирования простым языком.
+ 	* [Порождающие шаблоны](https://tproger.ru/translations/design-patterns-simple-words-1/)
+ 	* [Структурные шаблоны](https://tproger.ru/translations/design-patterns-simple-words-2/)
+ 	* [Поведенческие шаблоны](https://tproger.ru/translations/design-patterns-simple-words-3/)
  * [Шаблоны проектирования с человеческим лицом](https://habr.com/ru/company/mailru/blog/325492/)
  * [инструменты проектирование](/kbo/инструменты/инструменты#проектирование)
  * [Создание архитектуры программы или как проектировать табуретку](https://habr.com/post/276593/)
@@ -138,18 +163,20 @@
  * [Структурные шаблоны проектирования в ES6+ на примере Игры престолов](https://habr.com/ru/post/496148/)
  * [SOLID ](https://info.javarush.ru/translation/2013/08/06/Пять-основных-принципов-дизайна-классов-S-O-L-I-D-в-Java.html)
     * [источник](http://howtodoinjava.com/2013/06/07/5-class-design-principles-solid-in-java/)
+ * [SOLID php](https://habr.com/ru/company/mailru/blog/412699/)
+ * [SOLID javascript Охрименко](https://www.youtube.com/watch?v=wi3wPzReKZQ)
  * SOLID:
 
-| смысл | название | перевод |
-| --- | --- | --- |
-| На каждый объект должна быть возложена одна единственная обязанность. | Single Responsibility Principle | (Принцип единственной обязанности) |
-| Программные сущности (классы, модули, функции и т.п.) должны быть открыты для расширения, но закрыты для изменения. | Open Closed Principle | (Принцип открытости/закрытости) |
-| Объекты в программе могут быть заменены их наследниками без изменения свойств программы. | Liskov’s Substitution Principle | (Принцип подстановки Барбары Лисков) |
-| Клиенты не должны быть вынуждены реализовывать ненужные методы, которые они не будут использовать | Interface Segregation Principle | (Принцип разделения интерфейса) |
-| Зависимости внутри системы строятся на основе абстракций. Модули верхнего уровня не зависят от модулей нижнего уровня. Абстракции не должны зависеть от деталей. Детали должны зависеть от абстракций. | Dependency Inversion Principle | (Принцип инверсии зависимостей) |
-| | | |
+| смысл                                                                                                                                                                                                  | название                        | перевод                              |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------|--------------------------------------|
+| На каждый объект должна быть возложена одна единственная обязанность.                                                                                                                                  | Single Responsibility Principle | (Принцип единственной обязанности)   |
+| Программные сущности (классы, модули, функции и т.п.) должны быть открыты для расширения, но закрыты для изменения.                                                                                    | Open Closed Principle           | (Принцип открытости/закрытости)      |
+| Объекты в программе могут быть заменены их наследниками без изменения свойств программы.                                                                                                               | Liskov’s Substitution Principle | (Принцип подстановки Барбары Лисков) |
+| Клиенты не должны быть вынуждены реализовывать ненужные методы, которые они не будут использовать                                                                                                      | Interface Segregation Principle | (Принцип разделения интерфейса)      |
+| Зависимости внутри системы строятся на основе абстракций. Модули верхнего уровня не зависят от модулей нижнего уровня. Абстракции не должны зависеть от деталей. Детали должны зависеть от абстракций. | Dependency Inversion Principle  | (Принцип инверсии зависимостей)      |
+|                                                                                                                                                                                                        |                                 |                                      |
 | | | | |
- 
+
  * [GRASP паттерны проектирования](https://habr.com/ru/post/92570/)
  * GoF - gang of four
 
