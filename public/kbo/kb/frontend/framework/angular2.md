@@ -186,7 +186,7 @@ When apps update HTML:
  + MacroTasks, such as setTimeout() or setInterval()
  + MicroTasks, such as Promise.then()
  + Other async operations. Some examples include WebSocket.onmessage() and Canvas.toBlob()
-
+mousemove, scroll, requestAnimationFrame()
  ```
  * https://angular.io/api/core/ChangeDetectionStrategy
 
@@ -200,6 +200,7 @@ When apps update HTML:
 		@Input() vData; 
 		}
 ```
+ * [zonejs modules](https://github.com/angular/angular/blob/master/packages/zone.js/MODULE.md)
  * [Оптимизация обработки событий в Angular EventManagerPlugin](https://habr.com/ru/company/tinkoff/blog/429692/)
  * https://www.mokkapps.de/blog/the-last-guide-for-angular-change-detection-you-will-ever-need
 
@@ -236,6 +237,12 @@ processOutsideAngularZone() {
 	} 
 } 
 ```
+
+ * disable zonejs
+ ```js
+ platformBrowserDynamic().bootstrapModule(AppModule, { ngZone: 'noop' })
+  .catch(err => console.error(err));
+ ```
 
 ## web workers
 
