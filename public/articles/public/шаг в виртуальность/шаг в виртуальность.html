@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>шаг в виртуальность.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%D1%88%D0%B0%D0%B3-%D0%B2-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D1%8C">Шаг в виртуальность</h1>
+<ul>
+<li>
+<p><img src="телепортация.jpeg" alt="картинка"></p>
+</li>
+<li>
+<p>кадр из фильма <a href="https://www.youtube.com/watch?v=OtWGKZatqTU">Гостья из будущего</a></p>
+</li>
+<li>
+<p>О чём: об организации сообществ на удалёнке.</p>
+</li>
+<li>
+<p>Для кого: для тех кому интересно развивать навыки удалённой работы и дружбы.</p>
+</li>
+<li>
+<p>Зачем: чтобы переписать свои заметки в чистовик, поделиться опытом со страждущими.</p>
+</li>
+<li>
+<p>В чём особенность: хорошая подборка активностей и мотивация.</p>
+</li>
+<li>
+<p><a href="https://medium.com/@stepanovv.ru/%D1%88%D0%B0%D0%B3-%D0%B2-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D1%8C-909ffbaa0e7b">Где поддержать(похлопать)</a></p>
+</li>
+</ul>
+<h2 id="%D1%82%D0%B5%D0%BA%D1%81%D1%82-%D0%BE%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F">Текст объявления</h2>
+<p>Длительный карантин навсегда изменил наш мир, сделав его ещё чуть более виртуальным. Удалённая работа и удалённые работники растут ускоренными темпами, набирая своих сторонников, и вытягивая за собой виртуальные технологии на новый уровень. Настала пора подтянуть и наши с вами виртуальные навыки вслед за растущими возможностями и потребностями в виртуальном мире.</p>
+<p>Предлагаем присоединиться к ряду новых активностей онлайн: завтрак, зарядка, игры, сообщества. Мы начинаем с онлайн самопрезентации для знакомства с коллегами, рассказа о своих возможностях и интересах.
+Для этого подготовлен шаблон с примерами ответов на него. Если нет возможности попасть на встречу, можно записать текстовый, видео или аудио вариант самопрезентации. Это поможет нам быстрее найти общие интересы и организовать регулярные активности в сообществах.</p>
+<p>Расскажем подробнее об этих активностях.</p>
+<p>Время в изоляции, без выходов наружу, труднее структурировать. Необходимо вести расписание, формировать новые привычки без помощи прогулок и поездок. Тут помогут совместные онлайн активности.</p>
+<p>День начинается с зарядки и завтрака, которые можно проводить онлайн вместе с друзьями. Для этого необходимо выбрать общее средство онлайн общения с видео встречами, договориться о времени проведения, предварительно настроить и проверить камеру/микрофон.</p>
+<p>Во время зарядки можно выбрать ведущего или запустить видео в режиме демонстрации рабочего стола. Виртуальный спортзал готов, можно приступать к демонстрации своей красивой одежды и упругих мышц или выключить видео и получать удовольствие от новой движухи.</p>
+<p>Завтракать онлайн ещё проще. Тут даже не надо подниматься со стула. Едим и общаемся, всё как обычно, но без очередей, пробок и давок. Для оживления беседы можно делиться рецептами блюд или устроить демонстрацию приготовления. Завтрак тоже должен быть ограничен по времени, чтобы не опаздывать на работу.</p>
+<p>После рабочего дня можно договариваться об онлайн или карточных играх. Онлайн желательно играть в <a href="https://www.crazygames.com/">браузерные игры</a>, для них не требуется не только игровое железо, но даже и сам ноутбук, т.к. они играбельны на смартфонах. Карточные игры можно <a href="https://www.wildberries.ru/catalog/igrushki/nastolnye-igry">купить</a>, <a href="https://vsesvoimirykami.ru/kak-sdelat-nastolnuyu-igru/">сделать</a> или <a href="https://ru.boardgamearena.com/">найти онлайн</a>. Это занятие поспокойнее. Мафия, монополия, кулинарные мастерские - это всё можно онлайн, с коллегами по работе, без регистрации и смс. Можно даже <a href="https://store.steampowered.com/app/620650/Puzzle_With_Your_Friends/">паззлы собирать</a> вместе с друзьями.</p>
+<p>Высвободившееся из поездок время можно также потратить на взаимное обучение английскому или программированию. У программистов уже давно есть <a href="https://tproger.ru/digest/learn-to-code-while-playing-games/">онлайн игры</a> на решение задачек, где можно чем-нибудь помериться. Да и время сейчас благодатное, чтобы запилить какой-нибудь онлайн инструмент с открытым исходным кодом, например, для обучения новым технологиям. Самый простой вариант обучения - сделать доклад или статью, а потом собраться и обсудить онлайн.</p>
+<h2 id="%D1%87%D1%82%D0%BE-%D0%B4%D0%B0%D0%BB%D1%8C%D1%88%D0%B5">Что дальше</h2>
+<p>Цель сбора самопрезентаций - составить список активностей/событий. Из него вытекает список сообществ со ссылками на страницы и/или чятики.</p>
+<p>Список рассылается всем участникам, и организуется минимум по одному активисту для поддержания жизни в этом сообществе. На старте должен быть кто-то, кто хотя бы пишет там свои заметки или ссылки на только что прочитанные статьи. Такую роль можно передавать на регулярной основе, если с движухой в сообществе будет туго.</p>
+<p>По мере роста сообщества будет полезно собрать тексты самопрезентаций в одном месте, чтобы организовать поиск по ним для новых участников, и разгрузить организаторов от рассылок и обновления списков. Это уже функционал социальной сети.</p>
+<p>Для поддержки сообщества необходимо минимум по два активиста, которые будут регулярно что-то совместно делать. Если людей будет маловато, то часть сообществ можно законсервировать, оставив там сообщение о поиске активистов и ссылки на блоги по теме. Можно сократиться до одного чятика/странички, с сохранением регулярных совместных активностей.</p>
+<p>Раньше сделать такие сообщества было намного труднее. Сейчас, из-за повсеместной изоляции, интерес к этой теме должен быть намного больше. Потому что в изоляции быстрее наступает выгорание/усталость, и усложняется карьерный рост. Расширение списка виртуальных друзей/знакомых помогают преодолеть эти трудности.</p>
+<h2 id="%D0%BD%D0%B5%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F-%D1%81%D0%B0%D0%BC%D0%BE%D0%BF%D1%80%D0%B5%D0%B7%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D1%8F">Неформальная самопрезентация</h2>
+<ol>
+<li>Кто я
+<ul>
+<li>Имя, страна, город, часовой пояс, рабочее время</li>
+</ul>
+</li>
+<li>Кем работаю
+<ul>
+<li>должность и охват работ</li>
+</ul>
+</li>
+<li>Краткое описание пути на текущую должность
+<ul>
+<li>Началось с учёбы или самостоятельной подготовки</li>
+<li>Виды проектов/компаний, где удалось поработать</li>
+</ul>
+</li>
+<li>Откуда черпаю знания и опыт, как часто занимаюсь учёбой
+<ul>
+<li>что читаю/смотришь, куда пишу: блоги, статьи, сообщества, каналы</li>
+</ul>
+</li>
+<li>Куда интересно развивать карьеру?
+<ul>
+<li>Виды технологий, направления: управление, аналитика, backend/frontend/desktop/mobile, машинное обучение, робототехника, химия, физика, математика, литература, психология, театр</li>
+</ul>
+</li>
+<li>Есть ли опыт в социальных и открытых проектах
+<ul>
+<li>опыт организации или участия во взаимопомощи на работе, во дворе, онлайн</li>
+</ul>
+</li>
+<li>Откуда взялся опыт удалённой работы
+<ul>
+<li>в чём мотивация и как это удалось</li>
+</ul>
+</li>
+<li>Опыт путешествий
+<ul>
+<li>спорт, туризм, работа</li>
+</ul>
+</li>
+<li>Опыт активного отдыха
+<ul>
+<li>Коньки, парашюты, сноуборд, лазертаг, яхтинг, кайтинг, мотокросс, гонки, беговые лыжи, велосипед, воркаут.</li>
+</ul>
+</li>
+<li>Хобби(кулинария, рисование, пение)
+<ul>
+<li>чем занимался на регулярной основе, чему учился и совершенствовался</li>
+</ul>
+</li>
+<li>Как предпочитаю отдыхать онлайн
+<ul>
+<li>Какие темы, разновидности: онлайн-игры, фильмы, книги, видео подкасты</li>
+</ul>
+</li>
+<li>Чем интересуюсь
+<ul>
+<li>онлайн и оффлайн, хобби, работа</li>
+<li>Какое время/дни свободны для этого</li>
+<li>Интересно ли делиться знаниями, по каким направлениям</li>
+</ul>
+</li>
+<li>Свободный микрофон
+<ul>
+<li>Кем мечтал быть в детстве</li>
+<li>Интересный факт о себе</li>
+</ul>
+</li>
+</ol>
+
+</body>
+</html>

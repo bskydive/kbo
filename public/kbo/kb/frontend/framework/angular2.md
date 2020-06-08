@@ -29,6 +29,7 @@
  * [Clean Code Checklist in Angular](https://itnext.io/clean-code-checklist-in-angular-%EF%B8%8F-10d4db877f74)
  * [SOLID: The Dependency Inversion Principle in Angular](https://blog.bitsrc.io/solid-the-dependency-inversion-principle-in-angular-6e4b9c484960?gi=d54f2b80e982)
 
+
 ## performance оптимизация и утечки памяти
 
  * https://github.com/Angular-RU/change-detection-tree
@@ -176,6 +177,17 @@
  * abstract syntax tree
  * [The Last Guide For Angular Change Detection You'll Ever Need 2019](https://www.mokkapps.de/blog/the-last-guide-for-angular-change-detection-you-will-ever-need)
  * https://blog.thoughtram.io/angular/2016/02/22/angular-2-change-detection-explained.html
+ * https://angular.io/guide/zone
+ ```
+When apps update HTML:
+ + Component initialization - loads the bootstrap component and triggers the ApplicationRef.tick() to call change detection and View Rendering
+ + Event listener - <button (click)="onClickMe()">
+ + HTTP Data Request
+ + MacroTasks, such as setTimeout() or setInterval()
+ + MicroTasks, such as Promise.then()
+ + Other async operations. Some examples include WebSocket.onmessage() and Canvas.toBlob()
+mousemove, scroll, requestAnimationFrame()
+ ```
  * https://angular.io/api/core/ChangeDetectionStrategy
 
 ```ts
@@ -188,6 +200,7 @@
 		@Input() vData; 
 		}
 ```
+ * [zonejs modules](https://github.com/angular/angular/blob/master/packages/zone.js/MODULE.md)
  * [Оптимизация обработки событий в Angular EventManagerPlugin](https://habr.com/ru/company/tinkoff/blog/429692/)
  * https://www.mokkapps.de/blog/the-last-guide-for-angular-change-detection-you-will-ever-need
 
@@ -224,6 +237,12 @@ processOutsideAngularZone() {
 	} 
 } 
 ```
+
+ * disable zonejs
+ ```js
+ platformBrowserDynamic().bootstrapModule(AppModule, { ngZone: 'noop' })
+  .catch(err => console.error(err));
+ ```
 
 ## web workers
 
@@ -1073,8 +1092,11 @@ count.subscribe(x => console.log(x));
 	}
 	```
 
-### зависимости
+### зависимости DI dependency injection
 
+разрешение зависимостей во время выполнения с помощью внешней библиотеки. Для этого пишутся аннотации в коде классов и делается специальный конфиг с описанием дерева зависимостей.
+
+ * [внедрение зависимостей](https://devcolibri.com/basics-of-dependency-injection-for-dummies/)
  * [extends](https://angular.io/guide/hierarchical-dependency-injection)
  * https://stackoverflow.com/questions/33970645/how-to-extend-a-component-with-dependency-injection-in-angular-2#40592524
  * barrel, circular dependency
@@ -1087,9 +1109,39 @@ count.subscribe(x => console.log(x));
 	* https://angular.io/guide/dependency-injection-in-action
 	* https://stackoverflow.com/questions/39062930/what-is-difference-between-declarations-providers-and-import-in-ngmodule#39063231
  * https://blog.angularindepth.com/angular-dependency-injection-and-tree-shakeable-tokens-4588a8f70d5d
+
  * https://hacks.mozilla.org/2015/08/es6-in-depth-modules/
  * https://angular.io/guide/ngmodule-vs-jsmodule
+
+ * ngModule
+
+```js
+//you configure an Angular dependency injector with a provider of that service.
+
+declarations: [//A declarable can only belong to one module, so only declare it in one @NgModule. When you need it elsewhere, import the module that has the declarable you need in it.
+  YourComponent,
+  YourPipe,
+  YourDirective
+],
+imports: [
+	//The module's imports array appears exclusively in the @NgModule metadata object. It tells Angular about other NgModules that this particular module needs to function properly.
+],
+exports: [
+	//The set of components, directives, and pipes declared in this NgModule that can be used in the template of any component that is part of an NgModule that imports this NgModule. Exported declarations are the module's public API.
+]
+providers: [
+	//The providers array is where you list the services the app needs. When you list services here, they are available app-wide. You can scope them when using feature modules and lazy loading. 
   
+  { provide: OldLogger, useClass: LoggerClass},// Not aliased! Creates two instances of `NewLogger`
+  { provide: OldLogger, useExisting: LoggerClass}// Alias OldLogger w/ reference to NewLogger
+  { provide: Logger, useValue: SomeObject }
+],
+bootstrap: [
+	//The application launches by bootstrapping the root AppModule, which is also referred to as an entryComponent. Among other things, the bootstrapping process creates the component(s) listed in the bootstrap array and inserts each one into the browser DOM.
+]
+
+```
+
 ### component interaction child to parent
 
  * event bubbling не работает в @output, только до родителя

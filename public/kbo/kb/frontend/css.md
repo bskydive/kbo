@@ -27,7 +27,7 @@
 
 ## обзоры, лучшие практики
 
- * [раскладки layout](https://every-layout.dev/)
+ 
  * https://www.joeforshaw.com/blog/css-the-bad-bits-and-how-to-avoid-them
  * https://medium.com/@ABatickaya/хорошие-и-плохие-css-практики-для-начинающих-619289ce8bae/
  * [архитектура css](https://web-standards.ru/articles/css-architecture/)
@@ -38,7 +38,6 @@
  * [специфичность по рыбам](http://www.standardista.com/css3/css-specificity/)
  * [специфичность по стхм](https://stuffandnonsense.co.uk/archives/css_specificity_wars.html)
  * [сильные стороны css](http://css-live.ru/articles/ustojchivyj-deklarativnyj-kontekstnyj-novyj-vzglyad-na-silnye-storony-css.html)
- * [Типовые раскладки](http://learnlayout.com/)
  * [ограничения сокращённой записи свойств](https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties#Tricky_edge_cases)
 
 ### решение проблем
@@ -46,7 +45,9 @@
  * [Шпаргалка по вёрстке 2012](https://habr.com/post/163871/)
  * [шпаргалка по специфичности селекторов](http://css-live.ru/css/pravilnaya-shpargalka-po-css-kaskadu.html)
  * [набор простых приёмов на 30 секунд](https://habr.com/ru/company/mailru/blog/350160/)
- 
+ * [раскладки layout](https://every-layout.dev/)
+ * [Типовые раскладки](http://learnlayout.com/)
+
 #### схлопывание 
 
  * схлопывание не работает в следующих случаях:
@@ -472,6 +473,10 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 
 ## css свойства
 
+### position flow
+
+ * https://html5book.ru/css-position/
+
 ### cursor курсор
 
 https://css-tricks.com/can-you-rotate-the-cursor-in-css/
@@ -529,11 +534,11 @@ https://medium.com/eightshapes-llc/cropping-away-negative-impacts-of-line-height
  ```
  * []()
 
-###	css images
+### css images
 
 https://bennettfeely.com/clippy/
 
-###	media max min width
+### media max min width
 
 https://stackoverflow.com/questions/16647380/max-width-vs-min-width
 

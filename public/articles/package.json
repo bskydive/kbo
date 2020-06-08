@@ -1,0 +1,22 @@
+{
+  "name": "articles",
+  "version": "1.0.0",
+  "description": "Это Репозиторий создан для совместной работы над статьями:",
+  "main": "index.js",
+  "scripts": {
+    "test": "yaspeller -c .yaspellerrc.json ./public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/stepanovv/articles.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/stepanovv/articles/issues"
+  },
+  "homepage": "https://gitlab.com/stepanovv/articles#readme",
+  "dependencies": {
+    "yaspeller": "^7.0.0"
+  }
+}
