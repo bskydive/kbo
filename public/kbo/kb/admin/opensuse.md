@@ -444,21 +444,6 @@ The following 14 NEW packages are going to be installed:
 
 ```
 
-### VMWARE
-
-усилить громкость на сервере и на госте
-поставить пульс
-
-```bash
-
-zypper in libpulse0-32bit alsa-plugins-pulse-32bit 
-
-The following 10 NEW packages are going to be installed:
-  alsa-plugins-pulse-32bit libFLAC8-32bit libjson0-32bit libogg0-32bit libpulse0-32bit libsndfile1-32bit libspeex1-32bit 
-  libvorbis0-32bit libvorbisenc2-32bit libwrap0-32bit 
-
-```
-
 ## torrent
 
 
@@ -580,7 +565,32 @@ http://www.liberatedcomputing.net/mm2fm
 
 ## vmware
 
-workstation 12 
+ * [VMWare Workstation 15.5.1 on Kernel Linux 5.4.6 : fail to compile vmci-only](https://communities.vmware.com/thread/623768)
+	```bash
+		git clone https://github.com/mkubecek/vmware-host-modules.git
+		cd vmware-host-modules
+		git checkout workstation-15.5.1
+		make
+		make install
+		After the installation, I ran this command : /etc/init.d/vmware start
+	```
+
+### звук
+
+усилить громкость на сервере и на госте
+поставить пульс
+
+```bash
+
+zypper in libpulse0-32bit alsa-plugins-pulse-32bit 
+
+The following 10 NEW packages are going to be installed:
+  alsa-plugins-pulse-32bit libFLAC8-32bit libjson0-32bit libogg0-32bit libpulse0-32bit libsndfile1-32bit libspeex1-32bit 
+  libvorbis0-32bit libvorbisenc2-32bit libwrap0-32bit 
+
+```
+
+### workstation 12 
 
 install: kernel development template
 
