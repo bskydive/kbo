@@ -383,7 +383,19 @@ http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceName
 		systemctl disable lvm2-monitor.service
 		systemctl stop lvm2-monitor.service
 	```
-* flatpak `flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo` далее `Discover`
+* flatpak `flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo` далее `Discover` или в discover - настройка - add flathub
+* evolution - через discover+flathub - поиск - evolution - кликнуть по пакету - источники - flathub
+	
+	https://wiki.gnome.org/Apps/Evolution/EWS/OAuth2
+	https://wiki.gnome.org/Apps/Evolution/Flatpak
+
+	```
+		error: While opening repository /var/lib/flatpak/repo: opendir(objects): No such file or directory
+
+		A bug is already filed in https://bugzilla.opensuse.org/show_bug.cgi?id=1173706 (and https://bugzilla.opensuse.org/show_bug.cgi?id=1172953) and there's a workaround until the issue gets solved: delete the /var/lib/flatpak/repo directory, then everything works fine
+
+		rm /var/lib/flatpak/repo
+	```
 * pavucontrol - можно вместо него использовать kde плагин plasma
 * pulseaudio-equalizer
 * paprefs - для проигрывания звука по сети https://askubuntu.com/questions/28039/how-to-stream-music-over-the-network-to-multiple-computers 
@@ -409,6 +421,10 @@ http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceName
 * torrent
 * ssh_keys
 
+## ms teams
+
+ * https://docs.microsoft.com/en-us/answers/questions/42095/sharing-screen-not-working-anymore-bug.html
+	`mv /usr/share/teams/resources/app.asar.unpacked/node_modules/slimcore/bin/rect-overlay /usr/share/teams/resources/app.asar.unpacked/node_modules/slimcore/bin/rect-overlay.old`
 
 ## skype
 
