@@ -383,7 +383,19 @@ http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceName
 		systemctl disable lvm2-monitor.service
 		systemctl stop lvm2-monitor.service
 	```
-* flatpak `flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo` далее `Discover`
+* flatpak `flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo` далее `Discover` или в discover - настройка - add flathub
+* evolution - через discover+flathub - поиск - evolution - кликнуть по пакету - источники - flathub
+	
+	https://wiki.gnome.org/Apps/Evolution/EWS/OAuth2
+	https://wiki.gnome.org/Apps/Evolution/Flatpak
+
+	```
+		error: While opening repository /var/lib/flatpak/repo: opendir(objects): No such file or directory
+
+		A bug is already filed in https://bugzilla.opensuse.org/show_bug.cgi?id=1173706 (and https://bugzilla.opensuse.org/show_bug.cgi?id=1172953) and there's a workaround until the issue gets solved: delete the /var/lib/flatpak/repo directory, then everything works fine
+
+		rm /var/lib/flatpak/repo
+	```
 * pavucontrol - можно вместо него использовать kde плагин plasma
 * pulseaudio-equalizer
 * paprefs - для проигрывания звука по сети https://askubuntu.com/questions/28039/how-to-stream-music-over-the-network-to-multiple-computers 
@@ -409,6 +421,10 @@ http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceName
 * torrent
 * ssh_keys
 
+## ms teams
+
+ * https://docs.microsoft.com/en-us/answers/questions/42095/sharing-screen-not-working-anymore-bug.html
+	`mv /usr/share/teams/resources/app.asar.unpacked/node_modules/slimcore/bin/rect-overlay /usr/share/teams/resources/app.asar.unpacked/node_modules/slimcore/bin/rect-overlay.old`
 
 ## skype
 
@@ -441,21 +457,6 @@ zypper in skype-4.2.0.13-suse.i586.rpm
 The following 14 NEW packages are going to be installed:
   libQtWebKit4-32bit libXss1-32bit libXv1-32bit libgmodule-2_0-0-32bit libgstapp-0_10-0-32bit libgstinterfaces-0_10-0-32bit libgstreamer-0_10-0-32bit liborc-0_4-0-32bit libpng12-0 
   libwebp4-32bit libxml2-2-32bit libxslt1-32bit skype xorg-x11-libs 
-
-```
-
-### VMWARE
-
-усилить громкость на сервере и на госте
-поставить пульс
-
-```bash
-
-zypper in libpulse0-32bit alsa-plugins-pulse-32bit 
-
-The following 10 NEW packages are going to be installed:
-  alsa-plugins-pulse-32bit libFLAC8-32bit libjson0-32bit libogg0-32bit libpulse0-32bit libsndfile1-32bit libspeex1-32bit 
-  libvorbis0-32bit libvorbisenc2-32bit libwrap0-32bit 
 
 ```
 
@@ -520,6 +521,33 @@ x11uselocalhost no
 
 ## firefox
 
+* [Настройка Firefox в Linux 2019](https://habr.com/ru/post/459880/)
+```
+device.sensors.enabled
+Позволяет через javascript получить доступ к датчикам устройства. Например, в мобильном Firefox можно получать информацию с датчика приближения. Если нет ни каких датчиков, либо доступ Firefox к ним вам не нужен, отключайте false
+
+dom.battery.enabled
+Отслеживание состояние батареи. Если используется стационарник, отключайте false
+
+dom.enable_performance_observer
+С помощью этой функции, разработчик сайта может узнать например, за какое время у пользователя загрузился тот или иной элемент веб-страницы. Что бы затем исправить недочёты производительности в коде сайта. Со стороны пользователя это будет выглядеть как сбор ограниченной телеметрии его действий на сайте и автоматическая её отправка. Можете отключить эту функцию false, для того что бы Firefox не отсылал сайтам эти данные.
+
+dom.event.clipboardevents.enabled
+Позволяет сайту следить за действиями пользователя, когда он копирует выделенный текст с веб страницы и затем, определённым образом, подсунуть к скопированному тексту в буфер обмена дополнительно строку, например "… Подробнее на httрs://....."..
+Если вам попадаются такие сайты на которых приходится копировать текст, и затем при вставке скопированного текста в конце автоматически добавляется такая вот ерунда, которая вам не нужна или мешает, отключите эту функцию false.
+Лишь на некоторых сайтах могут возникнуть проблемы с копированием и вставкой текста из-за её отключения.
+
+security.sandbox.content.level * * *
+Функция безопасности Firefox. Во включённом по умолчанию состоянии, в режиме работы 4, браузер создаёт изолированную программную среду в которой обрабатывается загруженный контент. В такой «песочнице» вредоносному коду сложнее украсть данные, попытаться установить вирус или использовать уязвимости браузера.
+Если у вас используются основные защитные инструменты самого Firefox, установлен блокировщик рекламы с актуальными в нём фильтрами, плюс вы не шастаете по левым сайтам с сомнительным содержимым — можете отключить эту функцию, поставив значение 0. Браузер будет немного быстрее работать и процессор в среднем на 5-10% станет меньше нагружаться.
+
+To use the middle mouse button to paste whatever text has been highlighted/added to the clipboard, as is common in UNIX-like operating systems, set either middlemouse.contentLoadURL or middlemouse.paste to true in about:config. Having middlemouse.contentLoadURL enabled was the default behaviour prior to Firefox 57.
+
+To scroll on middle-click (default for Windows browsers) set general.autoScroll to true. 
+```
+
+* [archLinux firefox база знаний](https://wiki.archlinux.org/index.php/Firefox#Middle-click_behavior)
+
 * выключенные дополнения 
 
 ```
@@ -580,7 +608,32 @@ http://www.liberatedcomputing.net/mm2fm
 
 ## vmware
 
-workstation 12 
+ * [VMWare Workstation 15.5.1 on Kernel Linux 5.4.6 : fail to compile vmci-only](https://communities.vmware.com/thread/623768)
+	```bash
+		git clone https://github.com/mkubecek/vmware-host-modules.git
+		cd vmware-host-modules
+		git checkout workstation-15.5.1
+		make
+		make install
+		After the installation, I ran this command : /etc/init.d/vmware start
+	```
+
+### звук
+
+усилить громкость на сервере и на госте
+поставить пульс
+
+```bash
+
+zypper in libpulse0-32bit alsa-plugins-pulse-32bit 
+
+The following 10 NEW packages are going to be installed:
+  alsa-plugins-pulse-32bit libFLAC8-32bit libjson0-32bit libogg0-32bit libpulse0-32bit libsndfile1-32bit libspeex1-32bit 
+  libvorbis0-32bit libvorbisenc2-32bit libwrap0-32bit 
+
+```
+
+### workstation 12 
 
 install: kernel development template
 

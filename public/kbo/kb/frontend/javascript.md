@@ -165,6 +165,7 @@
     * [источник](http://howtodoinjava.com/2013/06/07/5-class-design-principles-solid-in-java/)
  * [SOLID php](https://habr.com/ru/company/mailru/blog/412699/)
  * [SOLID javascript Охрименко](https://www.youtube.com/watch?v=wi3wPzReKZQ)
+	* битовая маска может кодировать больше чем одно значение - нарушение принципа SRP
  * SOLID:
 
 | смысл                                                                                                                                                                                                  | название                        | перевод                              |

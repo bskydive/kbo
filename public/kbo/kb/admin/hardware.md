@@ -56,3 +56,5 @@ https://github.com/hsoft/collapseos
 ## периферия
 
  * https://www.nix.ru/autocatalog/mouse_sven/SVEN-Optical-Mouse-RX-555-Silent-Antistress-Green-RTL-USB-3btn-plus-Roll_211056.html
+
+ * [How to take apart HP 7500A Multifunction printer](https://www.youtube.com/watch?v=YeJOPX5u3yQ)

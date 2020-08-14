@@ -9,9 +9,35 @@
  * https://www.smashingmagazine.com/2019/01/html5-input-types/
  * [DOM](https://proglib.io/p/ne-pasi-zadnih-ispolzuy-dom-kak-professional-2019-09-11)
 
-##  http2 sprites
+## http2
 
-https://habrahabr.ru/post/308862/
+ * бинарный, многопоточная загрузка в одном соединении TCP, server push(promise push), TLS, сжатие и подрезка заголовков
+ ```html
+	<link rel='dns-prefetch' href='//xxx.com'>
+	<link rel='preconnect' href='//xxx.com'>
+	<link rel='prefetch' href='/some.html' as='html'>
+	<link rel='prefetch' href='/some.js' as='script'>
+	<link rel='prefetch' href='/theme.css' as='style'>
+	<!--><audio><video> </-->
+	<link rel='preload' href='' as='media'>
+	<!--><script> </-->
+	<link rel='preload' href='' as='script'>
+	<!--> </-->
+	<link rel='preload' href='' as='style'>
+	<!--><img><picture><image> </-->
+	<link rel='preload' href='' as='image'>
+	<!-->service worker </-->
+	<link rel='preload' href='' as='worker'>
+	<!--><embed> </-->
+	<link rel='preload' href='' as='embed'>
+	<!--><object> </-->
+	<link rel='preload' href='' as='object'>
+	<!--> <iframe> <frame> </-->
+	<link rel='preload' href='' as='document'>
+ ```
+ * nghttp прокси и набор утилит для отладки
+ * [HTTP/2 уже здесь но спрайт-сеты ещё не умерли. перевод](https://habrahabr.ru/post/308862/)
+ * [Что надо знать о HTTP/2 2016 Майоров](https://www.youtube.com/watch?v=4yyhqMh9FcY)
 
 ## favicon
 

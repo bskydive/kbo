@@ -223,6 +223,52 @@ https://521dimensions.com/open-source/amplitudejs
 
 ##  date
 
+ * [юлианский календарь - охрименко 2019](https://www.youtube.com/watch?v=1DAmlRlEwCE)
+	```js
+		function ZellerISOWeekday(year, base0month, day) {
+			let shift = base0month + 2;
+			if (shift <= 3) { shift += 12; year -= 1; }
+
+			return (day + Math.floor(shift * 2.6) +
+				year + Math.floor(year / 4) +
+				6 * Math.floor(year / 100) +
+				Math.floor(year / 400) - 2) % 7;
+		}
+		function j2da(JDN){
+			const y = 4716;
+			const v = 3;
+			const j = 1401;
+			const u =  5;
+			const m =  2;
+			const s =  153;
+			const n = 12;
+			const w =  2;
+			const r =  4;
+			const B =  274277;
+			const p =  1461;
+			const C =  -38;
+			const f = JDN + j + Math.floor((Math.floor((4 * JDN + B) / 146097) * 3) / 4) + C;
+			const e = r * f + v;
+			const g = Math.floor((e % p) / r);
+			const h = u * g + w;
+			const D = Math.floor((h % s) / u) + 1;
+			const M = ((Math.floor(h / s) + m) % n) + 1;
+			const Y = Math.floor(e / p) - y + Math.floor((n + m - M) / n) ;
+			return [Y, M-1, D];
+		}
+		function JDN(year, month, day) {
+			const a = Math.floor((13 - month) / 12);
+			const y = year + 4800 - a;
+			const m = month + 12 * a - 2;
+
+			return day + Math.floor((153 * m + 2) / 5) +
+				365 * y + Math.floor(y / 4) -
+				Math.floor(y / 100) + Math.floor(y / 400) - 32045;
+		}
+		const WD = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+		const today = new Date();
+		const todayJDN = JDN(today.getFullYear(), today.getMonth(), today.getDate());
+	```
  * http://stackoverflow.com/questions/18052529/bootstrap-datetimepicker-convert-selected-local-date-to-utc
  * http://stackoverflow.com/questions/1576753/parse-datetime-string-in-javascript
  * [nodejs+browser date](https://github.com/teamweek/instadate)
