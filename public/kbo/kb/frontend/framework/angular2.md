@@ -28,7 +28,39 @@
 
  * [Clean Code Checklist in Angular](https://itnext.io/clean-code-checklist-in-angular-%EF%B8%8F-10d4db877f74)
  * [SOLID: The Dependency Inversion Principle in Angular](https://blog.bitsrc.io/solid-the-dependency-inversion-principle-in-angular-6e4b9c484960?gi=d54f2b80e982)
-
+ * форма авторизации [Sign-in form best practice](https://www.youtube.com/watch?v=alGcULGtiv8)
+ ```css
+input[type=email]:not(:plsceholder-shown):invalid {
+	color: red;
+}
+ ```
+```html
+<form>
+	<section>
+		<label for="id-mail">Почта</label>
+		<input id="id-mail" name="email" autocomplete="email" type="email" placeholder="почта" required>
+	</section>
+	<section>
+		<label for="id-pass">Пароль</label>
+		<input id="id-pass" *ng-if="passwordType='password'" name="current-password" type="password" placeholder="пароль" required>
+		<ng-container *ng-if="passwordType='new-password'">
+			<input id="id-pass" name="new-password" type="password" placeholder="пароль" required>
+			<input id="id-pass" name="new-password-repeat" type="password" placeholder="пароль повторно" required>
+		</ng-container>
+		<ng-container *ng-if="passwordType='change-password'">
+			<input id="id-pass" name="current-password" type="password" placeholder="текущий пароль" required>
+			<input id="id-pass" name="new-password" type="password" placeholder="новый пароль" required>
+		</ng-container>
+	</section>
+</form>
+```
+ * сравнение подходов(patterns) https://www.youtube.com/watch?v=udNHwANuicU https://github.com/obenjiro/AngularStateManagers
+	 * Services - Стандартный подход работы с сервисами.
+	 * CQS/CQRS - Command Query Separation. - добавление слоя запросов query
+	 * Redux - Stateless Uniderectional Dataflow.
+	 * Mobx - redux + CQRS - добавление слоя запросов
+	 * DCI - Data Context Interaction - перенос всей логики в файл-контекст, который управлет компонентами
+	 * MALEVICH - все UI данные в объекте для быстрой смены фреймворка
 
 ## performance оптимизация и утечки памяти
 
@@ -381,26 +413,36 @@ declare global {
 
 ### tslint eslint линтеры
 
+ * фильтрация вывода линтеров
+
+ ```bash
+	grep warning eslint.log | awk -F '  warning  ' '{print $2}' | tr -s " " | sort | uniq | less
+	grep WARNING: tslint.log | colrm 1 16 | sort | uniq |less
+	grep ' ✖ ' scsslint.log | colrm 1 9 | sort | uniq | less
+	grep ' × ' log/scsslint.log | colrm 1 10 | tr -s ' ' | sort | uniq > log/scsslint.uniq.log # windows
+ ```
+
+
  * [migrate-angular-8-from-tslint-to-eslint](https://medium.com/create-code/migrate-angular-8-from-tslint-to-eslint-4b0c44c8ae38)
  * [tslint-to-eslint-config](https://github.com/typescript-eslint/tslint-to-eslint-config)
  * [tslint](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin) 
  * [eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) 
- * devdependencies
-```json
- 		"@typescript-eslint/parser": "^1.13.0",
-		"codelyzer": "~4.5.0",
-		"eslint": "^6.1.0",
-		"eslint-config-standard": "^13.0.1",
-		"eslint-plugin-import": "^2.18.2",
-		"eslint-plugin-node": "^9.1.0",
-		"eslint-plugin-promise": "^4.2.1",
-		"eslint-plugin-standard": "^4.0.0",
-		"rxjs-tslint-rules": "^4.24.3",
-		"ts-node": "~7.0.0",
-		"tslint": "^5.18.0",
-		"tslint-angular": "^3.0.2",
-		"typescript": "^3.2.4"
-```
+ * npm dev dependencies
+	```json
+			"@typescript-eslint/parser": "^1.13.0",
+			"codelyzer": "~4.5.0",
+			"eslint": "^6.1.0",
+			"eslint-config-standard": "^13.0.1",
+			"eslint-plugin-import": "^2.18.2",
+			"eslint-plugin-node": "^9.1.0",
+			"eslint-plugin-promise": "^4.2.1",
+			"eslint-plugin-standard": "^4.0.0",
+			"rxjs-tslint-rules": "^4.24.3",
+			"ts-node": "~7.0.0",
+			"tslint": "^5.18.0",
+			"tslint-angular": "^3.0.2",
+			"typescript": "^3.2.4"
+	```
  * [A preset with TSLint rules for development of Angular applications. The preset contains both, tslint core rules, and codelyzer rules, which are going to perform Angular specific linting.](https://github.com/mgechev/tslint-angular)
  * [A set of tslint rules for static code analysis of Angular TypeScript projects.](https://github.com/mgechev/codelyzer)
  * [миграция ещё не закончена](https://github.com/angular-eslint/angular-eslint)
