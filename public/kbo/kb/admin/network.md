@@ -20,7 +20,7 @@ https://habrahabr.ru/company/ruvds/blog/346744/
 ## mtr
 
 ```bash
-mtr -o "LDRS NBAWV GJMXI" -f -b -s 1500 -i 0.1 91.240.86.5
+mtr -o "LDRS NBAWV GJMXI" -b -s 1500 -i 0.1 91.240.86.5
 ```
 ping добавляет 28 бит!
 
