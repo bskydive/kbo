@@ -323,8 +323,9 @@ export function main() {
 
  * https://www.bersling.com/2017/06/05/state-management-ngrxstore-vs-angular-services/
 
-## forms control
+## reactive forms control
 
+ * [model driven form](https://github.com/rxweb/rxweb/tree/master/client-side/angular/packages/)reactive-form-validators#readme
  * https://blog.thoughtram.io/angular/2016/07/27/custom-form-controls-in-angular-2.html
  * template driven привязывают данные в html тэгах как параметры DOM, а весь код генерируют во время исполнения
  * reactive driven привязывают данные в js при помощи специальных классов, поэтому можно писать свои валидаторы, делать синхронные и асинхронные(через собственный наблюдатель) валидации

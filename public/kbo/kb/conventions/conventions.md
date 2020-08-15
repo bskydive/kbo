@@ -91,7 +91,7 @@
  | Maintainability |  | поддерживаемость |
  | Loose coupling |  | слабая связность |
  | Tight coupling |  | сильная связность |
- | boilerplate |  | заготовка |
+ | boilerplate |  | заготовка, болванка |
  | holywar | священная война | горячий спор, горячая спорная тема |
  | function expression |  | функциональное выражение |
  | function declaration |  | объявляемая функция |
