@@ -4,7 +4,7 @@
   "description": "Это Репозиторий создан для совместной работы над статьями:",
   "main": "index.js",
   "scripts": {
-    "test": "yaspeller -c .yaspellerrc.json ./public"
+    "spell": "yaspeller -c .yaspellerrc.json ./public"
   },
   "repository": {
     "type": "git",
