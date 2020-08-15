@@ -23,8 +23,12 @@
 ## Сборка проекта
 
  * [конвертировать](https://marketplace.visualstudio.com/items?itemName=yzane.markdown-pdf) md в html
- * npm run spell
- * git push origin deleop
+	```bash
+		cd public/articles/
+		npm i
+		npm run spell
+		git push origin deleop
+	```
  * https://gitlab.com/stepanovv/articles/-/merge_requests
 
 ## ЗЫ
