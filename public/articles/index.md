@@ -22,9 +22,13 @@
 
 ## Сборка проекта
 
- * конвертировать md в html
- * переместить README.html в /public
- * git push origin deleop
+ * [конвертировать](https://marketplace.visualstudio.com/items?itemName=yzane.markdown-pdf) md в html
+	```bash
+		cd public/articles/
+		npm i
+		npm run spell
+		git push origin deleop
+	```
  * https://gitlab.com/stepanovv/articles/-/merge_requests
 
 ## ЗЫ
