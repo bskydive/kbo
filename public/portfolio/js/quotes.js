@@ -358,7 +358,7 @@ function showQuote() {
 
 		let cryptoResult = 0;
 
-		for (let i = 0; i <= 100; i++) {
+		for (let i = 0; i < max; i++) {
 			cryptoList = window.crypto.getRandomValues(cryptoList);
 			cryptoResult = Math.abs(cryptoList[Math.floor(Math.random() * (cryptoList.length))]);
 
@@ -366,8 +366,8 @@ function showQuote() {
 				result = cryptoResult;
 				break;
 			}
-			if (i >= 100) {
-				console.log('window.crypto.getRandomValues failed');
+			if (i >= max) {
+				console.log('window.crypto.getRandomValues failed, switch to Math.random()');
 			}
 		}
 		return result;

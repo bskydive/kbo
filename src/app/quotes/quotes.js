@@ -366,8 +366,8 @@ function showQuote() {
 
 		let cryptoResult = 0;
 
-		// пробуем 100 раз попасть в диапазон
-		for (let i = 0; i <= 100; i++) {
+		// пробуем quotes.length раз попасть в диапазон
+		for (let i = 0; i < max; i++) {
 			// генерируем массив случайных чисел
 			cryptoList = window.crypto.getRandomValues(cryptoList);
 			// берём случайный элемент массива
@@ -378,8 +378,8 @@ function showQuote() {
 				result = cryptoResult;
 				break;
 			}
-			if (i >= 100) {
-				console.log('window.crypto.getRandomValues failed');
+			if (i >= max) {
+				console.log('window.crypto.getRandomValues failed, switch to Math.random()');
 			}
 		}
 		return result;
