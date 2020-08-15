@@ -21,7 +21,8 @@ Also, I'm using it as a bookmarking service.
 * Install global dependencies `npm i -g pm2 http-server`
 * Install dependencies `npm i` in the `portfolio/` directory.
 * Run `npm run w`
-* Open in browser `http://127.0.0.1:8080/portfolio.html` 
+* Open in browser `http://127.0.0.1:8080/portfolio.html`
+* Run `gulp prod;push.sh`
 
 ### How can I contribute? ###
 
