@@ -4,7 +4,8 @@
   "description": "Это Репозиторий создан для совместной работы над статьями:",
   "main": "index.js",
   "scripts": {
-    "spell": "yaspeller -c .yaspellerrc.json ./public"
+    "spell": "yaspeller -c .yaspellerrc.json ./public",
+    "build": "showdown makehtml -i public/**/*.md -o public/**/*.html"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,7 @@
   },
   "homepage": "https://gitlab.com/stepanovv/articles#readme",
   "dependencies": {
+    "showdown": "^1.9.1",
     "yaspeller": "^7.0.0"
   }
 }
