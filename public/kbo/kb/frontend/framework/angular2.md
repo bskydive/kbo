@@ -1363,6 +1363,7 @@ tsconfig.json
  
 ## UI/UX framework фреймворки библиотеки
 
+ * using [tailwindcss](https://tailwindcss.com/) in [angular](https://medium.com/@jacobneterer/angular-and-tailwindcss-2388fb6e0bab)
  * [HTML UI layout for Angular applications; using Flexbox and a Responsive API ](https://github.com/angular/flex-layout)
  * https://bit.dev/
  * [add bootstrap grid into material](https://www.amadousall.com/the-good-parts-of-bootstrap-4-you-are-missing-in-your-angular-material-projects/)
