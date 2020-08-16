@@ -294,6 +294,67 @@ https://stackoverflow.com/questions/7905929/how-to-test-valid-uuid-guid#13653180
 
  * [navigator.clipboard](https://habr.com/company/ruvds/blog/358494/)
 
+## file файлы
+
+ * [открыть файл](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications)
+	```html
+		<input 
+			id="id-file-input"
+			type="file"
+			accept=".jpg,.jpeg,.png"
+			(change)="uploadFile()"
+			#inputFileDOMElem
+			[attr.disabled]="isDisabled ? 'disabled' : null">
+		<label 
+			id="id-file-input-label"
+			for="inputFileDOMElem">
+			<div>Upload file</div>
+		</label>
+	```
+	
+	```ts
+		let file: File = null;
+		const MAX_FILE_SIZE_BYTES = (1000*1000*10); // 10M
+		let content = null;
+		let fileReader: FileReader = new FileReader();
+		let fileAPIDOMWrapper = new FormData();
+		let url = 'http://localhost:4200/api/uploadFile';
+		let headers = new HttpHeaders({'Accept': 'application/json'})
+
+		if (
+			this.inputFileDOMElem.nativeElement.files instanceof Array &&
+			this.inputFileDOMElem.nativeElement.files.length > 0
+		) {
+			// file selected
+			this.file = this.inputFileDOMElem.nativeElement.files[0]
+		}
+		if (
+			file instanceof File &&
+			['image/jpeg', 'image/png'].includes(file.type) &&
+			file.size <= MAX_FILE_SIZE_BYTES
+			) {
+			// file is valid, proceed to download
+			
+			fileAPIDOMWrapper.append('uploadedImage', file);
+			
+			this.http.post(url, fileAPIDOMWrapper, headers, reportProgress: true).pipe(
+				take(1),
+				catchError((error, cause) => {
+					console.log('file upload error', error);
+					return of();
+				})
+			).subscribe(result => console.log('file uploaded', result));
+			// get content
+			fileReader.onload = function () {
+				content = this.result
+				console.log('file content', content);
+			};
+			fileReader.readAsArrayBuffer(file);
+		}
+	```
+
+ * 
+
 ##  стандарты
 
 https://timothygu.me/es-howto/
