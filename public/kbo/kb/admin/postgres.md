@@ -179,14 +179,33 @@ host    all             all             127.0.0.1/32            trust
 host    all             all             192.168.1.0/24            trust
 host    all             all             ::1/128                 trust
 
-echo "bytea_output = 'escape'" >> /var/lib/pgsql/9.1/data/postgresql.conf 
+echo "bytea_output = 'escape'" >> /var/lib/pgsql/9.1/data/postgresql.conf
 
 listen_addresses = '*'
 
 /etc/init.d/postgresql-9.1 restart
+```
 
+## postgresql on opensuse
 
+https://en.opensuse.org/SDB:PostgreSQL
 
+```bash
+	zypper in postgresql12 postgresql12-server
+
+	systemctl status postgresql
+
+	useradd -m postgres
+
+	passwd postgres
+
+	cat >> /distr/scripts/postgres_profile.sh
+	#!/bin/bash
+	export PATH=/usr/lib/postgresql12/bin:$PATH:$HOME/bin
+
+	su - postgres -c "initdb --locale=ru_RU.utf8 --auth=trust --encoding=UTF8 --username=postgres --pgdata=/var/lib/pgsql/data"
+
+	su - postgres -c "pgtune -i /var/lib/pgsql/data/postgresql.conf.old /var/lib/pgsq/data/postgresql.conf"
 ```
 
 ## psql help

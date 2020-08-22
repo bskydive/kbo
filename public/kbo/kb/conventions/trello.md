@@ -152,10 +152,10 @@
 Пример конфигурационного json для бэкенда(gen_opt.json):
 ```json
 {
-	"modelPackage":"ru.voicecom.maics.services.auth.dto", 
-	"apiPackage":"ru.voicecom.maics.services.auth.api",
-	"invokerPackage":"ru.voicecom.maics.services.auth",
-	"groupId":"ru.voicecom.maics",
+	"modelPackage":"ru.name.company.services.auth.dto", 
+	"apiPackage":"ru.name.company.services.auth.api",
+	"invokerPackage":"ru.name.company.services.auth",
+	"groupId":"ru.name.company",
 	"artifactId":"auth",
 	"artifactVersion": "0.1-snapshot",
 	"localVariablePrefix": "",
@@ -169,7 +169,7 @@
 команда по генерации сервера по yaml(при помощи swagger-codegen-cli):
 ```bash
   java -jar /d/bin/swagger-codegen/modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate \
-  -i maics/servers/api/api.yaml \
+  -i company/servers/api/api.yaml \
   -l spring --library spring-mvc \
   -c gen_opt.json \
   -o auth-now2
