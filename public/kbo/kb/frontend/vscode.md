@@ -27,3 +27,9 @@
 ## hotkeys
 
  * https://tproger.ru/translations/useful-hotkeys-for-vs-code/
+
+## vscode plugins
+
+ * https://marketplace.visualstudio.com/items?itemName=mtxr.sqltools
+ * https://marketplace.visualstudio.com/items?itemName=mtxr.sqltools-driver-pg
+ * https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker

@@ -186,7 +186,7 @@ listen_addresses = '*'
 /etc/init.d/postgresql-9.1 restart
 ```
 
-## postgresql on opensuse
+## postgresql 12 on opensuse 15.2
 
 https://en.opensuse.org/SDB:PostgreSQL
 
@@ -206,6 +206,21 @@ https://en.opensuse.org/SDB:PostgreSQL
 	su - postgres -c "initdb --locale=ru_RU.utf8 --auth=trust --encoding=UTF8 --username=postgres --pgdata=/var/lib/pgsql/data"
 
 	su - postgres -c "pgtune -i /var/lib/pgsql/data/postgresql.conf.old /var/lib/pgsq/data/postgresql.conf"
+
+	su - postgres -c 'SHOW hba_file;'
+
+	mcedit /home/postgres/pg_hba.conf
+	local   all             all                                     trust
+	host    all             all             127.0.0.1/32            trust
+
+	mcedit /home/postgres/postgresql.conf
+	listen_addresses = '*'
+
+	psql -h 127.0.0.1 -U postgres
+	psql -h 127.0.0.1 -U postgres -W
+	\?
+	\du - пользователи
+	\l - БД
 ```
 
 ## psql help
