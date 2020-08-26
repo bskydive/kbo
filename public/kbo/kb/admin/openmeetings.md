@@ -133,16 +133,19 @@ escape_string_warning = off
 ```
 
 mcedit /etc/postgresql/9.1/main/pg_hba.conf
+
 ```bash
 # "local" is for Unix domain socket connections only
 local   all             all                                     trust
 # IPv4 local connections:
 host    all             all             127.0.0.1/32            trust
 ```
-
-
 make sure PostgreSQL is listening on TCP/IP connections!
-netstat -tuna 
+
+```bash
+	netstat -tuna 
+	ss -ltp
+```
 
 #драйвер
 http://jdbc.postgresql.org/download.html

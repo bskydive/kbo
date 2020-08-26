@@ -1,5 +1,7 @@
 # Docker
 
+ * artifactory cli login 
+	`docker login https://artifactory.company.com:0000/artifactory/project-name-docker`
  * [docker AWS](https://habrahabr.ru/post/310460/)
  * [перимущества docker 2016](https://habrahabr.ru/post/277699/)
  * [разделение окружений](https://habrahabr.ru/post/327698/)

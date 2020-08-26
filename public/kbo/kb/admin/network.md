@@ -6,12 +6,34 @@
 
  * [HTTP-заголовки для ответственного разработчика](https://habr.com/ru/company/mailru/blog/450816/)
 
-## netstat
+## netstat --> ss
 
 * netstat -rn --> ip route
 * route add --> ip route add 192.168.0.0/24 via 192.168.0.253 dev eth2
 * [ip route static](https://www.thegeekstuff.com/2014/08/add-route-ip-command/)
 * [ip route runtime](https://www.cyberciti.biz/faq/howto-linux-configuring-default-route-with-ipcommand/)
+* 
+```bash
+    arp → ip n (ip neighbor)
+    ifconfig → ip a (ip addr), ip link, ip -s (ip -stats)
+    iptunnel → ip tunnel
+    iwconfig → iw
+    nameif → ip link, ifrename
+    netstat → ss, ip route (for netstat -r), ip -s link (for netstat -i), ip maddr (for netstat -g)
+	ss | less  # get all connections
+	ss -t      # get tcp connections not in listen mode (server programs)
+	ss -u      # get udp connections not in listen mode
+	ss -x      # get unix socket pipe connections
+	ss -ta     # get all tcp connections
+	ss -au     # get all udp connections
+	ss -nt     # all tcp without host name
+	ss -ltn    # listening tcp without host resolution
+	ss -ltp    # listening tcp with PID and name
+	ss -s      # prints statstics
+	ss -tn -o  # tcp connection with domain host and show keepalive timer
+	ss -tl4    # ip4 connections 
+```
+
 
 ## ss
 

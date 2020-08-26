@@ -9,6 +9,7 @@
 
 ## links
 
+ * [версии ECMA и функции](http://kangax.github.io/compat-table/es6/)
  * [ES6](https://medium.com/p/3d28884c59d4)
  * https://mbeaudru.github.io/modern-js-cheatsheet/
  * [современный жс](http://courses.angularclass.com/courses/modern-javascript)
