@@ -19,7 +19,18 @@
 
 1. Наследие. Сохраняйте [потраченное время](https://habr.com/ru/company/mailru/blog/456862/) и делитесь им.
 
-## Англо-русский словарь
+## Русский язык
+
+* [glavred](https://glvrd.ru/) - проверка качества текста
+* https://languagetool.org/
+* [платный](https://orfogrammka.ru), с объяснением правил и проверкой на заимстовованные слова
+* https://www.artlebedev.ru/orfograf/
+* http://online.orfo.ru/
+* https://text.ru/spelling/unauthorized
+* https://www.artlebedev.ru/typograf/ - пробелы, переносы, кавычки, тире
+* http://grammarly.com/ - с плагинами
+
+### Англо-русский словарь
 
 Для улучшения взаимопонимания в команде и экономии времени на поиск.
 Зачастую люди не понимают смысла английских слов, или не знают перевода русских.

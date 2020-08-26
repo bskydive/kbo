@@ -7,6 +7,7 @@
 
 ## links
 
+ * [версии и функции](https://node.green/)
  * [критика nodejs](https://habr.com/ru/post/305832/)
  * https://www.digitalocean.com/community/tutorials/how-to-deploy-node-js-applications-using-systemd-and-nginx
  * https://www.digitalocean.com/community/tutorials/how-to-setup-a-node-js-development-environment-on-a-vps-for-a-team
