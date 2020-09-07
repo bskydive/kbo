@@ -376,6 +376,7 @@ declare global {
 
 ### ликбез
 
+ * [реактивная архитектура angular](https://christianlydemann.com/refactoring-angular-apps-to-reactive-architecture/)
  * сделано для обработки асинхронных непрерывных потоков данных
  * [The introduction to Reactive Programming you've been missing](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754)
  * [View Facades + RxJS](https://medium.com/angular-in-depth/angular-you-may-not-need-ngrx-e80546cc56ee)
@@ -742,7 +743,7 @@ count.subscribe(x => console.log(x));
 ### nav tab
 
  * не работает disabled
-```css
+```scss
 	@import './colors.scss';
 	
 	& .mat-tab-link {
@@ -757,23 +758,25 @@ count.subscribe(x => console.log(x));
 
 	& .mat-tab {
 		&-label-active {
-		color: map-get($md-palette-blue, 400);
-		opacity: 1; //default 0,6
-
-		&:hover,
-		&:active,
-		&:visited {
 			color: map-get($md-palette-blue, 400);
-			opacity: 1;
-		}
-		
-		&-disabled {
-		color: grey;
-		cursor: default;
+			opacity: 1; //default 0,6
 
-		&:hover {
-			color: grey;
-			cursor: default;
+			&:hover,
+			&:active,
+			&:visited {
+				color: map-get($md-palette-blue, 400);
+				opacity: 1;
+			}
+			
+			&-disabled {
+				color: grey;
+				cursor: default;
+
+				&:hover {
+					color: grey;
+					cursor: default;
+				}
+			}
 		}
 	}
 ```

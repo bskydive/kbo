@@ -162,21 +162,39 @@
  * [синглтоны и общие экземпляры](https://habr.com/ru/company/mailru/blog/334078/)
  * [шпаргалка по шалонам проектирования](https://habr.com/ru/post/210288/)
  * [Структурные шаблоны проектирования в ES6+ на примере Игры престолов](https://habr.com/ru/post/496148/)
+ * [Принципы проектирования классов (S.O.L.I.D.) 2009](https://blog.byndyu.ru/2009/10/solid.html)
+	* [Принцип единственности ответственности](https://blog.byndyu.ru/2009/10/blog-post.html)
+	* [Принцип открытости/закрытости](https://blog.byndyu.ru/2009/10/blog-post_14.html)
+	* [Принцип замещения Лисков](https://blog.byndyu.ru/2009/10/blog-post_29.html)
+	* [Принцип разделения интерфейса](https://blog.byndyu.ru/2009/11/blog-post_19.html)
+	* [Принцип инверсии зависимости ](https://blog.byndyu.ru/2009/12/blog-post.html)
+ * [Шпаргалка по SOLID принципам 2014](http://sergeyteplyakov.blogspot.com/2014/10/solid.html)
+	* [Single Responsibility Principle](http://sergeyteplyakov.blogspot.com/2014/08/single-responsibility-principle.html)
+	* [Open/Closed Principle](http://sergeyteplyakov.blogspot.com/2014/08/open-closed-principle.html)
+	* [Liskov Substitution Principle](http://sergeyteplyakov.blogspot.com/2014/09/liskov-substitution-principle.html)
+	* [Interface Segregation Principle](http://sergeyteplyakov.blogspot.com/2014/08/interface-segregation-principle.html)
+	* [The Dependency Inversion Principle DI](http://sergeyteplyakov.blogspot.com/2014/09/the-dependency-inversion-principle.html)
+		* [Критический взгляд на принцип инверсии зависимостей](http://sergeyteplyakov.blogspot.com/2013/04/blog-post.html)
  * [SOLID ](https://info.javarush.ru/translation/2013/08/06/Пять-основных-принципов-дизайна-классов-S-O-L-I-D-в-Java.html)
     * [источник](http://howtodoinjava.com/2013/06/07/5-class-design-principles-solid-in-java/)
- * [SOLID php](https://habr.com/ru/company/mailru/blog/412699/)
- * [SOLID javascript Охрименко](https://www.youtube.com/watch?v=wi3wPzReKZQ)
-	* битовая маска может кодировать больше чем одно значение - нарушение принципа SRP
- * SOLID:
+	* [SOLID php](https://habr.com/ru/company/mailru/blog/412699/)
+	* [SOLID javascript Охрименко](https://www.youtube.com/watch?v=wi3wPzReKZQ)
+		* битовая маска может кодировать больше чем одно значение - нарушение принципа SRP
+	* SOLID:
 
-| смысл                                                                                                                                                                                                  | название                        | перевод                              |
-|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------|--------------------------------------|
-| На каждый объект должна быть возложена одна единственная обязанность.                                                                                                                                  | Single Responsibility Principle | (Принцип единственной обязанности)   |
-| Программные сущности (классы, модули, функции и т.п.) должны быть открыты для расширения, но закрыты для изменения.                                                                                    | Open Closed Principle           | (Принцип открытости/закрытости)      |
-| Объекты в программе могут быть заменены их наследниками без изменения свойств программы.                                                                                                               | Liskov’s Substitution Principle | (Принцип подстановки Барбары Лисков) |
-| Клиенты не должны быть вынуждены реализовывать ненужные методы, которые они не будут использовать                                                                                                      | Interface Segregation Principle | (Принцип разделения интерфейса)      |
-| Зависимости внутри системы строятся на основе абстракций. Модули верхнего уровня не зависят от модулей нижнего уровня. Абстракции не должны зависеть от деталей. Детали должны зависеть от абстракций. | Dependency Inversion Principle  | (Принцип инверсии зависимостей)      |
-|                                                                                                                                                                                                        |                                 |                                      |
+| смысл                                                                                 | название                        | перевод                              |
+|---------------------------------------------------------------------------------------|---------------------------------|--------------------------------------|
+| На каждый объект должна быть возложена одна единственная обязанность.                 | Single Responsibility Principle | (Принцип единственной обязанности)   |
+| Программные сущности (классы, модули, функции и т.п.) должны быть открыты 
+для расширения, но закрыты для изменения.                                               | Open Closed Principle           | (Принцип открытости/закрытости)      |
+| Объекты в программе могут быть заменены их наследниками без изменения 
+свойств программы.                                                                      | Liskov’s Substitution Principle | (Принцип подстановки Барбары Лисков) |
+| Клиенты не должны быть вынуждены реализовывать ненужные методы, которые 
+они не будут использовать                                                               | Interface Segregation Principle | (Принцип разделения интерфейса)      |
+| Зависимости внутри системы строятся на основе абстракций. Модули верхнего 
+уровня не зависят от модулей нижнего уровня. Абстракции не должны зависеть 
+от деталей. Детали должны зависеть от абстракций. | Dependency Inversion Principle      | (Принцип инверсии зависимостей) |                                      |
+|                                                                                       |                                 |                                      |
 | | | | |
 
  * [GRASP паттерны проектирования](https://habr.com/ru/post/92570/)
