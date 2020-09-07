@@ -148,6 +148,10 @@
  * [typescript deep dive](https://habr.com/ru/company/oleg-bunin/blog/499634/) Михаил Башуров (saitonakamura) — Senior Frontend Engineer в компании WiseBits
  * [Runtime type checking with io-ts in Typescript](https://medium.com/@ottoki/runtime-type-checking-with-io-ts-in-typescript-14465169fb02) https://github.com/gcanti/io-ts
 
+### собеседование typescript
+
+ * [Собеседование по TypeScript: 20 вопросов и ответов](https://habr.com/ru/company/ruvds/blog/419993/)
+
 ##  шаблоны patterns
 
  * [Шаблоны проектирования в JavaScript простыми словами](https://proglib.io/p/js-design-patterns/)
