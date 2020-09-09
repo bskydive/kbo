@@ -131,6 +131,7 @@
 
 ##  typescript 
 
+ * [см.](/kbo/kb/frontend/framework/angular2.md:1067)
  * https://www.tsmean.com/articles/
  * [знакомство с typescript 2015](https://msdn.microsoft.com/ru-ru/magazine/dn890374.aspx)
  * https://www.sitepen.com/blog/2014/08/22/advanced-typescript-concepts-classes-types/

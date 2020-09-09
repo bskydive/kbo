@@ -1064,7 +1064,29 @@ count.subscribe(x => console.log(x));
 		]
 	}
 ```
-	
+ * модель с классом для API
+
+ ```ts
+	export interface IObject {field: IObjectFields<string> | IObjectField1 | IObjectField2;}
+
+	export type IObjectField<T> = {[P in keyof T]: string;}
+
+	export interface IObjectField1 extends IObjectField<IObjectField1> {field1: ''}
+
+	export class ObjectClass1 implements IObjectField1 {
+		field1: string = null;
+
+		constructor (data?:IObjectField1) {this.parse(data)}
+
+		parse(data?:IObjectField1){
+			if (data) {
+				if (typeof data.field1 === 'string') {this.field1 = }
+			}
+			return this;
+		}
+	}
+ ```
+
  * интерфейс деревьев - сложный вложенный тип https://basarat.gitbooks.io/typescript/docs/types/index-signatures.html
  
 ```ts
