@@ -131,6 +131,7 @@
 
 ##  typescript 
 
+ * [см.](/kbo/kb/frontend/framework/angular2.md:1067)
  * https://www.tsmean.com/articles/
  * [знакомство с typescript 2015](https://msdn.microsoft.com/ru-ru/magazine/dn890374.aspx)
  * https://www.sitepen.com/blog/2014/08/22/advanced-typescript-concepts-classes-types/
@@ -147,6 +148,10 @@
  * [TypeScript. Магия выражений](typescript)
  * [typescript deep dive](https://habr.com/ru/company/oleg-bunin/blog/499634/) Михаил Башуров (saitonakamura) — Senior Frontend Engineer в компании WiseBits
  * [Runtime type checking with io-ts in Typescript](https://medium.com/@ottoki/runtime-type-checking-with-io-ts-in-typescript-14465169fb02) https://github.com/gcanti/io-ts
+
+### собеседование typescript
+
+ * [Собеседование по TypeScript: 20 вопросов и ответов](https://habr.com/ru/company/ruvds/blog/419993/)
 
 ##  шаблоны patterns
 
