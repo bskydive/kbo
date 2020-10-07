@@ -76,6 +76,8 @@ WantedBy=multi-user.target
 
  * http://voidcanvas.com/javascript-performant-coding-tips/
  * [упаковка сообщений в бинарный вид](https://habr.com/post/277823/)
+ * https://youtu.be/n_65k_uSq2w clinic.js позволяет исследовать проблемы с производительностью node.js приложений с помощью таких инструментов как Doctor, Bubbleprof и Flame
+
 
 ## security
 
