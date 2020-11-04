@@ -13,12 +13,20 @@
 		> set|grep LANG
 		LANG=en_US.UTF-8
 	```
- * 	`"terminal.integrated.setLocaleVariables": true`
+ * `"terminal.integrated.setLocaleVariables": true`
  * [gtk ibus emoji подменяет ctrl+shift+e](https://github.com/Microsoft/vscode/issues/48480)
  * не работает [буфер Linux](https://github.com/microsoft/vscode/issues/90297#issuecomment-583779433)
- ```
-	editor.action.selectionClipboardPaste
- ```
+	```
+		editor.action.selectionClipboardPaste
+	```
+ * font rendering terminal 
+ 	* https://stackoverflow.com/questions/29966747/how-can-i-disable-gpu-rendering-in-visual-studio-code
+	```
+		"window.zoomLevel": 0,
+		"disable-hardware-acceleration": true, // configure runtime env
+		code --disable-gpu
+	```
+
 
  ## обучение
 
