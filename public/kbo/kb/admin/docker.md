@@ -13,3 +13,14 @@
  * [Контейнеры для взрослых (Часть 01): Практический гид по терминологии](https://habr.com/company/redhatrussia/blog/421663/)   
  * [Контейнеры для взрослых (Часть 02): Практический гид по терминологии](https://habr.com/company/redhatrussia/blog/416827/)
  * [Контейнеры для взрослых (Часть 03): 10 вещей, которые не надо делать с контейнерами](https://habr.com/company/redhatrussia/blog/421663/)
+
+ ```bash
+cd ./docker
+docker build -t dff docker-foo-frontend
+docker build -t dfb docker-foo-backend
+alias ffrs="docker rm dff; docker run -p 4200:4200 --name dff docker-foo-frontend; docker ps"
+alias fbrs="docker rm dfb; docker run -p 5000:5000 --name dff docker-foo-backend; docker ps"
+alias ffr="docker start dff; docker ps"
+alias fbr="docker start dfb; docker ps"
+alias ds="docker stop dff dfb; docker ps"
+ ```

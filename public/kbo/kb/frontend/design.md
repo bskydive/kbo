@@ -71,6 +71,10 @@
  * https://github.com/blog/2112-delivering-octicons-with-svg
  * http://webresourcesdepot.com/design/
 
+## svg clipart векторные рисунки
+
+ * https://svg-clipart.com
+
 ##  color scheme цветовая схема
 
  * https://pigment.shapefactory.co/

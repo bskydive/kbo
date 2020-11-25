@@ -57,6 +57,21 @@
  * [история развития инструментов для  javascript](https://habr.com/ru/company/mailru/blog/340922/)
  * [ошибочное понимание DRY](https://habr.com/ru/company/mailru/blog/349978/)
  * [сборник ошибок JS](https://habr.com/ru/company/jugru/blog/494256/)
+ * [How JavaScript works: Event loop and the rise of Async programming + 5 ways to better coding with async/await Alexander Zlatkov](https://blog.sessionstack.com/how-javascript-works-event-loop-and-the-rise-of-async-programming-5-ways-to-better-coding-with-2f077c4438b5)
+
+## V8 движок
+
+ * интерпретатор ES+WASM [ignition/байткод](https://v8.dev/blog/ignition-interpreter) и компилятор[turbofan JIT](https://v8.dev/docs/turbofan)
+ * преза v8 2017 https://docs.google.com/presentation/d/1chhN90uB8yPaIhx_h2M3lPyxPgdPmkADqSNAoXYQiVE/edit#slide=id.g18d89eb289_1_362
+
+## модель памяти memory model
+ * https://geekbrains.ru/posts/javascript_internals_part1
+ * куча, стэк и очередь. В стэк попадают через event loop
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management
+	* GC garbage collection
+	* вместо алгоритма подсчёта ссылок сейчас браузеры применяют алгоритм проверки доступности(mark-compact). Например, циклические ссылки не считаются мусором в первом варианте, даже если на них нет ссылок извне.
+	* активные функции помечаются как корни, и от них проверяется доступность
+	
  * [mark and sweep GC garbage collection](https://www.geeksforgeeks.org/mark-and-sweep-garbage-collection-algorithm/)
  * [Как работает JavaScript: часть вторая GC утечки](https://geekbrains.ru/posts/javascript_internals_part2)
  ```js
@@ -79,7 +94,6 @@
 	setInterval(replaceThing, 1000);
 
  ```
- * [How JavaScript works: Event loop and the rise of Async programming + 5 ways to better coding with async/await Alexander Zlatkov](https://blog.sessionstack.com/how-javascript-works-event-loop-and-the-rise-of-async-programming-5-ways-to-better-coding-with-2f077c4438b5)
 
 ## вопросы интервью
 
@@ -131,6 +145,7 @@
 
 ##  typescript 
 
+ * [см.](/kbo/kb/frontend/framework/angular2.md:1067)
  * https://www.tsmean.com/articles/
  * [знакомство с typescript 2015](https://msdn.microsoft.com/ru-ru/magazine/dn890374.aspx)
  * https://www.sitepen.com/blog/2014/08/22/advanced-typescript-concepts-classes-types/
@@ -148,6 +163,10 @@
  * [typescript deep dive](https://habr.com/ru/company/oleg-bunin/blog/499634/) Михаил Башуров (saitonakamura) — Senior Frontend Engineer в компании WiseBits
  * [Runtime type checking with io-ts in Typescript](https://medium.com/@ottoki/runtime-type-checking-with-io-ts-in-typescript-14465169fb02) https://github.com/gcanti/io-ts
 
+### собеседование typescript
+
+ * [Собеседование по TypeScript: 20 вопросов и ответов](https://habr.com/ru/company/ruvds/blog/419993/)
+
 ##  шаблоны patterns
 
  * [Шаблоны проектирования в JavaScript простыми словами](https://proglib.io/p/js-design-patterns/)
@@ -162,21 +181,39 @@
  * [синглтоны и общие экземпляры](https://habr.com/ru/company/mailru/blog/334078/)
  * [шпаргалка по шалонам проектирования](https://habr.com/ru/post/210288/)
  * [Структурные шаблоны проектирования в ES6+ на примере Игры престолов](https://habr.com/ru/post/496148/)
+ * [Принципы проектирования классов (S.O.L.I.D.) 2009](https://blog.byndyu.ru/2009/10/solid.html)
+	* [Принцип единственности ответственности](https://blog.byndyu.ru/2009/10/blog-post.html)
+	* [Принцип открытости/закрытости](https://blog.byndyu.ru/2009/10/blog-post_14.html)
+	* [Принцип замещения Лисков](https://blog.byndyu.ru/2009/10/blog-post_29.html)
+	* [Принцип разделения интерфейса](https://blog.byndyu.ru/2009/11/blog-post_19.html)
+	* [Принцип инверсии зависимости ](https://blog.byndyu.ru/2009/12/blog-post.html)
+ * [Шпаргалка по SOLID принципам 2014](http://sergeyteplyakov.blogspot.com/2014/10/solid.html)
+	* [Single Responsibility Principle](http://sergeyteplyakov.blogspot.com/2014/08/single-responsibility-principle.html)
+	* [Open/Closed Principle](http://sergeyteplyakov.blogspot.com/2014/08/open-closed-principle.html)
+	* [Liskov Substitution Principle](http://sergeyteplyakov.blogspot.com/2014/09/liskov-substitution-principle.html)
+	* [Interface Segregation Principle](http://sergeyteplyakov.blogspot.com/2014/08/interface-segregation-principle.html)
+	* [The Dependency Inversion Principle DI](http://sergeyteplyakov.blogspot.com/2014/09/the-dependency-inversion-principle.html)
+		* [Критический взгляд на принцип инверсии зависимостей](http://sergeyteplyakov.blogspot.com/2013/04/blog-post.html)
  * [SOLID ](https://info.javarush.ru/translation/2013/08/06/Пять-основных-принципов-дизайна-классов-S-O-L-I-D-в-Java.html)
     * [источник](http://howtodoinjava.com/2013/06/07/5-class-design-principles-solid-in-java/)
- * [SOLID php](https://habr.com/ru/company/mailru/blog/412699/)
- * [SOLID javascript Охрименко](https://www.youtube.com/watch?v=wi3wPzReKZQ)
-	* битовая маска может кодировать больше чем одно значение - нарушение принципа SRP
- * SOLID:
+	* [SOLID php](https://habr.com/ru/company/mailru/blog/412699/)
+	* [SOLID javascript Охрименко](https://www.youtube.com/watch?v=wi3wPzReKZQ)
+		* битовая маска может кодировать больше чем одно значение - нарушение принципа SRP
+	* SOLID:
 
-| смысл                                                                                                                                                                                                  | название                        | перевод                              |
-|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------|--------------------------------------|
-| На каждый объект должна быть возложена одна единственная обязанность.                                                                                                                                  | Single Responsibility Principle | (Принцип единственной обязанности)   |
-| Программные сущности (классы, модули, функции и т.п.) должны быть открыты для расширения, но закрыты для изменения.                                                                                    | Open Closed Principle           | (Принцип открытости/закрытости)      |
-| Объекты в программе могут быть заменены их наследниками без изменения свойств программы.                                                                                                               | Liskov’s Substitution Principle | (Принцип подстановки Барбары Лисков) |
-| Клиенты не должны быть вынуждены реализовывать ненужные методы, которые они не будут использовать                                                                                                      | Interface Segregation Principle | (Принцип разделения интерфейса)      |
-| Зависимости внутри системы строятся на основе абстракций. Модули верхнего уровня не зависят от модулей нижнего уровня. Абстракции не должны зависеть от деталей. Детали должны зависеть от абстракций. | Dependency Inversion Principle  | (Принцип инверсии зависимостей)      |
-|                                                                                                                                                                                                        |                                 |                                      |
+| смысл                                                                                 | название                        | перевод                              |
+|---------------------------------------------------------------------------------------|---------------------------------|--------------------------------------|
+| На каждый объект должна быть возложена одна единственная обязанность.                 | Single Responsibility Principle | (Принцип единственной обязанности)   |
+| Программные сущности (классы, модули, функции и т.п.) должны быть открыты 
+для расширения, но закрыты для изменения.                                               | Open Closed Principle           | (Принцип открытости/закрытости)      |
+| Объекты в программе могут быть заменены их наследниками без изменения 
+свойств программы.                                                                      | Liskov’s Substitution Principle | (Принцип подстановки Барбары Лисков) |
+| Клиенты не должны быть вынуждены реализовывать ненужные методы, которые 
+они не будут использовать                                                               | Interface Segregation Principle | (Принцип разделения интерфейса)      |
+| Зависимости внутри системы строятся на основе абстракций. Модули верхнего 
+уровня не зависят от модулей нижнего уровня. Абстракции не должны зависеть 
+от деталей. Детали должны зависеть от абстракций. | Dependency Inversion Principle      | (Принцип инверсии зависимостей) |                                      |
+|                                                                                       |                                 |                                      |
 | | | | |
 
  * [GRASP паттерны проектирования](https://habr.com/ru/post/92570/)

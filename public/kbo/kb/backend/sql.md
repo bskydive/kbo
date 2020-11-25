@@ -3,6 +3,7 @@
  * [транзакционность DDL](https://wiki.postgresql.org/wiki/Transactional_DDL_in_PostgreSQL:_A_Competitive_Analysis)
  * [join](https://habrahabr.ru/post/278087/)
  * [Понимание джойнов сломано. Это точно не пересечение кругов, честно](https://habr.com/ru/post/448072/)
+ * [про базы данных от динозавров](https://stackoverflow.com/users/484814/performancedba)
 
 ## Учебники
 
@@ -16,7 +17,7 @@
 ### шаблоны проектирования бд
 
  * https://www.slideshare.net/maieutic/ss-390247
- * http://database-design.livejournal.com/
+ * [denis.beskov](http://database-design.livejournal.com/)
  * http://www.databaseanswers.org/data_models/
 
 
