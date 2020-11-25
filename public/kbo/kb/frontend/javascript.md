@@ -57,6 +57,21 @@
  * [история развития инструментов для  javascript](https://habr.com/ru/company/mailru/blog/340922/)
  * [ошибочное понимание DRY](https://habr.com/ru/company/mailru/blog/349978/)
  * [сборник ошибок JS](https://habr.com/ru/company/jugru/blog/494256/)
+ * [How JavaScript works: Event loop and the rise of Async programming + 5 ways to better coding with async/await Alexander Zlatkov](https://blog.sessionstack.com/how-javascript-works-event-loop-and-the-rise-of-async-programming-5-ways-to-better-coding-with-2f077c4438b5)
+
+## V8 движок
+
+ * интерпретатор ES+WASM [ignition/байткод](https://v8.dev/blog/ignition-interpreter) и компилятор[turbofan JIT](https://v8.dev/docs/turbofan)
+ * преза v8 2017 https://docs.google.com/presentation/d/1chhN90uB8yPaIhx_h2M3lPyxPgdPmkADqSNAoXYQiVE/edit#slide=id.g18d89eb289_1_362
+
+## модель памяти memory model
+ * https://geekbrains.ru/posts/javascript_internals_part1
+ * куча, стэк и очередь. В стэк попадают через event loop
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management
+	* GC garbage collection
+	* вместо алгоритма подсчёта ссылок сейчас браузеры применяют алгоритм проверки доступности(mark-compact). Например, циклические ссылки не считаются мусором в первом варианте, даже если на них нет ссылок извне.
+	* активные функции помечаются как корни, и от них проверяется доступность
+	
  * [mark and sweep GC garbage collection](https://www.geeksforgeeks.org/mark-and-sweep-garbage-collection-algorithm/)
  * [Как работает JavaScript: часть вторая GC утечки](https://geekbrains.ru/posts/javascript_internals_part2)
  ```js
@@ -79,7 +94,6 @@
 	setInterval(replaceThing, 1000);
 
  ```
- * [How JavaScript works: Event loop and the rise of Async programming + 5 ways to better coding with async/await Alexander Zlatkov](https://blog.sessionstack.com/how-javascript-works-event-loop-and-the-rise-of-async-programming-5-ways-to-better-coding-with-2f077c4438b5)
 
 ## вопросы интервью
 
