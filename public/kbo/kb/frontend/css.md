@@ -167,7 +167,9 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 	```
  * https://tobiasahlin.com/blog/common-flexbox-patterns/
 
-## css стилизация прокрутки
+## css стилизация прокрутки scroll
+
+* https://ishadeed.com/article/css-scroll-snap/
 * https://www.filamentgroup.com/lab/scrollbars/
 * 
 	```scss
@@ -581,7 +583,6 @@ https://stackoverflow.com/questions/16647380/max-width-vs-min-width
  * [@](http://frontender.info/the-at-rules-of-css/)
  * [быстрая загрузка](http://css-live.ru/articles/budushhee-zagruzki-css.html)
  * [tabbar](http://jsfiddle.net/Vandeplas/hsELW/)
- * [padding/margin](https://habrahabr.ru/company/netcracker/blog/281008/)
  * z-index
 	* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index
 	* https://habrahabr.ru/post/166435/
@@ -590,6 +591,11 @@ https://stackoverflow.com/questions/16647380/max-width-vs-min-width
  * window.innerWidth window.outerWidth
  * window.screen.width window.screen.availWidth
  * [navigator.platform](http://stackoverflow.com/questions/19877924/what-is-the-list-of-possible-values-for-navigator-platform-as-of-today)
+
+## padding margin box model
+
+ * https://www.joshwcomeau.com/css/rules-of-margin-collapse/
+ * [padding/margin](https://habrahabr.ru/company/netcracker/blog/281008/)
 
 ## cross-browser
 
