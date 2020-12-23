@@ -37,7 +37,8 @@
     * http://resources.jointjs.com/demos/javascript-ast
     * http://astexplorer.net/
     * http://esprima.org/demo/parse.html#
- 
+ * как сократить объём загрузки за счёт полифилов https://web.dev/publish-modern-javascript/ https://estimator.dev/
+ * 
 ## валидаторы syntax check
 
  * https://eslint.org/docs/rules/
