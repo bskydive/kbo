@@ -438,6 +438,12 @@ http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceName
 * akonadi
 * torrent
 * ssh_keys
+* zoom
+
+```  ibus ibus-gtk ibus-gtk3 ibus-lang ibus-m17n ibus-qt ibus-table ibus-table-rustrad ibus-table-translit libm17n0 libotf0 m17n-db m17n-db-lang typelib-1_0-IBus-1_0 zoom
+
+The following 2 recommended packages were automatically selected:
+  ibus-lang m17n-db-lang ```
 
 ## ms teams
 

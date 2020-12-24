@@ -49,6 +49,7 @@
  | feedback | отзыв | обратная связь |
  | hype | ажиотаж, шумиха, манипуляция | |
  | merit | заслуга | |
+ | edge case | исключительный случай | |
  | time slot | временное окно | |
  | prohibit, deny | запрещать | |
  | overwhelmed, impressed | ошеломлённый | |
