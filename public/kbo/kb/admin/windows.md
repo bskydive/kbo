@@ -35,7 +35,44 @@ https://support.office.com/en-us/article/Turn-off-or-uninstall-OneDrive-f32a17ce
 
 ## windows 10
 
-http://www.intowindows.com/how-to-enable-windows-photo-viewer-in-windows-10/
+ * http://www.intowindows.com/how-to-enable-windows-photo-viewer-in-windows-10/
+ * [windows 10 file system image snapshot](https://support.microsoft.com/en-us/windows/backup-and-restore-in-windows-10-352091d2-bb9d-3ea3-ed18-52ef2b88cbef) 
+	* https://windows.gadgethacks.com/how-to/make-full-system-image-backup-windows-10-0162966/
+ * [windows 10](https://www.microsoft.com/ru-ru/software-download/windows10ISO) install [usb from iso](https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/install-windows-from-a-usb-flash-drive)
+
+ ```txt
+	Step 1 - Format the drive and set the primary partition as active
+		Connect the USB flash drive to your technician PC.
+		Open Disk Management: Right-click on Start and choose Disk Management.
+		Format the partition: Right-click the USB drive partition and choose Format. Select the FAT32 file system to be able to boot either BIOS-based or UEFI-based PCs.
+		Set the partition as active: Right-click the USB drive partition and click Mark Partition as Active.
+		Note
+		If Mark Partition as Active isn't available, you can instead use diskpart to select the partition and mark it active.
+
+	Step 2 - Copy Windows Setup to the USB flash drive
+		Use File Explorer to copy and paste the entire contents of the Windows product DVD or ISO to the USB flash drive.
+		Optional: add an unattend file to automate the installation process. For more information, see Automate Windows Setup.
+
+	Step 3 - Install Windows to the new PC
+		Connect the USB flash drive to a new PC.
+		Turn on the PC and press the key that opens the boot-device selection menu for the computer, such as the Esc/F10/F12 keys. Select the option that boots the PC from the USB flash drive.
+		Windows Setup starts. Follow the instructions to install Windows.
+		Remove the USB flash drive.
+
+	Troubleshooting: file copy fails
+
+	This can happen when the Windows image file is over the FAT32 file size limit of 4GB. When this happens:
+		Copy everything except the Windows image file (sources\install.wim) to the USB drive (either drag and drop, or use this command, where D: is the mounted ISO and E: is the USB flash drive.)
+		command
+	robocopy D: E: /s /max:3800000000
+
+	Split the Windows image file into smaller files, and put the smaller files onto the USB drive:
+	command
+	Dism /Split-Image /ImageFile:D:\sources\install.wim /SWMFile:E:\sources\install.swm /FileSize:3800
+
+	Note, Windows Setup automatically installs from this file, so long as you name it install.swm.
+ ```
+ * 
 
 ## ssh putty
 
@@ -56,7 +93,9 @@ http://www.microsoft.com/ru-ru/download/details.aspx?id=24309
 
 ## win7 tips
 
-http://lifehacker.ru/2014/07/16/vy-ne-znaete-windows-7/
+ * http://lifehacker.ru/2014/07/16/vy-ne-znaete-windows-7/
+ * запись экрана screencast recording https://www.theverge.com/2020/4/21/21222533/record-screen-pc-windows-laptop-xbox-game-bar-how-to
+
 
 ## OFFICE PROFESSIONAL PLUS 2010
 

@@ -111,6 +111,7 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 
 ##	css flexbox
 
+ * https://patrickbrosset.com/articles/2021-02-02-4-Weird-Tricks-To-Become-A-10x-Flexbox-Engineer/
  * https://frontender.info/a-guide-to-flexbox/
  * https://kyusuf.com/post/almost-complete-guide-to-flexbox-without-flexbox
  * https://css-tricks.com/old-flexbox-and-new-flexbox/
@@ -272,6 +273,7 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
  * [выбор между технологиями CSS Grid Layout и CSS Flexbox Layout](https://habr.com/ru/company/ruvds/blog/448916/)
  * [Простой генератор CSS-гридов Сары Дрэснер](https://cssgrid-generator.netlify.com/)
  * [A Complete Guide to Grid 2019](https://css-tricks.com/snippets/css/complete-guide-grid/)
+ * [Inspect CSS Grid 2020](https://docs.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/css/grid)
 
 ## clearing очистка стилей
 
