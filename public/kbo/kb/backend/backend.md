@@ -10,23 +10,21 @@ https://habrahabr.ru/post/276731/
 
 ##  API
 
-http://semver.org/
+ * http://semver.org/
+ * http://jsonapi.org
+ * https://habrahabr.ru/company/dataart/blog/277419/
+ * https://any-api.com/
+ * https://apiary.io/
+ * Официальный архитектурный гайд M$ про API design
+ * https://docs.microsoft.com/en-us/azure/architecture/best-practices/api-design
+ * https://docs.microsoft.com/en-us/azure/architecture/best-practices/api-implementation
+ * https://github.com/Microsoft/api-guidelines/blob/master/Guidelines.md
+ * Платформа google https://cloud.google.com/apigee/ https://apigee.com/about/cp/api-design-best-practices
 
-http://jsonapi.org
+### открытые API
 
-https://habrahabr.ru/company/dataart/blog/277419/
-
-https://any-api.com/
-
-https://apiary.io/
-
-
-* Официальный архитектурный гайд M$ про API design
-https://docs.microsoft.com/en-us/azure/architecture/best-practices/api-design
-https://docs.microsoft.com/en-us/azure/architecture/best-practices/api-implementation
-https://github.com/Microsoft/api-guidelines/blob/master/Guidelines.md
-
-* Платформа google https://cloud.google.com/apigee/ https://apigee.com/about/cp/api-design-best-practices
+ * https://proglib.io/p/7-besplatnyh-api-o-kotoryh-nikto-ne-govorit-2020-12-07 https://medium.com/javascript-in-plain-english/7-free-apis-that-nobody-is-talking-about-cf974e15917
+ * https://github.com/public-apis/public-apis
 
 ### REST API
 

@@ -176,14 +176,6 @@ In the above examples, the video stream will be copied over using -c:v copy. If 
 ffmpeg -i ./*.mp4 -vn -sn -dn -af "volume=5dB" audio.m4a
 ```
 
-## ibus
-
-```
-ibus ibus-branding-openSUSE-KDE ibus-gtk ibus-gtk3 ibus-lang ibus-m17n ibus-qt ibus-table ibus-table-rustrad ibus-table-translit libm17n0 libotf0 m17n-db m17n-db-lang typelib-1_0-IBus-1_0
-ibus-lang
-
-```
-
 ## X11Forwarding
 
 
@@ -341,7 +333,25 @@ acpitool  -W 17
 ## kde
 
 
-http://techbase.kde.org/Projects/Plasma/Plasmoids
+ * http://techbase.kde.org/Projects/Plasma/Plasmoids
+ * как отключить проигрыватель на экране блокировки https://forums.opensuse.org/showthread.php/525618-How-to-disable-media-controls-on-lock-screen
+
+ ```
+ /usr/share/plasma/look-and-feel/org.openSUSE.desktop/contents/lockscreen/LockScreenUi.qml
+/usr/share/plasma/look-and-feel/org.kde.breeze.desktop/contents/lockscreen/LockScreenUi.qml
+
+This is part of the plasma5-workspace-5.10.4-1.1.x86_64 package.
+
+Code:
+
+                Loader {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: item ? item.implicitHeight : 0
+                    active: true // TODO configurable
+                    source: "MediaControls.qml"
+                }
+
+ ```
 
 
 ## installation migration OS
@@ -420,6 +430,28 @@ http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceName
 * akonadi
 * torrent
 * ssh_keys
+* zoom
+
+	```  ibus ibus-gtk ibus-gtk3 ibus-lang ibus-m17n ibus-qt ibus-table ibus-table-rustrad ibus-table-translit libm17n0 libotf0 m17n-db m17n-db-lang typelib-1_0-IBus-1_0 zoom
+	ibus-lang m17n-db-lang ```
+
+	```
+	ibus ibus-branding-openSUSE-KDE ibus-gtk ibus-gtk3 ibus-lang ibus-m17n ibus-qt ibus-table ibus-table-rustrad ibus-table-translit libm17n0 libotf0 m17n-db m17n-db-lang typelib-1_0-IBus-1_0
+	ibus-lang
+
+	```
+	https://forums.opensuse.org/showthread.php/539741-How-to-disable-Ibus-autostart
+
+	```
+	/etc/X11/xim.d/ibus
+	*kde*|*xfce*|*lxde*|*startplasma*)
+
+	```
+
+	`chmod a-x /usr/bin/ibus-autostart`
+
+ * 
+ * 
 
 ## ms teams
 

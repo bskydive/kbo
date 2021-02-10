@@ -64,7 +64,6 @@ WantedBy=multi-user.target
 ## API
 
  * [Портирование API на TypeScript как способ решения проблем](https://habr.com/ru/company/ruvds/blog/499664/)
- * [открытые API ](https://github.com/public-apis/public-apis)
 
 ## REST API
 

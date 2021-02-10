@@ -37,7 +37,8 @@
     * http://resources.jointjs.com/demos/javascript-ast
     * http://astexplorer.net/
     * http://esprima.org/demo/parse.html#
- 
+ * как сократить объём загрузки за счёт полифилов https://web.dev/publish-modern-javascript/ https://estimator.dev/
+ * 
 ## валидаторы syntax check
 
  * https://eslint.org/docs/rules/
@@ -179,7 +180,7 @@
  * [инструменты проектирование](/kbo/инструменты/инструменты#проектирование)
  * [Создание архитектуры программы или как проектировать табуретку](https://habr.com/post/276593/)
  * [синглтоны и общие экземпляры](https://habr.com/ru/company/mailru/blog/334078/)
- * [шпаргалка по шалонам проектирования](https://habr.com/ru/post/210288/)
+ * [шпаргалка по шаблонам проектирования](https://habr.com/ru/post/210288/)
  * [Структурные шаблоны проектирования в ES6+ на примере Игры престолов](https://habr.com/ru/post/496148/)
  * [Принципы проектирования классов (S.O.L.I.D.) 2009](https://blog.byndyu.ru/2009/10/solid.html)
 	* [Принцип единственности ответственности](https://blog.byndyu.ru/2009/10/blog-post.html)

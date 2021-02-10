@@ -34,18 +34,23 @@
 
 Для улучшения взаимопонимания в команде и экономии времени на поиск.
 Зачастую люди не понимают смысла английских слов, или не знают перевода русских.
-[словарик 1](https://github.com/web-standards-ru/dictionary/blob/master/dictionary.md)
-[словарик 2](http://www.paratype.ru/help/term/)
+ * [словарик 1](https://github.com/web-standards-ru/dictionary/blob/master/dictionary.md)
+ * [словарик 2](http://www.paratype.ru/help/term/)
+ * [контекстный словарь](https://context.reverso.net/translation/english-russian/)
+ * [словарь](https://multitran.org)
+ * [национальный корпус русского языка](https://ruscorpora.ru/new/search-para-en.html)
 
  | Eng | в прямом переводе | в контексте разработки |
  | --- | --- | --- |
- | issue | суть | задача. по-разному понимается во многих контекстах. |
+ | issue | проблема | задача. по-разному понимается во многих контекстах. |
  | conventions | соглашения | |
  | collaboration, teamwork | сотрудничество, совместная работа | |
  | feature | особенность | полезная особенность |
  | feedback | отзыв | обратная связь |
  | hype | ажиотаж, шумиха, манипуляция | |
  | merit | заслуга | |
+ | edge case | исключительный случай | |
+ | time slot | временное окно | |
  | prohibit, deny | запрещать | |
  | overwhelmed, impressed | ошеломлённый | |
  | keen, interested in | заинтересован | |
@@ -60,7 +65,7 @@
  | scope | охват | область видимости |
  | entity | сущность, экземпляр объекта | |
  | binding | связывание, назначение | |
- | callback | возврат | |
+ | callback | возврат | обратный вызов |
  | namespace | пространство имён | |
  | gullible | доверчивый | |
  | Roughly speaking | грубо говоря | |
@@ -77,7 +82,8 @@
  | coercion | приведение |  |
  | driven | ведомые | ориентированные |
  | perceive | воспринимаемый |  |
- | debounce | антидребезг | отсечка |
+ | debounce | антидребезг | отсечка, сглаживание |
+ | throttle | дроссель | ограничитель |
  | spread | расщепление |  |
  | guide | наставление |  |
  | tab |  | вкладка |
@@ -188,6 +194,7 @@
  | book |  | забронировать, зарезервировать |
  | newcomer |  | новичок |
  | onboarding | адаптация |  |
+ | pattern |  | закономерность, правило |
  |  |  |  |
  |  |  |  |  |
 
