@@ -56,10 +56,27 @@ wine /distr/7z1801-extra/7za.exe x ./path/arch.zip
 mount.cifs
 mount.nfs
 ```
+ * https://doc.opensuse.org/documentation/leap/reference/html/book.opensuse.reference/cha-nfs.html
 
-https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nfs-mount-on-ubuntu-12-04
+```
+cat /etc/exports
+      /export/data   192.168.1.2(rw,sync)
+cat /proc/fs/nfsd/versions
+      +2 +3 +4 +4.1 +4.2
 
-http://serverfault.com/questions/56588/unmount-a-nfs-mount-where-the-nfs-server-has-disappeared
+systemctl restart nfsserver
+
+mount nfs.example.com:/home /home
+
+cat /etc/fstab
+      nfs.example.com:/data /local/pathv4 nfs rw,noauto 0 0 # NFS3
+      nfs.example.com:/data /local/pathv4 nfs4 rw,noauto 0 0 # NFS4
+
+mount -t nfs4 -o minorversion=1 nfs.example.com:/data /local/pathPNFS ## PNFS
+
+```
+
+ * http://serverfault.com/questions/56588/unmount-a-nfs-mount-where-the-nfs-server-has-disappeared
 
 ```bash
 mount.nfs 192.168.0.125:/nfs/My_Book-1 /mnt/My-Book-1/ -o nolock -o soft
