@@ -176,14 +176,6 @@ In the above examples, the video stream will be copied over using -c:v copy. If 
 ffmpeg -i ./*.mp4 -vn -sn -dn -af "volume=5dB" audio.m4a
 ```
 
-## ibus
-
-```
-ibus ibus-branding-openSUSE-KDE ibus-gtk ibus-gtk3 ibus-lang ibus-m17n ibus-qt ibus-table ibus-table-rustrad ibus-table-translit libm17n0 libotf0 m17n-db m17n-db-lang typelib-1_0-IBus-1_0
-ibus-lang
-
-```
-
 ## X11Forwarding
 
 
@@ -438,6 +430,28 @@ http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceName
 * akonadi
 * torrent
 * ssh_keys
+* zoom
+
+	```  ibus ibus-gtk ibus-gtk3 ibus-lang ibus-m17n ibus-qt ibus-table ibus-table-rustrad ibus-table-translit libm17n0 libotf0 m17n-db m17n-db-lang typelib-1_0-IBus-1_0 zoom
+	ibus-lang m17n-db-lang ```
+
+	```
+	ibus ibus-branding-openSUSE-KDE ibus-gtk ibus-gtk3 ibus-lang ibus-m17n ibus-qt ibus-table ibus-table-rustrad ibus-table-translit libm17n0 libotf0 m17n-db m17n-db-lang typelib-1_0-IBus-1_0
+	ibus-lang
+
+	```
+	https://forums.opensuse.org/showthread.php/539741-How-to-disable-Ibus-autostart
+
+	```
+	/etc/X11/xim.d/ibus
+	*kde*|*xfce*|*lxde*|*startplasma*)
+
+	```
+
+	`chmod a-x /usr/bin/ibus-autostart`
+
+ * 
+ * 
 
 ## ms teams
 

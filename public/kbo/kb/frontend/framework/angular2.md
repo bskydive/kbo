@@ -332,6 +332,7 @@ export function main() {
  * [forms validation](https://netbasal.com/make-your-angular-forms-error-messages-magically-appear-1e32350b7fa5)
  * [ошибка линтера Angular FormControl.errors.required](https://github.com/angular/vscode-ng-language-service/issues/149)
  * [Angular Forms: Useful Tips](https://medium.com/angular-in-depth/angular-forms-useful-tips-9f3a9826292e) 2020
+ * [pipes in reactive forms](https://stackoverflow.com/questions/49522542/how-to-use-pipes-in-angular-5-reactive-form-input) `[value]="formGroup.get('rental').value | currency`
 
 ## angular6
 
@@ -1149,15 +1150,21 @@ count.subscribe(x => console.log(x));
 ### tsconfig
 
  * [import json](https://medium.com/@berrow/angular-7-import-json-14f8bba534af) https://stackoverflow.com/questions/52888238/import-json-in-angular-7-project https://stackoverflow.com/questions/46991237/how-to-import-json-file-into-a-typescript-file
+
 	```json
 	{
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
-		"esModuleInterop": true,
 		"resolveJsonModule": true,
-		AND more compiler options here
+		//"esModuleInterop": true,
 	}
 	}
+	```
+
+	```ts
+	import RAW_RAW from 'raw.json';
+	export const RAW: IRaw = RAW_RAW;
+
 	```
 
 ### зависимости DI dependency injection
@@ -1381,10 +1388,13 @@ tsconfig.json
  * [Дизайн GraphQL-схем — делаем АПИ удобным](https://github.com/nodkz/conf-talks/tree/master/articles/graphql/schema-design)
  * [Переход от Rest API к GraphQL на примере реальных проектов / Антон Морев (Wormsoft)](https://www.youtube.com/watch?v=iiI5L6b0Uvo)
  
-## internatiolization перевод locale translate
+## Internatiolization перевод locale локализация translate
 
  * http://www.ngx-translate.com/
  * [мультиязычность в ангуляр](https://www.creativebloq.com/how-to/add-multi-language-support-to-angular)
+ * https://angular.io/guide/i18n#prerequisites
+ * https://tyapk.ru/blog/post/angular-pipe-localization `registerLocaleData(localeRu, 'ru');`
+ * https://angular.io/api/common/DecimalPipe
  
 ## UI/UX framework фреймворки библиотеки
 

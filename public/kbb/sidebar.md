@@ -37,6 +37,8 @@
 	 * [Шпатлёвки](kb/remont/shpatlevki)
 	 * [перегородки](kb/remont/перегородки)
 	 * [Плитка](kb/remont/plitka)
+	 * [Фундамент](kb/remont/фундамент)
+	 * [кровля](kb/remont/кровля)
  * Общие чистовые работы
 	 * [Окраска](kb/remont/kraska)
 	 * [Оклейка обоями](kb/remont/oboi)
