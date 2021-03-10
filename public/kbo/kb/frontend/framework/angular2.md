@@ -6,6 +6,23 @@
 * https://tyapk.ru/blog/category/angular
 * https://tyapk.ru/blog/category/rxjs
 * [состояние angular 2019](https://blog.bitsrc.io/the-state-of-angular-in-2019-b5fb7783a1c6)
+* [сравнение версий 2-10](https://www.ngdevelop.tech/angular/history/)
+	* общие для большинства версий изменения: версии NS/RxJS, производительность, Material компоненты
+	* 2-4-6
+	* 8
+	* 10
+	* 10
+	* 10
+	* 10
+	* 10
+	* 10
+	* 9 - Ivy по-умолчанию, 
+	* 10 - исправили 700 и посмотрели 2000 ошибок, компонент диапазона дат
+* [сравнение версий 2-8](https://medium.com/@lifenshades/difference-among-angular-8-7-6-5-4-3-2-breakdown-new-features-and-changes-811fb5f8e6f0)
+* сравнение comparison с [angularjs](https://www.techaheadcorp.com/blog/angular-vs-angularjs/)
+
+* [планы выкинуть модули](https://angular.io/guide/roadmap#simplified-angular-mental-model-with-optional-ngmodules)
+* [планы выкинуть Zone](https://angular.io/guide/roadmap#leverage-full-framework-capabilities-with-zonejs-opt-out)
 
 ## документация
 
@@ -659,7 +676,6 @@ count.subscribe(x => console.log(x));
 
  * Basic level - [Angular Elements – A Practical Introduction To Web Components With Angular 6](https://www.tsmean.com/articles/angular/pitfalls/)
  * [angular faq](https://rahulrsingh09.github.io/AngularConcepts/faq)
- * [обход подводных камней angular](https://habr.com/ru/company/ruvds/blog/459304/)
  * [подводные камни angular 2019](https://habr.com/ru/company/ruvds/blog/459304/)
  * [Angular Dependency Injection, Singleton Services, and A Loading Indicator](https://medium.com/@weswhite/angular-singleton-service-and-a-loading-indicator-ca3cc7892722)
 
