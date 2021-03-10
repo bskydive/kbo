@@ -8,15 +8,13 @@
 * [состояние angular 2019](https://blog.bitsrc.io/the-state-of-angular-in-2019-b5fb7783a1c6)
 * [сравнение версий 2-10](https://www.ngdevelop.tech/angular/history/)
 	* общие для большинства версий изменения: версии NS/RxJS, производительность, Material компоненты
-	* 2-4-6
-	* 8
-	* 10
-	* 10
-	* 10
-	* 10
-	* 10
-	* 10
-	* 9 - Ivy по-умолчанию, 
+	* 2 - typescript, dart
+	* 4 - renderer v2
+	* 5 - HttpClientModule заменил http
+	* 6 - angular elements(web custom elements), tree-shakable providers(providedIn:root), rxjs 6, Ivy
+	* 7 - drag and drop, node v10, service worker
+	* 8 - webworker, ES6 импорт модулей `()=>`
+	* 9 - Ivy по-умолчанию, ullTemplateTypeCheck, strictTemplates в tsc
 	* 10 - исправили 700 и посмотрели 2000 ошибок, компонент диапазона дат
 * [сравнение версий 2-8](https://medium.com/@lifenshades/difference-among-angular-8-7-6-5-4-3-2-breakdown-new-features-and-changes-811fb5f8e6f0)
 * сравнение comparison с [angularjs](https://www.techaheadcorp.com/blog/angular-vs-angularjs/)
