@@ -58,3 +58,10 @@ https://github.com/hsoft/collapseos
  * https://www.nix.ru/autocatalog/mouse_sven/SVEN-Optical-Mouse-RX-555-Silent-Antistress-Green-RTL-USB-3btn-plus-Roll_211056.html
 
  * [How to take apart HP 7500A Multifunction printer](https://www.youtube.com/watch?v=YeJOPX5u3yQ)
+
+## wifi routers маршрутизаторы
+
+ * https://wikidevi.wi-cat.ru/ZyXEL/Keenetic_series
+ * [Для чего хакерам Микротик и как я спрятал 100 тыс. RouterOS от ботнета](https://habr.com/ru/post/424433/)
+ * [Ubiquiti Routers are in Trouble Again](https://youtu.be/u5YuzpVQL8M?t=373)
+ * 
