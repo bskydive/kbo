@@ -433,22 +433,15 @@ http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceName
 * zoom
 
 	```  ibus ibus-gtk ibus-gtk3 ibus-lang ibus-m17n ibus-qt ibus-table ibus-table-rustrad ibus-table-translit libm17n0 libotf0 m17n-db m17n-db-lang typelib-1_0-IBus-1_0 zoom
-	ibus-lang m17n-db-lang ```
+	ibus-lang m17n-db-lang ibus-branding-openSUSE-KDE ```
 
-	```
-	ibus ibus-branding-openSUSE-KDE ibus-gtk ibus-gtk3 ibus-lang ibus-m17n ibus-qt ibus-table ibus-table-rustrad ibus-table-translit libm17n0 libotf0 m17n-db m17n-db-lang typelib-1_0-IBus-1_0
-	ibus-lang
-
-	```
 	https://forums.opensuse.org/showthread.php/539741-How-to-disable-Ibus-autostart
 
-	```
 	/etc/X11/xim.d/ibus
 	*kde*|*xfce*|*lxde*|*startplasma*)
 
-	```
-
 	`chmod a-x /usr/bin/ibus-autostart`
+	```
 
  * 
  * 
@@ -552,6 +545,10 @@ x11uselocalhost no
 ```
 
 ## firefox
+
+
+* about:config
+* app.update.elevation.promptMaxAttempts
 
 * [Настройка Firefox в Linux 2019](https://habr.com/ru/post/459880/)
 ```
