@@ -15,7 +15,7 @@ module.exports = {
 	},
 	"rules": {
 		"linebreak-style": ["warn", "unix"],
-		"quotes": ["warn", "single"],
+		"quotes": ["off", "single"],
 		"padded-blocks": "off",
 		"space-before-blocks": "warn",
 		"no-multi-spaces": "warn",
@@ -51,7 +51,7 @@ module.exports = {
 		'lines-between-class-members': 'warn',
 		'eol-last': 'warn',
 		'comma-spacing': 'warn',
-		'prefer-const': 'warn',
+		'prefer-const': 'off',
 		'arrow-spacing': 'warn',
 		'key-spacing': 'warn',
 		'space-in-parens': 'warn',
