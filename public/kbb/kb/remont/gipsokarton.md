@@ -109,7 +109,7 @@ http://www.wdvs.ru/tehnologii-ot-gennadiya-emelyanova/gennady-osobennosti-raboti
  * [на стену](https://www.youtube.com/watch?v=fzsvdpmxU88) https://www.youtube.com/watch?v=HEWSYUMx5Wg
  * [утепление внешних стен](https://www.youtube.com/watch?v=HuxI-5PSVX8)
  * [в проём с дверью](https://www.youtube.com/watch?v=4s1CC4DdN3c)
- * [звукоизоляция стены с гипсокартоном](https://www.youtube.com/watch?v=Wb63esnKOx4)
+ * шумоизоляция [звукоизоляция стены с гипсокартоном](https://www.youtube.com/watch?v=Wb63esnKOx4)
 
   * http://chonemuzhik.ru/kak-rabotat-s-gipsokartonom-svoimi-rukami.html
   * http://chonemuzhik.ru/kak-sdelat-mezhkomnatnye-gipsokartonnye-gkl-peregorodki-svoimi-rukami.html

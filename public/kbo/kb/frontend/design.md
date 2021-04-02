@@ -64,7 +64,7 @@
 
 * https://yandex.ru/referats/
 
-##  иконки
+##  иконки icons
 
  * http://ecard.enter-media.org/icon-generator/
  * [Лучшие бесплатные коллекции векторных иконок](https://habrahabr.ru/post/276249/)
