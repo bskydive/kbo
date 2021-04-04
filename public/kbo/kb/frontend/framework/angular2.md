@@ -143,6 +143,7 @@ input[type=email]:not(:plsceholder-shown):invalid {
 ## NGRX REDUX state management 
 
  * [Introducing @ngrx/entity](https://medium.com/ngrx/introducing-ngrx-entity-598176456e15)
+ * [An Intro to ngrx/effects , ngrx/store with Angular 4](https://medium.com/front-end-weekly/an-intro-to-ngrx-effects-ngrx-store-with-angular-4-c55c4d1d5baf)
  * [Angular NgRx Entity - Complete Practical Guide](https://blog.angular-university.io/ngrx-entity/)
  * [Manage Action Flow(http/api) in @ngrx with @ngrx/effects](https://blog.nextzy.me/manage-action-flow-in-ngrx-with-ngrx-effects-1fda3fa06c2f)
  * [State Management in Angular with @ngrx](https://blog.nextzy.me/state-management-in-angular-with-ngrx-da57e59c7c89)

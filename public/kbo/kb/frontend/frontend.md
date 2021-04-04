@@ -292,6 +292,7 @@ https://521dimensions.com/open-source/amplitudejs
  * https://blog.prototypr.io/align-svg-icons-to-text-and-say-goodbye-to-font-icons-d44b3d7b26b4
  * [svg gradient map filter](https://yoksel.github.io/svg-gradient-map/#/)
  * [календарь из svg](https://habr.com/ru/company/yandex/blog/461571/)
+ * [иконки icon sass](https://css-tricks.com/creating-a-maintainable-icon-system-with-sass/)
 
 ### анимация и рисование svg
 

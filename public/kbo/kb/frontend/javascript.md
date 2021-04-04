@@ -408,10 +408,11 @@ https://stateofjs.com/2017/front-end/results
  * http://voidcanvas.com/javascript-performant-coding-tips/
  * [измерение производительности javascript](https://habr.com/ru/company/mailru/blog/272087/)
  * [убийцы оптимизации](https://habr.com/ru/company/mailru/blog/273839/)
+ * [firebase уменьшение объёма](https://habrahabr.ru/post/344248/)
 
 ##  state management
 
- * [firebase](https://habrahabr.ru/post/344248/)
+ * [akita](https://github.com/datorama/akita)
  * [vibe.js](https://habrahabr.ru/post/341126/)
  * redux
  * mobx-tree-store
