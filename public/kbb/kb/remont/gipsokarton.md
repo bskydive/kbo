@@ -102,7 +102,7 @@ http://www.wdvs.ru/tehnologii-ot-gennadiya-emelyanova/gennady-osobennosti-raboti
 
 монтаж ГКЛ
  * [ликбез монтаж гипсокартон](https://www.youtube.com/watch?v=RdFGCIlFfww)
- * [ошибки мрнтаж гипсокартон](https://www.youtube.com/watch?v=A31xfo4IJwQ)
+ * [ошибки монтаж гипсокартон](https://www.youtube.com/watch?v=A31xfo4IJwQ)
  * [шпаклёвка швов гипсокартона](https://www.youtube.com/watch?v=fbJ-fgj--uQ)
  * [наклейка сетки на шпаклёвку](https://www.youtube.com/watch?v=fbJ-fgj--uQ)
  * [на потолок](https://www.youtube.com/watch?v=VgIbi3Jrfps) https://www.youtube.com/watch?v=4mELdpU4kyc&list=PLaugtnLrtCk-1qp9CP2CWELoy23gQzMCb&index=33
