@@ -15,6 +15,9 @@
  * [Контейнеры для взрослых (Часть 03): 10 вещей, которые не надо делать с контейнерами](https://habr.com/company/redhatrussia/blog/421663/)
 
  ```bash
+zypper in docker python3-docker-compose
+# allow in firewall docker-swarm and docker-registry
+systemctl enable docker
 cd ./docker
 docker build -t dff docker-foo-frontend
 docker build -t dfb docker-foo-backend
@@ -24,3 +27,11 @@ alias ffr="docker start dff; docker ps"
 alias fbr="docker start dfb; docker ps"
 alias ds="docker stop dff dfb; docker ps"
  ```
+
+```bash
+docker images
+docker images -a
+docker rmi 800e8b15fa9b
+Error response from daemon: conflict: unable to delete 800e8b15fa9b (must be forced) - image is being used by stopped container d0e2e5f44b23
+docker rm d0e2e5f44b23
+```
