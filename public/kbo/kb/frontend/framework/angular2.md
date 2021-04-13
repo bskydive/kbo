@@ -430,6 +430,11 @@ declare global {
  * [RxJS: How to Observe an Object](https://ncjamieson.com/how-to-observe-an-object/)
 
 
+### курсы rxjs
+
+ * https://www.udemy.com/course/hands-on-rxjs-for-web-development/
+
+
 ### tslint eslint линтеры
 
  * фильтрация вывода линтеров

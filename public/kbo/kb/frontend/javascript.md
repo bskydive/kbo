@@ -28,6 +28,7 @@
  * http://frontender.info/es6-in-depth-generators/
  * http://frontender.info/promises/
  * https://proglib.io/p/javascript-junior
+ * [Тотальный JavaScript: изучаем JS с акцентом на практической составляющей](https://habr.com/ru/post/543646/) https://github.com/harryheman/JavaScript-Total
 
 ## инструменты 
 
@@ -59,6 +60,8 @@
  * [ошибочное понимание DRY](https://habr.com/ru/company/mailru/blog/349978/)
  * [сборник ошибок JS](https://habr.com/ru/company/jugru/blog/494256/)
  * [How JavaScript works: Event loop and the rise of Async programming + 5 ways to better coding with async/await Alexander Zlatkov](https://blog.sessionstack.com/how-javascript-works-event-loop-and-the-rise-of-async-programming-5-ways-to-better-coding-with-2f077c4438b5)
+ * [Как работает JavaScript: часть первая](https://gb.ru/posts/javascript_internals_part1) https://gb.ru/posts/javascript_internals_part2 https://gb.ru/posts/javascript_internals_part3
+ * [How JavaScript works: Event loop and the rise of Async programming + 5 ways to better coding with async/await](https://blog.sessionstack.com/how-javascript-works-event-loop-and-the-rise-of-async-programming-5-ways-to-better-coding-with-2f077c4438b5?gi=63c586bec50f)
 
 ## V8 движок
 
@@ -219,6 +222,7 @@
 
  * [GRASP паттерны проектирования](https://habr.com/ru/post/92570/)
  * GoF - gang of four
+ * [MVC vs MVP vs MVVM](https://habr.com/ru/post/215605/) https://habr.com/ru/company/mobileup/blog/313538/
 
 ### momentjs date дата 
 
@@ -430,6 +434,8 @@ https://stateofjs.com/2017/front-end/results
  * http://www.javatpoint.com/javascript-quiz
  * https://tests4geeks.com/test/javascript
  * https://proglib.io/p/interview-javascript-programmer/
+ * https://typeofnan.dev/10-javascript-quiz-questions-and-answers/
+ * 
 
 
 ##  service workers
@@ -449,6 +455,8 @@ https://stateofjs.com/2017/front-end/results
  * 
 
 ##  promise
+ 
+ * https://dev.to/lydiahallie/javascript-visualized-promises-async-await-5gke
 
 ```js
 

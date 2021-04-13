@@ -39,6 +39,11 @@ WantedBy=multi-user.target
  * https://github.com/bluejamesbond/Scribe.js
  * http://stackoverflow.com/questions/11403953/winston-how-to-rotate-logs
  * http://stackoverflow.com/questions/12016474/node-js-logging
+ * https://www.geeksforgeeks.org/node-js-debugging/
+
+## framework node
+
+ * https://nestjs.com/
 
 ## install
 
@@ -84,6 +89,8 @@ WantedBy=multi-user.target
  * [helmet](https://www.npmjs.com/package/helmet)
  * [Руководство по аутентификации в Node.js без passport.js и сторонних сервисов](https://habr.com/ru/company/ruvds/blog/457700/)
  * [Full Stack Authentication: Cookies and Local Storage React+express](https://www.taniarascia.com/full-stack-cookies-localstorage-react-express/)
+ * http://www.passportjs.org/ 300+ authentication strategies
+ * [Криптография](https://nodejsdev.ru/doc/cryptography/)
 
 ## db
 

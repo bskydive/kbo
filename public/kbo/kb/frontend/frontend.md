@@ -178,6 +178,7 @@
  * [Для проверки JS](http://www.jslint.com/)
  * http://eslint.org/
  * jshint
+ * [putout](https://habr.com/ru/post/504594/)
 
 ## Debug tools
 

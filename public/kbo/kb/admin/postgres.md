@@ -13,6 +13,7 @@
  * [Олимпиада SQL: разбор задачи про календарь](https://habr.com/post/359064/)
  * [Задачи и решения для бойца PostgreSQL](https://habr.com/post/423097/) 
  * [SQL индексы ликбез](https://habr.com/company/oleg-bunin/blog/348172/)
+ * [Иван Панченко — Воркшоп: Постгрес для фронтендеров (часть 1) holyjs](https://www.youtube.com/watch?v=-LqaGUKTALo)
  
 ## Оптимизации
 

@@ -1,4 +1,4 @@
-# Дизайн
+# Design Дизайн
 
 ##  Лучшие практики
 
@@ -34,6 +34,7 @@
  * параллакс
  * [handlebars горизонтально-вертикальная панель прокрутки с функциями](https://uxdesign.cc/handlebars-in-ui-design-4b36af67733b)
  * [библиотека шаблонов дизайна](https://inclusive-components.design/)
+ * [модальное окно modal window](https://www.youtube.com/watch?v=s6PI8pKQxgo&t=78s)
 
 ##  material design
 
@@ -54,6 +55,7 @@
  * https://github.com/kitze/JSUI
  * https://eva.design/components
  * https://akveo.github.io/ngx-admin/
+ * [Тайга](https://taiga-ui.dev/)
 
 ##  компонентный подход component way
 
