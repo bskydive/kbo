@@ -30,6 +30,16 @@
  * https://proglib.io/p/javascript-junior
  * [Тотальный JavaScript: изучаем JS с акцентом на практической составляющей](https://habr.com/ru/post/543646/) https://github.com/harryheman/JavaScript-Total
 
+## задачи собес
+
+ * https://coderoad.ru/45136221/Javascript-задача-кодирования-с-setTimeout-асинхронным-выходом
+ * https://gist.github.com/codedokode/ce30e7a036f18f416ae0
+ * https://medium.com/@olgakozlova/задача-на-асинхронность-promises-и-таймеры-2a3b537c901d/
+ * https://tproger.ru/translations/common-javascript-interview-challenges/
+ * [70 вопросов по JavaScript для подготовки к собеседованию](https://habr.com/ru/post/486820/)
+ * [Каверзные вопросы и задачи по JavaScript из собеседований](https://proglib.io/p/tricky-challenges-js/)
+ * [5 типовых задач на собеседованиях по JavaScript](https://medium.com/webbdev/js-2b0820b3788f)
+
 ## инструменты 
 
  * [импорт, трансформация и анализ json/csv](http://www.data-forge-js.com/)
@@ -61,7 +71,7 @@
  * [сборник ошибок JS](https://habr.com/ru/company/jugru/blog/494256/)
  * [How JavaScript works: Event loop and the rise of Async programming + 5 ways to better coding with async/await Alexander Zlatkov](https://blog.sessionstack.com/how-javascript-works-event-loop-and-the-rise-of-async-programming-5-ways-to-better-coding-with-2f077c4438b5)
  * [Как работает JavaScript: часть первая](https://gb.ru/posts/javascript_internals_part1) https://gb.ru/posts/javascript_internals_part2 https://gb.ru/posts/javascript_internals_part3
- * [How JavaScript works: Event loop and the rise of Async programming + 5 ways to better coding with async/await](https://blog.sessionstack.com/how-javascript-works-event-loop-and-the-rise-of-async-programming-5-ways-to-better-coding-with-2f077c4438b5?gi=63c586bec50f)
+
 
 ## V8 движок
 
@@ -119,6 +129,9 @@
  * [JavaScript Algorithms and Data Structures](https://github.com/trekhleb/javascript-algorithms)
  * [multi-month study plan for going from web developer to software engineer for a large company](https://github.com/jwasham/coding-interview-university)
  * [Data structures introduction](https://www.youtube.com/watch?v=Qmt0QwzEmh0&list=PLDV1Zeh2NRsB6SWUrDFW2RmDotAfPbeHu)
+ * debounce throttle
+	* https://betterprogramming.pub/how-to-use-debounce-and-throttle-in-javascript-da95dc151f7b
+	* https://stephencharlesweiss.com/javascript-debounce-throttle-function/
  
 ## ООП prototype наследование
 
@@ -166,6 +179,11 @@
  * [TypeScript. Магия выражений](typescript)
  * [typescript deep dive](https://habr.com/ru/company/oleg-bunin/blog/499634/) Михаил Башуров (saitonakamura) — Senior Frontend Engineer в компании WiseBits
  * [Runtime type checking with io-ts in Typescript](https://medium.com/@ottoki/runtime-type-checking-with-io-ts-in-typescript-14465169fb02) https://github.com/gcanti/io-ts
+ * https://medium.com/@fivedicephoto/understanding-enums-in-typescript-d4dcb40c1413
+ * https://levelup.gitconnected.com/typescript-best-practices-namespaces-exceptions-and-type-definitions-131d85579fa3
+ * [12 советов по внедрению TypeScript в React-приложениях](https://habr.com/ru/company/tinkoff/blog/505488/)
+ * [Номинативная типизация в TypeScript или как защитить свой интерфейс от чужих идентификаторов](https://habr.com/ru/post/446768/)
+ * https://stackoverflow.com/questions/49761972/difference-between-string-enums-and-string-literal-types-in-ts/54455743#54455743
 
 ### собеседование typescript
 
@@ -201,6 +219,7 @@
  * [SOLID ](https://info.javarush.ru/translation/2013/08/06/Пять-основных-принципов-дизайна-классов-S-O-L-I-D-в-Java.html)
     * [источник](http://howtodoinjava.com/2013/06/07/5-class-design-principles-solid-in-java/)
 	* [SOLID php](https://habr.com/ru/company/mailru/blog/412699/)
+	* [SOLID Typescript](https://medium.com/proximity-labs/solid-principles-using-typescript-5175aa06b583)
 	* [SOLID javascript Охрименко](https://www.youtube.com/watch?v=wi3wPzReKZQ)
 		* битовая маска может кодировать больше чем одно значение - нарушение принципа SRP
 	* SOLID:
@@ -211,7 +230,7 @@
 | Программные сущности (классы, модули, функции и т.п.) должны быть открыты 
 для расширения, но закрыты для изменения.                                               | Open Closed Principle           | (Принцип открытости/закрытости)      |
 | Объекты в программе могут быть заменены их наследниками без изменения 
-свойств программы.                                                                      | Liskov’s Substitution Principle | (Принцип подстановки Барбары Лисков) |
+свойств программы.                                                                      | Liskov 's Substitution Principle | (Принцип подстановки Барбары Лисков) |
 | Клиенты не должны быть вынуждены реализовывать ненужные методы, которые 
 они не будут использовать                                                               | Interface Segregation Principle | (Принцип разделения интерфейса)      |
 | Зависимости внутри системы строятся на основе абстракций. Модули верхнего 
@@ -337,8 +356,9 @@ https://stackoverflow.com/questions/7905929/how-to-test-valid-uuid-guid#13653180
 
  * [navigator.clipboard](https://habr.com/company/ruvds/blog/358494/)
 
-## file файлы
+## file файлы upload save
 
+ * [Интерактивная выгрузка файлов на сервер с помощью RxJS](https://medium.com/ngx/upload-files-with-rxjs-eaf2027266f1)
  * [открыть файл](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications)
 	```html
 		<input 
@@ -406,7 +426,7 @@ https://timothygu.me/es-howto/
 
 https://stateofjs.com/2017/front-end/results
 
-##  производительность highload
+##  производительность highload performance
 
  * https://www.safaribooksonline.com/library/view/high-performance-javascript/9781449382308/ch04s03.html
  * http://voidcanvas.com/javascript-performant-coding-tips/
@@ -425,7 +445,7 @@ https://stateofjs.com/2017/front-end/results
 
  * [64-битная арифметика в браузере и WebAssembly](https://habrahabr.ru/post/308874/)
  * [bigint](https://habr.com/post/354930/)
- * [The Essential Guide To JavaScript’s Newest Data Type: BigInt 2019](https://www.smashingmagazine.com/2019/07/essential-guide-javascript-newest-data-type-bigint/)
+ * [The Essential Guide To JavaScript's Newest Data Type: BigInt 2019](https://www.smashingmagazine.com/2019/07/essential-guide-javascript-newest-data-type-bigint/)
  * https://github.com/MikeMcl/bignumber.js/
 
 ##  тесты
@@ -435,15 +455,15 @@ https://stateofjs.com/2017/front-end/results
  * https://tests4geeks.com/test/javascript
  * https://proglib.io/p/interview-javascript-programmer/
  * https://typeofnan.dev/10-javascript-quiz-questions-and-answers/
- * 
-
+ * [Тестирование JavaScript кода с Jest для чайников. Часть 1](https://habr.com/ru/post/502302/)
 
 ##  service workers
 
  * https://blog.sessionstack.com/how-javascript-works-the-mechanics-of-web-push-notifications-290176c5c55d
+ * [web push notifications](https://web-push-book.gauntface.com/introduction/)
  * [The difference between ServiceWorkers, WebWorkers and WebSockets](https://aarontgrogg.com/blog/2015/07/20/the-difference-between-service-workers-web-workers-and-websockets/)
  * [Как заставить ваши веб-приложения работать в автономном режиме](https://habr.com/ru/company/edison/blog/474374/)
-
+ * [Launching ServiceWorker without breaking the web](https://jakearchibald.com/2014/launching-sw-without-breaking-the-web/)
 
 ##  async await
 
@@ -503,6 +523,8 @@ startPromise(a,b,c)
  * [Филипп Робертс: Что за чертовщина такая event loop? | JSConf EU 2014](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
 	* асинхронные задачи setTimeout,XHR выполняются браузером в отдельных очередях
  * [Further Adventures of the Event Loop - Erin Zimmer - JSConf EU 2018](https://www.youtube.com/watch?v=u1kqx6AenYw)
+ * [Что ты такое, Event Loop? Или как устроен цикл событий в браузере Chrome](https://habr.com/ru/post/461401/)
+ * https://dev.to/sagarrth/an-overview-of-event-loop-tasks-and-microtasks-1i31
  
 ## массивы loop for
 

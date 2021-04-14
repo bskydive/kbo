@@ -21,6 +21,7 @@
 
 * [планы выкинуть модули](https://angular.io/guide/roadmap#simplified-angular-mental-model-with-optional-ngmodules)
 * [планы выкинуть Zone](https://angular.io/guide/roadmap#leverage-full-framework-capabilities-with-zonejs-opt-out)
+* [Deep Dive into the Angular Compiler | Alex Rickabaugh | #AngularConnect 2019](https://www.youtube.com/watch?v=anphffaCZrQ)
 
 ## документация
 
@@ -77,9 +78,14 @@ input[type=email]:not(:plsceholder-shown):invalid {
 	 * DCI - Data Context Interaction - перенос всей логики в файл-контекст, который управлет компонентами
 	 * MALEVICH - все UI данные в объекте для быстрой смены фреймворка
 
-## performance оптимизация и утечки памяти
+## performance оптимизация и утечки памяти производительность
 
  * https://github.com/Angular-RU/change-detection-tree
+ * https://lukeliutingchun.medium.com/angular-performance-issue-caused-by-function-calls-in-template-a1a930f40464
+ * https://medium.com/@dammytrager/lazy-loading-angular-modules-51b2cfdb6190
+ * https://blog.bitsrc.io/top-reasons-why-your-angular-app-is-slow-c36780a0a289
+ * https://netbasal.com/lazy-load-modal-components-in-angular-8cb54bba7bf7
+ * https://netbasal.com/lazy-load-images-in-angular-with-two-lines-of-code-beb13cd5a1c4
  * [bazel в помощь webpack](https://codeburst.io/bazel-an-experimental-and-unofficial-feature-of-angular-6-946e880b4637)
  * [Превышаем скоростные лимиты с Angular 2 / Алексей Охрименко (IPONWEB)](https://www.youtube.com/watch?v=vuPH9J_yonM)
 	* [слайды](https://www.slideshare.net/profyclub_ru/angular-2-iponweb-68717237)
@@ -95,7 +101,7 @@ input[type=email]:not(:plsceholder-shown):invalid {
 		.debounce(500)/**/
 		.distinctUntilChanged()/*прерывает debounce при изменении*/
 		.filter((value) => this.form.valid) 
-		.switchMap((value) => { return http.post(‘/api’, value) })
+		.switchMap((value) => { return http.post('/api', value) })
 			/*incremental backoff - увеличение задержки при повтороной отправке*/
 			.retryWhen(attempts => attempts
 				.zip(Observable.range(1, 3), (_, i) => i)
@@ -133,6 +139,7 @@ input[type=email]:not(:plsceholder-shown):invalid {
 	}
 	```
  * [Tree-shakable dependencies in Angular projects](https://indepth.dev/tree-shakable-dependencies-in-angular-projects/)
+ * [Understanding Memory Leaks in Angular](https://javascript.plainenglish.io/understanding-memory-leaks-in-angular-4a738f7ce90d?gi=a063ee65f609)
 
 ## AOT ahead of time compilation
 
@@ -142,7 +149,10 @@ input[type=email]:not(:plsceholder-shown):invalid {
 
 ## NGRX REDUX state management 
 
+ * https://medium.com/weekly-webtips/using-ngrx-store-in-2020-72f438177c77
+ * https://jczacharia.medium.com/easier-angular-component-state-management-34615849a637
  * [Introducing @ngrx/entity](https://medium.com/ngrx/introducing-ngrx-entity-598176456e15)
+ * https://www.bersling.com/2017/06/05/state-management-ngrxstore-vs-angular-services/
  * [An Intro to ngrx/effects , ngrx/store with Angular 4](https://medium.com/front-end-weekly/an-intro-to-ngrx-effects-ngrx-store-with-angular-4-c55c4d1d5baf)
  * [Angular NgRx Entity - Complete Practical Guide](https://blog.angular-university.io/ngrx-entity/)
  * [Manage Action Flow(http/api) in @ngrx with @ngrx/effects](https://blog.nextzy.me/manage-action-flow-in-ngrx-with-ngrx-effects-1fda3fa06c2f)
@@ -219,6 +229,8 @@ input[type=email]:not(:plsceholder-shown):invalid {
 			}
 		];
 	```
+	* https://levelup.gitconnected.com/angular-10-ngrx-store-by-example-afec6929bbf9
+	* https://medium.com/angular-in-depth/using-angular-elements-with-ngrx-bc655e1eb212
 
 ## CD change detection ZoneJS
 
@@ -292,6 +304,29 @@ processOutsideAngularZone() {
   .catch(err => console.error(err));
  ```
 
+## auth авторизация
+
+ * https://codeburst.io/jwt-authentication-in-angular-48cfa882832c
+ * https://medium.com/engineerbabu/angular-authentication-using-jwt-d846c5ce0ac6
+ * https://medium.com/@joshthompsonsmithdev/auth0-angular-7-login-tutorial-b3111c8e32a
+## forms
+
+ * https://medium.com/angular-in-depth/reducing-the-forms-boilerplate-make-your-angular-forms-reusable-ee06d7c07f47
+ * https://blog.angulartraining.com/dynamic-filtering-with-rxjs-and-angular-forms-a-tutorial-6daa3c44076a
+ * https://bubtaylor.com/loading-angular-reactive-forms-809b7774159a?gi=a2c92d54e3df
+ * https://medium.com/swlh/advanced-form-validation-with-angular-and-joi-6630f76cf8ad
+ * https://medium.com/angular-in-depth/new-way-to-validate-the-angular-reactive-form-2c4fe4f13373
+ * https://indepth.dev/posts/1310/creating-elegant-reactive-forms-with-rxwebvalidators
+ * https://github.com/ngneat/forms-manager
+
+## DI injectors modules services
+
+ * https://medium.com/thinkster-io/3-angular-dependency-injection-tips-c4b5356541ee
+ * https://medium.com/generic-ui/famous-angular-forroot-pattern-59b9eaa0a3f4
+ * https://medium.com/@josce.james7/an-introduction-to-angular-modules-c26d441e42fa
+ * https://medium.com/angular-in-depth/angular-di-getting-to-know-the-ivy-nodeinjector-33b815642a8e
+ * https://lukeliutingchun.medium.com/angular-introduction-to-service-inheritance-aead1a8e1f0c
+ * https://blog.bitsrc.io/solid-the-dependency-inversion-principle-in-angular-6e4b9c484960
 ## web workers
 
  * https://blog.angularindepth.com/angular-with-web-workers-step-by-step-dc11d5872135
@@ -299,28 +334,28 @@ processOutsideAngularZone() {
  * в мобильных браузерах могут быть лимиты по памяти на webworker
 
 ```ts
-import {bootstrapWorkerUi} from '@angular/platform-webworker'; 
-import {enableProdMode} from '@angular/core'; 
+	import {bootstrapWorkerUi} from '@angular/platform-webworker';
+	import {enableProdMode} from '@angular/core';
 
-export function main() { 
-	enableProdMode(); 
-	bootstrapWorkerUi('loader.js'); 
-}
+	export function main() {
+		enableProdMode();
+		bootstrapWorkerUi('loader.js');
+	}
 ```
 
 ```ts
-@NgModule({ 
-		imports: [WorkerAppModule], 
-		bootstrap: [AppComponent], 
-		declarations: [AppComponent] 
-		}) 
-		
-class WebWorkerModule {} 
+	@NgModule({ 
+			imports: [WorkerAppModule], 
+			bootstrap: [AppComponent], 
+			declarations: [AppComponent] 
+			}) 
+			
+	class WebWorkerModule {} 
 
-export function main() { 
-	enableProdMode(); 
-	platformWorkerAppDynamic().bootstrapModule(WebWorkerModule); 
-	}
+	export function main() { 
+		enableProdMode(); 
+		platformWorkerAppDynamic().bootstrapModule(WebWorkerModule); 
+		}
 ```
 ## курсы
 
@@ -335,9 +370,10 @@ export function main() {
  * [auth0 SSO](https://auth0.com/blog/angular-2-authentication/)
  * https://www.tsmean.com/articles/authentication/express-session-angular/
 
-## angular state management router
+## router
 
- * https://www.bersling.com/2017/06/05/state-management-ngrxstore-vs-angular-services/
+ * https://indepth.dev/posts/1379/angular-router-revealing-some-interesting-facts-and-features
+ 
 
 ## reactive forms control
 
@@ -358,14 +394,25 @@ export function main() {
 
 https://stackblitz.com/edit/angular-jhutmd?file=app%2Fapp.component.html
 
+## network
+
+ * https://medium.com/@sjnaveenkumar/writing-a-generic-http-module-in-angular-a56d36d584a7
+ * https://javascript.plainenglish.io/the-right-way-to-make-api-calls-in-angular-5cc03a62bf43
+ * https://blog.usejournal.com/how-to-map-rest-api-data-using-decorator-pattern-in-angular-6-94eb49ba16b1
+ * https://levelup.gitconnected.com/the-correct-way-to-make-api-requests-in-an-angular-application-22a079fe8413
+ * крутилка https://medium.com/swlh/angular-loading-spinner-using-http-interceptor-63c1bb76517b
+
 ## testing тест
 
  * https://simontest.net/
  * https://github.com/angular/in-memory-web-api
  * [Angular: Интеграционное тестирование (Shallow testing)](https://habr.com/ru/company/veeam/blog/486994/)
  * [Three Ways to Test Angular Components](https://vsavkin.com/three-ways-to-test-angular-2-components-dcea8e90bd8d) isolated/shallow/integration
+ * [Angular Testing Series: Why Your Angular Tests Probably Smell](https://betterprogramming.pub/angular-testing-series-why-your-angular-tests-probably-smell-ebab93c59e0)
+ * https://github.com/ngneat/spectator
+ * https://dev.to/qarunqb/tdd-in-angular-dependency-injection-and-mocking-4jnh
 
-*Karma/Jasmine*
+### Karma/Jasmine
 
  * [Angular: Unit Testing Jasmine, Karma (step by step)](https://medium.com/swlh/angular-unit-testing-jasmine-karma-step-by-step-e3376d110ab4)
  * [Настройка VSCdode debug test](https://stackoverflow.com/questions/43916649/debug-tests-in-ng-test/44308743#44308743)
@@ -404,6 +451,7 @@ declare global {
  * [примеры и актуальность методов](https://rxjs-dev.firebaseapp.com/api)
  * [js observable](https://www.youtube.com/watch?v=NK-WzH3RBds)
  * [частые ошибки](https://medium.com/@paynoattn/3-common-mistakes-i-see-people-use-in-rx-and-the-observable-pattern-ba55fee3d031)
+ * https://itnext.io/practical-rxjs-and-angular-b8d38189bb2c
  * [расшепление потоков forkJoin](https://blog.angularindepth.com/practical-rxjs-in-the-wild-requests-with-concatmap-vs-mergemap-vs-forkjoin-11e5b2efe293)
     ```js
         forkJoin(
@@ -428,7 +476,16 @@ declare global {
  * https://github.com/JayKan/RxJS-Playground
  * [вечнозелёная документация для людей](http://reactive.how/)
  * [RxJS: How to Observe an Object](https://ncjamieson.com/how-to-observe-an-object/)
+ * [unsubscribe Почему вам НАДО отписываться от Observable?](https://medium.com/ngx/why-do-you-need-unsubscribe-ee0c62b5d21f)
+ * https://medium.com/angular-in-depth/how-to-rxjs-in-angular-1037908e82a5
+ * https://medium.com/swlh/rxjs-angular-unsubscribe-like-a-pro-ffeedec60aa7
+ * https://blog.bitsrc.io/5-common-mistakes-with-rxjs-1b09d4c19387
+ * https://medium.com/angular-in-depth/reducing-the-forms-boilerplate-make-your-angular-forms-reusable-ee06d7c07f47
 
+
+### тестирование
+
+ * [тестирование rxJS](https://netbasal.com/testing-observables-in-angular-a2dbbfaf5329)
 
 ### курсы rxjs
 
@@ -676,9 +733,25 @@ count.subscribe(x => console.log(x));
  * https://habr.com/company/ispsystem/blog/358696/
  * https://update.angular.io/
 
+
+## Input event
+
+ * https://netbasal.com/event-emitters-in-angular-13e84ee8d28c
+
+## PWA
+
+ * https://pwa.ng/
+
+## desktop angular app
+
+ * https://progtask.ru/angular-electron/
+## web components
+
+ * Basic level - [Angular Elements - A Practical Introduction To Web Components With Angular 6](https://www.tsmean.com/articles/angular/pitfalls/)
+ * https://medium.com/angular-in-depth/angular-web-components-a-complete-guide-5270e5b07e93
+
 ## pitfalls грабли
 
- * Basic level - [Angular Elements – A Practical Introduction To Web Components With Angular 6](https://www.tsmean.com/articles/angular/pitfalls/)
  * [angular faq](https://rahulrsingh09.github.io/AngularConcepts/faq)
  * [подводные камни angular 2019](https://habr.com/ru/company/ruvds/blog/459304/)
  * [Angular Dependency Injection, Singleton Services, and A Loading Indicator](https://medium.com/@weswhite/angular-singleton-service-and-a-loading-indicator-ca3cc7892722)
@@ -1236,6 +1309,7 @@ bootstrap: [
 ]
 
 ```
+ * [Inversion of Control Containers and the Dependency Injection pattern](https://martinfowler.com/articles/injection.html)
 
 ### component interaction child to parent
 
@@ -1496,6 +1570,7 @@ tsconfig.json
  
 ## SEO
 
+ * https://medium.com/madhash/how-to-properly-add-google-analytics-tracking-to-your-angular-web-app-bc7750713c9e
  * title
 	```ts
 	import { Title } from "@angular/platform-browser"@Component({

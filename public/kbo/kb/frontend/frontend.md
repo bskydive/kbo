@@ -100,6 +100,11 @@
  * https://github.com/melnik909/frontend-whitelist/blob/master/README.md
  * [Вы не гугл - обзор ограничений популярных технологий](https://habr.com/ru/post/450230/)
 
+
+## js performance производительность
+
+ * https://www.smashingmagazine.com/2021/01/front-end-performance-2021-free-pdf-checklist/
+ * https://proglib.io/p/33-priema-optimizacii-javascript-kotorye-vy-dolzhny-znat-v-2021-godu-2021-01-12
 ##  трюки
 
  * http://www.habrahabr.net/habr/312812/

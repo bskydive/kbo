@@ -161,7 +161,7 @@ As you can see, our maximum volume is -5.0 dB, so we can apply 5 dB gain. If you
 
     ffmpeg -i video.avi -af "volume=5dB" -c:v copy -c:a libmp3lame -q:a 2 output.avi
 
-    Here we chose quality level 2. Values range from 0–9 and lower means better. Check the MP3 VBR guide for more info on setting the quality. You can also set a fixed bitrate with -b:a 192k, for example.
+    Here we chose quality level 2. Values range from 0-9 and lower means better. Check the MP3 VBR guide for more info on setting the quality. You can also set a fixed bitrate with -b:a 192k, for example.
 
     MP4 format: With an MP4 container, you will typically find AAC audio. We can use ffmpeg's build-in AAC encoder.
 
@@ -703,7 +703,7 @@ onboot=yes
 ```
 
 ```bash
-Remove the kernel’s networking interface rules file so that it can be regenerated
+#Remove the kernel's networking interface rules file so that it can be regenerated
 
 # rm -f /etc/udev/rules.d/70-persistent-net.rules
 # reboot

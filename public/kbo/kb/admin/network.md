@@ -5,6 +5,9 @@
 ## HTTP
 
  * [HTTP-заголовки для ответственного разработчика](https://habr.com/ru/company/mailru/blog/450816/)
+ * [http протокол - Иван Бибилов 2014](https://www.youtube.com/watch?v=yUHlrabtEaU)
+ * [http2 и спрайты](https://habr.com/ru/post/308862/)
+ * [TLS](https://www.freecodecamp.org/news/what-is-tls-transport-layer-security-encryption-explained-in-plain-english/)
 
 ## netstat --> ss
 

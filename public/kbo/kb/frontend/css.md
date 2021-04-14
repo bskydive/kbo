@@ -406,7 +406,7 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 ```css
 	/**
 	 * Reset button styles
-	 * It takes some work to achieve a “blank slate” look.
+	 * It takes some work to achieve a "blank slate" look.
 	 */
 	button {
 		padding: 0;
@@ -635,9 +635,10 @@ https://stackoverflow.com/questions/16647380/max-width-vs-min-width
  * https://daverupert.com/2017/11/happier-html5-forms/
  * http://html5pattern.com/
 
-## <select>
+## <select> dropdown
 
  * [стилизация select 2019](https://css-tricks.com/the-current-state-of-styling-selects-in-2019/)
+ * https://moderncss.dev/custom-select-styles-with-pure-css/
 
 ##	шаблонизаторы препроцессоры
 
