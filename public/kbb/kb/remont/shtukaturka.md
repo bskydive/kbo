@@ -4,6 +4,12 @@
 ## ссылки
 
  * [Установка маяков под штукатурку. Углы 90 градусов. #12. Павел Сидорик](https://www.youtube.com/watch?v=bF1I2olZSc0)
+ * https://pft-master.ru/infoservice/books/
+ * Штукатурка: практическое руководство: материалы, техника производства работ, предотвращение дефектов Хартмут Росс, Фридеманн Шталь; [пер. с нем. Н. А. Хрусталевой]
+	* https://any-book.ru/book/show/id/2684274
+	* https://search.rsl.ru/ru/record/01003035366
+	* https://rusneb.ru/catalog/000200_000018_RU_NLR_bibl_1522652/
+	* https://www.professija.ru/contextbookdetail.html?ID=577
 
 ## материалы
 

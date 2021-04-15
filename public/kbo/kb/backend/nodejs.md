@@ -40,6 +40,7 @@ WantedBy=multi-user.target
  * http://stackoverflow.com/questions/11403953/winston-how-to-rotate-logs
  * http://stackoverflow.com/questions/12016474/node-js-logging
  * https://www.geeksforgeeks.org/node-js-debugging/
+ * https://kittygiraudel.com/2020/09/09/writing-a-debug-script/
 
 ## framework node
 

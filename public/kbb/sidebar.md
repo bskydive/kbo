@@ -5,6 +5,7 @@
 	 * [Общие правила приёмки квартиры в новостройке](kb/remont/priyomka_flat)
 	 * [Замеры помещения](kb/remont/zamer_flat)
  * Планирование
+	 * [документация](kb/remont/документация.md)
 	 * [Последовательность работ](kb/remont/etapi_remonta)
 	 * [Наём рабочих](kb/remont/naem_rabochih)
 	 * [Закупка и расчёт материалов](kb/remont/zakupka_calc)

@@ -43,40 +43,44 @@
 ## лучшие практики
 
  * [Clean Code Checklist in Angular](https://itnext.io/clean-code-checklist-in-angular-%EF%B8%8F-10d4db877f74)
+ * [code review conventions](https://medium.com/inside-league/how-one-code-review-rule-turned-my-team-into-a-dream-team-fdb172799d11)
  * [SOLID: The Dependency Inversion Principle in Angular](https://blog.bitsrc.io/solid-the-dependency-inversion-principle-in-angular-6e4b9c484960?gi=d54f2b80e982)
  * форма авторизации [Sign-in form best practice](https://www.youtube.com/watch?v=alGcULGtiv8)
- ```css
-input[type=email]:not(:plsceholder-shown):invalid {
-	color: red;
-}
- ```
-```html
-<form>
-	<section>
-		<label for="id-mail">Почта</label>
-		<input id="id-mail" name="email" autocomplete="email" type="email" placeholder="почта" required>
-	</section>
-	<section>
-		<label for="id-pass">Пароль</label>
-		<input id="id-pass" *ng-if="passwordType='password'" name="current-password" type="password" placeholder="пароль" required>
-		<ng-container *ng-if="passwordType='new-password'">
-			<input id="id-pass" name="new-password" type="password" placeholder="пароль" required>
-			<input id="id-pass" name="new-password-repeat" type="password" placeholder="пароль повторно" required>
-		</ng-container>
-		<ng-container *ng-if="passwordType='change-password'">
-			<input id="id-pass" name="current-password" type="password" placeholder="текущий пароль" required>
-			<input id="id-pass" name="new-password" type="password" placeholder="новый пароль" required>
-		</ng-container>
-	</section>
-</form>
-```
- * сравнение подходов(patterns) https://www.youtube.com/watch?v=udNHwANuicU https://github.com/obenjiro/AngularStateManagers
+
+	```css
+		input[type=email]:not(:plsceholder-shown):invalid {
+			color: red;
+		}
+	```
+	```html
+		<form>
+			<section>
+				<label for="id-mail">Почта</label>
+				<input id="id-mail" name="email" autocomplete="email" type="email" placeholder="почта" required>
+			</section>
+			<section>
+				<label for="id-pass">Пароль</label>
+				<input id="id-pass" *ng-if="passwordType='password'" name="current-password" type="password" placeholder="пароль" required>
+				<ng-container *ng-if="passwordType='new-password'">
+					<input id="id-pass" name="new-password" type="password" placeholder="пароль" required>
+					<input id="id-pass" name="new-password-repeat" type="password" placeholder="пароль повторно" required>
+				</ng-container>
+				<ng-container *ng-if="passwordType='change-password'">
+					<input id="id-pass" name="current-password" type="password" placeholder="текущий пароль" required>
+					<input id="id-pass" name="new-password" type="password" placeholder="новый пароль" required>
+				</ng-container>
+			</section>
+		</form>
+	```
+ * сравнение подходов(patterns) к архитектуре https://www.youtube.com/watch?v=udNHwANuicU https://github.com/obenjiro/AngularStateManagers
 	 * Services - Стандартный подход работы с сервисами.
 	 * CQS/CQRS - Command Query Separation. - добавление слоя запросов query
 	 * Redux - Stateless Uniderectional Dataflow.
 	 * Mobx - redux + CQRS - добавление слоя запросов
 	 * DCI - Data Context Interaction - перенос всей логики в файл-контекст, который управлет компонентами
 	 * MALEVICH - все UI данные в объекте для быстрой смены фреймворка
+ * https://blog.bitsrc.io/an-opinionated-styleguide-for-angular-af623d54e2b8
+ * https://itnext.io/building-an-enterprise-grade-angular-project-structure-f5be32533ba3
 
 ## performance оптимизация и утечки памяти производительность
 
@@ -309,6 +313,11 @@ processOutsideAngularZone() {
  * https://codeburst.io/jwt-authentication-in-angular-48cfa882832c
  * https://medium.com/engineerbabu/angular-authentication-using-jwt-d846c5ce0ac6
  * https://medium.com/@joshthompsonsmithdev/auth0-angular-7-login-tutorial-b3111c8e32a
+
+## rendering
+
+ * [virtual dom](https://medium.com/angular-in-depth/introducing-to-ng-vdom-a-new-way-to-write-angular-application-60a3be805e59)
+
 ## forms
 
  * https://medium.com/angular-in-depth/reducing-the-forms-boilerplate-make-your-angular-forms-reusable-ee06d7c07f47
@@ -319,6 +328,10 @@ processOutsideAngularZone() {
  * https://indepth.dev/posts/1310/creating-elegant-reactive-forms-with-rxwebvalidators
  * https://github.com/ngneat/forms-manager
 
+## directive components
+
+ * [Directive Selectors, @HostBinding('rel'), :not](https://blog.angularindepth.com/beware-angular-can-steal-your-time-41fe589483df)
+
 ## DI injectors modules services
 
  * https://medium.com/thinkster-io/3-angular-dependency-injection-tips-c4b5356541ee
@@ -327,8 +340,13 @@ processOutsideAngularZone() {
  * https://medium.com/angular-in-depth/angular-di-getting-to-know-the-ivy-nodeinjector-33b815642a8e
  * https://lukeliutingchun.medium.com/angular-introduction-to-service-inheritance-aead1a8e1f0c
  * https://blog.bitsrc.io/solid-the-dependency-inversion-principle-in-angular-6e4b9c484960
+
+## service worker
+
+ * https://angular.io/guide/service-worker-intro
 ## web workers
 
+ * https://angular.io/guide/web-worker
  * https://blog.angularindepth.com/angular-with-web-workers-step-by-step-dc11d5872135
  * https://angular.io/api/platform-webworker
  * в мобильных браузерах могут быть лимиты по памяти на webworker
@@ -445,6 +463,9 @@ declare global {
  * [The introduction to Reactive Programming you've been missing](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754)
  * [View Facades + RxJS](https://medium.com/angular-in-depth/angular-you-may-not-need-ngrx-e80546cc56ee)
  * [reactive manifesto](https://www.reactivemanifesto.org/)
+ * https://medium.com/swlh/basic-reactive-patterns-in-angular-b404bc127a0a
+ * https://blog.bitsrc.io/10-useful-angular-features-youve-probably-never-used-e9e33f5c35a7
+ * https://medium.com/its-tinkoff/best-angular-tips-90bdc1c25529
  * [The introduction to Reactive Programming you've been missing](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754)
  * http://rxmarbles.com/
  * http://reactivex.io/documentation/operators/flatmap.html
@@ -754,7 +775,8 @@ count.subscribe(x => console.log(x));
 
  * [angular faq](https://rahulrsingh09.github.io/AngularConcepts/faq)
  * [подводные камни angular 2019](https://habr.com/ru/company/ruvds/blog/459304/)
- * [Angular Dependency Injection, Singleton Services, and A Loading Indicator](https://medium.com/@weswhite/angular-singleton-service-and-a-loading-indicator-ca3cc7892722)
+ * [Angular Dependency Injection, Singleton Services, and A Loading Indicator spinner крутилка](https://medium.com/@weswhite/angular-singleton-service-and-a-loading-indicator-ca3cc7892722)
+ * [Обход подводных камней Angular и экономия времени](https://habr.com/ru/company/ruvds/blog/459304/) https://blog.angularindepth.com/beware-angular-can-steal-your-time-41fe589483df
 
 ### drag перетаскивание resize
 
@@ -1493,6 +1515,7 @@ tsconfig.json
 ## UI/UX framework фреймворки библиотеки
 
  * using [tailwindcss](https://tailwindcss.com/) in [angular](https://medium.com/@jacobneterer/angular-and-tailwindcss-2388fb6e0bab)
+ * [Theming Angular, ViewEncapsulation](https://medium.com/swlh/theming-angular-c869827738c3)
  * [HTML UI layout for Angular applications; using Flexbox and a Responsive API ](https://github.com/angular/flex-layout)
  * https://bit.dev/
  * [add bootstrap grid into material](https://www.amadousall.com/the-good-parts-of-bootstrap-4-you-are-missing-in-your-angular-material-projects/)
@@ -1523,6 +1546,9 @@ tsconfig.json
 	<p>Other Injected Content</p>
 	</app-header-expanded>
 	```
+### checkbox галки
+
+	* https://netbasal.com/implementing-grouping-checkbox-behavior-with-angular-reactive-forms-9ba4e3ab3965
 
 ## angular material
 
