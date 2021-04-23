@@ -45,8 +45,6 @@
  * [Шпаргалка по вёрстке 2012](https://habr.com/post/163871/)
  * [шпаргалка по специфичности селекторов](http://css-live.ru/css/pravilnaya-shpargalka-po-css-kaskadu.html)
  * [набор простых приёмов на 30 секунд](https://habr.com/ru/company/mailru/blog/350160/)
- * [раскладки layout](https://every-layout.dev/)
- * [Типовые раскладки](http://learnlayout.com/)
 
 #### схлопывание 
 
@@ -99,6 +97,8 @@
 
  * [Нетривиальная расстановка элементов на flexbox без media-запросов	](https://habr.com/ru/post/473186/)
  * https://www.developerdrive.com/holy-grail-layout-flexbox/
+ * [раскладки layout](https://every-layout.dev/)
+ * [Типовые раскладки](http://learnlayout.com/)
 
 ### adaptive vs responsive layout
 
@@ -262,11 +262,11 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
  * [проектирование UI](https://habrahabr.ru/company/ruvds/blog/350166/)
  * https://medium.freecodecamp.org/introducing-css-gridish-helping-teams-to-adapt-css-grid-today-3e031ab222de
  * https://medium.com/@PavelLaptev/learning-css-grid-with-the-swiss-2bd02e913fa
- * https://habrahabr.ru/company/edison/blog/343614/
+ * [Учим CSS Grid за 5 минут](https://habrahabr.ru/company/edison/blog/343614/)
  * https://www.smashingmagazine.com/2017/11/css-grid-supporting-browsers-without-grid/
- * https://habrahabr.ru/company/edison/blog/343796/
- * http://css-live.ru/articles/verstka-prostoj-setki-s-folbekami-ispolzuyushhimi-direktivu-supports-feature-queries.html
- * http://css-live.ru/articles/primenenie-mediavyrazhenij-dlya-proporcij-okna-brauzera.html
+ * [Как быстро спроектировать сайт с помощью CSS Grid](https://habrahabr.ru/company/edison/blog/343796/)
+ * [сетка](http://css-live.ru/articles/verstka-prostoj-setki-s-folbekami-ispolzuyushhimi-direktivu-supports-feature-queries.html)
+ * [медиавыражения](http://css-live.ru/articles/primenenie-mediavyrazhenij-dlya-proporcij-okna-brauzera.html)
  * http://css-live.ru/articles/eshhyo-odna-kollekciya-interesnyx-faktov-pro-css-gridy-css-grid-layout.html
  * [генератор сеток](https://cssgr.id/)
  * [Responsive tables, revisited](http://lea.verou.me/2018/05/responsive-tables-revisited/)
@@ -312,7 +312,7 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 		padding-bottom 0
 ```
 
-### clearing button очистка стилей
+### button
 
  * https://css-tricks.com/overriding-default-button-styles/
  * можно через миксин, элемент button и часть класса [class^="button-"], [class*=" button-"]
@@ -493,7 +493,7 @@ https://bitsofco.de/how-display-contents-works/
 
 https://medium.com/eightshapes-llc/cropping-away-negative-impacts-of-line-height-84d744e016ce
 
-###	css text
+### css text
 
  * http://ecard.enter-media.org/css-text-effects/
  * [высота строки текста](https://css-tricks.com/how-to-tame-line-height-in-css/)

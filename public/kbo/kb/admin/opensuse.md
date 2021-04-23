@@ -356,6 +356,10 @@ Code:
 
 ## installation migration OS
 
+ * включить numlock
+ * удалить snapper packagekit
+ * выключить проигрыватель на экране блокировки
+ * выключить ntpd синхронизацию при загрузке, включить по таймеру каждые 50 минут
  * пароли рут и пользователя
  * установка принтера
  * настройка почты
@@ -462,7 +466,7 @@ http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceName
 
 /dumpmsnp
 
-zypper install libpulse0-32bit alsa-plugins-pulse-32bit libphonon4-32bit pavucontrol
+zypper installlibpulse0-32bit alsa-plugins-pulse-32bit libphonon4-32bit pavucontrol
 
 The following 64 NEW packages are going to be installed:
   Mesa-32bit Mesa-libEGL1-32bit Mesa-libGL1-32bit Mesa-libglapi0-32bit alsa-oss-32bit alsa-plugins-pulse-32bit fontconfig-32bit libFLAC8-32bit libICE6-32bit libLLVM-32bit 
@@ -646,7 +650,39 @@ http://www.liberatedcomputing.net/mm2fm
 		make install
 		After the installation, I ran this command : /etc/init.d/vmware start
 	```
+ * зависания cpu has been disabled by guest
 
+	```bash
+		zypper rm snapper snapper-zypp-plugin yast2-snapper PackageKit PackageKit-backend-zypp PackageKit-branding-openSUSE PackageKit-gstreamer-plugin PackageKit-gtk3-module PackageKit-lang discover-backend-packagekit  grub2-snapper-plugin libpackagekit-glib2-18 libsnapper5
+	```
+	* https://www.geekrar.com/how-to-fix-the-cpu-has-been-disabled-by-the-guest-os/
+
+	```
+		Now without closing the .vmx file, copy the following code and paste it at the end of all lines. If you've the config key smc.version = 0 already there, you may remove it and paste this in place of it. It should look like this.
+
+		cpuid.0.eax = "0000:0000:0000:0000:0000:0000:0000:1011"
+		cpuid.0.ebx = "0111:0101:0110:1110:0110:0101:0100:0111"
+		cpuid.0.ecx = "0110:1100:0110:0101:0111:0100:0110:1110"
+		cpuid.0.edx = "0100:1001:0110:0101:0110:1110:0110:1001"
+		cpuid.1.eax = "0000:0000:0000:0001:0000:0110:0111:0001"
+		cpuid.1.ebx = "0000:0010:0000:0001:0000:1000:0000:0000"
+		cpuid.1.ecx = "1000:0010:1001:1000:0010:0010:0000:0011"
+		cpuid.1.edx = "0000:0111:1000:1011:1111:1011:1111:1111"
+		featureCompat.enable = "TRUE"
+	```
+	* https://kb.vmware.com/s/article/2000542
+
+	```
+	Collect information from the current outage:
+
+		Identify the virtual machine and time of the outage
+		Take a screenshot of the virtual machine's console and note the error messages
+		In the inventory, Right Click on the VM, select 'Suspend' for the virtual machine, the checkpoint suspend (.vmss) and memory image (.vmem)  will be generated and can be found in the datastore from the virtual machine directory
+		Convert the checkpoint suspend files (.vmss and .vmem) from the virtual machine into a core dump file using the vmss2core utility. For more information, see the Debugging Virtual Machines with the Checkpoint to Core Tool technical note, and the article Converting a snapshot file to memory dump using the vmss2core tool. 
+		Resume the virtual machine to the suspended state, then reset the virtual machine to start the GuestOS.
+		Collect logs from the GuestOS kernel leading up to the outage. For more information, contact the guest operating system vendor.
+		Collect logs from the host leading up to the outage.
+	```
 ### звук
 
 усилить громкость на сервере и на госте
