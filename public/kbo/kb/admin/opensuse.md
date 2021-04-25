@@ -392,11 +392,6 @@ Code:
 
 http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/
 
-* зависает при выключении
-	```bash
-		systemctl disable lvm2-monitor.service
-		systemctl stop lvm2-monitor.service
-	```
 * flatpak `flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo` далее `Discover` или в discover - настройка - add flathub
 * evolution - через discover+flathub - поиск - evolution - кликнуть по пакету - источники - flathub
 	
@@ -435,6 +430,13 @@ http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceName
 * torrent
 * ssh_keys
 * zoom
+
+* зависает при выключении
+	```bash
+		systemctl disable lvm2-monitor.service
+		systemctl stop lvm2-monitor.service
+    zypper rm snapper snapper-zypp-plugin yast2-snapper PackageKit PackageKit-backend-zypp PackageKit-branding-openSUSE PackageKit-gstreamer-plugin PackageKit-gtk3-module PackageKit-lang discover-backend-packagekit  grub2-snapper-plugin libpackagekit-glib2-18 libsnapper5
+	```
 
 	```  ibus ibus-gtk ibus-gtk3 ibus-lang ibus-m17n ibus-qt ibus-table ibus-table-rustrad ibus-table-translit libm17n0 libotf0 m17n-db m17n-db-lang typelib-1_0-IBus-1_0 zoom
 	ibus-lang m17n-db-lang ibus-branding-openSUSE-KDE ```
