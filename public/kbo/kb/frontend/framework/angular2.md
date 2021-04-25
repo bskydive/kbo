@@ -144,6 +144,7 @@
 	```
  * [Tree-shakable dependencies in Angular projects](https://indepth.dev/tree-shakable-dependencies-in-angular-projects/)
  * [Understanding Memory Leaks in Angular](https://javascript.plainenglish.io/understanding-memory-leaks-in-angular-4a738f7ce90d?gi=a063ee65f609)
+ * [Повысьте производительность SPA, разбив ваши библиотеки Angular на несколько частей](https://habr.com/ru/post/482646/)
 
 ## AOT ahead of time compilation
 
@@ -235,6 +236,7 @@
 	```
 	* https://levelup.gitconnected.com/angular-10-ngrx-store-by-example-afec6929bbf9
 	* https://medium.com/angular-in-depth/using-angular-elements-with-ngrx-bc655e1eb212
+	* [How to Start Flying with Angular and NgRx](https://indepth.dev/posts/1042/how-to-start-flying-with-angular-and-ngrx)
 
 ## CD change detection ZoneJS
 
@@ -267,6 +269,7 @@ mousemove, scroll, requestAnimationFrame()
  * [zonejs modules](https://github.com/angular/angular/blob/master/packages/zone.js/MODULE.md)
  * [Оптимизация обработки событий в Angular EventManagerPlugin](https://habr.com/ru/company/tinkoff/blog/429692/)
  * https://www.mokkapps.de/blog/the-last-guide-for-angular-change-detection-you-will-ever-need
+ * [The Last Guide For Angular Change Detection You'll Ever Need - 2019](https://www.mokkapps.de/blog/the-last-guide-for-angular-change-detection-you-will-ever-need/)
 
 ```ts
 processOutsideAngularZone() { 
@@ -340,6 +343,7 @@ processOutsideAngularZone() {
  * https://medium.com/angular-in-depth/angular-di-getting-to-know-the-ivy-nodeinjector-33b815642a8e
  * https://lukeliutingchun.medium.com/angular-introduction-to-service-inheritance-aead1a8e1f0c
  * https://blog.bitsrc.io/solid-the-dependency-inversion-principle-in-angular-6e4b9c484960
+ * [Asynchronous modules and components in Angular Ivy](https://indepth.dev/posts/1026/asynchronous-modules-and-components-in-angular-ivy)
 
 ## service worker
 
@@ -391,6 +395,7 @@ processOutsideAngularZone() {
 ## router
 
  * https://indepth.dev/posts/1379/angular-router-revealing-some-interesting-facts-and-features
+ * [Определение маршрутов](https://metanit.com/web/angular2/7.1.php)
  
 
 ## reactive forms control
@@ -1551,6 +1556,10 @@ tsconfig.json
 	* https://netbasal.com/implementing-grouping-checkbox-behavior-with-angular-reactive-forms-9ba4e3ab3965
 
 ## angular material
+
+### material CDK
+
+ * [Tooltip with Angular CDK](https://medium.com/angular-in-depth/building-tooltips-for-angular-3cdaac16d138)
 
 ### генераторы
 

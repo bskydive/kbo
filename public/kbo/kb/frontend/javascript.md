@@ -242,6 +242,7 @@
  * [GRASP паттерны проектирования](https://habr.com/ru/post/92570/)
  * GoF - gang of four
  * [MVC vs MVP vs MVVM](https://habr.com/ru/post/215605/) https://habr.com/ru/company/mobileup/blog/313538/
+ * [Хороший дизайн должен быть SOLID - 2008](http://igor.quatrocode.com/2008/09/solid-top-5.html)
 
 ### momentjs date дата 
 
@@ -447,6 +448,10 @@ https://stateofjs.com/2017/front-end/results
  * [bigint](https://habr.com/post/354930/)
  * [The Essential Guide To JavaScript's Newest Data Type: BigInt 2019](https://www.smashingmagazine.com/2019/07/essential-guide-javascript-newest-data-type-bigint/)
  * https://github.com/MikeMcl/bignumber.js/
+
+## типы данных
+
+ * [maybe](https://dev.to/aminnairi/the-maybe-data-type-in-javascript-3bj8)
 
 ##  тесты
 
