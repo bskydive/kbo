@@ -274,7 +274,46 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
  * [Простой генератор CSS-гридов Сары Дрэснер](https://cssgrid-generator.netlify.com/)
  * [A Complete Guide to Grid 2019](https://css-tricks.com/snippets/css/complete-guide-grid/)
  * [Inspect CSS Grid 2020](https://docs.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/css/grid)
+ * 
+	```scss
+		@supports not (display: grid) {}
 
+		.old-ms-grid { // ие11 поддерживает старую версию гридов
+			display: -ms-grid;
+			-ms-grid-columns: 15em auto 20 em;
+		}
+
+		// классическая раскладка
+		html, body {
+			height: 100%
+		}
+		body {
+			display: grid;
+			grid-template-columns: 15em auto 15em;
+			grid-template-rows: min-content auto min-content;
+		}
+		header, footer {
+			grid-column-start: 1;
+			grid-column-end: 4;
+		}
+	```
+ * термины
+	* cells
+	* gaps(gutters) - поля между ячейками
+	* columns|rows = tracks
+	* lines - границы дорожек
+	* areas - отдельный набор ячеек
+	* items - логическая структура, блок
+	* explicit grid - явно определены правила
+	* implicit grid - неявно, без правил, автоматическая раскладка
+ * операторы
+	* auto=1fr - fractional unit
+	* minmax(minSize, maxSize)
+	* fitcontent(maxSize) = minmax(max-content, maxSize)
+	* repeat(count, ...value) - вместо числа можно auto-fill|auto-fit
+	* auto-fill - заполнение
+	* auto-fit - заполнение с растяжением
+	* grid-template можно сократить до grid
 ## clearing очистка стилей
 
 ```stylus
