@@ -329,12 +329,21 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
  	* можно задать только `grid-column-end: span 2` без start
  	* grid-column: $start / $end
  	* grid-area: $row-start / $column-start / $row-end / $column-end
+	* 1fr - fraction, одна часть, 100%
  * выравнивание
 	* размер ячейки по-умолчанию max-content
-	* выравнивание всего элемента grid - container
-	* выравнивание внутри ячейки - content
+	* выравнивание всего элемента grid|container - `-content`
+	* выравнивание внутри ячейки - `-item`
 	* выравнивание ограничено размерами родительского контейнера
-	* 
+	* justify - горизонтельно
+	* align - вертикально
+	* start, center, end
+	* space-between - везде 1fr между, игнорирует внешние границы
+	* space-evenly - везде 1fr, включая внешние границы
+	* space-around - везде 1fr, 0,5fr во внешние границы
+	* stretch - для item
+	* `-content`|`-item` - для всех элементов grid
+	* `-self` - для одного item
 	* 
 ## clearing очистка стилей
 
