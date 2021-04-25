@@ -305,7 +305,7 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 	* areas - отдельный набор ячеек
 	* items - логическая структура, блок
 	* explicit grid - явно определены правила
-	* implicit grid - неявно, без правил, автоматическая раскладка
+	* implicit grid - неявно, без правил, создаётся автоматическая раскладка
  * операторы
 	* auto=1fr - fractional unit
 	* minmax(minSize, maxSize)
@@ -314,6 +314,28 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 	* auto-fill - заполнение
 	* auto-fit - заполнение с растяжением
 	* grid-template можно сократить до grid
+ 	* grid-auto-flow
+		* column - заполнять сначала весь столбец
+		* row(default) - заполнять сначала строки
+		* автоматически из атрибута `dir:rtl`, `writing-mode:vertical-rl;`
+	* grid-auto-rows - автоматически создаёт строки
+	* grid-auto-columns - автоматически создаёт столбцы
+	* grid-row-gap, grid-column-gap, grid-gap 
+	* span - режим стэка, отсчёт от ближайшего 
+		* `grid-column-start: 2; grid-column-end: span 3;` = `grid-column-start: 2; grid-column-end: 5;`
+		* `grid-column-start: 2; grid-column-end: 4;` = `grid-column-start: span 2; grid-column-end: 4;` - здесь отсчёт span от 4
+		* `grid-column-start: 1; grid-column-end: 2;` = `grid-column-start: span 2`
+ 	* отрицательные lines отсчитываются справа налево, 1(-3) 2(-2) 3(-1)
+ 	* можно задать только `grid-column-end: span 2` без start
+ 	* grid-column: $start / $end
+ 	* grid-area: $row-start / $column-start / $row-end / $column-end
+ * выравнивание
+	* размер ячейки по-умолчанию max-content
+	* выравнивание всего элемента grid - container
+	* выравнивание внутри ячейки - content
+	* выравнивание ограничено размерами родительского контейнера
+	* 
+	* 
 ## clearing очистка стилей
 
 ```stylus
