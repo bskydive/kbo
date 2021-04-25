@@ -318,17 +318,19 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 		* column - заполнять сначала весь столбец
 		* row(default) - заполнять сначала строки
 		* автоматически из атрибута `dir:rtl`, `writing-mode:vertical-rl;`
+		* dense `grid-auto-flow: dense row;` - разрешить заполнять предыдущие свободные места
 	* grid-auto-rows - автоматически создаёт строки
 	* grid-auto-columns - автоматически создаёт столбцы
 	* grid-row-gap, grid-column-gap, grid-gap 
-	* span - режим стэка, отсчёт от ближайшего 
+	* span - режим стэка|пролётов, отсчёт от ближайшего 
 		* `grid-column-start: 2; grid-column-end: span 3;` = `grid-column-start: 2; grid-column-end: 5;`
 		* `grid-column-start: 2; grid-column-end: 4;` = `grid-column-start: span 2; grid-column-end: 4;` - здесь отсчёт span от 4
 		* `grid-column-start: 1; grid-column-end: 2;` = `grid-column-start: span 2`
- 	* отрицательные lines отсчитываются справа налево, 1(-3) 2(-2) 3(-1)
+ 	* отрицательные lines отсчитываются с конца, 1(-3) 2(-2) 3(-1)
+	 	* `grid-column: 1 / -1` - растянуть на весь родительский контейнер
  	* можно задать только `grid-column-end: span 2` без start
- 	* grid-column: $start / $end
- 	* grid-area: $row-start / $column-start / $row-end / $column-end
+ 	* `grid-column: $start / $end`
+ 	* `grid-area: $row-start / $column-start / $row-end / $column-end`
 	* 1fr - fraction, одна часть, 100%
  * выравнивание
 	* размер ячейки по-умолчанию max-content
@@ -344,7 +346,95 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 	* stretch - для item
 	* `-content`|`-item` - для всех элементов grid
 	* `-self` - для одного item
-	* 
+	* `order: 1` - важность|вес элемента при сортировке. Сначала самый маленький.
+ * перекрытие
+	* элементы с одинаковыми позициями перекрывают друг друга
+	* можно пользоваться z-index
+ * псевдонимы
+	 * naming
+	 * можно писать несколько псевдонимов для линии
+	 * `grid-template-rows: [a-start] 1f [a-end middle center b-start] 1fr [b-end]`
+	 * 
+	 	```scss
+			.container {
+				grid-template-columns: [edge-left] repeat(auto-fill, [block-start] 1em 2em [block-end]) [edge-right];
+			}
+			.block-first {
+				grid-column: block-start / block-end; // для нескольких генерируемых значений с одним псевдонимом выбирается первый
+			}
+			.block-third {
+				grid-column: block-start 3 / block-end 3; // можно указать номер линии с этим псевдонимом
+			}
+			.block-third {
+				grid-column: block-start 3 / span 3 block-end; // можно использовать относительный номер !!! может вызвать ошибку при отсутствии смежных линий
+			}
+		```
+	 * через псевдоним области можно задать линии `grid-column`|`grid-row`
+	 	```scss
+			.container {
+				display: grid;
+				grid-template-areas: "
+					header header header
+					nav main aside
+					footer footer footer
+				";
+				grid-template-rows: min-content auto min-content;
+				grid-template-columns: 10em 1fr 1fr;
+				header { grid-area: header;}
+				nav { grid-area: nav;}
+				main { grid-area: main;}
+				aside { grid-area: aside;}
+				footer { grid-area: footer;}
+			}
+		```
+	 * ограничения area псевдонимов: 
+	 	* нельзя L
+			```css
+			grid-template-areas: "
+						header header header
+						nav main aside
+						footer footer footer
+					";
+			```
+		* нельзя пропускать ячейки, но можно заполнять троеточием ellipsis
+		```css
+			grid-template-areas: "
+					header ... ...
+					nav main ...
+					footer footer footer
+				";
+		```
+		* в firefox нужно отжать кнопку, чтобы названия стали видны в отладчике
+		* псевдонимы областей автоматом создают `-start`|`-end` линии
+		* псевдонимы линий автоматом создают области
+		* сокращенная запись `grid` стирает псевдонимы, потому её необходимо ставить вверху класса
+ * адаптивные сетки
+	* начать лучше с меньшей, а потом переходить к большим размерам экрана
+ * вложенные сетки
+	 * по-умолчанию стили применяются только к верхнему уровню иерархии тэгов HTML
+	 * для вложенных уровней тэгов можно определить заново сетку
+	 	```css
+			.subgrid {
+				grid-column: 1/-1;
+				display: grid;
+				grid-template-columns: repeat(12, 1fr);
+				grid-gap: 0.5em;
+			}
+		``` 
+	 * для упрощения кода можно указать subgrid
+	 	```css
+			.subgrid {
+				grid-column: 1/-1;
+				display: grid;
+				grid-template-columns: subgrid;
+			}
+		``` 
+	 * на 2020 год очень плохая поддержка браузеров
+ * изменение размеров
+	 * рост от минимального размера до максимального в зависимости от ширины родительского контейнера
+	 * fractional ячейки растут во вторую очередь после minmax и auto
+	 * auto растёт бесконечно, но если есть fractional - до max-content
+
 ## clearing очистка стилей
 
 ```stylus

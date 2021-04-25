@@ -5,6 +5,8 @@
  * [правила хорошего интерфейса](https://habrahabr.ru/post/277399/)
  * [используй дизайн-гайдлайны, унифицируй компоненты, прикладывай шрифты](https://habrahabr.ru/post/311800/)
  * [Модульная сетка макета с нуля: анализ, расчет и построение](https://habr.com/ru/post/344910/)
+ * [intrinsic web design](https://www.youtube.com/watch?v=AMPKmh98XLY)
+ * [atomic design](https://atomicdesign.bradfrost.com)
 
 ## блоги
 
