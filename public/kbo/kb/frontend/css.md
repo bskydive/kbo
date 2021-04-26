@@ -251,7 +251,21 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 
 ##	Анимация css 
 
-60 FPS	https://habrahabr.ru/post/308006/
+* 60 FPS	https://habrahabr.ru/post/308006/
+
+
+## css flexbox
+
+ * термины
+	* container - родительский элемент
+	* item - тэг на уровень ниже родительского
+	* 
+	* 
+ * 
+ * 
+ * 
+ * 
+ * 
 
 ##	css grid
 
