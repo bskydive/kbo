@@ -34,6 +34,7 @@
  * [библиотека ng-packagr](https://www.youtube.com/watch?v=cgQILJjeDw0)
  * [Google Maps is now an Angular component](https://medium.com/angular-in-depth/google-maps-is-now-an-angular-component-821ec61d2a0)
  * [Как сделать пошаговый гайд вашего приложения (если ваш проект на Angular)](https://habr.com/ru/company/veeam/blog/486994/) подсказочник туториал обучениеи @material/cdk/overlay
+ * [Angular 10, NgRx and Angular Material Starter](https://github.com/tomastrajan/angular-ngrx-material-starter)
 
 ## angular backend
 
@@ -81,6 +82,22 @@
 	 * MALEVICH - все UI данные в объекте для быстрой смены фреймворка
  * https://blog.bitsrc.io/an-opinionated-styleguide-for-angular-af623d54e2b8
  * https://itnext.io/building-an-enterprise-grade-angular-project-structure-f5be32533ba3
+ * [Angular Folder Structure](https://medium.com/@motcowley/angular-folder-structure-d1809be95542)
+ * [Angular 6 Best Practices Application Directory Structure](https://infinityknow.com/angular-6-best-practices-application-directory-structure/)
+ * [5 Tips to improve User Experience of your Angular app with NgRx](https://medium.com/angular-in-depth/5-tips-to-improve-user-experience-of-your-angular-app-with-ngrx-6e849ca99529)
+	 *	three Actions are required for any API call:
+		* Action to trigger the Effect
+		* Action to wrap the successful result (typically suffixed with Success)
+		* Action to reflex the error response (typically suffixed with Error)
+	* Store as a cache
+	* don't store data in localStorage it slows down load
+	* Optimistic interactions with the UI
+ * [Keeping browser tabs in sync using localStorage, NgRx, and RxJS](https://medium.com/angular-in-depth/keeping-browser-tabs-in-sync-using-localstorage-ngrx-and-rxjs-87de3bca4e2c)
+ * [Best practices for a clean and performant Angular application](https://medium.com/free-code-camp/best-practices-for-a-clean-and-performant-angular-application-288e7b39eb6f)
+ * [How to define a highly scalable folder structure for your Angular project](https://itnext.io/choosing-a-highly-scalable-folder-structure-in-angular-d987de65ec7)
+	* https://angular-folder-structure.readthedocs.io
+	* https://github.com/mathisGarberg/angular-folder-structure
+ * 
 
 ## performance оптимизация и утечки памяти производительность
 
@@ -117,7 +134,7 @@
 	* загрузка тяжёлых частей асинхронно, с помощью JS/AJAX, пачкой.
  * Perceive performance [В погоне за производительностью. Психология пользователя / Денис Мишунов (Digital Garden AS)](https://www.youtube.com/watch?v=_0gqOMvNy18)
  * [20 тысяч лье по Angular 4». Александр Трищенко, DataArt](https://www.youtube.com/watch?v=TIMUy9WDuS0)
- * https://github.com/mgechev/angular-performance-checklist
+ * [angular performance checklist](https://github.com/mgechev/angular-performance-checklist)
  * https://www.lucidchart.com/techblog/2016/05/04/angular-2-best-practices-change-detector-performance/
  * [передвинуть](https://netbasal.com/angular-services-do-not-have-to-be-singletons-ffa879e62082?gi=c6b3d97473d8) объявления из ngModule в компонент или очистить в ngOnDestroy
 
@@ -145,6 +162,7 @@
  * [Tree-shakable dependencies in Angular projects](https://indepth.dev/tree-shakable-dependencies-in-angular-projects/)
  * [Understanding Memory Leaks in Angular](https://javascript.plainenglish.io/understanding-memory-leaks-in-angular-4a738f7ce90d?gi=a063ee65f609)
  * [Повысьте производительность SPA, разбив ваши библиотеки Angular на несколько частей](https://habr.com/ru/post/482646/)
+ * [Optimize Angular bundle size in 4 steps](https://medium.com/angular-in-depth/optimize-angular-bundle-size-in-4-steps-4a3b3737bf45)
 
 ## AOT ahead of time compilation
 
@@ -237,6 +255,20 @@
 	* https://levelup.gitconnected.com/angular-10-ngrx-store-by-example-afec6929bbf9
 	* https://medium.com/angular-in-depth/using-angular-elements-with-ngrx-bc655e1eb212
 	* [How to Start Flying with Angular and NgRx](https://indepth.dev/posts/1042/how-to-start-flying-with-angular-and-ngrx)
+	* [How to Start Flying with Angular and NgRx](https://medium.com/angular-in-depth/how-to-start-flying-with-angular-and-ngrx-b18e84d444aa)
+	* [Unit testing of ngrx-store in Angular app - 2017](https://medium.com/@aravindfz/unit-testing-of-ngrx-store-in-angular-app-d0935c8d8d1b)
+	* [angular-ngrx-data — state management и CRUD за пять минут](https://habr.com/ru/post/418369/)
+	* [Реактивные приложения на Angular/NGRX. Часть 1. Введение.](https://medium.com/@demyanyuk/реактивные-приложения-на-angular-ngrx-часть-1-cb7b4f2852dc)
+	* [Практическое применение RxJS Написание собственного Ngrx](https://medium.com/ngx/practical-use-rxjs-81aaab57045c)
+	* [Стейт-машина в Angular: учимся использовать правильно](https://medium.com/ngx/practical-use-rxjs-81aaab57045c)
+		* Для сложных случаев подойдут: Dexie.js, LokiJs, sql.js, Alasql 
+		* Простой и надёжной шиной сообщений являются сервисы, организованные, как рекомендовано в CQS/CQRS. Есть и готовые решения — ngx-message-bus и angular-cqrs
+		* Чаще, требуется только Store или Event Bus, альтернатив которым полно в сети или которые можно легко написать самостоятельно, и они не будут диктовать условия вашей архитектуре.
+	* [NGRX Entities: UpdateOne and UpdateMany @ngrx/entities ](https://medium.com/@daveharmswebdev/ngrx-entities-updateone-and-updatemany-ced8863d63a6)
+	* [Introducing @ngrx/entity](https://medium.com/ngrx/introducing-ngrx-entity-598176456e15)
+	* [Managing State in Angular Applications using NgRx](https://blog.nrwl.io/using-ngrx-4-to-manage-state-in-angular-applications-64e7a1f84b7b)
+	* [NgRx — Cherry Picking the Meta](https://medium.com/angular-in-depth/ngrx-cherry-picking-the-meta-30869953e929)
+	* [@ngrx/data a full-featured entity management system](https://ngrx.io/guide/data/limitations)
 
 ## CD change detection ZoneJS
 
@@ -256,61 +288,62 @@ mousemove, scroll, requestAnimationFrame()
  ```
  * https://angular.io/api/core/ChangeDetectionStrategy
 
-```ts
-	@Component({ 
-		template: ` <h2>{{vData.name}}</h2> <span>{{vData.email}}</span> `, 
-		changeDetection: ChangeDetectionStrategy.OnPush 
-		}) 
-		
-	class VCardCmp { 
-		@Input() vData; 
-		}
-```
+	```ts
+		@Component({ 
+			template: ` <h2>{{vData.name}}</h2> <span>{{vData.email}}</span> `, 
+			changeDetection: ChangeDetectionStrategy.OnPush 
+			}) 
+			
+		class VCardCmp { 
+			@Input() vData; 
+			}
+	```
  * [zonejs modules](https://github.com/angular/angular/blob/master/packages/zone.js/MODULE.md)
  * [Оптимизация обработки событий в Angular EventManagerPlugin](https://habr.com/ru/company/tinkoff/blog/429692/)
  * https://www.mokkapps.de/blog/the-last-guide-for-angular-change-detection-you-will-ever-need
  * [The Last Guide For Angular Change Detection You'll Ever Need - 2019](https://www.mokkapps.de/blog/the-last-guide-for-angular-change-detection-you-will-ever-need/)
 
-```ts
-processOutsideAngularZone() { 
-	this.progress = 0; 
-	this.zone.runOutsideAngular(//выполнить вне зоны, без CD
-		() => {
-			this.increaseProgress(//сделать что-то
-				() => { 
-					this.zone.run(//запустить проверку CD
-						() => { 
-							console.log('Outside Done!'); 
-						}
-					); 
-				}
-			); 
-		}
-	); 
-} 
-
-```
-
-```ts
- constructor(private cd: ChangeDetectorRef) {} 
-
- ngOnInit() { 
-	 this.addItemStream.subscribe(
-		() => { 
-			 this.counter++; // application state changed 
-			 this.cd.markForCheck(); // marks path 
+	```ts
+	processOutsideAngularZone() { 
+		this.progress = 0; 
+		this.zone.runOutsideAngular(//выполнить вне зоны, без CD
+			() => {
+				this.increaseProgress(//сделать что-то
+					() => { 
+						this.zone.run(//запустить проверку CD
+							() => { 
+								console.log('Outside Done!'); 
+							}
+						); 
+					}
+				); 
 			}
-		) 
+		); 
 	} 
-} 
-```
+
+	```
+
+	```ts
+	constructor(private cd: ChangeDetectorRef) {} 
+
+	ngOnInit() { 
+		this.addItemStream.subscribe(
+			() => { 
+				this.counter++; // application state changed 
+				this.cd.markForCheck(); // marks path 
+				}
+			) 
+		} 
+	} 
+	```
 
  * disable zonejs
- ```js
- platformBrowserDynamic().bootstrapModule(AppModule, { ngZone: 'noop' })
-  .catch(err => console.error(err));
- ```
 
+	```js
+	platformBrowserDynamic().bootstrapModule(AppModule, { ngZone: 'noop' })
+	.catch(err => console.error(err));
+	```
+ * [The difference between NgDoCheck and AsyncPipe in OnPush components](https://indepth.dev/posts/1010/the-difference-between-ngdocheck-and-asyncpipe-in-onpush-components)
 ## auth авторизация
 
  * https://codeburst.io/jwt-authentication-in-angular-48cfa882832c
@@ -334,6 +367,36 @@ processOutsideAngularZone() {
 ## directive components
 
  * [Directive Selectors, @HostBinding('rel'), :not](https://blog.angularindepth.com/beware-angular-can-steal-your-time-41fe589483df)
+ * [Changing the behavior of a 3rd party Angular Component](https://medium.com/angular-in-depth/changing-the-behavior-of-a-3rd-party-angular-component-91f84fb9af28)
+ 
+	```html
+		<!-- notice "customRadio" directive in html below --> 
+		<ion-select  [(ngModel)]="mdls" customRadio>
+		<ion-option *ngFor="let model of mdls" >{{model}}</ion-option>
+		</ion-select>
+	```
+
+	```js
+		// accessing to component through directive
+		import { Directive } from '@angular/core';
+		import { Host, Self, Optional } from '@angular/core';
+
+		@Directive({
+			selector: '[customRadio]',
+		})
+		export class CustomRadioDirective {
+			
+			constructor(
+			@Host() @Self() @Optional() public hostSel : Select) {
+			// Now you can access specific instance members of host directive
+			let app = (<any>hostSel)._app;
+			// also you can override specific methods from original host directive so that this specific instance uses your method rather than their original methods.
+			hostSel.open = (ev?: UIEvent) => {
+				// your custom code for open() method here..
+			}
+			}
+		}
+	```
 
 ## DI injectors modules services
 
@@ -344,6 +407,9 @@ processOutsideAngularZone() {
  * https://lukeliutingchun.medium.com/angular-introduction-to-service-inheritance-aead1a8e1f0c
  * https://blog.bitsrc.io/solid-the-dependency-inversion-principle-in-angular-6e4b9c484960
  * [Asynchronous modules and components in Angular Ivy](https://indepth.dev/posts/1026/asynchronous-modules-and-components-in-angular-ivy)
+ * [All you need to know about Ivy, The new Angular engine! 2019](https://medium.com/angular-in-depth/all-you-need-to-know-about-ivy-the-new-angular-engine-9cde471f42cf)
+ * [Введение в модули Angular — корневой модуль (Root Module)](https://habr.com/ru/post/351504/)
+ * [Конфигурируемые модули Angular](https://tyapk.ru/blog/post/angular-configurable-modules)
 
 ## service worker
 
@@ -386,6 +452,7 @@ processOutsideAngularZone() {
  * https://ultimateangular.com/#
  * https://blog.angularindepth.com/
  * https://basarat.gitbooks.io/typescript/content/docs/types/type-assertion.html
+ * [Learn Angular in this free 33-part course by Angular-expert Dan Wahlin](https://www.freecodecamp.org/news/want-to-learn-angular-heres-our-free-33-part-course-by-dan-wahlin-fc2ff27ab451/)
 
 ## security
 
@@ -502,11 +569,23 @@ declare global {
  * https://github.com/JayKan/RxJS-Playground
  * [вечнозелёная документация для людей](http://reactive.how/)
  * [RxJS: How to Observe an Object](https://ncjamieson.com/how-to-observe-an-object/)
- * [unsubscribe Почему вам НАДО отписываться от Observable?](https://medium.com/ngx/why-do-you-need-unsubscribe-ee0c62b5d21f)
  * https://medium.com/angular-in-depth/how-to-rxjs-in-angular-1037908e82a5
- * https://medium.com/swlh/rxjs-angular-unsubscribe-like-a-pro-ffeedec60aa7
  * https://blog.bitsrc.io/5-common-mistakes-with-rxjs-1b09d4c19387
  * https://medium.com/angular-in-depth/reducing-the-forms-boilerplate-make-your-angular-forms-reusable-ee06d7c07f47
+ * [subjects async behavior reply](https://www.learnrxjs.io/learn-rxjs/subjects)
+ * [RxJS: multicast's Secret without connectable](https://cartant.medium.com/rxjs-multicasts-secret-760e1a2b176e)
+ * [Live search with RxJS- the devil is in the details](https://medium.com/angular-in-depth/rxjs-live-search-the-devil-is-in-the-detail-119637186427)
+ * [Hot vs Cold Observables](https://medium.com/@benlesh/hot-vs-cold-observables-f8094ed53339)
+ * [Learning Observable By Building Observable](https://medium.com/@benlesh/learning-observable-by-building-observable-d5da57405d87)
+
+### unsubscribe
+
+ * [unsubscribe Почему вам НАДО отписываться от Observable?](https://medium.com/ngx/why-do-you-need-unsubscribe-ee0c62b5d21f)
+ * https://medium.com/swlh/rxjs-angular-unsubscribe-like-a-pro-ffeedec60aa7
+ * [The Best Way To Unsubscribe RxJS Observables In The Angular Applications!](https://medium.com/angular-in-depth/the-best-way-to-unsubscribe-rxjs-observable-in-the-angular-applications-d8f9aa42f6a0)
+ * [Different ways of unsubscribing from RxJS Observables with Angular](https://blog.codecentric.de/en/2018/01/different-ways-unsubscribing-rxjs-observables-angular/)
+ * [When to Unsubscribe in Angular](https://netbasal.com/when-to-unsubscribe-in-angular-d61c6b21bad3)
+
 
 
 ### тестирование
@@ -713,16 +792,18 @@ Rx.Observable.concat(timer, timer) // concating the same Observable!
  * http://reactivex.io/documentation/operators/switch.html
  * @example Rerun an interval Observable on every click event 
 
-```js
-var clicks = Rx.Observable.fromEvent(document, 'click'); 
-var result = clicks.switchMap((ev) => Rx.Observable.interval(1000)); 
-result.subscribe(x => console.log(x));
+	```js
+		var clicks = Rx.Observable.fromEvent(document, 'click'); 
+		var result = clicks.switchMap((ev) => Rx.Observable.interval(1000)); 
+		result.subscribe(x => console.log(x));
 
-@param {function(value: T, ?index: number): ObservableInput} project - A function that, when applied to an item emitted by the source Observable, returns an Observable. 
-@return {Observable} An Observable that emits the result of applying the projection function (and the optional resultSelector) to each item emitted by the source Observable and taking only the values from the most recently projected inner Observable. 
-@method switchMap 
-@owner Observable
-```
+		@param {function(value: T, ?index: number): ObservableInput} project - A function that, when applied to an item emitted by the source Observable, returns an Observable. 
+		@return {Observable} An Observable that emits the result of applying the projection function (and the optional resultSelector) to each item emitted by the source Observable and taking only the values from the most recently projected inner Observable. 
+		@method switchMap 
+		@owner Observable
+	```
+
+ * [RxJS: Avoiding switchMap-Related Bugs](https://cartant.medium.com/switchmap-bugs-b6de69155524)
 
 ### scan
 
@@ -856,6 +937,7 @@ count.subscribe(x => console.log(x));
 		this.router.routerState.snapshot.root.firstChild.routeConfig.canActivate
 	```
  * `Can't bind to 'active' since it isn't a known property of 'a'` (импорт MatTabsModule)[https://github.com/angular/material2/issues/11372]
+ * [Guards позволяют ограничить навигацию по определенным маршрутам](https://metanit.com/web/angular2/7.7.php)
 
 ### mat-icon
 
@@ -1394,10 +1476,11 @@ const httpOptions = {
 
 ```
 
-## interceptors
+## HTTP interceptors
 
  * https://medium.com/@ryanchenkie_40935/angular-authentication-using-the-http-client-and-http-interceptors-2f9d1540eb8
  * http://stepansuvorov.com/blog/2014/04/angularjs-interceptors-%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D1%80%D1%8B/
+ * [Top 10 ways to use Interceptors in Angular](https://medium.com/angular-in-depth/top-10-ways-to-use-interceptors-in-angular-db450f8a62d6)
 
 ## книги
 
@@ -1508,6 +1591,8 @@ tsconfig.json
  * [Дизайн GraphQL-схем — строим схемы правильно (версия 2) / Павел Черторогов (ps.kz)](https://www.youtube.com/watch?v=tASEYJXdO_c) 
  * [Дизайн GraphQL-схем — делаем АПИ удобным](https://github.com/nodkz/conf-talks/tree/master/articles/graphql/schema-design)
  * [Переход от Rest API к GraphQL на примере реальных проектов / Антон Морев (Wormsoft)](https://www.youtube.com/watch?v=iiI5L6b0Uvo)
+ * [Пентест приложений с GraphQL](https://habr.com/ru/company/dsec/blog/444708/)
+ * [Руководство по языку запросов GraphQL для начинающих](https://tproger.ru/translations/graphql-beginners-guide/)
  
 ## Internatiolization перевод locale локализация translate
 
@@ -1554,9 +1639,16 @@ tsconfig.json
 ### checkbox галки
 
 	* https://netbasal.com/implementing-grouping-checkbox-behavior-with-angular-reactive-forms-9ba4e3ab3965
+	* [Кастомные чекбоксы правильно](https://www.youtube.com/watch?v=E6kLaaQFctU)
 
 ## angular material
 
+ * [The complete guide to Angular Material Themes](https://medium.com/@tomastrajan/the-complete-guide-to-angular-material-themes-4d165a9d24d1)
+ * https://material.angular.io/guide/theming
+ * https://material.angular.io/guide/theming-your-components
+ * https://github.com/angular/material2/blob/master/src/lib/core/theming/_theming.scss
+ * https://material.angular.io/guide/customizing-component-styles
+ * http://blog.bogdancarpean.com/create-custom-color-theme-on-angular-material/
 ### material CDK
 
  * [Tooltip with Angular CDK](https://medium.com/angular-in-depth/building-tooltips-for-angular-3cdaac16d138)
@@ -1564,14 +1656,6 @@ tsconfig.json
 ### генераторы
 
  * [для react](https://material-ui.com/getting-started/installation/)
-
-### ликбез
-
- * https://material.angular.io/guide/theming
- * https://material.angular.io/guide/theming-your-components
- * https://github.com/angular/material2/blob/master/src/lib/core/theming/_theming.scss
- * https://material.angular.io/guide/customizing-component-styles
- * http://blog.bogdancarpean.com/create-custom-color-theme-on-angular-material/
 
 ### цвета color
  

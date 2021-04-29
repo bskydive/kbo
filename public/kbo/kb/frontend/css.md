@@ -39,7 +39,16 @@
  * [специфичность по стхм](https://stuffandnonsense.co.uk/archives/css_specificity_wars.html)
  * [сильные стороны css](http://css-live.ru/articles/ustojchivyj-deklarativnyj-kontekstnyj-novyj-vzglyad-na-silnye-storony-css.html)
  * [ограничения сокращённой записи свойств](https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties#Tricky_edge_cases)
-
+ * [ТОП-6 рецептов на чистом HTML и CSS без использования JS](https://proglib.io/p/html-css-tricks/)
+	* Липкие блоки
+	* Прокрутка, привязка, выравнивание
+	* Кирпичная кладка на HTML и CSS
+	* Псевдокласс placeholder-shown
+	* вкладки через :target
+	* Аккордеон <details> и <summary>
+	* 
+ * [Keeping it simple with CSS that scales - css conventions](https://archive.hankchizljaw.com/wrote/keeping-it-simple-with-css-that-scales/)
+ * [prefers-color-scheme: Hello darkness, my old friend](https://web.dev/prefers-color-scheme/)
 ### решение проблем
  
  * [Шпаргалка по вёрстке 2012](https://habr.com/post/163871/)
@@ -99,6 +108,7 @@
  * https://www.developerdrive.com/holy-grail-layout-flexbox/
  * [раскладки layout](https://every-layout.dev/)
  * [Типовые раскладки](http://learnlayout.com/)
+ * [CSS Grid Layout Generator](https://css-grid-layout-generator.pw/)
 
 ### adaptive vs responsive layout
 
@@ -288,6 +298,10 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
  * [Простой генератор CSS-гридов Сары Дрэснер](https://cssgrid-generator.netlify.com/)
  * [A Complete Guide to Grid 2019](https://css-tricks.com/snippets/css/complete-guide-grid/)
  * [Inspect CSS Grid 2020](https://docs.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/css/grid)
+ * [Create a CSS Grid Image Gallery (With Blur Effect and Interaction Media Queries)](https://webdesign.tutsplus.com/tutorials/create-a-css-grid-image-gallery-with-blur-effect-and-interaction-media-queries--cms-32287)
+
+###  ликбез
+
  * 
 	```scss
 		@supports not (display: grid) {}

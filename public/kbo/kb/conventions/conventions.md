@@ -204,6 +204,12 @@
 1. [DRY](https://ru.wikipedia.org/wiki/Don%E2%80%99t_repeat_yourself)
 1. [KISS](https://ru.wikipedia.org/wiki/KISS_%28принцип%29)
 1. [JSDOC](http://usejsdoc.org/)
+1. https://basecamp.com/books/getting-real
+1. https://www.yegor256.com/2014/04/17/how-xdsd-is-different.html
+1. https://en.wikipedia.org/wiki/Extreme_programming
+1. https://en.wikipedia.org/wiki/Scrum_(software_development)
+1. https://wemake.services/meta/rsdp
+1. https://www.sonarsource.com/docs/CognitiveComplexity.pdf
 
 ## Соглашения с Бизнесом
 

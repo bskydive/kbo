@@ -54,4 +54,7 @@ https://mobiforge.com/design-development/adding-favicons-in-a-multi-browser-mult
 ## производительность
 
  * [link preload](https://www.smashingmagazine.com/2016/02/preload-what-is-it-good-for/)
+ * [Оптимизация загрузки изображений](https://habr.com/ru/post/482820/)
+ * [How to Optimize Page Load Times: A Different Slant on the Frustration Index](https://calendar.perfplanet.com/2019/how-to-optimize-page-load-times-a-different-slant-on-the-frustration-index/)
+
 

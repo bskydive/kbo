@@ -6,6 +6,7 @@
  * https://proglib.io/p/12-javascript-tricks
  * [Концепции чистого кода адаптированные для TypeScript, вдохновленные clean-code-javascript](https://github.com/Real001/clean-code-typescript)
  * [You don't (may not) need Lodash/Underscore](https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore)
+ * [Infinite Scroll using Generators!](https://ashishshubham.medium.com/infinite-scroll-using-generators-bbacbf6cafd9)
 
 ## links
 
@@ -18,6 +19,7 @@
  * https://tproger.ru/translations/event-emitter-javascript/
  * http://www.2ality.com/2016/10/understanding-promises.html
  * [наставления с примерами по созданию популярных сервисов ](https://github.com/danistefanovic/build-your-own-x)
+ * https://javascriptweekly.com/
 
 ## обучение
 
@@ -39,6 +41,8 @@
  * [70 вопросов по JavaScript для подготовки к собеседованию](https://habr.com/ru/post/486820/)
  * [Каверзные вопросы и задачи по JavaScript из собеседований](https://proglib.io/p/tricky-challenges-js/)
  * [5 типовых задач на собеседованиях по JavaScript](https://medium.com/webbdev/js-2b0820b3788f)
+ * [43 JavaScript Questions, With Their Answers Explained](https://javascriptweekly.com/link/81865/web)
+ * [10 Interview Questions Every JavaScript Developer Should Know 2020](https://medium.com/javascript-scene/10-interview-questions-every-javascript-developer-should-know-6fa6bdf5ad95)
 
 ## инструменты 
 
@@ -54,6 +58,8 @@
 
  * https://eslint.org/docs/rules/
  * https://palantir.github.io/tslint/rules/
+ * [eslint tinkoff conventions](https://github.com/TinkoffCreditSystems/linters)
+ * [eslint wemake](https://sobolevn.me/2019/02/engineering-guide-to-user-stories)
  
 ## ботанство
 
@@ -61,22 +67,29 @@
  * https://medium.com/@DmitrySoshnikov
  * [параллельные конкурентные потоки многопоточность](https://hacks.mozilla.org/2017/06/a-crash-course-in-memory-management/)
  * [Основы движков JavaScript: общие формы и Inline кэширование. Часть 2](https://habr.com/ru/company/otus/blog/447220/)
- * [Функциональный JavaScript: пять способов нахождения среднего арифметического элементов массива и метод .reduce()](https://habr.com/ru/company/ruvds/blog/458030/)
  * [Часто задаваемые вопросы о системах типов](https://habr.com/ru/company/ruvds/blog/462481/)
  * [производительность javascript](https://habr.com/ru/company/mailru/blog/321748/)
- * [функциональное программирование](https://habr.com/ru/company/mailru/blog/327522/)
  * [глюки javascript](https://habr.com/ru/company/mailru/blog/335292/)
  * [история развития инструментов для  javascript](https://habr.com/ru/company/mailru/blog/340922/)
  * [ошибочное понимание DRY](https://habr.com/ru/company/mailru/blog/349978/)
  * [сборник ошибок JS](https://habr.com/ru/company/jugru/blog/494256/)
  * [How JavaScript works: Event loop and the rise of Async programming + 5 ways to better coding with async/await Alexander Zlatkov](https://blog.sessionstack.com/how-javascript-works-event-loop-and-the-rise-of-async-programming-5-ways-to-better-coding-with-2f077c4438b5)
  * [Как работает JavaScript: часть первая](https://gb.ru/posts/javascript_internals_part1) https://gb.ru/posts/javascript_internals_part2 https://gb.ru/posts/javascript_internals_part3
+ * [Планировщик задач на JavaScript](https://habr.com/ru/post/26215/)
+ * [Знай свой инструмент: Event Loop в libuv](https://habr.com/ru/post/336498/)
+ * [Как управлять event loop в JavaScript. Часть 1](https://skillbox.ru/media/code/event_loop_chast_1/)
+ * [A crash course in memory management](https://hacks.mozilla.org/2017/06/a-crash-course-in-memory-management/)
+ * [Diving Deeper in JavaScripts Objects - A Closer Look at JavaScript Object Descriptors](https://blog.bitsrc.io/diving-deeper-in-javascripts-objects-318b1e13dc12?gi=f92e90c386f5)
 
-
+### функциональное программирование
+ * [Функциональный JavaScript: пять способов нахождения среднего арифметического элементов массива и метод .reduce()](https://habr.com/ru/company/ruvds/blog/458030/)
+ * [функциональное программирование](https://habr.com/ru/company/mailru/blog/327522/)
+ * [Concepts of Functional Programming in Javascript](https://medium.com/the-renaissance-developer/concepts-of-functional-programming-in-javascript-6bc84220d2aa)
 ## V8 движок
 
  * интерпретатор ES+WASM [ignition/байткод](https://v8.dev/blog/ignition-interpreter) и компилятор[turbofan JIT](https://v8.dev/docs/turbofan)
  * преза v8 2017 https://docs.google.com/presentation/d/1chhN90uB8yPaIhx_h2M3lPyxPgdPmkADqSNAoXYQiVE/edit#slide=id.g18d89eb289_1_362
+ * [Основы движков JavaScript: общие формы и Inline кэширование. Часть 1](https://habr.com/ru/company/otus/blog/446446/)
 
 ## модель памяти memory model
  * https://geekbrains.ru/posts/javascript_internals_part1
@@ -184,6 +197,8 @@
  * [12 советов по внедрению TypeScript в React-приложениях](https://habr.com/ru/company/tinkoff/blog/505488/)
  * [Номинативная типизация в TypeScript или как защитить свой интерфейс от чужих идентификаторов](https://habr.com/ru/post/446768/)
  * https://stackoverflow.com/questions/49761972/difference-between-string-enums-and-string-literal-types-in-ts/54455743#54455743
+ * [The TypeScript Tax: A Cost vs Benefit Analysis](https://javascriptweekly.com/link/81862/web)
+ * [7 New and Exciting TypeScript Features](https://blog.bitsrc.io/7-new-and-exciting-typescript-features-48b760ae0b73)
 
 ### собеседование typescript
 
@@ -275,6 +290,8 @@
 
 ```
  * [You Dont Need Momentjs](https://github.com/you-dont-need/You-Dont-Need-Momentjs)  Moment.js/Luxon/date-fns/dayjs/vanillajs comparison and samples
+ * [Luxon — новая библиотека для работы с датами от команды Moment.js](https://habr.com/ru/post/433850/)
+ * [$mol_time — работаем с датами и временем правильно](https://habr.com/ru/post/263041/)
 
 ##  UUID
 
@@ -438,9 +455,14 @@ https://stateofjs.com/2017/front-end/results
 ##  state management
 
  * [akita](https://github.com/datorama/akita)
+	* [I Built the Ngrx Demo App with Akita. Here’s the Result.](https://engineering.datorama.com/i-built-the-ngrx-demo-app-with-akita-heres-the-result-57f83fe92192)
  * [vibe.js](https://habrahabr.ru/post/341126/)
  * redux
  * mobx-tree-store
+
+## DOM jQuery
+
+ * [Используем DOM как Pro](https://webdevblog.ru/ispolzuem-dom-kak-pro/)
 
 ##  большие числа
 
@@ -483,16 +505,17 @@ https://stateofjs.com/2017/front-end/results
  
  * https://dev.to/lydiahallie/javascript-visualized-promises-async-await-5gke
 
-```js
+	```js
 
-function* @returns Promise.resolve(object)|Promise.error(text)
+	function* @returns Promise.resolve(object)|Promise.error(text)
 
-startPromise(a,b,c)
-    .then(function1)
-    .then(function2)
-    .catch(errorHandlerFunction)
+	startPromise(a,b,c)
+		.then(function1)
+		.then(function2)
+		.catch(errorHandlerFunction)
 
-```
+	```
+ * [Common Javascript Promise mistakes every beginner should know and avoid](https://gosink.in/common-javascript-promise-mistakes-beginners/)
 
  * если вернуть новый промис, то стартует новая цепочка для .catch
 
