@@ -383,6 +383,32 @@ Code:
  * видео кодеки wmv 
  	 * http://opensuse-guide.org/codecs.php
  	 * http://software.opensuse.org/package/opensuse-codecs-installer?search_term=opensuse-codecs-installer
+
+	```bash
+		#1) Add the needed repositories:
+		zypper addrepo -f http://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_15.2/ packman
+		zypper addrepo -f http://opensuse-guide.org/repo/openSUSE_Leap_15.2/ dvd
+
+		#2) Then install the necessary packages:
+		zypper install --allow-vendor-change ffmpeg-3 lame gstreamer-plugins-bad gstreamer-plugins-ugly gstreamer-plugins-ugly-orig-addon gstreamer-plugins-libav libavdevice58 libdvdcss2 vlc-codecs
+
+		#3) Make sure all your multimedia packages are coming from the Packman Repository:
+		zypper dup --allow-vendor-change --from http://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_15.2/
+
+		zypper addrepo -f http://packman.inode.at/suse/openSUSE_Leap_15.2/ packman
+		zypper install freshplayerplugin
+
+		#Installing Java browser plugin in the terminal:
+		zypper install icedtea-web
+		#Installing multimedia plugin in the terminal:
+		zypper install xine-browser-plugin
+
+		#First add the repository:
+		zypper addrepo -f https://download.nvidia.com/opensuse/leap/15.2 nvidia
+		#The following command should automatically install the correct driver for your card:
+		zypper install-new-recommends --repo https://download.nvidia.com/opensuse/leap/15.2
+	```
+
  * spectacle скриншоты починить
 	* Настройки - глобальные комбинации клавиш - KDE daemon - выключить prtscr
 	* Настройки - глобальные комбинации клавиш - + добавить - spectacle - назначить prtscr - снимок прямоугольной области
@@ -390,13 +416,11 @@ Code:
 	 * ближайший по пингам ftp.halifax.rwth-aachen.de/packman/suse/13.1/
  * zypper ar -f http://geeko.ioda.net/mirror/amd-fglrx/openSUSE_13.1/ radeon
 
-http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/
-
-* flatpak `flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo` далее `Discover` или в discover - настройка - add flathub
-* evolution - через discover+flathub - поиск - evolution - кликнуть по пакету - источники - flathub
-	
-	https://wiki.gnome.org/Apps/Evolution/EWS/OAuth2
-	https://wiki.gnome.org/Apps/Evolution/Flatpak
+ * http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/
+ * flatpak `flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo` далее `Discover` или в discover - настройка - add flathub
+ * evolution - через discover+flathub - поиск - evolution - кликнуть по пакету - источники - flathub
+	* https://wiki.gnome.org/Apps/Evolution/EWS/OAuth2
+	* https://wiki.gnome.org/Apps/Evolution/Flatpak
 
 	```
 		error: While opening repository /var/lib/flatpak/repo: opendir(objects): No such file or directory
@@ -432,24 +456,45 @@ http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceName
 * zoom
 
 * зависает при выключении
+	* 
+
 	```bash
 		systemctl disable lvm2-monitor.service
 		systemctl stop lvm2-monitor.service
-    zypper rm snapper snapper-zypp-plugin yast2-snapper PackageKit PackageKit-backend-zypp PackageKit-branding-openSUSE PackageKit-gstreamer-plugin PackageKit-gtk3-module PackageKit-lang discover-backend-packagekit  grub2-snapper-plugin libpackagekit-glib2-18 libsnapper5
+
+		zypper rm snapper snapper-zypp-plugin yast2-snapper PackageKit PackageKit-backend-zypp PackageKit-branding-openSUSE PackageKit-gstreamer-plugin PackageKit-gtk3-module PackageKit-lang discover-backend-packagekit  grub2-snapper-plugin libpackagekit-glib2-18 libsnapper5
 	```
 
-	```  ibus ibus-gtk ibus-gtk3 ibus-lang ibus-m17n ibus-qt ibus-table ibus-table-rustrad ibus-table-translit libm17n0 libotf0 m17n-db m17n-db-lang typelib-1_0-IBus-1_0 zoom
-	ibus-lang m17n-db-lang ibus-branding-openSUSE-KDE ```
+	* https://forums.opensuse.org/showthread.php/539741-How-to-disable-Ibus-autostart
 
-	https://forums.opensuse.org/showthread.php/539741-How-to-disable-Ibus-autostart
+	```bash
+		ibus ibus-gtk ibus-gtk3 ibus-lang ibus-m17n ibus-qt ibus-table ibus-table-rustrad ibus-table-translit libm17n0 libotf0 m17n-db m17n-db-lang typelib-1_0-IBus-1_0 zoom
+		ibus-lang m17n-db-lang ibus-branding-openSUSE-KDE
 
-	/etc/X11/xim.d/ibus
-	*kde*|*xfce*|*lxde*|*startplasma*)
+		/etc/X11/xim.d/ibus
+		*kde*|*xfce*|*lxde*|*startplasma*)
 
-	`chmod a-x /usr/bin/ibus-autostart`
+		chmod a-x /usr/bin/ibus-autostart
 	```
+ * https://mintdewdrop.wordpress.com/2013/05/04/inxi/
 
- * 
+	```bash
+		inxi -G
+			Graphics:  Device-1: NVIDIA GP107 [GeForce GTX 1050 Ti] driver: nvidia v: 390.141 
+					Display: server: X.Org 1.20.3 driver: nvidia unloaded: fbdev,modesetting,nouveau,vesa resolution: 2560x1440 
+					OpenGL: renderer: GeForce GTX 1050 Ti/PCIe/SSE2 v: 4.6.0 NVIDIA 390.141 
+		inxi -b
+			System:    Host: linux-tltj Kernel: 5.3.18-lp152.72-default x86_64 bits: 64 Console: tty 7 Distro: openSUSE Leap 15.2 
+			Machine:   Type: Desktop Mobo: Micro-Star model: B450M PRO-VDH V2 (MS-7A38) v: 6.0 serial: IC16298648 
+					UEFI: American Megatrends v: 8.81 date: 08/19/2019 
+			CPU:       8-Core: AMD Ryzen 7 3700X type: MT MCP speed: 2822 MHz min/max: 2200/3600 MHz 
+			Graphics:  Device-1: NVIDIA GP107 [GeForce GTX 1050 Ti] driver: nvidia v: 390.141 
+					Display: server: X.Org 1.20.3 driver: nvidia unloaded: fbdev,modesetting,nouveau,vesa resolution: 2560x1440 
+					OpenGL: renderer: GeForce GTX 1050 Ti/PCIe/SSE2 v: 4.6.0 NVIDIA 390.141 
+			Network:   Device-1: Realtek RTL8111/8168/8411 PCI Express Gigabit Ethernet driver: r8169 
+			Drives:    Local Storage: total: 670.70 GiB used: 293.01 GiB (43.7%) 
+			Info:      Processes: 362 Uptime: 9h 34m Memory: 31.30 GiB used: 3.96 GiB (12.7%) Shell: bash inxi: 3.1.00 
+	```
  * 
 
 ## ms teams
