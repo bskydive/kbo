@@ -1501,27 +1501,26 @@ const httpOptions = {
 
 ## сборка
 
- * 
  * webpack config eject 
  
-```bash
+	```bash
 
-	npm i -D webpack uglifyjs-webpack-plugin copy-webpack-plugin clean-webpack-plugin html-webpack-plugin extract-text-webpack-plugin webpack-merge stylus pug browser-sync-webpack-plugin browser-sync babel-loader css-loader csso csso-loader file-loader image-webpack-loader img-loader postcss postcss-import postcss-loader postcss-url pug-html-loader raw-loader stylus-loader to-string-loader url-loader webpack-cli webpack-dev-server webpack-merge html-loader scss-loader
+		npm i -D webpack uglifyjs-webpack-plugin copy-webpack-plugin clean-webpack-plugin html-webpack-plugin extract-text-webpack-plugin webpack-merge stylus pug browser-sync-webpack-plugin browser-sync babel-loader css-loader csso csso-loader file-loader image-webpack-loader img-loader postcss postcss-import postcss-loader postcss-url pug-html-loader raw-loader stylus-loader to-string-loader url-loader webpack-cli webpack-dev-server webpack-merge html-loader scss-loader
 
-	ng new angular4 --style stylus
-	ng eject ##нужна 1 версия cli
-```
+		ng new angular4 --style stylus
+		ng eject ##нужна 1 версия cli
+	```
 
  * темы
  
-```css
-	/*styles.css*/
-	/* @import '~@angular/material/prebuilt-themes/deeppurple-amber.css'; */
-	@import '~@angular/material/prebuilt-themes/indigo-pink.css';
-	/* @import '~@angular/material/prebuilt-themes/pink-bluegrey.css'; */
-	/* @import '~@angular/material/prebuilt-themes/purple-green.css'; */
+	```css
+		/*styles.css*/
+		/* @import '~@angular/material/prebuilt-themes/deeppurple-amber.css'; */
+		@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+		/* @import '~@angular/material/prebuilt-themes/pink-bluegrey.css'; */
+		/* @import '~@angular/material/prebuilt-themes/purple-green.css'; */
 
-```
+	```
 
  * https ng serve
  
@@ -1532,46 +1531,46 @@ const httpOptions = {
  * [env variables переменные окружения angular](https://medium.com/@kudresov/a-better-way-to-inject-environmental-variables-in-angular-d3b2d01a3c5e)
  * выключить ошибку препроцессора typescript
  
-```bash
-	ng config cli.warnings.typescriptMismatch false
-```
+	```bash
+		ng config cli.warnings.typescriptMismatch false
+	```
  
  * Минификация uglifyjs es6 сломана, надо пользовать closure или terser
  
-```
-https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/104
-npm i uglifyjs-webpack-plugin@1
-https://github.com/webpack-contrib/uglifyjs-webpack-plugin/releases
-https://github.com/webpack-contrib/terser-webpack-plugin
-https://webpack.js.org/plugins/terser-webpack-plugin/#src/components/Sidebar/Sidebar.jsx
-```
+	```
+		https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/104
+		npm i uglifyjs-webpack-plugin@1
+		https://github.com/webpack-contrib/uglifyjs-webpack-plugin/releases
+		https://github.com/webpack-contrib/terser-webpack-plugin
+		https://webpack.js.org/plugins/terser-webpack-plugin/#src/components/Sidebar/Sidebar.jsx
+	```
 
  * ошибки сборки для e2e
 
-```
-tsconfig.json
-либо настроить общий конфиг(npm i @types/jasmine)
- "types": [
-      "jasmine",
-      "jasminewd2",
-      "node"
-    ]
-    
-либо убрать из него:
-"exclude": [
-    "node_modules",
-    "dist",
-    "./**/*.spec.ts",
-    "./**/*.e2e.ts"
-  ],
-```
+	```
+	tsconfig.json
+	либо настроить общий конфиг(npm i @types/jasmine)
+	"types": [
+		"jasmine",
+		"jasminewd2",
+		"node"
+		]
+		
+	либо убрать из него:
+	"exclude": [
+		"node_modules",
+		"dist",
+		"./**/*.spec.ts",
+		"./**/*.e2e.ts"
+	],
+	```
 
  * ошибки сборки es6 https://medium.com/@martin_hotell/tree-shake-lodash-with-webpack-jest-and-typescript-2734fa13b5cd
  
-```
-tsconfig.json
-"target": "es5",
-```
+	```
+	tsconfig.json
+	"target": "es5",
+	```
 
  * ошибки конвертации html --> pug
  
