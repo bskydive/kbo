@@ -395,7 +395,6 @@ Code:
 		#3) Make sure all your multimedia packages are coming from the Packman Repository:
 		zypper dup --allow-vendor-change --from http://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_15.2/
 
-		zypper addrepo -f http://packman.inode.at/suse/openSUSE_Leap_15.2/ packman
 		zypper install freshplayerplugin
 
 		#Installing Java browser plugin in the terminal:
