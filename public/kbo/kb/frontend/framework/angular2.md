@@ -1652,6 +1652,27 @@ const httpOptions = {
 
  * [Tooltip with Angular CDK](https://medium.com/angular-in-depth/building-tooltips-for-angular-3cdaac16d138)
 
+### material table
+
+ * [Angular CDK Tables](https://medium.com/angular-in-depth/angular-cdk-tables-1537774d7c99)
+	* https://stackblitz.com/edit/simple-table?file=src%2Fapp%2Ftable%2Ftable.component.html
+	* https://github.com/ZackDeRose/simple-table
+ * [Angular Material Data Table: A Complete Example (Server side Pagination, Filtering, Sorting)](https://blog.angular-university.io/angular-material-data-table/)
+ * [angular material table custom sort](https://stackoverflow.com/questions/61480695/angular-material-table-custom-sort-foler-and-file-items)
+	```ts
+		this.dataSource.sortData = (data: YourObjectType[], sort: MatSort) => {
+			return data.sort((a: YourObjectType, b: YourObjectType => {
+				//Sorting logic here
+			});
+		}
+	```
+	* https://github.com/angular/components/blob/master/src/material/table/table-data-source.ts#L142
+ 	* [sortingDataAccessor](https://material.angular.io/components/table/api#MatTableDataSource)
+	* https://stackoverflow.com/questions/48891174/angular-material-2-datatable-sorting-with-nested-objects/49057493#49057493
+ * []()
+ * https://www.tektutorialshub.com/angular/ngtemplateoutlet-in-angular/#passing-data-to-ngtemplateoutlet
+ * []()
+
 ### генераторы
 
  * [для react](https://material-ui.com/getting-started/installation/)

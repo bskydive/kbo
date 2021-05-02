@@ -729,6 +729,8 @@ http://www.liberatedcomputing.net/mm2fm
 		Collect logs from the GuestOS kernel leading up to the outage. For more information, contact the guest operating system vendor.
 		Collect logs from the host leading up to the outage.
 	```
+ * [Анализ производительности виртуальной машины в VMware vSphere. Часть 1: CPU](https://habr.com/ru/company/dataline/blog/452884/).
+ * выключить memory page trimming и debug logging https://www.vmware.com/support/ws55/doc/ws_performance_diskio.html
 ### звук
 
 усилить громкость на сервере и на госте

@@ -19,6 +19,11 @@
 	 * [ember](kb/frontend/framework/ember.md)
 	 * [react](kb/frontend/framework/react.md)
 	 * [vue](kb/frontend/framework/vue.md)
+ * Angular
+	 * [angular](kb/frontend/angular/angular.md)
+	 * [ngrx](kb/frontend/angular/ngrx.md)
+	 * [rxjs](kb/frontend/angular/rxjs.md)
+	 * []()
  * Фронт
 	 * [фронт](kb/frontend/frontend.md)
 	 * [3d](kb/frontend/3d)
