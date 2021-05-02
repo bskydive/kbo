@@ -57,4 +57,6 @@ https://habrahabr.ru/company/badoo/blog/342564/
  * https://godoc.org/golang.org/x/net/html
  * [Как это сделано: парсинг статей mail.ru](https://habr.com/company/mailru/blog/200394/)
  * [Beautiful Soup is a Python library designed for quick turnaround projects like screen-scraping](https://www.crummy.com/software/BeautifulSoup/)
+ * [Что делать, когда CSS блокирует парсинг страницы?](https://habr.com/ru/company/ruvds/blog/490628/)
+    * `<link rel="stylesheet" href="/path/to/my.css" media="print" onload="this.media='all'">`
 

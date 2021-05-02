@@ -1,11 +1,14 @@
-# Дизайн
+# Design Дизайн
 
 ##  Лучшие практики
 
  * [правила хорошего интерфейса](https://habrahabr.ru/post/277399/)
  * [используй дизайн-гайдлайны, унифицируй компоненты, прикладывай шрифты](https://habrahabr.ru/post/311800/)
  * [Модульная сетка макета с нуля: анализ, расчет и построение](https://habr.com/ru/post/344910/)
-
+ * [intrinsic web design](https://www.youtube.com/watch?v=AMPKmh98XLY)
+ * [atomic design](https://atomicdesign.bradfrost.com)
+ * [Best practices: components, styles, and shared libraries](https://www.figma.com/best-practices/components-styles-and-shared-libraries/)
+ 
 ## блоги
 
  * https://medium.com/slashdesigner
@@ -28,12 +31,15 @@
  * [посты про figma](https://habr.com/ru/users/kamushken/posts/)
  * плагины:
 	* https://www.figma.com/c/plugin/732240841094697441/%E2%9A%A1%EF%B8%8F-Viewports
+    * [Figma REST API to Angular Converter](https://github.com/irustm/figma-to-angular)
+ * [Делаем Frontend в Figma](https://docs.google.com/presentation/d/1y3hqGWEy--tArJs0N6Bv0dbV809NP-YLLib1eudZwtE/edit#slide=id.p)
  
 ## элементы дизайна
 
  * параллакс
  * [handlebars горизонтально-вертикальная панель прокрутки с функциями](https://uxdesign.cc/handlebars-in-ui-design-4b36af67733b)
  * [библиотека шаблонов дизайна](https://inclusive-components.design/)
+ * [модальное окно modal window](https://www.youtube.com/watch?v=s6PI8pKQxgo&t=78s)
 
 ##  material design
 
@@ -50,10 +56,12 @@
 ##  библиотеки компонентов
 
  * [storybook](https://www.conductor.com/nightlight/создание-библиотеки-компонентов-с-ис/)
+    * [Storybook Docs for new frameworks](https://medium.com/storybookjs/storybook-docs-for-new-frameworks-b1f6090ee0ea)
  * [figma](https://www.figma.com/features)
  * https://github.com/kitze/JSUI
  * https://eva.design/components
  * https://akveo.github.io/ngx-admin/
+ * [Тайга](https://taiga-ui.dev/)
 
 ##  компонентный подход component way
 

@@ -161,7 +161,7 @@ As you can see, our maximum volume is -5.0 dB, so we can apply 5 dB gain. If you
 
     ffmpeg -i video.avi -af "volume=5dB" -c:v copy -c:a libmp3lame -q:a 2 output.avi
 
-    Here we chose quality level 2. Values range from 0–9 and lower means better. Check the MP3 VBR guide for more info on setting the quality. You can also set a fixed bitrate with -b:a 192k, for example.
+    Here we chose quality level 2. Values range from 0-9 and lower means better. Check the MP3 VBR guide for more info on setting the quality. You can also set a fixed bitrate with -b:a 192k, for example.
 
     MP4 format: With an MP4 container, you will typically find AAC audio. We can use ffmpeg's build-in AAC encoder.
 
@@ -356,6 +356,10 @@ Code:
 
 ## installation migration OS
 
+ * включить numlock
+ * удалить snapper packagekit
+ * выключить проигрыватель на экране блокировки
+ * выключить ntpd синхронизацию при загрузке, включить по таймеру каждые 50 минут
  * пароли рут и пользователя
  * установка принтера
  * настройка почты
@@ -379,6 +383,31 @@ Code:
  * видео кодеки wmv 
  	 * http://opensuse-guide.org/codecs.php
  	 * http://software.opensuse.org/package/opensuse-codecs-installer?search_term=opensuse-codecs-installer
+
+	```bash
+		#1) Add the needed repositories:
+		zypper addrepo -f http://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_15.2/ packman
+		zypper addrepo -f http://opensuse-guide.org/repo/openSUSE_Leap_15.2/ dvd
+
+		#2) Then install the necessary packages:
+		zypper install --allow-vendor-change ffmpeg-3 lame gstreamer-plugins-bad gstreamer-plugins-ugly gstreamer-plugins-ugly-orig-addon gstreamer-plugins-libav libavdevice58 libdvdcss2 vlc-codecs
+
+		#3) Make sure all your multimedia packages are coming from the Packman Repository:
+		zypper dup --allow-vendor-change --from http://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_15.2/
+
+		zypper install freshplayerplugin
+
+		#Installing Java browser plugin in the terminal:
+		zypper install icedtea-web
+		#Installing multimedia plugin in the terminal:
+		zypper install xine-browser-plugin
+
+		#First add the repository:
+		zypper addrepo -f https://download.nvidia.com/opensuse/leap/15.2 nvidia
+		#The following command should automatically install the correct driver for your card:
+		zypper install-new-recommends --repo https://download.nvidia.com/opensuse/leap/15.2
+	```
+
  * spectacle скриншоты починить
 	* Настройки - глобальные комбинации клавиш - KDE daemon - выключить prtscr
 	* Настройки - глобальные комбинации клавиш - + добавить - spectacle - назначить prtscr - снимок прямоугольной области
@@ -386,18 +415,11 @@ Code:
 	 * ближайший по пингам ftp.halifax.rwth-aachen.de/packman/suse/13.1/
  * zypper ar -f http://geeko.ioda.net/mirror/amd-fglrx/openSUSE_13.1/ radeon
 
-http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/
-
-* зависает при выключении
-	```bash
-		systemctl disable lvm2-monitor.service
-		systemctl stop lvm2-monitor.service
-	```
-* flatpak `flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo` далее `Discover` или в discover - настройка - add flathub
-* evolution - через discover+flathub - поиск - evolution - кликнуть по пакету - источники - flathub
-	
-	https://wiki.gnome.org/Apps/Evolution/EWS/OAuth2
-	https://wiki.gnome.org/Apps/Evolution/Flatpak
+ * http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/
+ * flatpak `flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo` далее `Discover` или в discover - настройка - add flathub
+ * evolution - через discover+flathub - поиск - evolution - кликнуть по пакету - источники - flathub
+	* https://wiki.gnome.org/Apps/Evolution/EWS/OAuth2
+	* https://wiki.gnome.org/Apps/Evolution/Flatpak
 
 	```
 		error: While opening repository /var/lib/flatpak/repo: opendir(objects): No such file or directory
@@ -432,18 +454,46 @@ http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceName
 * ssh_keys
 * zoom
 
-	```  ibus ibus-gtk ibus-gtk3 ibus-lang ibus-m17n ibus-qt ibus-table ibus-table-rustrad ibus-table-translit libm17n0 libotf0 m17n-db m17n-db-lang typelib-1_0-IBus-1_0 zoom
-	ibus-lang m17n-db-lang ibus-branding-openSUSE-KDE ```
+* зависает при выключении
+	* 
 
-	https://forums.opensuse.org/showthread.php/539741-How-to-disable-Ibus-autostart
+	```bash
+		systemctl disable lvm2-monitor.service
+		systemctl stop lvm2-monitor.service
 
-	/etc/X11/xim.d/ibus
-	*kde*|*xfce*|*lxde*|*startplasma*)
-
-	`chmod a-x /usr/bin/ibus-autostart`
+		zypper rm snapper snapper-zypp-plugin yast2-snapper PackageKit PackageKit-backend-zypp PackageKit-branding-openSUSE PackageKit-gstreamer-plugin PackageKit-gtk3-module PackageKit-lang discover-backend-packagekit  grub2-snapper-plugin libpackagekit-glib2-18 libsnapper5
 	```
 
- * 
+	* https://forums.opensuse.org/showthread.php/539741-How-to-disable-Ibus-autostart
+
+	```bash
+		ibus ibus-gtk ibus-gtk3 ibus-lang ibus-m17n ibus-qt ibus-table ibus-table-rustrad ibus-table-translit libm17n0 libotf0 m17n-db m17n-db-lang typelib-1_0-IBus-1_0 zoom
+		ibus-lang m17n-db-lang ibus-branding-openSUSE-KDE
+
+		/etc/X11/xim.d/ibus
+		*kde*|*xfce*|*lxde*|*startplasma*)
+
+		chmod a-x /usr/bin/ibus-autostart
+	```
+ * https://mintdewdrop.wordpress.com/2013/05/04/inxi/
+
+	```bash
+		inxi -G
+			Graphics:  Device-1: NVIDIA GP107 [GeForce GTX 1050 Ti] driver: nvidia v: 390.141 
+					Display: server: X.Org 1.20.3 driver: nvidia unloaded: fbdev,modesetting,nouveau,vesa resolution: 2560x1440 
+					OpenGL: renderer: GeForce GTX 1050 Ti/PCIe/SSE2 v: 4.6.0 NVIDIA 390.141 
+		inxi -b
+			System:    Host: linux-tltj Kernel: 5.3.18-lp152.72-default x86_64 bits: 64 Console: tty 7 Distro: openSUSE Leap 15.2 
+			Machine:   Type: Desktop Mobo: Micro-Star model: B450M PRO-VDH V2 (MS-7A38) v: 6.0 serial: IC16298648 
+					UEFI: American Megatrends v: 8.81 date: 08/19/2019 
+			CPU:       8-Core: AMD Ryzen 7 3700X type: MT MCP speed: 2822 MHz min/max: 2200/3600 MHz 
+			Graphics:  Device-1: NVIDIA GP107 [GeForce GTX 1050 Ti] driver: nvidia v: 390.141 
+					Display: server: X.Org 1.20.3 driver: nvidia unloaded: fbdev,modesetting,nouveau,vesa resolution: 2560x1440 
+					OpenGL: renderer: GeForce GTX 1050 Ti/PCIe/SSE2 v: 4.6.0 NVIDIA 390.141 
+			Network:   Device-1: Realtek RTL8111/8168/8411 PCI Express Gigabit Ethernet driver: r8169 
+			Drives:    Local Storage: total: 670.70 GiB used: 293.01 GiB (43.7%) 
+			Info:      Processes: 362 Uptime: 9h 34m Memory: 31.30 GiB used: 3.96 GiB (12.7%) Shell: bash inxi: 3.1.00 
+	```
  * 
 
 ## ms teams
@@ -462,7 +512,7 @@ http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceName
 
 /dumpmsnp
 
-zypper install libpulse0-32bit alsa-plugins-pulse-32bit libphonon4-32bit pavucontrol
+zypper installlibpulse0-32bit alsa-plugins-pulse-32bit libphonon4-32bit pavucontrol
 
 The following 64 NEW packages are going to be installed:
   Mesa-32bit Mesa-libEGL1-32bit Mesa-libGL1-32bit Mesa-libglapi0-32bit alsa-oss-32bit alsa-plugins-pulse-32bit fontconfig-32bit libFLAC8-32bit libICE6-32bit libLLVM-32bit 
@@ -646,7 +696,39 @@ http://www.liberatedcomputing.net/mm2fm
 		make install
 		After the installation, I ran this command : /etc/init.d/vmware start
 	```
+ * зависания cpu has been disabled by guest
 
+	```bash
+		zypper rm snapper snapper-zypp-plugin yast2-snapper PackageKit PackageKit-backend-zypp PackageKit-branding-openSUSE PackageKit-gstreamer-plugin PackageKit-gtk3-module PackageKit-lang discover-backend-packagekit  grub2-snapper-plugin libpackagekit-glib2-18 libsnapper5
+	```
+	* https://www.geekrar.com/how-to-fix-the-cpu-has-been-disabled-by-the-guest-os/
+
+	```
+		Now without closing the .vmx file, copy the following code and paste it at the end of all lines. If you've the config key smc.version = 0 already there, you may remove it and paste this in place of it. It should look like this.
+
+		cpuid.0.eax = "0000:0000:0000:0000:0000:0000:0000:1011"
+		cpuid.0.ebx = "0111:0101:0110:1110:0110:0101:0100:0111"
+		cpuid.0.ecx = "0110:1100:0110:0101:0111:0100:0110:1110"
+		cpuid.0.edx = "0100:1001:0110:0101:0110:1110:0110:1001"
+		cpuid.1.eax = "0000:0000:0000:0001:0000:0110:0111:0001"
+		cpuid.1.ebx = "0000:0010:0000:0001:0000:1000:0000:0000"
+		cpuid.1.ecx = "1000:0010:1001:1000:0010:0010:0000:0011"
+		cpuid.1.edx = "0000:0111:1000:1011:1111:1011:1111:1111"
+		featureCompat.enable = "TRUE"
+	```
+	* https://kb.vmware.com/s/article/2000542
+
+	```
+	Collect information from the current outage:
+
+		Identify the virtual machine and time of the outage
+		Take a screenshot of the virtual machine's console and note the error messages
+		In the inventory, Right Click on the VM, select 'Suspend' for the virtual machine, the checkpoint suspend (.vmss) and memory image (.vmem)  will be generated and can be found in the datastore from the virtual machine directory
+		Convert the checkpoint suspend files (.vmss and .vmem) from the virtual machine into a core dump file using the vmss2core utility. For more information, see the Debugging Virtual Machines with the Checkpoint to Core Tool technical note, and the article Converting a snapshot file to memory dump using the vmss2core tool. 
+		Resume the virtual machine to the suspended state, then reset the virtual machine to start the GuestOS.
+		Collect logs from the GuestOS kernel leading up to the outage. For more information, contact the guest operating system vendor.
+		Collect logs from the host leading up to the outage.
+	```
 ### звук
 
 усилить громкость на сервере и на госте
@@ -703,7 +785,7 @@ onboot=yes
 ```
 
 ```bash
-Remove the kernel’s networking interface rules file so that it can be regenerated
+#Remove the kernel's networking interface rules file so that it can be regenerated
 
 # rm -f /etc/udev/rules.d/70-persistent-net.rules
 # reboot

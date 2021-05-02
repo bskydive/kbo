@@ -14,6 +14,7 @@
  * [перевод https://umaar.com/dev-tips/](https://habrahabr.ru/company/mailru/blog/278021/)
  * [Дайджест](https://habrahabr.ru/company/zfort/)
  * [Чему я научился на своём горьком опыте (за 30 лет в разработке ПО)]. [orig](https://blog.juliobiason.net/books/things-i-learnt/)
+ * [The frontend is a fullstack](https://speakerd.s3.amazonaws.com/presentations/fbb463ccb56c4095a12333db52f12a10/The_Frontend_is_a_Fullstack.pdf)
 
 ### блоги, журналы
  
@@ -100,6 +101,12 @@
  * https://github.com/melnik909/frontend-whitelist/blob/master/README.md
  * [Вы не гугл - обзор ограничений популярных технологий](https://habr.com/ru/post/450230/)
 
+
+## js performance производительность
+
+ * https://www.smashingmagazine.com/2021/01/front-end-performance-2021-free-pdf-checklist/
+ * https://proglib.io/p/33-priema-optimizacii-javascript-kotorye-vy-dolzhny-znat-v-2021-godu-2021-01-12
+ * [Hacking Web Performance - freecodecamp](https://www.youtube.com/watch?v=UgSFxtIPc4c)
 ##  трюки
 
  * http://www.habrahabr.net/habr/312812/
@@ -178,6 +185,7 @@
  * [Для проверки JS](http://www.jslint.com/)
  * http://eslint.org/
  * jshint
+ * [putout](https://habr.com/ru/post/504594/)
 
 ## Debug tools
 

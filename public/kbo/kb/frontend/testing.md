@@ -3,12 +3,14 @@
 ## TDD
 
  * https://bespoyasov.ru/ttt-tdd/
+ * [Engineering guide to writing correct User Stories](https://sobolevn.me/2019/02/engineering-guide-to-user-stories)
 
 ##  unit
 	
  * [принципы Unit-тестирования в сложных приложениях 2016](https://habrahabr.ru/post/310826/)
 	* Так как сообщество сходится во мнении, что нет нужды в тестировании тривиального функционала, то вполне очевидно, что чем проще код или гениальнее разработчики, тем меньше поводов создавать тесты вообще и модульные тесты в частности. И наоборот, чем сложнее код или посредственнее разработчики, тем поводов больше. Т.е., если вы в одиночку разрабатываете проект на 100К строк кода, то вы вполне можете обойтись без тестов вообще, но как только к проекту подключается еще один разработчик (не такой гениальный, как вы), то необходимость создания тестов резко возрастает. А если этот разработчик еще и junior, то тесты становятся жизненно важны, т.к. даже ваша гениальность может спасовать перед тем энтузиазмом, с которым junior вносит ошибки в ваш любимый код.
  * [property based testing](https://www.youtube.com/watch?v=H-cBhNMxlCw) [jsverify](https://github.com/jsverify/jsverify) [fast check](https://github.com/dubzzz/fast-check)
+ * [Unit testing in JavaScript Part 5 - Mocking continued - funfunfunction](https://www.youtube.com/watch?v=ZbModC5pqv0&list=PL0zVEGEvSaeF_zoW9o66wa_UCNE3a7BEr&index=6)
 
 ## regress регрессионные тесты
 

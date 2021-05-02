@@ -27,7 +27,7 @@ to_smart_host:
 driver = manualroute
 domains = ! +local_domains
 transport = remote_smtp
-route_list = “* mail1.example.com:mail2.example.com;”
+route_list = "* mail1.example.com:mail2.example.com;"
 
 Перезапуск exim:
 
@@ -35,7 +35,7 @@ service exim restart
 
 Тестирование работы почты:
 
-echo “test” |mail -s “$HOSTNAME” user@example.com
+echo "test" |mail -s "$HOSTNAME" user@example.com
 
 Для сброса очереди Exim и просмотра лог-файла:
 

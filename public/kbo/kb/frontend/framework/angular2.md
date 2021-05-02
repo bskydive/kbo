@@ -21,6 +21,7 @@
 
 * [планы выкинуть модули](https://angular.io/guide/roadmap#simplified-angular-mental-model-with-optional-ngmodules)
 * [планы выкинуть Zone](https://angular.io/guide/roadmap#leverage-full-framework-capabilities-with-zonejs-opt-out)
+* [Deep Dive into the Angular Compiler | Alex Rickabaugh | #AngularConnect 2019](https://www.youtube.com/watch?v=anphffaCZrQ)
 
 ## документация
 
@@ -33,6 +34,7 @@
  * [библиотека ng-packagr](https://www.youtube.com/watch?v=cgQILJjeDw0)
  * [Google Maps is now an Angular component](https://medium.com/angular-in-depth/google-maps-is-now-an-angular-component-821ec61d2a0)
  * [Как сделать пошаговый гайд вашего приложения (если ваш проект на Angular)](https://habr.com/ru/company/veeam/blog/486994/) подсказочник туториал обучениеи @material/cdk/overlay
+ * [Angular 10, NgRx and Angular Material Starter](https://github.com/tomastrajan/angular-ngrx-material-starter)
 
 ## angular backend
 
@@ -42,44 +44,69 @@
 ## лучшие практики
 
  * [Clean Code Checklist in Angular](https://itnext.io/clean-code-checklist-in-angular-%EF%B8%8F-10d4db877f74)
+ * [code review conventions](https://medium.com/inside-league/how-one-code-review-rule-turned-my-team-into-a-dream-team-fdb172799d11)
  * [SOLID: The Dependency Inversion Principle in Angular](https://blog.bitsrc.io/solid-the-dependency-inversion-principle-in-angular-6e4b9c484960?gi=d54f2b80e982)
  * форма авторизации [Sign-in form best practice](https://www.youtube.com/watch?v=alGcULGtiv8)
- ```css
-input[type=email]:not(:plsceholder-shown):invalid {
-	color: red;
-}
- ```
-```html
-<form>
-	<section>
-		<label for="id-mail">Почта</label>
-		<input id="id-mail" name="email" autocomplete="email" type="email" placeholder="почта" required>
-	</section>
-	<section>
-		<label for="id-pass">Пароль</label>
-		<input id="id-pass" *ng-if="passwordType='password'" name="current-password" type="password" placeholder="пароль" required>
-		<ng-container *ng-if="passwordType='new-password'">
-			<input id="id-pass" name="new-password" type="password" placeholder="пароль" required>
-			<input id="id-pass" name="new-password-repeat" type="password" placeholder="пароль повторно" required>
-		</ng-container>
-		<ng-container *ng-if="passwordType='change-password'">
-			<input id="id-pass" name="current-password" type="password" placeholder="текущий пароль" required>
-			<input id="id-pass" name="new-password" type="password" placeholder="новый пароль" required>
-		</ng-container>
-	</section>
-</form>
-```
- * сравнение подходов(patterns) https://www.youtube.com/watch?v=udNHwANuicU https://github.com/obenjiro/AngularStateManagers
+
+	```css
+		input[type=email]:not(:plsceholder-shown):invalid {
+			color: red;
+		}
+	```
+	```html
+		<form>
+			<section>
+				<label for="id-mail">Почта</label>
+				<input id="id-mail" name="email" autocomplete="email" type="email" placeholder="почта" required>
+			</section>
+			<section>
+				<label for="id-pass">Пароль</label>
+				<input id="id-pass" *ng-if="passwordType='password'" name="current-password" type="password" placeholder="пароль" required>
+				<ng-container *ng-if="passwordType='new-password'">
+					<input id="id-pass" name="new-password" type="password" placeholder="пароль" required>
+					<input id="id-pass" name="new-password-repeat" type="password" placeholder="пароль повторно" required>
+				</ng-container>
+				<ng-container *ng-if="passwordType='change-password'">
+					<input id="id-pass" name="current-password" type="password" placeholder="текущий пароль" required>
+					<input id="id-pass" name="new-password" type="password" placeholder="новый пароль" required>
+				</ng-container>
+			</section>
+		</form>
+	```
+ * сравнение подходов(patterns) к архитектуре https://www.youtube.com/watch?v=udNHwANuicU https://github.com/obenjiro/AngularStateManagers
 	 * Services - Стандартный подход работы с сервисами.
 	 * CQS/CQRS - Command Query Separation. - добавление слоя запросов query
 	 * Redux - Stateless Uniderectional Dataflow.
 	 * Mobx - redux + CQRS - добавление слоя запросов
 	 * DCI - Data Context Interaction - перенос всей логики в файл-контекст, который управлет компонентами
 	 * MALEVICH - все UI данные в объекте для быстрой смены фреймворка
+ * https://blog.bitsrc.io/an-opinionated-styleguide-for-angular-af623d54e2b8
+ * https://itnext.io/building-an-enterprise-grade-angular-project-structure-f5be32533ba3
+ * [Angular Folder Structure](https://medium.com/@motcowley/angular-folder-structure-d1809be95542)
+ * [Angular 6 Best Practices Application Directory Structure](https://infinityknow.com/angular-6-best-practices-application-directory-structure/)
+ * [5 Tips to improve User Experience of your Angular app with NgRx](https://medium.com/angular-in-depth/5-tips-to-improve-user-experience-of-your-angular-app-with-ngrx-6e849ca99529)
+	 *	three Actions are required for any API call:
+		* Action to trigger the Effect
+		* Action to wrap the successful result (typically suffixed with Success)
+		* Action to reflex the error response (typically suffixed with Error)
+	* Store as a cache
+	* don't store data in localStorage it slows down load
+	* Optimistic interactions with the UI
+ * [Keeping browser tabs in sync using localStorage, NgRx, and RxJS](https://medium.com/angular-in-depth/keeping-browser-tabs-in-sync-using-localstorage-ngrx-and-rxjs-87de3bca4e2c)
+ * [Best practices for a clean and performant Angular application](https://medium.com/free-code-camp/best-practices-for-a-clean-and-performant-angular-application-288e7b39eb6f)
+ * [How to define a highly scalable folder structure for your Angular project](https://itnext.io/choosing-a-highly-scalable-folder-structure-in-angular-d987de65ec7)
+	* https://angular-folder-structure.readthedocs.io
+	* https://github.com/mathisGarberg/angular-folder-structure
+ * 
 
-## performance оптимизация и утечки памяти
+## performance оптимизация и утечки памяти производительность
 
  * https://github.com/Angular-RU/change-detection-tree
+ * https://lukeliutingchun.medium.com/angular-performance-issue-caused-by-function-calls-in-template-a1a930f40464
+ * https://medium.com/@dammytrager/lazy-loading-angular-modules-51b2cfdb6190
+ * https://blog.bitsrc.io/top-reasons-why-your-angular-app-is-slow-c36780a0a289
+ * https://netbasal.com/lazy-load-modal-components-in-angular-8cb54bba7bf7
+ * https://netbasal.com/lazy-load-images-in-angular-with-two-lines-of-code-beb13cd5a1c4
  * [bazel в помощь webpack](https://codeburst.io/bazel-an-experimental-and-unofficial-feature-of-angular-6-946e880b4637)
  * [Превышаем скоростные лимиты с Angular 2 / Алексей Охрименко (IPONWEB)](https://www.youtube.com/watch?v=vuPH9J_yonM)
 	* [слайды](https://www.slideshare.net/profyclub_ru/angular-2-iponweb-68717237)
@@ -95,7 +122,7 @@ input[type=email]:not(:plsceholder-shown):invalid {
 		.debounce(500)/**/
 		.distinctUntilChanged()/*прерывает debounce при изменении*/
 		.filter((value) => this.form.valid) 
-		.switchMap((value) => { return http.post(‘/api’, value) })
+		.switchMap((value) => { return http.post('/api', value) })
 			/*incremental backoff - увеличение задержки при повтороной отправке*/
 			.retryWhen(attempts => attempts
 				.zip(Observable.range(1, 3), (_, i) => i)
@@ -107,7 +134,7 @@ input[type=email]:not(:plsceholder-shown):invalid {
 	* загрузка тяжёлых частей асинхронно, с помощью JS/AJAX, пачкой.
  * Perceive performance [В погоне за производительностью. Психология пользователя / Денис Мишунов (Digital Garden AS)](https://www.youtube.com/watch?v=_0gqOMvNy18)
  * [20 тысяч лье по Angular 4». Александр Трищенко, DataArt](https://www.youtube.com/watch?v=TIMUy9WDuS0)
- * https://github.com/mgechev/angular-performance-checklist
+ * [angular performance checklist](https://github.com/mgechev/angular-performance-checklist)
  * https://www.lucidchart.com/techblog/2016/05/04/angular-2-best-practices-change-detector-performance/
  * [передвинуть](https://netbasal.com/angular-services-do-not-have-to-be-singletons-ffa879e62082?gi=c6b3d97473d8) объявления из ngModule в компонент или очистить в ngOnDestroy
 
@@ -133,6 +160,9 @@ input[type=email]:not(:plsceholder-shown):invalid {
 	}
 	```
  * [Tree-shakable dependencies in Angular projects](https://indepth.dev/tree-shakable-dependencies-in-angular-projects/)
+ * [Understanding Memory Leaks in Angular](https://javascript.plainenglish.io/understanding-memory-leaks-in-angular-4a738f7ce90d?gi=a063ee65f609)
+ * [Повысьте производительность SPA, разбив ваши библиотеки Angular на несколько частей](https://habr.com/ru/post/482646/)
+ * [Optimize Angular bundle size in 4 steps](https://medium.com/angular-in-depth/optimize-angular-bundle-size-in-4-steps-4a3b3737bf45)
 
 ## AOT ahead of time compilation
 
@@ -142,7 +172,10 @@ input[type=email]:not(:plsceholder-shown):invalid {
 
 ## NGRX REDUX state management 
 
+ * https://medium.com/weekly-webtips/using-ngrx-store-in-2020-72f438177c77
+ * https://jczacharia.medium.com/easier-angular-component-state-management-34615849a637
  * [Introducing @ngrx/entity](https://medium.com/ngrx/introducing-ngrx-entity-598176456e15)
+ * https://www.bersling.com/2017/06/05/state-management-ngrxstore-vs-angular-services/
  * [An Intro to ngrx/effects , ngrx/store with Angular 4](https://medium.com/front-end-weekly/an-intro-to-ngrx-effects-ngrx-store-with-angular-4-c55c4d1d5baf)
  * [Angular NgRx Entity - Complete Practical Guide](https://blog.angular-university.io/ngrx-entity/)
  * [Manage Action Flow(http/api) in @ngrx with @ngrx/effects](https://blog.nextzy.me/manage-action-flow-in-ngrx-with-ngrx-effects-1fda3fa06c2f)
@@ -219,6 +252,23 @@ input[type=email]:not(:plsceholder-shown):invalid {
 			}
 		];
 	```
+	* https://levelup.gitconnected.com/angular-10-ngrx-store-by-example-afec6929bbf9
+	* https://medium.com/angular-in-depth/using-angular-elements-with-ngrx-bc655e1eb212
+	* [How to Start Flying with Angular and NgRx](https://indepth.dev/posts/1042/how-to-start-flying-with-angular-and-ngrx)
+	* [How to Start Flying with Angular and NgRx](https://medium.com/angular-in-depth/how-to-start-flying-with-angular-and-ngrx-b18e84d444aa)
+	* [Unit testing of ngrx-store in Angular app - 2017](https://medium.com/@aravindfz/unit-testing-of-ngrx-store-in-angular-app-d0935c8d8d1b)
+	* [angular-ngrx-data — state management и CRUD за пять минут](https://habr.com/ru/post/418369/)
+	* [Реактивные приложения на Angular/NGRX. Часть 1. Введение.](https://medium.com/@demyanyuk/реактивные-приложения-на-angular-ngrx-часть-1-cb7b4f2852dc)
+	* [Практическое применение RxJS Написание собственного Ngrx](https://medium.com/ngx/practical-use-rxjs-81aaab57045c)
+	* [Стейт-машина в Angular: учимся использовать правильно](https://medium.com/ngx/practical-use-rxjs-81aaab57045c)
+		* Для сложных случаев подойдут: Dexie.js, LokiJs, sql.js, Alasql 
+		* Простой и надёжной шиной сообщений являются сервисы, организованные, как рекомендовано в CQS/CQRS. Есть и готовые решения — ngx-message-bus и angular-cqrs
+		* Чаще, требуется только Store или Event Bus, альтернатив которым полно в сети или которые можно легко написать самостоятельно, и они не будут диктовать условия вашей архитектуре.
+	* [NGRX Entities: UpdateOne and UpdateMany @ngrx/entities ](https://medium.com/@daveharmswebdev/ngrx-entities-updateone-and-updatemany-ced8863d63a6)
+	* [Introducing @ngrx/entity](https://medium.com/ngrx/introducing-ngrx-entity-598176456e15)
+	* [Managing State in Angular Applications using NgRx](https://blog.nrwl.io/using-ngrx-4-to-manage-state-in-angular-applications-64e7a1f84b7b)
+	* [NgRx — Cherry Picking the Meta](https://medium.com/angular-in-depth/ngrx-cherry-picking-the-meta-30869953e929)
+	* [@ngrx/data a full-featured entity management system](https://ngrx.io/guide/data/limitations)
 
 ## CD change detection ZoneJS
 
@@ -238,89 +288,162 @@ mousemove, scroll, requestAnimationFrame()
  ```
  * https://angular.io/api/core/ChangeDetectionStrategy
 
-```ts
-	@Component({ 
-		template: ` <h2>{{vData.name}}</h2> <span>{{vData.email}}</span> `, 
-		changeDetection: ChangeDetectionStrategy.OnPush 
-		}) 
-		
-	class VCardCmp { 
-		@Input() vData; 
-		}
-```
+	```ts
+		@Component({ 
+			template: ` <h2>{{vData.name}}</h2> <span>{{vData.email}}</span> `, 
+			changeDetection: ChangeDetectionStrategy.OnPush 
+			}) 
+			
+		class VCardCmp { 
+			@Input() vData; 
+			}
+	```
  * [zonejs modules](https://github.com/angular/angular/blob/master/packages/zone.js/MODULE.md)
  * [Оптимизация обработки событий в Angular EventManagerPlugin](https://habr.com/ru/company/tinkoff/blog/429692/)
  * https://www.mokkapps.de/blog/the-last-guide-for-angular-change-detection-you-will-ever-need
+ * [The Last Guide For Angular Change Detection You'll Ever Need - 2019](https://www.mokkapps.de/blog/the-last-guide-for-angular-change-detection-you-will-ever-need/)
 
-```ts
-processOutsideAngularZone() { 
-	this.progress = 0; 
-	this.zone.runOutsideAngular(//выполнить вне зоны, без CD
-		() => {
-			this.increaseProgress(//сделать что-то
-				() => { 
-					this.zone.run(//запустить проверку CD
-						() => { 
-							console.log('Outside Done!'); 
-						}
-					); 
-				}
-			); 
-		}
-	); 
-} 
-
-```
-
-```ts
- constructor(private cd: ChangeDetectorRef) {} 
-
- ngOnInit() { 
-	 this.addItemStream.subscribe(
-		() => { 
-			 this.counter++; // application state changed 
-			 this.cd.markForCheck(); // marks path 
+	```ts
+	processOutsideAngularZone() { 
+		this.progress = 0; 
+		this.zone.runOutsideAngular(//выполнить вне зоны, без CD
+			() => {
+				this.increaseProgress(//сделать что-то
+					() => { 
+						this.zone.run(//запустить проверку CD
+							() => { 
+								console.log('Outside Done!'); 
+							}
+						); 
+					}
+				); 
 			}
-		) 
+		); 
 	} 
-} 
-```
+
+	```
+
+	```ts
+	constructor(private cd: ChangeDetectorRef) {} 
+
+	ngOnInit() { 
+		this.addItemStream.subscribe(
+			() => { 
+				this.counter++; // application state changed 
+				this.cd.markForCheck(); // marks path 
+				}
+			) 
+		} 
+	} 
+	```
 
  * disable zonejs
- ```js
- platformBrowserDynamic().bootstrapModule(AppModule, { ngZone: 'noop' })
-  .catch(err => console.error(err));
- ```
 
+	```js
+	platformBrowserDynamic().bootstrapModule(AppModule, { ngZone: 'noop' })
+	.catch(err => console.error(err));
+	```
+ * [The difference between NgDoCheck and AsyncPipe in OnPush components](https://indepth.dev/posts/1010/the-difference-between-ngdocheck-and-asyncpipe-in-onpush-components)
+## auth авторизация
+
+ * https://codeburst.io/jwt-authentication-in-angular-48cfa882832c
+ * https://medium.com/engineerbabu/angular-authentication-using-jwt-d846c5ce0ac6
+ * https://medium.com/@joshthompsonsmithdev/auth0-angular-7-login-tutorial-b3111c8e32a
+
+## rendering
+
+ * [virtual dom](https://medium.com/angular-in-depth/introducing-to-ng-vdom-a-new-way-to-write-angular-application-60a3be805e59)
+
+## forms
+
+ * https://medium.com/angular-in-depth/reducing-the-forms-boilerplate-make-your-angular-forms-reusable-ee06d7c07f47
+ * https://blog.angulartraining.com/dynamic-filtering-with-rxjs-and-angular-forms-a-tutorial-6daa3c44076a
+ * https://bubtaylor.com/loading-angular-reactive-forms-809b7774159a?gi=a2c92d54e3df
+ * https://medium.com/swlh/advanced-form-validation-with-angular-and-joi-6630f76cf8ad
+ * https://medium.com/angular-in-depth/new-way-to-validate-the-angular-reactive-form-2c4fe4f13373
+ * https://indepth.dev/posts/1310/creating-elegant-reactive-forms-with-rxwebvalidators
+ * https://github.com/ngneat/forms-manager
+
+## directive components
+
+ * [Directive Selectors, @HostBinding('rel'), :not](https://blog.angularindepth.com/beware-angular-can-steal-your-time-41fe589483df)
+ * [Changing the behavior of a 3rd party Angular Component](https://medium.com/angular-in-depth/changing-the-behavior-of-a-3rd-party-angular-component-91f84fb9af28)
+ 
+	```html
+		<!-- notice "customRadio" directive in html below --> 
+		<ion-select  [(ngModel)]="mdls" customRadio>
+		<ion-option *ngFor="let model of mdls" >{{model}}</ion-option>
+		</ion-select>
+	```
+
+	```js
+		// accessing to component through directive
+		import { Directive } from '@angular/core';
+		import { Host, Self, Optional } from '@angular/core';
+
+		@Directive({
+			selector: '[customRadio]',
+		})
+		export class CustomRadioDirective {
+			
+			constructor(
+			@Host() @Self() @Optional() public hostSel : Select) {
+			// Now you can access specific instance members of host directive
+			let app = (<any>hostSel)._app;
+			// also you can override specific methods from original host directive so that this specific instance uses your method rather than their original methods.
+			hostSel.open = (ev?: UIEvent) => {
+				// your custom code for open() method here..
+			}
+			}
+		}
+	```
+
+## DI injectors modules services
+
+ * https://medium.com/thinkster-io/3-angular-dependency-injection-tips-c4b5356541ee
+ * https://medium.com/generic-ui/famous-angular-forroot-pattern-59b9eaa0a3f4
+ * https://medium.com/@josce.james7/an-introduction-to-angular-modules-c26d441e42fa
+ * https://medium.com/angular-in-depth/angular-di-getting-to-know-the-ivy-nodeinjector-33b815642a8e
+ * https://lukeliutingchun.medium.com/angular-introduction-to-service-inheritance-aead1a8e1f0c
+ * https://blog.bitsrc.io/solid-the-dependency-inversion-principle-in-angular-6e4b9c484960
+ * [Asynchronous modules and components in Angular Ivy](https://indepth.dev/posts/1026/asynchronous-modules-and-components-in-angular-ivy)
+ * [All you need to know about Ivy, The new Angular engine! 2019](https://medium.com/angular-in-depth/all-you-need-to-know-about-ivy-the-new-angular-engine-9cde471f42cf)
+ * [Введение в модули Angular — корневой модуль (Root Module)](https://habr.com/ru/post/351504/)
+ * [Конфигурируемые модули Angular](https://tyapk.ru/blog/post/angular-configurable-modules)
+
+## service worker
+
+ * https://angular.io/guide/service-worker-intro
 ## web workers
 
+ * https://angular.io/guide/web-worker
  * https://blog.angularindepth.com/angular-with-web-workers-step-by-step-dc11d5872135
  * https://angular.io/api/platform-webworker
  * в мобильных браузерах могут быть лимиты по памяти на webworker
 
 ```ts
-import {bootstrapWorkerUi} from '@angular/platform-webworker'; 
-import {enableProdMode} from '@angular/core'; 
+	import {bootstrapWorkerUi} from '@angular/platform-webworker';
+	import {enableProdMode} from '@angular/core';
 
-export function main() { 
-	enableProdMode(); 
-	bootstrapWorkerUi('loader.js'); 
-}
+	export function main() {
+		enableProdMode();
+		bootstrapWorkerUi('loader.js');
+	}
 ```
 
 ```ts
-@NgModule({ 
-		imports: [WorkerAppModule], 
-		bootstrap: [AppComponent], 
-		declarations: [AppComponent] 
-		}) 
-		
-class WebWorkerModule {} 
+	@NgModule({ 
+			imports: [WorkerAppModule], 
+			bootstrap: [AppComponent], 
+			declarations: [AppComponent] 
+			}) 
+			
+	class WebWorkerModule {} 
 
-export function main() { 
-	enableProdMode(); 
-	platformWorkerAppDynamic().bootstrapModule(WebWorkerModule); 
-	}
+	export function main() { 
+		enableProdMode(); 
+		platformWorkerAppDynamic().bootstrapModule(WebWorkerModule); 
+		}
 ```
 ## курсы
 
@@ -329,15 +452,18 @@ export function main() {
  * https://ultimateangular.com/#
  * https://blog.angularindepth.com/
  * https://basarat.gitbooks.io/typescript/content/docs/types/type-assertion.html
+ * [Learn Angular in this free 33-part course by Angular-expert Dan Wahlin](https://www.freecodecamp.org/news/want-to-learn-angular-heres-our-free-33-part-course-by-dan-wahlin-fc2ff27ab451/)
 
 ## security
 
  * [auth0 SSO](https://auth0.com/blog/angular-2-authentication/)
  * https://www.tsmean.com/articles/authentication/express-session-angular/
 
-## angular state management router
+## router
 
- * https://www.bersling.com/2017/06/05/state-management-ngrxstore-vs-angular-services/
+ * https://indepth.dev/posts/1379/angular-router-revealing-some-interesting-facts-and-features
+ * [Определение маршрутов](https://metanit.com/web/angular2/7.1.php)
+ 
 
 ## reactive forms control
 
@@ -358,14 +484,25 @@ export function main() {
 
 https://stackblitz.com/edit/angular-jhutmd?file=app%2Fapp.component.html
 
+## network
+
+ * https://medium.com/@sjnaveenkumar/writing-a-generic-http-module-in-angular-a56d36d584a7
+ * https://javascript.plainenglish.io/the-right-way-to-make-api-calls-in-angular-5cc03a62bf43
+ * https://blog.usejournal.com/how-to-map-rest-api-data-using-decorator-pattern-in-angular-6-94eb49ba16b1
+ * https://levelup.gitconnected.com/the-correct-way-to-make-api-requests-in-an-angular-application-22a079fe8413
+ * крутилка https://medium.com/swlh/angular-loading-spinner-using-http-interceptor-63c1bb76517b
+
 ## testing тест
 
  * https://simontest.net/
  * https://github.com/angular/in-memory-web-api
  * [Angular: Интеграционное тестирование (Shallow testing)](https://habr.com/ru/company/veeam/blog/486994/)
  * [Three Ways to Test Angular Components](https://vsavkin.com/three-ways-to-test-angular-2-components-dcea8e90bd8d) isolated/shallow/integration
+ * [Angular Testing Series: Why Your Angular Tests Probably Smell](https://betterprogramming.pub/angular-testing-series-why-your-angular-tests-probably-smell-ebab93c59e0)
+ * https://github.com/ngneat/spectator
+ * https://dev.to/qarunqb/tdd-in-angular-dependency-injection-and-mocking-4jnh
 
-*Karma/Jasmine*
+### Karma/Jasmine
 
  * [Angular: Unit Testing Jasmine, Karma (step by step)](https://medium.com/swlh/angular-unit-testing-jasmine-karma-step-by-step-e3376d110ab4)
  * [Настройка VSCdode debug test](https://stackoverflow.com/questions/43916649/debug-tests-in-ng-test/44308743#44308743)
@@ -398,12 +535,16 @@ declare global {
  * [The introduction to Reactive Programming you've been missing](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754)
  * [View Facades + RxJS](https://medium.com/angular-in-depth/angular-you-may-not-need-ngrx-e80546cc56ee)
  * [reactive manifesto](https://www.reactivemanifesto.org/)
+ * https://medium.com/swlh/basic-reactive-patterns-in-angular-b404bc127a0a
+ * https://blog.bitsrc.io/10-useful-angular-features-youve-probably-never-used-e9e33f5c35a7
+ * https://medium.com/its-tinkoff/best-angular-tips-90bdc1c25529
  * [The introduction to Reactive Programming you've been missing](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754)
  * http://rxmarbles.com/
  * http://reactivex.io/documentation/operators/flatmap.html
  * [примеры и актуальность методов](https://rxjs-dev.firebaseapp.com/api)
  * [js observable](https://www.youtube.com/watch?v=NK-WzH3RBds)
  * [частые ошибки](https://medium.com/@paynoattn/3-common-mistakes-i-see-people-use-in-rx-and-the-observable-pattern-ba55fee3d031)
+ * https://itnext.io/practical-rxjs-and-angular-b8d38189bb2c
  * [расшепление потоков forkJoin](https://blog.angularindepth.com/practical-rxjs-in-the-wild-requests-with-concatmap-vs-mergemap-vs-forkjoin-11e5b2efe293)
     ```js
         forkJoin(
@@ -428,6 +569,32 @@ declare global {
  * https://github.com/JayKan/RxJS-Playground
  * [вечнозелёная документация для людей](http://reactive.how/)
  * [RxJS: How to Observe an Object](https://ncjamieson.com/how-to-observe-an-object/)
+ * https://medium.com/angular-in-depth/how-to-rxjs-in-angular-1037908e82a5
+ * https://blog.bitsrc.io/5-common-mistakes-with-rxjs-1b09d4c19387
+ * https://medium.com/angular-in-depth/reducing-the-forms-boilerplate-make-your-angular-forms-reusable-ee06d7c07f47
+ * [subjects async behavior reply](https://www.learnrxjs.io/learn-rxjs/subjects)
+ * [RxJS: multicast's Secret without connectable](https://cartant.medium.com/rxjs-multicasts-secret-760e1a2b176e)
+ * [Live search with RxJS- the devil is in the details](https://medium.com/angular-in-depth/rxjs-live-search-the-devil-is-in-the-detail-119637186427)
+ * [Hot vs Cold Observables](https://medium.com/@benlesh/hot-vs-cold-observables-f8094ed53339)
+ * [Learning Observable By Building Observable](https://medium.com/@benlesh/learning-observable-by-building-observable-d5da57405d87)
+
+### unsubscribe
+
+ * [unsubscribe Почему вам НАДО отписываться от Observable?](https://medium.com/ngx/why-do-you-need-unsubscribe-ee0c62b5d21f)
+ * https://medium.com/swlh/rxjs-angular-unsubscribe-like-a-pro-ffeedec60aa7
+ * [The Best Way To Unsubscribe RxJS Observables In The Angular Applications!](https://medium.com/angular-in-depth/the-best-way-to-unsubscribe-rxjs-observable-in-the-angular-applications-d8f9aa42f6a0)
+ * [Different ways of unsubscribing from RxJS Observables with Angular](https://blog.codecentric.de/en/2018/01/different-ways-unsubscribing-rxjs-observables-angular/)
+ * [When to Unsubscribe in Angular](https://netbasal.com/when-to-unsubscribe-in-angular-d61c6b21bad3)
+
+
+
+### тестирование
+
+ * [тестирование rxJS](https://netbasal.com/testing-observables-in-angular-a2dbbfaf5329)
+
+### курсы rxjs
+
+ * https://www.udemy.com/course/hands-on-rxjs-for-web-development/
 
 
 ### tslint eslint линтеры
@@ -625,16 +792,18 @@ Rx.Observable.concat(timer, timer) // concating the same Observable!
  * http://reactivex.io/documentation/operators/switch.html
  * @example Rerun an interval Observable on every click event 
 
-```js
-var clicks = Rx.Observable.fromEvent(document, 'click'); 
-var result = clicks.switchMap((ev) => Rx.Observable.interval(1000)); 
-result.subscribe(x => console.log(x));
+	```js
+		var clicks = Rx.Observable.fromEvent(document, 'click'); 
+		var result = clicks.switchMap((ev) => Rx.Observable.interval(1000)); 
+		result.subscribe(x => console.log(x));
 
-@param {function(value: T, ?index: number): ObservableInput} project - A function that, when applied to an item emitted by the source Observable, returns an Observable. 
-@return {Observable} An Observable that emits the result of applying the projection function (and the optional resultSelector) to each item emitted by the source Observable and taking only the values from the most recently projected inner Observable. 
-@method switchMap 
-@owner Observable
-```
+		@param {function(value: T, ?index: number): ObservableInput} project - A function that, when applied to an item emitted by the source Observable, returns an Observable. 
+		@return {Observable} An Observable that emits the result of applying the projection function (and the optional resultSelector) to each item emitted by the source Observable and taking only the values from the most recently projected inner Observable. 
+		@method switchMap 
+		@owner Observable
+	```
+
+ * [RxJS: Avoiding switchMap-Related Bugs](https://cartant.medium.com/switchmap-bugs-b6de69155524)
 
 ### scan
 
@@ -671,12 +840,29 @@ count.subscribe(x => console.log(x));
  * https://habr.com/company/ispsystem/blog/358696/
  * https://update.angular.io/
 
+
+## Input event
+
+ * https://netbasal.com/event-emitters-in-angular-13e84ee8d28c
+
+## PWA
+
+ * https://pwa.ng/
+
+## desktop angular app
+
+ * https://progtask.ru/angular-electron/
+## web components
+
+ * Basic level - [Angular Elements - A Practical Introduction To Web Components With Angular 6](https://www.tsmean.com/articles/angular/pitfalls/)
+ * https://medium.com/angular-in-depth/angular-web-components-a-complete-guide-5270e5b07e93
+
 ## pitfalls грабли
 
- * Basic level - [Angular Elements – A Practical Introduction To Web Components With Angular 6](https://www.tsmean.com/articles/angular/pitfalls/)
  * [angular faq](https://rahulrsingh09.github.io/AngularConcepts/faq)
  * [подводные камни angular 2019](https://habr.com/ru/company/ruvds/blog/459304/)
- * [Angular Dependency Injection, Singleton Services, and A Loading Indicator](https://medium.com/@weswhite/angular-singleton-service-and-a-loading-indicator-ca3cc7892722)
+ * [Angular Dependency Injection, Singleton Services, and A Loading Indicator spinner крутилка](https://medium.com/@weswhite/angular-singleton-service-and-a-loading-indicator-ca3cc7892722)
+ * [Обход подводных камней Angular и экономия времени](https://habr.com/ru/company/ruvds/blog/459304/) https://blog.angularindepth.com/beware-angular-can-steal-your-time-41fe589483df
 
 ### drag перетаскивание resize
 
@@ -751,6 +937,7 @@ count.subscribe(x => console.log(x));
 		this.router.routerState.snapshot.root.firstChild.routeConfig.canActivate
 	```
  * `Can't bind to 'active' since it isn't a known property of 'a'` (импорт MatTabsModule)[https://github.com/angular/material2/issues/11372]
+ * [Guards позволяют ограничить навигацию по определенным маршрутам](https://metanit.com/web/angular2/7.7.php)
 
 ### mat-icon
 
@@ -1231,6 +1418,7 @@ bootstrap: [
 ]
 
 ```
+ * [Inversion of Control Containers and the Dependency Injection pattern](https://martinfowler.com/articles/injection.html)
 
 ### component interaction child to parent
 
@@ -1288,10 +1476,11 @@ const httpOptions = {
 
 ```
 
-## interceptors
+## HTTP interceptors
 
  * https://medium.com/@ryanchenkie_40935/angular-authentication-using-the-http-client-and-http-interceptors-2f9d1540eb8
  * http://stepansuvorov.com/blog/2014/04/angularjs-interceptors-%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D1%80%D1%8B/
+ * [Top 10 ways to use Interceptors in Angular](https://medium.com/angular-in-depth/top-10-ways-to-use-interceptors-in-angular-db450f8a62d6)
 
 ## книги
 
@@ -1312,27 +1501,26 @@ const httpOptions = {
 
 ## сборка
 
- * 
  * webpack config eject 
  
-```bash
+	```bash
 
-	npm i -D webpack uglifyjs-webpack-plugin copy-webpack-plugin clean-webpack-plugin html-webpack-plugin extract-text-webpack-plugin webpack-merge stylus pug browser-sync-webpack-plugin browser-sync babel-loader css-loader csso csso-loader file-loader image-webpack-loader img-loader postcss postcss-import postcss-loader postcss-url pug-html-loader raw-loader stylus-loader to-string-loader url-loader webpack-cli webpack-dev-server webpack-merge html-loader scss-loader
+		npm i -D webpack uglifyjs-webpack-plugin copy-webpack-plugin clean-webpack-plugin html-webpack-plugin extract-text-webpack-plugin webpack-merge stylus pug browser-sync-webpack-plugin browser-sync babel-loader css-loader csso csso-loader file-loader image-webpack-loader img-loader postcss postcss-import postcss-loader postcss-url pug-html-loader raw-loader stylus-loader to-string-loader url-loader webpack-cli webpack-dev-server webpack-merge html-loader scss-loader
 
-	ng new angular4 --style stylus
-	ng eject ##нужна 1 версия cli
-```
+		ng new angular4 --style stylus
+		ng eject ##нужна 1 версия cli
+	```
 
  * темы
  
-```css
-	/*styles.css*/
-	/* @import '~@angular/material/prebuilt-themes/deeppurple-amber.css'; */
-	@import '~@angular/material/prebuilt-themes/indigo-pink.css';
-	/* @import '~@angular/material/prebuilt-themes/pink-bluegrey.css'; */
-	/* @import '~@angular/material/prebuilt-themes/purple-green.css'; */
+	```css
+		/*styles.css*/
+		/* @import '~@angular/material/prebuilt-themes/deeppurple-amber.css'; */
+		@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+		/* @import '~@angular/material/prebuilt-themes/pink-bluegrey.css'; */
+		/* @import '~@angular/material/prebuilt-themes/purple-green.css'; */
 
-```
+	```
 
  * https ng serve
  
@@ -1343,46 +1531,46 @@ const httpOptions = {
  * [env variables переменные окружения angular](https://medium.com/@kudresov/a-better-way-to-inject-environmental-variables-in-angular-d3b2d01a3c5e)
  * выключить ошибку препроцессора typescript
  
-```bash
-	ng config cli.warnings.typescriptMismatch false
-```
+	```bash
+		ng config cli.warnings.typescriptMismatch false
+	```
  
  * Минификация uglifyjs es6 сломана, надо пользовать closure или terser
  
-```
-https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/104
-npm i uglifyjs-webpack-plugin@1
-https://github.com/webpack-contrib/uglifyjs-webpack-plugin/releases
-https://github.com/webpack-contrib/terser-webpack-plugin
-https://webpack.js.org/plugins/terser-webpack-plugin/#src/components/Sidebar/Sidebar.jsx
-```
+	```
+		https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/104
+		npm i uglifyjs-webpack-plugin@1
+		https://github.com/webpack-contrib/uglifyjs-webpack-plugin/releases
+		https://github.com/webpack-contrib/terser-webpack-plugin
+		https://webpack.js.org/plugins/terser-webpack-plugin/#src/components/Sidebar/Sidebar.jsx
+	```
 
  * ошибки сборки для e2e
 
-```
-tsconfig.json
-либо настроить общий конфиг(npm i @types/jasmine)
- "types": [
-      "jasmine",
-      "jasminewd2",
-      "node"
-    ]
-    
-либо убрать из него:
-"exclude": [
-    "node_modules",
-    "dist",
-    "./**/*.spec.ts",
-    "./**/*.e2e.ts"
-  ],
-```
+	```
+	tsconfig.json
+	либо настроить общий конфиг(npm i @types/jasmine)
+	"types": [
+		"jasmine",
+		"jasminewd2",
+		"node"
+		]
+		
+	либо убрать из него:
+	"exclude": [
+		"node_modules",
+		"dist",
+		"./**/*.spec.ts",
+		"./**/*.e2e.ts"
+	],
+	```
 
  * ошибки сборки es6 https://medium.com/@martin_hotell/tree-shake-lodash-with-webpack-jest-and-typescript-2734fa13b5cd
  
-```
-tsconfig.json
-"target": "es5",
-```
+	```
+	tsconfig.json
+	"target": "es5",
+	```
 
  * ошибки конвертации html --> pug
  
@@ -1402,6 +1590,8 @@ tsconfig.json
  * [Дизайн GraphQL-схем — строим схемы правильно (версия 2) / Павел Черторогов (ps.kz)](https://www.youtube.com/watch?v=tASEYJXdO_c) 
  * [Дизайн GraphQL-схем — делаем АПИ удобным](https://github.com/nodkz/conf-talks/tree/master/articles/graphql/schema-design)
  * [Переход от Rest API к GraphQL на примере реальных проектов / Антон Морев (Wormsoft)](https://www.youtube.com/watch?v=iiI5L6b0Uvo)
+ * [Пентест приложений с GraphQL](https://habr.com/ru/company/dsec/blog/444708/)
+ * [Руководство по языку запросов GraphQL для начинающих](https://tproger.ru/translations/graphql-beginners-guide/)
  
 ## Internatiolization перевод locale локализация translate
 
@@ -1414,6 +1604,7 @@ tsconfig.json
 ## UI/UX framework фреймворки библиотеки
 
  * using [tailwindcss](https://tailwindcss.com/) in [angular](https://medium.com/@jacobneterer/angular-and-tailwindcss-2388fb6e0bab)
+ * [Theming Angular, ViewEncapsulation](https://medium.com/swlh/theming-angular-c869827738c3)
  * [HTML UI layout for Angular applications; using Flexbox and a Responsive API ](https://github.com/angular/flex-layout)
  * https://bit.dev/
  * [add bootstrap grid into material](https://www.amadousall.com/the-good-parts-of-bootstrap-4-you-are-missing-in-your-angular-material-projects/)
@@ -1444,20 +1635,26 @@ tsconfig.json
 	<p>Other Injected Content</p>
 	</app-header-expanded>
 	```
+### checkbox галки
+
+	* https://netbasal.com/implementing-grouping-checkbox-behavior-with-angular-reactive-forms-9ba4e3ab3965
+	* [Кастомные чекбоксы правильно](https://www.youtube.com/watch?v=E6kLaaQFctU)
 
 ## angular material
 
-### генераторы
-
- * [для react](https://material-ui.com/getting-started/installation/)
-
-### ликбез
-
+ * [The complete guide to Angular Material Themes](https://medium.com/@tomastrajan/the-complete-guide-to-angular-material-themes-4d165a9d24d1)
  * https://material.angular.io/guide/theming
  * https://material.angular.io/guide/theming-your-components
  * https://github.com/angular/material2/blob/master/src/lib/core/theming/_theming.scss
  * https://material.angular.io/guide/customizing-component-styles
  * http://blog.bogdancarpean.com/create-custom-color-theme-on-angular-material/
+### material CDK
+
+ * [Tooltip with Angular CDK](https://medium.com/angular-in-depth/building-tooltips-for-angular-3cdaac16d138)
+
+### генераторы
+
+ * [для react](https://material-ui.com/getting-started/installation/)
 
 ### цвета color
  
@@ -1491,6 +1688,7 @@ tsconfig.json
  
 ## SEO
 
+ * https://medium.com/madhash/how-to-properly-add-google-analytics-tracking-to-your-angular-web-app-bc7750713c9e
  * title
 	```ts
 	import { Title } from "@angular/platform-browser"@Component({

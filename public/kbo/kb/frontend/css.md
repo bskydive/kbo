@@ -27,7 +27,7 @@
 
 ## обзоры, лучшие практики
 
- 
+ * https://shop.smashingmagazine.com/products/smashing-book-5-real-life-responsive-web-design
  * https://www.joeforshaw.com/blog/css-the-bad-bits-and-how-to-avoid-them
  * https://medium.com/@ABatickaya/хорошие-и-плохие-css-практики-для-начинающих-619289ce8bae/
  * [архитектура css](https://web-standards.ru/articles/css-architecture/)
@@ -39,14 +39,21 @@
  * [специфичность по стхм](https://stuffandnonsense.co.uk/archives/css_specificity_wars.html)
  * [сильные стороны css](http://css-live.ru/articles/ustojchivyj-deklarativnyj-kontekstnyj-novyj-vzglyad-na-silnye-storony-css.html)
  * [ограничения сокращённой записи свойств](https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties#Tricky_edge_cases)
-
+ * [ТОП-6 рецептов на чистом HTML и CSS без использования JS](https://proglib.io/p/html-css-tricks/)
+	* Липкие блоки
+	* Прокрутка, привязка, выравнивание
+	* Кирпичная кладка на HTML и CSS
+	* Псевдокласс placeholder-shown
+	* вкладки через :target
+	* Аккордеон <details> и <summary>
+	* 
+ * [Keeping it simple with CSS that scales - css conventions](https://archive.hankchizljaw.com/wrote/keeping-it-simple-with-css-that-scales/)
+ * [prefers-color-scheme: Hello darkness, my old friend](https://web.dev/prefers-color-scheme/)
 ### решение проблем
  
  * [Шпаргалка по вёрстке 2012](https://habr.com/post/163871/)
  * [шпаргалка по специфичности селекторов](http://css-live.ru/css/pravilnaya-shpargalka-po-css-kaskadu.html)
  * [набор простых приёмов на 30 секунд](https://habr.com/ru/company/mailru/blog/350160/)
- * [раскладки layout](https://every-layout.dev/)
- * [Типовые раскладки](http://learnlayout.com/)
 
 #### схлопывание 
 
@@ -99,6 +106,9 @@
 
  * [Нетривиальная расстановка элементов на flexbox без media-запросов	](https://habr.com/ru/post/473186/)
  * https://www.developerdrive.com/holy-grail-layout-flexbox/
+ * [раскладки layout](https://every-layout.dev/)
+ * [Типовые раскладки](http://learnlayout.com/)
+ * [CSS Grid Layout Generator](https://css-grid-layout-generator.pw/)
 
 ### adaptive vs responsive layout
 
@@ -251,7 +261,21 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 
 ##	Анимация css 
 
-60 FPS	https://habrahabr.ru/post/308006/
+* 60 FPS	https://habrahabr.ru/post/308006/
+
+
+## css flexbox
+
+ * термины
+	* container - родительский элемент
+	* item - тэг на уровень ниже родительского
+	* 
+	* 
+ * 
+ * 
+ * 
+ * 
+ * 
 
 ##	css grid
 
@@ -262,11 +286,11 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
  * [проектирование UI](https://habrahabr.ru/company/ruvds/blog/350166/)
  * https://medium.freecodecamp.org/introducing-css-gridish-helping-teams-to-adapt-css-grid-today-3e031ab222de
  * https://medium.com/@PavelLaptev/learning-css-grid-with-the-swiss-2bd02e913fa
- * https://habrahabr.ru/company/edison/blog/343614/
+ * [Учим CSS Grid за 5 минут](https://habrahabr.ru/company/edison/blog/343614/)
  * https://www.smashingmagazine.com/2017/11/css-grid-supporting-browsers-without-grid/
- * https://habrahabr.ru/company/edison/blog/343796/
- * http://css-live.ru/articles/verstka-prostoj-setki-s-folbekami-ispolzuyushhimi-direktivu-supports-feature-queries.html
- * http://css-live.ru/articles/primenenie-mediavyrazhenij-dlya-proporcij-okna-brauzera.html
+ * [Как быстро спроектировать сайт с помощью CSS Grid](https://habrahabr.ru/company/edison/blog/343796/)
+ * [сетка](http://css-live.ru/articles/verstka-prostoj-setki-s-folbekami-ispolzuyushhimi-direktivu-supports-feature-queries.html)
+ * [медиавыражения](http://css-live.ru/articles/primenenie-mediavyrazhenij-dlya-proporcij-okna-brauzera.html)
  * http://css-live.ru/articles/eshhyo-odna-kollekciya-interesnyx-faktov-pro-css-gridy-css-grid-layout.html
  * [генератор сеток](https://cssgr.id/)
  * [Responsive tables, revisited](http://lea.verou.me/2018/05/responsive-tables-revisited/)
@@ -274,6 +298,170 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
  * [Простой генератор CSS-гридов Сары Дрэснер](https://cssgrid-generator.netlify.com/)
  * [A Complete Guide to Grid 2019](https://css-tricks.com/snippets/css/complete-guide-grid/)
  * [Inspect CSS Grid 2020](https://docs.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/css/grid)
+ * [Create a CSS Grid Image Gallery (With Blur Effect and Interaction Media Queries)](https://webdesign.tutsplus.com/tutorials/create-a-css-grid-image-gallery-with-blur-effect-and-interaction-media-queries--cms-32287)
+
+###  ликбез
+
+ * 
+	```scss
+		@supports not (display: grid) {}
+
+		.old-ms-grid { // ие11 поддерживает старую версию гридов
+			display: -ms-grid;
+			-ms-grid-columns: 15em auto 20 em;
+		}
+
+		// классическая раскладка
+		html, body {
+			height: 100%
+		}
+		body {
+			display: grid;
+			grid-template-columns: 15em auto 15em;
+			grid-template-rows: min-content auto min-content;
+		}
+		header, footer {
+			grid-column-start: 1;
+			grid-column-end: 4;
+		}
+	```
+ * термины
+	* cells
+	* gaps(gutters) - поля между ячейками
+	* columns|rows = tracks
+	* lines - границы дорожек
+	* areas - отдельный набор ячеек
+	* items - логическая структура, блок
+	* explicit grid - явно определены правила
+	* implicit grid - неявно, без правил, создаётся автоматическая раскладка
+ * операторы
+	* auto=1fr - fractional unit
+	* minmax(minSize, maxSize)
+	* fitcontent(maxSize) = minmax(max-content, maxSize)
+	* repeat(count, ...value) - вместо числа можно auto-fill|auto-fit
+	* auto-fill - заполнение
+	* auto-fit - заполнение с растяжением
+	* grid-template можно сократить до grid
+ 	* grid-auto-flow
+		* column - заполнять сначала весь столбец
+		* row(default) - заполнять сначала строки
+		* автоматически из атрибута `dir:rtl`, `writing-mode:vertical-rl;`
+		* dense `grid-auto-flow: dense row;` - разрешить заполнять предыдущие свободные места
+	* grid-auto-rows - автоматически создаёт строки
+	* grid-auto-columns - автоматически создаёт столбцы
+	* grid-row-gap, grid-column-gap, grid-gap 
+	* span - режим стэка|пролётов, отсчёт от ближайшего 
+		* `grid-column-start: 2; grid-column-end: span 3;` = `grid-column-start: 2; grid-column-end: 5;`
+		* `grid-column-start: 2; grid-column-end: 4;` = `grid-column-start: span 2; grid-column-end: 4;` - здесь отсчёт span от 4
+		* `grid-column-start: 1; grid-column-end: 2;` = `grid-column-start: span 2`
+ 	* отрицательные lines отсчитываются с конца, 1(-3) 2(-2) 3(-1)
+	 	* `grid-column: 1 / -1` - растянуть на весь родительский контейнер
+ 	* можно задать только `grid-column-end: span 2` без start
+ 	* `grid-column: $start / $end`
+ 	* `grid-area: $row-start / $column-start / $row-end / $column-end`
+	* 1fr - fraction, одна часть, 100%
+ * выравнивание
+	* размер ячейки по-умолчанию max-content
+	* выравнивание всего элемента grid|container - `-content`
+	* выравнивание внутри ячейки - `-item`
+	* выравнивание ограничено размерами родительского контейнера
+	* justify - горизонтельно
+	* align - вертикально
+	* start, center, end
+	* space-between - везде 1fr между, игнорирует внешние границы
+	* space-evenly - везде 1fr, включая внешние границы
+	* space-around - везде 1fr, 0,5fr во внешние границы
+	* stretch - для item
+	* `-content`|`-item` - для всех элементов grid
+	* `-self` - для одного item
+	* `order: 1` - важность|вес элемента при сортировке. Сначала самый маленький.
+ * перекрытие
+	* элементы с одинаковыми позициями перекрывают друг друга
+	* можно пользоваться z-index
+ * псевдонимы
+	 * naming
+	 * можно писать несколько псевдонимов для линии
+	 * `grid-template-rows: [a-start] 1f [a-end middle center b-start] 1fr [b-end]`
+	 * 
+	 	```scss
+			.container {
+				grid-template-columns: [edge-left] repeat(auto-fill, [block-start] 1em 2em [block-end]) [edge-right];
+			}
+			.block-first {
+				grid-column: block-start / block-end; // для нескольких генерируемых значений с одним псевдонимом выбирается первый
+			}
+			.block-third {
+				grid-column: block-start 3 / block-end 3; // можно указать номер линии с этим псевдонимом
+			}
+			.block-third {
+				grid-column: block-start 3 / span 3 block-end; // можно использовать относительный номер !!! может вызвать ошибку при отсутствии смежных линий
+			}
+		```
+	 * через псевдоним области можно задать линии `grid-column`|`grid-row`
+	 	```scss
+			.container {
+				display: grid;
+				grid-template-areas: "
+					header header header
+					nav main aside
+					footer footer footer
+				";
+				grid-template-rows: min-content auto min-content;
+				grid-template-columns: 10em 1fr 1fr;
+				header { grid-area: header;}
+				nav { grid-area: nav;}
+				main { grid-area: main;}
+				aside { grid-area: aside;}
+				footer { grid-area: footer;}
+			}
+		```
+	 * ограничения area псевдонимов: 
+	 	* нельзя L
+			```css
+			grid-template-areas: "
+						header header header
+						nav main aside
+						footer footer footer
+					";
+			```
+		* нельзя пропускать ячейки, но можно заполнять троеточием ellipsis
+		```css
+			grid-template-areas: "
+					header ... ...
+					nav main ...
+					footer footer footer
+				";
+		```
+		* в firefox нужно отжать кнопку, чтобы названия стали видны в отладчике
+		* псевдонимы областей автоматом создают `-start`|`-end` линии
+		* псевдонимы линий автоматом создают области
+		* сокращенная запись `grid` стирает псевдонимы, потому её необходимо ставить вверху класса
+ * адаптивные сетки
+	* начать лучше с меньшей, а потом переходить к большим размерам экрана
+ * вложенные сетки
+	 * по-умолчанию стили применяются только к верхнему уровню иерархии тэгов HTML
+	 * для вложенных уровней тэгов можно определить заново сетку
+	 	```css
+			.subgrid {
+				grid-column: 1/-1;
+				display: grid;
+				grid-template-columns: repeat(12, 1fr);
+				grid-gap: 0.5em;
+			}
+		``` 
+	 * для упрощения кода можно указать subgrid
+	 	```css
+			.subgrid {
+				grid-column: 1/-1;
+				display: grid;
+				grid-template-columns: subgrid;
+			}
+		``` 
+	 * на 2020 год очень плохая поддержка браузеров
+ * изменение размеров
+	 * рост от минимального размера до максимального в зависимости от ширины родительского контейнера
+	 * fractional ячейки растут во вторую очередь после minmax и auto
+	 * auto растёт бесконечно, но если есть fractional - до max-content
 
 ## clearing очистка стилей
 
@@ -312,7 +500,7 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 		padding-bottom 0
 ```
 
-### clearing button очистка стилей
+### button
 
  * https://css-tricks.com/overriding-default-button-styles/
  * можно через миксин, элемент button и часть класса [class^="button-"], [class*=" button-"]
@@ -406,7 +594,7 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 ```css
 	/**
 	 * Reset button styles
-	 * It takes some work to achieve a “blank slate” look.
+	 * It takes some work to achieve a "blank slate" look.
 	 */
 	button {
 		padding: 0;
@@ -493,7 +681,7 @@ https://bitsofco.de/how-display-contents-works/
 
 https://medium.com/eightshapes-llc/cropping-away-negative-impacts-of-line-height-84d744e016ce
 
-###	css text
+### css text
 
  * http://ecard.enter-media.org/css-text-effects/
  * [высота строки текста](https://css-tricks.com/how-to-tame-line-height-in-css/)
@@ -635,9 +823,10 @@ https://stackoverflow.com/questions/16647380/max-width-vs-min-width
  * https://daverupert.com/2017/11/happier-html5-forms/
  * http://html5pattern.com/
 
-## <select>
+## <select> dropdown
 
  * [стилизация select 2019](https://css-tricks.com/the-current-state-of-styling-selects-in-2019/)
+ * https://moderncss.dev/custom-select-styles-with-pure-css/
 
 ##	шаблонизаторы препроцессоры
 

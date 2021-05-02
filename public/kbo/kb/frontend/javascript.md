@@ -6,6 +6,7 @@
  * https://proglib.io/p/12-javascript-tricks
  * [Концепции чистого кода адаптированные для TypeScript, вдохновленные clean-code-javascript](https://github.com/Real001/clean-code-typescript)
  * [You don't (may not) need Lodash/Underscore](https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore)
+ * [Infinite Scroll using Generators!](https://ashishshubham.medium.com/infinite-scroll-using-generators-bbacbf6cafd9)
 
 ## links
 
@@ -18,6 +19,7 @@
  * https://tproger.ru/translations/event-emitter-javascript/
  * http://www.2ality.com/2016/10/understanding-promises.html
  * [наставления с примерами по созданию популярных сервисов ](https://github.com/danistefanovic/build-your-own-x)
+ * https://javascriptweekly.com/
 
 ## обучение
 
@@ -28,6 +30,19 @@
  * http://frontender.info/es6-in-depth-generators/
  * http://frontender.info/promises/
  * https://proglib.io/p/javascript-junior
+ * [Тотальный JavaScript: изучаем JS с акцентом на практической составляющей](https://habr.com/ru/post/543646/) https://github.com/harryheman/JavaScript-Total
+
+## задачи собес
+
+ * https://coderoad.ru/45136221/Javascript-задача-кодирования-с-setTimeout-асинхронным-выходом
+ * https://gist.github.com/codedokode/ce30e7a036f18f416ae0
+ * https://medium.com/@olgakozlova/задача-на-асинхронность-promises-и-таймеры-2a3b537c901d/
+ * https://tproger.ru/translations/common-javascript-interview-challenges/
+ * [70 вопросов по JavaScript для подготовки к собеседованию](https://habr.com/ru/post/486820/)
+ * [Каверзные вопросы и задачи по JavaScript из собеседований](https://proglib.io/p/tricky-challenges-js/)
+ * [5 типовых задач на собеседованиях по JavaScript](https://medium.com/webbdev/js-2b0820b3788f)
+ * [43 JavaScript Questions, With Their Answers Explained](https://javascriptweekly.com/link/81865/web)
+ * [10 Interview Questions Every JavaScript Developer Should Know 2020](https://medium.com/javascript-scene/10-interview-questions-every-javascript-developer-should-know-6fa6bdf5ad95)
 
 ## инструменты 
 
@@ -43,6 +58,8 @@
 
  * https://eslint.org/docs/rules/
  * https://palantir.github.io/tslint/rules/
+ * [eslint tinkoff conventions](https://github.com/TinkoffCreditSystems/linters)
+ * [eslint wemake](https://sobolevn.me/2019/02/engineering-guide-to-user-stories)
  
 ## ботанство
 
@@ -50,20 +67,29 @@
  * https://medium.com/@DmitrySoshnikov
  * [параллельные конкурентные потоки многопоточность](https://hacks.mozilla.org/2017/06/a-crash-course-in-memory-management/)
  * [Основы движков JavaScript: общие формы и Inline кэширование. Часть 2](https://habr.com/ru/company/otus/blog/447220/)
- * [Функциональный JavaScript: пять способов нахождения среднего арифметического элементов массива и метод .reduce()](https://habr.com/ru/company/ruvds/blog/458030/)
  * [Часто задаваемые вопросы о системах типов](https://habr.com/ru/company/ruvds/blog/462481/)
  * [производительность javascript](https://habr.com/ru/company/mailru/blog/321748/)
- * [функциональное программирование](https://habr.com/ru/company/mailru/blog/327522/)
  * [глюки javascript](https://habr.com/ru/company/mailru/blog/335292/)
  * [история развития инструментов для  javascript](https://habr.com/ru/company/mailru/blog/340922/)
  * [ошибочное понимание DRY](https://habr.com/ru/company/mailru/blog/349978/)
  * [сборник ошибок JS](https://habr.com/ru/company/jugru/blog/494256/)
  * [How JavaScript works: Event loop and the rise of Async programming + 5 ways to better coding with async/await Alexander Zlatkov](https://blog.sessionstack.com/how-javascript-works-event-loop-and-the-rise-of-async-programming-5-ways-to-better-coding-with-2f077c4438b5)
+ * [Как работает JavaScript: часть первая](https://gb.ru/posts/javascript_internals_part1) https://gb.ru/posts/javascript_internals_part2 https://gb.ru/posts/javascript_internals_part3
+ * [Планировщик задач на JavaScript](https://habr.com/ru/post/26215/)
+ * [Знай свой инструмент: Event Loop в libuv](https://habr.com/ru/post/336498/)
+ * [Как управлять event loop в JavaScript. Часть 1](https://skillbox.ru/media/code/event_loop_chast_1/)
+ * [A crash course in memory management](https://hacks.mozilla.org/2017/06/a-crash-course-in-memory-management/)
+ * [Diving Deeper in JavaScripts Objects - A Closer Look at JavaScript Object Descriptors](https://blog.bitsrc.io/diving-deeper-in-javascripts-objects-318b1e13dc12?gi=f92e90c386f5)
 
+### функциональное программирование
+ * [Функциональный JavaScript: пять способов нахождения среднего арифметического элементов массива и метод .reduce()](https://habr.com/ru/company/ruvds/blog/458030/)
+ * [функциональное программирование](https://habr.com/ru/company/mailru/blog/327522/)
+ * [Concepts of Functional Programming in Javascript](https://medium.com/the-renaissance-developer/concepts-of-functional-programming-in-javascript-6bc84220d2aa)
 ## V8 движок
 
  * интерпретатор ES+WASM [ignition/байткод](https://v8.dev/blog/ignition-interpreter) и компилятор[turbofan JIT](https://v8.dev/docs/turbofan)
  * преза v8 2017 https://docs.google.com/presentation/d/1chhN90uB8yPaIhx_h2M3lPyxPgdPmkADqSNAoXYQiVE/edit#slide=id.g18d89eb289_1_362
+ * [Основы движков JavaScript: общие формы и Inline кэширование. Часть 1](https://habr.com/ru/company/otus/blog/446446/)
 
 ## модель памяти memory model
  * https://geekbrains.ru/posts/javascript_internals_part1
@@ -116,6 +142,9 @@
  * [JavaScript Algorithms and Data Structures](https://github.com/trekhleb/javascript-algorithms)
  * [multi-month study plan for going from web developer to software engineer for a large company](https://github.com/jwasham/coding-interview-university)
  * [Data structures introduction](https://www.youtube.com/watch?v=Qmt0QwzEmh0&list=PLDV1Zeh2NRsB6SWUrDFW2RmDotAfPbeHu)
+ * debounce throttle
+	* https://betterprogramming.pub/how-to-use-debounce-and-throttle-in-javascript-da95dc151f7b
+	* https://stephencharlesweiss.com/javascript-debounce-throttle-function/
  
 ## ООП prototype наследование
 
@@ -163,6 +192,13 @@
  * [TypeScript. Магия выражений](typescript)
  * [typescript deep dive](https://habr.com/ru/company/oleg-bunin/blog/499634/) Михаил Башуров (saitonakamura) — Senior Frontend Engineer в компании WiseBits
  * [Runtime type checking with io-ts in Typescript](https://medium.com/@ottoki/runtime-type-checking-with-io-ts-in-typescript-14465169fb02) https://github.com/gcanti/io-ts
+ * https://medium.com/@fivedicephoto/understanding-enums-in-typescript-d4dcb40c1413
+ * https://levelup.gitconnected.com/typescript-best-practices-namespaces-exceptions-and-type-definitions-131d85579fa3
+ * [12 советов по внедрению TypeScript в React-приложениях](https://habr.com/ru/company/tinkoff/blog/505488/)
+ * [Номинативная типизация в TypeScript или как защитить свой интерфейс от чужих идентификаторов](https://habr.com/ru/post/446768/)
+ * https://stackoverflow.com/questions/49761972/difference-between-string-enums-and-string-literal-types-in-ts/54455743#54455743
+ * [The TypeScript Tax: A Cost vs Benefit Analysis](https://javascriptweekly.com/link/81862/web)
+ * [7 New and Exciting TypeScript Features](https://blog.bitsrc.io/7-new-and-exciting-typescript-features-48b760ae0b73)
 
 ### собеседование typescript
 
@@ -198,6 +234,7 @@
  * [SOLID ](https://info.javarush.ru/translation/2013/08/06/Пять-основных-принципов-дизайна-классов-S-O-L-I-D-в-Java.html)
     * [источник](http://howtodoinjava.com/2013/06/07/5-class-design-principles-solid-in-java/)
 	* [SOLID php](https://habr.com/ru/company/mailru/blog/412699/)
+	* [SOLID Typescript](https://medium.com/proximity-labs/solid-principles-using-typescript-5175aa06b583)
 	* [SOLID javascript Охрименко](https://www.youtube.com/watch?v=wi3wPzReKZQ)
 		* битовая маска может кодировать больше чем одно значение - нарушение принципа SRP
 	* SOLID:
@@ -208,7 +245,7 @@
 | Программные сущности (классы, модули, функции и т.п.) должны быть открыты 
 для расширения, но закрыты для изменения.                                               | Open Closed Principle           | (Принцип открытости/закрытости)      |
 | Объекты в программе могут быть заменены их наследниками без изменения 
-свойств программы.                                                                      | Liskov’s Substitution Principle | (Принцип подстановки Барбары Лисков) |
+свойств программы.                                                                      | Liskov 's Substitution Principle | (Принцип подстановки Барбары Лисков) |
 | Клиенты не должны быть вынуждены реализовывать ненужные методы, которые 
 они не будут использовать                                                               | Interface Segregation Principle | (Принцип разделения интерфейса)      |
 | Зависимости внутри системы строятся на основе абстракций. Модули верхнего 
@@ -219,6 +256,8 @@
 
  * [GRASP паттерны проектирования](https://habr.com/ru/post/92570/)
  * GoF - gang of four
+ * [MVC vs MVP vs MVVM](https://habr.com/ru/post/215605/) https://habr.com/ru/company/mobileup/blog/313538/
+ * [Хороший дизайн должен быть SOLID - 2008](http://igor.quatrocode.com/2008/09/solid-top-5.html)
 
 ### momentjs date дата 
 
@@ -251,6 +290,8 @@
 
 ```
  * [You Dont Need Momentjs](https://github.com/you-dont-need/You-Dont-Need-Momentjs)  Moment.js/Luxon/date-fns/dayjs/vanillajs comparison and samples
+ * [Luxon — новая библиотека для работы с датами от команды Moment.js](https://habr.com/ru/post/433850/)
+ * [$mol_time — работаем с датами и временем правильно](https://habr.com/ru/post/263041/)
 
 ##  UUID
 
@@ -333,8 +374,9 @@ https://stackoverflow.com/questions/7905929/how-to-test-valid-uuid-guid#13653180
 
  * [navigator.clipboard](https://habr.com/company/ruvds/blog/358494/)
 
-## file файлы
+## file файлы upload save
 
+ * [Интерактивная выгрузка файлов на сервер с помощью RxJS](https://medium.com/ngx/upload-files-with-rxjs-eaf2027266f1)
  * [открыть файл](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications)
 	```html
 		<input 
@@ -402,7 +444,7 @@ https://timothygu.me/es-howto/
 
 https://stateofjs.com/2017/front-end/results
 
-##  производительность highload
+##  производительность highload performance
 
  * https://www.safaribooksonline.com/library/view/high-performance-javascript/9781449382308/ch04s03.html
  * http://voidcanvas.com/javascript-performant-coding-tips/
@@ -413,16 +455,25 @@ https://stateofjs.com/2017/front-end/results
 ##  state management
 
  * [akita](https://github.com/datorama/akita)
+	* [I Built the Ngrx Demo App with Akita. Here’s the Result.](https://engineering.datorama.com/i-built-the-ngrx-demo-app-with-akita-heres-the-result-57f83fe92192)
  * [vibe.js](https://habrahabr.ru/post/341126/)
  * redux
  * mobx-tree-store
+
+## DOM jQuery
+
+ * [Используем DOM как Pro](https://webdevblog.ru/ispolzuem-dom-kak-pro/)
 
 ##  большие числа
 
  * [64-битная арифметика в браузере и WebAssembly](https://habrahabr.ru/post/308874/)
  * [bigint](https://habr.com/post/354930/)
- * [The Essential Guide To JavaScript’s Newest Data Type: BigInt 2019](https://www.smashingmagazine.com/2019/07/essential-guide-javascript-newest-data-type-bigint/)
+ * [The Essential Guide To JavaScript's Newest Data Type: BigInt 2019](https://www.smashingmagazine.com/2019/07/essential-guide-javascript-newest-data-type-bigint/)
  * https://github.com/MikeMcl/bignumber.js/
+
+## типы данных
+
+ * [maybe](https://dev.to/aminnairi/the-maybe-data-type-in-javascript-3bj8)
 
 ##  тесты
 
@@ -430,14 +481,16 @@ https://stateofjs.com/2017/front-end/results
  * http://www.javatpoint.com/javascript-quiz
  * https://tests4geeks.com/test/javascript
  * https://proglib.io/p/interview-javascript-programmer/
-
+ * https://typeofnan.dev/10-javascript-quiz-questions-and-answers/
+ * [Тестирование JavaScript кода с Jest для чайников. Часть 1](https://habr.com/ru/post/502302/)
 
 ##  service workers
 
  * https://blog.sessionstack.com/how-javascript-works-the-mechanics-of-web-push-notifications-290176c5c55d
+ * [web push notifications](https://web-push-book.gauntface.com/introduction/)
  * [The difference between ServiceWorkers, WebWorkers and WebSockets](https://aarontgrogg.com/blog/2015/07/20/the-difference-between-service-workers-web-workers-and-websockets/)
  * [Как заставить ваши веб-приложения работать в автономном режиме](https://habr.com/ru/company/edison/blog/474374/)
-
+ * [Launching ServiceWorker without breaking the web](https://jakearchibald.com/2014/launching-sw-without-breaking-the-web/)
 
 ##  async await
 
@@ -449,17 +502,20 @@ https://stateofjs.com/2017/front-end/results
  * 
 
 ##  promise
+ 
+ * https://dev.to/lydiahallie/javascript-visualized-promises-async-await-5gke
 
-```js
+	```js
 
-function* @returns Promise.resolve(object)|Promise.error(text)
+	function* @returns Promise.resolve(object)|Promise.error(text)
 
-startPromise(a,b,c)
-    .then(function1)
-    .then(function2)
-    .catch(errorHandlerFunction)
+	startPromise(a,b,c)
+		.then(function1)
+		.then(function2)
+		.catch(errorHandlerFunction)
 
-```
+	```
+ * [Common Javascript Promise mistakes every beginner should know and avoid](https://gosink.in/common-javascript-promise-mistakes-beginners/)
 
  * если вернуть новый промис, то стартует новая цепочка для .catch
 
@@ -495,6 +551,8 @@ startPromise(a,b,c)
  * [Филипп Робертс: Что за чертовщина такая event loop? | JSConf EU 2014](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
 	* асинхронные задачи setTimeout,XHR выполняются браузером в отдельных очередях
  * [Further Adventures of the Event Loop - Erin Zimmer - JSConf EU 2018](https://www.youtube.com/watch?v=u1kqx6AenYw)
+ * [Что ты такое, Event Loop? Или как устроен цикл событий в браузере Chrome](https://habr.com/ru/post/461401/)
+ * https://dev.to/sagarrth/an-overview-of-event-loop-tasks-and-microtasks-1i31
  
 ## массивы loop for
 

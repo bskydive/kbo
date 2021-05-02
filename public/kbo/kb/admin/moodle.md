@@ -61,7 +61,7 @@ su - mo_user -c "cd /home/mo_user/moodle/admin/cli/;php5 maintenance.php --disab
  * Check Memory Limit:  40M.
  * Increase MaxClients Memory Limit
  * MaxClients = Total available memory * 80% / Max memory usage of apache process
- * Note: don’t be tempted to increase the MaxClients value above 256 or your available RAM, this would allow your server to consume more memory and swap to disk.
+ * Note: don't be tempted to increase the MaxClients value above 256 or your available RAM, this would allow your server to consume more memory and swap to disk.
 
 
 ## ----
