@@ -105,6 +105,8 @@
 
 			spectator.component.click(data);
 		});
+
+		
 	```
 
 ##  cypress test

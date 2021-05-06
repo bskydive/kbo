@@ -905,7 +905,7 @@ zypper in x2goserver
 zypper addrepo http://packages.x2go.org/opensuse/15.1/main/ x2go
 zypper addrepo http://packages.x2go.org/opensuse/15.1/extras/ x2go-extras
 zypper refresh
-zypper in x2goserver x2goclient
+zypper in x2goserver x2goclient x2goserver-desktopsharing
 ```
 
 ## vnc
