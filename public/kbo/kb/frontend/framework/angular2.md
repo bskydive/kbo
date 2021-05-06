@@ -398,6 +398,15 @@ mousemove, scroll, requestAnimationFrame()
 		}
 	```
 
+## проекция projection
+
+ * ng-content
+ * ngTemplateOutlet
+ * https://dev.to/mustapha/angular-build-more-dynamic-components-with-ngtemplateoutlet-3nee
+ * https://tutorialsforangular.com/2020/05/08/using-templateref-and-ngtemplateoutlet-to-pass-templates-between-components-in-angular/
+ * https://www.tektutorialshub.com/angular/ngtemplateoutlet-in-angular/#complete-source-code
+ * https://community.indepth.dev/t/ngtemplateoutlet-the-secret-to-customisation-angular-indepth/1105/3
+
 ## DI injectors modules services
 
  * https://medium.com/thinkster-io/3-angular-dependency-injection-tips-c4b5356541ee

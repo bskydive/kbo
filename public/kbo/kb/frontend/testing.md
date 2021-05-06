@@ -12,6 +12,117 @@
  * [property based testing](https://www.youtube.com/watch?v=H-cBhNMxlCw) [jsverify](https://github.com/jsverify/jsverify) [fast check](https://github.com/dubzzz/fast-check)
  * [Unit testing in JavaScript Part 5 - Mocking continued - funfunfunction](https://www.youtube.com/watch?v=ZbModC5pqv0&list=PL0zVEGEvSaeF_zoW9o66wa_UCNE3a7BEr&index=6)
 
+### karma + jasmine
+
+ * [запуск параллельно](https://karma-runner.github.io/6.3/config/configuration-file.html#concurrency)
+ * https://www.forbes.com/sites/forbesdigitalgroup/2019/05/14/improve-your-angular-jasmine-unit-test-speeds-by-500/
+	* создавать testBed один раз, чтобы не компилировать заново
+	* убрать утечки памяти
+
+	```ts
+		cleanHead(){
+			const head: HTMLHeadElement = document.getElementsByTagName('head')[0];
+			const styles: HTMLCollectionOf<HTMLStyleElement> | [] = head.getElementsByTagName('style');
+
+			for (let i=0; i<styles.length; i++) {
+				head.removeChild(styles[i]);
+			}
+		}
+
+		afterAll(){
+			cleanHead();
+		}
+	```
+ * https://www.npmjs.com/package/ng-bullet - может глючить Spy потому что они не обнуляются
+
+### jest
+
+ * [Тестирование JavaScript кода с Jest для чайников. Часть 1](https://habr.com/ru/post/502302/)
+ * https://jestjs.io/docs/api
+ * https://github.com/jsdom/jsdom
+ * https://itnext.io/testing-angular-applications-with-jest-and-spectator-c05991579807?gi=e4e9f3404fe0
+ * [Angular 11 - Setting up Jest](https://dev.to/alfredoperez/angular-10-setting-up-jest-2m0l)
+
+### spectator
+
+ * https://github.com/ngneat/spectator#component-providers
+ * https://netbasal.gitbooks.io/spectator/content/
+ * неверный путь в импорте сломает тесты https://github.com/ngneat/spectator#jest-support
+
+	```ts
+		import { Spectator, SpectatorHost } from '@ngneat/spectator'; // wrong
+		import { Spectator, SpectatorHost } from '@ngneat/spectator/jest'; // right
+		const hostParamsOverrides: SpectatorHostOverrides<Table2Component<unknown>, HostComponent, HostComponent> = {...}
+
+	```
+ * нельзя дважды вызывать фабрику
+
+	```ts
+		const createHost = createHostFactory({...})
+		const createComponent = createComponentFactory({...})
+	```
+ * нельзя навесить Spy на private
+ * нельзя читать из @Input
+ * нельзя заставить работать *ngIf
+ * примеры
+	```ts
+		spectator.setInput('className', 'danger');
+		let output;
+		spectator.output('click').subscribe(result => (output = result));
+
+		spectator.component.onClick({ type: 'click' });
+		expect(output).toEqual({ type: 'click' });
+
+		spectator.click(SpectatorElement);
+		spectator.click(byText('Element'));
+
+		import { By } from '@angular/platform-browser';
+		expect(spectator.debugElement.query(By.css('button'))).toBeNull();
+
+		spectator.component.ngOnInit(); // lifecycle hooks runs only manually
+
+		const comparator = jest.fn();
+		expect(comparator).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(Number), SortDirection.ASC);
+
+		const content: HtmlAsJson = [{
+			type: 'element',
+			tagName: 'p',
+			attributes: [],
+			children: [{
+				type: 'text',
+				content: 'test content',
+				}],
+		}];
+		expect(spectator.component['content']).toEqual(content);
+
+		it('emits click', done => {
+			const data = 'data';
+
+			spectator.component.click.subscribe(result => {
+				expect(result).toEqual('data');
+				done();
+			});
+
+			spectator.component.click(data);
+		});
+	```
+
+##  cypress test
+
+ * ограничения
+	* не поддерживает мобильные события
+	* ограниченная поддержка iframe
+	* ограниченная поддержка hover
+	* не тестирует множественные вкладки
+	* ограниченная поддержка тестирования загрузки файлов
+	* 
+ * особенности
+ 	* работает только как внешний инструмент для работающего сервиса
+ 	* не требует сторонних библиотек
+	* написан на JS
+	* более качественное тестирование
+	* 
+	* 
 ## regress регрессионные тесты
 
  * https://selenium-webdriver-book.github.io/

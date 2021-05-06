@@ -901,6 +901,13 @@ zypper refresh
 zypper in x2goserver
 ```
 
+```bash
+zypper addrepo http://packages.x2go.org/opensuse/15.1/main/ x2go
+zypper addrepo http://packages.x2go.org/opensuse/15.1/extras/ x2go-extras
+zypper refresh
+zypper in x2goserver x2goclient
+```
+
 ## vnc
 
 https://habrahabr.ru/company/ruvds/blog/312556
