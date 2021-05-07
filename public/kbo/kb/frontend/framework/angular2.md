@@ -406,6 +406,7 @@ mousemove, scroll, requestAnimationFrame()
  * https://tutorialsforangular.com/2020/05/08/using-templateref-and-ngtemplateoutlet-to-pass-templates-between-components-in-angular/
  * https://www.tektutorialshub.com/angular/ngtemplateoutlet-in-angular/#complete-source-code
  * https://community.indepth.dev/t/ngtemplateoutlet-the-secret-to-customisation-angular-indepth/1105/3
+ * [Angular — Four practical use cases of NgTemplateOutlet](https://lukeliutingchun.medium.com/angular-four-practical-use-cases-of-ngtemplateoutlet-f8e44e5483f2)
 
 ## DI injectors modules services
 

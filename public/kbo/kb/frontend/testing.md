@@ -62,8 +62,6 @@
 		const createComponent = createComponentFactory({...})
 	```
  * нельзя навесить Spy на private
- * нельзя читать из @Input
- * нельзя заставить работать *ngIf
  * примеры
 	```ts
 		spectator.setInput('className', 'danger');
@@ -105,6 +103,13 @@
 
 			spectator.component.click(data);
 		});
+
+		// <loading [ngClass]="{'is-hidden':loading}"></loading>
+		// .is-hidden { visibility: hidden }
+		const button = host.query('.pressed');
+		expect(button).not.toHaveClass('is-not-pressed');
+		host.click(button);
+		expect(button).toHaveClass('is-not-pressed');
 	```
 
 ##  cypress test
