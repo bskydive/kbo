@@ -32,6 +32,7 @@
 	* история состояний
 	* проигрыватель истории состояний
 * reducer - feature slice - subslice - root store
+* https://github.com/DeborahK/Angular-NgRx-GettingStarted
 
 ```ts
 // state types
