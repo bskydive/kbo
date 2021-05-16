@@ -276,16 +276,14 @@
  * [The Last Guide For Angular Change Detection You'll Ever Need 2019](https://www.mokkapps.de/blog/the-last-guide-for-angular-change-detection-you-will-ever-need)
  * https://blog.thoughtram.io/angular/2016/02/22/angular-2-change-detection-explained.html
  * https://angular.io/guide/zone
- ```
-When apps update HTML:
- + Component initialization - loads the bootstrap component and triggers the ApplicationRef.tick() to call change detection and View Rendering
- + Event listener - <button (click)="onClickMe()">
- + HTTP Data Request
- + MacroTasks, such as setTimeout() or setInterval()
- + MicroTasks, such as Promise.then()
- + Other async operations. Some examples include WebSocket.onmessage() and Canvas.toBlob()
-mousemove, scroll, requestAnimationFrame()
- ```
+ * When apps update HTML:
+	+ Component initialization - loads the bootstrap component and triggers the ApplicationRef.tick() to call change detection and View Rendering
+	+ Event listener - <button (click)="onClickMe()">
+	+ HTTP Data Request
+	+ MacroTasks, such as setTimeout() or setInterval()
+	+ MicroTasks, such as Promise.then()
+	+ Other async operations. Some examples include WebSocket.onmessage() and Canvas.toBlob()
+	mousemove, scroll, requestAnimationFrame()
  * https://angular.io/api/core/ChangeDetectionStrategy
 
 	```ts
@@ -501,39 +499,6 @@ https://stackblitz.com/edit/angular-jhutmd?file=app%2Fapp.component.html
  * https://blog.usejournal.com/how-to-map-rest-api-data-using-decorator-pattern-in-angular-6-94eb49ba16b1
  * https://levelup.gitconnected.com/the-correct-way-to-make-api-requests-in-an-angular-application-22a079fe8413
  * крутилка https://medium.com/swlh/angular-loading-spinner-using-http-interceptor-63c1bb76517b
-
-## testing тест
-
- * https://simontest.net/
- * https://github.com/angular/in-memory-web-api
- * [Angular: Интеграционное тестирование (Shallow testing)](https://habr.com/ru/company/veeam/blog/486994/)
- * [Three Ways to Test Angular Components](https://vsavkin.com/three-ways-to-test-angular-2-components-dcea8e90bd8d) isolated/shallow/integration
- * [Angular Testing Series: Why Your Angular Tests Probably Smell](https://betterprogramming.pub/angular-testing-series-why-your-angular-tests-probably-smell-ebab93c59e0)
- * https://github.com/ngneat/spectator
- * https://dev.to/qarunqb/tdd-in-angular-dependency-injection-and-mocking-4jnh
-
-### Karma/Jasmine
-
- * [Angular: Unit Testing Jasmine, Karma (step by step)](https://medium.com/swlh/angular-unit-testing-jasmine-karma-step-by-step-e3376d110ab4)
- * [Настройка VSCdode debug test](https://stackoverflow.com/questions/43916649/debug-tests-in-ng-test/44308743#44308743)
- * [запуск одного теста](https://stackoverflow.com/questions/26552729/karma-run-single-test)
- * проверка сложных объектов
- https://rav.pw/jasmine-custom-matchers/
- https://masonwebdev.wordpress.com/2016/05/10/jasmine-spy-matching-functions-and-testing-with-es6/
- https://github.com/JamieMason/Jasmine-Matchers
- https://jasmine.github.io/tutorials/custom_argument_matchers
-
-для автоподстановки
-
- ```ts
-declare global {
-    namespace jasmine {
-        interface Matchers<T> {
-            toBeSomeEqual: (expected: IData) => any;
-        }
-    }
-}
- ```
 
 ## rxjs реактивное программирование reactive observable
 
@@ -1012,33 +977,42 @@ count.subscribe(x => console.log(x));
 ### onchange mat-select dropdown
 
  * реакция на выбор
-    * https://stackoverflow.com/questions/50222738/angular-6-material-mat-select-change-method-removed
-    * используем ```<select (selectionChange)="onChange($event.value)></select>"```
-    * https://angular.io/api/forms/NgModel#properties
+	* https://stackoverflow.com/questions/50222738/angular-6-material-mat-select-change-method-removed
+	* используем ```<select (selectionChange)="onChange($event.value)></select>"```
+	* https://angular.io/api/forms/NgModel#properties
 
 ### mat-paginator mat-table
 
+ * https://material.angular.io/components/sort/api
+ * https://material.angular.io/components/paginator/overview
+ * [Angular Material Data Table: A Complete Example (Server Pagination, Filtering, Sorting)](https://blog.angular-university.io/angular-material-data-table/)
+ * тестирование
+ 	* https://material.angular.io/guide/using-component-harnesses
+	* https://material.angular.io/components/table/examples#table-harness
+		* https://stackblitz.com/angular/xaamregeegko?file=src%2Fapp%2Ftable-harness-example.ts
+	* https://material.angular.io/components/paginator/api#MatPaginatorHarness
+ * `this.noData = this.dataSource.connect().pipe(map((item => item.length <= 0));`
  * несколько листалок должны использовать разные id
-    ```ts
-    	@ViewChild('paginatorCases') paginatorCases: MatPaginator;
-        @ViewChild('paginatorExperts') paginatorExperts: MatPaginator;
-        @ViewChild('paginatorPersons') paginatorPersons: MatPaginator;
-        
-        ngAfterViewInit() {
+	```ts
+		@ViewChild('paginatorCases') paginatorCases: MatPaginator;
+		@ViewChild('paginatorExperts') paginatorExperts: MatPaginator;
+		@ViewChild('paginatorPersons') paginatorPersons: MatPaginator;
+		
+		ngAfterViewInit() {
 		this.dataSourceCases.paginator = this.paginatorCases;
 		this.dataSourceExperts.paginator = this.paginatorExperts;
 		this.dataSourcePersons.paginator = this.paginatorPersons;
 	}
-    ```
-    ```html
-        <!--  ... -->
-    	<mat-paginator #paginatorPersons
-    	<!--  ... -->
-    	<mat-paginator #paginatorExperts
-    	<!--  ... -->
-    	<mat-paginator #paginatorCases
-    ```
-    
+	```
+	```html
+		<!--  ... -->
+		<mat-paginator #paginatorPersons
+		<!--  ... -->
+		<mat-paginator #paginatorExperts
+		<!--  ... -->
+		<mat-paginator #paginatorCases
+	```
+
  * pageIndex не меняет положения таблицы. Надо вызывать спустя тик. Присваивать можно в DOM, dataSource.paginator, paginator. Но присвоение размера страницы нигде, кроме как через DOM не работает
 ```html
 	<mat-table #idTable matSort [dataSource]="table.dataSource" multiTemplateDataRows>
@@ -1093,7 +1067,71 @@ count.subscribe(x => console.log(x));
 		this.table.paginator.index= oldIndex;
 	}
 ```
- 
+
+ * [paginator изменение надписей листалки](https://stackoverflow.com/questions/54103636/how-to-change-the-text-in-the-label-in-pagination)
+	```ts
+		import {MatPaginatorIntl} from '@angular/material';
+		import {Injectable} from '@angular/core';
+
+		@Injectable()
+		export class CustomMatPaginatorIntl extends MatPaginatorIntl {
+		constructor() {
+			super();  
+
+			this.getAndInitTranslations();
+		}
+
+		getAndInitTranslations() {
+
+			this.itemsPerPageLabel = "test";
+			this.nextPageLabel = "test";
+			this.previousPageLabel = "test";
+			this.changes.next();
+
+		}
+
+		getRangeLabel = (page: number, pageSize: number, length: number) =>  {
+			if (length === 0 || pageSize === 0) {
+			return `0 / ${length}`;
+			}
+			length = Math.max(length, 0);
+			const startIndex = page * pageSize;
+			const endIndex = startIndex < length ? Math.min(startIndex + pageSize, length) : startIndex + pageSize;
+			return `${startIndex + 1} - ${endIndex} / ${length}`;
+		}
+		}
+	```
+ * прибить листалку внизу 
+ 	* https://indepth.dev/posts/1336/how-to-do-dom-manipulation-properly-in-angular#concepts--2
+	* https://www.tektutorialshub.com/angular/renderer2-angular/
+	* 
+
+	```ts
+		constructor(private element: ElementRef, private renderer: Renderer2) {
+		// renderer2 безопаснее и не требует браузера
+		}
+
+		ngAfterViewInit() {
+			this.setupPaginator();
+		}
+
+		ngOnChanges(changes: SimpleChanges): void {
+			if (
+				this.isPaginatorEnabled &&
+				(changes.paginatorConfig && changes.paginatorConfig.currentValue && !changes.paginatorConfig.firstChange)
+			) {
+				this.setupPaginator();
+			}
+		}
+
+		setupPaginator() {
+			this.paginatorConfig = { ...this.paginatorConfig, ...TABLE_PAGINATOR_DEFAULT_OPTIONS };
+			if (this.paginatorConfig.isPaginatorPulledDown) {
+				this.renderer.setStyle((this.element.nativeElement as HTMLElement).querySelector('table'), 'height', `calc(20px + ${this.paginatorConfig.pageSize}*60px)`);
+			}
+		}
+	```
+
 ### mat-datepicker
 
  * блокирование ручного ввода даты

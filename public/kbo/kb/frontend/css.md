@@ -328,7 +328,7 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
  * термины
 	* cells
 	* gaps(gutters) - поля между ячейками
-	* columns|rows = tracks
+	* tracks - columns|rows
 	* lines - границы дорожек
 	* areas - отдельный набор ячеек
 	* items - логическая структура, блок

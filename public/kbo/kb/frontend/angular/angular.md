@@ -546,6 +546,7 @@
 	* https://angular.io/guide/lazy-loading-ngmodules#preloading-component-data
 	* https://angular.io/guide/router-tutorial-toh#preloading-background-loading-of-feature-areas
 	* https://codeburst.io/understanding-resolvers-in-angular-736e9db71267
+	* https://medium.com/first-byte/resolvers-in-angular-simplified-85becdd6932b
 	* блокируют загрузку страницы до окончания отрисовки компонента
 
 	```ts
