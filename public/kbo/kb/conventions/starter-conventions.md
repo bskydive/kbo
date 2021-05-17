@@ -1,3 +1,15 @@
+This article is about my view to convention building. 
+
+It includes some basic examples including linting tools setup. 
+
+That can be interesting for developers who like to follow coding best practices and who want to improve their own or team code quality. 
+
+As for me, I've explained and use those concepts too often, to make putting it into article reasonable.
+
+First of all you can look at my linting guide with live linter pack setup [here](https://github.com/bskydive/typescript-tspqwe-linters).
+
+Also you can grab my article from git repo [here](https://gitlab.com/stepanovv/kbo/-/blob/master/public/kbo/kb/conventions/starter-conventions.md).
+
 # Conventions starter pack
 
 Let's put and keep things in order together.
