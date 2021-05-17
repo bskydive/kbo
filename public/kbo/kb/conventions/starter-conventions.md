@@ -2,7 +2,7 @@
 
 Let's put and keep things in order together.
 
-This will make labor productivity slightly higher, and also reduce the volume of work.
+This will make productivity a little bit higher, and also reduce the volume of work.
 
 ## What is it for
 
