@@ -477,7 +477,7 @@
 				.c-list-stacked-item-name 1111
 				.c-list-stacked-item-type 222
 	```
-	
+
 	```stylus
 		.c-list-stacked 
         	font-size 14px
@@ -507,6 +507,7 @@
         			cursor pointer
         		
 	``` 
+
 	```less
 	.c-list-stacked-item:hover .c-list-stacked-item-name,
     .c-list-stacked-item:hover .c-list-stacked-item-type {

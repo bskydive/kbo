@@ -199,6 +199,12 @@
  * https://stackoverflow.com/questions/49761972/difference-between-string-enums-and-string-literal-types-in-ts/54455743#54455743
  * [The TypeScript Tax: A Cost vs Benefit Analysis](https://javascriptweekly.com/link/81862/web)
  * [7 New and Exciting TypeScript Features](https://blog.bitsrc.io/7-new-and-exciting-typescript-features-48b760ae0b73)
+ * [warning TS(2564)](https://www.ryadel.com/en/ts2564-ts-property-has-no-initializer-typescript-error-fix-visual-studio-2017-vs2017/)
+	```json
+		tsconfig.json
+		"compilerOptions": {
+			"strictPropertyInitialization": false
+	```
 
 ### собеседование typescript
 
@@ -482,7 +488,7 @@ https://stateofjs.com/2017/front-end/results
  * https://tests4geeks.com/test/javascript
  * https://proglib.io/p/interview-javascript-programmer/
  * https://typeofnan.dev/10-javascript-quiz-questions-and-answers/
- * [Тестирование JavaScript кода с Jest для чайников. Часть 1](https://habr.com/ru/post/502302/)
+
 
 ##  service workers
 

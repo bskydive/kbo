@@ -901,6 +901,20 @@ zypper refresh
 zypper in x2goserver
 ```
 
+```bash
+zypper addrepo http://packages.x2go.org/opensuse/15.1/main/ x2go
+zypper addrepo http://packages.x2go.org/opensuse/15.1/extras/ x2go-extras
+zypper refresh
+zypper in x2goserver x2goclient x2goserver-desktopsharing
+zypper rm x2goserver x2goserver-desktopsharing x2goserver-common x2goserver-x2goagent perl-X2Go-Serverperl-X2Go-Log perl-X2Go-Server-DB
+```
+
+## rdp
+
+```
+zypper in yast2-rdp xrdp xorgxrdp
+```
+
 ## vnc
 
 https://habrahabr.ru/company/ruvds/blog/312556

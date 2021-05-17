@@ -11,7 +11,173 @@
 	* Так как сообщество сходится во мнении, что нет нужды в тестировании тривиального функционала, то вполне очевидно, что чем проще код или гениальнее разработчики, тем меньше поводов создавать тесты вообще и модульные тесты в частности. И наоборот, чем сложнее код или посредственнее разработчики, тем поводов больше. Т.е., если вы в одиночку разрабатываете проект на 100К строк кода, то вы вполне можете обойтись без тестов вообще, но как только к проекту подключается еще один разработчик (не такой гениальный, как вы), то необходимость создания тестов резко возрастает. А если этот разработчик еще и junior, то тесты становятся жизненно важны, т.к. даже ваша гениальность может спасовать перед тем энтузиазмом, с которым junior вносит ошибки в ваш любимый код.
  * [property based testing](https://www.youtube.com/watch?v=H-cBhNMxlCw) [jsverify](https://github.com/jsverify/jsverify) [fast check](https://github.com/dubzzz/fast-check)
  * [Unit testing in JavaScript Part 5 - Mocking continued - funfunfunction](https://www.youtube.com/watch?v=ZbModC5pqv0&list=PL0zVEGEvSaeF_zoW9o66wa_UCNE3a7BEr&index=6)
+ * [зачем тестировать код перед кодированием TDD](https://www.youtube.com/watch?v=XsFQEUP1MxI&list=PL0zVEGEvSaeF_zoW9o66wa_UCNE3a7BEr&index=2)
 
+### karma + jasmine
+
+ * https://simontest.net/
+ * https://github.com/angular/in-memory-web-api
+ * [Angular: Интеграционное тестирование (Shallow testing)](https://habr.com/ru/company/veeam/blog/486994/)
+ * [Three Ways to Test Angular Components](https://vsavkin.com/three-ways-to-test-angular-2-components-dcea8e90bd8d) isolated/shallow/integration
+ * [Angular Testing Series: Why Your Angular Tests Probably Smell](https://betterprogramming.pub/angular-testing-series-why-your-angular-tests-probably-smell-ebab93c59e0)
+ * https://github.com/ngneat/spectator
+ * https://dev.to/qarunqb/tdd-in-angular-dependency-injection-and-mocking-4jnh
+ * [Angular: Unit Testing Jasmine, Karma (step by step)](https://medium.com/swlh/angular-unit-testing-jasmine-karma-step-by-step-e3376d110ab4)
+ * [Настройка VSCdode debug test](https://stackoverflow.com/questions/43916649/debug-tests-in-ng-test/44308743#44308743)
+ * [запуск одного теста](https://stackoverflow.com/questions/26552729/karma-run-single-test)
+ * проверка сложных объектов
+	* https://rav.pw/jasmine-custom-matchers/
+	* https://masonwebdev.wordpress.com/2016/05/10/jasmine-spy-matching-functions-and-testing-with-es6/
+	* https://github.com/JamieMason/Jasmine-Matchers
+	* https://jasmine.github.io/tutorials/custom_argument_matchers
+ * для автоподстановки
+
+	```ts
+		declare global {
+			namespace jasmine {
+				interface Matchers<T> {
+					toBeSomeEqual: (expected: IData) => any;
+				}
+			}
+		}
+	```
+ * [запуск параллельно](https://karma-runner.github.io/6.3/config/configuration-file.html#concurrency)
+ * https://www.forbes.com/sites/forbesdigitalgroup/2019/05/14/improve-your-angular-jasmine-unit-test-speeds-by-500/
+	* создавать testBed один раз, чтобы не компилировать заново
+	* убрать утечки памяти
+
+	```ts
+		cleanHead(){
+			const head: HTMLHeadElement = document.getElementsByTagName('head')[0];
+			const styles: HTMLCollectionOf<HTMLStyleElement> | [] = head.getElementsByTagName('style');
+
+			for (let i=0; i<styles.length; i++) {
+				head.removeChild(styles[i]);
+			}
+		}
+
+		afterAll(){
+			cleanHead();
+		}
+	```
+ * https://www.npmjs.com/package/ng-bullet - может глючить Spy потому что они не обнуляются
+
+### jest
+
+ * [Тестирование JavaScript кода с Jest для чайников. Часть 1](https://habr.com/ru/post/502302/)
+ * https://jestjs.io/docs/api
+ * https://github.com/jsdom/jsdom
+ * https://itnext.io/testing-angular-applications-with-jest-and-spectator-c05991579807?gi=e4e9f3404fe0
+ * [Angular 11 - Setting up Jest](https://dev.to/alfredoperez/angular-10-setting-up-jest-2m0l)
+
+### spectator
+
+ * https://github.com/ngneat/spectator#component-providers
+ * https://netbasal.gitbooks.io/spectator/content/
+ * очень похож на jasmine, можно подсмотреть в доки https://angular.io/guide/testing-components-basics
+ * неверный путь в импорте сломает тесты https://github.com/ngneat/spectator#jest-support
+
+	```ts
+		import { Spectator, SpectatorHost } from '@ngneat/spectator'; // wrong
+		import { Spectator, SpectatorHost } from '@ngneat/spectator/jest'; // right
+		const hostParamsOverrides: SpectatorHostOverrides<Table2Component<unknown>, HostComponent, HostComponent> = {...}
+
+	```
+ * нельзя дважды вызывать фабрику
+
+	```ts
+		const createHost = createHostFactory({...})
+		const createComponent = createComponentFactory({...})
+	```
+ * нельзя навесить Spy на private
+ * нельзя тестировать прямые манипуляции DOM
+
+ ```ts
+	this.renderer.setStyle(
+			(this.element.nativeElement as HTMLElement).querySelector('table'),
+			'height',
+			`calc(45px + ${paginatorOffsetRows}*84px)`,
+		);
+ ```
+ * примеры
+	```ts
+		spectator.setInput('className', 'danger');
+		let output;
+		spectator.output('click').subscribe(result => (output = result));
+
+		spectator.component.onClick({ type: 'click' });
+		expect(output).toEqual({ type: 'click' });
+
+		spectator.click(SpectatorElement);
+		spectator.click(byText('Element'));
+
+		import { By } from '@angular/platform-browser';
+		expect(spectator.debugElement.query(By.css('button'))).toBeNull();
+
+		spectator.component.ngOnInit(); // lifecycle hooks runs only manually
+
+		const comparator = jest.fn();
+		expect(comparator).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(Number), SortDirection.ASC);
+
+		const content: HtmlAsJson = [{
+			type: 'element',
+			tagName: 'p',
+			attributes: [],
+			children: [{
+				type: 'text',
+				content: 'test content',
+				}],
+		}];
+		expect(spectator.component['content']).toEqual(content);
+
+		it('emits click', done => {
+			const data = 'data';
+
+			spectator.component.click.subscribe(result => {
+				expect(result).toEqual('data');
+				done();
+			});
+
+			spectator.component.click(data);
+		});
+
+		// <loading [ngClass]="{'is-hidden':loading}"></loading>
+		// .is-hidden { visibility: hidden }
+		const button = host.query('.pressed');
+		expect(button).not.toHaveClass('is-not-pressed');
+		host.click(button);
+		expect(button).toHaveClass('is-not-pressed');
+
+		// для взаимодействия с DOM через ngIf надо присваивать в свойства компонента, через ngOnChanges не работает
+		// [class.disabled]="paginatorConfig.isDisabled"
+		paginatorConfig = {
+			isDisabled: true,
+		};
+		spectatorHost.component.ngOnChanges(({ // так не работает
+			paginatorConfig: { currentValue: paginatorConfig },
+		} as unknown) as SimpleChanges);
+		spectatorHost.component.paginatorConfig.isDisabled = true; // так работает
+		spectatorHost.detectChanges();
+
+		expect(paginatorComponent).toHaveClass('disabled');
+	```
+
+##  cypress test
+
+ * ограничения
+	* не поддерживает мобильные события
+	* ограниченная поддержка iframe
+	* ограниченная поддержка hover
+	* не тестирует множественные вкладки
+	* ограниченная поддержка тестирования загрузки файлов
+	* 
+ * особенности
+ 	* работает только как внешний инструмент для работающего сервиса
+ 	* не требует сторонних библиотек
+	* написан на JS
+	* более качественное тестирование
+	* 
+	* 
 ## regress регрессионные тесты
 
  * https://selenium-webdriver-book.github.io/
