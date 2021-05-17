@@ -131,20 +131,20 @@ pipe добавляют последовательные конвейеры.
 ## кол-во новых строк в файле
 
 ```js
-var fs = require('fs');
+	var fs = require('fs');
 
-fs.readFileSync(process.argv[1], 'utf8').split('\n').length - 1
-fs.readFileSync(process.argv[1]).toString().split('\n').length - 1
+	fs.readFileSync(process.argv[1], 'utf8').split('\n').length - 1
+	fs.readFileSync(process.argv[1]).toString().split('\n').length - 1
 
-fs.readFile(process.argv[2], function(err, data) {
-    if (err) {console.log(err.message);}
-    else {console.log(data.toString().split('\n').length - 1); }
-});
+	fs.readFile(process.argv[2], function(err, data) {
+		if (err) {console.log(err.message);}
+		else {console.log(data.toString().split('\n').length - 1); }
+	});
 
-fs.readFile(process.argv[2],{encoding:"utf-8"}, function(err, data) {
-    if (err) {console.log(err.message);}
-    else {console.log(data.split('\n').length - 1); }
-});
+	fs.readFile(process.argv[2],{encoding:"utf-8"}, function(err, data) {
+		if (err) {console.log(err.message);}
+		else {console.log(data.split('\n').length - 1); }
+	});
 
 
 ```
@@ -152,40 +152,40 @@ fs.readFile(process.argv[2],{encoding:"utf-8"}, function(err, data) {
 ## модуль
 
 ```js
-module.exports = function lsFunc(dirName, fileExt, callback) {
+	module.exports = function lsFunc(dirName, fileExt, callback) {
 
-    var fs = require('fs'), dataOut = [];
+		var fs = require('fs'), dataOut = [];
 
-    fs.readdir(dirName, function(err, data) {
+		fs.readdir(dirName, function(err, data) {
 
-        if (err) {
-            return callback(err);
-        }
-        else {
-            for (var i = 0; i < data.length; i++) {
-                if (data[i].split('.')[1] == fileExt) {
-                    dataOut = dataOut.concat(data[i]);
-                }
-            }
-            callback(null, dataOut);
-        }
-    });
-}
+			if (err) {
+				return callback(err);
+			}
+			else {
+				for (var i = 0; i < data.length; i++) {
+					if (data[i].split('.')[1] == fileExt) {
+						dataOut = dataOut.concat(data[i]);
+					}
+				}
+				callback(null, dataOut);
+			}
+		});
+	}
 
-var lsFunc1 = require("./module1.js");
+	var lsFunc1 = require("./module1.js");
 
-lsFunc1(process.argv[2],process.argv[3], function (err,data) {
+	lsFunc1(process.argv[2],process.argv[3], function (err,data) {
 
-        if (err) {
-            console.log(err.message);
-        }
-        else {
-            
-            for (var i = 0; i<data.length; i++) {
-                console.log(data[i]);
-                }
-            }
-});
+		if (err) {
+			console.log(err.message);
+		}
+		else {
+			
+			for (var i = 0; i<data.length; i++) {
+				console.log(data[i]);
+				}
+			}
+	});
 ```
 
 ## http сервер
