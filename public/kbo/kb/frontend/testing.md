@@ -90,6 +90,15 @@
 		const createComponent = createComponentFactory({...})
 	```
  * нельзя навесить Spy на private
+ * нельзя тестировать прямые манипуляции DOM
+
+ ```ts
+	this.renderer.setStyle(
+			(this.element.nativeElement as HTMLElement).querySelector('table'),
+			'height',
+			`calc(45px + ${paginatorOffsetRows}*84px)`,
+		);
+ ```
  * примеры
 	```ts
 		spectator.setInput('className', 'danger');
@@ -138,6 +147,19 @@
 		expect(button).not.toHaveClass('is-not-pressed');
 		host.click(button);
 		expect(button).toHaveClass('is-not-pressed');
+
+		// для взаимодействия с DOM через ngIf надо присваивать в свойства компонента, через ngOnChanges не работает
+		// [class.disabled]="paginatorConfig.isDisabled"
+		paginatorConfig = {
+			isDisabled: true,
+		};
+		spectatorHost.component.ngOnChanges(({ // так не работает
+			paginatorConfig: { currentValue: paginatorConfig },
+		} as unknown) as SimpleChanges);
+		spectatorHost.component.paginatorConfig.isDisabled = true; // так работает
+		spectatorHost.detectChanges();
+
+		expect(paginatorComponent).toHaveClass('disabled');
 	```
 
 ##  cypress test
