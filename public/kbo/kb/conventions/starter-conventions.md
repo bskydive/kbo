@@ -4,13 +4,13 @@ It includes some basic examples including linting tools setup.
 
 That can be interesting for developers who like to follow coding best practices and who want to improve their own or team code quality. 
 
-As for me, I've explained and use those concepts too often, to make putting it into article reasonable.
+As for me, I've explained and use those concepts many times. So, putting them into article will be handy.
 
-First of all you can look at my linting guide with live linter pack setup [here](https://github.com/bskydive/typescript-tspqwe-linters).
+First of all you can look at my linting guide with the linter pack setup [here](https://github.com/bskydive/typescript-tspqwe-linters).
 
 Also you can grab my article from git repo [here](https://gitlab.com/stepanovv/kbo/-/blob/master/public/kbo/kb/conventions/starter-conventions.md).
 
-# Conventions starter pack
+## Conventions starter pack
 
 Let's put and keep things in order together.
 
@@ -98,7 +98,7 @@ This will make productivity a little bit higher, and also reduce the volume of w
 	* Put comments in one line, after the code not to increase lines number
 	* Put jsdoc in one line not to increase lines number. In popovers they are automatically reformatted.
 	* Put long notes in readme files: usage examples
-1. make separate unit test(it) for:
+1. make separate unit test assertion for:
 	* every input option
 	* every output value
 	* every possible state: init, loading, disabled, broken(reproduce exact issue), valid
