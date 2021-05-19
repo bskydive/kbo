@@ -457,6 +457,7 @@
 			})
 		```
 1. Что такое zone.js, как он работает.
+	* https://medium.com/@overthesanity/zone-js-от-а-до-я-fdb995917968
 	* https://angular.io/guide/zone#zones-and-execution-contexts
 	* https://github.com/angular/angular/blob/master/packages/zone.js/MODULE.md
 	* https://github.com/angular/angular/blob/master/packages/zone.js/README.md

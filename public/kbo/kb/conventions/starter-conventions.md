@@ -23,6 +23,7 @@ This will make productivity a little bit higher, and also reduce the volume of w
 	* debugging. Look at debug/dev tools and understand from which file this piece of code is, and where it can be inside the file.
 	* reading. Reduce the time for searching and analyzing information. The code units naming should help to immediately understand what it should do.
 	* development. Use generally(framework) accepted patterns and practices.
+	* communication. Reduce the length/duration of actions chains and loops(ping-pong)
 1. Less code means less:
 	* bugs
 	* merge conflicts
@@ -53,7 +54,7 @@ This will make productivity a little bit higher, and also reduce the volume of w
 1. check all code at once, reduce review-fix(ping-pong) time spending
 1. actions:
 	* switch into PR branch
-	* execute and test at least one main functionality of the PR, prevent moving PR to QA engineers with environment issues
+	* execute and test at least one main functionality of the PR, prevent moving PR to QA engineers with silly issues like "forgot to run `git add`"
 1. check the:
 	* unit test code coverage
 	* code convention compliance
