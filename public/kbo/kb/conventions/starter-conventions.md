@@ -1,4 +1,16 @@
-# Conventions starter pack
+This article is about my view to convention building. 
+
+It includes some basic examples including linting tools setup. 
+
+That can be interesting for developers who like to follow coding best practices and who want to improve their own or team code quality. 
+
+As for me, I've explained and use those concepts many times. So, putting them into article will be handy.
+
+First of all you can look at my linting guide with the linter pack setup [here](https://github.com/bskydive/typescript-tspqwe-linters).
+
+Also you can grab my article from git repo [here](https://gitlab.com/stepanovv/kbo/-/blob/master/public/kbo/kb/conventions/starter-conventions.md).
+
+## Conventions starter pack
 
 Let's put and keep things in order together.
 
@@ -11,6 +23,7 @@ This will make productivity a little bit higher, and also reduce the volume of w
 	* debugging. Look at debug/dev tools and understand from which file this piece of code is, and where it can be inside the file.
 	* reading. Reduce the time for searching and analyzing information. The code units naming should help to immediately understand what it should do.
 	* development. Use generally(framework) accepted patterns and practices.
+	* communication. Reduce the length/duration of actions chains and loops(ping-pong)
 1. Less code means less:
 	* bugs
 	* merge conflicts
@@ -41,7 +54,7 @@ This will make productivity a little bit higher, and also reduce the volume of w
 1. check all code at once, reduce review-fix(ping-pong) time spending
 1. actions:
 	* switch into PR branch
-	* execute and test at least one main functionality of the PR, prevent moving PR to QA engineers with environment issues
+	* execute and test at least one main functionality of the PR, prevent moving PR to QA engineers with silly issues like "forgot to run `git add`"
 1. check the:
 	* unit test code coverage
 	* code convention compliance
@@ -86,7 +99,7 @@ This will make productivity a little bit higher, and also reduce the volume of w
 	* Put comments in one line, after the code not to increase lines number
 	* Put jsdoc in one line not to increase lines number. In popovers they are automatically reformatted.
 	* Put long notes in readme files: usage examples
-1. make separate unit test(it) for:
+1. make separate unit test assertion for:
 	* every input option
 	* every output value
 	* every possible state: init, loading, disabled, broken(reproduce exact issue), valid

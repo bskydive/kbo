@@ -66,38 +66,39 @@
  * https://en.opensuse.org/SDB:Audio_troubleshooting#A_possible_fix_to_choppy_.2F_skipping_sound
  * https://en.opensuse.org/SDB:Audio_troubleshooting#Intel_HDA_chipset
 
-```bash
-/etc/pulse/daemon.conf . Try changing the line default-sample-rate = 44100 in /etc/pulse/daemon.conf by default-sample-rate = 48000 and restart the PulseAudio server. 
+	```bash
+		/etc/pulse/daemon.conf . Try changing the line default-sample-rate = 44100 in /etc/pulse/daemon.conf by default-sample-rate = 48000 and restart the PulseAudio server. 
 
-1
-PULSE_PROP="filter.want=echo-cancel" skype
+		1
+		PULSE_PROP="filter.want=echo-cancel" skype
 
-2
-load-module module-echo-cancel source_name=noechosource sink_name=noechosink
-set-default-source noechosource
-Можно добавить эти строки в /etc/pulse/default.pa куда-нибудь в конец, чтобы они выполнялись каждый раз при запуске pulseaudio.
-```
+		2
+		load-module module-echo-cancel source_name=noechosource sink_name=noechosink
+		set-default-source noechosource
+		Можно добавить эти строки в /etc/pulse/default.pa куда-нибудь в конец, чтобы они выполнялись каждый раз при запуске pulseaudio.
 
+	```
  * https://bugs.freedesktop.org/show_bug.cgi?id=94167
 
- ```
-	userB doesn't have access to /run/user/1000/pulse/native, which is why userB tries to start its own pulseaudio instance. And even if userB has access to the socket, pulseaudio will reject the connection attempt by a different user. There are a few steps to make this work:
+	```
+			userB doesn't have access to /run/user/1000/pulse/native, which is why userB tries to start its own pulseaudio instance. And even if userB has access to the socket, pulseaudio will reject the connection attempt by a different user. There are a few steps to make this work:
 
-Copy /etc/pulse/default.pa to /home/userA/.config/pulse/default.pa and change this line
+		Copy /etc/pulse/default.pa to /home/userA/.config/pulse/default.pa and change this line
 
-    load-module module-native-protocol-unix
+			load-module module-native-protocol-unix
 
-to
+		to
 
-    load-module module-native-protocol-unix auth-anonymous=true
+			load-module module-native-protocol-unix auth-anonymous=true
 
-After that change anyone having access to the socket will be allowed to connect. Then give userB access to /run/user/1000/pulse/native (setfacl can probably be used to grant access to only that user, but I don't know the exact command).
+		After that change anyone having access to the socket will be allowed to connect. Then give userB access to /run/user/1000/pulse/native (setfacl can probably be used to grant access to only that user, but I don't know the exact command).
 
-It's probably also a good idea to not rely on the x11 property to point userB to userA's pulseaudio socket, so you can add "default-server = /run/user/1000/pulse/native" to /home/userB/.config/pulse/client.conf (I'm assuming that userB is only used from within userA's login sessions, so we don't need to support the case where userB logs in separately).
+		It's probably also a good idea to not rely on the x11 property to point userB to userA's pulseaudio socket, so you can add "default-server = /run/user/1000/pulse/native" to /home/userB/.config/pulse/client.conf (I'm assuming that userB is only used from within userA's login sessions, so we don't need to support the case where userB logs in separately).
 
-If you wish to have the socket somewhere else, you can pass socket=/somewhere/else to module-native-protocol-unix the same way you pass auth-anonymous=true.
+		If you wish to have the socket somewhere else, you can pass socket=/somewhere/else to module-native-protocol-unix the same way you pass auth-anonymous=true.
 
- ```
+	```
+ * https://www.linuxuprising.com/2020/09/how-to-enable-echo-noise-cancellation.html
 
 ### ogg to mp3
 
