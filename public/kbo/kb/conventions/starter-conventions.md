@@ -10,27 +10,16 @@ First of all you can look at my linting guide with the linter pack setup [here](
 
 Also you can grab my article from git repo [here](https://gitlab.com/stepanovv/kbo/-/blob/master/public/kbo/kb/conventions/starter-conventions.md).
 
-## Conventions starter pack
-
-Let's put and keep things in order together.
-
-This will make productivity a little bit higher, and also reduce the volume of work.
-
 ## What is it for
 
+1. Put and keep things in order together.
+1. To make productivity a little bit higher, and also reduce the volume of work.
 1. Conventions supports convenience of:
 	* migration. Facilitate the process of transferring the code between an old and new design / framework.
 	* debugging. Look at debug/dev tools and understand from which file this piece of code is, and where it can be inside the file.
 	* reading. Reduce the time for searching and analyzing information. The code units naming should help to immediately understand what it should do.
 	* development. Use generally(framework) accepted patterns and practices.
 	* communication. Reduce the length/duration of actions chains and loops(ping-pong)
-1. Less code means less:
-	* bugs
-	* merge conflicts
-	* reading time
-1. Do not shorten unit's names or line breaks:
-	* Long names and line breaks reduce analysis time and bugs count.
-	* Minifier will remove them anyway.
 
 ## How to make it
 
@@ -62,6 +51,13 @@ This will make productivity a little bit higher, and also reduce the volume of w
 
 ## Rules for the PR author
 
+1. Less code means less:
+	* bugs
+	* merge conflicts
+	* reading time
+1. Do not shorten unit's names or line breaks:
+	* Long names and line breaks reduce analysis time and bugs count.
+	* Minifier will remove them anyway.
 1. describe PR's scope in a task to help make the review and a test better:
 	* modules/components or domain areas which have been modified
 	* new functionalities were added and where
