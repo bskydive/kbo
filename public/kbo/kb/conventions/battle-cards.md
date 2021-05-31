@@ -1,9 +1,9 @@
 # Battle cards
 
 
-## Documentation is harmfull/useless or not
+## Documentation
 
-| cons |  pros|
+| harmfull/useless | harmless/useful |
 | --- | --- |
 | documentation became obsolete fast | that's not the documentation, that's the one line note; Obsolete comment brings no harm; That can reduce a lot of dev time; |
 | Comments are necessary only for public libraries because of lot of code and lot of developers | framework has a lot of comments, that's the best practice; Our codebase are huge too |
