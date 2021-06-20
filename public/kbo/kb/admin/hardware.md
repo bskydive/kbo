@@ -8,7 +8,7 @@ https://github.com/hsoft/collapseos
  * http://www.jonnyguru.com
  * http://www.logicalincrements.com/
  * https://cpu.userbenchmark.com/
-
+ * https://www.pcbenchmarks.net/
 ## Бесперебойник APC
 
   * APC smart 1000 - 2 шт [ Батарея CSB GP 1272(28W) - 12В, 7.2Ач, 151мм/65мм/100мм](https://www.xcom-shop.ru/csb_gp_127228w_376547.html)
@@ -48,6 +48,13 @@ https://github.com/hsoft/collapseos
 
 ## ноутбуки
 
+ * полная клавиатура
+ * отличный монитор
+ * отличный процессор
+ * 24+ Гб памяти
+ * без ОС
+ * большой аккумулятор
+ * разгон как можно меньше, базовая частота как можно больше, больше ядер
 ### память
 
  * [M471A1K43CB1-CRC](https://www.nix.ru/autocatalog/notebook_memory/Original-SAMSUNG-DDR4-SODIMM-8Gb-PC4-19200-for-NoteBook_294412.html)
@@ -58,6 +65,15 @@ https://github.com/hsoft/collapseos
  * https://www.nix.ru/autocatalog/mouse_sven/SVEN-Optical-Mouse-RX-555-Silent-Antistress-Green-RTL-USB-3btn-plus-Roll_211056.html
 
  * [How to take apart HP 7500A Multifunction printer](https://www.youtube.com/watch?v=YeJOPX5u3yQ)
+
+### монитор display
+
+ * http://lcdtech.info/en/tests/dead.pixel.htm
+ * http://zeroset.mnim.org/2014/02/25/lcd-dead-pixel-test-on-linux/
+ * sudo apt-get install screentest
+ * https://beard-studio.website.yandexcloud.net/Calibr4.html
+ * https://beard-studio.website.yandexcloud.net/profiles.html
+ * russianpenguin.ru/2018/04/08/управление-цветом-в-linux/
 
 ## wifi routers маршрутизаторы
 

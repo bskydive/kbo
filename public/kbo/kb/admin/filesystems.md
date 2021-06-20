@@ -6,12 +6,15 @@
 
 ## iso to usb
 
-http://www.osforensics.com/tools/create-disk-images.html
-
-http://www.wintobootic.com/
-
+* http://www.osforensics.com/tools/create-disk-images.html
+* http://www.wintobootic.com/
+* https://www.balena.io/etcher/
+* unetbootin
+* https://en.opensuse.org/SDB%3ALive_USB_stick
+* 
 ```bash
 dd if=/path/to/your/isofile of=/your/usb/disk bs=8m
+dd bs=4M if=Downloads/ubuntu-19.04-desktop-amd64.iso of=/dev/sdc conv=fdatasync status=progress
 ```
 
 

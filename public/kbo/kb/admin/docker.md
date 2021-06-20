@@ -34,4 +34,9 @@ docker images -a
 docker rmi 800e8b15fa9b
 Error response from daemon: conflict: unable to delete 800e8b15fa9b (must be forced) - image is being used by stopped container d0e2e5f44b23
 docker rm d0e2e5f44b23
+
+ls /var/lib/docker/volumes
+docker volume prune
 ```
+
+* [How to cleanup (unused) resources](https://gist.github.com/bastman/5b57ddb3c11942094f8d0a97d461b430)

@@ -225,6 +225,7 @@
 	* лучше оперировать id чем объектом
 	* хорошо, immutable: map, find, concat, ...spread, filter
 	* плохо, mutable: forEach, concat, shift, splice
+	* https://doesitmutate.xyz/ https://stackoverflow.com/questions/54836118/how-to-remember-if-a-method-mutates-the-original-array/54836218#54836218
 	* презентационный компонент: UI, HTML+CSS, без внешних зависимостей, данные только через @Input/@Output, может включать вложенные компоненты
 		* включаем onPush для игнорирования XHR
 	* контейнерный компонент: Без разметки/стилей, внешние зависимости, хранит состояние, привязан к корневым route, может включать вложенные компоненты

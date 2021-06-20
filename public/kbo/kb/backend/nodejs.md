@@ -233,6 +233,15 @@ npm dist-tag @user/pkg@2.0.0 coolestversion //можно назначить на
 //edit,bugs,explore
 ```
 
+
+### node-sass failed
+
+```
+npm cache clean -f
+npm rebuild node-sass --force
+
+```
+
 ## test
 
  * [CodeceptJS — современные end2end тесты для NodeJS 2017](https://habrahabr.ru/post/319656/)
