@@ -454,8 +454,7 @@ Code:
 * torrent
 * ssh_keys
 * zoom
-
-* зависает при выключении
+* зависает при выключении xfs btrfs snapshot
 	* 
 
 	```bash
@@ -463,6 +462,8 @@ Code:
 		systemctl stop lvm2-monitor.service
 
 		zypper rm snapper snapper-zypp-plugin yast2-snapper PackageKit PackageKit-backend-zypp PackageKit-branding-openSUSE PackageKit-gstreamer-plugin PackageKit-gtk3-module PackageKit-lang discover-backend-packagekit  grub2-snapper-plugin libpackagekit-glib2-18 libsnapper5
+
+		zypper rm btrfsmaintenance btrfsprogs btrfsprogs-udev-rules libbd_btrfs2 libbtrfs0 libudisks2-0_btrfs
 	```
 
 	* https://forums.opensuse.org/showthread.php/539741-How-to-disable-Ibus-autostart
@@ -476,7 +477,7 @@ Code:
 
 		chmod a-x /usr/bin/ibus-autostart
 	```
- * https://mintdewdrop.wordpress.com/2013/05/04/inxi/
+ * информация об оборудовании https://mintdewdrop.wordpress.com/2013/05/04/inxi/
 
 	```bash
 		inxi -G
