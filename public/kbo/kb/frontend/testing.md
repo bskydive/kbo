@@ -70,6 +70,12 @@
  * https://itnext.io/testing-angular-applications-with-jest-and-spectator-c05991579807?gi=e4e9f3404fe0
  * [Angular 11 - Setting up Jest](https://dev.to/alfredoperez/angular-10-setting-up-jest-2m0l)
 
+```ts
+src/tsconfig.spec.json: include
+src/tsconfig.app.json: exclude
+cypress-test/tsconfig.cypress.json:include
+.storybook/tsconfig.json:exclude
+```
 ### spectator
 
  * https://github.com/ngneat/spectator#component-providers
