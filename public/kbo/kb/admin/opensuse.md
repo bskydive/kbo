@@ -672,11 +672,51 @@ turning off hardware acceleration in preferences > advanced > general
 
 ## repo
 
+```bash
+zypper repos -Pu
+
+zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/repodata/ ya_packman_repodata
+zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Multimedia/repodata/ ya_packman_Multimedia
+zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Games/repodata/ ya_packman_Games
+zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Extra/repodata/ ya_packman_Extra
+zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Essentials/repodata/ ya_packman_Essentials
+zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/distribution/leap/15.2/repo/non-oss/repodata/ ya_distribution_non-oss
+zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/distribution/leap/15.2/repo/oss/repodata/ ya_distribution_oss
+zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/update/leap/15.2/non-oss/repodata/ ya_update_non-oss
+zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/update/leap/15.2/oss/repodata/ ya_update_oss
+```
+
+```
+zypper modifyrepo -f -p80 ya_packman_repodata https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/repodata/
+zypper modifyrepo -f -p80 ya_packman_Multimedia https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Multimedia/repodata/
+zypper modifyrepo -f -p80 ya_packman_Games https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Games/repodata/
+zypper modifyrepo -f -p80 ya_packman_Extra https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Extra/repodata/
+zypper modifyrepo -f -p80 ya_packman_Essentials https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Essentials/repodata/
+zypper modifyrepo -f -p80 ya_distribution_non_oss https://mirror.yandex.ru/opensuse/distribution/leap/15.2/repo/non-oss/repodata/
+zypper modifyrepo -f -p80 ya_distribution_oss https://mirror.yandex.ru/opensuse/distribution/leap/15.2/repo/oss/repodata/
+zypper modifyrepo -f -p80 ya_update_non_oss https://mirror.yandex.ru/opensuse/update/leap/15.2/non-oss/repodata/
+zypper modifyrepo -f -p80 ya_update_oss https://mirror.yandex.ru/opensuse/update/leap/15.2/oss/repodata/
+
+zypper removerepo ya_packman_repodata
+zypper removerepo ya_packman_Multimedia
+zypper removerepo ya_packman_Games
+zypper removerepo ya_packman_Extra
+zypper removerepo ya_packman_Essentials
+zypper removerepo ya_distribution_non_oss
+zypper removerepo ya_distribution_oss
+zypper removerepo ya_update_non_oss
+zypper removerepo ya_update_oss
+```
+
+```bash
 http://mirror.yandex.ru/opensuse/packman/12.3/repodata/
-
 http://download.opensuse.org/repositories/home:/hillwood/openSUSE_12.3/
-
 http://code.google.com/p/vpnpptp/downloads/list
+```
+```
+13.80.99.124		packages.microsoft.com
+
+```
 
 ## freemind
 
