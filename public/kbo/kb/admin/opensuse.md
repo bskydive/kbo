@@ -684,15 +684,35 @@ zypper ps -s
  * ya repos
 
 ```bash
-zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/ ya_packman_repodata
-zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Multimedia/ ya_packman_Multimedia
-zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Games/ ya_packman_Games
-zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Extra/ ya_packman_Extra
-zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Essentials/ ya_packman_Essentials
-zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/distribution/leap/15.2/repo/non-oss/ ya_distribution_non-oss
-zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/distribution/leap/15.2/repo/oss/ ya_distribution_oss
-zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/update/leap/15.2/non-oss/ ya_update_non-oss
-zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/update/leap/15.2/oss/ ya_update_oss
+zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/ ya_packman_repodata
+zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Multimedia/ ya_packman_Multimedia
+zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Games/ ya_packman_Games
+zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Extra/ ya_packman_Extra
+zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Essentials/ ya_packman_Essentials
+zypper addrepo -f https://mirror.yandex.ru/opensuse/distribution/leap/15.2/repo/non-oss/ ya_distribution_non_oss
+zypper addrepo -f https://mirror.yandex.ru/opensuse/distribution/leap/15.2/repo/oss/ ya_distribution_oss
+zypper addrepo -f https://mirror.yandex.ru/opensuse/update/leap/15.2/non-oss/ ya_update_non-oss
+zypper addrepo -f https://mirror.yandex.ru/opensuse/update/leap/15.2/oss/ ya_update_oss
+
+zypper modifyrepo -f -p80 ya_packman_repodata
+zypper modifyrepo -f -p80 ya_packman_Multimedia
+zypper modifyrepo -f -p80 ya_packman_Games
+zypper modifyrepo -f -p80 ya_packman_Extra
+zypper modifyrepo -f -p80 ya_packman_Essentials
+zypper modifyrepo -f -p80 ya_distribution_non_oss
+zypper modifyrepo -f -p80 ya_distribution_oss
+zypper modifyrepo -f -p80 ya_update_non-oss
+zypper modifyrepo -f -p80 ya_update_oss
+
+zypper modifyrepo -f -p99 ya_packman_repodata
+zypper modifyrepo -f -p99 ya_packman_Multimedia
+zypper modifyrepo -f -p99 ya_packman_Games
+zypper modifyrepo -f -p99 ya_packman_Extra
+zypper modifyrepo -f -p99 ya_packman_Essentials
+zypper modifyrepo -f -p99 ya_distribution_non_oss
+zypper modifyrepo -f -p99 ya_distribution_oss
+zypper modifyrepo -f -p99 ya_update_non-oss
+zypper modifyrepo -f -p99 ya_update_oss
 ```
 
  * remove repos
