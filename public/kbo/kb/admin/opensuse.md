@@ -381,33 +381,9 @@ Code:
  * настроить короткий формат даты для Dolphin в астройках локали DD.MM.YYYY
  * настроить полный формат даты для виджета часов на панели в настройках локали  SHORTWEEKDAY DD SHORTMONTH YYYY
  * настроить время в истории bash bash_history
- * видео кодеки wmv 
+ * видео кодеки wmv. см #repo
  	 * http://opensuse-guide.org/codecs.php
  	 * http://software.opensuse.org/package/opensuse-codecs-installer?search_term=opensuse-codecs-installer
-
-	```bash
-		#1) Add the needed repositories:
-		zypper addrepo -f http://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_15.2/ packman
-		zypper addrepo -f http://opensuse-guide.org/repo/openSUSE_Leap_15.2/ dvd
-
-		#2) Then install the necessary packages:
-		zypper install --allow-vendor-change ffmpeg-3 lame gstreamer-plugins-bad gstreamer-plugins-ugly gstreamer-plugins-ugly-orig-addon gstreamer-plugins-libav libavdevice58 libdvdcss2 vlc-codecs
-
-		#3) Make sure all your multimedia packages are coming from the Packman Repository:
-		zypper dup --allow-vendor-change --from http://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_15.2/
-
-		zypper install freshplayerplugin
-
-		#Installing Java browser plugin in the terminal:
-		zypper install icedtea-web
-		#Installing multimedia plugin in the terminal:
-		zypper install xine-browser-plugin
-
-		#First add the repository:
-		zypper addrepo -f https://download.nvidia.com/opensuse/leap/15.2 nvidia
-		#The following command should automatically install the correct driver for your card:
-		zypper install-new-recommends --repo https://download.nvidia.com/opensuse/leap/15.2
-	```
 
  * spectacle скриншоты починить
 	* Настройки - глобальные комбинации клавиш - KDE daemon - выключить prtscr
@@ -671,32 +647,57 @@ turning off hardware acceleration in preferences > advanced > general
  * [реиндекс глобального поиска](https://support.mozilla.org/en-US/kb/rebuilding-global-database)
 
 ## repo
+ * https://en.opensuse.org/images/1/17/Zypper-cheat-sheet-1.pdf
+ * multimedia codecs 
+
+```bash
+#1) Add the needed repositories:
+zypper addrepo -f http://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_15.2/ packman
+zypper addrepo -f http://opensuse-guide.org/repo/openSUSE_Leap_15.2/ dvd
+
+#2) Then install the necessary packages:
+zypper install --allow-vendor-change ffmpeg-3 lame gstreamer-plugins-bad gstreamer-plugins-ugly gstreamer-plugins-ugly-orig-addon gstreamer-plugins-libav libavdevice58 libdvdcss2 vlc-codecs
+
+#3) Make sure all your multimedia packages are coming from the Packman Repository:
+zypper dup --allow-vendor-change --from http://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_15.2/
+
+zypper install freshplayerplugin
+
+#Installing Java browser plugin in the terminal:
+zypper install icedtea-web
+#Installing multimedia plugin in the terminal:
+zypper install xine-browser-plugin
+
+#First add the repository:
+zypper addrepo -f https://download.nvidia.com/opensuse/leap/15.2 nvidia
+#The following command should automatically install the correct driver for your card:
+zypper install-new-recommends --repo https://download.nvidia.com/opensuse/leap/15.2
+```
+ * общие
 
 ```bash
 zypper repos -Pu
-
-zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/repodata/ ya_packman_repodata
-zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Multimedia/repodata/ ya_packman_Multimedia
-zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Games/repodata/ ya_packman_Games
-zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Extra/repodata/ ya_packman_Extra
-zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Essentials/repodata/ ya_packman_Essentials
-zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/distribution/leap/15.2/repo/non-oss/repodata/ ya_distribution_non-oss
-zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/distribution/leap/15.2/repo/oss/repodata/ ya_distribution_oss
-zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/update/leap/15.2/non-oss/repodata/ ya_update_non-oss
-zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/update/leap/15.2/oss/repodata/ ya_update_oss
+zypper locks
+zypper ps -s
 ```
 
-```
-zypper modifyrepo -f -p80 ya_packman_repodata https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/repodata/
-zypper modifyrepo -f -p80 ya_packman_Multimedia https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Multimedia/repodata/
-zypper modifyrepo -f -p80 ya_packman_Games https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Games/repodata/
-zypper modifyrepo -f -p80 ya_packman_Extra https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Extra/repodata/
-zypper modifyrepo -f -p80 ya_packman_Essentials https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Essentials/repodata/
-zypper modifyrepo -f -p80 ya_distribution_non_oss https://mirror.yandex.ru/opensuse/distribution/leap/15.2/repo/non-oss/repodata/
-zypper modifyrepo -f -p80 ya_distribution_oss https://mirror.yandex.ru/opensuse/distribution/leap/15.2/repo/oss/repodata/
-zypper modifyrepo -f -p80 ya_update_non_oss https://mirror.yandex.ru/opensuse/update/leap/15.2/non-oss/repodata/
-zypper modifyrepo -f -p80 ya_update_oss https://mirror.yandex.ru/opensuse/update/leap/15.2/oss/repodata/
+ * ya repos
 
+```bash
+zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/ ya_packman_repodata
+zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Multimedia/ ya_packman_Multimedia
+zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Games/ ya_packman_Games
+zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Extra/ ya_packman_Extra
+zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Essentials/ ya_packman_Essentials
+zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/distribution/leap/15.2/repo/non-oss/ ya_distribution_non-oss
+zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/distribution/leap/15.2/repo/oss/ ya_distribution_oss
+zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/update/leap/15.2/non-oss/ ya_update_non-oss
+zypper addrepo -f -p80 https://mirror.yandex.ru/opensuse/update/leap/15.2/oss/ ya_update_oss
+```
+
+ * remove repos
+
+```
 zypper removerepo ya_packman_repodata
 zypper removerepo ya_packman_Multimedia
 zypper removerepo ya_packman_Games
@@ -708,14 +709,37 @@ zypper removerepo ya_update_non_oss
 zypper removerepo ya_update_oss
 ```
 
-```bash
-http://mirror.yandex.ru/opensuse/packman/12.3/repodata/
-http://download.opensuse.org/repositories/home:/hillwood/openSUSE_12.3/
-http://code.google.com/p/vpnpptp/downloads/list
-```
-```
-13.80.99.124		packages.microsoft.com
+ * old repos 
 
+	```bash
+	http://mirror.yandex.ru/opensuse/packman/12.3/repodata/
+	http://download.opensuse.org/repositories/home:/hillwood/openSUSE_12.3/
+	http://code.google.com/p/vpnpptp/downloads/list
+	```
+ * hosts
+
+```bash 
+13.80.99.124		packages.microsoft.com
+13.80.99.124		csd-apt-weu-d-1.westeurope.cloudapp.azure.com
+
+104.73.92.137		repo.skype.com
+104.73.92.137		a104-73-92-137.deploy.static.akamaitechnologies.com
+
+46.30.215.58		opensuse-guide.org
+46.30.215.58		webcluster2.webpod5-cph3.one.com
+
+195.135.221.134		download.opensuse.org
+
+192.229.220.191		download.nvidia.com
+192.229.220.191		cs486284.wpc.phicdn.net
+
+142.250.74.46		dl.google.com
+142.250.74.46		arn09s22-in-f14.1e100.net
+
+148.251.201.107		packages.x2go.org
+148.251.201.107		ymir.das-netzwerkteam.de
+
+134.76.12.6			ftp.gwdg.de
 ```
 
 ## freemind
