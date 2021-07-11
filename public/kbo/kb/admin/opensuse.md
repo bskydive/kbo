@@ -434,24 +434,24 @@ Code:
 * зависает при выключении
 	* 
 
-	```bash
-		systemctl disable lvm2-monitor.service
-		systemctl stop lvm2-monitor.service
+```bash
+systemctl disable lvm2-monitor.service
+systemctl stop lvm2-monitor.service
 
-		zypper rm snapper snapper-zypp-plugin yast2-snapper PackageKit PackageKit-backend-zypp PackageKit-branding-openSUSE PackageKit-gstreamer-plugin PackageKit-gtk3-module PackageKit-lang discover-backend-packagekit  grub2-snapper-plugin libpackagekit-glib2-18 libsnapper5
-	```
+zypper rm snapper snapper-zypp-plugin yast2-snapper PackageKit PackageKit-backend-zypp PackageKit-branding-openSUSE PackageKit-gstreamer-plugin PackageKit-gtk3-module PackageKit-lang discover-backend-packagekit  grub2-snapper-plugin libpackagekit-glib2-18 libsnapper5
+```
 
 	* https://forums.opensuse.org/showthread.php/539741-How-to-disable-Ibus-autostart
 
-	```bash
-		ibus ibus-gtk ibus-gtk3 ibus-lang ibus-m17n ibus-qt ibus-table ibus-table-rustrad ibus-table-translit libm17n0 libotf0 m17n-db m17n-db-lang typelib-1_0-IBus-1_0 zoom
-		ibus-lang m17n-db-lang ibus-branding-openSUSE-KDE
+```bash
+ibus ibus-gtk ibus-gtk3 ibus-lang ibus-m17n ibus-qt ibus-table ibus-table-rustrad ibus-table-translit libm17n0 libotf0 m17n-db m17n-db-lang typelib-1_0-IBus-1_0 zoom
+ibus-lang m17n-db-lang ibus-branding-openSUSE-KDE
 
-		/etc/X11/xim.d/ibus
-		*kde*|*xfce*|*lxde*|*startplasma*)
+/etc/X11/xim.d/ibus
+*kde*|*xfce*|*lxde*|*startplasma*)
 
-		chmod a-x /usr/bin/ibus-autostart
-	```
+chmod a-x /usr/bin/ibus-autostart
+```
  * https://mintdewdrop.wordpress.com/2013/05/04/inxi/
 
 	```bash
