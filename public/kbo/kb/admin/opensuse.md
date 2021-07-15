@@ -99,6 +99,9 @@
 
 	```
  * https://www.linuxuprising.com/2020/09/how-to-enable-echo-noise-cancellation.html
+ * https://www.reddit.com/r/linuxmasterrace/comments/g7mikg/rtx_voice_on_linux/
+ * https://github.com/josh-richardson/cadmus
+ * windows: https://www.nvidia.com/en-us/geforce/guides/nvidia-rtx-voice-setup-guide/ example: https://youtu.be/Q-mETIjcIV0?t=322
 
 ### ogg to mp3
 
@@ -494,6 +497,11 @@ Code:
 			Network:   Device-1: Realtek RTL8111/8168/8411 PCI Express Gigabit Ethernet driver: r8169 
 			Drives:    Local Storage: total: 670.70 GiB used: 293.01 GiB (43.7%) 
 			Info:      Processes: 362 Uptime: 9h 34m Memory: 31.30 GiB used: 3.96 GiB (12.7%) Shell: bash inxi: 3.1.00 
+		inxi -D
+			Drives:    Local Storage: total: 670.70 GiB used: 300.07 GiB (44.7%) 
+					ID-1: /dev/sda vendor: Samsung model: MZ7KH480HAHQ-00005 size: 447.13 GiB 
+					ID-2: /dev/sdb vendor: Intel model: SSDSC2KB240G8 size: 223.57 GiB
+		inxi --battery
 	```
  * 
 
