@@ -40,164 +40,165 @@
  * [словарь](https://multitran.org)
  * [национальный корпус русского языка](https://ruscorpora.ru/new/search-para-en.html)
 
-| Eng | в прямом переводе | в контексте разработки |
-| --- | --- | --- |
-| issue | проблема | задача. по-разному понимается во многих контекстах. |
-| conventions | соглашения | |
-| collaboration, teamwork | сотрудничество, совместная работа | |
-| feature | особенность | полезная особенность |
-| feedback | отзыв | обратная связь |
-| hype | ажиотаж, шумиха, манипуляция | |
-| merit | заслуга | |
-| edge case | исключительный случай | |
-| time slot | временное окно | |
-| prohibit, deny | запрещать | |
-| overwhelmed, impressed | ошеломлённый | |
-| keen, interested in | заинтересован | |
-| convince | убеждать | |
-| implicit | неявный | |
-| explicit | явный | |
-| assertion | утверждение | |
-| intrinsic | принадлежащий | |
-| observable | обозреватель | сборщик |
-| feedback | отзыв | оценка |
-| eagerly | нетерпеливо | принудительно |
-| scope | охват | область видимости |
-| entity | сущность, экземпляр объекта | |
-| binding | связывание, назначение | |
-| callback | возврат | обратный вызов |
-| namespace | пространство имён | |
-| gullible | доверчивый | |
-| Roughly speaking | грубо говоря | |
-| bounds | границы | |
-| lack | нехватка | |
-| Thus | соответственно | |
-| crucial | ключевой | |
-| grasp | ухватить суть | усвоить |
-| peculiar | характерный | |
-| bears repeating | основательно повторим | |
-| conveys | передавать | |
-| infer | предполагать | |
-| mockup | имитация | макет |
-| coercion | приведение |  |
-| driven | ведомые | ориентированные |
-| perceive | воспринимаемый |  |
-| debounce | антидребезг | отсечка, сглаживание |
-| throttle | дроссель | ограничитель |
-| spread | расщепление |  |
-| guide | наставление |  |
-| tab |  | вкладка |
-| select box |  | выпадашка |
-| check box |  | галка |
-| radio box |  | точка |
-| input | поле ввода | ввод, поле |
-| caption, label |  | надпись |
-| hover |  | наведение |
-| overlap |  | перекрытие |
-| fallback | резервный, запасной |  |
-| shallow | поверхностный |  |
-| reducer | редуктор | конвертер |
-| dispatch |  | отправка |
-| flow |  | жизненный цикл |
-| section | раздел | структура |
-| injection |  | внедрение(зависимостей) |
-| pipe |  | конвейер |
-| slice | ломтик, срез | фрагмент |
-| inconsistent | нелогичный | несогласованный |
-| consistent | логичный | согласованный |
-| Maintainability |  | поддерживаемость |
-| Loose coupling |  | слабая связность |
-| Tight coupling |  | сильная связность |
-| boilerplate |  | заготовка, болванка |
-| holywar | священная война | горячий спор, горячая спорная тема |
-| function expression |  | функциональное выражение |
-| function declaration |  | объявляемая функция |
-| end-to-end |  | сквозной |
-| disclose |  | раскрывать |
-| burden |  | обуза |
-| perseption |  | представление |
-| aware |  | осознавать |
-| be aware |  | примите к сведению |
-| beware |  | остерегаться |
-| awareness |  | осведомлённость |
-| lurking |  | притаиться |
-| jeopardize |  | ставить под удар |
-| utmost |  | предельно |
-| posession |  | владение |
-| rigorous |  | строгий |
-| confuze |  | путать |
-| vigilance |  | бдительность |
-| harmless |  | безвредный |
-| ploy |  | хитрость |
-| disposal |  | уничтожение |
-| surplus |  | излишки |
-| appraisal |  | заключение |
-| inquiry |  | обследование |
-| distinct |  | отчётливый |
-| charitable |  | снисходительный |
-| honest |  | честный |
-| asset | ценный актив | ресурс |
-| judgement |  | обоснование |
-| conduct |  | руководство |
-| excellence |  | совершенство |
-| raise |  | повышение |
-| faith |  | вера |
-| concerns | причиндалы | затруднения |
-| encourage |  | вдохновлять |
-| retaliate |  | отплатить |
-| fair |  | добросовестный |
-| modest |  | небольшой |
-| reasonable |  | адекватный |
-| abide |  | придерживаться |
-| competitor |  | соперник |
-| modestly |  | скромно |
-| stationery |  | канцелярские принадлежности |
-| retain |  | удерживать |
-| disclosure |  | раскрытие |
-| obligate |  | обязать |
-| intention |  | намерение |
-| intentional |  | преднамеренный |
-| essence |  | сущность |
-| compliance | соответствие стандартам | стандарт |
-| evaluation |  | аттестация |
-| involve |  | вовлекать |
-| denote |  | обозначать |
-| intervene |  | вмешиваться |
-| hesitate |  | стесняться |
-| force |  | принуждать |
-| regret |  | сожалеть |
-| strive |  | стремиться |
-| endure |  | перетерпеть |
-| reimbursable |  | оплачиваемый |
-| least |  | наименьший |
-| effort |  | попытка |
-| reliable |  | надёжный |
-| unreliable |  | ненадёжный |
-| conceal |  | прятать |
-| substitute |  | заменитель |
-| essentials |  | сущность |
-| trail |  | след |
-| contradictory |  | противоречивый |
-| severity |  | важность |
-| Containment |  | изоляция |
-| Defect Containment Effectiveness |  | Эффективность изоляции дефектов |
-| flaw |  | дефект |
-| slippery |  | ускользающий |
-| intermittent error |  | плавающая ошибка |
-| embrace |  | осваивать |
-| disparity |  | диспропорция |
-| domain area |  | предметная область |
-| refinement |  | уточнение |
-| stakeholder | акционер | заинтересованное лицо, владелец бюджета |
-| crucial |  | решающий |
-| lifehack | хитрость |  |
-| book |  | забронировать, зарезервировать |
-| newcomer |  | новичок |
-| onboarding | адаптация |  |
-| pattern |  | закономерность, правило |
-| span | пролёт |  |
-|  |  |  |
-|  |  |  |  |
+
+ | Eng | в прямом переводе | в контексте разработки |
+ | --- | --- | --- |
+ | issue | проблема | задача. по-разному понимается во многих контекстах. |
+ | conventions | соглашения | |
+ | collaboration, teamwork | сотрудничество, совместная работа | |
+ | feature | особенность | полезная особенность |
+ | feedback | отзыв | обратная связь |
+ | hype | ажиотаж, шумиха, манипуляция | |
+ | merit | заслуга | |
+ | edge case | исключительный случай | |
+ | time slot | временное окно | |
+ | prohibit, deny | запрещать | |
+ | overwhelmed, impressed | ошеломлённый | |
+ | keen, interested in | заинтересован | |
+ | convince | убеждать | |
+ | implicit | неявный | |
+ | explicit | явный | |
+ | assertion | утверждение | |
+ | intrinsic | принадлежащий | |
+ | observable | обозреватель | сборщик |
+ | feedback | отзыв | оценка |
+ | eagerly | нетерпеливо | принудительно |
+ | scope | охват | область видимости |
+ | entity | сущность, экземпляр объекта | |
+ | binding | связывание, назначение | |
+ | callback | возврат | обратный вызов |
+ | namespace | пространство имён | |
+ | gullible | доверчивый | |
+ | Roughly speaking | грубо говоря | |
+ | bounds | границы | |
+ | lack | нехватка | |
+ | Thus | соответственно | |
+ | crucial | ключевой | |
+ | grasp | ухватить суть | усвоить |
+ | peculiar | характерный | |
+ | bears repeating | основательно повторим | |
+ | conveys | передавать | |
+ | infer | предполагать | |
+ | mockup | имитация | макет |
+ | coercion | приведение |  |
+ | driven | ведомые | ориентированные |
+ | perceive | воспринимаемый |  |
+ | debounce | антидребезг | отсечка, сглаживание |
+ | throttle | дроссель | ограничитель |
+ | spread | расщепление |  |
+ | guide | наставление |  |
+ | tab |  | вкладка |
+ | select box |  | выпадашка |
+ | check box |  | галка |
+ | radio box |  | точка |
+ | input | поле ввода | ввод, поле |
+ | caption, label |  | надпись |
+ | hover |  | наведение |
+ | overlap |  | перекрытие |
+ | fallback | резервный, запасной |  |
+ | shallow | поверхностный |  |
+ | reducer | редуктор | конвертер |
+ | dispatch |  | отправка |
+ | flow |  | жизненный цикл |
+ | section | раздел | структура |
+ | injection |  | внедрение(зависимостей) |
+ | pipe |  | конвейер |
+ | slice | ломтик, срез | фрагмент |
+ | inconsistent | нелогичный | несогласованный |
+ | consistent | логичный | согласованный |
+ | Maintainability |  | поддерживаемость |
+ | Loose coupling |  | слабая связность |
+ | Tight coupling |  | сильная связность |
+ | boilerplate |  | заготовка, болванка |
+ | holywar | священная война | горячий спор, горячая спорная тема |
+ | function expression |  | функциональное выражение |
+ | function declaration |  | объявляемая функция |
+ | end-to-end |  | сквозной |
+ | disclose |  | раскрывать |
+ | burden |  | обуза |
+ | perseption |  | представление |
+ | aware |  | осознавать |
+ | be aware |  | примите к сведению |
+ | beware |  | остерегаться |
+ | awareness |  | осведомлённость |
+ | lurking |  | притаиться |
+ | jeopardize |  | ставить под удар |
+ | utmost |  | предельно |
+ | posession |  | владение |
+ | rigorous |  | строгий |
+ | confuze |  | путать |
+ | vigilance |  | бдительность |
+ | harmless |  | безвредный |
+ | ploy |  | хитрость |
+ | disposal |  | уничтожение |
+ | surplus |  | излишки |
+ | appraisal |  | заключение |
+ | inquiry |  | обследование |
+ | distinct |  | отчётливый |
+ | charitable |  | снисходительный |
+ | honest |  | честный |
+ | asset | ценный актив | ресурс |
+ | judgement |  | обоснование |
+ | conduct |  | руководство |
+ | excellence |  | совершенство |
+ | raise |  | повышение |
+ | faith |  | вера |
+ | concerns | причиндалы | затруднения |
+ | encourage |  | вдохновлять |
+ | retaliate |  | отплатить |
+ | fair |  | добросовестный |
+ | modest |  | небольшой |
+ | reasonable |  | адекватный |
+ | abide |  | придерживаться |
+ | competitor |  | соперник |
+ | modestly |  | скромно |
+ | stationery |  | канцелярские принадлежности |
+ | retain |  | удерживать |
+ | disclosure |  | раскрытие |
+ | obligate |  | обязать |
+ | intention |  | намерение |
+ | intentional |  | преднамеренный |
+ | essence |  | сущность |
+ | compliance | соответствие стандартам | стандарт |
+ | evaluation |  | аттестация |
+ | involve |  | вовлекать |
+ | denote |  | обозначать |
+ | intervene |  | вмешиваться |
+ | hesitate |  | стесняться |
+ | force |  | принуждать |
+ | regret |  | сожалеть |
+ | strive |  | стремиться |
+ | endure |  | перетерпеть |
+ | reimbursable |  | оплачиваемый |
+ | least |  | наименьший |
+ | effort |  | попытка |
+ | reliable |  | надёжный |
+ | unreliable |  | ненадёжный |
+ | conceal |  | прятать |
+ | substitute |  | заменитель |
+ | essentials |  | сущность |
+ | trail |  | след |
+ | contradictory |  | противоречивый |
+ | severity |  | важность |
+ | Containment |  | изоляция |
+ | Defect Containment Effectiveness |  | Эффективность изоляции дефектов |
+ | flaw |  | дефект |
+ | slippery |  | ускользающий |
+ | intermittent error |  | плавающая ошибка |
+ | embrace |  | осваивать |
+ | disparity |  | диспропорция |
+ | domain area |  | предметная область |
+ | refinement |  | уточнение |
+ | stakeholder | акционер | заинтересованное лицо, владелец бюджета |
+ | crucial |  | решающий |
+ | lifehack | хитрость |  |
+ | book |  | забронировать, зарезервировать |
+ | newcomer |  | новичок |
+ | onboarding | адаптация |  |
+ | pattern |  | закономерность, правило |
+ | span | пролёт |  |
+ |  |  |  |
+ |  |  |  |  |
 
 ## Шаблоны и практики
 
