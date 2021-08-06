@@ -68,9 +68,9 @@ Also you can grab my article from git repo [here](https://gitlab.com/stepanovv/k
 1. reduce the PR's scope, make a new subtask/story for:
 	* broken/disabled(xit/xdescribe) unit test
 	* optional parts of functionality/refactoring
-	* investigation and description(making notes/readmes) of how old code is working
+	* investigation and description(making notes/readme's) of how old code is working
 1. execute before the pushing into repo:
-	* reformat and autofix all code using prettier, eslint and stylelint rules
+	* reformat and auto fix all code using prettier, eslint and stylelint rules
 	* git pull && git merge origin master
 	* npm run lint
 	* npm run build
