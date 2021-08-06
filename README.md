@@ -37,6 +37,7 @@ Also, I'm using it as a bookmarking service.
 * Currently I'm not ready to maintain contributing processes
 * Sources are in `src/*`, build output dir is `public/*`
 * check before publish
+	* convert md articles to html
 	* anchor-offset
  	* links skills/nav/contacts/kb
  	* open on mobile device
