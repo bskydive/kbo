@@ -2,9 +2,11 @@
 
 Это репозиторий создан для совместной работы над статьями.
 
- * [От дизайна до кода без совещаний. Страшная сила красоты](https://stepanovv.ru/articles/public/страшная%20сила%20красоты/страшная%20сила%20красоты.html)
- * [Советы про удалёнку в карантине](https://stepanovv.ru/articles/public/Советы%20про%20удалёнку/советы%20про%20удалёнку.html)
- * [Шаг в виртуальность](https://stepanovv.ru/articles/public/шаг%20в%20виртуальность/шаг%20в%20виртуальность.html)
+ * HTML:
+	* [От дизайна до кода без совещаний. Страшная сила красоты](https://stepanovv.ru/articles/public/страшная%20сила%20красоты/страшная%20сила%20красоты.html)
+	* [Советы про удалёнку в карантине](https://stepanovv.ru/articles/public/Советы%20про%20удалёнку/советы%20про%20удалёнку.html)
+	* [Шаг в виртуальность](https://stepanovv.ru/articles/public/шаг%20в%20виртуальность/шаг%20в%20виртуальность.html)
+	* [JS code quality starter pack](https://stepanovv.ru/articles/public/js%20code%20quality%20starter%20pack.html)
 
 Раньше я писал на [medium](https://medium.com/@stepanovv.ru), однако там появилась неприятная практика ограничения [доступа](https://wptavern.com/freecodecamp-moves-off-of-medium-after-being-pressured-to-put-articles-behind-paywalls).
 
@@ -12,9 +14,11 @@
 
 Для статей выбран формат markdown, его поддерживают многие редакторы и облачный [gitlab](https://gitlab.com/stepanovv/kbo/articles/index.md).
 
- * [От дизайна до кода без совещаний. Страшная сила красоты](https://gitlab.com/stepanovv/kbo/-/blob/master/public/articles/public/страшная%20сила%20красоты/страшная%20сила%20красоты.md)
- * [Советы про удалёнку в карантине](https://gitlab.com/stepanovv/kbo/-/blob/master/public/articles/public/Советы%20про%20удалёнку/советы%20про%20удалёнку.md)
- * [Шаг в виртуальность](https://gitlab.com/stepanovv/kbo/-/blob/master/public/articles/public/шаг%20в%20виртуальность/шаг%20в%20виртуальность.md)
+ * gtilab markdown:
+	* [От дизайна до кода без совещаний. Страшная сила красоты](https://gitlab.com/stepanovv/kbo/-/blob/master/public/articles/public/страшная%20сила%20красоты/страшная%20сила%20красоты.md)
+	* [Советы про удалёнку в карантине](https://gitlab.com/stepanovv/kbo/-/blob/master/public/articles/public/Советы%20про%20удалёнку/советы%20про%20удалёнку.md)
+	* [Шаг в виртуальность](https://gitlab.com/stepanovv/kbo/-/blob/master/public/articles/public/шаг%20в%20виртуальность/шаг%20в%20виртуальность.md)
+	* [JS code quality starter pack](https://gitlab.com/stepanovv/kbo/-/blob/master/public/articles/public/js%20code%20quality%20starter%20pack.md)
 
 Статьи, в основном, для разработчиков, потому можно читать и в IDE.
 

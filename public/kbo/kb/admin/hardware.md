@@ -55,6 +55,12 @@ https://github.com/hsoft/collapseos
  * без ОС
  * большой аккумулятор
  * разгон как можно меньше, базовая частота как можно больше, больше ядер
+
+### Dell Ноутбук Inspiron 5570-5840
+
+ * i5-8250U/8Gb/1Tb/AMD 530 2Gb/15.6"/TN/FHD/Lin
+ * https://1001zip.ru/products/ventilyator-dlya-noutbuka-dell-inspiron-15-5570-5575-latitude-3590-l3590-e3590
+
 ### память
 
  * [M471A1K43CB1-CRC](https://www.nix.ru/autocatalog/notebook_memory/Original-SAMSUNG-DDR4-SODIMM-8Gb-PC4-19200-for-NoteBook_294412.html)
