@@ -11,12 +11,14 @@
 	* общие для большинства версий изменения: версии NS/RxJS, производительность, Material компоненты
 	* 2 - typescript, dart
 	* 4 - renderer v2
-	* 5 - HttpClientModule заменил http
-	* 6 - angular elements(web custom elements), tree-shakable providers(providedIn:root), rxjs 6, Ivy
+	* 5 - 2017 - HttpClientModule заменил http
+	* 6 - 2018 - angular elements(web custom elements), tree-shakable providers(providedIn:root), rxjs 6, Ivy
 	* 7 - drag and drop, node v10, service worker
 	* 8 - webworker, ES6 импорт модулей `()=>`
 	* 9 - Ivy по-умолчанию, ullTemplateTypeCheck, strictTemplates в tsc
 	* 10 - исправили 700 и посмотрели 2000 ошибок, компонент диапазона дат
+	* 11 - harnesses for all of the components, webpack 5 experimental, ng serve --hmr, tslint deprecated, IE9/10 deprecated
+	* 12 - nullish coalescing, tailwind css, webpack 5 prod, IE11 deprecated
 1. Различие между AngularJS и Angular
 	* rxjs, DI
 1. преимущества [Angular](https://medium.com/better-programming/angular-in-2020-and-beyond-b2e98543ef17)
@@ -71,23 +73,50 @@
 
 ## DI
 
+1. Иерархия Injector'ов, какие бывают, сколько их может быть?
+	* https://angular.io/guide/hierarchical-dependency-injection
+	* первая: ModuleInjector иерархия через @NgModule() или @Injectable()
+	* вторая: ElementInjector иерархия для каждого DOM элемента. ElementInjector пустой пока нет providedIn в @Directive() или @Component()
+	* иерархия NullInjector()-->platformModuleInjector(Renderer, Sanitizer)-->rootModuleInjector(services)-->componentInjector(ElementRef, ChangeDetectorRef)
+	* @Injectable() предпочтительнее @NgModule() providers, т.к. позволяют tree-shaking
+	* The `platformBrowserDynamic()` method creates an `platformModuleInjector` for platform/browser-specific dependencies like domsanitizer. Configured by platformBrowser().extraProviders
+	* можно создать дочерние ModuleInjectors при ленивой загрузке
+	* стратегии разрешения зависимостей: @Optional(), @Self(), @SkipSelf(), @Host() https://angular.io/guide/dependency-injection-in-action#make-a-dependency-optional-and-limit-search-with-host
+		* @Optional() присваивает null не найденным провайдерам сервисов. Нужен для игнорирования ошибок 
+		* @Self() ищет в текущем ElementInjector component или directive
+		* @SkipSelf() ищет в родительском ElementInjector
+		* @Host() ищет в component и ниже по вложенному дереву
+1. Управление экземплярами https://angular.io/guide/dependency-injection-in-action
+	* песочница, отдельные экземпляры: регистрируем в providers аннотациях компонентов https://angular.io/guide/dependency-injection-in-action#multiple-service-instances-sandboxing
+	* 
+1. Сколько у нас инжекторов, у одного модуля и трёх компонентов?
 1. Dependency injection
-	* сделано для работы с сервисами и модулями
-	* меньше кода в конструкторах
-	* облегчение рефакторинга, автоматическая инъекция зависимостей по всей цепочке
-	* облегчение юнит-тестирования сервисов
-	* позволяет переиспользовать сервисы
+	* [провайдер](https://angular.io/guide/glossary#provider) 
+		* Объект, который реализует один из интерфейсов [Provider](https://angular.io/api/core/Provider)
+		* предоставляет инжектору порядок разрешения зависимости, связанной с токеном/идентификатором
+		* может предоставлять разные реализации одной и той же зависимости
+	* [токен](https://angular.io/guide/dependency-injection-providers#dependency-injection-tokens) 
+		* объект, который реализует интерфейс [InjectionToken](https://angular.io/api/core/InjectionToken)
+	* [инжектор](https://www.youtube.com/watch?v=Z1gLFPLVJjY) 
+		* Объект, который находит именованную зависимость в своём кэше, либо создаёт её используя провайдер
+		* Предоставляет и внедряет синглтон
+		* Создаются автоматом для модулей в ходе bootstrap и наследуется в иерархии компонентов
+	* зачем
+		* для работы с сервисами и модулями
+		* меньше кода в конструкторах
+		* облегчение рефакторинга, автоматическая инъекция зависимостей по всей цепочке
+		* облегчение юнит-тестирования сервисов
+		* переиспользование сервисов
 	* синглтон https://angular.io/guide/architecture-services#providing-services
 		* для всего приложения: в аннотации компонента `@Injectable({providedIn: 'root',})` https://angular.io/api/core/Injectable#injectable
 			* root: для приложения
 			* platform - для всех приложений
 		* для модуля: в модуле `@NgModule({providers: [...]`
 		* для компонента: в аннотации компонента `@Component({...,providers:  [ HeroService ],...})`
-	* в маршрутизаторе необходимо хранить по одной копии состояния маршрута.
+	* используется
+		* в маршрутизаторе для хранения по одной копии состояния маршрута
 	* forRoot: модуль с providers
 	* forChild: отдельный экземпляр модуля без providers для ленивой загрузки
-	* [инжектор](https://www.youtube.com/watch?v=Z1gLFPLVJjY) разрешает зависимость либо из своего кэша, либо через провайдер. Предоставляет синглтон.
-	* [провайдер](https://angular.io/guide/glossary#provider) определяет порядок разрешения зависимости, связанной с идентификатором [DI token](https://angular.io/guide/dependency-injection-providers#dependency-injection-tokens) который реализует [InjectionToken](https://angular.io/api/core/InjectionToken)
 	* нельзя внедрять интерфейсы https://angular.io/guide/dependency-injection-providers#interfaces-and-dependency-injection , но можно абстрактные классы https://angular.io/guide/dependency-injection-in-action#class-interface
 	* [внедрение лёгких токенов](https://angular.io/guide/lightweight-injection-tokens) для уменьшения размера библиотек
 		```ts
@@ -194,23 +223,6 @@
 		// HTML
 		<div appHighlight="yellow">
 		```
-1. Иерархия Injector'ов, какие бывают, сколько их может быть?
-	* https://angular.io/guide/hierarchical-dependency-injection
-	* первая: ModuleInjector иерархия через @NgModule() или @Injectable()
-	* вторая: ElementInjector иерархия для каждого DOM элемента. ElementInjector пустой пока нет providedIn в @Directive() или @Component()
-	* иерархия NullInjector()-->platformModuleInjector(Renderer, Sanitizer)-->rootModuleInjector(services)-->componentInjector(ElementRef, ChangeDetectorRef)
-	* @Injectable() предпочтительнее @NgModule() providers, т.к. позволяют tree-shaking
-	* The `platformBrowserDynamic()` method creates an `platformModuleInjector` for platform/browser-specific dependencies like domsanitizer. Configured by platformBrowser().extraProviders
-	* можно создать дочерние ModuleInjectors при ленивой загрузке
-	* стратегии разрешения зависимостей: @Optional(), @Self(), @SkipSelf(), @Host() https://angular.io/guide/dependency-injection-in-action#make-a-dependency-optional-and-limit-search-with-host
-		* @Optional() присваивает null не найденным провайдерам сервисов. Нужен для игнорирования ошибок 
-		* @Self() ищет в текущем ElementInjector component или directive
-		* @SkipSelf() ищет в родительском ElementInjector
-		* @Host() ищет в component и ниже по вложенному дереву
-1. Управление экземплярами https://angular.io/guide/dependency-injection-in-action
-	* песочница, отдельные экземпляры: регистрируем в providers аннотациях компонентов https://angular.io/guide/dependency-injection-in-action#multiple-service-instances-sandboxing
-	* 
-1. Сколько у нас инжекторов, состоящего из одного модуля и трёх компонентов?
 
 ## Конвейеры, директивы и компоненты
 
@@ -702,6 +714,10 @@
 ## HTTP/websocket
 
  * angular in memory web api https://angular.io/tutorial/toh-pt6#simulate-a-data-server
+ * create - post - можно много записей за раз, не идемпотентный(разный результат)
+ * read - get
+ * update - put - подходит для конкретного экземпляра, идемпотентный
+ * delete - delete
 
 ## RxJS
  * public/kbo/kb/frontend/angular/rxjs.md
