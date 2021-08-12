@@ -18,7 +18,7 @@
 	* разновидность наблюдаемого, можно подписаться нескольким наблюдателям - multicast
 	* asyncSubject
 	* replaySubject - кэширование и повторение
-	*
+	* behaviorSubject - есть начальное значение
 1. Subscription
 	* отменяемый(disposable) через unsubscribe объект
 1. BehaviourSubject что это, в чем отличие?
