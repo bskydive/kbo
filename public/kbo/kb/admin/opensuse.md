@@ -276,6 +276,64 @@ Install libreoffice-theme-oxygen or libreoffice-theme-crystal and then follow  (
 
 ## HARDWARE
 
+### info
+
+ * https://mintdewdrop.wordpress.com/2013/05/04/inxi/
+
+	```bash
+		inxi -G
+		#	Graphics:  Device-1: NVIDIA GP107 [GeForce GTX 1050 Ti] driver: nvidia v: 390.141 
+		#			Display: server: X.Org 1.20.3 driver: nvidia unloaded: fbdev,modesetting,nouveau,vesa resolution: 2560x1440 
+		#			OpenGL: renderer: GeForce GTX 1050 Ti/PCIe/SSE2 v: 4.6.0 NVIDIA 390.141 
+		inxi -b
+		#	System:    Host: linux-tltj Kernel: 5.3.18-lp152.72-default x86_64 bits: 64 Console: tty 7 Distro: openSUSE Leap 15.2 
+		#	Machine:   Type: Desktop Mobo: Micro-Star model: B450M PRO-VDH V2 (MS-7A38) v: 6.0 serial: IC16298648 
+		#			UEFI: American Megatrends v: 8.81 date: 08/19/2019 
+		#	CPU:       8-Core: AMD Ryzen 7 3700X type: MT MCP speed: 2822 MHz min/max: 2200/3600 MHz 
+		#	Graphics:  Device-1: NVIDIA GP107 [GeForce GTX 1050 Ti] driver: nvidia v: 390.141 
+		#			Display: server: X.Org 1.20.3 driver: nvidia unloaded: fbdev,modesetting,nouveau,vesa resolution: 2560x1440 
+		#			OpenGL: renderer: GeForce GTX 1050 Ti/PCIe/SSE2 v: 4.6.0 NVIDIA 390.141 
+		#	Network:   Device-1: Realtek RTL8111/8168/8411 PCI Express Gigabit Ethernet driver: r8169 
+		#	Drives:    Local Storage: total: 670.70 GiB used: 293.01 GiB (43.7%) 
+		#	Info:      Processes: 362 Uptime: 9h 34m Memory: 31.30 GiB used: 3.96 GiB (12.7%) Shell: bash inxi: 3.1.00 
+		inxi -D
+		#	Drives:    Local Storage: total: 670.70 GiB used: 300.07 GiB (44.7%) 
+		#			ID-1: /dev/sda vendor: Samsung model: MZ7KH480HAHQ-00005 size: 447.13 GiB 
+		#			ID-2: /dev/sdb vendor: Intel model: SSDSC2KB240G8 size: 223.57 GiB
+		inxi --battery
+		# PC
+		inxi -F
+		#	System:    Host: linux-tltj Kernel: 5.3.18-lp152.78-default x86_64 bits: 64 Desktop: KDE Plasma 5.18.6 
+		#			Distro: openSUSE Leap 15.2 
+		#	Machine:   Type: Desktop Mobo: Micro-Star model: B450M PRO-VDH V2 (MS-7A38) v: 6.0 serial: <superuser/root required> 
+		#			UEFI: American Megatrends v: 8.81 date: 08/19/2019 
+		#	CPU:       Topology: 8-Core model: AMD Ryzen 7 3700X bits: 64 type: MT MCP L2 cache: 4096 KiB 
+		#			Speed: 2188 MHz min/max: 2200/3600 MHz Core speeds (MHz): 1: 2188 2: 2199 3: 2483 4: 2188 5: 2227 6: 2092 7: 2182 
+		#			8: 2161 9: 2259 10: 2200 11: 2212 12: 2154 13: 2199 14: 2160 15: 2200 16: 2199 
+		#	Graphics:  Device-1: NVIDIA GP107 [GeForce GTX 1050 Ti] driver: nvidia v: 390.143 
+		#			Display: x11 server: X.Org 1.20.3 driver: nvidia unloaded: fbdev,modesetting,nouveau,vesa 
+		#			resolution: 2560x1440~60Hz 
+		#			OpenGL: renderer: GeForce GTX 1050 Ti/PCIe/SSE2 v: 4.6.0 NVIDIA 390.143 
+		#	Audio:     Device-1: NVIDIA GP107GL High Definition Audio driver: snd_hda_intel 
+		#			Device-2: Advanced Micro Devices [AMD] Starship/Matisse HD Audio driver: snd_hda_intel 
+		#			Sound Server: ALSA v: k5.3.18-lp152.78-default 
+		#	Network:   Device-1: Realtek RTL8111/8168/8411 PCI Express Gigabit Ethernet driver: r8169 
+		#			IF: eth0 state: down mac: 00:d8:61:2e:90:2b 
+		#			Device-2: D-Link type: USB driver: ax88179_178a 
+		#			IF: eth1 state: up speed: 100 Mbps duplex: full mac: 00:ad:24:3e:4d:79 
+		#			IF-ID-1: vmnet1 state: unknown speed: N/A duplex: N/A mac: 00:50:56:c0:00:01 
+		#			IF-ID-2: vmnet8 state: unknown speed: N/A duplex: N/A mac: 00:50:56:c0:00:08 
+		#	Drives:    Local Storage: total: 670.70 GiB used: 258.84 GiB (38.6%) 
+		#			ID-1: /dev/sda vendor: Samsung model: MZ7KH480HAHQ-00005 size: 447.13 GiB 
+		#			ID-2: /dev/sdb vendor: Intel model: SSDSC2KB240G8 size: 223.57 GiB 
+		#	Partition: ID-1: / size: 113.68 GiB used: 92.21 GiB (81.1%) fs: ext4 dev: /dev/sdb2 
+		#	Swap:      ID-1: swap-1 type: partition size: 4.00 GiB used: 0 KiB (0.0%) dev: /dev/sdb3 
+		#	Sensors:   System Temperatures: cpu: 56.8 C mobo: 41.0 C gpu: nvidia temp: 40 C 
+		#			Fan Speeds (RPM): fan-1: 0 fan-2: 2360 fan-3: 1202 fan-4: 0 fan-5: 0 gpu: nvidia fan: 20% 
+		#	Info:      Processes: 328 Uptime: 2h 04m Memory: 31.30 GiB used: 3.37 GiB (10.8%) Shell: bash inxi: 3.1.00 
+
+	```
+
 ### iowait
 
 http://doc.opensuse.org/products/draft/SLES/SLES-tuning_sd_draft/cha.tuning.io.html
@@ -671,30 +729,6 @@ ibus-lang m17n-db-lang ibus-branding-openSUSE-KDE
 
 chmod a-x /usr/bin/ibus-autostart
 ```
- * https://mintdewdrop.wordpress.com/2013/05/04/inxi/
-
-	```bash
-		inxi -G
-			Graphics:  Device-1: NVIDIA GP107 [GeForce GTX 1050 Ti] driver: nvidia v: 390.141 
-					Display: server: X.Org 1.20.3 driver: nvidia unloaded: fbdev,modesetting,nouveau,vesa resolution: 2560x1440 
-					OpenGL: renderer: GeForce GTX 1050 Ti/PCIe/SSE2 v: 4.6.0 NVIDIA 390.141 
-		inxi -b
-			System:    Host: linux-tltj Kernel: 5.3.18-lp152.72-default x86_64 bits: 64 Console: tty 7 Distro: openSUSE Leap 15.2 
-			Machine:   Type: Desktop Mobo: Micro-Star model: B450M PRO-VDH V2 (MS-7A38) v: 6.0 serial: IC16298648 
-					UEFI: American Megatrends v: 8.81 date: 08/19/2019 
-			CPU:       8-Core: AMD Ryzen 7 3700X type: MT MCP speed: 2822 MHz min/max: 2200/3600 MHz 
-			Graphics:  Device-1: NVIDIA GP107 [GeForce GTX 1050 Ti] driver: nvidia v: 390.141 
-					Display: server: X.Org 1.20.3 driver: nvidia unloaded: fbdev,modesetting,nouveau,vesa resolution: 2560x1440 
-					OpenGL: renderer: GeForce GTX 1050 Ti/PCIe/SSE2 v: 4.6.0 NVIDIA 390.141 
-			Network:   Device-1: Realtek RTL8111/8168/8411 PCI Express Gigabit Ethernet driver: r8169 
-			Drives:    Local Storage: total: 670.70 GiB used: 293.01 GiB (43.7%) 
-			Info:      Processes: 362 Uptime: 9h 34m Memory: 31.30 GiB used: 3.96 GiB (12.7%) Shell: bash inxi: 3.1.00 
-		inxi -D
-			Drives:    Local Storage: total: 670.70 GiB used: 300.07 GiB (44.7%) 
-					ID-1: /dev/sda vendor: Samsung model: MZ7KH480HAHQ-00005 size: 447.13 GiB 
-					ID-2: /dev/sdb vendor: Intel model: SSDSC2KB240G8 size: 223.57 GiB
-		inxi --battery
-	```
  * 
 
 ## ms teams
