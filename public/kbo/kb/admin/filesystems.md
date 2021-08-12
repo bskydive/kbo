@@ -204,12 +204,24 @@ Default mount options:    journal_data user_xattr acl
 
  ```
 
-## noexec
+## noexec permission denied
 
 ```bash
 fstab exec /path
 mount|grep noexec
+
+findmnt
+
+chmod a+x file.sh
+chown
+
+getfacl a+c file.sh
+
+
+
 ```
+
+
 
 ## GPT MSDOS convertion
 

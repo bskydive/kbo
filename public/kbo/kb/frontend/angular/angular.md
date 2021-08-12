@@ -11,12 +11,14 @@
 	* общие для большинства версий изменения: версии NS/RxJS, производительность, Material компоненты
 	* 2 - typescript, dart
 	* 4 - renderer v2
-	* 5 - HttpClientModule заменил http
-	* 6 - angular elements(web custom elements), tree-shakable providers(providedIn:root), rxjs 6, Ivy
+	* 5 - 2017 - HttpClientModule заменил http
+	* 6 - 2018 - angular elements(web custom elements), tree-shakable providers(providedIn:root), rxjs 6, Ivy
 	* 7 - drag and drop, node v10, service worker
 	* 8 - webworker, ES6 импорт модулей `()=>`
 	* 9 - Ivy по-умолчанию, ullTemplateTypeCheck, strictTemplates в tsc
 	* 10 - исправили 700 и посмотрели 2000 ошибок, компонент диапазона дат
+	* 11 - harnesses for all of the components, webpack 5 experimental, ng serve --hmr, tslint deprecated, IE9/10 deprecated
+	* 12 - nullish coalescing, tailwind css, webpack 5 prod, IE11 deprecated
 1. Различие между AngularJS и Angular
 	* rxjs, DI
 1. преимущества [Angular](https://medium.com/better-programming/angular-in-2020-and-beyond-b2e98543ef17)
@@ -24,32 +26,34 @@
 	* не надо делать обёртки для сторонних UI компонентов
 	* Много библиотек с поддержкой вендора(обновления+наставления) вроде router/ngModule, покрывающих все типовые нужды SPA
 	* чёткие подробные наставления
-	* released every six months. Every update is fully backward compatible.
+	* релиз каждые 6 мес с полной обратной совместимостью
 	* не нужно думать о совместимости версий внешних библиотек, всё включено, задокументировано
-	* контроль количества экземпляров
+	* DI - контроль количества экземпляров, изоляция, оптимизация
 1. недостатки
-	* the project has a high file size. because of the Angular CLI. At runtime, you won't find any difference.
-	* Angular app can be very complex. Angular is a complete framework, also a complete platform of features and tools. And that means learning Angular can be a bit more challenging. global state management, services, HTTP req, and dependency injection, form validation and routing which we have in Angular but don't exist in React.
+	* больший размер из-за Angular CLI, но после компиляции его убирают. В старом режиме JIT компилятор на борту также увеличивает объём.
+	* Приложение может быть сложным, Angular - это и полный framework, и platform с набором инструментов. Из-за этого его сложнее учить. В отличие от React тут включены по-умолчанию управление состоянием, сервисы, HTTP библиотека, DI, валидация форм, маршрутизация URL.
 1. [ngModule](https://angular.io/api/core/NgModule)
 	* [declarations](https://angular.io/guide/glossary#declarable) - только компоненты, конвейеры и директивы
 		* нельзя декларировать импортированные модули или уже декларированные компоненты
 	* imports - импортировать декларации из другого модуля
 	* exports - сделать видимыми для импорта свои декларации
 	* providers - сделать видимыми для экспорта сервисы и другие внедряемые зависимости
-1. веб-компоненты, elements, web components
+1. веб-компоненты, custom elements
+	* элементы - реализации обёртки над веб-компонентами, расширение DOM API
+	* стандартный подход к компонентам без применения ангуляр специфичного синтаксиса
+	* можно написать кастомный элемент формы, например, кастомный select.
+	* Статические компоненты рисуются без участия ангуляр, на стороне браузера
+	* динамические компоненты без применения dynamic components `componentFactoryResolver.resolveComponentFactory`, т.е. меньше кода для встраивания логики в отрисовку. 
 	* https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements `customElements.define('word-count', WordCount, { extends: 'p' });`
 	* https://angular.io/guide/elements
-	* https://www.youtube.com/watch?v=Z1gLFPLVJjY
-	* можно написать кастомный элемент формы, например, кастомный select.
-	* элементы - реализации обёртки над веб-компонентами, расширение DOM API
-	* динамические компоненты без применения dynamic components `componentFactoryResolver.resolveComponentFactory`, т.е. меньше кода для встраивания логики в отрисовку. Статические компоненты рисуются без участия ангуляр
-	* стандартный подход к компонентам без применения ангуляр специфичного синтаксиса
+	* [Elements in v6 and Beyond - Rob Wormald](https://www.youtube.com/watch?v=Z1gLFPLVJjY)
 1. JIT [Deep Dive into the Angular Compiler | Alex Rickabaugh | 2019](https://www.youtube.com/watch?v=anphffaCZrQ)
 	* перед чтением полей
 	* в декораторах
 	* простой тайпскрипт
+	* Больше объём приложения с Angular compiler.
 1. AOT
-	* компилирует код за декораторами
+	* компилирует код за декораторами `@`
 	* Лучше отрисовка с AOT. Браузер рисует без компиляции.
 	* Меньше XHR запросов. Компилятор сразу добавляет в код HTML+CSS.
 	* Меньше объём приложения без Angular compiler.
@@ -69,24 +73,50 @@
 
 ## DI
 
+1. Иерархия Injector'ов, какие бывают, сколько их может быть?
+	* https://angular.io/guide/hierarchical-dependency-injection
+	* первая: ModuleInjector иерархия через @NgModule() или @Injectable()
+	* вторая: ElementInjector иерархия для каждого DOM элемента. ElementInjector пустой пока нет providedIn в @Directive() или @Component()
+	* иерархия NullInjector()-->platformModuleInjector(Renderer, Sanitizer)-->rootModuleInjector(services)-->componentInjector(ElementRef, ChangeDetectorRef)
+	* @Injectable() предпочтительнее @NgModule() providers, т.к. позволяют tree-shaking
+	* The `platformBrowserDynamic()` method creates an `platformModuleInjector` for platform/browser-specific dependencies like domsanitizer. Configured by platformBrowser().extraProviders
+	* можно создать дочерние ModuleInjectors при ленивой загрузке
+	* стратегии разрешения зависимостей: @Optional(), @Self(), @SkipSelf(), @Host() https://angular.io/guide/dependency-injection-in-action#make-a-dependency-optional-and-limit-search-with-host
+		* @Optional() присваивает null не найденным провайдерам сервисов. Нужен для игнорирования ошибок 
+		* @Self() ищет в текущем ElementInjector component или directive
+		* @SkipSelf() ищет в родительском ElementInjector
+		* @Host() ищет в component и ниже по вложенному дереву
+1. Управление экземплярами https://angular.io/guide/dependency-injection-in-action
+	* песочница, отдельные экземпляры: регистрируем в providers аннотациях компонентов https://angular.io/guide/dependency-injection-in-action#multiple-service-instances-sandboxing
+	* 
+1. Сколько у нас инжекторов, у одного модуля и трёх компонентов?
 1. Dependency injection
-	* сделано для работы с сервисами и модулями
-	* меньше кода в конструкторах
-	* облегчение рефакторинга, автоматическая инъекция зависимостей по всей цепочке
-	* облегчение юнит-тестирования сервисов
-	* позволяет переиспользовать сервисы
+	* [провайдер](https://angular.io/guide/glossary#provider) 
+		* Объект, который реализует один из интерфейсов [Provider](https://angular.io/api/core/Provider)
+		* предоставляет инжектору порядок разрешения зависимости, связанной с токеном/идентификатором
+		* может предоставлять разные реализации одной и той же зависимости
+	* [токен](https://angular.io/guide/dependency-injection-providers#dependency-injection-tokens) 
+		* объект, который реализует интерфейс [InjectionToken](https://angular.io/api/core/InjectionToken)
+	* [инжектор](https://www.youtube.com/watch?v=Z1gLFPLVJjY) 
+		* Объект, который находит именованную зависимость в своём кэше, либо создаёт её используя провайдер
+		* Предоставляет и внедряет синглтон
+		* Создаются автоматом для модулей в ходе bootstrap и наследуется в иерархии компонентов
+	* зачем
+		* для работы с сервисами и модулями
+		* меньше кода в конструкторах
+		* облегчение рефакторинга, автоматическая инъекция зависимостей по всей цепочке
+		* облегчение юнит-тестирования сервисов
+		* переиспользование сервисов
 	* синглтон https://angular.io/guide/architecture-services#providing-services
 		* для всего приложения: в аннотации компонента `@Injectable({providedIn: 'root',})` https://angular.io/api/core/Injectable#injectable
 			* root: для приложения
 			* platform - для всех приложений
-			* 
 		* для модуля: в модуле `@NgModule({providers: [...]`
 		* для компонента: в аннотации компонента `@Component({...,providers:  [ HeroService ],...})`
-	* в маршрутизаторе необходимо хранить по одной копии состояния маршрута.
+	* используется
+		* в маршрутизаторе для хранения по одной копии состояния маршрута
 	* forRoot: модуль с providers
 	* forChild: отдельный экземпляр модуля без providers для ленивой загрузки
-	* [инжектор](https://www.youtube.com/watch?v=Z1gLFPLVJjY) разрешает зависимость либо из своего кэша, либо через провайдер. Предоставляет синглтон.
-	* [провайдер](https://angular.io/guide/glossary#provider) определяет порядок разрешения зависимости, связанной с идентификатором [DI token](https://angular.io/guide/dependency-injection-providers#dependency-injection-tokens) который реализует [InjectionToken](https://angular.io/api/core/InjectionToken)
 	* нельзя внедрять интерфейсы https://angular.io/guide/dependency-injection-providers#interfaces-and-dependency-injection , но можно абстрактные классы https://angular.io/guide/dependency-injection-in-action#class-interface
 	* [внедрение лёгких токенов](https://angular.io/guide/lightweight-injection-tokens) для уменьшения размера библиотек
 		```ts
@@ -193,23 +223,6 @@
 		// HTML
 		<div appHighlight="yellow">
 		```
-1. Иерархия Injector'ов, какие бывают, сколько их может быть?
-	* https://angular.io/guide/hierarchical-dependency-injection
-	* первая: ModuleInjector иерархия через @NgModule() или @Injectable()
-	* вторая: ElementInjector иерархия для каждого DOM элемента. ElementInjector пустой пока нет providedIn в @Directive() или @Component()
-	* иерархия NullInjector()-->platformModuleInjector(Renderer, Sanitizer)-->rootModuleInjector(services)-->componentInjector(ElementRef, ChangeDetectorRef)
-	* @Injectable() предпочтительнее @NgModule() providers, т.к. позволяют tree-shaking
-	* The `platformBrowserDynamic()` method creates an `platformModuleInjector` for platform/browser-specific dependencies like domsanitizer. Configured by platformBrowser().extraProviders
-	* можно создать дочерние ModuleInjectors при ленивой загрузке
-	* стратегии разрешения зависимостей: @Optional(), @Self(), @SkipSelf(), @Host() https://angular.io/guide/dependency-injection-in-action#make-a-dependency-optional-and-limit-search-with-host
-		* @Optional() присваивает null не найденным провайдерам сервисов. Нужен для игнорирования ошибок 
-		* @Self() ищет в текущем ElementInjector component или directive
-		* @SkipSelf() ищет в родительском ElementInjector
-		* @Host() ищет в component и ниже по вложенному дереву
-1. Управление экземплярами https://angular.io/guide/dependency-injection-in-action
-	* песочница, отдельные экземпляры: регистрируем в providers аннотациях компонентов https://angular.io/guide/dependency-injection-in-action#multiple-service-instances-sandboxing
-	* 
-1. Сколько у нас инжекторов, состоящего из одного модуля и трёх компонентов?
 
 ## Конвейеры, директивы и компоненты
 
@@ -223,6 +236,7 @@
 		<app-item-detail childItem="{{parentItem}}"></app-item-detail>
 		<tr><td [colSpan]="1 + 1">Three-Four</td></tr>
 		<p><img src="{{itemImageUrl}}"> is the <i>interpolated</i> image.</p>
+		<!-- присвоение в атрибут интерполированного значения, некоторые атрибуты этого требуют-->
 		<p><img attr.src="{{itemImageUrl}}"> is the <i>interpolated</i> image.</p>
 		<p><img [src]="itemImageUrl"> is the <i>property bound</i> image.</p>
 		<p><span>"{{interpolationTitle}}" is the <i>interpolated</i> title.</span></p>
@@ -247,7 +261,7 @@
 	* Структурные директивы — манипуляции с DOM: `ngif, ngfor`
 		* Обязательно импортируют: Input, TemplateRef, and ViewContainerRef symbols
 		* this.viewContainer.createEmbeddedView(this.templateRef);
-	* Атрибутные директивы — манипулирует: element, component, directive. `ngStyle`
+	* Атрибутные директивы — манипулирует: element, component, directive. `ngStyle, ngClass`
 
 		```ts
 			@Directive({
@@ -621,12 +635,89 @@
 1. NgForm, преимущество реактивных форм над template-driven.
 	* удобные валидаторы
 	* меньше кода в HTML
+1. template vs reactive
+	* в шаблонных хуже покрытие линтерами
+	* state
+		* value: pristine, dirty
+		* validity: valid, errors: <errorName:any>[]
+		* visited: touched, untouched
+	* для обоих одинаковые модели форм, но они по-разному создаются
+	* fromControl
+		* `<input>`
+		* 
+		* 
+	* formGroup
+		* `<form>`
+		* .reset()
+		* .setControl('formControlName', any[])
+	* шаблонные
+		* в шаблон: form, input, связывание со свойствами, правила валидации, ошибки валидации
+		* в класс: свойства, методы
+		* модель генерируется автоматом
+		* доступ к formGroup возможен через шаблонные переменные
+		* директивы: ngForm, ngModel, ngModelGroup
+		* не подходят для: 
+			* отложить валидацию до конца ввода значений
+			* анализа вводимого текста на лету
+			* динамического добавления полей ввода
+			* валидация по условию
+			* иммутабельные данные
+	* реактивные
+		* в шаблон: form, input, связывание с моделью
+		* в класс:  правила валидации, ошибки валидации, свойства, методы, модель
+		* директивы: formGroup, formControl, formControlName, formGroupName, formArrayName
+		* доступ:
+			* formGroup.controls.controlName
+			* formGroup.get('controlName)
+		* запись: 
+			* formGroup.setValues(valuesObj) - полный список полей
+			* formGroup.patchValues(valuesObj) - неполный список полей
+1. валидаторы
+	* formControl.clearValidators();
+	* formControl.updateValueAndValidity();
+	* для валидации нескольких полей можно сделать валидатор для вложенной группы
 
+		```ts
+			myVal(c:AbstractControl): {[key:string]: boolean}|null{
+				if (c.firstInput.dirty && c.secondInput.dirty && c.firstInput.value !== c.secondInput.value) { return {'notSame':true}}
+				return null;
+			}
+			this.formGroup = this.fb.group({
+				g: this.fb.group({
+					firstInput: '',
+					secondInput: '',
+				}, {validator: myVal})
+			})
+		```
+	* 
+	* 
+1. 	* 
+	* 
+	* 
+	* 
+	* 
+	* 
+1. 	* 
+	* 
+	* 
+	* 
+	* 
+	* 
+1. 	* 
+	* 
+	* 
+	* 
+	* 
+	* 
 ## Angular Material и SDK.
 
 ## HTTP/websocket
 
  * angular in memory web api https://angular.io/tutorial/toh-pt6#simulate-a-data-server
+ * create - post - можно много записей за раз, не идемпотентный(разный результат)
+ * read - get
+ * update - put - подходит для конкретного экземпляра, идемпотентный
+ * delete - delete
 
 ## RxJS
  * public/kbo/kb/frontend/angular/rxjs.md

@@ -17,17 +17,39 @@ Also, I'm using it as a bookmarking service.
 
 ### How do I get set up? ###
 
-* !!! Currently gulp can run on node version 10 `nvm install 10;nvm use 10`
-* Install global dependencies `npm i -g pm2 http-server`
-* Install dependencies `npm i` in the `portfolio/` directory.
-* Run `npm run w`
-* Open in browser `http://127.0.0.1:8080/portfolio.html`
-* Run `gulp prod;push.sh`
+```bash
+	#!!! Currently gulp can run on node version 10 
+	nvm install 10
+	nvm use 10
+	# Install global dependencies 
+	npm i -g pm2 http-server
+	# Install dependencies 
+	cd portfolio/
+	npm i
+	# Build dev and run 
+	npm run w
+	# npm run web-start
+	# Open in browser http://127.0.0.1:8080/portfolio.html
+```
 
 ### How can I contribute? ###
 
 * Currently I'm not ready to maintain contributing processes
 * Sources are in `src/*`, build output dir is `public/*`
+* check before publish
+	* convert md articles to html
+	* anchor-offset
+ 	* links skills/nav/contacts/kb
+ 	* open on mobile device
+* publish
+
+```bash
+ 	npm run web-stop
+ 	npm run prod
+ 	git commit "msg"
+	push.sh
+ 	# make PR on bitbucket
+```
 
 ## Where is the documentation for code?
 
