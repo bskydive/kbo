@@ -14,15 +14,16 @@
 
 ## просмотр markdown файлов
 
-[установить плагин в хром](https://chrome.google.com/webstore/detail/markdown-preview/jmchmkecamhbiokiopfpnfgbidieafmd?utm_source=chrome-app-launcher-info-dialog)
-
-[установить pandoc и настроить kate](https://www.maketecheasier.com/convert-markdown-to-html-in-kate-text-editor/)
-
-[смотреть плагином в idea](https://plugins.jetbrains.com/plugin/5970?pr=idea)
+* [установить плагин в хром](https://chrome.google.com/webstore/detail/markdown-preview/jmchmkecamhbiokiopfpnfgbidieafmd?utm_source=chrome-app-launcher-info-dialog)
+* [установить pandoc и настроить kate](https://www.maketecheasier.com/convert-markdown-to-html-in-kate-text-editor/)
+* [смотреть плагином в idea](https://plugins.jetbrains.com/plugin/5970?pr=idea)
 
 ## screencast
 
  * simplescreenrecorder
+ * peek - запись области в gif
+ * KmCaster - нажатые клавиши
+ * OBS studio
 
 ## security
 
@@ -240,6 +241,7 @@ https://docs.ubuntu.com/core/en/stacks/network/network-manager/docs/configure-wi
 
 Configure WiFi Connections | NetworkManager documentation
 
+ * http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/
 ## policy-kit
 
 org.freedesktop.login1.hibernate-multiple-sessions
@@ -639,37 +641,68 @@ Code:
  * выключить проигрыватель на экране блокировки
  * выключить ntpd синхронизацию при загрузке, включить по таймеру каждые 50 минут
  * пароли рут и пользователя
- * установка принтера
+ * установка драйвера принтера
  * настройка почты
  * настройка выключения подсказок: настройки системы - поведение окон - рабочее пространство plasma - показывать всплывающие подсказки
  * рамки окна: цвета-цветовая схема-общие-цвет заголовка окна
- * толщина рамки окна: оформление приложений - оформление окон - справа-внизу границы окна-тонкие
+ 	* толщина рамки окна: оформление приложений - оформление окон - справа-внизу границы окна-тонкие
  * установка и настройка скайп SDB:Skype — openSUSE  PulseAudio — openSUSE (pavucontrol)
  * перенос /home
  * перенос закладок в браузер
- * настройка браузера https://addons.mozilla.org/ru/firefox/addon/tree-style-tab/?src=search noscript downthemall adblock adblockhelper
  * добавить ярлыки на таскбар, индикатор ЦП, погода, сеть
  * десктоп - /usr/share/applications/
  * работа с документами - офис+экспорт в пдф
- * lame для диктофона
- * apcupsd установить, настроить
  * запомнить/перенести пароли для страниц в браузере
- * перенести ключи/скрипты удаленного доступа
+ * снести системный firefox, установить плагины
+ 	* adblock / ublock
+	* noscript / whitelist
+	* treestyletab https://addons.mozilla.org/ru/firefox/addon/tree-style-tab/?src=search
+	* downthemall
+ * снести системный thunderbird
+ * pavucontrol - можно вместо него использовать kde плагин plasma
+ * перенести ключи/скрипты удаленного доступа, папка scripts
+ * `ssh-keygen -t rsa -b 4096`
+ * установить ключи в bb, gh, gl, удалённые ПК
  * настроить короткий формат даты для Dolphin в астройках локали DD.MM.YYYY
- * настроить полный формат даты для виджета часов на панели в настройках локали  SHORTWEEKDAY DD SHORTMONTH YYYY
- * настроить время в истории bash bash_history
- * видео кодеки wmv. см #repo
- 	 * http://opensuse-guide.org/codecs.php
- 	 * http://software.opensuse.org/package/opensuse-codecs-installer?search_term=opensuse-codecs-installer
-
+ * настроить полный формат даты для виджета часов на панели в настройках локали  
+	* ddd dd.MM.yyyy
+ * kate
+ * konsole
+ * krdc
+ * konqueror/dolphin
+ * заменить ~/.kde4/share/apps/konqueror/bookmarks.xml
+ * видео кодеки wmv. см #repo 		http://opensuse-guide.org/codecs.php
  * spectacle скриншоты починить
 	* Настройки - глобальные комбинации клавиш - KDE daemon - выключить prtscr
 	* Настройки - глобальные комбинации клавиш - + добавить - spectacle - назначить prtscr - снимок прямоугольной области
- * zypper ar -f http://packman.inode.at/suse/openSUSE_13.1/ packman_all
-	 * ближайший по пингам ftp.halifax.rwth-aachen.de/packman/suse/13.1/
- * zypper ar -f http://geeko.ioda.net/mirror/amd-fglrx/openSUSE_13.1/ radeon
+ * yed
+ * настроить внешнюю видеокамеру/микрофон
+ * git, kgit, git-gui
+ * vscode https://code.visualstudio.com/docs/setup/linux#_visual-studio-code-is-unable-to-watch-for-file-changes-in-this-large-workspace-error-enospc
+	```bash
+		cat /etc/sysctl.d/vscode.sysctl.conf
+		# fs.inotify.max_user_watches=524288
+		# fs.file-max=1632119
+		sysctl -p
+		sysctl --system
+		cat /proc/sys/fs/inotify/max_user_watches
+		sysctl fs.file-max
 
- * http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/
+		cat /etc/security/limits.conf
+		# user hard nofile 16384
+		# user soft nofile 9216
+		ulimit -Sn
+		ulimit -Hn
+	```
+ * настроить цвета
+	* оформление рабочей среды - breeze
+	* оформление рабочего стола - breeze
+	* цвета - загрузить - honey oak
+ * nvm
+	* !!! сделать снимок ФС/ВМ
+ 	* `npm i -g sass npm-check pm2 http-server`
+### old
+
  * flatpak `flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo` далее `Discover` или в discover - настройка - add flathub
  * evolution - через discover+flathub - поиск - evolution - кликнуть по пакету - источники - flathub
 	* https://wiki.gnome.org/Apps/Evolution/EWS/OAuth2
@@ -682,43 +715,38 @@ Code:
 
 		rm /var/lib/flatpak/repo
 	```
-* pavucontrol - можно вместо него использовать kde плагин plasma
-* pulseaudio-equalizer
-* paprefs - для проигрывания звука по сети https://askubuntu.com/questions/28039/how-to-stream-music-over-the-network-to-multiple-computers 
-* digikam
-* kate
-* konsole
-* krdc
-* konqueror
-* заменить ~/.kde4/share/apps/konqueror/bookmarks.xml
-* pidgin
-* thunderbird
-* https://support.mozilla.org/en-US/kb/profiles-tb#w_backing-up-a-profile
-* freemind
-* yed
-* printer
-* scripts alias
-* kalendar
-* akregator
-* wallet
-* sqldeveloper java
-* firefox+adblock+noscript whitelist
-* akonadi
-* torrent
-* ssh_keys
-* zoom
+ * pulseaudio-equalizer
+ * paprefs - для проигрывания звука по сети https://askubuntu.com/questions/28039/how-to-stream-music-over-the-network-to-multiple-computers 
+ * digikam
+ * pidgin
+ * https://support.mozilla.org/en-US/kb/profiles-tb#w_backing-up-a-profile
+ * freemind
+ * kalendar
+ * akregator
+ * перенести kwallet
+ * sqldeveloper java
+ * akonadi
+ * ssh_keys
+ * kfind
+ * lame для диктофона
+ * apcupsd установить, настроить
 
-* зависает при выключении
-	* 
+### зависает при выключении
+
+ * выключить ntp автозапуск
+ * удалить snapper, lvm monitor, packagekit, btrfs
 
 ```bash
-systemctl disable lvm2-monitor.service
-systemctl stop lvm2-monitor.service
+	systemctl disable lvm2-monitor.service
+	systemctl stop lvm2-monitor.service
 
-zypper rm snapper snapper-zypp-plugin yast2-snapper PackageKit PackageKit-backend-zypp PackageKit-branding-openSUSE PackageKit-gstreamer-plugin PackageKit-gtk3-module PackageKit-lang discover-backend-packagekit  grub2-snapper-plugin libpackagekit-glib2-18 libsnapper5
+	zypper rm snapper snapper-zypp-plugin yast2-snapper libsnapper5 grub2-snapper-plugin
+	zypper rm PackageKit PackageKit-backend-zypp PackageKit-branding-openSUSE PackageKit-gstreamer-plugin PackageKit-gtk3-module PackageKit-lang discover-backend-packagekit libpackagekit-glib2-18 
+	zypper rm btrfsprogs btrfsmaintenance btrfsprogs-udev-rules
+
 ```
 
-	* https://forums.opensuse.org/showthread.php/539741-How-to-disable-Ibus-autostart
+ * https://forums.opensuse.org/showthread.php/539741-How-to-disable-Ibus-autostart
 
 ```bash
 ibus ibus-gtk ibus-gtk3 ibus-lang ibus-m17n ibus-qt ibus-table ibus-table-rustrad ibus-table-translit libm17n0 libotf0 m17n-db m17n-db-lang typelib-1_0-IBus-1_0 zoom
@@ -776,39 +804,39 @@ The following 14 NEW packages are going to be installed:
 ktorrent export
 
 ```bash
-#!/bin/sh
-#DEST_DIR=$HOME/torrents
+	#!/bin/sh
+	#DEST_DIR=$HOME/torrents
 
-#if [ "$#" -ge "2" ]
-#then DEST_DIR="$1"
-#fi
+	#if [ "$#" -ge "2" ]
+	#then DEST_DIR="$1"
+	#fi
 
-#cd $HOME/.kde/share/apps/ktorrent/
+	#cd $HOME/.kde/share/apps/ktorrent/
 
-SOURCE_DIR="$1"
-DEST_DIR="$2"
+	SOURCE_DIR="$1"
+	DEST_DIR="$2"
 
-cd $SOURCE_DIR
+	cd $SOURCE_DIR
 
-if ! [ -e "$DEST_DIR" ]
-then mkdir -p "$DEST_DIR"
-fi
+	if ! [ -e "$DEST_DIR" ]
+		then mkdir -p "$DEST_DIR"
+	fi
 
 
-TORRENT_LIST=
-if [ -e tor0 ]
-then TORRENT_LIST="$TORRENT_LIST tor?"
-fi
-if [ -e tor10 ]
-then TORRENT_LIST="$TORRENT_LIST tor??"
-fi
-if [ -e tor100 ]
-then TORRENT_LIST="$TORRENT_LIST tor???"
-fi
+	TORRENT_LIST=
+	if [ -e tor0 ]
+		then TORRENT_LIST="$TORRENT_LIST tor?"
+	fi
+	if [ -e tor10 ]
+		then TORRENT_LIST="$TORRENT_LIST tor??"
+	fi
+	if [ -e tor100 ]
+		then TORRENT_LIST="$TORRENT_LIST tor???"
+	fi
 
-for  i in $TORRENT_LIST ; do
-  cp -vRTpu $i/torrent $DEST_DIR/$i.torrent
-done
+	for  i in $TORRENT_LIST ; do
+		cp -vRTpu $i/torrent $DEST_DIR/$i.torrent
+	done
 ```
 
 ## opensuse install hangs
@@ -832,32 +860,32 @@ x11uselocalhost no
 ## firefox
 
 
-* about:config
-* app.update.elevation.promptMaxAttempts
-
+* `about:config`
+* `app.update.elevation.promptMaxAttempts`
 * [Настройка Firefox в Linux 2019](https://habr.com/ru/post/459880/)
+
 ```
-device.sensors.enabled
-Позволяет через javascript получить доступ к датчикам устройства. Например, в мобильном Firefox можно получать информацию с датчика приближения. Если нет ни каких датчиков, либо доступ Firefox к ним вам не нужен, отключайте false
+	device.sensors.enabled
+	Позволяет через javascript получить доступ к датчикам устройства. Например, в мобильном Firefox можно получать информацию с датчика приближения. Если нет ни каких датчиков, либо доступ Firefox к ним вам не нужен, отключайте false
 
-dom.battery.enabled
-Отслеживание состояние батареи. Если используется стационарник, отключайте false
+	dom.battery.enabled
+	Отслеживание состояние батареи. Если используется стационарник, отключайте false
 
-dom.enable_performance_observer
-С помощью этой функции, разработчик сайта может узнать например, за какое время у пользователя загрузился тот или иной элемент веб-страницы. Что бы затем исправить недочёты производительности в коде сайта. Со стороны пользователя это будет выглядеть как сбор ограниченной телеметрии его действий на сайте и автоматическая её отправка. Можете отключить эту функцию false, для того что бы Firefox не отсылал сайтам эти данные.
+	dom.enable_performance_observer
+	С помощью этой функции, разработчик сайта может узнать например, за какое время у пользователя загрузился тот или иной элемент веб-страницы. Что бы затем исправить недочёты производительности в коде сайта. Со стороны пользователя это будет выглядеть как сбор ограниченной телеметрии его действий на сайте и автоматическая её отправка. Можете отключить эту функцию false, для того что бы Firefox не отсылал сайтам эти данные.
 
-dom.event.clipboardevents.enabled
-Позволяет сайту следить за действиями пользователя, когда он копирует выделенный текст с веб страницы и затем, определённым образом, подсунуть к скопированному тексту в буфер обмена дополнительно строку, например "… Подробнее на httрs://....."..
-Если вам попадаются такие сайты на которых приходится копировать текст, и затем при вставке скопированного текста в конце автоматически добавляется такая вот ерунда, которая вам не нужна или мешает, отключите эту функцию false.
-Лишь на некоторых сайтах могут возникнуть проблемы с копированием и вставкой текста из-за её отключения.
+	dom.event.clipboardevents.enabled
+	Позволяет сайту следить за действиями пользователя, когда он копирует выделенный текст с веб страницы и затем, определённым образом, подсунуть к скопированному тексту в буфер обмена дополнительно строку, например
+	Если вам попадаются такие сайты на которых приходится копировать текст, и затем при вставке скопированного текста в конце автоматически добавляется такая вот ерунда, которая вам не нужна или мешает, отключите эту функцию false.
+	Лишь на некоторых сайтах могут возникнуть проблемы с копированием и вставкой текста из-за её отключения.
 
-security.sandbox.content.level * * *
-Функция безопасности Firefox. Во включённом по умолчанию состоянии, в режиме работы 4, браузер создаёт изолированную программную среду в которой обрабатывается загруженный контент. В такой «песочнице» вредоносному коду сложнее украсть данные, попытаться установить вирус или использовать уязвимости браузера.
-Если у вас используются основные защитные инструменты самого Firefox, установлен блокировщик рекламы с актуальными в нём фильтрами, плюс вы не шастаете по левым сайтам с сомнительным содержимым — можете отключить эту функцию, поставив значение 0. Браузер будет немного быстрее работать и процессор в среднем на 5-10% станет меньше нагружаться.
+	security.sandbox.content.level * * *
+	Функция безопасности Firefox. Во включённом по умолчанию состоянии, в режиме работы 4, браузер создаёт изолированную программную среду в которой обрабатывается загруженный контент. В такой «песочнице» вредоносному коду сложнее украсть данные, попытаться установить вирус или использовать уязвимости браузера.
+	Если у вас используются основные защитные инструменты самого Firefox, установлен блокировщик рекламы с актуальными в нём фильтрами, плюс вы не шастаете по левым сайтам с сомнительным содержимым — можете отключить эту функцию, поставив значение 0. Браузер будет немного быстрее работать и процессор в среднем на 5-10% станет меньше нагружаться.
 
-To use the middle mouse button to paste whatever text has been highlighted/added to the clipboard, as is common in UNIX-like operating systems, set either middlemouse.contentLoadURL or middlemouse.paste to true in about:config. Having middlemouse.contentLoadURL enabled was the default behaviour prior to Firefox 57.
+	To use the middle mouse button to paste whatever text has been highlighted/added to the clipboard, as is common in UNIX-like operating systems, set either middlemouse.contentLoadURL or middlemouse.paste to true in about:config. Having middlemouse.contentLoadURL enabled was the default behaviour prior to Firefox 57.
 
-To scroll on middle-click (default for Windows browsers) set general.autoScroll to true. 
+	To scroll on middle-click (default for Windows browsers) set general.autoScroll to true. 
 ```
 
 * [archLinux firefox база знаний](https://wiki.archlinux.org/index.php/Firefox#Middle-click_behavior)
@@ -865,31 +893,33 @@ To scroll on middle-click (default for Windows browsers) set general.autoScroll 
 * выключенные дополнения 
 
 ```
-about:config
-xpinstall.signatures.required - false
-extensions.legacy.enabled - true
+	about:config
+	xpinstall.signatures.required - false
+	extensions.legacy.enabled - true
 ```
 
 * [читаемые ссылки utf-8](https://addons.mozilla.org/ru/firefox/addon/pure-url/?src=search)
 
 ```
-unMHT
-network.standard-url.encode-utf8;false
-network.standard-url.escape-utf8;false
+	unMHT
+	network.standard-url.encode-utf8;false
+	network.standard-url.escape-utf8;false
 ```
-настройки синхронизации
+
+* настройки синхронизации
 
 ```
-about:preferences#sync
+	about:preferences#sync
 
 ```
-http://www.computerra.ru/gid/rtfm/browser/37428/
 
-http://www.guillermomolina.com.ar/index.php/en/projects/firefox-kwallet-extension/103-library-path-issues
+ * http://www.computerra.ru/gid/rtfm/browser/37428/
+
+ * http://www.guillermomolina.com.ar/index.php/en/projects/firefox-kwallet-extension/103-library-path-issues
 
 ```
-Failed to open VDPAU backend libvdpau_nvidia.so: невозможно открыть разделяемый объектный файл: Нет такого файла или каталога
-turning off hardware acceleration in preferences > advanced > general
+	Failed to open VDPAU backend libvdpau_nvidia.so: невозможно открыть разделяемый объектный файл: Нет такого файла или каталога
+	turning off hardware acceleration in preferences > advanced > general
 ```
 
 ## vpn
@@ -908,117 +938,119 @@ turning off hardware acceleration in preferences > advanced > general
  * https://en.opensuse.org/images/1/17/Zypper-cheat-sheet-1.pdf
  * multimedia codecs 
 
-```bash
-#1) Add the needed repositories:
-zypper addrepo -f http://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_15.2/ packman
-zypper addrepo -f http://opensuse-guide.org/repo/openSUSE_Leap_15.2/ dvd
+	```bash
+		#1) Add the needed repositories:
+		zypper addrepo -f http://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_15.2/ packman
+		zypper addrepo -f http://opensuse-guide.org/repo/openSUSE_Leap_15.2/ dvd
 
-#2) Then install the necessary packages:
-zypper install --allow-vendor-change ffmpeg-3 lame gstreamer-plugins-bad gstreamer-plugins-ugly gstreamer-plugins-ugly-orig-addon gstreamer-plugins-libav libavdevice58 libdvdcss2 vlc-codecs
+		#2) Then install the necessary packages:
+		zypper install --allow-vendor-change ffmpeg-3 lame gstreamer-plugins-bad gstreamer-plugins-ugly gstreamer-plugins-ugly-orig-addon gstreamer-plugins-libav libavdevice58 libdvdcss2 vlc-codecs
 
-#3) Make sure all your multimedia packages are coming from the Packman Repository:
-zypper dup --allow-vendor-change --from http://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_15.2/
+		#3) Make sure all your multimedia packages are coming from the Packman Repository:
+		zypper dup --allow-vendor-change --from http://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_15.2/
 
-zypper install freshplayerplugin
+		zypper install freshplayerplugin
 
-#Installing Java browser plugin in the terminal:
-zypper install icedtea-web
-#Installing multimedia plugin in the terminal:
-zypper install xine-browser-plugin
+		#Installing Java browser plugin in the terminal:
+		zypper install icedtea-web
+		#Installing multimedia plugin in the terminal:
+		zypper install xine-browser-plugin
 
-#First add the repository:
-zypper addrepo -f https://download.nvidia.com/opensuse/leap/15.2 nvidia
-#The following command should automatically install the correct driver for your card:
-zypper install-new-recommends --repo https://download.nvidia.com/opensuse/leap/15.2
-```
+		#First add the repository:
+		zypper addrepo -f https://download.nvidia.com/opensuse/leap/15.2 nvidia
+		#The following command should automatically install the correct driver for your card:
+		zypper install-new-recommends --repo https://download.nvidia.com/opensuse/leap/15.2
+	```
  * общие
 
-```bash
-zypper repos -Pu
-zypper locks
-zypper ps -s
-```
+	```bash
+		zypper repos -Pu
+		zypper locks
+		zypper ps -s
+	```
 
  * ya repos
 
-```bash
-zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/ ya_packman_repodata
-zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Multimedia/ ya_packman_Multimedia
-zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Games/ ya_packman_Games
-zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Extra/ ya_packman_Extra
-zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Essentials/ ya_packman_Essentials
-zypper addrepo -f https://mirror.yandex.ru/opensuse/distribution/leap/15.2/repo/non-oss/ ya_distribution_non_oss
-zypper addrepo -f https://mirror.yandex.ru/opensuse/distribution/leap/15.2/repo/oss/ ya_distribution_oss
-zypper addrepo -f https://mirror.yandex.ru/opensuse/update/leap/15.2/non-oss/ ya_update_non-oss
-zypper addrepo -f https://mirror.yandex.ru/opensuse/update/leap/15.2/oss/ ya_update_oss
+	```bash
+		zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/ ya_packman_repodata
+		zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Multimedia/ ya_packman_Multimedia
+		zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Games/ ya_packman_Games
+		zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Extra/ ya_packman_Extra
+		zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Essentials/ ya_packman_Essentials
+		zypper addrepo -f https://mirror.yandex.ru/opensuse/distribution/leap/15.2/repo/non-oss/ ya_distribution_non_oss
+		zypper addrepo -f https://mirror.yandex.ru/opensuse/distribution/leap/15.2/repo/oss/ ya_distribution_oss
+		zypper addrepo -f https://mirror.yandex.ru/opensuse/update/leap/15.2/non-oss/ ya_update_non-oss
+		zypper addrepo -f https://mirror.yandex.ru/opensuse/update/leap/15.2/oss/ ya_update_oss
 
-zypper modifyrepo -f -p80 ya_packman_repodata
-zypper modifyrepo -f -p80 ya_packman_Multimedia
-zypper modifyrepo -f -p80 ya_packman_Games
-zypper modifyrepo -f -p80 ya_packman_Extra
-zypper modifyrepo -f -p80 ya_packman_Essentials
-zypper modifyrepo -f -p80 ya_distribution_non_oss
-zypper modifyrepo -f -p80 ya_distribution_oss
-zypper modifyrepo -f -p80 ya_update_non-oss
-zypper modifyrepo -f -p80 ya_update_oss
+		zypper modifyrepo -f -p80 ya_packman_repodata
+		zypper modifyrepo -f -p80 ya_packman_Multimedia
+		zypper modifyrepo -f -p80 ya_packman_Games
+		zypper modifyrepo -f -p80 ya_packman_Extra
+		zypper modifyrepo -f -p80 ya_packman_Essentials
+		zypper modifyrepo -f -p80 ya_distribution_non_oss
+		zypper modifyrepo -f -p80 ya_distribution_oss
+		zypper modifyrepo -f -p80 ya_update_non-oss
+		zypper modifyrepo -f -p80 ya_update_oss
 
-zypper modifyrepo -f -p99 ya_packman_repodata
-zypper modifyrepo -f -p99 ya_packman_Multimedia
-zypper modifyrepo -f -p99 ya_packman_Games
-zypper modifyrepo -f -p99 ya_packman_Extra
-zypper modifyrepo -f -p99 ya_packman_Essentials
-zypper modifyrepo -f -p99 ya_distribution_non_oss
-zypper modifyrepo -f -p99 ya_distribution_oss
-zypper modifyrepo -f -p99 ya_update_non-oss
-zypper modifyrepo -f -p99 ya_update_oss
-```
+		zypper modifyrepo -f -p99 ya_packman_repodata
+		zypper modifyrepo -f -p99 ya_packman_Multimedia
+		zypper modifyrepo -f -p99 ya_packman_Games
+		zypper modifyrepo -f -p99 ya_packman_Extra
+		zypper modifyrepo -f -p99 ya_packman_Essentials
+		zypper modifyrepo -f -p99 ya_distribution_non_oss
+		zypper modifyrepo -f -p99 ya_distribution_oss
+		zypper modifyrepo -f -p99 ya_update_non-oss
+		zypper modifyrepo -f -p99 ya_update_oss
+	```
 
- * remove repos
+ * ya repos remove
 
-```
-zypper removerepo ya_packman_repodata
-zypper removerepo ya_packman_Multimedia
-zypper removerepo ya_packman_Games
-zypper removerepo ya_packman_Extra
-zypper removerepo ya_packman_Essentials
-zypper removerepo ya_distribution_non_oss
-zypper removerepo ya_distribution_oss
-zypper removerepo ya_update_non_oss
-zypper removerepo ya_update_oss
-```
+	```
+		zypper removerepo ya_packman_repodata
+		zypper removerepo ya_packman_Multimedia
+		zypper removerepo ya_packman_Games
+		zypper removerepo ya_packman_Extra
+		zypper removerepo ya_packman_Essentials
+		zypper removerepo ya_distribution_non_oss
+		zypper removerepo ya_distribution_oss
+		zypper removerepo ya_update_non_oss
+		zypper removerepo ya_update_oss
+	```
 
  * old repos 
 
 	```bash
-	http://mirror.yandex.ru/opensuse/packman/12.3/repodata/
-	http://download.opensuse.org/repositories/home:/hillwood/openSUSE_12.3/
-	http://code.google.com/p/vpnpptp/downloads/list
+		http://mirror.yandex.ru/opensuse/packman/12.3/repodata/
+		http://download.opensuse.org/repositories/home:/hillwood/openSUSE_12.3/
+		http://code.google.com/p/vpnpptp/downloads/list
+		http://geeko.ioda.net/mirror/amd-fglrx/openSUSE_13.1/ radeon
+ 	 	http://software.opensuse.org/package/opensuse-codecs-installer?search_term=opensuse-codecs-installer
 	```
  * hosts
 
-```bash 
-13.80.99.124		packages.microsoft.com
-13.80.99.124		csd-apt-weu-d-1.westeurope.cloudapp.azure.com
+	```bash 
+		13.80.99.124		packages.microsoft.com
+		13.80.99.124		csd-apt-weu-d-1.westeurope.cloudapp.azure.com
 
-104.73.92.137		repo.skype.com
-104.73.92.137		a104-73-92-137.deploy.static.akamaitechnologies.com
+		104.73.92.137		repo.skype.com
+		104.73.92.137		a104-73-92-137.deploy.static.akamaitechnologies.com
 
-46.30.215.58		opensuse-guide.org
-46.30.215.58		webcluster2.webpod5-cph3.one.com
+		46.30.215.58		opensuse-guide.org
+		46.30.215.58		webcluster2.webpod5-cph3.one.com
 
-195.135.221.134		download.opensuse.org
+		195.135.221.134		download.opensuse.org
 
-192.229.220.191		download.nvidia.com
-192.229.220.191		cs486284.wpc.phicdn.net
+		192.229.220.191		download.nvidia.com
+		192.229.220.191		cs486284.wpc.phicdn.net
 
-142.250.74.46		dl.google.com
-142.250.74.46		arn09s22-in-f14.1e100.net
+		142.250.74.46		dl.google.com
+		142.250.74.46		arn09s22-in-f14.1e100.net
 
-148.251.201.107		packages.x2go.org
-148.251.201.107		ymir.das-netzwerkteam.de
+		148.251.201.107		packages.x2go.org
+		148.251.201.107		ymir.das-netzwerkteam.de
 
-134.76.12.6			ftp.gwdg.de
-```
+		134.76.12.6			ftp.gwdg.de
+	```
 
 ## freemind
 
