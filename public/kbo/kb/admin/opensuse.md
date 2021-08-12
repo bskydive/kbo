@@ -274,7 +274,9 @@ Install libreoffice-gtk (this will integrate your theme with you system theme (e
 Значки:
 Install libreoffice-theme-oxygen or libreoffice-theme-crystal and then follow  (Tools > Options > View).
 
-## iowait
+## HARDWARE
+
+### iowait
 
 http://doc.opensuse.org/products/draft/SLES/SLES-tuning_sd_draft/cha.tuning.io.html
 
@@ -291,7 +293,7 @@ acpi=noirq
 в параметрах ядра, либо 
 echo disable > /sys/firmware/acpi/interrupts/gpeXX где XX - номер проблемного IRQ
 
-## acpi apic
+### acpi apic
 
 http://ubuntuforums.org/showthread.php?t=2102964
 
@@ -333,7 +335,221 @@ acpitool  -W 17
 
 ```
 
+### FAN control вентиляторы
 
+ * https://www.cyberciti.biz/faq/howto-linux-get-sensors-information/
+
+ ```
+	zypper in sensors
+	sensors-detect
+		# sensors-detect revision $Revision$
+		# System: Micro-Star International Co., Ltd. MS-7A38 [6.0]
+		# Board: Micro-Star International Co., Ltd. B450M PRO-VDH V2 (MS-7A38)
+		# Kernel: 5.3.18-lp152.78-default x86_64
+		# Processor: AMD Ryzen 7 3700X 8-Core Processor (23/113/0)
+
+		This program will help you determine which kernel modules you need
+		to load to use lm_sensors most effectively. It is generally safe
+		and recommended to accept the default answers to all questions,
+		unless you know what you're doing.
+
+		Some south bridges, CPUs or memory controllers contain embedded sensors.
+		Do you want to scan for them? This is totally safe. (YES/no): yes
+		Module cpuid loaded successfully.
+		Silicon Integrated Systems SIS5595...                       No
+		VIA VT82C686 Integrated Sensors...                          No
+		VIA VT8231 Integrated Sensors...                            No
+		AMD K8 thermal sensors...                                   No
+		AMD Family 10h thermal sensors...                           No
+		AMD Family 11h thermal sensors...                           No
+		AMD Family 12h and 14h thermal sensors...                   No
+		AMD Family 15h thermal sensors...                           No
+		AMD Family 16h thermal sensors...                           No
+		AMD Family 17h thermal sensors...                           No
+		AMD Family 15h power sensors...                             No
+		AMD Family 16h power sensors...                             No
+		Intel digital thermal sensor...                             No
+		Intel AMB FB-DIMM thermal sensor...                         No
+		Intel 5500/5520/X58 thermal sensor...                       No
+		VIA C7 thermal sensor...                                    No
+		VIA Nano thermal sensor...                                  No
+
+		Some Super I/O chips contain embedded sensors. We have to write to
+		standard I/O ports to probe them. This is usually safe.
+		Do you want to scan for Super I/O sensors? (YES/no): yes
+		Probing for Super-I/O at 0x2e/0x2f
+		Trying family `National Semiconductor/ITE'...               No
+		Trying family `SMSC'...                                     No
+		Trying family `VIA/Winbond/Nuvoton/Fintek'...               No
+		Trying family `ITE'...                                      No
+		Probing for Super-I/O at 0x4e/0x4f
+		Trying family `National Semiconductor/ITE'...               No
+		Trying family `SMSC'...                                     No
+		Trying family `VIA/Winbond/Nuvoton/Fintek'...               Yes
+		Found `Nuvoton NCT6795D Super IO Sensors'                   Success!
+			(address 0xa20, driver `nct6775')
+
+		Some systems (mainly servers) implement IPMI, a set of common interfaces
+		through which system health data may be retrieved, amongst other things.
+		We first try to get the information from SMBIOS. If we don't find it
+		there, we have to read from arbitrary I/O ports to probe for such
+		interfaces. This is normally safe. Do you want to scan for IPMI
+		interfaces? (YES/no): yes
+		Probing for `IPMI BMC KCS' at 0xca0...                      No
+		Probing for `IPMI BMC SMIC' at 0xca8...                     No
+
+		Some hardware monitoring chips are accessible through the ISA I/O ports.
+		We have to write to arbitrary I/O ports to probe them. This is usually
+		safe though. Yes, you do have ISA I/O ports even if you do not have any
+		ISA slots! Do you want to scan the ISA I/O ports? (yes/NO): yes
+		Probing for `National Semiconductor LM78' at 0x290...       No
+		Probing for `National Semiconductor LM79' at 0x290...       No
+		Probing for `Winbond W83781D' at 0x290...                   No
+		Probing for `Winbond W83782D' at 0x290...                   No
+
+		Lastly, we can probe the I2C/SMBus adapters for connected hardware
+		monitoring devices. This is the most risky part, and while it works
+		reasonably well on most systems, it has been reported to cause trouble
+		on some systems.
+		Do you want to probe the I2C/SMBus adapters now? (YES/no): yes
+		Using driver `i2c-piix4' for device 0000:00:14.0: AMD KERNCZ SMBus
+		Module i2c-dev loaded successfully.
+
+		Next adapter: SMBus PIIX4 adapter port 0 at 0b00 (i2c-0)
+		Do you want to scan it? (yes/NO/selectively): yes
+		Client found at address 0x50
+		Probing for `Analog Devices ADM1033'...                     No
+		Probing for `Analog Devices ADM1034'...                     No
+		Probing for `SPD EEPROM'...                                 Yes
+			(confidence 8, not a hardware monitoring chip)
+		Probing for `EDID EEPROM'...                                No
+		Client found at address 0x51
+		Probing for `Analog Devices ADM1033'...                     No
+		Probing for `Analog Devices ADM1034'...                     No
+		Probing for `SPD EEPROM'...                                 Yes
+			(confidence 8, not a hardware monitoring chip)
+		Client found at address 0x52
+		Probing for `Analog Devices ADM1033'...                     No
+		Probing for `Analog Devices ADM1034'...                     No
+		Probing for `SPD EEPROM'...                                 Yes
+			(confidence 8, not a hardware monitoring chip)
+		Client found at address 0x53
+		Probing for `Analog Devices ADM1033'...                     No
+		Probing for `Analog Devices ADM1034'...                     No
+		Probing for `SPD EEPROM'...                                 Yes
+			(confidence 8, not a hardware monitoring chip)
+
+		Next adapter: SMBus PIIX4 adapter port 2 at 0b00 (i2c-1)
+		Do you want to scan it? (yes/NO/selectively): yes
+
+		Next adapter: SMBus PIIX4 adapter port 3 at 0b00 (i2c-2)
+		Do you want to scan it? (yes/NO/selectively): y
+
+		Next adapter: SMBus PIIX4 adapter port 4 at 0b00 (i2c-3)
+		Do you want to scan it? (yes/NO/selectively): y
+
+		Next adapter: SMBus PIIX4 adapter port 1 at 0b20 (i2c-4)
+		Do you want to scan it? (yes/NO/selectively): y
+
+		Next adapter: NVIDIA i2c adapter 4 at 29:00.0 (i2c-5)
+		Do you want to scan it? (yes/NO/selectively): y
+
+		Next adapter: NVIDIA i2c adapter 6 at 29:00.0 (i2c-6)
+		Do you want to scan it? (yes/NO/selectively): y
+		Client found at address 0x4a
+		Probing for `National Semiconductor LM75'...                No
+		Probing for `National Semiconductor LM75A'...               No
+		Probing for `Dallas Semiconductor DS75'...                  No
+		Probing for `National Semiconductor LM77'...                No
+		Probing for `Analog Devices ADT7410/ADT7420'...             No
+		Probing for `Analog Devices ADT7411'...                     No
+		Probing for `Maxim MAX6642'...                              No
+		Probing for `Texas Instruments TMP435'...                   No
+		Probing for `National Semiconductor LM73'...                No
+		Probing for `National Semiconductor LM92'...                No
+		Probing for `National Semiconductor LM76'...                No
+		Probing for `Maxim MAX6633/MAX6634/MAX6635'...              No
+		Probing for `NXP/Philips SA56004'...                        No
+		Client found at address 0x4b
+		Probing for `National Semiconductor LM75'...                No
+		Probing for `National Semiconductor LM75A'...               No
+		Probing for `Dallas Semiconductor DS75'...                  No
+		Probing for `National Semiconductor LM77'...                No
+		Probing for `Analog Devices ADT7410/ADT7420'...             No
+		Probing for `Analog Devices ADT7411'...                     No
+		Probing for `Maxim MAX6642'...                              No
+		Probing for `Texas Instruments TMP435'...                   No
+		Probing for `National Semiconductor LM92'...                No
+		Probing for `National Semiconductor LM76'...                No
+		Probing for `Maxim MAX6633/MAX6634/MAX6635'...              No
+		Probing for `NXP/Philips SA56004'...                        No
+		Probing for `Analog Devices ADT7481'...                     No
+
+		Next adapter: NVIDIA i2c adapter 7 at 29:00.0 (i2c-7)
+		Do you want to scan it? (yes/NO/selectively): y
+
+
+		Now follows a summary of the probes I have just done.
+		Just press ENTER to continue: 
+
+		Driver `nct6775':
+		* ISA bus, address 0xa20
+			Chip `Nuvoton NCT6795D Super IO Sensors' (confidence: 9)
+
+		Do you want to generate /etc/sysconfig/lm_sensors? (YES/no): y
+		Created symlink /etc/systemd/system/multi-user.target.wants/lm_sensors.service → /usr/lib/systemd/system/lm_sensors.service.
+		Unloading i2c-dev... OK
+		Unloading cpuid... OK
+
+	sensors
+		k10temp-pci-00c3
+
+		Adapter: PCI adapter
+		Vcore:        +0.95 V  
+		Vsoc:         +1.01 V  
+		Tdie:         +58.8°C  
+		Tctl:         +58.8°C  
+		Tccd1:        +42.8°C  
+		Icore:       +11.00 A  
+		Isoc:         +6.50 A  
+
+		nct6795-isa-0a20
+		Adapter: ISA adapter
+		Vcore:                  +1.14 V  (min =  +0.00 V, max =  +1.74 V)
+		in1:                    +1.02 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
+		AVCC:                   +3.39 V  (min =  +2.98 V, max =  +3.63 V)
+		+3.3V:                  +3.39 V  (min =  +2.98 V, max =  +3.63 V)
+		in4:                    +1.01 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
+		in5:                    +0.16 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
+		in6:                    +0.66 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
+		3VSB:                   +3.39 V  (min =  +2.98 V, max =  +3.63 V)
+		Vbat:                   +3.28 V  (min =  +2.70 V, max =  +3.63 V)
+		in9:                    +1.82 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
+		in10:                   +0.00 V  (min =  +0.00 V, max =  +0.00 V)
+		in11:                   +0.66 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
+		in12:                   +1.03 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
+		in13:                   +0.67 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
+		in14:                   +1.54 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
+		fan1:                     0 RPM  (min =    0 RPM)
+		fan2:                  2441 RPM  (min =    0 RPM)
+		fan3:                  1197 RPM  (min =    0 RPM)
+		fan4:                     0 RPM  (min =    0 RPM)
+		fan5:                     0 RPM  (min =    0 RPM)
+		SYSTIN:                 +41.0°C  (high =  +0.0°C, hyst =  +0.0°C)  ALARM  sensor = CPU diode
+		CPUTIN:                 +37.0°C  (high = +115.0°C, hyst = +90.0°C)  sensor = thermistor
+		AUXTIN0:                +45.5°C  (high = +115.0°C, hyst = +90.0°C)  sensor = thermistor
+		AUXTIN1:               -128.0°C    sensor = thermistor
+		AUXTIN2:                +46.0°C    sensor = thermistor
+		AUXTIN3:                 -3.0°C    sensor = thermistor
+		SMBUSMASTER 0:          +58.0°C  
+		PCH_CHIP_CPU_MAX_TEMP:   +0.0°C  
+		PCH_CHIP_TEMP:           +0.0°C  
+		PCH_CPU_TEMP:            +0.0°C  
+		intrusion0:            ALARM
+		intrusion1:            ALARM
+		beep_enable:           disabled
+
+ ```
 ## kde
 
 
