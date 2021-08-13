@@ -395,6 +395,7 @@ acpitool  -W 17
 
 ### FAN control вентиляторы
 
+ * https://landing.coolermaster.com/faq/3-pin-and-4-pin-fan-wire-diagrams/
  * https://www.cyberciti.biz/faq/howto-linux-get-sensors-information/
 
  ```
