@@ -19,6 +19,11 @@
 	* 10 - исправили 700 и посмотрели 2000 ошибок, компонент диапазона дат
 	* 11 - harnesses for all of the components, webpack 5 experimental, ng serve --hmr, tslint deprecated, IE9/10 deprecated
 	* 12 - nullish coalescing, tailwind css, webpack 5 prod, IE11 deprecated
+1. АРхитектура
+	* MVVM
+	* зачем
+	* достоинства
+	* недостатки
 1. Различие между AngularJS и Angular
 	* rxjs, DI
 1. преимущества [Angular](https://medium.com/better-programming/angular-in-2020-and-beyond-b2e98543ef17)

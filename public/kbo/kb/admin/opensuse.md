@@ -14,15 +14,16 @@
 
 ## просмотр markdown файлов
 
-[установить плагин в хром](https://chrome.google.com/webstore/detail/markdown-preview/jmchmkecamhbiokiopfpnfgbidieafmd?utm_source=chrome-app-launcher-info-dialog)
-
-[установить pandoc и настроить kate](https://www.maketecheasier.com/convert-markdown-to-html-in-kate-text-editor/)
-
-[смотреть плагином в idea](https://plugins.jetbrains.com/plugin/5970?pr=idea)
+* [установить плагин в хром](https://chrome.google.com/webstore/detail/markdown-preview/jmchmkecamhbiokiopfpnfgbidieafmd?utm_source=chrome-app-launcher-info-dialog)
+* [установить pandoc и настроить kate](https://www.maketecheasier.com/convert-markdown-to-html-in-kate-text-editor/)
+* [смотреть плагином в idea](https://plugins.jetbrains.com/plugin/5970?pr=idea)
 
 ## screencast
 
  * simplescreenrecorder
+ * peek - запись области в gif
+ * KmCaster - нажатые клавиши
+ * OBS studio
 
 ## security
 
@@ -99,6 +100,9 @@
 
 	```
  * https://www.linuxuprising.com/2020/09/how-to-enable-echo-noise-cancellation.html
+ * https://www.reddit.com/r/linuxmasterrace/comments/g7mikg/rtx_voice_on_linux/
+ * https://github.com/josh-richardson/cadmus
+ * windows: https://www.nvidia.com/en-us/geforce/guides/nvidia-rtx-voice-setup-guide/ example: https://youtu.be/Q-mETIjcIV0?t=322
 
 ### ogg to mp3
 
@@ -237,6 +241,7 @@ https://docs.ubuntu.com/core/en/stacks/network/network-manager/docs/configure-wi
 
 Configure WiFi Connections | NetworkManager documentation
 
+ * http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/
 ## policy-kit
 
 org.freedesktop.login1.hibernate-multiple-sessions
@@ -271,7 +276,67 @@ Install libreoffice-gtk (this will integrate your theme with you system theme (e
 Значки:
 Install libreoffice-theme-oxygen or libreoffice-theme-crystal and then follow  (Tools > Options > View).
 
-## iowait
+## HARDWARE
+
+### info
+
+ * https://mintdewdrop.wordpress.com/2013/05/04/inxi/
+
+	```bash
+		inxi -G
+		#	Graphics:  Device-1: NVIDIA GP107 [GeForce GTX 1050 Ti] driver: nvidia v: 390.141 
+		#			Display: server: X.Org 1.20.3 driver: nvidia unloaded: fbdev,modesetting,nouveau,vesa resolution: 2560x1440 
+		#			OpenGL: renderer: GeForce GTX 1050 Ti/PCIe/SSE2 v: 4.6.0 NVIDIA 390.141 
+		inxi -b
+		#	System:    Host: linux-tltj Kernel: 5.3.18-lp152.72-default x86_64 bits: 64 Console: tty 7 Distro: openSUSE Leap 15.2 
+		#	Machine:   Type: Desktop Mobo: Micro-Star model: B450M PRO-VDH V2 (MS-7A38) v: 6.0 serial: IC16298648 
+		#			UEFI: American Megatrends v: 8.81 date: 08/19/2019 
+		#	CPU:       8-Core: AMD Ryzen 7 3700X type: MT MCP speed: 2822 MHz min/max: 2200/3600 MHz 
+		#	Graphics:  Device-1: NVIDIA GP107 [GeForce GTX 1050 Ti] driver: nvidia v: 390.141 
+		#			Display: server: X.Org 1.20.3 driver: nvidia unloaded: fbdev,modesetting,nouveau,vesa resolution: 2560x1440 
+		#			OpenGL: renderer: GeForce GTX 1050 Ti/PCIe/SSE2 v: 4.6.0 NVIDIA 390.141 
+		#	Network:   Device-1: Realtek RTL8111/8168/8411 PCI Express Gigabit Ethernet driver: r8169 
+		#	Drives:    Local Storage: total: 670.70 GiB used: 293.01 GiB (43.7%) 
+		#	Info:      Processes: 362 Uptime: 9h 34m Memory: 31.30 GiB used: 3.96 GiB (12.7%) Shell: bash inxi: 3.1.00 
+		inxi -D
+		#	Drives:    Local Storage: total: 670.70 GiB used: 300.07 GiB (44.7%) 
+		#			ID-1: /dev/sda vendor: Samsung model: MZ7KH480HAHQ-00005 size: 447.13 GiB 
+		#			ID-2: /dev/sdb vendor: Intel model: SSDSC2KB240G8 size: 223.57 GiB
+		inxi --battery
+		# PC
+		inxi -F
+		#	System:    Host: linux-tltj Kernel: 5.3.18-lp152.78-default x86_64 bits: 64 Desktop: KDE Plasma 5.18.6 
+		#			Distro: openSUSE Leap 15.2 
+		#	Machine:   Type: Desktop Mobo: Micro-Star model: B450M PRO-VDH V2 (MS-7A38) v: 6.0 serial: <superuser/root required> 
+		#			UEFI: American Megatrends v: 8.81 date: 08/19/2019 
+		#	CPU:       Topology: 8-Core model: AMD Ryzen 7 3700X bits: 64 type: MT MCP L2 cache: 4096 KiB 
+		#			Speed: 2188 MHz min/max: 2200/3600 MHz Core speeds (MHz): 1: 2188 2: 2199 3: 2483 4: 2188 5: 2227 6: 2092 7: 2182 
+		#			8: 2161 9: 2259 10: 2200 11: 2212 12: 2154 13: 2199 14: 2160 15: 2200 16: 2199 
+		#	Graphics:  Device-1: NVIDIA GP107 [GeForce GTX 1050 Ti] driver: nvidia v: 390.143 
+		#			Display: x11 server: X.Org 1.20.3 driver: nvidia unloaded: fbdev,modesetting,nouveau,vesa 
+		#			resolution: 2560x1440~60Hz 
+		#			OpenGL: renderer: GeForce GTX 1050 Ti/PCIe/SSE2 v: 4.6.0 NVIDIA 390.143 
+		#	Audio:     Device-1: NVIDIA GP107GL High Definition Audio driver: snd_hda_intel 
+		#			Device-2: Advanced Micro Devices [AMD] Starship/Matisse HD Audio driver: snd_hda_intel 
+		#			Sound Server: ALSA v: k5.3.18-lp152.78-default 
+		#	Network:   Device-1: Realtek RTL8111/8168/8411 PCI Express Gigabit Ethernet driver: r8169 
+		#			IF: eth0 state: down mac: 00:d8:61:2e:90:2b 
+		#			Device-2: D-Link type: USB driver: ax88179_178a 
+		#			IF: eth1 state: up speed: 100 Mbps duplex: full mac: 00:ad:24:3e:4d:79 
+		#			IF-ID-1: vmnet1 state: unknown speed: N/A duplex: N/A mac: 00:50:56:c0:00:01 
+		#			IF-ID-2: vmnet8 state: unknown speed: N/A duplex: N/A mac: 00:50:56:c0:00:08 
+		#	Drives:    Local Storage: total: 670.70 GiB used: 258.84 GiB (38.6%) 
+		#			ID-1: /dev/sda vendor: Samsung model: MZ7KH480HAHQ-00005 size: 447.13 GiB 
+		#			ID-2: /dev/sdb vendor: Intel model: SSDSC2KB240G8 size: 223.57 GiB 
+		#	Partition: ID-1: / size: 113.68 GiB used: 92.21 GiB (81.1%) fs: ext4 dev: /dev/sdb2 
+		#	Swap:      ID-1: swap-1 type: partition size: 4.00 GiB used: 0 KiB (0.0%) dev: /dev/sdb3 
+		#	Sensors:   System Temperatures: cpu: 56.8 C mobo: 41.0 C gpu: nvidia temp: 40 C 
+		#			Fan Speeds (RPM): fan-1: 0 fan-2: 2360 fan-3: 1202 fan-4: 0 fan-5: 0 gpu: nvidia fan: 20% 
+		#	Info:      Processes: 328 Uptime: 2h 04m Memory: 31.30 GiB used: 3.37 GiB (10.8%) Shell: bash inxi: 3.1.00 
+
+	```
+
+### iowait
 
 http://doc.opensuse.org/products/draft/SLES/SLES-tuning_sd_draft/cha.tuning.io.html
 
@@ -288,7 +353,7 @@ acpi=noirq
 в параметрах ядра, либо 
 echo disable > /sys/firmware/acpi/interrupts/gpeXX где XX - номер проблемного IRQ
 
-## acpi apic
+### acpi apic
 
 http://ubuntuforums.org/showthread.php?t=2102964
 
@@ -330,7 +395,222 @@ acpitool  -W 17
 
 ```
 
+### FAN control вентиляторы
 
+ * https://landing.coolermaster.com/faq/3-pin-and-4-pin-fan-wire-diagrams/
+ * https://www.cyberciti.biz/faq/howto-linux-get-sensors-information/
+
+ ```
+	zypper in sensors
+	sensors-detect
+		# sensors-detect revision $Revision$
+		# System: Micro-Star International Co., Ltd. MS-7A38 [6.0]
+		# Board: Micro-Star International Co., Ltd. B450M PRO-VDH V2 (MS-7A38)
+		# Kernel: 5.3.18-lp152.78-default x86_64
+		# Processor: AMD Ryzen 7 3700X 8-Core Processor (23/113/0)
+
+		This program will help you determine which kernel modules you need
+		to load to use lm_sensors most effectively. It is generally safe
+		and recommended to accept the default answers to all questions,
+		unless you know what you're doing.
+
+		Some south bridges, CPUs or memory controllers contain embedded sensors.
+		Do you want to scan for them? This is totally safe. (YES/no): yes
+		Module cpuid loaded successfully.
+		Silicon Integrated Systems SIS5595...                       No
+		VIA VT82C686 Integrated Sensors...                          No
+		VIA VT8231 Integrated Sensors...                            No
+		AMD K8 thermal sensors...                                   No
+		AMD Family 10h thermal sensors...                           No
+		AMD Family 11h thermal sensors...                           No
+		AMD Family 12h and 14h thermal sensors...                   No
+		AMD Family 15h thermal sensors...                           No
+		AMD Family 16h thermal sensors...                           No
+		AMD Family 17h thermal sensors...                           No
+		AMD Family 15h power sensors...                             No
+		AMD Family 16h power sensors...                             No
+		Intel digital thermal sensor...                             No
+		Intel AMB FB-DIMM thermal sensor...                         No
+		Intel 5500/5520/X58 thermal sensor...                       No
+		VIA C7 thermal sensor...                                    No
+		VIA Nano thermal sensor...                                  No
+
+		Some Super I/O chips contain embedded sensors. We have to write to
+		standard I/O ports to probe them. This is usually safe.
+		Do you want to scan for Super I/O sensors? (YES/no): yes
+		Probing for Super-I/O at 0x2e/0x2f
+		Trying family `National Semiconductor/ITE'...               No
+		Trying family `SMSC'...                                     No
+		Trying family `VIA/Winbond/Nuvoton/Fintek'...               No
+		Trying family `ITE'...                                      No
+		Probing for Super-I/O at 0x4e/0x4f
+		Trying family `National Semiconductor/ITE'...               No
+		Trying family `SMSC'...                                     No
+		Trying family `VIA/Winbond/Nuvoton/Fintek'...               Yes
+		Found `Nuvoton NCT6795D Super IO Sensors'                   Success!
+			(address 0xa20, driver `nct6775')
+
+		Some systems (mainly servers) implement IPMI, a set of common interfaces
+		through which system health data may be retrieved, amongst other things.
+		We first try to get the information from SMBIOS. If we don't find it
+		there, we have to read from arbitrary I/O ports to probe for such
+		interfaces. This is normally safe. Do you want to scan for IPMI
+		interfaces? (YES/no): yes
+		Probing for `IPMI BMC KCS' at 0xca0...                      No
+		Probing for `IPMI BMC SMIC' at 0xca8...                     No
+
+		Some hardware monitoring chips are accessible through the ISA I/O ports.
+		We have to write to arbitrary I/O ports to probe them. This is usually
+		safe though. Yes, you do have ISA I/O ports even if you do not have any
+		ISA slots! Do you want to scan the ISA I/O ports? (yes/NO): yes
+		Probing for `National Semiconductor LM78' at 0x290...       No
+		Probing for `National Semiconductor LM79' at 0x290...       No
+		Probing for `Winbond W83781D' at 0x290...                   No
+		Probing for `Winbond W83782D' at 0x290...                   No
+
+		Lastly, we can probe the I2C/SMBus adapters for connected hardware
+		monitoring devices. This is the most risky part, and while it works
+		reasonably well on most systems, it has been reported to cause trouble
+		on some systems.
+		Do you want to probe the I2C/SMBus adapters now? (YES/no): yes
+		Using driver `i2c-piix4' for device 0000:00:14.0: AMD KERNCZ SMBus
+		Module i2c-dev loaded successfully.
+
+		Next adapter: SMBus PIIX4 adapter port 0 at 0b00 (i2c-0)
+		Do you want to scan it? (yes/NO/selectively): yes
+		Client found at address 0x50
+		Probing for `Analog Devices ADM1033'...                     No
+		Probing for `Analog Devices ADM1034'...                     No
+		Probing for `SPD EEPROM'...                                 Yes
+			(confidence 8, not a hardware monitoring chip)
+		Probing for `EDID EEPROM'...                                No
+		Client found at address 0x51
+		Probing for `Analog Devices ADM1033'...                     No
+		Probing for `Analog Devices ADM1034'...                     No
+		Probing for `SPD EEPROM'...                                 Yes
+			(confidence 8, not a hardware monitoring chip)
+		Client found at address 0x52
+		Probing for `Analog Devices ADM1033'...                     No
+		Probing for `Analog Devices ADM1034'...                     No
+		Probing for `SPD EEPROM'...                                 Yes
+			(confidence 8, not a hardware monitoring chip)
+		Client found at address 0x53
+		Probing for `Analog Devices ADM1033'...                     No
+		Probing for `Analog Devices ADM1034'...                     No
+		Probing for `SPD EEPROM'...                                 Yes
+			(confidence 8, not a hardware monitoring chip)
+
+		Next adapter: SMBus PIIX4 adapter port 2 at 0b00 (i2c-1)
+		Do you want to scan it? (yes/NO/selectively): yes
+
+		Next adapter: SMBus PIIX4 adapter port 3 at 0b00 (i2c-2)
+		Do you want to scan it? (yes/NO/selectively): y
+
+		Next adapter: SMBus PIIX4 adapter port 4 at 0b00 (i2c-3)
+		Do you want to scan it? (yes/NO/selectively): y
+
+		Next adapter: SMBus PIIX4 adapter port 1 at 0b20 (i2c-4)
+		Do you want to scan it? (yes/NO/selectively): y
+
+		Next adapter: NVIDIA i2c adapter 4 at 29:00.0 (i2c-5)
+		Do you want to scan it? (yes/NO/selectively): y
+
+		Next adapter: NVIDIA i2c adapter 6 at 29:00.0 (i2c-6)
+		Do you want to scan it? (yes/NO/selectively): y
+		Client found at address 0x4a
+		Probing for `National Semiconductor LM75'...                No
+		Probing for `National Semiconductor LM75A'...               No
+		Probing for `Dallas Semiconductor DS75'...                  No
+		Probing for `National Semiconductor LM77'...                No
+		Probing for `Analog Devices ADT7410/ADT7420'...             No
+		Probing for `Analog Devices ADT7411'...                     No
+		Probing for `Maxim MAX6642'...                              No
+		Probing for `Texas Instruments TMP435'...                   No
+		Probing for `National Semiconductor LM73'...                No
+		Probing for `National Semiconductor LM92'...                No
+		Probing for `National Semiconductor LM76'...                No
+		Probing for `Maxim MAX6633/MAX6634/MAX6635'...              No
+		Probing for `NXP/Philips SA56004'...                        No
+		Client found at address 0x4b
+		Probing for `National Semiconductor LM75'...                No
+		Probing for `National Semiconductor LM75A'...               No
+		Probing for `Dallas Semiconductor DS75'...                  No
+		Probing for `National Semiconductor LM77'...                No
+		Probing for `Analog Devices ADT7410/ADT7420'...             No
+		Probing for `Analog Devices ADT7411'...                     No
+		Probing for `Maxim MAX6642'...                              No
+		Probing for `Texas Instruments TMP435'...                   No
+		Probing for `National Semiconductor LM92'...                No
+		Probing for `National Semiconductor LM76'...                No
+		Probing for `Maxim MAX6633/MAX6634/MAX6635'...              No
+		Probing for `NXP/Philips SA56004'...                        No
+		Probing for `Analog Devices ADT7481'...                     No
+
+		Next adapter: NVIDIA i2c adapter 7 at 29:00.0 (i2c-7)
+		Do you want to scan it? (yes/NO/selectively): y
+
+
+		Now follows a summary of the probes I have just done.
+		Just press ENTER to continue: 
+
+		Driver `nct6775':
+		* ISA bus, address 0xa20
+			Chip `Nuvoton NCT6795D Super IO Sensors' (confidence: 9)
+
+		Do you want to generate /etc/sysconfig/lm_sensors? (YES/no): y
+		Created symlink /etc/systemd/system/multi-user.target.wants/lm_sensors.service → /usr/lib/systemd/system/lm_sensors.service.
+		Unloading i2c-dev... OK
+		Unloading cpuid... OK
+
+	sensors
+		k10temp-pci-00c3
+
+		Adapter: PCI adapter
+		Vcore:        +0.95 V  
+		Vsoc:         +1.01 V  
+		Tdie:         +58.8°C  
+		Tctl:         +58.8°C  
+		Tccd1:        +42.8°C  
+		Icore:       +11.00 A  
+		Isoc:         +6.50 A  
+
+		nct6795-isa-0a20
+		Adapter: ISA adapter
+		Vcore:                  +1.14 V  (min =  +0.00 V, max =  +1.74 V)
+		in1:                    +1.02 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
+		AVCC:                   +3.39 V  (min =  +2.98 V, max =  +3.63 V)
+		+3.3V:                  +3.39 V  (min =  +2.98 V, max =  +3.63 V)
+		in4:                    +1.01 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
+		in5:                    +0.16 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
+		in6:                    +0.66 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
+		3VSB:                   +3.39 V  (min =  +2.98 V, max =  +3.63 V)
+		Vbat:                   +3.28 V  (min =  +2.70 V, max =  +3.63 V)
+		in9:                    +1.82 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
+		in10:                   +0.00 V  (min =  +0.00 V, max =  +0.00 V)
+		in11:                   +0.66 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
+		in12:                   +1.03 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
+		in13:                   +0.67 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
+		in14:                   +1.54 V  (min =  +0.00 V, max =  +0.00 V)  ALARM
+		fan1:                     0 RPM  (min =    0 RPM)
+		fan2:                  2441 RPM  (min =    0 RPM)
+		fan3:                  1197 RPM  (min =    0 RPM)
+		fan4:                     0 RPM  (min =    0 RPM)
+		fan5:                     0 RPM  (min =    0 RPM)
+		SYSTIN:                 +41.0°C  (high =  +0.0°C, hyst =  +0.0°C)  ALARM  sensor = CPU diode
+		CPUTIN:                 +37.0°C  (high = +115.0°C, hyst = +90.0°C)  sensor = thermistor
+		AUXTIN0:                +45.5°C  (high = +115.0°C, hyst = +90.0°C)  sensor = thermistor
+		AUXTIN1:               -128.0°C    sensor = thermistor
+		AUXTIN2:                +46.0°C    sensor = thermistor
+		AUXTIN3:                 -3.0°C    sensor = thermistor
+		SMBUSMASTER 0:          +58.0°C  
+		PCH_CHIP_CPU_MAX_TEMP:   +0.0°C  
+		PCH_CHIP_TEMP:           +0.0°C  
+		PCH_CPU_TEMP:            +0.0°C  
+		intrusion0:            ALARM
+		intrusion1:            ALARM
+		beep_enable:           disabled
+
+ ```
 ## kde
 
 
@@ -362,37 +642,68 @@ Code:
  * выключить проигрыватель на экране блокировки
  * выключить ntpd синхронизацию при загрузке, включить по таймеру каждые 50 минут
  * пароли рут и пользователя
- * установка принтера
+ * установка драйвера принтера
  * настройка почты
  * настройка выключения подсказок: настройки системы - поведение окон - рабочее пространство plasma - показывать всплывающие подсказки
  * рамки окна: цвета-цветовая схема-общие-цвет заголовка окна
- * толщина рамки окна: оформление приложений - оформление окон - справа-внизу границы окна-тонкие
+ 	* толщина рамки окна: оформление приложений - оформление окон - справа-внизу границы окна-тонкие
  * установка и настройка скайп SDB:Skype — openSUSE  PulseAudio — openSUSE (pavucontrol)
  * перенос /home
  * перенос закладок в браузер
- * настройка браузера https://addons.mozilla.org/ru/firefox/addon/tree-style-tab/?src=search noscript downthemall adblock adblockhelper
  * добавить ярлыки на таскбар, индикатор ЦП, погода, сеть
  * десктоп - /usr/share/applications/
  * работа с документами - офис+экспорт в пдф
- * lame для диктофона
- * apcupsd установить, настроить
  * запомнить/перенести пароли для страниц в браузере
- * перенести ключи/скрипты удаленного доступа
+ * снести системный firefox, установить плагины
+ 	* adblock / ublock
+	* noscript / whitelist
+	* treestyletab https://addons.mozilla.org/ru/firefox/addon/tree-style-tab/?src=search
+	* downthemall
+ * снести системный thunderbird
+ * pavucontrol - можно вместо него использовать kde плагин plasma
+ * перенести ключи/скрипты удаленного доступа, папка scripts
+ * `ssh-keygen -t rsa -b 4096`
+ * установить ключи в bb, gh, gl, удалённые ПК
  * настроить короткий формат даты для Dolphin в астройках локали DD.MM.YYYY
- * настроить полный формат даты для виджета часов на панели в настройках локали  SHORTWEEKDAY DD SHORTMONTH YYYY
- * настроить время в истории bash bash_history
- * видео кодеки wmv. см #repo
- 	 * http://opensuse-guide.org/codecs.php
- 	 * http://software.opensuse.org/package/opensuse-codecs-installer?search_term=opensuse-codecs-installer
-
+ * настроить полный формат даты для виджета часов на панели в настройках локали  
+	* ddd dd.MM.yyyy
+ * kate
+ * konsole
+ * krdc
+ * konqueror/dolphin
+ * заменить ~/.kde4/share/apps/konqueror/bookmarks.xml
+ * видео кодеки wmv. см #repo 		http://opensuse-guide.org/codecs.php
  * spectacle скриншоты починить
 	* Настройки - глобальные комбинации клавиш - KDE daemon - выключить prtscr
 	* Настройки - глобальные комбинации клавиш - + добавить - spectacle - назначить prtscr - снимок прямоугольной области
- * zypper ar -f http://packman.inode.at/suse/openSUSE_13.1/ packman_all
-	 * ближайший по пингам ftp.halifax.rwth-aachen.de/packman/suse/13.1/
- * zypper ar -f http://geeko.ioda.net/mirror/amd-fglrx/openSUSE_13.1/ radeon
+ * yed
+ * настроить внешнюю видеокамеру/микрофон
+ * git, kgit, git-gui
+ * vscode https://code.visualstudio.com/docs/setup/linux#_visual-studio-code-is-unable-to-watch-for-file-changes-in-this-large-workspace-error-enospc
+	```bash
+		cat /etc/sysctl.d/vscode.sysctl.conf
+		# fs.inotify.max_user_watches=524288
+		# fs.file-max=1632119
+		sysctl -p
+		sysctl --system
+		cat /proc/sys/fs/inotify/max_user_watches
+		sysctl fs.file-max
 
- * http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/
+		cat /etc/security/limits.conf
+		# user hard nofile 16384
+		# user soft nofile 9216
+		ulimit -Sn
+		ulimit -Hn
+	```
+ * настроить цвета
+	* оформление рабочей среды - breeze
+	* оформление рабочего стола - breeze
+	* цвета - загрузить - honey oak
+ * nvm
+	* !!! сделать снимок ФС/ВМ
+ 	* `npm i -g sass npm-check pm2 http-server`
+### old
+
  * flatpak `flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo` далее `Discover` или в discover - настройка - add flathub
  * evolution - через discover+flathub - поиск - evolution - кликнуть по пакету - источники - flathub
 	* https://wiki.gnome.org/Apps/Evolution/EWS/OAuth2
@@ -405,43 +716,38 @@ Code:
 
 		rm /var/lib/flatpak/repo
 	```
-* pavucontrol - можно вместо него использовать kde плагин plasma
-* pulseaudio-equalizer
-* paprefs - для проигрывания звука по сети https://askubuntu.com/questions/28039/how-to-stream-music-over-the-network-to-multiple-computers 
-* digikam
-* kate
-* konsole
-* krdc
-* konqueror
-* заменить ~/.kde4/share/apps/konqueror/bookmarks.xml
-* pidgin
-* thunderbird
-* https://support.mozilla.org/en-US/kb/profiles-tb#w_backing-up-a-profile
-* freemind
-* yed
-* printer
-* scripts alias
-* kalendar
-* akregator
-* wallet
-* sqldeveloper java
-* firefox+adblock+noscript whitelist
-* akonadi
-* torrent
-* ssh_keys
-* zoom
+ * pulseaudio-equalizer
+ * paprefs - для проигрывания звука по сети https://askubuntu.com/questions/28039/how-to-stream-music-over-the-network-to-multiple-computers 
+ * digikam
+ * pidgin
+ * https://support.mozilla.org/en-US/kb/profiles-tb#w_backing-up-a-profile
+ * freemind
+ * kalendar
+ * akregator
+ * перенести kwallet
+ * sqldeveloper java
+ * akonadi
+ * ssh_keys
+ * kfind
+ * lame для диктофона
+ * apcupsd установить, настроить
 
-* зависает при выключении
-	* 
+### зависает при выключении
+
+ * выключить ntp автозапуск
+ * удалить snapper, lvm monitor, packagekit, btrfs
 
 ```bash
-systemctl disable lvm2-monitor.service
-systemctl stop lvm2-monitor.service
+	systemctl disable lvm2-monitor.service
+	systemctl stop lvm2-monitor.service
 
-zypper rm snapper snapper-zypp-plugin yast2-snapper PackageKit PackageKit-backend-zypp PackageKit-branding-openSUSE PackageKit-gstreamer-plugin PackageKit-gtk3-module PackageKit-lang discover-backend-packagekit  grub2-snapper-plugin libpackagekit-glib2-18 libsnapper5
+	zypper rm snapper snapper-zypp-plugin yast2-snapper libsnapper5 grub2-snapper-plugin
+	zypper rm PackageKit PackageKit-backend-zypp PackageKit-branding-openSUSE PackageKit-gstreamer-plugin PackageKit-gtk3-module PackageKit-lang discover-backend-packagekit libpackagekit-glib2-18 
+	zypper rm btrfsprogs btrfsmaintenance btrfsprogs-udev-rules
+
 ```
 
-	* https://forums.opensuse.org/showthread.php/539741-How-to-disable-Ibus-autostart
+ * https://forums.opensuse.org/showthread.php/539741-How-to-disable-Ibus-autostart
 
 ```bash
 ibus ibus-gtk ibus-gtk3 ibus-lang ibus-m17n ibus-qt ibus-table ibus-table-rustrad ibus-table-translit libm17n0 libotf0 m17n-db m17n-db-lang typelib-1_0-IBus-1_0 zoom
@@ -452,25 +758,6 @@ ibus-lang m17n-db-lang ibus-branding-openSUSE-KDE
 
 chmod a-x /usr/bin/ibus-autostart
 ```
- * https://mintdewdrop.wordpress.com/2013/05/04/inxi/
-
-	```bash
-		inxi -G
-			Graphics:  Device-1: NVIDIA GP107 [GeForce GTX 1050 Ti] driver: nvidia v: 390.141 
-					Display: server: X.Org 1.20.3 driver: nvidia unloaded: fbdev,modesetting,nouveau,vesa resolution: 2560x1440 
-					OpenGL: renderer: GeForce GTX 1050 Ti/PCIe/SSE2 v: 4.6.0 NVIDIA 390.141 
-		inxi -b
-			System:    Host: linux-tltj Kernel: 5.3.18-lp152.72-default x86_64 bits: 64 Console: tty 7 Distro: openSUSE Leap 15.2 
-			Machine:   Type: Desktop Mobo: Micro-Star model: B450M PRO-VDH V2 (MS-7A38) v: 6.0 serial: IC16298648 
-					UEFI: American Megatrends v: 8.81 date: 08/19/2019 
-			CPU:       8-Core: AMD Ryzen 7 3700X type: MT MCP speed: 2822 MHz min/max: 2200/3600 MHz 
-			Graphics:  Device-1: NVIDIA GP107 [GeForce GTX 1050 Ti] driver: nvidia v: 390.141 
-					Display: server: X.Org 1.20.3 driver: nvidia unloaded: fbdev,modesetting,nouveau,vesa resolution: 2560x1440 
-					OpenGL: renderer: GeForce GTX 1050 Ti/PCIe/SSE2 v: 4.6.0 NVIDIA 390.141 
-			Network:   Device-1: Realtek RTL8111/8168/8411 PCI Express Gigabit Ethernet driver: r8169 
-			Drives:    Local Storage: total: 670.70 GiB used: 293.01 GiB (43.7%) 
-			Info:      Processes: 362 Uptime: 9h 34m Memory: 31.30 GiB used: 3.96 GiB (12.7%) Shell: bash inxi: 3.1.00 
-	```
  * 
 
 ## ms teams
@@ -518,39 +805,39 @@ The following 14 NEW packages are going to be installed:
 ktorrent export
 
 ```bash
-#!/bin/sh
-#DEST_DIR=$HOME/torrents
+	#!/bin/sh
+	#DEST_DIR=$HOME/torrents
 
-#if [ "$#" -ge "2" ]
-#then DEST_DIR="$1"
-#fi
+	#if [ "$#" -ge "2" ]
+	#then DEST_DIR="$1"
+	#fi
 
-#cd $HOME/.kde/share/apps/ktorrent/
+	#cd $HOME/.kde/share/apps/ktorrent/
 
-SOURCE_DIR="$1"
-DEST_DIR="$2"
+	SOURCE_DIR="$1"
+	DEST_DIR="$2"
 
-cd $SOURCE_DIR
+	cd $SOURCE_DIR
 
-if ! [ -e "$DEST_DIR" ]
-then mkdir -p "$DEST_DIR"
-fi
+	if ! [ -e "$DEST_DIR" ]
+		then mkdir -p "$DEST_DIR"
+	fi
 
 
-TORRENT_LIST=
-if [ -e tor0 ]
-then TORRENT_LIST="$TORRENT_LIST tor?"
-fi
-if [ -e tor10 ]
-then TORRENT_LIST="$TORRENT_LIST tor??"
-fi
-if [ -e tor100 ]
-then TORRENT_LIST="$TORRENT_LIST tor???"
-fi
+	TORRENT_LIST=
+	if [ -e tor0 ]
+		then TORRENT_LIST="$TORRENT_LIST tor?"
+	fi
+	if [ -e tor10 ]
+		then TORRENT_LIST="$TORRENT_LIST tor??"
+	fi
+	if [ -e tor100 ]
+		then TORRENT_LIST="$TORRENT_LIST tor???"
+	fi
 
-for  i in $TORRENT_LIST ; do
-  cp -vRTpu $i/torrent $DEST_DIR/$i.torrent
-done
+	for  i in $TORRENT_LIST ; do
+		cp -vRTpu $i/torrent $DEST_DIR/$i.torrent
+	done
 ```
 
 ## opensuse install hangs
@@ -574,32 +861,32 @@ x11uselocalhost no
 ## firefox
 
 
-* about:config
-* app.update.elevation.promptMaxAttempts
-
+* `about:config`
+* `app.update.elevation.promptMaxAttempts`
 * [Настройка Firefox в Linux 2019](https://habr.com/ru/post/459880/)
+
 ```
-device.sensors.enabled
-Позволяет через javascript получить доступ к датчикам устройства. Например, в мобильном Firefox можно получать информацию с датчика приближения. Если нет ни каких датчиков, либо доступ Firefox к ним вам не нужен, отключайте false
+	device.sensors.enabled
+	Позволяет через javascript получить доступ к датчикам устройства. Например, в мобильном Firefox можно получать информацию с датчика приближения. Если нет ни каких датчиков, либо доступ Firefox к ним вам не нужен, отключайте false
 
-dom.battery.enabled
-Отслеживание состояние батареи. Если используется стационарник, отключайте false
+	dom.battery.enabled
+	Отслеживание состояние батареи. Если используется стационарник, отключайте false
 
-dom.enable_performance_observer
-С помощью этой функции, разработчик сайта может узнать например, за какое время у пользователя загрузился тот или иной элемент веб-страницы. Что бы затем исправить недочёты производительности в коде сайта. Со стороны пользователя это будет выглядеть как сбор ограниченной телеметрии его действий на сайте и автоматическая её отправка. Можете отключить эту функцию false, для того что бы Firefox не отсылал сайтам эти данные.
+	dom.enable_performance_observer
+	С помощью этой функции, разработчик сайта может узнать например, за какое время у пользователя загрузился тот или иной элемент веб-страницы. Что бы затем исправить недочёты производительности в коде сайта. Со стороны пользователя это будет выглядеть как сбор ограниченной телеметрии его действий на сайте и автоматическая её отправка. Можете отключить эту функцию false, для того что бы Firefox не отсылал сайтам эти данные.
 
-dom.event.clipboardevents.enabled
-Позволяет сайту следить за действиями пользователя, когда он копирует выделенный текст с веб страницы и затем, определённым образом, подсунуть к скопированному тексту в буфер обмена дополнительно строку, например "… Подробнее на httрs://....."..
-Если вам попадаются такие сайты на которых приходится копировать текст, и затем при вставке скопированного текста в конце автоматически добавляется такая вот ерунда, которая вам не нужна или мешает, отключите эту функцию false.
-Лишь на некоторых сайтах могут возникнуть проблемы с копированием и вставкой текста из-за её отключения.
+	dom.event.clipboardevents.enabled
+	Позволяет сайту следить за действиями пользователя, когда он копирует выделенный текст с веб страницы и затем, определённым образом, подсунуть к скопированному тексту в буфер обмена дополнительно строку, например
+	Если вам попадаются такие сайты на которых приходится копировать текст, и затем при вставке скопированного текста в конце автоматически добавляется такая вот ерунда, которая вам не нужна или мешает, отключите эту функцию false.
+	Лишь на некоторых сайтах могут возникнуть проблемы с копированием и вставкой текста из-за её отключения.
 
-security.sandbox.content.level * * *
-Функция безопасности Firefox. Во включённом по умолчанию состоянии, в режиме работы 4, браузер создаёт изолированную программную среду в которой обрабатывается загруженный контент. В такой «песочнице» вредоносному коду сложнее украсть данные, попытаться установить вирус или использовать уязвимости браузера.
-Если у вас используются основные защитные инструменты самого Firefox, установлен блокировщик рекламы с актуальными в нём фильтрами, плюс вы не шастаете по левым сайтам с сомнительным содержимым — можете отключить эту функцию, поставив значение 0. Браузер будет немного быстрее работать и процессор в среднем на 5-10% станет меньше нагружаться.
+	security.sandbox.content.level * * *
+	Функция безопасности Firefox. Во включённом по умолчанию состоянии, в режиме работы 4, браузер создаёт изолированную программную среду в которой обрабатывается загруженный контент. В такой «песочнице» вредоносному коду сложнее украсть данные, попытаться установить вирус или использовать уязвимости браузера.
+	Если у вас используются основные защитные инструменты самого Firefox, установлен блокировщик рекламы с актуальными в нём фильтрами, плюс вы не шастаете по левым сайтам с сомнительным содержимым — можете отключить эту функцию, поставив значение 0. Браузер будет немного быстрее работать и процессор в среднем на 5-10% станет меньше нагружаться.
 
-To use the middle mouse button to paste whatever text has been highlighted/added to the clipboard, as is common in UNIX-like operating systems, set either middlemouse.contentLoadURL or middlemouse.paste to true in about:config. Having middlemouse.contentLoadURL enabled was the default behaviour prior to Firefox 57.
+	To use the middle mouse button to paste whatever text has been highlighted/added to the clipboard, as is common in UNIX-like operating systems, set either middlemouse.contentLoadURL or middlemouse.paste to true in about:config. Having middlemouse.contentLoadURL enabled was the default behaviour prior to Firefox 57.
 
-To scroll on middle-click (default for Windows browsers) set general.autoScroll to true. 
+	To scroll on middle-click (default for Windows browsers) set general.autoScroll to true. 
 ```
 
 * [archLinux firefox база знаний](https://wiki.archlinux.org/index.php/Firefox#Middle-click_behavior)
@@ -607,31 +894,33 @@ To scroll on middle-click (default for Windows browsers) set general.autoScroll 
 * выключенные дополнения 
 
 ```
-about:config
-xpinstall.signatures.required - false
-extensions.legacy.enabled - true
+	about:config
+	xpinstall.signatures.required - false
+	extensions.legacy.enabled - true
 ```
 
 * [читаемые ссылки utf-8](https://addons.mozilla.org/ru/firefox/addon/pure-url/?src=search)
 
 ```
-unMHT
-network.standard-url.encode-utf8;false
-network.standard-url.escape-utf8;false
+	unMHT
+	network.standard-url.encode-utf8;false
+	network.standard-url.escape-utf8;false
 ```
-настройки синхронизации
+
+* настройки синхронизации
 
 ```
-about:preferences#sync
+	about:preferences#sync
 
 ```
-http://www.computerra.ru/gid/rtfm/browser/37428/
 
-http://www.guillermomolina.com.ar/index.php/en/projects/firefox-kwallet-extension/103-library-path-issues
+ * http://www.computerra.ru/gid/rtfm/browser/37428/
+
+ * http://www.guillermomolina.com.ar/index.php/en/projects/firefox-kwallet-extension/103-library-path-issues
 
 ```
-Failed to open VDPAU backend libvdpau_nvidia.so: невозможно открыть разделяемый объектный файл: Нет такого файла или каталога
-turning off hardware acceleration in preferences > advanced > general
+	Failed to open VDPAU backend libvdpau_nvidia.so: невозможно открыть разделяемый объектный файл: Нет такого файла или каталога
+	turning off hardware acceleration in preferences > advanced > general
 ```
 
 ## vpn
@@ -650,117 +939,119 @@ turning off hardware acceleration in preferences > advanced > general
  * https://en.opensuse.org/images/1/17/Zypper-cheat-sheet-1.pdf
  * multimedia codecs 
 
-```bash
-#1) Add the needed repositories:
-zypper addrepo -f http://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_15.2/ packman
-zypper addrepo -f http://opensuse-guide.org/repo/openSUSE_Leap_15.2/ dvd
+	```bash
+		#1) Add the needed repositories:
+		zypper addrepo -f http://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_15.2/ packman
+		zypper addrepo -f http://opensuse-guide.org/repo/openSUSE_Leap_15.2/ dvd
 
-#2) Then install the necessary packages:
-zypper install --allow-vendor-change ffmpeg-3 lame gstreamer-plugins-bad gstreamer-plugins-ugly gstreamer-plugins-ugly-orig-addon gstreamer-plugins-libav libavdevice58 libdvdcss2 vlc-codecs
+		#2) Then install the necessary packages:
+		zypper install --allow-vendor-change ffmpeg-3 lame gstreamer-plugins-bad gstreamer-plugins-ugly gstreamer-plugins-ugly-orig-addon gstreamer-plugins-libav libavdevice58 libdvdcss2 vlc-codecs
 
-#3) Make sure all your multimedia packages are coming from the Packman Repository:
-zypper dup --allow-vendor-change --from http://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_15.2/
+		#3) Make sure all your multimedia packages are coming from the Packman Repository:
+		zypper dup --allow-vendor-change --from http://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_15.2/
 
-zypper install freshplayerplugin
+		zypper install freshplayerplugin
 
-#Installing Java browser plugin in the terminal:
-zypper install icedtea-web
-#Installing multimedia plugin in the terminal:
-zypper install xine-browser-plugin
+		#Installing Java browser plugin in the terminal:
+		zypper install icedtea-web
+		#Installing multimedia plugin in the terminal:
+		zypper install xine-browser-plugin
 
-#First add the repository:
-zypper addrepo -f https://download.nvidia.com/opensuse/leap/15.2 nvidia
-#The following command should automatically install the correct driver for your card:
-zypper install-new-recommends --repo https://download.nvidia.com/opensuse/leap/15.2
-```
+		#First add the repository:
+		zypper addrepo -f https://download.nvidia.com/opensuse/leap/15.2 nvidia
+		#The following command should automatically install the correct driver for your card:
+		zypper install-new-recommends --repo https://download.nvidia.com/opensuse/leap/15.2
+	```
  * общие
 
-```bash
-zypper repos -Pu
-zypper locks
-zypper ps -s
-```
+	```bash
+		zypper repos -Pu
+		zypper locks
+		zypper ps -s
+	```
 
  * ya repos
 
-```bash
-zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/ ya_packman_repodata
-zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Multimedia/ ya_packman_Multimedia
-zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Games/ ya_packman_Games
-zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Extra/ ya_packman_Extra
-zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Essentials/ ya_packman_Essentials
-zypper addrepo -f https://mirror.yandex.ru/opensuse/distribution/leap/15.2/repo/non-oss/ ya_distribution_non_oss
-zypper addrepo -f https://mirror.yandex.ru/opensuse/distribution/leap/15.2/repo/oss/ ya_distribution_oss
-zypper addrepo -f https://mirror.yandex.ru/opensuse/update/leap/15.2/non-oss/ ya_update_non-oss
-zypper addrepo -f https://mirror.yandex.ru/opensuse/update/leap/15.2/oss/ ya_update_oss
+	```bash
+		zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/ ya_packman_repodata
+		zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Multimedia/ ya_packman_Multimedia
+		zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Games/ ya_packman_Games
+		zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Extra/ ya_packman_Extra
+		zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Essentials/ ya_packman_Essentials
+		zypper addrepo -f https://mirror.yandex.ru/opensuse/distribution/leap/15.2/repo/non-oss/ ya_distribution_non_oss
+		zypper addrepo -f https://mirror.yandex.ru/opensuse/distribution/leap/15.2/repo/oss/ ya_distribution_oss
+		zypper addrepo -f https://mirror.yandex.ru/opensuse/update/leap/15.2/non-oss/ ya_update_non-oss
+		zypper addrepo -f https://mirror.yandex.ru/opensuse/update/leap/15.2/oss/ ya_update_oss
 
-zypper modifyrepo -f -p80 ya_packman_repodata
-zypper modifyrepo -f -p80 ya_packman_Multimedia
-zypper modifyrepo -f -p80 ya_packman_Games
-zypper modifyrepo -f -p80 ya_packman_Extra
-zypper modifyrepo -f -p80 ya_packman_Essentials
-zypper modifyrepo -f -p80 ya_distribution_non_oss
-zypper modifyrepo -f -p80 ya_distribution_oss
-zypper modifyrepo -f -p80 ya_update_non-oss
-zypper modifyrepo -f -p80 ya_update_oss
+		zypper modifyrepo -f -p80 ya_packman_repodata
+		zypper modifyrepo -f -p80 ya_packman_Multimedia
+		zypper modifyrepo -f -p80 ya_packman_Games
+		zypper modifyrepo -f -p80 ya_packman_Extra
+		zypper modifyrepo -f -p80 ya_packman_Essentials
+		zypper modifyrepo -f -p80 ya_distribution_non_oss
+		zypper modifyrepo -f -p80 ya_distribution_oss
+		zypper modifyrepo -f -p80 ya_update_non-oss
+		zypper modifyrepo -f -p80 ya_update_oss
 
-zypper modifyrepo -f -p99 ya_packman_repodata
-zypper modifyrepo -f -p99 ya_packman_Multimedia
-zypper modifyrepo -f -p99 ya_packman_Games
-zypper modifyrepo -f -p99 ya_packman_Extra
-zypper modifyrepo -f -p99 ya_packman_Essentials
-zypper modifyrepo -f -p99 ya_distribution_non_oss
-zypper modifyrepo -f -p99 ya_distribution_oss
-zypper modifyrepo -f -p99 ya_update_non-oss
-zypper modifyrepo -f -p99 ya_update_oss
-```
+		zypper modifyrepo -f -p99 ya_packman_repodata
+		zypper modifyrepo -f -p99 ya_packman_Multimedia
+		zypper modifyrepo -f -p99 ya_packman_Games
+		zypper modifyrepo -f -p99 ya_packman_Extra
+		zypper modifyrepo -f -p99 ya_packman_Essentials
+		zypper modifyrepo -f -p99 ya_distribution_non_oss
+		zypper modifyrepo -f -p99 ya_distribution_oss
+		zypper modifyrepo -f -p99 ya_update_non-oss
+		zypper modifyrepo -f -p99 ya_update_oss
+	```
 
- * remove repos
+ * ya repos remove
 
-```
-zypper removerepo ya_packman_repodata
-zypper removerepo ya_packman_Multimedia
-zypper removerepo ya_packman_Games
-zypper removerepo ya_packman_Extra
-zypper removerepo ya_packman_Essentials
-zypper removerepo ya_distribution_non_oss
-zypper removerepo ya_distribution_oss
-zypper removerepo ya_update_non_oss
-zypper removerepo ya_update_oss
-```
+	```
+		zypper removerepo ya_packman_repodata
+		zypper removerepo ya_packman_Multimedia
+		zypper removerepo ya_packman_Games
+		zypper removerepo ya_packman_Extra
+		zypper removerepo ya_packman_Essentials
+		zypper removerepo ya_distribution_non_oss
+		zypper removerepo ya_distribution_oss
+		zypper removerepo ya_update_non_oss
+		zypper removerepo ya_update_oss
+	```
 
  * old repos 
 
 	```bash
-	http://mirror.yandex.ru/opensuse/packman/12.3/repodata/
-	http://download.opensuse.org/repositories/home:/hillwood/openSUSE_12.3/
-	http://code.google.com/p/vpnpptp/downloads/list
+		http://mirror.yandex.ru/opensuse/packman/12.3/repodata/
+		http://download.opensuse.org/repositories/home:/hillwood/openSUSE_12.3/
+		http://code.google.com/p/vpnpptp/downloads/list
+		http://geeko.ioda.net/mirror/amd-fglrx/openSUSE_13.1/ radeon
+ 	 	http://software.opensuse.org/package/opensuse-codecs-installer?search_term=opensuse-codecs-installer
 	```
  * hosts
 
-```bash 
-13.80.99.124		packages.microsoft.com
-13.80.99.124		csd-apt-weu-d-1.westeurope.cloudapp.azure.com
+	```bash 
+		13.80.99.124		packages.microsoft.com
+		13.80.99.124		csd-apt-weu-d-1.westeurope.cloudapp.azure.com
 
-104.73.92.137		repo.skype.com
-104.73.92.137		a104-73-92-137.deploy.static.akamaitechnologies.com
+		104.73.92.137		repo.skype.com
+		104.73.92.137		a104-73-92-137.deploy.static.akamaitechnologies.com
 
-46.30.215.58		opensuse-guide.org
-46.30.215.58		webcluster2.webpod5-cph3.one.com
+		46.30.215.58		opensuse-guide.org
+		46.30.215.58		webcluster2.webpod5-cph3.one.com
 
-195.135.221.134		download.opensuse.org
+		195.135.221.134		download.opensuse.org
 
-192.229.220.191		download.nvidia.com
-192.229.220.191		cs486284.wpc.phicdn.net
+		192.229.220.191		download.nvidia.com
+		192.229.220.191		cs486284.wpc.phicdn.net
 
-142.250.74.46		dl.google.com
-142.250.74.46		arn09s22-in-f14.1e100.net
+		142.250.74.46		dl.google.com
+		142.250.74.46		arn09s22-in-f14.1e100.net
 
-148.251.201.107		packages.x2go.org
-148.251.201.107		ymir.das-netzwerkteam.de
+		148.251.201.107		packages.x2go.org
+		148.251.201.107		ymir.das-netzwerkteam.de
 
-134.76.12.6			ftp.gwdg.de
-```
+		134.76.12.6			ftp.gwdg.de
+	```
 
 ## freemind
 
