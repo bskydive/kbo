@@ -20,11 +20,13 @@
 	* [Советы про удалёнку в карантине](https://stepanovv.ru/articles/public/Советы%20про%20удалёнку/советы%20про%20удалёнку.html)
 	* [Шаг в виртуальность](https://stepanovv.ru/articles/public/шаг%20в%20виртуальность/шаг%20в%20виртуальность.html)
 	* [JS code quality starter pack](https://stepanovv.ru/articles/public/JS%20code%20quality%20starter%20pack/js%20code%20quality%20starter%20pack.html)
+	* [100 операторов rxjs](https://stepanovv.ru/articles/public/100%20операторов%20rxjs/100%20операторов%20rxjs.md)
  * git markdown:
 	* [От дизайна до кода без совещаний. Страшная сила красоты](https://gitlab.com/stepanovv/kbo/-/blob/master/public/articles/public/страшная%20сила%20красоты/страшная%20сила%20красоты.md)
 	* [Советы про удалёнку в карантине](https://gitlab.com/stepanovv/kbo/-/blob/master/public/articles/public/Советы%20про%20удалёнку/советы%20про%20удалёнку.md)
 	* [Шаг в виртуальность](https://gitlab.com/stepanovv/kbo/-/blob/master/public/articles/public/шаг%20в%20виртуальность/шаг%20в%20виртуальность.md)
 	* [JS code quality starter pack](https://gitlab.com/stepanovv/kbo/-/blob/master/public/articles/public/JS%20code%20quality%20starter%20pack/js%20code%20quality%20starter%20pack.md)
+	* [100 операторов rxjs](https://gitlab.com/stepanovv/kbo/-/blob/master/public/articles/public/100%20операторов%20rxjs/100%20операторов%20rxjs.md)
 
 ## Как отправить изменения
 

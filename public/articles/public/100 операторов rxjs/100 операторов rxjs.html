@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>100 операторов rxjs.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="100-%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BE%D0%B2-rxjs">100 операторов RxJs</h1>
+<p>Трудно быть стартапом. Часть 2 - учёба.</p>
+<ul>
+<li><img src="гаук.jpeg" alt="картинка"></li>
+<li>Оружейник Гаук демонстрирует работу книгопечатной машины. Кадр из фильма <a href="https://www.youtube.com/watch?v=L1wFZY7c9Kw">Трудно быть богом</a></li>
+</ul>
+<h2 id="%D0%B2%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5">Введение</h2>
+<ul>
+<li>О чём: об операторах RxJs.</li>
+<li>Для кого: для тех кому нужно быстро проверить оператор в работе.</li>
+<li>Зачем: чтобы переписать свои заметки в чистовик, поделиться опытом со страждущими.</li>
+<li>В чём особенность: хорошая подборка активностей и мотивация.</li>
+<li><a href="https://medium.com/@stepanovv.ru/100-rxjs-operators-fab1338ef3b9">Где поддержать(похлопать)</a></li>
+<li><a href="/articles/index.html">Ещё статьи</a></li>
+</ul>
+<p>Итак, настало время второй статьи цикла &quot;Трудно быть стартапом&quot;. <a href="https://medium.com/@stepanovv.ru/trudno-byt-startapom-gvozdi-2a95cf74ff31">Предыдущая часть</a> завершена призывом бесплатно делиться знаниями. Сам предложил - сам сделал. Позади примерно 40 часов труда, впереди - неувядаемая слава и почёт труженика. Поехали!</p>
+<p>Для торопливых сразу ссылка на <a href="https://github.com/bskydive/rxjs-aj4vwd-stackblitz">код библиотеки операторов</a>, а для самых торопливых - ссылка на <a href="https://stackblitz.com/edit/rxjs-aj4vwd?file=README.md">облачный сервис с развёрнутым кодом</a>.</p>
+<p>Для тех, кто ещё остался, кратенько попытаюсь обосновать зачем я потратил своё время. Итак, вначале был гугл. Можно долго и увлекательно бултыхаться в пёстрых статьях, но чем дальше заплываешь, тем больше тонешь.</p>
+<p>Чёткое и выверенное изложение материала, как правило, доступно за деньги. А кроме того, обёрнуто увесистой программой обучения для увеличения стоимости. И при этом никто не даёт гарантий того, что это поможет решить ваши задачи. Ведь никто не знает какие конкретно задачи вам предстоит решить <code>;)</code>.</p>
+<p>Вот мы и пришли к задаче. Она простая - надо приспособить код фронта к генератору случайных контрактов API. Т.е. крепко изучить комбинацию потоков наблюдаемых значений -Observables. По пути, конечно, эти значения надо обложить обработчиками ошибок, интерфейсами, тестами, заглушками, авторизацией, нарезкой для листалки(pager), и, конечно же, классной крутилкой(load spinner) &quot;ваше мнение очень важно для нас&quot;. И это не считая линтеров, соглашений по коду, архитектуры модулей и сервисов. Забегая вперёд, хочу отметить - мой стек Angular/Typescript, потому техническая часть будет именно оттуда.</p>
+<p>В основе этого &quot;простейшего&quot; действия - получить данные с сервера лежат операторы RxJs. Их задача облегчить разработку и сопровождение нашего кода, но у них есть и &quot;тёмная&quot; сторона. Операторов много, очень-очень много. И вариантов их использования, и параметров, и особенностей исполнения тоже очень много.</p>
+<p>При попытке решить практическую задачу находишь пример. Он, конечно же, написан с использованием техник и операторов, которые не знакомы, а зачастую с ошибками. Или код примера банально устарел, и в текущей версии RxJs не работает. Да, более старые, &quot;накликанные&quot; и &quot;нацитированные&quot; годами ссылки будут всегда верхними в выдаче. И тогда начинается сборка коллекции кодовелосипедов в &quot;свободное&quot; время.</p>
+<p>Для того, чтобы быстрее понять как работает тот или иной оператор была написана библиотека примеров. Они максимально похожи друг на друга, чтобы их можно было быстро понимать и комбинировать. В практических задачах именно комбинация операторов отнимает больше всего времени. Их подбор и отладка - вот это вот то, ради чего написано 100+ примеров.</p>
+<p>Группировка операторов
+<a href="https://github.com/bskydive/rxjs-aj4vwd-stackblitz/blob/master/src/buffering.ts">buffering.ts</a> - Операторы буферизации buffer*, window*
+<a href="https://github.com/bskydive/rxjs-aj4vwd-stackblitz/blob/master/src/erroring.ts"><code>erroring.ts</code></a> - Операторы обработки ошибок
+<a href="https://github.com/bskydive/rxjs-aj4vwd-stackblitz/blob/master/src/filtering.ts">filtering.ts</a> - Операторы фильтрации
+<a href="https://github.com/bskydive/rxjs-aj4vwd-stackblitz/blob/master/src/grouping.ts">grouping.ts</a> - Операторы группировки потоков и значений
+<a href="https://github.com/bskydive/rxjs-aj4vwd-stackblitz/blob/master/src/multicasting.ts">multicasting.ts</a> - Операторы асинхронного/параллельного запуска потоков(распыления)
+<a href="https://github.com/bskydive/rxjs-aj4vwd-stackblitz/blob/master/src/testing.ts">testing.ts</a> - Операторы тестирования. Не реализовано.
+<a href="https://github.com/bskydive/rxjs-aj4vwd-stackblitz/blob/master/src/timing.ts">timing.ts</a> - Операторы времени, продолжительности и значений
+<a href="https://github.com/bskydive/rxjs-aj4vwd-stackblitz/blob/master/src/tooling.ts">tooling.ts</a> - Операторы вспоможения в трудах
+<a href="https://github.com/bskydive/rxjs-aj4vwd-stackblitz/blob/master/src/transforming.ts">transforming.ts</a> - Операторы трансформации потоков и значений
+<a href="https://github.com/bskydive/rxjs-aj4vwd-stackblitz/blob/master/src/utils.ts">utils.ts</a> - Интерфейсы и служебные функции</p>
+<h2 id="%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA-%D1%82%D0%BE%D0%B3%D0%BE-%D0%BA-%D1%87%D0%B5%D0%BC%D1%83-%D0%B2%D1%8B-%D1%81%D0%B0%D0%BC%D0%B8-%D0%BC%D0%BE%D0%B6%D0%B5%D1%82%D0%B5-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B8%D1%82%D1%8C-%D1%80%D1%83%D0%BA%D1%83todo">Список того, к чему вы сами можете приложить руку(TODO)</h2>
+<ul>
+<li>заполнить для всех примеров к объект: запуск, результат, тэги, описание, аналоги</li>
+<li>сделать конфигуратор операторов: тип входных значений, выходных, преобразования, аналоги</li>
+<li>заменить жаргонизмы на точное обозначение &quot;подписывается, имитирует, ...&quot;(рытьё исходников)</li>
+<li>добавить ссылки на https://www.learnrxjs.io/ и https://rxmarbles.com/ в описания всех операторов</li>
+<li>привести примеры <code>multicasting</code> к массовому варианту запуска в <code>index.ts</code></li>
+<li>заполнить примерами новый файл <code>testing.ts</code> https://medium.com/@kevinkreuzer/marble-testing-with-rxjs-testing-utils-3ae36ac3346a</li>
+<li>написать тесты для всех примеров</li>
+<li>добавить в описания операторов их более простые аналоги/комбинации</li>
+</ul>
+<h2 id="%D0%BA%D0%B0%D0%BA-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D1%8C-%D0%B1%D0%B8%D0%B1%D0%BB%D0%B8%D0%BE%D1%82%D0%B5%D0%BA%D1%83">Как использовать библиотеку</h2>
+<p>Примеры разбиты на файлы, чтобы не сводить с ума линтеры, и собраны в index.ts через экспорт массивов для реализации в будущем автотестов.</p>
+<p>Запуск всех примеров выключен(закомментирован). Чтобы их запустить - надо раскомментировать подписку subscribe. Для генерации входного потока данных вручную сделана кнопка <code>&lt;button id=&quot;id-tight-button&quot;&gt;</code> в <code>index.html</code></p>
+<p>Можно <a href="https://github.com/bskydive/rxjs-aj4vwd-stackblitz">открыть в IDE</a>, а можно через chrome в облаке <a href="https://stackblitz.com/edit/rxjs-aj4vwd">stackblitz</a>.</p>
+<p>Необходимые операторы ищутся Ctrl+f, в конце добавляем $ к названию оператора. Например <code>switchMap$</code>. Также операторы видны в &quot;структуре кода&quot; - специальном окне IDE. Перед каждым примером есть небольшое описание и результат выполнения. Чтобы заглушить ненужный входной поток достаточно дописать в начале <code>*.pipe(*</code> оператор <code>take(0)</code></p>
+<ul>
+<li>В облаке stackblitz:
+<ul>
+<li>обновить страницу(stackblitz)</li>
+<li>раскомментировать <code>*$.subscribe(*</code> строку необходимого оператора</li>
+<li>открыть консоль встроенного браузера(stackblitz)</li>
+</ul>
+</li>
+<li>Локально в IDE:<pre class="hljs"><code><div>	git <span class="hljs-built_in">clone</span> https://github.com/bskydive/rxjs-aj4vwd-stackblitz.git
+	<span class="hljs-built_in">cd</span> rxjs-aj4vwd-stackblitz
+	npm i
+	npm run b
+</div></code></pre>
+</li>
+<li>Список плагинов VSCode, которые относятся к теме:
+<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin">TSLint</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">eslint</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=WakaTime.vscode-wakatime">учёт времени с привязкой к git wakatime</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=hangxingliu.vscode-coding-tracker">открытый аналог локально</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=softwaredotcom.swdc-vscode">открытый аналог локально для подсчёта эффективности без привязки к веткам и коммитам</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="%D1%87%D1%82%D0%BE-%D1%85%D0%BE%D1%80%D0%BE%D1%88%D0%BE">Что хорошо</h2>
+<ul>
+<li>Содержит полный список правильных способов <code>import {}</code>. Вроде бы мелочь, но автоимпорт не всегда работает корректно.</li>
+<li>входные значения всегда потоки с интервалами, изредка - простые значения. Это имитирует боевые условия. Во многих примерах даются <code>of(1,2,3)</code>, которые работают совсем иначе, чем <code>interval()</code>. Например, в примерах со <code>switchMap</code> - простые значения не дают понять, что предыдущий поток может быть закрыт. <code>src/transforming.ts:881(switchMap3$)</code></li>
+<li>Выводится ожидаемое время имитации значения в потоке <code>interval(101).pipe(map(item=&gt;item*101))</code>.</li>
+<li>Интервалы имитации разведены на миллисекунду: 101, 102, 202, 203. Всегда понятно когда и в каком порядке должно быть имитировано значение.</li>
+<li>К значениям из одного потока добавляются унифицированные постфиксы <code>'-1' | '-2' | '-dynamic'</code>, чтобы легче было читать вывод в консоли.</li>
+<li>В примерах оставлены закомментированные операторы логирования для отладки <code>tap(logAll)</code></li>
+<li>Строка <code>mergeMapSrc2$.subscribe((item) =&gt; logAll('получил: ', item), null, () =&gt; logAll('mergeMap2 поток закрыт'));</code> унифицирована для облегчения рефакторинга</li>
+<li>операторы <code>endWith('…')</code> помогают понять когда происходит завершение(отписка) потока</li>
+<li>выполняется как в консоли, так и в онлайн редакторе. Некоторые примеры работают только в браузере, когда необходимо его API, например, <code>src/timing.ts:144(observeOn$)</code> или <code>src/filtering.ts:225(takeUntil$)</code></li>
+<li>большое, очень большое количество операторов. 101 оператор разобран в 108 примерах</li>
+<li>все примеры рабочие и готовы к копипасту</li>
+<li>примеры многопоточные</li>
+</ul>
+<h2 id="%D1%87%D1%82%D0%BE-%D0%BF%D0%BB%D0%BE%D1%85%D0%BE">Что плохо</h2>
+<ul>
+<li>Не весь код универсально-одинаковый. Самый неодинаковый в примерах распыления <code>multicasting.ts</code>. Также в некоторых местах необходимо делать <code>JSON.stringify</code> в типовых <code>*$.subscribe(*</code></li>
+<li>Объём работы конский, потому, извиняйте, не всё сделано идеально. Было несколько подходов к рефакторингу, после которых я не выверял заново все примеры. Да, они рабочие, но вывод может отличаться от написанного в JSDoc</li>
+<li>Описания операторов в тексте могут быть не вполне корректны. Главное здесь - рабочий код, а не его описание. Чтобы выверить описание необходимо в разы больше примеров, и перелопачивание исходников.</li>
+</ul>
+<h2 id="%D1%82%D0%B8%D0%BF%D0%BE%D0%B2%D0%BE%D0%B9-%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D1%80">Типовой пример</h2>
+<p>Типовой пример описания оператора RxJs. <a href="https://gist.github.com/bskydive/c9a497198fb3604774cdfe5b78f1813e">GIST</a></p>
+<pre class="hljs"><code><div>	<span class="hljs-keyword">const</span> auditProbe$ = <span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> { <span class="hljs-comment">// функция-аргумент для передачи в оператор</span>
+		logAll(<span class="hljs-string">'проверка: '</span> + item); <span class="hljs-comment">// для отладки пишем полученное значение</span>
+		<span class="hljs-keyword">return</span> interval(<span class="hljs-number">300</span>).pipe(take(<span class="hljs-number">3</span>)); <span class="hljs-comment">// возвращаем наблюдатель. В данном случае - для имитации трёх значений. </span>
+		<span class="hljs-comment">//.pipe(take(X)) - хорошее правило для ограничения утечек памяти</span>
+	}
+
+	<span class="hljs-keyword">const</span> audit2$ = interval(<span class="hljs-number">102</span>).pipe( <span class="hljs-comment">// поток для отладки оператора</span>
+		take(<span class="hljs-number">10</span>), <span class="hljs-comment">// ограничиваем количество значений</span>
+		map(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> item * <span class="hljs-number">102</span>), <span class="hljs-comment">// делаем значения человеко-понятными, выводим время их имитации в мсек, выбрали 102 вместо 100 чтобы не было случайных гонок асинхронных потоков(перестраховка)</span>
+		tap(logAll), <span class="hljs-comment">// выводим сырые значения перед отправкой в недра исследуемого оператора</span>
+		audit(auditProbe$) <span class="hljs-comment">// исследуемый оператор</span>
+	)
+
+	<span class="hljs-keyword">const</span> audit1$ = interval(<span class="hljs-number">101</span>).pipe( <span class="hljs-comment">// контрольный поток для сравнения, без оператора для исследования</span>
+		take(<span class="hljs-number">10</span>),
+		map(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> item * <span class="hljs-number">101</span> + <span class="hljs-string">'-control'</span>), <span class="hljs-comment">// добавляем постфикс для облегчения чтения отладки</span>
+	)
+
+	<span class="hljs-keyword">const</span> audit$ = of(audit1$, audit2$).pipe( <span class="hljs-comment">// одновременно запускаем два потока</span>
+		mergeAll(), <span class="hljs-comment">// собираем значения потоков в один, "конвертируем" потоки в значения</span>
+	);
+
+	<span class="hljs-comment">//запускаем потоки и выводим всё в консоль. префиксы нужны, чтобы понимать, что значение долетело до конца</span>
+	audit$.subscribe(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> 
+		logAll(<span class="hljs-string">'получил: '</span>, item), <span class="hljs-comment">// пишем всё, что получили по сигналу next().</span>
+		err =&gt; logAll(<span class="hljs-string">'ошибка:'</span>, err), <span class="hljs-comment">// пишем что прилетело по сигналу error()</span>
+		() =&gt; logAll(<span class="hljs-string">'audit поток закрыт'</span>) <span class="hljs-comment">// пишем когда прилетело complete(). Отдельно указываем какой именно оператор закончил тестирование, чтобы быстрее ловить другие ошибочно не закоментированные операторы</span>
+	);
+</div></code></pre>
+<h2 id="%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F-%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B0-%D0%BA%D0%BE%D0%B4%D0%B0">Автоматическая проверка кода</h2>
+<p>По ходу дела я прикрутил в проект два линтера и несколько наборов правил:</p>
+<ul>
+<li>сорян, но табы. Они позволяют настраивать каждому своё отображение, не меняя код в репе.</li>
+<li>именование файлов в шашлычном стиле</li>
+<li>именование интерфейсов с префиксом <code>I</code></li>
+<li>многие правила <code>es/ts lint</code> дублируются, часть отключено в одном из двух, но большинство оставлено, т.к. непонятно как конкретно работают правила, и непонятно что лучше.</li>
+<li>правила форматирования переведены в <code>severity: warn</code>.</li>
+<li>нельзя оставлять в коде <code>console.log()</code></li>
+<li><a href="https://medium.com/@benlesh/observables-and-finnish-notation-df8356ed1c9b">Финская нотация</a>. Да, она через линтер помогает, например, не проглядеть тип значений внутри операторов <code>map(item=&gt;item... | map(item$=&gt;item$...</code> , т.к. вместо объекта может прилететь <code>Observable</code>, и это не всегда отлавливается TSLint.</li>
+<li>перелопатил <a href="https://eslint.org/docs/rules/">все правила eslint</a>, и добавил что добавилось. Искал правило для <a href="https://github.com/bskydive/angular-docdja">сложного</a> <a href="https://stackblitz.com/edit/angular-docdja">случая</a>, который периодически трепал мне нервы. Не нашёл <img class="emoji" alt="frowning" src="data:image/png;base64,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" />.</li>
+<li><a href="https://github.com/cartant/rxjs-tslint-rules#rules">rxjs-tslint-rules</a></li>
+<li><a href="https://github.com/mgechev/codelyzer">codelyzer for Angular</a></li>
+<li><a href="https://medium.com/burak-tasci/angular-tslint-rules-a-configuration-preset-for-both-tslint-codelyzer-8b5fa1455908">angular-tslint-rules: a configuration preset for both TSLint &amp; codelyzer</a></li>
+<li><a href="https://blog.angularindepth.com/rxjs-avoiding-takeuntil-leaks-fb5182d047ef">RxJs: Avoiding takeUntil Leaks</a></li>
+<li><a href="https://medium.com/free-code-camp/best-practices-for-a-clean-and-performant-angular-application-288e7b39eb6f">Best practices for a clean and performant Angular application</a></li>
+</ul>
+<h2 id="%D0%BF%D0%BE%D0%BB%D0%B5%D0%B7%D0%BD%D1%8B%D0%B5-%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B8">Полезные ссылки</h2>
+<ul>
+<li><a href="https://app.pluralsight.com/library/courses/rxjs-operators-by-example-playbook">Платный курс</a>, который можно посмотреть за время бесплатного доступа. Главное вспомнить отвязать банковскую карту до его окончания. Из этого курса я взял список операторов и их группировку.</li>
+<li><a href="https://www.learnrxjs.io/">Примеры операторов RxJs</a> Не все рабочие.</li>
+<li><a href="https://rxmarbles.com/">Графические примеры операторов RxJs</a></li>
+<li><a href="http://reactivex.io/documentation/operators.html">ReactiveX документация</a></li>
+<li><a href="https://rxjs-dev.firebaseapp.com/api">RxJs документация</a></li>
+</ul>
+<p>Это в большей степени конструктор, чем учебное пособие. Прочитав код, вы вряд ли его запомните. Лучше добавить или поменять в этом коде что-то на свой лад.</p>
+<p>Это был не только конструктор, но и пример создания таких конструкторов. Полезных себе и другим. Кроме того, здесь есть что ещё поделать, это хорошая основа для крутых учебников, конфигураторов или библиотек с примерами.
+Впереди более сложный вид конструктора - приложение с библиотекой компонентов и хранилищем <code>ngrx</code>. Для затравки - <a href="https://itnext.io/choosing-a-highly-scalable-folder-structure-in-angular-d987de65ec7">годная статья</a></p>
+
+</body>
+</html>
