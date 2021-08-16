@@ -3,10 +3,60 @@
 ## sync
 
  * [Настройки в github](https://gist.github.com/bskydive/8878b3d6d3e679358935d34983d9ffe1)
+ * Gist ID: 85bd451c247d9e960ba40440150d6cd5
  * [Плагин для синхронизации настроек с github](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync)
  * для перехода по ссылокам: alt+ctrl+click
 
+```json
+	"workbench.iconTheme": "vscode-icons",
+    "workbench.colorTheme": "Darcula",
+    "editor.minimap.enabled": false,
+    "editor.lineNumbers": "off",
+    "vsicons.dontShowNewVersionMessage": true,
+    "files.autoSave": "afterDelay",
+    "eslint.validate": ["javascript", "typescript"],
+    "eslint.alwaysShowStatus": true,
+    "gitlens.defaultDateStyle": "absolute",
+    "gitlens.defaultDateFormat": "DD.MM.YYYY HH.mm.ss",
+    "workbench.activityBar.visible": true,
+    "breadcrumbs.enabled": true,
+    "cSpell.allowCompoundWords": true,
+    "editor.foldingStrategy": "indentation",
+    "markdown.preview.breaks": true,
+    "vsicons.projectDetection.disableDetect": true,
+    "overtype.abbreviatedStatus": true,
+    "editor.renderWhitespace": "selection",
+    "editor.semanticHighlighting.enabled": true,
+    "editor.copyWithSyntaxHighlighting": false,
+    "editor.emptySelectionClipboard": false,
+    "terminal.integrated.copyOnSelection": true,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.formatOnPaste": false,
+    "editor.fontFamily": "'Source Code Pro', 'monospace', monospace",
+    "editor.fontSize": 15,
+    "editor.wordWrap": "wordWrapColumn",
+    "html.format.wrapAttributes": "force-expand-multiline",
+    "editor.accessibilitySupport": "off",
+    "window.zoomLevel": 0,
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    "sync.gist": "85bd451c247d9e960ba40440150d6cd5",
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.fontLigatures": false,
+```
+
 ## грабли
+
+ * `/etc/zypp/vscode.repo`
+
+	```bash
+		[vscode]
+		enabled=1
+		autorefresh=0
+		baseurl=https://packages.microsoft.com/yumrepos/vscode
+	```
 
  * во встроенном терминале локаль английская 
 	```bash
