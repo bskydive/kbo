@@ -1,8 +1,6 @@
 # Angular
 
-* это чистовик - конспект
 * вопросы для подготовки к собесу
-* база знаний
 * черновик - /frontend/framework/angular2.md
 
 ## Angular

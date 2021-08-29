@@ -79,37 +79,36 @@ su - postgres -c "psql -U userlist_user -d userlist_db --password"
 ## postgres on debian
 
 ```bash
-#wget -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
-#wget -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | apt-key add -
+	#wget -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
+	#wget -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | apt-key add -
 
-#cat >> /etc/apt/sources.list.d/pgdg.list
-#apt-get install sudo aptitude pgdg-keyring libssl libssl1.0.0 libssl1.0.0-dbg libpq5 postgresql-9.1
+	#cat >> /etc/apt/sources.list.d/pgdg.list
+	#apt-get install sudo aptitude pgdg-keyring libssl libssl1.0.0 libssl1.0.0-dbg libpq5 postgresql-9.1
 
-dpkg-reconfigure locales
+	dpkg-reconfigure locales
 
-aptitude install postgresql
-The following NEW packages will be installed:
-  libpq5{a} postgresql postgresql-9.1{a} postgresql-client-9.1{a} postgresql-client-common{a} postgresql-common{a} ssl-cert{a}
+	aptitude install postgresql
+	The following NEW packages will be installed:
+	libpq5{a} postgresql postgresql-9.1{a} postgresql-client-9.1{a} postgresql-client-common{a} postgresql-common{a} ssl-cert{a}
 
-echo $LANG
+	echo $LANG
 
-su - postgres
-psql
-show lc_collate;
+	su - postgres
+	psql
+	show lc_collate;
 
 
-#pg_dropcluster --stop 9.1 main
-#pg_createcluster --locale en_US.UTF-8 --start 9.1 main
+	#pg_dropcluster --stop 9.1 main
+	#pg_createcluster --locale en_US.UTF-8 --start 9.1 main
 
-mcedit /etc/postgresql/9.1/main/pg_hba.conf
+	mcedit /etc/postgresql/9.1/main/pg_hba.conf
 
-local   all             postgres                                peer
-# TYPE  DATABASE        USER            ADDRESS                 METHOD
-# "local" is for Unix domain socket connections only
-local   all             all                                     trust
-# IPv4 local connections:
-host    all             all             127.0.0.1/32            trust
-
+	local   all             postgres                                peer
+	# TYPE  DATABASE        USER            ADDRESS                 METHOD
+	# "local" is for Unix domain socket connections only
+	local   all             all                                     trust
+	# IPv4 local connections:
+	host    all             all             127.0.0.1/32            trust
 
 ```
 
