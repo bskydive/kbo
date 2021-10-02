@@ -1,5 +1,6 @@
 # Battle cards
 
+How to make discussions better
 
 ## Documentation
 
