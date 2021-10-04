@@ -107,6 +107,15 @@
  * [малоизвестные команды](https://habr.com/ru/company/mailru/blog/318508/)
  * http://mindspill.net/computing/linux-notes/git-notes/
 
+### модифицированные файлы
+
+```bash
+git status -uno --porcelain
+# added not shown
+git diff --name-only --diff-filter=ATCMR
+git ls-files -m
+```
+
 ### log
 
  * коммиты и Комментарии на дату ститистика
