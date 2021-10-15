@@ -310,7 +310,7 @@ git merge upstream/master
  * спрятать изменения
 	```bash
 		git stash 
-		git stash list
+		git stash list --date=local
 		git stash apply stash@{0}
 		git stash apply 0
 		git stash drop stash@{0}
