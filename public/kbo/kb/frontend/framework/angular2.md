@@ -15,6 +15,25 @@
 	* 7 - drag and drop, node v10, service worker
 	* 8 - webworker, ES6 импорт модулей `()=>`
 	* 9 - Ivy по-умолчанию, ullTemplateTypeCheck, strictTemplates в tsc
+		```
+			https://blog.angular.io/angular-cli-strict-mode-c94ba5965f63
+			https://angular.io/guide/strict-mode
+			https://angular.io/guide/template-typecheck#troubleshooting-template-errors
+			flags recommended by the TypeScript team. Specifically, strict, forceConsistentCasingInFileNames, noImplicitReturns, noFallthroughCasesInSwitch
+			in tsconfig.json: 
+				strictPropertyInitialization
+				strictNullChecks
+				noImplicitAny
+				strictBindCallApply
+				strictFunctionTypes
+			Angular compiler flags strictTemplates and strictInjectionParameters
+
+		    tsconfig.json:
+			"compilerOptions": { ... },
+			"angularCompilerOptions": {
+				"strictTemplates": true,
+				"fullTemplateTypeCheck": true, // old? https://stackoverflow.com/questions/33668739/type-checking-in-angular-2-templates
+		```
 	* 10 - исправили 700 и посмотрели 2000 ошибок, компонент диапазона дат
 * [сравнение версий 2-8](https://medium.com/@lifenshades/difference-among-angular-8-7-6-5-4-3-2-breakdown-new-features-and-changes-811fb5f8e6f0)
 * сравнение comparison с [angularjs](https://www.techaheadcorp.com/blog/angular-vs-angularjs/)
