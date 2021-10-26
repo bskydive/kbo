@@ -120,3 +120,4 @@ http://habrahabr.ru/company/selectel/blog/248207/
 		PROMPT_COMMAND='if [ $? -ne 0 ]; then ERROR_FLAG=1; else ERROR_FLAG=; fi; '
 
 	```
+* stderr `cmd | tee -a file.log 2>&1`
