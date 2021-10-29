@@ -150,6 +150,15 @@ git ls-files -m
 	```bash
 		git log -1 --format='DEV: %cd #%h' --date=format:'%c' > version.txt
 	```
+### git diff patch
+
+```bash
+
+g format-patch -1 94cb8415ef1834000f0f4da95232a2ac7cb0e8a4
+git apply patch
+
+```
+
 ### git push
 
 ```bash
