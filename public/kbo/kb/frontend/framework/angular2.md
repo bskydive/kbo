@@ -414,7 +414,14 @@
 			}
 		}
 	```
-
+ * controlValueAccessor
+	* https://netbasal.com/attribute-directives-angular-forms-b40503643089
+	* [Angular Custom Form Controls: Complete Guide - angular university 2021](https://blog.angular-university.io/angular-custom-form-controls/)
+	* [Angular Forms - Kara Erickson - AngularConnect 2017](https://youtu.be/CD_t3m2WMM8?t=1411)
+	* https://stackoverflow.com/questions/45536108/access-valid-value-of-custom-form-control#
+	* https://stackoverflow.com/questions/45755958/how-to-get-formcontrol-instance-from-controlvalueaccessor
+	* [ControlValueAccessor и contenteditable в Angular tinkoff](https://habr.com/ru/company/tinkoff/blog/443714/)
+	* https://stackoverflow.com/questions/39809084/injecting-ngcontrol-in-custom-validator-directive-causes-cyclic-dependency
 ## проекция projection
 
  * ng-content

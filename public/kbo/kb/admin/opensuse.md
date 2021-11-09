@@ -685,6 +685,8 @@ Code:
  * yed
  * настроить внешнюю видеокамеру/микрофон
  * git, kgit, git-gui
+ * утилиты консоли
+ * убрать boot splash screen
  * vscode https://code.visualstudio.com/docs/setup/linux#_visual-studio-code-is-unable-to-watch-for-file-changes-in-this-large-workspace-error-enospc
 	```bash
 		cat /etc/sysctl.d/vscode.sysctl.conf
