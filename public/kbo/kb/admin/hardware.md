@@ -45,6 +45,12 @@ https://github.com/hsoft/collapseos
  * [Casil CA1213 ](http://www.ups-mag.ru/catalog/battery/casil/ca1213/ )
 
 
+## мобильники
+
+ * [Веб-сервер на старом смартфоне Android](https://habr.com/ru/company/first/blog/586910/)
+	* https://github.com/meefik/linuxdeploy
+	* https://termux.com/
+	* https://www.urbackup.org/download.html
 
 ## ноутбуки
 
