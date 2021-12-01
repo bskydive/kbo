@@ -23,7 +23,11 @@
 
 ## фигуры
 
-[стрелки](https://freebiesupply.com/blog/css-arrows/)
+* [стрелки](https://freebiesupply.com/blog/css-arrows/)
+* clip-path обрезка 
+	* [как понять свойство clip-path](https://habr.com/ru/company/skillfactory/blog/539064/)
+	* https://bennettfeely.com/clippy/ `clip-path: polygon(21% 0, 78% 0, 100% 100%, 0% 100%);`
+	* [overlapping css tabs](https://codepen.io/raymassie/pen/NMELNP)
 
 ## обзоры, лучшие практики
 
@@ -36,7 +40,7 @@
  * https://mrmlnc.gitbooks.io/less-guidebook-for-beginners/content/chapter_2/media-queries.html
  * [специфичность не каскад](http://css-live.ru/css/nikto-ne-znaet-css-specifichnost-ne-kaskad.html)
  * [специфичность по рыбам](http://www.standardista.com/css3/css-specificity/)
- * [специфичность по стхм](https://stuffandnonsense.co.uk/archives/css_specificity_wars.html)
+ * [специфичность по ситхам](https://stuffandnonsense.co.uk/archives/css_specificity_wars.html)
  * [сильные стороны css](http://css-live.ru/articles/ustojchivyj-deklarativnyj-kontekstnyj-novyj-vzglyad-na-silnye-storony-css.html)
  * [ограничения сокращённой записи свойств](https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties#Tricky_edge_cases)
  * [ТОП-6 рецептов на чистом HTML и CSS без использования JS](https://proglib.io/p/html-css-tricks/)

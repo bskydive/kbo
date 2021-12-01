@@ -39,6 +39,14 @@
  * [HTTP/2 уже здесь но спрайт-сеты ещё не умерли. перевод](https://habrahabr.ru/post/308862/)
  * [Что надо знать о HTTP/2 2016 Майоров](https://www.youtube.com/watch?v=4yyhqMh9FcY)
 
+## iframe
+
+ * загружает по ссылке, можно текст из URL BLOB https://dev.to/pulljosh/how-to-load-html-css-and-js-code-into-an-iframe-2blc
+ * [Исчерпывающий путеводитель по тегу iframe](https://habr.com/ru/post/488516/)
+ * https://blog.theodo.com/2018/01/responsive-iframes-css-trick/
+ * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe
+ * 
+
 ## favicon
 
 https://mobiforge.com/design-development/adding-favicons-in-a-multi-browser-multi-platform-world
