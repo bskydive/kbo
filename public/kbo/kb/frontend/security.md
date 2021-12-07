@@ -116,7 +116,10 @@ body {
 
 ##  web sec
 
-https://habrahabr.ru/company/ruvds/blog/346442/
+* [How to Implement Security HTTP Headers to Prevent Vulnerabilities](https://geekflare.com/http-header-implementation/)
+* [Как использовать HTTP заголовки для предупреждения уязвимостей](https://habr.com/ru/company/hosting-cafe/blog/315802/)
+	* `X-Content-Type-Options: nosniff`
+* https://habrahabr.ru/company/ruvds/blog/346442/
 
 ```js
 var devtools = /./;

@@ -62,6 +62,20 @@
 	```
  * https://www.npmjs.com/package/ng-bullet - может глючить Spy потому что они не обнуляются
 
+
+### async test асинхронные
+
+ * Чтобы тесты rxjs+DOM нормально заработали, надо 
+	* добавить в src/test.ts строку `import 'zone.js/dist/zone-patch-rxjs-fake-async';`
+	* не забыть подключить стили и сторонние библиотеки в секцию angular.json—>projects.architect.test.options
+ * https://angular.io/guide/testing-components-scenarios#using-the-rxjs-scheduler-inside-fakeasync
+ * https://stackoverflow.com/questions/43060886/angular-2-fakeasync-waiting-for-timeout-in-a-function-using-tick
+ * https://dev.to/itnext/tools-for-rxjs-code-unit-testing-in-angular-8-apps-free-udemy-video-course-3bbj
+ * https://medium.com/angular-in-depth/how-to-test-observables-a00038c7faad
+ * 
+ * 
+ * 
+
 ### jest
 
  * [Тестирование JavaScript кода с Jest для чайников. Часть 1](https://habr.com/ru/post/502302/)
@@ -210,12 +224,14 @@ cypress-test/tsconfig.cypress.json:include
 	* http://mochajs.org/
  * Sinon для проверки запуска функций и методов;
  * JSDOM для проверки функций, работающих с DOM;
+ * эмулятор macos/ios https://github.com/actions/virtual-environments/blob/main/images/macos/macos-10.15-Readme.md
 
 ## e2e
 
  * [Е2Е тестирование Койна](https://bespoyasov.ru/blog/coin-e2e-with-cypress/)
     * https://www.cypress.io/
  
+
 ##  кроссбраузерность
 
  * http://www.browsrcamp.com/

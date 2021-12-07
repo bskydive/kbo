@@ -106,6 +106,12 @@
 
  * [малоизвестные команды](https://habr.com/ru/company/mailru/blog/318508/)
  * http://mindspill.net/computing/linux-notes/git-notes/
+ * git reset 
+ 	* https://git-scm.com/book/ru/v2/Инструменты-Git-Раскрытие-тайн-reset
+
+	```
+		Обратите внимание, изменяется не сам HEAD (что происходит при выполнении команды checkout); reset перемещает ветку, на которую указывает HEAD. Таким образом, если HEAD указывает на ветку master (то есть вы сейчас работаете с веткой master), выполнение команды git reset 9e5e6a4 сделает так, что master будет указывать на 9e5e6a4.
+	```
 
 ### модифицированные файлы
 

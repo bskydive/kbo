@@ -347,6 +347,7 @@
 	* DOM/JS ?
 1. В чем отличие СontentChild vs ViewChild.
 	* [СontentChild](https://angular.io/guide/lifecycle-hooks#responding-to-projected-content-changes)
+		* DOM
 		* ng-content внешний HTML, transclusion, content projection
 		* доступ после ngContentInit
 		* прямой доступ в DOM нежелательно использовать при рендеринге на сервере из-за ИБ
@@ -359,6 +360,7 @@
 		* Any provider defined through a string token (e.g. @ViewChild('someToken') someTokenVal: any)
 		* A TemplateRef (e.g. query <ng-template></ng-template> with @ViewChild(TemplateRef) template;)
 	* [viewchild](https://medium.com/technofunnel/angular-viewchild-and-viewchildren-fde2d252b9ab) для доступа к DOM после рендеринга afterViewInit
+		* shadowDom
 		* https://angular.io/api/core/ViewChild
 		* https://angular.io/guide/glossary#view-hierarchy
 		* https://angular.io/guide/lifecycle-hooks#responding-to-view-changes
@@ -466,6 +468,7 @@
 	* https://web.dev/faster-angular-change-detection/
 	* https://angular.io/api/core/ChangeDetectorRef#usage-notes
 	* ангуляр манкипатчит browser API - mouse/input/keyb events, xhr, promise, async/await, webworkers,
+	* распространяется на вложенные компоненты
 	* default ("CheckAlways") - the change detector goes through the view hierarchy on each VM turn to check every data-bound property in the template. In the first phase, it compares the current state of the dependent data with the previous state, and collects changes. In the second phase, it updates the page DOM to reflect any new data values.
 	* OnPush ("CheckOnce") - ручная проверка doCheck, поменялась @Input ссылка(не значение), DOM event(input) для связанных свойств, async pipe(rxjs, promise)
 		```ts
