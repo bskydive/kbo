@@ -15,6 +15,25 @@
 	* 7 - drag and drop, node v10, service worker
 	* 8 - webworker, ES6 импорт модулей `()=>`
 	* 9 - Ivy по-умолчанию, ullTemplateTypeCheck, strictTemplates в tsc
+		```
+			https://blog.angular.io/angular-cli-strict-mode-c94ba5965f63
+			https://angular.io/guide/strict-mode
+			https://angular.io/guide/template-typecheck#troubleshooting-template-errors
+			flags recommended by the TypeScript team. Specifically, strict, forceConsistentCasingInFileNames, noImplicitReturns, noFallthroughCasesInSwitch
+			in tsconfig.json: 
+				strictPropertyInitialization
+				strictNullChecks
+				noImplicitAny
+				strictBindCallApply
+				strictFunctionTypes
+			Angular compiler flags strictTemplates and strictInjectionParameters
+
+		    tsconfig.json:
+			"compilerOptions": { ... },
+			"angularCompilerOptions": {
+				"strictTemplates": true,
+				"fullTemplateTypeCheck": true, // old? https://stackoverflow.com/questions/33668739/type-checking-in-angular-2-templates
+		```
 	* 10 - исправили 700 и посмотрели 2000 ошибок, компонент диапазона дат
 * [сравнение версий 2-8](https://medium.com/@lifenshades/difference-among-angular-8-7-6-5-4-3-2-breakdown-new-features-and-changes-811fb5f8e6f0)
 * сравнение comparison с [angularjs](https://www.techaheadcorp.com/blog/angular-vs-angularjs/)
@@ -357,10 +376,22 @@
  * https://medium.com/angular-in-depth/reducing-the-forms-boilerplate-make-your-angular-forms-reusable-ee06d7c07f47
  * https://blog.angulartraining.com/dynamic-filtering-with-rxjs-and-angular-forms-a-tutorial-6daa3c44076a
  * https://bubtaylor.com/loading-angular-reactive-forms-809b7774159a?gi=a2c92d54e3df
+ * https://github.com/ngneat/forms-manager
+ * https://blog.thoughtram.io/angular/2016/07/27/custom-form-controls-in-angular-2.html
+ * template driven привязывают данные в html тэгах как параметры DOM, а весь код генерируют во время исполнения
+ * reactive driven привязывают данные в js при помощи специальных классов, поэтому можно писать свои валидаторы, делать синхронные и асинхронные(через собственный наблюдатель) валидации
+ * [ошибка линтера Angular FormControl.errors.required](https://github.com/angular/vscode-ng-language-service/issues/149)
+ * [Angular Forms: Useful Tips](https://medium.com/angular-in-depth/angular-forms-useful-tips-9f3a9826292e) 2020
+ * [pipes in reactive forms](https://stackoverflow.com/questions/49522542/how-to-use-pipes-in-angular-5-reactive-form-input) `[value]="formGroup.get('rental').value | currency`
+
+### forms validation
+
+ * [forms validation](https://netbasal.com/make-your-angular-forms-error-messages-magically-appear-1e32350b7fa5)
  * https://medium.com/swlh/advanced-form-validation-with-angular-and-joi-6630f76cf8ad
  * https://medium.com/angular-in-depth/new-way-to-validate-the-angular-reactive-form-2c4fe4f13373
  * https://indepth.dev/posts/1310/creating-elegant-reactive-forms-with-rxwebvalidators
- * https://github.com/ngneat/forms-manager
+ * [model driven form](https://github.com/rxweb/rxweb/tree/master/client-side/angular/packages/reactive-form-validators#readme)
+ * [валидация номера телефона](https://github.com/google/libphonenumber)
 
 ## directive components
 
@@ -395,7 +426,14 @@
 			}
 		}
 	```
-
+ * controlValueAccessor
+	* https://netbasal.com/attribute-directives-angular-forms-b40503643089
+	* [Angular Custom Form Controls: Complete Guide - angular university 2021](https://blog.angular-university.io/angular-custom-form-controls/)
+	* [Angular Forms - Kara Erickson - AngularConnect 2017](https://youtu.be/CD_t3m2WMM8?t=1411)
+	* https://stackoverflow.com/questions/45536108/access-valid-value-of-custom-form-control#
+	* https://stackoverflow.com/questions/45755958/how-to-get-formcontrol-instance-from-controlvalueaccessor
+	* [ControlValueAccessor и contenteditable в Angular tinkoff](https://habr.com/ru/company/tinkoff/blog/443714/)
+	* https://stackoverflow.com/questions/39809084/injecting-ngcontrol-in-custom-validator-directive-causes-cyclic-dependency
 ## проекция projection
 
  * ng-content
@@ -472,17 +510,6 @@
  * https://indepth.dev/posts/1379/angular-router-revealing-some-interesting-facts-and-features
  * [Определение маршрутов](https://metanit.com/web/angular2/7.1.php)
  
-
-## reactive forms control
-
- * [model driven form](https://github.com/rxweb/rxweb/tree/master/client-side/angular/packages/)reactive-form-validators#readme
- * https://blog.thoughtram.io/angular/2016/07/27/custom-form-controls-in-angular-2.html
- * template driven привязывают данные в html тэгах как параметры DOM, а весь код генерируют во время исполнения
- * reactive driven привязывают данные в js при помощи специальных классов, поэтому можно писать свои валидаторы, делать синхронные и асинхронные(через собственный наблюдатель) валидации
- * [forms validation](https://netbasal.com/make-your-angular-forms-error-messages-magically-appear-1e32350b7fa5)
- * [ошибка линтера Angular FormControl.errors.required](https://github.com/angular/vscode-ng-language-service/issues/149)
- * [Angular Forms: Useful Tips](https://medium.com/angular-in-depth/angular-forms-useful-tips-9f3a9826292e) 2020
- * [pipes in reactive forms](https://stackoverflow.com/questions/49522542/how-to-use-pipes-in-angular-5-reactive-form-input) `[value]="formGroup.get('rental').value | currency`
 
 ## angular6
 

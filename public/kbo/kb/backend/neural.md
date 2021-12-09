@@ -20,6 +20,7 @@
  * https://proglib.io/p/deep-learning-tricks/
  * [лекции по ИИ московского энергитического института http://vuz.exponenta.ru/](https://www.youtube.com/watch?v=W7ux1RfOQeM&list=PLPltKsCTLqkxxwRUJGapnp3JzwYH8auSc)
  * [Временные ряды в прогнозировании спроса, нагрузки на КЦ, товарных рекомендациях и поиске аномалий](https://habr.com/ru/post/477206)
+ * [Борщевик ГИС и Python](https://habr.com/ru/post/589909/)
 
 ## биоинформатика
 

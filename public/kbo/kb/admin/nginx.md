@@ -16,7 +16,8 @@
 	```bash
 		openssl req -text -noout -verify -in 5353333.csr 
 		openssl rsa -check -in 5353333.key
-		openssl x509 -enddate -noout -in 5353333/www_stepanovv_ru.crt
+		# openssl verify -noout -in 5353333/www_stepanovv_ru.crt
+		openssl x509 -dates -noout -in 5353333/www_stepanovv_ru.crt
 
 		cat 5353333/www_stepanovv_ru.crt > stepanovv.ru.chained.crt
 		cat 5353333/www_stepanovv_ru.ca-bundle >> stepanovv.ru.chained.crt

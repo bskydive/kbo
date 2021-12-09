@@ -685,6 +685,8 @@ Code:
  * yed
  * настроить внешнюю видеокамеру/микрофон
  * git, kgit, git-gui
+ * утилиты консоли
+ * убрать boot splash screen
  * vscode https://code.visualstudio.com/docs/setup/linux#_visual-studio-code-is-unable-to-watch-for-file-changes-in-this-large-workspace-error-enospc
 	```bash
 		cat /etc/sysctl.d/vscode.sysctl.conf
@@ -866,6 +868,31 @@ x11uselocalhost no
 
 ## firefox
 
+* https://wiki.archlinux.org/title/firefox#Hardware_video_acceleration
+
+	```
+		Hardware video acceleration via VA-API is available under Wayland [4] and Xorg [5] [6].
+
+		To enable VA-API in Firefox:
+
+			Ensure that your video card is correctly configured for VA-API:
+				See Hardware video acceleration for steps to verify and install VA-API drivers if required.
+			Ensure WebRender is enabled.
+				Verify WebRender is enabled by opening about:support and then Compositing. It is enabled by default in GNOME and other desktop environments [7].
+					Ensure you are not running Software WebRender as that won't work as of August 2021 [8]. If necessary WebRender can be force enabled as explained in /Tweaks#Enable WebRender compositor.
+			Set the following flags in about:config:
+				media.ffmpeg.vaapi.enabled to true in order to enable the use of VA-API with FFmpeg.
+				media.ffvpx.enabled to false to disable the internal decoders for VP8/VP9. This is necessary despite this bug being fixed [9][10].
+				media.navigator.mediadatadecoder_vpx_enabled to true to enable hardware VA-API decoding for WebRTC [11].
+				media.rdd-vpx.enabled to false to disable the remote data decoder process for VP8/VP9. Firefox attempts to use the RDD process for VP8/VP9 but the RDD sandbox blocks VA-API access [12]. Disabling the remote data decoder for VP8/VP9 process means VA-API will run in the content process instead. The best solution is to move VA-API to the GPU process [13].
+					Another possible workaround is to completely disable the RDD process by setting media.rdd-process.enabled to false, instead of just disabling it for VP8/VP9 as above.
+				On Intel, in some cases VA-API might not work with the Intel iHD driver intel-media-driver. This might be workaroundable by using the Intel i965 driver libva-intel-driver. This workaround does not work anymore with Intel Iris Xe graphics, which are only supported by intel-media-driver, only solution there is to wait until Firefox implements a GPU process for X11/Wayland (planned FF94) [14] [15] [16].
+					As a last resort, the content process sandbox can be disabled. However, this is a serious security risk and disables protection against attackers. It is recommended to leave the sandbox settings as default [17]. Nevertheless, to disable the content sandbox set security.sandbox.content.level to 0 [18].
+			Run Firefox with the following environment variable enabled:
+				In Wayland, with MOZ_ENABLE_WAYLAND=1, see #Wayland.
+				In X.org, since 94, Firefox will run in EGL mode by default which is sufficient [19].
+					For older releases, in X.org, enable EGL with MOZ_X11_EGL=1 or set gfx.x11-egl.force-enabled to true and gfx.x11-egl.force-disabled to false in about:config.
+	```
 
 * `about:config`
 * `app.update.elevation.promptMaxAttempts`
@@ -1196,10 +1223,10 @@ pbzip2
 
 ### external folder
 
-[Mounts all shares to /home/user1/shares](https://docs.vmware.com/en/VMware-Workstation-Pro/14.0/com.vmware.ws.using.doc/GUID-AB5C80FE-9B8A-4899-8186-3DB8201B1758.html)
+[Mounts all shares](https://docs.vmware.com/en/VMware-Workstation-Pro/14.0/com.vmware.ws.using.doc/GUID-AB5C80FE-9B8A-4899-8186-3DB8201B1758.html)
 
 ```bash
-/usr/bin/vmhgfs-fuse .host:/ /home/user1/shares -o subtype=vmhgfs-fuse,allow_other
+/usr/bin/vmhgfs-fuse .host:/ /mnt/hgfs -o subtype=vmhgfs-fuse,allow_other
 ```
 по-умолчанию `mnt/hgfs`
 

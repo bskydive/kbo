@@ -477,6 +477,18 @@ https://stateofjs.com/2017/front-end/results
  * [The Essential Guide To JavaScript's Newest Data Type: BigInt 2019](https://www.smashingmagazine.com/2019/07/essential-guide-javascript-newest-data-type-bigint/)
  * https://github.com/MikeMcl/bignumber.js/
 
+
+## строки string
+
+ * https://stackoverflow.com/questions/9932957/how-can-i-remove-a-character-from-a-string-using-javascript
+
+ ```js
+	value.split(',').join('')
+	// 
+ ```
+
+ * https://tproger.ru/articles/metody-strok-v-javascript-shpargalka-dlja-nachinajushhih/
+
 ## типы данных
 
  * [maybe](https://dev.to/aminnairi/the-maybe-data-type-in-javascript-3bj8)
