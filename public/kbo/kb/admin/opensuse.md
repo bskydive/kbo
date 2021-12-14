@@ -1341,14 +1341,14 @@ dbus-launch vncserver
 
 service vnc1
 {
-        socket_type     = stream
-        protocol        = tcp
-        wait            = no
-        user            = bsk
-        server          = /usr/bin/Xvnc
-        server_args     = -noreset -inetd -once -query localhost -geometry 1024x768 -depth 16 -rfbauth /home/bsk/.vnc/passwd
-        type            = UNLISTED
-        port            = 5901
+	socket_type     = stream
+	protocol        = tcp
+	wait            = no
+	user            = bsk
+	server          = /usr/bin/Xvnc
+	server_args     = -noreset -inetd -once -query localhost -geometry 1024x768 -depth 16 -rfbauth /home/bsk/.vnc/passwd
+	type            = UNLISTED
+	port            = 5901
 }
 
 zypper in x11vnc

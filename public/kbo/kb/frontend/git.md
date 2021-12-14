@@ -328,7 +328,7 @@ git merge upstream/master
 		git stash list --date=local
 		git stash apply stash@{0}
 		git stash apply 0
-		git stash drop stash@{0}
+		git stash drop 0
 		git stash list
 	```
 
