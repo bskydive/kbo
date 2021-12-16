@@ -45,7 +45,7 @@
  * [Исчерпывающий путеводитель по тегу iframe](https://habr.com/ru/post/488516/)
  * https://blog.theodo.com/2018/01/responsive-iframes-css-trick/
  * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe
- * 
+ * https://javascript.info/cross-window-communication
 
 ## favicon
 
