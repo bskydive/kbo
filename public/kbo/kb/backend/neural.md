@@ -22,6 +22,11 @@
  * [Временные ряды в прогнозировании спроса, нагрузки на КЦ, товарных рекомендациях и поиске аномалий](https://habr.com/ru/post/477206)
  * [Борщевик ГИС и Python](https://habr.com/ru/post/589909/)
 
+
+## data mining
+
+ * https://habrahabr.ru/users/i_shutov/posts/
+
 ## биоинформатика
 
  * [разговор с Гольфандом](https://habr.com/ru/post/476164)
