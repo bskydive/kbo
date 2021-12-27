@@ -62,12 +62,14 @@
 		* Improved the project architecture by creating bunch of the standard component/service/gateway/model abstract classes
 		* 1 year of communication on English: regular team meetings, demo sessions, daily standup with the customer or team members
 		* 1 time rewarded by extra payment for excellence in delivery
-		* Created the detailed analysis of technical debt(now,1 year ago, comparison) with the improvement plan for a 1 day
+		* Created the technical debt(now,1 year ago, comparison) detailed analysis of big(200k+ lines, 6+ years) project with the improvement plan for a 1 day
 		* Developed the code conventions with automatic checking by linter tool
 		* Updated the documentation for easier new team members onboarding
 		* Preformed refactoring and created components/services for business features
 		* Showed great approach to work in highly unstable situation around
 		* Developed the PoC/MVP in real product
+		* Performed 2 open source candidates projects code quality check as a JS community member
+		* Proposed and helped to apply several ideas for remoter's community improvement
 
  * Apr-2016 - Jul-2019 (3 years+)
 	* Grade: Middle frontend developer
