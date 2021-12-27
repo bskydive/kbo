@@ -101,7 +101,6 @@
 	 * MALEVICH - все UI данные в объекте для быстрой смены фреймворка
  * https://blog.bitsrc.io/an-opinionated-styleguide-for-angular-af623d54e2b8
  * https://itnext.io/building-an-enterprise-grade-angular-project-structure-f5be32533ba3
- * [Angular Folder Structure](https://medium.com/@motcowley/angular-folder-structure-d1809be95542)
  * [Angular 6 Best Practices Application Directory Structure](https://infinityknow.com/angular-6-best-practices-application-directory-structure/)
  * [5 Tips to improve User Experience of your Angular app with NgRx](https://medium.com/angular-in-depth/5-tips-to-improve-user-experience-of-your-angular-app-with-ngrx-6e849ca99529)
 	 *	three Actions are required for any API call:
@@ -113,10 +112,45 @@
 	* Optimistic interactions with the UI
  * [Keeping browser tabs in sync using localStorage, NgRx, and RxJS](https://medium.com/angular-in-depth/keeping-browser-tabs-in-sync-using-localstorage-ngrx-and-rxjs-87de3bca4e2c)
  * [Best practices for a clean and performant Angular application](https://medium.com/free-code-camp/best-practices-for-a-clean-and-performant-angular-application-288e7b39eb6f)
+ * [Angular Folder Structure](https://medium.com/@motcowley/angular-folder-structure-d1809be95542)
  * [How to define a highly scalable folder structure for your Angular project](https://itnext.io/choosing-a-highly-scalable-folder-structure-in-angular-d987de65ec7)
 	* https://angular-folder-structure.readthedocs.io
 	* https://github.com/mathisGarberg/angular-folder-structure
- * 
+ * [High scalable folder structure in angular applications](https://medium.com/edataconsulting/high-scalable-folder-structure-in-angular-applications-a50b55f94350)
+	```
+		src
+		|-- app
+			|-- core
+			|-- [+] guards
+			|-- [+] interceptors
+			|-- [+] services
+			|-- core.module.ts
+			|-- shared
+				|-- components
+					|-- header
+					|-- footer
+					|-- button
+				|-- [+] pipes
+				|-- [+] directives
+				|-- [+] models
+			|-- features
+			|-- home
+				|-- [+] components
+				|-- [+] services
+				|-- home-routing.module.ts
+				|-- home.module.ts
+			|-- awesome-widget
+				|-- [+] components
+				|-- [+] services
+				|-- [+] models
+				|-- awesome-widget.module.ts
+			app.component.html
+			app.component.css
+			app.component.spec.ts
+			app.component.ts
+			app.module.ts
+			app-routing.module.ts
+	```
 
 ## performance оптимизация и утечки памяти производительность
 
