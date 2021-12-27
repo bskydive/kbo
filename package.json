@@ -12,7 +12,14 @@
 		"img": "gulp img",
 		"web-stop": "gulp web-stop",
 		"web-start": "gulp web-start",
-		"web-list": "pm2 l"
+		"web-list": "pm2 l",
+		"start": "http-server public",
+		"articles-spell": "yaspeller -c public/articles/.yaspellerrc.json public/articles/public",
+		"articles-html": "showdown makehtml -i public/articles/public/**/*.md -o public/articles/public/**/*.html",
+		"kbo-init": "docsify init public/kbo1 --local --theme dark",
+		"kbo-serve": "docsify serve public/kbo --open=false --port=3001",
+		"kbo-test": "echo \"Error: no test specified\" && exit 1",
+		"kbo-styl": "cd ./src/docsify/themes/; stylus -c < dark1.styl > ../dark1.css"
 	},
 	"engines": {
 		"node": "10.15.3"
@@ -21,6 +28,7 @@
 		"@types/node": "^12.7.1",
 		"@typescript-eslint/parser": "^2.1.0",
 		"codelyzer": "^5.1.0",
+		"docsify-cli": "^4.4.3",
 		"eslint": "^6.1.0",
 		"eslint-config-standard": "^14.1.0",
 		"eslint-plugin-import": "^2.18.2",
@@ -42,11 +50,15 @@
 		"gulp-strip-comments": "^2.5.1",
 		"gulp-stylus": "^2.7.0",
 		"gulp-sync": "^0.1.4",
+		"http-server": "^14.0.0",
 		"rxjs-tslint-rules": "^4.24.3",
+		"showdown": "^1.9.1",
+		"stylus": "^0.54.5",
 		"ts-node": "^8.3.0",
 		"tslint": "^5.18.0",
 		"tslint-angular": "^3.0.2",
 		"typescript": "^3.5.3",
-		"vue-styleguidist": "^1.7.7"
+		"vue-styleguidist": "^1.7.7",
+		"yaspeller": "^8.0.0"
 	}
 }
