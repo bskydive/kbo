@@ -689,11 +689,12 @@ Code:
  * убрать boot splash screen
  * vscode https://code.visualstudio.com/docs/setup/linux#_visual-studio-code-is-unable-to-watch-for-file-changes-in-this-large-workspace-error-enospc
 	```bash
-		cat /etc/sysctl.d/vscode.sysctl.conf
+		cat > /etc/sysctl.d/vscode.sysctl.conf
 		# fs.inotify.max_user_watches=524288
 		# fs.file-max=1632119
 		sysctl -p
 		sysctl --system
+		sysctl fs.inotify.max_user_watches
 		cat /proc/sys/fs/inotify/max_user_watches
 		sysctl fs.file-max
 

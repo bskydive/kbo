@@ -332,6 +332,15 @@ git merge upstream/master
 		git stash list
 	```
 
+### git squash rebase
+
+ * https://htmlacademy.ru/blog/boost/tools/how-to-squash-commits-and-why-it-is-needed
+ 
+ ```bash
+	git rebase -i 123456 # коммит после крайнего
+	# git add
+ 	git rebase --continue
+ ```
 
 ## workflow
 
