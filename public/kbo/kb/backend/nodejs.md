@@ -70,6 +70,9 @@ WantedBy=multi-user.target
 ## API
 
  * [Портирование API на TypeScript как способ решения проблем](https://habr.com/ru/company/ruvds/blog/499664/)
+ * [Node.js: документирование и визуализация API с помощью Swagger](https://habr.com/ru/company/timeweb/blog/594081/)
+	* https://www.npmjs.com/package/swagger-autogen
+	* https://www.npmjs.com/package/swagger-ui-express
 
 ## REST API
 
@@ -92,6 +95,9 @@ WantedBy=multi-user.target
  * [Full Stack Authentication: Cookies and Local Storage React+express](https://www.taniarascia.com/full-stack-cookies-localstorage-react-express/)
  * http://www.passportjs.org/ 300+ authentication strategies
  * [Криптография](https://nodejsdev.ru/doc/cryptography/)
+ * [Node.js: шаблон сервера для аутентификации и авторизации](https://habr.com/ru/post/593063)
+	* https://github.com/panva/node-oidc-provider
+	* https://auth0.com/
 
 ## db
 

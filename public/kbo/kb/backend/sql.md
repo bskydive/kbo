@@ -20,6 +20,21 @@
  * [denis.beskov](http://database-design.livejournal.com/)
  * http://www.databaseanswers.org/data_models/
 
+## СУБД
+
+ * реляционные (MySQL, PostgreSQL)
+ * документоориентированные (MongoDB)
+ * key-value (Redis, Memcache)
+ * колоночные (Clickhouse) и wide-column (Cassandra, ScyllaDB)
+ * NewSQL (CockroachDB, TiDB)
+ * графовые (Neo4j, Dgraph)
+ * полнотекстовые (Elasticsearch, Sphinx)
+ * control-plane (ZooKeeper, Consul, Etcd)
+
+## message-brokers
+
+ * основные это: RabbitMQ, Kafka и Pulsar
+ * zeroMQ
 
 ## облачные калькуляторы
 
