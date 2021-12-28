@@ -34,15 +34,15 @@ window.$docsify = {
 		noData: 'Нет данных',
 		// paths: ['/'], //not work
 		depth: 3 // Headline depth, 1 - 6
-		// 	// // Localization
-		// 	// placeholder: {
-		// 	// 	// '/en-us/': 'Type to search',
-		// 	// 	'/': 'Type to search'
-		// 	// },
-		// 	// noData: {
-		// 	// 	// '/en-us/': 'No results',
-		// 	// 	'/': 'No Results'
-		// 	// }
+		// // Localization
+		// placeholder: {
+		// 	// '/en-us/': 'Type to search',
+		// 	'/': 'Type to search'
+		// },
+		// noData: {
+		// 	// '/en-us/': 'No results',
+		// 	'/': 'No Results'
+		// }
 	},
 	plugins: [
 		function (hook, vm) {

@@ -23,6 +23,8 @@
 	 * [angular](kb/frontend/angular/angular.md)
 	 * [ngrx](kb/frontend/angular/ngrx.md)
 	 * [rxjs](kb/frontend/angular/rxjs.md)
+ * React
+	 * [react](kb/frontend/react)
 	 * []()
  * Фронт
 	 * [фронт](kb/frontend/frontend.md)
