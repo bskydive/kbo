@@ -49,7 +49,7 @@ window.$docsify = {
 			hook.beforeEach(function (html) {
 				var url = 'https://gitlab.com/stepanovv/kbo/tree/master/public/kbo/' + vm.route.file
 				var editHtml = '[Редактировать](' + url + ')\n'
-				return html + '\n\n----\n\n' + '| Изменён {docsify-updated} | ' + editHtml + ' | '
+				return html + '\n\n----\n\n' + '| Репозиторий изменён {docsify-updated} | ' + editHtml + ' | '
 			})
 		}
 	]
