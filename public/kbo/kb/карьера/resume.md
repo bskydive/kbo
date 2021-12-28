@@ -1,7 +1,7 @@
 # Resume
 
  * Valeriy Stepanov - Senior Software Engineer
- * [pdf](resume.pdf)
+ * [pdf](https://stepanovv.ru/kbo/kb/карьера/resume.pdf)
 
 ## Summary of skills
  * frontend web developer, with a relevant specialist degree.
