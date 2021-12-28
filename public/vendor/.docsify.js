@@ -34,22 +34,22 @@ window.$docsify = {
 		noData: 'Нет данных',
 		// paths: ['/'], //not work
 		depth: 3 // Headline depth, 1 - 6
-		// 	// // Localization
-		// 	// placeholder: {
-		// 	// 	// '/en-us/': 'Type to search',
-		// 	// 	'/': 'Type to search'
-		// 	// },
-		// 	// noData: {
-		// 	// 	// '/en-us/': 'No results',
-		// 	// 	'/': 'No Results'
-		// 	// }
+		// // Localization
+		// placeholder: {
+		// 	// '/en-us/': 'Type to search',
+		// 	'/': 'Type to search'
+		// },
+		// noData: {
+		// 	// '/en-us/': 'No results',
+		// 	'/': 'No Results'
+		// }
 	},
 	plugins: [
 		function (hook, vm) {
 			hook.beforeEach(function (html) {
 				var url = 'https://gitlab.com/stepanovv/kbo/tree/master/public/kbo/' + vm.route.file
 				var editHtml = '[Редактировать](' + url + ')\n'
-				return html + '\n\n----\n\n' + '| Изменён {docsify-updated} | ' + editHtml + ' | '
+				return html + '\n\n----\n\n' + '| Репозиторий изменён {docsify-updated} | ' + editHtml + ' | '
 			})
 		}
 	]

@@ -16,10 +16,9 @@
 		"start": "http-server public",
 		"articles-spell": "yaspeller -c public/articles/.yaspellerrc.json public/articles/public",
 		"articles-html": "showdown makehtml -i public/articles/public/**/*.md -o public/articles/public/**/*.html",
-		"kbo-init": "docsify init public/kbo1 --local --theme dark",
-		"kbo-serve": "docsify serve public/kbo --open=false --port=3001",
-		"kbo-test": "echo \"Error: no test specified\" && exit 1",
-		"kbo-styl": "cd ./src/docsify/themes/; stylus -c < dark1.styl > ../dark1.css"
+		"kb-init": "docsify init public/docsify-init --local --theme dark",
+		"kb-test": "echo \"Error: no test specified\" && exit 1",
+		"kb-styl": "cd ./src/docsify/themes/; stylus -c < dark1.styl > ../../../public/vendor/themes/dark1.css"
 	},
 	"engines": {
 		"node": "10.15.3"
