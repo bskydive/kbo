@@ -33,8 +33,7 @@
  * Подписка на RSS
 
 ## Как помочь
- * [Отблагодарить деньгами](http://yasobe.ru/na/wiki_svv)
- * [Передать свои знания или попросить меня более подробно описать тему](https://stepanovv.ru/contacts)
+ * [Передать свои знания или попросить меня более подробно описать тему](https://stepanovv.ru/portfolio/portfolio.html#id-contacts)
 
 ## Новости
 
