@@ -23,6 +23,8 @@
 	 * [angular](kb/frontend/angular/angular.md)
 	 * [ngrx](kb/frontend/angular/ngrx.md)
 	 * [rxjs](kb/frontend/angular/rxjs.md)
+ * React
+	 * [react](kb/frontend/react)
 	 * []()
  * Фронт
 	 * [фронт](kb/frontend/frontend.md)
@@ -96,6 +98,8 @@
  * Карьера
 	 * [вопросы работодателю](kb/карьера/вопросы-работодателю.md)
 	 * [вопросы работодателю проект](kb/карьера/вопросы-работодателю-проект.md)
+	 * [резюме Рус](kb/карьера/резюме.md)
+	 * [resume Eng](kb/карьера/resume.md)
 	 * [тестирование](kb/карьера/тестирование.md)
 	 * [писатель](kb/карьера/писатель.md)
 	 * [повар](kb/карьера/повар.md)

@@ -3,7 +3,7 @@
 ### What is this?
 
 This is my identity, contacts and code examples preview page.
-Also, I'm using it as a bookmarking service.
+Also, I'm using it as a bookmarking service starting from the 2014.
 
 ### What is this repository for?
 
@@ -56,10 +56,32 @@ Also, I'm using it as a bookmarking service.
  * init docsify
 	```bash
 	 	npm run kbo-init
-		npm run kbo-serve
 	```
- * download highlight plugin [PrismJS](https://prismjs.com/download.html#themes=prism-dark&languages=markup+css+clike+javascript+bash+java+javadoc+javadoclike+jsdoc+js-templates+less+markdown+pug+python+jsx+tsx+sass+scss+stylus+typescript+yaml&plugins=line-numbers+show-language+toolbar+match-braces) to `vendor/`
- * download theme https://raw.githubusercontent.com/sushantrahate/docsify-darkly-theme/master/css/darkly.min.css
+ * [BROKEN] js+css [PrismJS](https://prismjs.com/download.html#themes=prism-dark&languages=markup+css+clike+javascript+bash+java+javadoc+javadoclike+jsdoc+json+json5+less+markdown+pug+python+sass+scss+stylus+typescript+yaml&plugins=toolbar+download-button) to `vendor/`
+ *  download highlight plugin js except `core`: https://cdn.jsdelivr.net/npm/prismjs@1/components/
+	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-bash.min.js
+	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-css.min.js
+	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-css-extras.min.js
+	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-java.min.js
+	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-javadoc.min.js
+	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-javascript.min.js
+	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-js-extras.min.js
+	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-jsdoc.min.js
+	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-json.min.js
+	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-jsx.min.js
+	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-less.min.js
+	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-log.min.js
+	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-markdown.min.js
+	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-markup.min.js
+	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-markup-templating.min.js
+	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-pug.min.js
+	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-python.min.js
+	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-sass.min.js
+	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-scss.min.js
+	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-stylus.min.js
+	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-typescript.min.js
+	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-tsx.min.js
+	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-yaml.min.js
  * download plugins
 	* https://cdn.jsdelivr.net/npm/docsify-copy-code
 	* https://cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js
@@ -69,7 +91,7 @@ Also, I'm using it as a bookmarking service.
 	* https://fonts.google.com/specimen/Roboto+Mono?query=roboto#standard-styles
  * modify `./src/docsify/themes/dark.styl`
 	* 
-		```less
+		```styl
 			// @import url('https://fonts.googleapis.com/css?family=Roboto+Mono|Source+Sans+Pro:300,400,600')
 
 			// $color-primary = #ea6f5a
@@ -77,7 +99,7 @@ Also, I'm using it as a bookmarking service.
 		```
  * modify `./src/docsify/themes/basic/_layout.styl`
 
-	```less
+	```styl
 		.markdown-section tr
 			border-top 1px solid #ccc
 
@@ -96,18 +118,22 @@ Also, I'm using it as a bookmarking service.
  	```html
 		<head>
 			<!-- ... -->
-			<link  rel="stylesheet" href="vendor/themes/prism.css" />
-			<link rel="stylesheet" href="vendor/themes/dark1.css">
-			<link rel="stylesheet" href="vendor/themes/fonts1.css">
+			<link rel="stylesheet" href="../vendor/themes/dark1.css">
+			<link rel="stylesheet" href="../vendor/themes/fonts1.css">
+			<!-- <link rel="stylesheet" href="../vendor/themes/prism-line-numbers.css"> -->
 		</head>
 		<body>
 			<!-- ... -->
-			<script type='text/javascript' src="vendor/prism.js"></script>
-			<script type='text/javascript' src="vendor/.docsify.js"></script>
-			<script type='text/javascript' src="vendor/docsify-copy-code.min.js"></script>
-			<script type='text/javascript' src="vendor/search.min.js"></script>
-			<script type='text/javascript' src="vendor/zoom-image.min.js"></script>
-		</body>
+			<script defer type='text/javascript' src="../vendor/.docsify.js"></script>
+
+			<script defer type='text/javascript' src="../vendor/docsify.js"></script>
+			<script defer type='text/javascript' src="../vendor/docsify-copy-code.min.js"></script>
+			<script defer type='text/javascript' src="../vendor/search.min.js"></script>
+			<script defer type='text/javascript' src="../vendor/zoom-image.min.js"></script>
+
+			<script defer type='text/javascript' src="../vendor/prism-bash.min.js"></script>
+			<!-- ... -->
+
 	```
  * `npm run start` --> http://127.0.0.1:8080/kbo/
 
