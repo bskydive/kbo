@@ -15,7 +15,8 @@
 	* 7 - drag and drop, node v10, service worker
 	* 8 - webworker, ES6 импорт модулей `()=>`
 	* 9 - Ivy по-умолчанию, ullTemplateTypeCheck, strictTemplates в tsc
-		```
+
+		```json
 			https://blog.angular.io/angular-cli-strict-mode-c94ba5965f63
 			https://angular.io/guide/strict-mode
 			https://angular.io/guide/template-typecheck#troubleshooting-template-errors
