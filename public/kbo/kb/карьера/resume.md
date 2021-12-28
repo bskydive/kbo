@@ -95,7 +95,6 @@
 		* Developed UI components library
 		* Developed UI design in figma
 		* Preformed refactoring and created landing pages, components/services for business features
-		* Performed code refactoring
 		* Developed regression tests automation with phantom/webdriver
 		* Customized enterprise class data table(agGrid) component: styled, injected custom two-way interactive custom component
 
