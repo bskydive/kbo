@@ -1,6 +1,7 @@
 # Resume
 
-* Valeriy Stepanov - Senior Software Engineer
+ * Valeriy Stepanov - Senior Software Engineer
+ * [pdf](https://stepanovv.ru/kbo/kb/карьера/resume.pdf)
 
 ## Summary of skills
  * frontend web developer, with a relevant specialist degree.
@@ -97,6 +98,13 @@
 		* Performed code refactoring
 		* Developed regression tests automation with phantom/webdriver
 		* Customized enterprise class data table(agGrid) component: styled, injected custom two-way interactive custom component
+
+ * May 2014 - Apr 2016 (2 years)
+	* Grade: Software developer
+	* Stack: Java SE 7, Android SDK 4.x,  JavaScript, jQuery, CSS, HTML5, Linux
+	* Workplace: on-site/remotely, Moscow, Russian Federation
+	* Environment: ItelliJ IDEA IDE, Android studio IDE, JIRA, Confluence, Redmine, github
+	* Tasks performed: Self-learned Java and JS, part-time work, several pet projects
 
  * Nov 2008 - Apr 2014(5 years+)
 	* Grade: Enterprise IT software solutions architect
