@@ -14,5 +14,66 @@
 		* работает и на react native и в SSR
 		* фаза сравнение - reconciliation
 		* фаза отрисовки - render
+	* hooks
+		* useRef
+			* ссылка на элемент
+	* компоненты
+		* в компоненте может быть только один корневой тэг
+		* генерация компонентов через интерполяцию
+			```tsx
+				{values.map( value => <div>{value}</div>)}
+			```
+		* для генерируемых в цикле компонентов необходимо указывать key(ngFor trackBy)
+		* {props.children} (ng-content)
+
+		```tsx
+			import React from 'react;
+			import classes from 'myClasses.module.css';
+
+			const myComp = ({children, ...props}) => {
+				return (
+					<div ...props className={classes.myClass}>
+						{children}
+					</div>
+				)
+			}
+			export default myComp;
+		```
+		* props передаются во вложенные компоненты только от родителя к детям
+		* для обратного проброса props надо передать функцию обратного вызова
+		* условная отрисовка
+			```
+				<div>
+					{values.length > 0 ? <div>{values.length}</div> : <div>empty</div>}
+				</div>
+			```
+		* управляемый компонент
+			* прямое связывание через value
+			* обратное через onChange
+			```tsx
+				<input value={value} onChange={event => onChange(event.target.value)}></input>
+			```
+		* неуправляемый компонент
+			* прямое взаимодействие через hook useRef
+	* вложенные компоненты
+	* hooks
+		* useMemo
+			* мемоизация
+			* отрабатывает только при изменении зависимостей/параметров
+			```tsx
+				useMemo( () => factory: {/*...*/}, deps: [value1, value2])
+			```
+	* формы
+		* валидация
+	* RxJS
+		* 
+	* дизайн система
+		* библиотека компонентов
+		* общие переиспользуемые стили
+	* state management
+		* redux
+		* вложенные состояния
+		* разделение групп состояний
+		* передача данных между отдельными группами состояний
  * []()
 
