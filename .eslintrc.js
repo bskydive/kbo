@@ -23,6 +23,7 @@ module.exports = {
 		"import/no-duplicates": "warn", // весь импорт из одного файла в одной строке
 		// стиль
 		"no-console": "warn",
+		"array-bracket-spacing": "off",
 		"eqeqeq": "warn", // ===
 		"no-shadow": "error", // https://eslint.org/docs/rules/no-shadow
 		"no-multi-assign": "error", // https://eslint.org/docs/rules/no-multi-assign
