@@ -1,3 +1,6 @@
+
+(() => {
+
 'use strict';
 
 /**
@@ -9,14 +12,14 @@
  * 
  *
  * Использование:
- * ! установить node@10
+ * установить node@12+
+ * npm i -D postcss-assets autoprefixer usedcss cssnano gulp gulp-stylus gulp-pug gulp-concat gulp-strip-comments gulp-markdown gulp-rename gulp-exec del gulp-noop gulp-newer gulp-size gulp-imagemin gulp-postcss gulp-sourcemaps browser-sync
  * скопировать в папку с проектом
  * path***Src - пути к исходникам
  * path***Watch - пути к исходникам за которыми надо наблюдать. Надо наблюдать за всеми, но собирать только импортирующие других файлы.
  * path***Clean - что чистить перед пересборкой
  * path***Dest - куда пересобирать
  * отредактировать секцию =CONFIG=
- * установить зависимости из package.json
  * npm run w
  * http://127.0.0.1:8080
  * второй вариант не запускает режим наблюдения(watch):
@@ -28,6 +31,7 @@
  * умная очистка каталога сборки при режиме наблюдения(watch)
  * конвертация и умное объединение через include шаблонов pug в html с удалением комментариев
  * конвертация и объединение стилей stylus
+ * удаление ненужных стилей css и автопрефиксы
  * конвертация markdown в html для документации
  * копирование в папку сборки шрифтов
  * копирование в папку сборки с удалением комментариев скриптов js
@@ -41,23 +45,39 @@
 
 'use strict';
 
+
+let devBuild = ((process.env.NODE_ENV || 'development').trim().toLowerCase() === 'development');
+
 const gulp = require('gulp');
-const pug = require('gulp-pug');
-const clean = require('gulp-clean');
-const imagemin = require('gulp-imagemin');
-const sync = require('gulp-sync')(gulp);
-const replace = require('gulp-replace');
-//const less = require('gulp-less');
-const stylus = require('gulp-stylus');
-const concat = require('gulp-concat');
-const strip = require('gulp-strip-comments');
-const markdown = require('gulp-markdown');
-const markdownit = require('gulp-markdown-it');
-const rename = require('gulp-rename');
-const exec = require('gulp-exec');
+
+
+const stylusModule = require('gulp-stylus');
+const pugModule = require('gulp-pug');
+const concatModule = require('gulp-concat');
+const stripModule = require('gulp-strip-comments');
+const markdownModule = require('gulp-markdown');
+const renameModule = require('gulp-rename');
+const execModule = require('gulp-exec');
+const delModule = require('del');
+const noopModule = require('gulp-noop');
+const newerModule = require('gulp-newer');
+const sizeModule = require('gulp-size');
+const imageminModule = require('gulp-imagemin');
+const postcssModule = require('gulp-postcss');
+const sourcemapsModule = devBuild ? require('gulp-sourcemaps') : null;
+const browsersyncModule = devBuild ? require('browser-sync').create() : null;
+	// const sync = require('gulp-sync')(gulp);
+// const cleanModule = require('gulp-clean');
+	// const replace = require('gulp-replace');
+	// const less = require('gulp-less');
+	// const markdownit = require('gulp-markdown-it');
+	// const sass = require('gulp-stylus');
+
+
+console.log('Gulp', devBuild ? 'development' : 'production', 'build');
 
 /*================================================CONFIG===================================================*/
-
+// TODO сделать объект path:{}
 /**
  * Для вывода в консоль из команд gulp
  */
@@ -70,7 +90,7 @@ var reportOptions = {
 //для хостинга с особенностями нужен длинный префикс
 const staticPath = 'public/portfolio';
 // сайт имеет статические подсайты, потому корень выше папки сборки
-const webServePath = 'public';
+// const webServePath = 'public';
 //репозитории
 const gitRemoteMain = 'gl';
 const gitremoteReserve = 'bb';
@@ -115,116 +135,88 @@ function handleError(err) {
 }
 
 /*================================================IMAGEMIN=================================================*/
-gulp.task('img', ['clean-img'], function () {
-	return gulp.src(pathImgSrc)
-		.pipe(imagemin({
-			interlaced: true,
-			progressive: true,
-			optimizationLevel: 5,
-			svgoPlugins: [{
+	const imgConfig = {
+		interlaced: true,
+		progressive: true,
+		optimizationLevel: 5,
+		svgoPlugins: [{
 				removeViewBox: true
-			}]
-		}).on('error', handleError))
-		.pipe(gulp.dest(pathImgDest));
-});
+		}]
+	};
+
+	function img() {
+		return gulp.src(pathImgSrc)
+			.pipe(newerModule(pathImgDest))
+			.pipe(imageminModule(imgConfig))
+			.pipe(sizeModule({
+				showFiles: true
+			})
+			.on('error', handleError))
+			.pipe(gulp.dest(pathImgDest));
+	}
+	exports.img = gulp.series(cleanImg, img);
 
 /*================================================CLEAN====================================================*/
-gulp.task('clean', ['clean-dev', 'clean-img']);
 
-gulp.task('clean-dev', ['clean-font', 'clean-sounds', 'clean-css', 'clean-txt', 'clean-js', 'clean-html']);
+	function cleanFonts() { return delModule(pathFontsClean) }
+	function cleanSounds() { return delModule(pathSoundsClean) }
+	function cleanCss() { return delModule(pathCssClean) }
+	function cleanTxt() { return delModule(pathTxtClean) }
+	function cleanJs() { return delModule(pathJsClean) }
+	function cleanHtml() { return delModule(pathHtmlClean) }
+	function cleanImg() { return delModule(pathImgClean) }
 
-gulp.task('clean-font', function () {
-	return gulp.src(pathFontsClean, {
-			read: false
-		})
-		.pipe(clean());
-});
+	exports.cleanDev = gulp.series(
+		cleanFonts,
+		cleanSounds,
+		cleanCss,
+		cleanTxt,
+		cleanJs,
+		cleanHtml,
+	);
 
-gulp.task('clean-sounds', function () {
-	return gulp.src(pathSoundsClean, {
-			read: false
-		})
-		.pipe(clean());
-});
-
-gulp.task('clean-css', function () {
-	return gulp.src(pathCssClean, {
-			read: false
-		})
-		.pipe(clean());
-});
-
-gulp.task('clean-txt', function () {
-	return gulp.src(pathTxtClean, {
-			read: false
-		})
-		.pipe(clean());
-});
-
-gulp.task('clean-js', function () {
-	return gulp.src(pathJsClean, {
-			read: false
-		})
-		.pipe(clean());
-});
-
-gulp.task('clean-html', function () {
-	return gulp.src(pathHtmlClean, {
-			read: false
-		})
-		.pipe(clean());
-});
-
-gulp.task('clean-img', function () {
-	return gulp.src(pathImgClean, {
-			read: false
-		})
-		.pipe(clean());
-});
+	exports.clean = gulp.series(
+		cleanFonts,
+		cleanSounds,
+		cleanCss,
+		cleanTxt,
+		cleanJs,
+		cleanHtml,
+		cleanImg
+	);
 
 /*================================================JS=======================================================*/
-gulp.task('js', ['clean-js'], function () {
-	return gulp.src(pathJsSrc)
-		.pipe(strip())
-		.pipe(gulp.dest(pathJsDest));
-});
 
-///*================================================LESS=====================================================*/
-//gulp.task('less', ['clean-css','css'], function () {
-//	return gulp.src(['src/less/*.less', 'src/less/**/*.less', 'src/fonts/**/*.less'])
-//			.pipe(less({
-//				compress: false
-//			}))
-//			.pipe(concat('portfolio.css').on('error', handleError))
-//			//			.pipe(strip())
-//			.pipe(gulp.dest('./static/css'));
-//});
-//
-//gulp.task('css', function () {
-//	return gulp.src('src/css/*.css')
-//			//			.pipe(strip())
-//			.pipe(gulp.dest('./static/css'));
-//});
+	function js() {
+		return gulp.src(pathJsSrc)
+		.pipe(stripModule())
+		.pipe(gulp.dest(pathJsDest));
+	}
+
+	exports.js = gulp.series(cleanJs, js);
+
 
 /*================================================VERSION=================================================*/
 /**
  * Записываем версию предыдущего коммита в шапку сайта
  * Добавляем для напоминания префикс DEV:
  * */
-gulp.task('version-dev', function () {
+function versionDev() {
 	return gulp.src(pathHtmlDest)
-		// .pipe(exec("git log -1 --format='DEV: %cd #%h' --date=format:'%a %d.%m.%Y %H.%M.%S' > version.txt", {continueOnError: true}));
-		.pipe(exec("cd " + pathHtmlDest + ";git log -1 --format='DEV: %cd #%h' --date=format:'%c' > version.txt", {
+		// .pipe(execModule("git log -1 --format='DEV: %cd #%h' --date=format:'%a %d.%m.%Y %H.%M.%S' > version.txt", {continueOnError: true}));
+		.pipe(execModule("cd " + pathHtmlDest + ";git log -1 --format='DEV: %cd #%h' --date=format:'%c' > version.txt", {
 			continueOnError: true
 		}))
-		.pipe(exec("cd " + pathHtmlDest + ";echo \"sed 's/version-template/`cat version.txt`/' portfolio.html > portfolio.html.sed; mv portfolio.html.sed portfolio.html\" | bash", {
+		.pipe(execModule("cd " + pathHtmlDest + ";echo \"sed 's/version-template/`cat version.txt`/' portfolio.html > portfolio.html.sed; mv portfolio.html.sed portfolio.html\" | bash", {
 			continueOnError: true
 		}))
-		.pipe(exec("cd " + pathHtmlDest + ";grep -E 'DEV:|version' portfolio.html", {
+		.pipe(execModule("cd " + pathHtmlDest + ";grep -E 'DEV:|version' portfolio.html", {
 			continueOnError: true
 		}))
-		.pipe(exec.reporter(reportOptions))
-});
+		.pipe(execModule.reporter(reportOptions))
+};
+
+exports.versionDev = versionDev;
 
 /**
  * Записываем версию предыдущего коммита в шапку сайта
@@ -232,36 +224,37 @@ gulp.task('version-dev', function () {
  * пишем напоминалку-чеклист для тестирования
  * https://github.com/robrich/gulp-exec
  */
-gulp.task('version-prod', function (done) {
+function versionProd() {
 	console.log('Build done', '\n\nЧеклист: \n * npm run web-start или npm run w,\n * anchor-offset, \n * ссылки skills/nav/contacts/kb, \n * открыть на мобилке, \n * npm run web-stop, \n * npm run prod, \n * g cm "msg", \n * сделать PR на bitbucket,\n');
 
 	return gulp.src(pathHtmlDest)
-		//.pipe(exec("git log -1 --format='%cd #%h' --date=format:'%a %d.%m.%Y %H.%M.%S' > version.txt", { continueOnError: true }));
+		//execModule("git log -1 --format='%cd #%h' --date=format:'%a %d.%m.%Y %H.%M.%S' > version.txt", { continueOnError: true }));
 		//сохраняем если что-то забыли
-		// .pipe(exec("git commit -am 'commit-prod'", { continueOnError: true }))
-		// .pipe(exec.reporter(reportOptions))
+		// .pipe(execModule("git commit -am 'commit-prod'", { continueOnError: true }))
+		// .pipe(execModule.reporter(reportOptions))
 		//пишем версию коммита
-		.pipe(exec("cd " + pathHtmlDest + ";git log -1 --format='%cd #%h' --date=format:'%c' > version.txt", {
+		.pipe(execModule("cd " + pathHtmlDest + ";git log -1 --format='%cd #%h' --date=format:'%c' > version.txt", {
 			continueOnError: true
 		}))
-		.pipe(exec.reporter(reportOptions))
+		.pipe(execModule.reporter(reportOptions))
 		//читаем версию коммита и пишем в portfolio.html
-		.pipe(exec("cd " + pathHtmlDest + ";echo \"sed 's/version-template/`cat version.txt`/' portfolio.html > portfolio.html.sed; mv portfolio.html.sed portfolio.html\" | bash", {
+		.pipe(execModule("cd " + pathHtmlDest + ";echo \"sed 's/version-template/`cat version.txt`/' portfolio.html > portfolio.html.sed; mv portfolio.html.sed portfolio.html\" | bash", {
 			continueOnError: true
 		}))
-		.pipe(exec.reporter(reportOptions))
+		.pipe(execModule.reporter(reportOptions))
 		//выводим в консоль то что записали
-		.pipe(exec("cd " + pathHtmlDest + ";grep -E 'DEV:|version' portfolio.html", {
+		.pipe(execModule("cd " + pathHtmlDest + ";grep -E 'DEV:|version' portfolio.html", {
 			continueOnError: true
 		}))
-		.pipe(exec.reporter(reportOptions))
+		.pipe(execModule.reporter(reportOptions))
 		//отправляем на сервер в develop
-		.pipe(exec(`git commit -am 'commit-version';git push ${gitRemoteMain} develop;git push ${gitremoteReserve} develop`, {
+		.pipe(execModule(`git commit -am 'commit-version';git push ${gitRemoteMain} develop;git push ${gitremoteReserve} develop`, {
 			continueOnError: true
 		}))
-		.pipe(exec.reporter(reportOptions));
-	// done();
-});
+		.pipe(execModule.reporter(reportOptions));
+};
+
+exports.versionProd = versionProd;
 
 /*================================================WEBSERVER================================================*/
 ///**
@@ -274,37 +267,93 @@ gulp.task('version-prod', function (done) {
 //	'pm2 start http-server -- -c-1 -a localhost -p 8080 ./public/portfolio',
 //	'pm2 info http-server'
 
-gulp.task('web-stop', function () {
-	return gulp.src(webServePath)
-		.pipe(exec('bash web-stop.sh', {
-			continueOnError: true
-		}))
-		// .pipe(exec.reporter(reportOptions));
-});
+// gulp.task('web-stop', function () {
+// 	return gulp.src(webServePath)
+// 		.pipe(execModule('bash web-stop.sh', {
+// 			continueOnError: true
+// 		}))
+// 		// .pipe(execModule.reporter(reportOptions));
+// });
 
-gulp.task('web-start', ['web-stop'], function () {
-	// console.log('http://localhost:8080/portfolio.html')
-	return gulp.src(webServePath)
-		.pipe(exec('bash web-start.sh ' + webServePath, {
-			continueOnError: true
-		}))
-		.pipe(exec.reporter(reportOptions));
-});
+// gulp.task('web-start', ['web-stop'], function () {
+// 	// console.log('http://localhost:8080/portfolio.html')
+// 	return gulp.src(webServePath)
+// 		.pipe(execModule('bash web-start.sh ' + webServePath, {
+// 			continueOnError: true
+// 		}))
+// 		.pipe(execModule.reporter(reportOptions));
+// });
 
-/*================================================STYLUS===================================================*/
-gulp.task('stylus', ['clean-css', 'css'], function () {
+const syncConfig = {
+	server: {
+		baseDir: staticPath,
+		index: 'portfolio.html'
+	},
+	port: 8080,
+	open: false
+};
+
+// browser-sync
+function server(done) {
+	if (browsersyncModule) { browsersyncModule.init(syncConfig); }
+	done();
+}
+
+/*==================================================CSS====================================================*/
+let postCSSModules = [
+	require('postcss-assets')({
+		loadPaths: ['images/'],
+		basePath: staticPath
+	}),
+	require('autoprefixer')({
+		browsers: ['> 1%']
+	})
+];
+
+// remove unused selectors and minify production CSS
+if (!devBuild) {
+	postCSSModules.push(
+		require('usedcss')({
+			html: ['index.html']
+		}),
+		require('cssnano')
+	);
+}
+
+//const sassOpts = {
+//   sourceMap       : devBuild,
+//   outputStyle     : 'nested',
+//   imagePath       : '/images/',
+//   precision       : 3,
+//   errLogToConsole : true
+// }
+
+function stylus() {
 	return gulp.src(pathStylusSrc)
-		.pipe(stylus())
-		.pipe(concat('portfolio.css').on('error', handleError))
-		//			.pipe(strip())
-		.pipe(gulp.dest(pathCssDest));
-});
+		.pipe(sourcemapsModule ? sourcemapsModule.init() : noopModule())
+		// .pipe(sassModule(sassOpts).on('error', sass.logError))
+		.pipe(stylusModule())
+		.pipe(postcssModule(postCSSModules))
+		.pipe(concatModule('portfolio.css').on('error', handleError))
+		//stripModule())
+		.pipe(sourcemapsModule ? sourcemapsModule.write() : noopModule())
+		.pipe(sizeModule({
+			showFiles: true
+		}))
+		.pipe(gulp.dest(pathCssDest))
+		.pipe(browsersyncModule ? browsersyncModule.reload({
+			stream: true
+		}) : noopModule());
+};
 
-gulp.task('css', function () {
+function css() {
 	return gulp.src(pathCssSrc)
-		//			.pipe(strip())
+		//stripModule())
+		.on('error', handleError)
 		.pipe(gulp.dest(pathCssDest));
-});
+};
+
+exports.stylus = gulp.series(cleanCss, css, stylus);
 
 /*================================================PREFIX===================================================*/
 //gulp.task('prefix', function () {
@@ -313,35 +362,38 @@ gulp.task('css', function () {
 //	var autoprefixer = require('autoprefixer');
 //
 //	return gulp.src('./public/styles/*.css')
-//			.pipe(sourcemaps.init())
-//			.pipe(postcss([ autoprefixer() ]))
-//			.pipe(sourcemaps.write('.'))
+//			.pipe(sourcemapsModule.init())
+//			.pipe(postcssModule([ autoprefixer() ]))
+//			.pipe(sourcemapsModule.write('.'))
 //			.pipe(gulp.dest('./public/styles/autoprefixer'));
 
 /*================================================FONTS====================================================*/
-gulp.task('fonts', ['clean-font'], function () {
+function fonts() {
 	return gulp.src(pathFontsSrc)
 		.pipe(gulp.dest(pathFontsDest));
-});
+};
+
+exports.fonts = gulp.series(cleanFonts, fonts);
 
 /*================================================SOUND====================================================*/
-gulp.task('sounds', ['clean-sounds'], function () {
+function sounds() {
 	return gulp.src(pathSoundsSrc)
 		.pipe(gulp.dest(pathSoundsDest));
-});
+};
+
+exports.sounds = gulp.series(cleanSounds, sounds);
 
 /*================================================PUG======================================================*/
-gulp.task(
-	'pug',
-	['clean-html'],
-	function () {
-		return gulp.src(pathPugSrc)
-			.pipe(pug({
-				pretty: true
-			}).on('error', handleError))
-			.pipe(strip())
-			.pipe(gulp.dest(pathHtmlDest));
-	});
+function pug() {
+	return gulp.src(pathPugSrc)
+		.pipe(pugModule({
+			pretty: true
+		}).on('error', handleError))
+		.pipe(stripModule())
+		.pipe(gulp.dest(pathHtmlDest));
+};
+
+exports.pug = gulp.series(cleanHtml, pug);
 
 /*================================================TXT======================================================*/
 //todo вынуть костыли-переменные и сделать файл-шаблон с размножением
@@ -358,42 +410,36 @@ const replaceTextHeader = '<html lang="ru">\n' +
 const replaceTextFooter = '  </body>\n' +
 	'</html>';
 
-gulp.task('txt', ['clean-txt'], function () {
+function txt() {
 	return gulp.src(pathTxtSrc)
-		.pipe(markdown())
-		// .pipe(replace('HEADER_TEMPLATE', replaceTextHeader))
-		// .pipe(replace('FOOTER_TEMPLATE', replaceTextFooter))
-		.pipe(rename({
+		.pipe(markdownModule())
+		// .pipe(replaceModule('HEADER_TEMPLATE', replaceTextHeader))
+		// .pipe(replaceModule('FOOTER_TEMPLATE', replaceTextFooter))
+		.pipe(renameModule({
 			extname: '.md.html'
 		}))
 		.pipe(gulp.dest(pathTxtDest));
-});
+};
+
+exports.txt = gulp.series(cleanTxt, txt);
 
 /*================================================WATCH====================================================*/
 
 /**
  * Всё, кроме звуков и картинок
  */
-gulp.task('w', ['dev', 'web-start'], function () {
-
-	gulp.watch(pathStylusSrcWatch.concat(pathCssSrc),
-		['stylus']);
-
-	gulp.watch(pathPugSrcWatch,
-		['pug']);
-
-	gulp.watch(pathTxtSrc,
-		['txt']);
-
-	gulp.watch(pathJsSrc,
-		['js']);
-
-	gulp.watch(pathFontsSrc,
-		['fonts']);
-
+function w(done) {
+	gulp.watch(pathStylusSrcWatch.concat(pathCssSrc), stylus);
+	gulp.watch(pathPugSrcWatch, pug);
+	gulp.watch(pathTxtSrc, txt);
+	gulp.watch(pathJsSrc, js);
+	gulp.watch(pathFontsSrc, fonts);
 	//	gulp.watch(pathImgSrc,
 	//			['img']);
-});
+	done();
+};
+
+exports.w = gulp.series(devFn(), server, w);
 
 /*================================================RUNNER===================================================*/
 
@@ -401,10 +447,16 @@ gulp.task('w', ['dev', 'web-start'], function () {
  * Для асинхронности все задания содержат внутри очистку
  * При синхронном выполнении можно запускать вначале clean-dev или clean
  */
-gulp.task('dev', sync.sync(['fonts', 'js', 'css', 'stylus', 'pug', 'txt', 'version-dev']));
+function devFn() {
+	return gulp.series(fonts, js, css, stylus, pug, txt, versionDev);
+}
+
+exports.dev = devFn();
 
 /**
  * Выполняется синхронно, чтобы сделать коммит
  * Нельзя перемешивать version
  */
-gulp.task('prod', sync.sync(['web-stop', 'fonts', 'js', 'css', 'stylus', 'pug', 'txt', 'sounds', 'img', 'version-prod']));
+exports.prod = gulp.series(fonts, js, css, stylus, pug, txt, sounds, img, versionProd);
+
+})()
