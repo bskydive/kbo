@@ -9,6 +9,8 @@
  * [Best practices for React iframes](https://blog.logrocket.com/best-practices-react-iframes/)
  * [React Context & Hooks Tutorial # 19 - Редукторы, действия и состояние](https://www.youtube.com/watch?v=uXWycyeTeCs)
  * [Full React Tutorial - 2020](https://www.youtube.com/watch?v=j942wKiXFu8&list=PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d&index=1)
+ * вместо shadowDOM - virtualDOM и императивный стиль JS/аннотации вместо HTML вместо декларативного
+	* хорошо для сложных состояний и сложной асинхронщины
  * [React JS фундаментальный курс от А до Я - 2021](https://www.youtube.com/watch?v=GNrdg3PzpJQ)
 	* react DOM
 		* работает и на react native и в SSR
@@ -76,4 +78,16 @@
 		* разделение групп состояний
 		* передача данных между отдельными группами состояний
  * []()
+
+## грабли
+
+ * спагетти useEffect hooks
+ * валидация форм
+ * группировка и взаимодействие групп состояний
+
+## 
+
+## 
+
+## 
 
