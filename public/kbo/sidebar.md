@@ -38,6 +38,7 @@
 	 * [javaScript](kb/frontend/javascript.md)
 	 * [IDEA](kb/frontend/idea/idea.md)
 	 * [Мобильная разработка](kb/frontend/mobile.md)
+	 * [android](kb/frontend/android)
 	 * [performance](kb/frontend/performance.md)
 	 * [security](kb/frontend/security.md)
 	 * [testing](kb/frontend/testing.md)
@@ -58,7 +59,6 @@
 	 * [.net](kb/backend/.net.md)
  * Инфраструктура
 	 * [aix](kb/admin/aix)
-	 * [android](kb/admin/android)
 	 * [backup](kb/admin/backup.md)
 	 * [bash](kb/admin/bash.md)
 	 * [centos](kb/admin/centos.md)
