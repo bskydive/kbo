@@ -482,12 +482,20 @@ https://stateofjs.com/2017/front-end/results
 
  * https://stackoverflow.com/questions/9932957/how-can-i-remove-a-character-from-a-string-using-javascript
 
- ```js
-	value.split(',').join('')
-	// 
- ```
-
+	```js
+		value.split(',').join('')
+	```
  * https://tproger.ru/articles/metody-strok-v-javascript-shpargalka-dlja-nachinajushhih/
+ * https://mathiasbynens.be/notes/javascript-unicode
+ * замена набора символов `str.replace(/[aeiou]/gi, "");`
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCodePoint
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCharCode
+ * https://github.com/mathiasbynens/punycode.js/blob/master/punycode.js
+ * 
+ * 
+
 
 ## типы данных
 
@@ -512,8 +520,82 @@ https://stateofjs.com/2017/front-end/results
 
 ##  async await
 
- * https://habrahabr.ru/company/ruvds/blog/353658/
+ * [Побег из ада async/await](https://habrahabr.ru/company/ruvds/blog/353658/)
+	* прежде чем система сможет заняться следующей функцией, ей необходимо дождаться завершения выполнения предыдущей функции
+	* группируйте параллельные функции
+		```js
+			// ошибка
+			(async () => {
+			const pizzaData = await getPizzaData()    // асинхронный вызов
+			const drinkData = await getDrinkData()    // асинхронный вызов
+			const chosenPizza = choosePizza()    // синхронный вызов
+			const chosenDrink = chooseDrink()    // синхронный вызов
+			await addPizzaToCart(chosenPizza)    // асинхронный вызов
+			await addDrinkToCart(chosenDrink)    // асинхронный вызов
+			orderItems()    // асинхронный вызов
+			})()
+
+			// решение
+			async function selectPizza() {
+				const pizzaData = await getPizzaData()    // асинхронный вызов
+				const chosenPizza = choosePizza()    // синхронный вызов
+				await addPizzaToCart(chosenPizza)    // асинхронный вызов
+			}
+
+			async function selectDrink() {
+				const drinkData = await getDrinkData()    // асинхронный вызов
+				const chosenDrink = chooseDrink()    // синхронный вызов
+				await addDrinkToCart(chosenDrink)    // асинхронный вызов
+			}
+
+			(async () => {
+				const pizzaPromise = selectPizza()
+				const drinkPromise = selectDrink()
+				await pizzaPromise
+				await drinkPromise
+				orderItems()    // асинхронный вызов
+			})()
+
+			// Задачу можно решить так, как показано выше, но я предпочитаю следующий метод 
+
+			(async () => {
+				Promise.all([selectPizza(), selectDrink()]).then(orderItems)   // асинхронный вызов
+			})()
+		```
+	* 
  * [JavaScript. Работаем с исключениями и данными в конструкциях async/await без блоков try-catch](https://habr.com/post/358896/)
+	* https://github.com/scopsy/await-to-js
+	```js
+		// wrapper.js
+		const wrapper = promise => (
+		promise
+			.then(data => ({ data, error: null }))
+			.catch(error => ({ error, data: null }))
+		);
+
+		module.exports = wrapper;
+
+		//
+		const { fetchData } = require('./api');
+		const wrapper = require('./wrapper');
+
+		const callApi = async () => {
+		const { error, data } = await wrapper(fetchData(2000, false));
+		if (!error) {
+			console.info(data);
+			return;
+		}
+		console.error(error);
+		}
+
+		callApi();
+
+		/* 
+		OUTPUT: 
+		{ version: 1, hello: 'world' } (rejectPromise=false)
+		{ error: 'Error Encountered', status: 'error' } (rejectPromise=true)
+		*/
+	```
 
 ## IIFE 
 

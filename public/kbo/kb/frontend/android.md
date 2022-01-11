@@ -2,6 +2,10 @@
 
 ## framework
 
+ * https://developer.android.com/jetpack/compose
+ * https://developer.apple.com/xcode/swiftui/
+ * https://flutter.dev/
+
 ## google AMP
 
 https://geektimes.ru/post/263624/

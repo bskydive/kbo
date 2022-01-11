@@ -82,9 +82,17 @@ body {
 ##  авторизация и аутентификация
 
  * [обзор видов авторизации](https://flowers-for-all.com/post/28443)
- * [jwt](https://habrahabr.ru/company/Voximplant/blog/323160/)
- * https://habrahabr.ru/company/Voximplant/blog/323160/
+ * JWT
+	* [Продвинутая JWT авторизация на React и Node js. Access, refresh, активация по почте](https://www.youtube.com/watch?v=fN25fMQZ2v0)
+		* access: 15 минут, хранится в localstorage
+	* [jwt](https://habrahabr.ru/company/Voximplant/blog/323160/)
+	* https://jwt.io/introduction/
+	* https://datatracker.ietf.org/doc/html/rfc7519
+	* https://habrahabr.ru/company/Voximplant/blog/323160/
+ * https://auth0.com/docs/get-started
  * Разница между access_token и refresh_token
+	* схема refresh + access токен ограничивает время, на которое атакующий может получить доступ к сервису по токену
+	* 
 
 	```
 		— access_token не нужно хранить в базе данных, с помощью JWT можно хранить данные в токене — например userId, таким образом при каждом запросе к серверу мы избавляемся от лишнего запроса к базе данных так как ID юзера можно получить из токена
