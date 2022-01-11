@@ -54,6 +54,11 @@ ping добавляет 28 бит!
 
  * [Запуск отдельных приложений через OpenVPN без контейнеров и виртуализации - network namespace](https://habrahabr.ru/post/310646/)
  * [Заворачиваем весь трафик локальной сети в vpn без ограничения скорости - pfsense](https://habr.com/ru/company/postuf/blog/475068/)
+ * https://help.keenetic.com/hc/ru/articles/360010592379-WireGuard-VPN
+ * [Настройка маршрутизации в сети с неподконтрольным роутером](https://habr.com/ru/post/599623/)
+ * [Связываем две локальные сети с помощью Wireguard VPN на выделенном сервере](https://habr.com/ru/post/599623/)
+	* https://bitbucket.org/padavan/rt-n56u/wiki/Home
+	* https://github.com/Entware/Entware-ng
 
 ## DNS
 
