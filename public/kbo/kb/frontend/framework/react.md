@@ -14,5 +14,23 @@
 		* работает и на react native и в SSR
 		* фаза сравнение - reconciliation
 		* фаза отрисовки - render
+	* hooks
+		* работают только на корневом уровне, нельзя вкладывать в функции
+		* useState()
+		* useEffect()
+		* useRef()
+		* useMemo()
+		* useCallback()
+		* useContext()
+		* 
+	* 
+		* 
+	* 
+		* 
+	* 
+		* 
+	* 
+		* 
+
  * []()
 

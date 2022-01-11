@@ -29,6 +29,10 @@ http://stackoverflow.com/questions/10268583/downloading-java-jdk-on-linux-via-wg
 	wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jre-8u131-linux-x64.rpm
 ```
 
+## kotlin
+
+ * [Грабли, спрятанные в Kotlin](https://habr.com/ru/company/maxilect/blog/590061)
+
 ## собеседование JAVA
 
 https://lab.getbase.com/cracking-java-base-coding-interview/
