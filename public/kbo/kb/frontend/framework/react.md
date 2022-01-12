@@ -1,5 +1,49 @@
 # React
 
+ * https://pomb.us/build-your-own-react/
+	* 
+		```jsx
+			// 1
+			const element = <h1 title="foo">Hello</h1>
+			// 1.2
+			const element = React.createElement(
+				"h1",
+				{ title: "foo" },
+				"Hello"
+			)
+			// 1.3
+			const element = {
+				type: "h1",
+				props: {
+					title: "foo",
+					children: "Hello",
+				},
+			}
+
+			// 2 
+			const container = document.getElementById("root")
+			
+			// 3
+			ReactDOM.render(element, container)
+			// 3.1
+				const node = document.createElement(element.type)
+				node["title"] = element.props.title
+
+				const text = document.createTextNode("")
+				text["nodeValue"] = element.props.children
+
+				node.appendChild(text)
+				container.appendChild(node)
+
+			// 
+			// 
+			// 
+
+
+		```
+	* 
+		``` 
+		```
  * https://ru.hexlet.io/courses/reactjs
  * https://learn.javascript.ru/courses/react
  * https://www.gitbook.com/@maxfarseer/
