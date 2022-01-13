@@ -22,6 +22,17 @@
  * [Временные ряды в прогнозировании спроса, нагрузки на КЦ, товарных рекомендациях и поиске аномалий](https://habr.com/ru/post/477206)
  * [Борщевик ГИС и Python](https://habr.com/ru/post/589909/)
 
+## трудоустройство
+
+ * [О русской науке замолвите слово или за что я люблю Тинькофф, часть 1](https://habr.com/ru/post/598305/)
+
+## курсы
+
+ * [OZON MASTERS](https://ozonmasters.ru/)
+ * [VK MADE](https://data.vk.company/pages/forapplicants/)
+ * [YANDEX ШАД](https://academy.yandex.ru/dataschool/)
+ * []()
+
 
 ## data mining
 
