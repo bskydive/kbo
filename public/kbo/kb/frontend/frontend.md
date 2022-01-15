@@ -366,161 +366,161 @@ http://glivera-team.github.io/svg/2016/06/13/svg-sprites-2.html
  * [конвертер форматов api](https://www.apimatic.io/transformer/#supported-formats)
  * [конвертер openapi to swagger](https://mermade.org.uk/openapi-converter)
  * [устаревший генератор клиентских сервисов из api](https://openapi-generator.tech/docs/integrations)
- ```
- ada-server
-akka-scala
-android
-apache2
-apex
-aspnetcore
-bash
-csharp
-clojure
-cwiki
-cpprest
-csharp-dotnet2
-dart
-dart-jaguar
-elixir
-elm
-eiffel
-erlang-client
-erlang-server
-finch
-flash
-python-flask
-go
-go-server
-groovy
-haskell-http-client
-haskell
-jmeter
-jaxrs-cxf-client
-jaxrs-cxf
-java
-inflector
-jaxrs-cxf-cdi
-jaxrs-spec
-jaxrs
-msf4j
-java-pkmst
-java-play-framework
-jaxrs-resteasy-eap
-jaxrs-resteasy
-javascript
-javascript-closure-angular
-java-vertx
-kotlin
-lua
-lumen
-nancyfx
-nodejs-server
-objc
-perl
-php
-powershell
-pistache-server
-python
-qt5cpp
-r
-rails5
-restbed
-ruby
-rust
-rust-server
-scala
-scala-gatling
-scala-lagom-server
-scalatra
-scalaz
-php-silex
-sinatra
-slim
-spring
-dynamic-html
-html2
-html
-swagger
-swagger-yaml
-swift4
-swift3
-swift
-php-symfony
-tizen
-typescript-aurelia
-typescript-angular
-typescript-inversify
-typescript-angularjs
-typescript-fetch
-typescript-jquery
-typescript-node
-undertow
-ze-ph
-kotlin-server
- ```
- * []()
 
+	```
+		ada-server
+		akka-scala
+		android
+		apache2
+		apex
+		aspnetcore
+		bash
+		csharp
+		clojure
+		cwiki
+		cpprest
+		csharp-dotnet2
+		dart
+		dart-jaguar
+		elixir
+		elm
+		eiffel
+		erlang-client
+		erlang-server
+		finch
+		flash
+		python-flask
+		go
+		go-server
+		groovy
+		haskell-http-client
+		haskell
+		jmeter
+		jaxrs-cxf-client
+		jaxrs-cxf
+		java
+		inflector
+		jaxrs-cxf-cdi
+		jaxrs-spec
+		jaxrs
+		msf4j
+		java-pkmst
+		java-play-framework
+		jaxrs-resteasy-eap
+		jaxrs-resteasy
+		javascript
+		javascript-closure-angular
+		java-vertx
+		kotlin
+		lua
+		lumen
+		nancyfx
+		nodejs-server
+		objc
+		perl
+		php
+		powershell
+		pistache-server
+		python
+		qt5cpp
+		r
+		rails5
+		restbed
+		ruby
+		rust
+		rust-server
+		scala
+		scala-gatling
+		scala-lagom-server
+		scalatra
+		scalaz
+		php-silex
+		sinatra
+		slim
+		spring
+		dynamic-html
+		html2
+		html
+		swagger
+		swagger-yaml
+		swift4
+		swift3
+		swift
+		php-symfony
+		tizen
+		typescript-aurelia
+		typescript-angular
+		typescript-inversify
+		typescript-angularjs
+		typescript-fetch
+		typescript-jquery
+		typescript-node
+		undertow
+		ze-ph
+	kotlin-server
+	```
+ * 
 
-```ts
-
-/**
- * npm i -D yaml fs oas-resolver
- * node this-file-name.js
- */
-const yaml = require('yaml');
-const fs = require('fs');
-const resolver = require('oas-resolver');
-
-const sourceFile = './api.yaml';
-const outputFile = './api-resolved.yaml';
-let sourceData = '';
-
-fs.readFile(sourceFile, 'utf8', function (err, data) {
-	if (err) {
-		console.log('err', err);
-	} else {
-		sourceData = data;
+	```ts
 
 		/**
-		 * node_modules/@types/yaml/index.d.ts:97
-		 * 
-		 * Allow non-JSON JavaScript objects to remain in the `toJSON` output.
-		 * Relevant with the YAML 1.1 `!!timestamp` and `!!binary` tags. By default `true`.
-		 *    keepBlobsInJSON?: boolean;
-		 * Include references in the AST to each node's corresponding CST node. By default `false`.
-		 *    keepCstNodes?: boolean;
-		 * Store the original node type when parsing documents. By default `true`.
-		 *    keepNodeTypes?: boolean;
-		 * Enable support for `<<` merge keys.
-		 *    merge?: boolean;
-		 * The base schema to use. By default `"core"` for YAML 1.2 and `"yaml-1.1"` for earlier versions.
-		 *    schema?: "core" | "failsafe" | "json" | "yaml-1.1";
-		 * Array of additional (custom) tags to include in the schema.
-		 *    tags?: Tag[] | ((tags: Tag[]) => Tag[]);
-		 * The YAML version used by documents without a `%YAML` directive. By default `"1.2"`.
-		 *    version?: string;
+		 * npm i -D yaml fs oas-resolver
+		 * node this-file-name.js
 		 */
-		const openapi = yaml.parse(sourceData, {
-			schema: 'core'
+		const yaml = require('yaml');
+		const fs = require('fs');
+		const resolver = require('oas-resolver');
+
+		const sourceFile = './api.yaml';
+		const outputFile = './api-resolved.yaml';
+		let sourceData = '';
+
+		fs.readFile(sourceFile, 'utf8', function (err, data) {
+			if (err) {
+				console.log('err', err);
+			} else {
+				sourceData = data;
+
+				/**
+				 * node_modules/@types/yaml/index.d.ts:97
+				 * 
+				 * Allow non-JSON JavaScript objects to remain in the `toJSON` output.
+				 * Relevant with the YAML 1.1 `!!timestamp` and `!!binary` tags. By default `true`.
+				 *    keepBlobsInJSON?: boolean;
+				 * Include references in the AST to each node's corresponding CST node. By default `false`.
+				 *    keepCstNodes?: boolean;
+				 * Store the original node type when parsing documents. By default `true`.
+				 *    keepNodeTypes?: boolean;
+				 * Enable support for `<<` merge keys.
+				 *    merge?: boolean;
+				 * The base schema to use. By default `"core"` for YAML 1.2 and `"yaml-1.1"` for earlier versions.
+				 *    schema?: "core" | "failsafe" | "json" | "yaml-1.1";
+				 * Array of additional (custom) tags to include in the schema.
+				 *    tags?: Tag[] | ((tags: Tag[]) => Tag[]);
+				 * The YAML version used by documents without a `%YAML` directive. By default `"1.2"`.
+				 *    version?: string;
+				 */
+				const openapi = yaml.parse(sourceData, {
+					schema: 'core'
+				});
+
+				//https://github.com/Mermade/oas-kit/blob/master/docs/options.md
+				let options = {
+					resolve: true,
+					resolveInternal: true
+				};
+
+				resolver.resolve(openapi, sourceFile, options)
+					.then(function (options) {
+						if (options.agent) {
+							options.agent.destroy();
+						}
+						fs.writeFileSync(outputFile, yaml.stringify(options.openapi), 'utf8');
+					})
+					.catch(function (errors) {
+						console.log('error-resolver:', errors)
+					});
+			}
 		});
 
-		//https://github.com/Mermade/oas-kit/blob/master/docs/options.md
-		let options = {
-			resolve: true,
-			resolveInternal: true
-		};
-
-		resolver.resolve(openapi, sourceFile, options)
-			.then(function (options) {
-				if (options.agent) {
-					options.agent.destroy();
-				}
-				fs.writeFileSync(outputFile, yaml.stringify(options.openapi), 'utf8');
-			})
-			.catch(function (errors) {
-				console.log('error-resolver:', errors)
-			});
-	}
-});
-
-```
+	```

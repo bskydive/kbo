@@ -117,7 +117,7 @@
             		margin-right: 19px;
             		position: relative;//опора для иконок
             		width: 57px;
-            
+
             		&-applicant {
             			position: absolute;
             			font-size: 32px;
