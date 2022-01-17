@@ -22,6 +22,8 @@
  * [Временные ряды в прогнозировании спроса, нагрузки на КЦ, товарных рекомендациях и поиске аномалий](https://habr.com/ru/post/477206)
  * [Борщевик ГИС и Python](https://habr.com/ru/post/589909/)
  * [5 грязных трюков в соревновательном Data Science](https://habr.com/ru/post/600067/) https://www.theregister.com/2020/01/21/ai_kaggle_contest_cheat/
+ * [Война или мир: используем MATLAB и Python вместе](https://habr.com/ru/company/etmc_exponenta/blog/596397/)
+ * [О русской науке замолвите слово или за что я люблю Тинькофф, часть 1 2021](https://habr.com/ru/post/598305/)
 
 ## трудоустройство
 
@@ -48,6 +50,7 @@
  * [ИИ, которое не пускает в дом кота с уличной добычей](https://habr.com/ru/post/458582/)
  * [Формирование изображений без объективов](https://habr.com/ru/company/mailru/blog/410345/)
  * [Сила PWA: Система видеонаблюдения с нейросетью в 300 строчек JS-кода](https://habr.com/ru/post/492006/) на основе https://nanonets.com/blog/object-detection-tensorflow-js/
+ * [Видеоаналитика на производстве. Как искусственный интеллект работает там, где не справляется человек. ЕВРАЗ 2022](https://habr.com/ru/post/581882/)
 
 ## железо
 

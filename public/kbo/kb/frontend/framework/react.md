@@ -159,7 +159,62 @@
 			* авторизация
 			* ошибки
 	* формы
-		* валидация
+		* валидация https://habr.com/ru/post/600035/#comment_23926385 https://habr.com/ru/post/600035/#comment_23924345
+
+			```tsx
+
+				isValid это ни стейт, ни проп, а производная от первых двух. Поэтому его нужно не хранить в useState, а вычислять на лету (декларативность же):
+
+				function Form({required}) {
+					const [value, setValue] = useState('')
+					
+					// Добавьте useMemo, если переживаете за производительность
+					const isValid = validate(value, required)
+					
+					return (
+						<div>
+						<input
+							value={value}
+							onInput={event => setValue(event.target.value}
+						/>
+						{!isValid && 'Не валидно'}
+						</div>
+					)
+				}
+
+				Если нужно не проводить валидацию только после взаимодействия пользователя с формой, добавьте стейт isTouched.
+
+				const [value, setValue] = useState('');
+				const isValid = getValidState(value); // or any other validator
+
+				// В подавляющем большинстве сценариев вам не нужно хранить производные значения в state
+				// Конечно всё поломается, если вам нужен асинхронный валидатор. Но тут ничего нового. Асинхронные валидаторы при любой архитектуре это боль.
+				// isValid, isTouched, isPristine, resetForm, setError, asyncValidator - нужны по канонам идеального UX. Ибо сама задача очень сложная. И разумеется не надо её решать по месту в каком-то отдельно взятом useEffect или onClick. Закопаетесь.
+				// вещи которые можно высчитать из значений в любой момент, нужно делать ленивыми и декларативными
+			```
+
+		* модалки https://habr.com/ru/post/600035/#comment_23926469
+
+		```tsx
+
+			// на верхнем уровне приложения есть HoC, который wrap-ает древо context-ом, в котором есть императивный метод showError(msg: ReactNode | Component, isFixed?: boolean): Promise<void> (и другие методы).
+			// этот метод вызывается в тех самых useEffect или колбеках вроде onClick по мере необходимости ниже по древу
+			// тот самый HoC сам всё это дело отображает. Сам решает в каком порядке показать. Когда удалить. Какие анимации задействовать и т.д.
+
+			// in a component
+			dispatch(addAlert("alert"));
+
+			// in a reducer
+			st.list.push({ msg: action.msg, id: genUniqId() });
+
+			// in a <AlertManager/>
+			{alerts.map(alert => <Alert key={alert.id} msg={alert.msg}/>}
+
+			// Состояние можно хранить в глобальным хранилище, но лучше в глобальном компоненте `<AlertManager/>` в `local state`.
+			// А вместо dispatch компоненты ниже по древу просто вызывают: const showAlert = useContext(alertManagerContext);
+
+			// Ну и небольшой бонус хранения этого в локальном сторе менеджера — можно хранить ссылки на компоненты (которые будут .children для <Alert/>) или ссылки на JSX elements. В настоящий глобальный store такие вещи пихать не рекомендуется (обычно), т.к. такие вещи типа не очень сериализуемы. Но это уже тоже всякие догмы.
+		```
 	* RxJS
 		* 
 	* дизайн система
@@ -172,9 +227,12 @@
 		* разделение групп состояний
 		* передача данных между отдельными группами состояний
 	* маршрутизация
+		* отладка
+		* вложенные маршруты
+		* проверка/расчёт перед переходом
 		* react-router-dom
 
-			```tsx
+			```html
 				<browserRouter>
 					<Link to='/1'></Link>
 					<Switch>
