@@ -1,7 +1,19 @@
-
-(() => {
-
-'use strict';
+import gulp from "gulp";
+import stylusModule from "gulp-stylus";
+import pugModule from "gulp-pug";
+import concatModule from "gulp-concat";
+import stripModule from "gulp-strip-comments";
+import markdownModule from "gulp-markdown";
+import renameModule from "gulp-rename";
+import execModule from "gulp-exec";
+import delModule from "del";
+import noopModule from "gulp-noop";
+import newerModule from "gulp-newer";
+import sizeModule from "gulp-size";
+import imageminModule from "gulp-imagemin";
+import postcssModule from "gulp-postcss";
+import sourcemapsModule from "gulp-sourcemaps";
+import browsersyncModule from "browser-sync";
 
 /**
  * Настройки простой системы сборки для небольших проектов
@@ -9,7 +21,7 @@
  *
  * TODO переписать для gulp@4 и node@12
  *  https://github.com/gulpjs/gulp/blob/master/docs/recipes/running-tasks-in-series.md
- * 
+ *
  *
  * Использование:
  * установить node@12+
@@ -43,38 +55,35 @@
  * в режиме наблюдения не пересобирается при добавлении новых файлов
  */
 
-'use strict';
+let devBuild =
+	(process.env.NODE_ENV || "development").trim().toLowerCase() ===
+	"development";
 
+// const gulp = require('gulp');
 
-let devBuild = ((process.env.NODE_ENV || 'development').trim().toLowerCase() === 'development');
-
-const gulp = require('gulp');
-
-
-const stylusModule = require('gulp-stylus');
-const pugModule = require('gulp-pug');
-const concatModule = require('gulp-concat');
-const stripModule = require('gulp-strip-comments');
-const markdownModule = require('gulp-markdown');
-const renameModule = require('gulp-rename');
-const execModule = require('gulp-exec');
-const delModule = require('del');
-const noopModule = require('gulp-noop');
-const newerModule = require('gulp-newer');
-const sizeModule = require('gulp-size');
-const imageminModule = require('gulp-imagemin');
-const postcssModule = require('gulp-postcss');
-const sourcemapsModule = devBuild ? require('gulp-sourcemaps') : null;
-const browsersyncModule = devBuild ? require('browser-sync').create() : null;
-	// const sync = require('gulp-sync')(gulp);
+// const stylusModule = require('gulp-stylus');
+// const pugModule = require('gulp-pug');
+// const concatModule = require('gulp-concat');
+// const stripModule = require('gulp-strip-comments');
+// const markdownModule = require('gulp-markdown');
+// const renameModule = require('gulp-rename');
+// const execModule = require('gulp-exec');
+// const delModule = require('del');
+// const noopModule = require('gulp-noop');
+// const newerModule = require('gulp-newer');
+// const sizeModule = require('gulp-size');
+// const imageminModule = require('gulp-imagemin');
+// const postcssModule = require('gulp-postcss');
+// const sourcemapsModule = devBuild ? require('gulp-sourcemaps') : null;
+// const browsersyncModule = devBuild ? require('browser-sync').create() : null;
+// const sync = require('gulp-sync')(gulp);
 // const cleanModule = require('gulp-clean');
-	// const replace = require('gulp-replace');
-	// const less = require('gulp-less');
-	// const markdownit = require('gulp-markdown-it');
-	// const sass = require('gulp-stylus');
+// const replace = require('gulp-replace');
+// const less = require('gulp-less');
+// const markdownit = require('gulp-markdown-it');
+// const sass = require('gulp-stylus');
 
-
-console.log('Gulp', devBuild ? 'development' : 'production', 'build');
+console.log("Gulp", devBuild ? "development" : "production", "build");
 
 /*================================================CONFIG===================================================*/
 // TODO сделать объект path:{}
@@ -88,12 +97,12 @@ var reportOptions = {
 };
 
 //для хостинга с особенностями нужен длинный префикс
-const staticPath = 'public/portfolio';
+const staticPath = "public/portfolio";
 // сайт имеет статические подсайты, потому корень выше папки сборки
 // const webServePath = 'public';
 //репозитории
-const gitRemoteMain = 'gl';
-const gitremoteReserve = 'bb';
+const gitRemoteMain = "gl";
+const gitremoteReserve = "bb";
 
 //путь во все подпапки заставляет галп делать подпапки на выходе /**/ поэтому надо вписывать все названия файлов
 const pathImgSrc = [`src/img/*`]; //['src/img/*.png', 'src/img/*.jpg', 'src/img/*.gif', 'src/img/*.jpeg']
@@ -101,18 +110,39 @@ const pathImgClean = [`${staticPath}/img/*`];
 const pathImgDest = `./${staticPath}/img`;
 
 const pathJsClean = [`${staticPath}/js/*`];
-const pathJsSrc = [`src/js/*.js`, `src/app/timer/timer.js`, `src/app/portfolio/portfolio.js`, `src/app/quotes/quotes.js`, `src/app/weather/weather.js`];
+const pathJsSrc = [
+	`src/js/*.js`,
+	`src/app/timer/timer.js`,
+	`src/app/portfolio/portfolio.js`,
+	`src/app/quotes/quotes.js`,
+	`src/app/weather/weather.js`
+];
 const pathJsDest = `./${staticPath}/js`;
 
 //отдельный css для уже скомпилированных вендорных. Могут конфликтовать между собой в пространстве имён
-const pathStylusSrcWatch = [`src/fonts/**/*.styl`, `src/app/**/*.styl`, `src/styles/**/*.styl`];
-const pathStylusSrc = [`src/fonts/**/*.styl`, `src/app/**/*.styl`, `src/styles/**/*.styl`];
+const pathStylusSrcWatch = [
+	`src/fonts/**/*.styl`,
+	`src/app/**/*.styl`,
+	`src/styles/**/*.styl`
+];
+const pathStylusSrc = [
+	`src/fonts/**/*.styl`,
+	`src/app/**/*.styl`,
+	`src/styles/**/*.styl`
+];
 const pathCssClean = [`${staticPath}/css/*`];
 const pathCssSrc = [`src/styles/**/*.css`];
 const pathCssDest = `./${staticPath}/css`;
 
 const pathFontsClean = [`${staticPath}/fonts/*`];
-const pathFontsSrc = [`src/fonts/**/*.ttf`, `src/fonts/**/*.woff`, `src/fonts/**/*.eot`, `src/fonts/**/*.woff2`, `src/fonts/**/*.svg`, `src/fonts/**/*.otf`];
+const pathFontsSrc = [
+	`src/fonts/**/*.ttf`,
+	`src/fonts/**/*.woff`,
+	`src/fonts/**/*.eot`,
+	`src/fonts/**/*.woff2`,
+	`src/fonts/**/*.svg`,
+	`src/fonts/**/*.otf`
+];
 const pathFontsDest = `./${staticPath}/fonts`;
 
 const pathSoundsClean = [`${staticPath}/sounds/*`];
@@ -121,102 +151,167 @@ const pathSoundsDest = `./${staticPath}/sounds`;
 
 const pathHtmlClean = [`${staticPath}/*.html`];
 const pathPugSrcWatch = [`src/app/portfolio/**/*.pug`];
-const pathPugSrc = [`src/app/timer/timer.pug`, `src/app/portfolio/portfolio.pug`, `src/app/quotes/quotes.pug`, `src/app/weather/weather.pug`];
+const pathPugSrc = [
+	`src/app/timer/timer.pug`,
+	`src/app/portfolio/portfolio.pug`,
+	`src/app/quotes/quotes.pug`,
+	`src/app/weather/weather.pug`
+];
 const pathHtmlDest = `./${staticPath}`;
 
 const pathTxtClean = [`${staticPath}/txt/*`];
-const pathTxtSrc = [`src/app/portfolio/*.md`, `src/app/quotes/*.md`, `src/app/weather/*.md`, `src/app/timer/*.md`, `src/app/conventions/**/*.md`];
+const pathTxtSrc = [
+	`src/app/portfolio/*.md`,
+	`src/app/quotes/*.md`,
+	`src/app/weather/*.md`,
+	`src/app/timer/*.md`,
+	`src/app/conventions/**/*.md`
+];
 const pathTxtDest = `./${staticPath}/txt`;
 
 /*================================================ERROR====================================================*/
 function handleError(err) {
 	console.log(err.toString());
-	this.emit('end');
+	this.emit("end");
 }
 
 /*================================================IMAGEMIN=================================================*/
-	const imgConfig = {
-		interlaced: true,
-		progressive: true,
-		optimizationLevel: 5,
-		svgoPlugins: [{
-				removeViewBox: true
-		}]
-	};
 
-	function img() {
-		return gulp.src(pathImgSrc)
-			.pipe(newerModule(pathImgDest))
-			.pipe(imageminModule(imgConfig))
-			.pipe(sizeModule({
+const imgConfig = [
+	imageminModule.optipng({
+		optimizationLevel: 5
+	}),
+	imageminModule.svgo({
+		// https://github.com/svg/svgo#configuration
+		plugins: [
+			// { removeViewBox: true },
+			{ cleanupIDs: false },
+			{ mergePaths: false }
+		]
+	}),
+	// imageminModule.gifsicle({
+	// 	interlaced: true
+	// }),
+	// imageminModule.mozjpeg({
+	// 	quality: 75,
+	// 	progressive: true
+	// }),
+];
+
+function imgPipe() {
+	return gulp
+		.src(pathImgSrc)
+		.pipe(newerModule(pathImgDest))
+		.pipe(imageminModule(imgConfig))
+		.pipe(
+			sizeModule({
 				showFiles: true
-			})
-			.on('error', handleError))
-			.pipe(gulp.dest(pathImgDest));
-	}
-	exports.img = gulp.series(cleanImg, img);
+			}).on("error", handleError)
+		)
+		.pipe(gulp.dest(pathImgDest));
+}
+
+export const img = gulp.series(cleanImg, imgPipe);
 
 /*================================================CLEAN====================================================*/
 
-	function cleanFonts() { return delModule(pathFontsClean) }
-	function cleanSounds() { return delModule(pathSoundsClean) }
-	function cleanCss() { return delModule(pathCssClean) }
-	function cleanTxt() { return delModule(pathTxtClean) }
-	function cleanJs() { return delModule(pathJsClean) }
-	function cleanHtml() { return delModule(pathHtmlClean) }
-	function cleanImg() { return delModule(pathImgClean) }
+function cleanFonts() {
+	return delModule(pathFontsClean);
+}
+function cleanSounds() {
+	return delModule(pathSoundsClean);
+}
+function cleanCss() {
+	return delModule(pathCssClean);
+}
+function cleanTxt() {
+	return delModule(pathTxtClean);
+}
+function cleanJs() {
+	return delModule(pathJsClean);
+}
+function cleanHtml() {
+	return delModule(pathHtmlClean);
+}
+function cleanImg() {
+	return delModule(pathImgClean);
+}
 
-	exports.cleanDev = gulp.series(
-		cleanFonts,
-		cleanSounds,
-		cleanCss,
-		cleanTxt,
-		cleanJs,
-		cleanHtml,
-	);
+export const cleanDev = gulp.series(
+	cleanFonts,
+	cleanSounds,
+	cleanCss,
+	cleanTxt,
+	cleanJs,
+	cleanHtml
+);
 
-	exports.clean = gulp.series(
-		cleanFonts,
-		cleanSounds,
-		cleanCss,
-		cleanTxt,
-		cleanJs,
-		cleanHtml,
-		cleanImg
-	);
+export const clean = gulp.series(
+	cleanFonts,
+	cleanSounds,
+	cleanCss,
+	cleanTxt,
+	cleanJs,
+	cleanHtml,
+	cleanImg
+);
 
 /*================================================JS=======================================================*/
 
-	function js() {
-		return gulp.src(pathJsSrc)
+function jsPipe() {
+	return gulp
+		.src(pathJsSrc)
 		.pipe(stripModule())
 		.pipe(gulp.dest(pathJsDest));
-	}
+}
 
-	exports.js = gulp.series(cleanJs, js);
-
+export const js = gulp.series(cleanJs, jsPipe);
 
 /*================================================VERSION=================================================*/
 /**
  * Записываем версию предыдущего коммита в шапку сайта
  * Добавляем для напоминания префикс DEV:
  * */
-function versionDev() {
-	return gulp.src(pathHtmlDest)
-		// .pipe(execModule("git log -1 --format='DEV: %cd #%h' --date=format:'%a %d.%m.%Y %H.%M.%S' > version.txt", {continueOnError: true}));
-		.pipe(execModule("cd " + pathHtmlDest + ";git log -1 --format='DEV: %cd #%h' --date=format:'%c' > version.txt", {
-			continueOnError: true
-		}))
-		.pipe(execModule("cd " + pathHtmlDest + ";echo \"sed 's/version-template/`cat version.txt`/' portfolio.html > portfolio.html.sed; mv portfolio.html.sed portfolio.html\" | bash", {
-			continueOnError: true
-		}))
-		.pipe(execModule("cd " + pathHtmlDest + ";grep -E 'DEV:|version' portfolio.html", {
-			continueOnError: true
-		}))
-		.pipe(execModule.reporter(reportOptions))
-};
+function versionDevPipe() {
+	return (
+		gulp
+			.src(pathHtmlDest)
+			// .pipe(execModule("git log -1 --format='DEV: %cd #%h' --date=format:'%a %d.%m.%Y %H.%M.%S' > version.txt", {continueOnError: true}));
+			.pipe(
+				execModule(
+					"cd " +
+						pathHtmlDest +
+						";git log -1 --format='DEV: %cd #%h' --date=format:'%c' > version.txt",
+					{
+						continueOnError: true
+					}
+				)
+			)
+			.pipe(
+				execModule(
+					"cd " +
+						pathHtmlDest +
+						";echo \"sed 's/version-template/`cat version.txt`/' portfolio.html > portfolio.html.sed; mv portfolio.html.sed portfolio.html\" | bash",
+					{
+						continueOnError: true
+					}
+				)
+			)
+			.pipe(
+				execModule(
+					"cd " +
+						pathHtmlDest +
+						";grep -E 'DEV:|version' portfolio.html",
+					{
+						continueOnError: true
+					}
+				)
+			)
+			.pipe(execModule.reporter(reportOptions))
+	);
+}
 
-exports.versionDev = versionDev;
+export const versionDev = versionDevPipe;
 
 /**
  * Записываем версию предыдущего коммита в шапку сайта
@@ -224,37 +319,69 @@ exports.versionDev = versionDev;
  * пишем напоминалку-чеклист для тестирования
  * https://github.com/robrich/gulp-exec
  */
-function versionProd() {
-	console.log('Build done', '\n\nЧеклист: \n * npm run web-start или npm run w,\n * anchor-offset, \n * ссылки skills/nav/contacts/kb, \n * открыть на мобилке, \n * npm run web-stop, \n * npm run prod, \n * g cm "msg", \n * сделать PR на bitbucket,\n');
+function versionProdPipe() {
+	console.log(
+		"Build done",
+		'\n\nЧеклист: \n * npm run web-start или npm run w,\n * anchor-offset, \n * ссылки skills/nav/contacts/kb, \n * открыть на мобилке, \n * npm run web-stop, \n * npm run prod, \n * g cm "msg", \n * сделать PR на bitbucket,\n'
+	);
 
-	return gulp.src(pathHtmlDest)
-		//execModule("git log -1 --format='%cd #%h' --date=format:'%a %d.%m.%Y %H.%M.%S' > version.txt", { continueOnError: true }));
-		//сохраняем если что-то забыли
-		// .pipe(execModule("git commit -am 'commit-prod'", { continueOnError: true }))
-		// .pipe(execModule.reporter(reportOptions))
-		//пишем версию коммита
-		.pipe(execModule("cd " + pathHtmlDest + ";git log -1 --format='%cd #%h' --date=format:'%c' > version.txt", {
-			continueOnError: true
-		}))
-		.pipe(execModule.reporter(reportOptions))
-		//читаем версию коммита и пишем в portfolio.html
-		.pipe(execModule("cd " + pathHtmlDest + ";echo \"sed 's/version-template/`cat version.txt`/' portfolio.html > portfolio.html.sed; mv portfolio.html.sed portfolio.html\" | bash", {
-			continueOnError: true
-		}))
-		.pipe(execModule.reporter(reportOptions))
-		//выводим в консоль то что записали
-		.pipe(execModule("cd " + pathHtmlDest + ";grep -E 'DEV:|version' portfolio.html", {
-			continueOnError: true
-		}))
-		.pipe(execModule.reporter(reportOptions))
-		//отправляем на сервер в develop
-		.pipe(execModule(`git commit -am 'commit-version';git push ${gitRemoteMain} develop;git push ${gitremoteReserve} develop`, {
-			continueOnError: true
-		}))
-		.pipe(execModule.reporter(reportOptions));
-};
+	return (
+		gulp
+			.src(pathHtmlDest)
+			//execModule("git log -1 --format='%cd #%h' --date=format:'%a %d.%m.%Y %H.%M.%S' > version.txt", { continueOnError: true }));
+			//сохраняем если что-то забыли
+			// .pipe(execModule("git commit -am 'commit-prod'", { continueOnError: true }))
+			// .pipe(execModule.reporter(reportOptions))
+			//пишем версию коммита
+			.pipe(
+				execModule(
+					"cd " +
+						pathHtmlDest +
+						";git log -1 --format='%cd #%h' --date=format:'%c' > version.txt",
+					{
+						continueOnError: true
+					}
+				)
+			)
+			.pipe(execModule.reporter(reportOptions))
+			//читаем версию коммита и пишем в portfolio.html
+			.pipe(
+				execModule(
+					"cd " +
+						pathHtmlDest +
+						";echo \"sed 's/version-template/`cat version.txt`/' portfolio.html > portfolio.html.sed; mv portfolio.html.sed portfolio.html\" | bash",
+					{
+						continueOnError: true
+					}
+				)
+			)
+			.pipe(execModule.reporter(reportOptions))
+			//выводим в консоль то что записали
+			.pipe(
+				execModule(
+					"cd " +
+						pathHtmlDest +
+						";grep -E 'DEV:|version' portfolio.html",
+					{
+						continueOnError: true
+					}
+				)
+			)
+			.pipe(execModule.reporter(reportOptions))
+			//отправляем на сервер в develop
+			.pipe(
+				execModule(
+					`git commit -am 'commit-version';git push ${gitRemoteMain} develop;git push ${gitremoteReserve} develop`,
+					{
+						continueOnError: true
+					}
+				)
+			)
+			.pipe(execModule.reporter(reportOptions))
+	);
+}
 
-exports.versionProd = versionProd;
+export const versionProd = versionProdPipe;
 
 /*================================================WEBSERVER================================================*/
 ///**
@@ -287,7 +414,7 @@ exports.versionProd = versionProd;
 const syncConfig = {
 	server: {
 		baseDir: staticPath,
-		index: 'portfolio.html'
+		index: "portfolio.html"
 	},
 	port: 8080,
 	open: false
@@ -295,28 +422,30 @@ const syncConfig = {
 
 // browser-sync
 function server(done) {
-	if (browsersyncModule) { browsersyncModule.init(syncConfig); }
+	if (browsersyncModule) {
+		browsersyncModule.init(syncConfig);
+	}
 	done();
 }
 
 /*==================================================CSS====================================================*/
 let postCSSModules = [
-	require('postcss-assets')({
-		loadPaths: ['images/'],
+	require("postcss-assets")({
+		loadPaths: ["images/"],
 		basePath: staticPath
 	}),
-	require('autoprefixer')({
-		browsers: ['> 1%']
+	require("autoprefixer")({
+		browsers: ["> 1%"]
 	})
 ];
 
 // remove unused selectors and minify production CSS
 if (!devBuild) {
 	postCSSModules.push(
-		require('usedcss')({
-			html: ['index.html']
+		require("usedcss")({
+			html: ["index.html"]
 		}),
-		require('cssnano')
+		require("cssnano")
 	);
 }
 
@@ -328,32 +457,44 @@ if (!devBuild) {
 //   errLogToConsole : true
 // }
 
-function stylus() {
-	return gulp.src(pathStylusSrc)
-		.pipe(sourcemapsModule ? sourcemapsModule.init() : noopModule())
-		// .pipe(sassModule(sassOpts).on('error', sass.logError))
-		.pipe(stylusModule())
-		.pipe(postcssModule(postCSSModules))
-		.pipe(concatModule('portfolio.css').on('error', handleError))
-		//stripModule())
-		.pipe(sourcemapsModule ? sourcemapsModule.write() : noopModule())
-		.pipe(sizeModule({
-			showFiles: true
-		}))
-		.pipe(gulp.dest(pathCssDest))
-		.pipe(browsersyncModule ? browsersyncModule.reload({
-			stream: true
-		}) : noopModule());
-};
+function stylusPipe() {
+	return (
+		gulp
+			.src(pathStylusSrc)
+			.pipe(devBuild ? sourcemapsModule.init() : noopModule())
+			// .pipe(sassModule(sassOpts).on('error', sass.logError))
+			.pipe(stylusModule())
+			.pipe(postcssModule(postCSSModules))
+			.pipe(concatModule("portfolio.css").on("error", handleError))
+			//stripModule())
+			.pipe(devBuild ? sourcemapsModule.write() : noopModule())
+			.pipe(
+				sizeModule({
+					showFiles: true
+				})
+			)
+			.pipe(gulp.dest(pathCssDest))
+			.pipe(
+				browsersyncModule
+					? browsersyncModule.reload({
+							stream: true
+					})
+					: noopModule()
+			)
+	);
+}
 
 function css() {
-	return gulp.src(pathCssSrc)
-		//stripModule())
-		.on('error', handleError)
-		.pipe(gulp.dest(pathCssDest));
-};
+	return (
+		gulp
+			.src(pathCssSrc)
+			//stripModule())
+			.on("error", handleError)
+			.pipe(gulp.dest(pathCssDest))
+	);
+}
 
-exports.stylus = gulp.series(cleanCss, css, stylus);
+export const stylus = gulp.series(cleanCss, css, stylusPipe);
 
 /*================================================PREFIX===================================================*/
 //gulp.task('prefix', function () {
@@ -368,67 +509,73 @@ exports.stylus = gulp.series(cleanCss, css, stylus);
 //			.pipe(gulp.dest('./public/styles/autoprefixer'));
 
 /*================================================FONTS====================================================*/
-function fonts() {
-	return gulp.src(pathFontsSrc)
-		.pipe(gulp.dest(pathFontsDest));
-};
+function fontsPipe() {
+	return gulp.src(pathFontsSrc).pipe(gulp.dest(pathFontsDest));
+}
 
-exports.fonts = gulp.series(cleanFonts, fonts);
+export const fonts = gulp.series(cleanFonts, fontsPipe);
 
 /*================================================SOUND====================================================*/
-function sounds() {
-	return gulp.src(pathSoundsSrc)
-		.pipe(gulp.dest(pathSoundsDest));
-};
+function soundsPipe() {
+	return gulp.src(pathSoundsSrc).pipe(gulp.dest(pathSoundsDest));
+}
 
-exports.sounds = gulp.series(cleanSounds, sounds);
+export const sounds = gulp.series(cleanSounds, soundsPipe);
 
 /*================================================PUG======================================================*/
-function pug() {
-	return gulp.src(pathPugSrc)
-		.pipe(pugModule({
-			pretty: true
-		}).on('error', handleError))
+function pugPipe() {
+	return gulp
+		.src(pathPugSrc)
+		.pipe(
+			pugModule({
+				pretty: true
+			}).on("error", handleError)
+		)
 		.pipe(stripModule())
 		.pipe(gulp.dest(pathHtmlDest));
-};
+}
 
-exports.pug = gulp.series(cleanHtml, pug);
+export const pug = gulp.series(cleanHtml, pugPipe);
 
 /*================================================TXT======================================================*/
 //todo вынуть костыли-переменные и сделать файл-шаблон с размножением
 
-const replaceTextHeader = '<html lang="ru">\n' +
-	'  <head>\n' +
+const replaceTextHeader =
+	'<html lang="ru">\n' +
+	"  <head>\n" +
 	'    <meta charset="UTF-8"/>\n' +
 	'    <meta http-equiv="x-ua-compatible" content="ie=edge"/>\n' +
 	'    <meta name="robots" content="all"/>\n' +
 	'    <meta name="viewport" content="width=device-width, initial-scale=1"/>\n' +
-	'  </head>\n' +
-	'  <body>';
+	"  </head>\n" +
+	"  <body>";
 
-const replaceTextFooter = '  </body>\n' +
-	'</html>';
+const replaceTextFooter = "  </body>\n" + "</html>";
 
-function txt() {
-	return gulp.src(pathTxtSrc)
-		.pipe(markdownModule())
-		// .pipe(replaceModule('HEADER_TEMPLATE', replaceTextHeader))
-		// .pipe(replaceModule('FOOTER_TEMPLATE', replaceTextFooter))
-		.pipe(renameModule({
-			extname: '.md.html'
-		}))
-		.pipe(gulp.dest(pathTxtDest));
-};
+function txtPipe() {
+	return (
+		gulp
+			.src(pathTxtSrc)
+			.pipe(markdownModule())
+			// .pipe(replaceModule('HEADER_TEMPLATE', replaceTextHeader))
+			// .pipe(replaceModule('FOOTER_TEMPLATE', replaceTextFooter))
+			.pipe(
+				renameModule({
+					extname: ".md.html"
+				})
+			)
+			.pipe(gulp.dest(pathTxtDest))
+	);
+}
 
-exports.txt = gulp.series(cleanTxt, txt);
+export const txt = gulp.series(cleanTxt, txtPipe);
 
 /*================================================WATCH====================================================*/
 
 /**
  * Всё, кроме звуков и картинок
  */
-function w(done) {
+function wPipe(done) {
 	gulp.watch(pathStylusSrcWatch.concat(pathCssSrc), stylus);
 	gulp.watch(pathPugSrcWatch, pug);
 	gulp.watch(pathTxtSrc, txt);
@@ -437,9 +584,9 @@ function w(done) {
 	//	gulp.watch(pathImgSrc,
 	//			['img']);
 	done();
-};
+}
 
-exports.w = gulp.series(devFn(), server, w);
+export const w = gulp.series(devFn(), server, wPipe);
 
 /*================================================RUNNER===================================================*/
 
@@ -451,12 +598,20 @@ function devFn() {
 	return gulp.series(fonts, js, css, stylus, pug, txt, versionDev);
 }
 
-exports.dev = devFn();
+export const dev = devFn();
 
 /**
  * Выполняется синхронно, чтобы сделать коммит
  * Нельзя перемешивать version
  */
-exports.prod = gulp.series(fonts, js, css, stylus, pug, txt, sounds, img, versionProd);
-
-})()
+export const prod = gulp.series(
+	fonts,
+	js,
+	css,
+	stylus,
+	pug,
+	txt,
+	sounds,
+	img,
+	versionProd
+);

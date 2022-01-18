@@ -8,6 +8,7 @@
 	$var-width-min = $var-width-desktop //media (min-width)
 
 	$var-font-bs = 15 //минимальный размер шрифта и горизонтального отступа
+	$var-font-bs-svg-fix = 6 // приведение к единому виду с иконочным шрифтом
 
 	$var-k = 1.618
 	//$var-k = 1.414
@@ -169,7 +170,7 @@
 				color $var-color-white
 				text-align center
 				mixin-shadow(4px, 4px, 4px, 0, $var-color-black)
-				
+
 				&:hover
 					background-color $var-color-gray-4
 					text-decoration none
@@ -205,7 +206,7 @@
 	//поэтому нельзя просто сделать width:100% - либо фон не растянется, либо не будет центрирования текста из-за table-cell
 	//для растягивания на малых разрешениях кнопок необходимо добавлять ещё один контейнер поверх button/a/span
 	//todo добавить класс для растягивания кнопок на 100% на малых разрешениях
-	
+
 	&-button
 		text-align center
 		color $var-color-white
@@ -293,7 +294,7 @@
 				list-style-type none
 				vertical-align middle
 				color $var-color-white
-				
+
 				button
 					border-style none
 					padding-top 0
@@ -479,8 +480,9 @@
 
 				li
 					list-style-type none
-					display block
-					vertical-align middle
+					display flex
+					flex-direction row
+					align-items center
 					background-color $var-color-gray-4
 					color $var-color-white
 
@@ -498,13 +500,14 @@
 						padding-right ($var-font-bs / $var-k * $var-k-small) px
 						margin-top ($var-font-bs / $var-k) px
 
-					i
+					i, svg
 						display table-cell
 						color inherit
 						vertical-align text-bottom
 						margin 0
 						padding 0
 
+					i
 						@media (max-width $var-width-max px)
 							font-size ($var-font-bs /  $var-k-small) px
 							width ($var-font-bs * $var-k-small) px
@@ -512,6 +515,20 @@
 						@media (min-width $var-width-min px)
 							font-size ($var-font-bs) px
 							width ($var-font-bs * $var-k) px
+
+					svg
+						fill currentColor
+						padding-right $var-font-bs-svg-fix px
+						margin-left -($var-font-bs-svg-fix / 2) px
+
+						@media (max-width $var-width-max px)
+							width ($var-font-bs * $var-k-small - $var-font-bs-svg-fix) px
+							max-height ($var-font-bs * $var-k-small - $var-font-bs-svg-fix) px
+
+						@media (min-width $var-width-min px)
+							width ($var-font-bs * $var-k - $var-font-bs-svg-fix) px
+							max-height ($var-font-bs * $var-k-small - $var-font-bs-svg-fix) px
+
 					p
 						font-size inherit
 						display table-cell

@@ -51,6 +51,9 @@
 		"yaspeller": "^8.0.0"
 	},
 	"devDependencies": {
+		"@babel/core": "^7.16.7",
+		"@babel/preset-env": "^7.16.8",
+		"@babel/register": "^7.16.9",
 		"@types/node": "^12.7.1",
 		"@typescript-eslint/parser": "^2.1.0",
 		"browser-sync": "^2.27.7",

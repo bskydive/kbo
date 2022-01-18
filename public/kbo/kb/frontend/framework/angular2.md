@@ -636,16 +636,17 @@ https://stackblitz.com/edit/angular-jhutmd?file=app%2Fapp.component.html
 
 ### tslint eslint линтеры
 
+ * `// @ts-nocheck` https://www.typescriptlang.org/docs/handbook/intro-to-js-ts.html#ts-check
+ * // eslint-disable max-lines
+ * // tslint:disable:max-lines
  * фильтрация вывода линтеров
 
- ```bash
-	grep warning eslint.log | awk -F '  warning  ' '{print $2}' | tr -s " " | sort | uniq | less
-	grep WARNING: tslint.log | colrm 1 16 | sort | uniq |less
-	grep ' ✖ ' scsslint.log | colrm 1 9 | sort | uniq | less
-	grep ' × ' log/scsslint.log | colrm 1 10 | tr -s ' ' | sort | uniq > log/scsslint.uniq.log # windows
- ```
-
-
+	```bash
+		grep warning eslint.log | awk -F '  warning  ' '{print $2}' | tr -s " " | sort | uniq | less
+		grep WARNING: tslint.log | colrm 1 16 | sort | uniq |less
+		grep ' ✖ ' scsslint.log | colrm 1 9 | sort | uniq | less
+		grep ' × ' log/scsslint.log | colrm 1 10 | tr -s ' ' | sort | uniq > log/scsslint.uniq.log # windows
+	```
  * [migrate-angular-8-from-tslint-to-eslint](https://medium.com/create-code/migrate-angular-8-from-tslint-to-eslint-4b0c44c8ae38)
  * [tslint-to-eslint-config](https://github.com/typescript-eslint/tslint-to-eslint-config)
  * [tslint](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin) 

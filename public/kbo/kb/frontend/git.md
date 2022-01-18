@@ -120,6 +120,9 @@ git status -uno --porcelain
 # added not shown
 git diff --name-only --diff-filter=ATCMR
 git ls-files -m
+
+# untracked files
+git ls-files -o --exclude-standard
 ```
 
 ### log
