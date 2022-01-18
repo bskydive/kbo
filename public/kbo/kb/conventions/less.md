@@ -133,7 +133,19 @@
 ## svg
 
 1. Выбираем для иконок svg подключение по url, хранение в отдельных файлах
- 
+	```css
+		svg { 
+			fill:currentColor;
+			color: white;
+		}
+	```
+
+ 	```xml
+		<svg xmlns="http://www.w3.org/2000/svg" id="path1" viewBox="0 0 24 24">
+			<path d="..."/>
+		</svg>
+	```
+
 	```pug
 		svg.icon.icon--arrowDown
 			use([attr.xlink:href]="getIconPath('iconName')") //-->img/icon--iconName.svg#icon--iconName

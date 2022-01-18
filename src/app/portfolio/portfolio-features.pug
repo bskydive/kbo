@@ -10,7 +10,8 @@ section.c-portfolio-features
 		mixin list-svg(vicon,vtext)
 			li
 				svg.icon
-					use(xlink:href=vicon)
+					use(href=vicon)
+				//- img(src=vicon)
 				p=vtext
 		ul
 			+list-icon(
@@ -35,7 +36,7 @@ section.c-portfolio-features
 			"icon-comments",
 			"грамотная устная и\u00A0письменная русская речь, intermediate english level")
 			+list-svg(
-			"img/icon-git-square.svg#icon-git-square",
+			"img/git-square.svg#icon-git-square",
 			"пишу человеко-понятный, модульный, структурированный, типизированный код")
 			+list-icon(
 			"icon-heart",
