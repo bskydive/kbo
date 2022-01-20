@@ -81,11 +81,14 @@
 	* компоненты
 		* в компоненте может быть только один корневой тэг
 		* компонент должен возвращать минимум один тэг
-		* генерация компонентов через интерполяцию
+		* генерация компонентов через интерполяцию (ngFor)
 			```tsx
 				{values.map( value => <div>{value}</div>)}
 			```
 		* для генерируемых в цикле компонентов необходимо указывать key(ngFor trackBy)
+			```
+
+			```
 		* props.children aka ng-content
 
 			```tsx
@@ -101,13 +104,18 @@
 				}
 				export default myComp;
 			```
-		* для корректной работы с generics <T> необходимо использовать `function` вместо `=>`
+		* компоненты
 
 			```tsx
-				// const myComp: FC<T> = ({children: React.ReactChild | React.ReactNode, ...props}) => {//
-				// export default myComp;
+				// 1
+				const myComp: FC<T> = ({children: React.ReactChild | React.ReactNode, ...props}) => {//для корректной работы с generics <T> необходимо использовать `function` вместо `=>`
+				export default myComp;
 
+				// 2
 				export default function myComp: FC<T>(props: T) => {//
+
+				// 3
+				
 			```
 		* props передаются во вложенные компоненты только от родителя к детям
 		* для обратного проброса props надо передать функцию обратного вызова
