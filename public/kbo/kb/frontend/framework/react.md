@@ -107,14 +107,21 @@
 		* компоненты
 
 			```tsx
-				// 1
-				const myComp: FC<T> = ({children: React.ReactChild | React.ReactNode, ...props}) => {//для корректной работы с generics <T> необходимо использовать `function` вместо `=>`
+				// функциональный
+				const myComp: FC<T> = ({children: React.ReactChild | React.ReactNode, ...props}) => {}
 				export default myComp;
 
 				// 2
-				export default function myComp: FC<T>(props: T) => {//
+				export default function myComp: FC<T>(props: T) => {}
 
-				// 3
+				// классовый
+				export class NavigationComponent extends Component {
+					render() {
+						return (<div></div>);
+					}
+				}
+
+				export default NavigationComponent;
 				
 			```
 		* props передаются во вложенные компоненты только от родителя к детям

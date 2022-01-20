@@ -85,3 +85,9 @@
 ## инструменты
 
  * [google colab выборы в питере](https://habr.com/ru/post/475258)
+
+## игра жизнь
+
+ * http://www.marekfiser.com/Projects/Conways-Game-of-Life-on-GPU-using-CUDA
+ * https://www.researchgate.net/publication/300414807_Efficient_GPU_Implementations_for_the_Conway's_Game_of_Life
+ * [Эволюция бесконечной случайной конфигурации в игре «Жизнь»](https://habr.com/ru/post/646541/)
