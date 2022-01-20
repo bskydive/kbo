@@ -222,6 +222,10 @@ xauth -
 
 ```
 
+## crop pdf
+
+ * https://pdf.online/crop-pdf
+
 ## jpeg to pdf
 
     ```bash
