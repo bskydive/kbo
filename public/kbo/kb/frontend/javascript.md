@@ -64,6 +64,22 @@
 ## ботанство
 
  * http://dmitrysoshnikov.com/ecmascript/javascript-the-core-2nd-edition-rus/
+
+	```js
+		let x = 10;
+
+		function foo() {
+		console.log(x);
+		}
+
+		function bar(funArg) {
+			let x = 20;
+			funArg(); // 10, но не 20!
+		}
+
+		// Передаем `foo` в качестве аргумента в `bar`.
+		bar(foo);
+	```
  * https://medium.com/@DmitrySoshnikov
  * [параллельные конкурентные потоки многопоточность](https://hacks.mozilla.org/2017/06/a-crash-course-in-memory-management/)
  * [Основы движков JavaScript: общие формы и Inline кэширование. Часть 2](https://habr.com/ru/company/otus/blog/447220/)
