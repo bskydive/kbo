@@ -64,6 +64,22 @@
 ## ботанство
 
  * http://dmitrysoshnikov.com/ecmascript/javascript-the-core-2nd-edition-rus/
+
+	```js
+		let x = 10;
+
+		function foo() {
+		console.log(x);
+		}
+
+		function bar(funArg) {
+			let x = 20;
+			funArg(); // 10, но не 20!
+		}
+
+		// Передаем `foo` в качестве аргумента в `bar`.
+		bar(foo);
+	```
  * https://medium.com/@DmitrySoshnikov
  * [параллельные конкурентные потоки многопоточность](https://hacks.mozilla.org/2017/06/a-crash-course-in-memory-management/)
  * [Основы движков JavaScript: общие формы и Inline кэширование. Часть 2](https://habr.com/ru/company/otus/blog/447220/)
@@ -251,17 +267,16 @@
 | Программные сущности (классы, модули, функции и т.п.) должны быть открыты 
 для расширения, но закрыты для изменения.                                               | Open Closed Principle           | (Принцип открытости/закрытости)      |
 | Объекты в программе могут быть заменены их наследниками без изменения 
-свойств программы.                                                                      | Liskov 's Substitution Principle | (Принцип подстановки Барбары Лисков) |
-| Клиенты не должны быть вынуждены реализовывать ненужные методы, которые 
+свойств программы.                                                                      | Liskov 's Substitution Principle| (Принцип подстановки Барбары Лисков) |
+| Клиенты не должны реализовывать ненужные методы, которые 
 они не будут использовать                                                               | Interface Segregation Principle | (Принцип разделения интерфейса)      |
-| Зависимости внутри системы строятся на основе абстракций. Модули верхнего 
-уровня не зависят от модулей нижнего уровня. Абстракции не должны зависеть 
-от деталей. Детали должны зависеть от абстракций. | Dependency Inversion Principle      | (Принцип инверсии зависимостей) |                                      |
+| Реализации на основе абстракций. Наследование от реализаций и абстракций только 
+сверху вниз. 									 										| Dependency Inversion Principle  | (Принцип инверсии зависимостей) 	 |
 |                                                                                       |                                 |                                      |
 | | | | |
 
- * [GRASP паттерны проектирования](https://habr.com/ru/post/92570/)
- * GoF - gang of four
+ * [GRASP паттерны проектирования](https://habr.com/ru/post/92570/) - 9шт
+ * GoF - gang of four - 23шт
  * [MVC vs MVP vs MVVM](https://habr.com/ru/post/215605/) https://habr.com/ru/company/mobileup/blog/313538/
  * [Хороший дизайн должен быть SOLID - 2008](http://igor.quatrocode.com/2008/09/solid-top-5.html)
 

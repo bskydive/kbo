@@ -13,13 +13,13 @@
 	* 6 - 2018 - angular elements(web custom elements), tree-shakable providers(providedIn:root), rxjs 6, Ivy
 	* 7 - drag and drop, node v10, service worker
 	* 8 - webworker, ES6 импорт модулей `()=>`
-	* 9 - Ivy по-умолчанию, ullTemplateTypeCheck, strictTemplates в tsc
+	* 9 - 2020 - Ivy по-умолчанию, fullTemplateTypeCheck, strictTemplates в tsc
 	* 10 - исправили 700 и посмотрели 2000 ошибок, компонент диапазона дат
 	* 11 - harnesses for all of the components, webpack 5 experimental, ng serve --hmr, tslint deprecated, IE9/10 deprecated
 	* 12 - nullish coalescing, tailwind css, webpack 5 prod, IE11 deprecated
-1. АРхитектура
+1. Архитектура
 	* MVVM
-	* зачем
+	* зачем - потому что автоматическое связывание data binding(езинственное отличие от MVP)
 	* достоинства
 	* недостатки
 1. Различие между AngularJS и Angular
@@ -27,10 +27,10 @@
 1. преимущества [Angular](https://medium.com/better-programming/angular-in-2020-and-beyond-b2e98543ef17)
 	* поскольку вместо virtualDOM у нас shadowDOM и декларативный стиль HTML вместо императивного JS/аннотации
 	* не надо делать обёртки для сторонних UI компонентов
-	* Много библиотек с поддержкой вендора(обновления+наставления) вроде router/ngModule, покрывающих все типовые нужды SPA
+	* Много библиотек с поддержкой вендора(router/ngModule), покрывающих все типовые нужды SPA
 	* чёткие подробные наставления
 	* релиз каждые 6 мес с полной обратной совместимостью
-	* не нужно думать о совместимости версий внешних библиотек, всё включено, задокументировано
+	* не нужно думать о совместимости версий внешних библиотек, всё включено
 	* DI - контроль количества экземпляров, изоляция, оптимизация
 1. недостатки
 	* больший размер из-за Angular CLI, но после компиляции его убирают. В старом режиме JIT компилятор на борту также увеличивает объём.
@@ -78,11 +78,15 @@
 
 1. Иерархия Injector'ов, какие бывают, сколько их может быть?
 	* https://angular.io/guide/hierarchical-dependency-injection
-	* первая: ModuleInjector иерархия через @NgModule() или @Injectable()
-	* вторая: ElementInjector иерархия для каждого DOM элемента. ElementInjector пустой пока нет providedIn в @Directive() или @Component()
+	* https://medium.com/angular-in-depth/angular-dependency-injection-and-tree-shakeable-tokens-4588a8f70d5d
+	* [Что вы знаете о функции inject?](https://habr.com/ru/company/tinkoff/blog/523160/) - можно внедрить компонент без модулей и передать туда данные
+	* две иерархии, чтобы не двоились lazy load зависимости
+		* первая: ElementInjector иерархия для каждого DOM элемента. ElementInjector пустой пока нет providedIn в @Directive() или @Component()
+		* вторая: ModuleInjector иерархия через @NgModule() или @Injectable()
+		* разрешаются через mergeInjector `constructor(private injector: Injector) {}`
 	* иерархия NullInjector()-->platformModuleInjector(Renderer, Sanitizer)-->rootModuleInjector(services)-->componentInjector(ElementRef, ChangeDetectorRef)
 	* @Injectable() предпочтительнее @NgModule() providers, т.к. позволяют tree-shaking
-	* The `platformBrowserDynamic()` method creates an `platformModuleInjector` for platform/browser-specific dependencies like domsanitizer. Configured by platformBrowser().extraProviders
+	* `platformBrowserDynamic()` создаёт `platformModuleInjector` для platform/browser специфичных зависимостей как domsanitizer. Настраивается через platformBrowser().extraProviders
 	* можно создать дочерние ModuleInjectors при ленивой загрузке
 	* стратегии разрешения зависимостей: @Optional(), @Self(), @SkipSelf(), @Host() https://angular.io/guide/dependency-injection-in-action#make-a-dependency-optional-and-limit-search-with-host
 		* @Optional() присваивает null не найденным провайдерам сервисов. Нужен для игнорирования ошибок 
@@ -116,10 +120,10 @@
 			* platform - для всех приложений
 		* для модуля: в модуле `@NgModule({providers: [...]`
 		* для компонента: в аннотации компонента `@Component({...,providers:  [ HeroService ],...})`
-	* используется
-		* в маршрутизаторе для хранения по одной копии состояния маршрута
-	* forRoot: модуль с providers
-	* forChild: отдельный экземпляр модуля без providers для ленивой загрузки
+		* используется
+			* в маршрутизаторе для хранения по одной копии состояния маршрута
+	* .forRoot: модуль с providers
+	* .forChild: отдельный экземпляр модуля без providers для ленивой загрузки
 	* нельзя внедрять интерфейсы https://angular.io/guide/dependency-injection-providers#interfaces-and-dependency-injection , но можно абстрактные классы https://angular.io/guide/dependency-injection-in-action#class-interface
 	* [внедрение лёгких токенов](https://angular.io/guide/lightweight-injection-tokens) для уменьшения размера библиотек
 		```ts
@@ -353,14 +357,8 @@
 		* прямой доступ в DOM нежелательно использовать при рендеринге на сервере из-за ИБ
 		* можно ссылаться на директивы по имени и типу, на шаблонные переменные `#`
 		* можно читать/писать в @Input компонента
-	* Property decorator that configures a view query. The change detector looks for the first element or the directive matching the selector in the view DOM. The following selectors are supported:
-		* Any class with the @Component or @Directive decorator
-		* A template reference variable as a string (e.g. query <my-component #cmp></my-component> with @ViewChild('cmp'))
-		* Any provider defined in the child component tree of the current component (e.g. @ViewChild(SomeService) someService: SomeService)
-		* Any provider defined through a string token (e.g. @ViewChild('someToken') someTokenVal: any)
-		* A TemplateRef (e.g. query <ng-template></ng-template> with @ViewChild(TemplateRef) template;)
 	* [viewchild](https://medium.com/technofunnel/angular-viewchild-and-viewchildren-fde2d252b9ab) для доступа к DOM после рендеринга afterViewInit
-		* shadowDom
+		* shadowDom/JS
 		* https://angular.io/api/core/ViewChild
 		* https://angular.io/guide/glossary#view-hierarchy
 		* https://angular.io/guide/lifecycle-hooks#responding-to-view-changes
@@ -368,6 +366,12 @@
 		* прямой доступ в DOM нежелательно использовать при рендеринге на сервере из-за ИБ
 		* можно ссылаться на директивы по имени и типу, на шаблонные переменные `#`
 		* можно читать/писать в @Input компонента
+		* Property decorator that configures a view query. The change detector looks for the first element or the directive matching the selector in the view DOM. The following selectors are supported:
+			* Any class with the @Component or @Directive decorator
+			* A template reference variable as a string (e.g. query <my-component #cmp></my-component> with @ViewChild('cmp'))
+			* Any provider defined in the child component tree of the current component (e.g. @ViewChild(SomeService) someService: SomeService)
+			* Any provider defined through a string token (e.g. @ViewChild('someToken') someTokenVal: any)
+			* A TemplateRef (e.g. query <ng-template></ng-template> with @ViewChild(TemplateRef) template;)
 
 	```ts
 		// Accessing DOM element with JavaScript
@@ -401,7 +405,64 @@
 			console.log("Element List: " + this.userDetailReferences.length);
 		}
 	```
-1. [динамическое создание компонентов](https://habr.com/ru/company/infowatch/blog/330030/)
+1. [динамическое создание компонентов](https://habr.com/ru/company/infowatch/blog/330030/) - как создать динамически компонент, который лежит во внешнем файле, а также вставлять его в DOM из нашего сервиса
+
+	```ts
+		//ссылки через DI на себя:
+		constructor(
+			private viewContainerRef: ViewContainerRef
+			private templateRef: TemplateRef<any>,
+			private el: ElementRef
+		)
+
+		//viewChild
+		@ViewChild('input') input;
+
+		ngAfterContentInit() {
+			this.input.nativeElement.focus();
+		} 
+
+		//renderer2
+		let inputElement = this.renderer.createElement('input');
+		this.renderer.appendChild(parent, inputElement);
+		this.renderer.setProperty(inputElement, 'checked', true);
+
+		//DI
+		constructor(
+			private renderer: Renderer2,
+			private elementRef: ElementRef
+		) {}
+
+		@Input() set content(value: string) {
+			let buttonElement = this.renderer.createElement('button');
+			this.renderer.appendChild(this.elementRef.nativeElement, buttonElement);
+		}
+
+		// viewContainer - можно создать Host(component)/Embedded(template) view
+		//ангуляр не вставляет View-элемент внутрь указанного контейнера, а добавляет его сразу после контейнера
+		//динамически добавляемые компоненты не поддерживают Input- и Output-декораторы
+		this._contentViewRef = this.popover.createEmbeddedView();
+		const componentFactory = this._cfResolver.resolveComponentFactory(Popover);
+		this._componentRef = this.viewContainerRef.createComponent(
+			componentFactory,
+			this._injector,
+			0,
+			[this._contentViewRef.rootNodes]
+		);
+
+		this._componentRef.instance.title = this.title;
+		this._contentViewRef.detectChanges();
+
+		//ngTemplateOutlet
+		<ng-container *ngTemplateOutlet="svk; context: myContext"></ng-container>
+      	<ng-template #svk><span>Hello</span></ng-template>
+
+		//ngComponentOutlet
+		<ng-container *ngComponentOutlet="HelloWorld"></ng-container>
+		...
+		class ComponentOutletExample {
+   			public HelloWorld = HelloWorldComponent
+	```
 1. Как получить доступ к HTML Element из компонента.
 	* https://angular.io/guide/component-interaction
 	* шаблонные переменные в родителе дают доступ в HTML к свойствам компонента
@@ -446,18 +507,19 @@
 
 		```
 	* ElementRef даёт доступ к собственному DOM 
-	* https://angular.io/guide/testing-components-basics#nativeelement
-	* https://angular.io/guide/attribute-directives
-	* https://angular.io/guide/dependency-injection-in-action#inject-the-components-dom-element
+		* https://angular.io/guide/testing-components-basics#nativeelement
+		* https://angular.io/guide/attribute-directives
+		* https://angular.io/guide/dependency-injection-in-action#inject-the-components-dom-element
 
-		```ts
-			@Directive({selector: '[appHighlight]'})
-			export class HighlightDirective {
-				constructor(el: ElementRef) {
-				el.nativeElement.style.backgroundColor = 'yellow';
+			```ts
+				@Directive({selector: '[appHighlight]'})
+				export class HighlightDirective {
+					constructor(el: ElementRef) {
+					el.nativeElement.style.backgroundColor = 'yellow';
+					}
 				}
-			}
 		```
+	* ViewContainerRef  - ещё позволяет создавать дочерние элементы
 1. ViewEncapsulation. Какая бывает, зачем нужна?
 	* Emulated - CSS обёртка для эмуляции стандартного поведения. если не объявлены templates/templateUrls переключается в None.
 	* None - для наследования общих стилей

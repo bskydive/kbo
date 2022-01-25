@@ -944,6 +944,7 @@ count.subscribe(x => console.log(x));
 ### @Input()
 
  * работает постоянно, потому необходимо ограничивать его запуск
+ * `@Input() set` сеттеры/геттеры могут вызвать асинхронные гонки https://kelly-kh-woo.medium.com/angular-stop-using-setter-for-input-or-5bdb4b990ab3
 
 
 ### angular router
