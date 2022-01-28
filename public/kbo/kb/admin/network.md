@@ -1,6 +1,8 @@
 # network сеть
 
 * [отладка сетевого стека linux](https://habr.com/ru/company/mailru/blog/314168)
+* [Настройка сетевого стека Linux для высоконагруженных систем 2021](https://habr.com/ru/company/otus/blog/550820/)
+	* https://levelup.gitconnected.com/linux-kernel-tuning-for-high-performance-networking-configuring-kernel-settings-96b519a3305f
 
 ## HTTP
 

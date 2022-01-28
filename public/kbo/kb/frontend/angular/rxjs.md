@@ -9,20 +9,56 @@
 	* много потоков
 	* готовые операторы
 	* серия значений, а не только одно
+
+    * A Function is a lazily evaluated computation that synchronously returns a single value on invocation.
+    * A generator is a lazily evaluated computation that synchronously returns zero to (potentially) infinite values on iteration.
+    * A Promise is a computation that may (or may not) eventually return a single value.
+    * An Observable is a lazily evaluated computation that can synchronously or asynchronously return zero to (potentially) infinite values from the time it's invoked onwards.
 1. Observable - наблюдаемый
+	* represents the idea of an invokable collection of future values or events.
 	* lazy push collection
 	* обратный вызов next -
 	* обратный вызов error -
 	* обратный вызов complete -
+1. Observer - наблюдатель
+	* is a collection of callbacks that knows how to listen to values delivered by the Observable
 1. Subject
 	* разновидность наблюдаемого, можно подписаться нескольким наблюдателям - multicast
+	* is equivalent to an EventEmitter, and the only way of multicasting a value or event to multiple Observers
 	* asyncSubject
 	* replaySubject - кэширование и повторение
 	* behaviorSubject - есть начальное значение
+
+	```ts
+	const setFabricRunners$: Subject<{ id: number; task$: Observable<any> }[]> = new Subject();
+	const getFabricRunners$ = setFabricRunners$.asObservable().pipe();
+	getFabricRunners$.subscribe();
+
+	//
+	const observable = new Observable(subscriber => {
+		subscriber.next(1);
+		subscriber.next(2);
+		subscriber.next(3);
+		setTimeout(() => {
+			subscriber.next(4);
+			subscriber.complete();
+		}, 1000);
+	});
+	
+	observable.subscribe({
+		next(x) { console.log('got value ' + x); },
+		error(err) { console.error('something wrong occurred: ' + err); },
+		complete() { console.log('done'); }
+	});
+	```
+1. Operators
+	* are pure functions that enable a functional programming style of dealing with collections with operations like map, filter, concat, reduce, etc.
 1. Subscription
+	* экземпляр выполняемого Observable
 	* отменяемый(disposable) через unsubscribe объект
-1. BehaviourSubject что это, в чем отличие?
-	* начальное значение
+1. Schedulers
+	* are centralized dispatchers to control concurrency, allowing us to coordinate when computation happens on e.g. setTimeout or requestAnimationFrame or others.
+	* pipe(ObserveOn(asapScheduler))
 1. Как обработать ошибку в Observable?
 	* pipe(catchError())
 1. Как осуществить multicasting? Приведите пример.

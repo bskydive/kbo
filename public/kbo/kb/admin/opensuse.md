@@ -222,6 +222,10 @@ xauth -
 
 ```
 
+## crop pdf
+
+ * https://pdf.online/crop-pdf
+
 ## jpeg to pdf
 
     ```bash
@@ -634,7 +638,12 @@ Code:
 
  ```
 
+## adblock ublock
 
+ * [как отписаться от пользователей и рекламных блогов habr](https://habr.com/ru/post/408239/)
+	* geektimes.ru#?#li:-abp-has(a.user-info[href*="username"])
+ * [Я никогда не писал расширения для Хрома, но ](https://habr.com/ru/post/525728/)
+	* https://github.com/Drag13/HabrSanitizer
 ## installation migration OS
 
  * включить numlock
