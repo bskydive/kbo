@@ -11,7 +11,7 @@
 
  * [ликбез ispsystem](https://doc.ispsystem.ru/index.php/Установка_SSL-сертификата/)
  * [openssl cli](https://www.sslshopper.com/article-most-common-openssl-commands.html)
- * [gitlab pages ssl](https://gitlab.com/stepanovv/kbo/pages/domains/stepanovv.ru)
+ * [gitlab pages ssl](https://gitlab.com/stepanovv/kbo/pages/domains/stepanovv.ru	)
  * обновление ключа
 
 	```bash

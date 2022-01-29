@@ -348,7 +348,8 @@
 	* ссылается на: DOM element, directive (which contains a component), an element, TemplateRef, or a web component.
 	* Область видимости - весь шаблон, потому одинаковые переменные будут содержать непредсказуемые ссылки.
 1. TemplateRef, ElementRef, в чем разница?
-	* DOM/JS ?
+	* ссылка на ng-template или любой элемент
+	* шаблон можно передать в директиву ngTemplateOutlet а элемент в componentOutlet
 1. В чем отличие СontentChild vs ViewChild.
 	* [СontentChild](https://angular.io/guide/lifecycle-hooks#responding-to-projected-content-changes)
 		* DOM
@@ -357,7 +358,8 @@
 		* прямой доступ в DOM нежелательно использовать при рендеринге на сервере из-за ИБ
 		* можно ссылаться на директивы по имени и типу, на шаблонные переменные `#`
 		* можно читать/писать в @Input компонента
-	* [viewchild](https://medium.com/technofunnel/angular-viewchild-and-viewchildren-fde2d252b9ab) для доступа к DOM после рендеринга afterViewInit
+	* [viewchild](https://medium.com/technofunnel/angular-viewchild-and-viewchildren-fde2d252b9ab) 
+		* для доступа к DOM после рендеринга afterViewInit
 		* shadowDom/JS
 		* https://angular.io/api/core/ViewChild
 		* https://angular.io/guide/glossary#view-hierarchy
@@ -406,6 +408,9 @@
 		}
 	```
 1. [динамическое создание компонентов](https://habr.com/ru/company/infowatch/blog/330030/) - как создать динамически компонент, который лежит во внешнем файле, а также вставлять его в DOM из нашего сервиса
+	* content projection
+	* templateOutlet
+	* componentOutlet
 
 	```ts
 		//ссылки через DI на себя:
@@ -532,11 +537,20 @@
 	* ангуляр манкипатчит browser API - mouse/input/keyb events, xhr, promise, async/await, webworkers,
 	* распространяется на вложенные компоненты
 	* default ("CheckAlways") - the change detector goes through the view hierarchy on each VM turn to check every data-bound property in the template. In the first phase, it compares the current state of the dependent data with the previous state, and collects changes. In the second phase, it updates the page DOM to reflect any new data values.
-	* OnPush ("CheckOnce") - ручная проверка doCheck, поменялась @Input ссылка(не значение), DOM event(input) для связанных свойств, async pipe(rxjs, promise)
+	* OnPush ("CheckOnce") - 
+		* ручная проверка doCheck
+		* поменялась @Input ссылка(не значение)
+		* DOM event(input) для связанных свойств
+		* async pipe(rxjs, promise)
+
 		```ts
 			@Component({
 				changeDetection: ChangeDetectionStrategy.OnPush
 			})
+
+			constructor(private ref: ChangeDetectorRef) {
+				this.ref.markForCheck();
+			}
 		```
 1. Что такое zone.js, как он работает.
 	* https://medium.com/@overthesanity/zone-js-от-а-до-я-fdb995917968
