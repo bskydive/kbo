@@ -139,6 +139,7 @@
 		</div>
 	```
  * управляемый компонент
+	* https://reactjs.org/docs/forms.html#controlled-components
 	* прямое связывание через value
 	* обратное через onChange
 	```tsx
@@ -146,6 +147,7 @@
 	```
  * изоляция стилей через css modules
  * неуправляемый компонент
+	* https://reactjs.org/docs/uncontrolled-components.html
 	* прямое взаимодействие через hook useRef
  * вложенные компоненты
 	* children
