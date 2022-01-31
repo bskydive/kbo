@@ -93,6 +93,14 @@
 		* @Self() ищет в текущем ElementInjector component или directive
 		* @SkipSelf() ищет в родительском ElementInjector
 		* @Host() ищет в component и ниже по вложенному дереву
+
+		```ts
+			constructor(
+				@Host()     // limit search for logger; hides the application-wide logger
+				@Optional() // ok if the logger doesn't exist
+				private loggerService?: LoggerService
+			) {
+		```
 1. Управление экземплярами https://angular.io/guide/dependency-injection-in-action
 	* песочница, отдельные экземпляры: регистрируем в providers аннотациях компонентов https://angular.io/guide/dependency-injection-in-action#multiple-service-instances-sandboxing
 	* 
@@ -102,6 +110,15 @@
 		* Объект, который реализует один из интерфейсов [Provider](https://angular.io/api/core/Provider)
 		* предоставляет инжектору порядок разрешения зависимости, связанной с токеном/идентификатором
 		* может предоставлять разные реализации одной и той же зависимости
+		* multi для расширения токена новыми зависимостями 
+			* https://blog.thoughtram.io/angular2/2015/11/23/multi-providers-in-angular-2.html
+
+			```ts
+				var injector = Injector.create([
+				{ provide: Engine, deps: []},
+				{ provide: Engine, useClass: TurboEngine, deps: [] }
+				]);
+			```
 	* [токен](https://angular.io/guide/dependency-injection-providers#dependency-injection-tokens) 
 		* объект, который реализует интерфейс [InjectionToken](https://angular.io/api/core/InjectionToken)
 	* [инжектор](https://www.youtube.com/watch?v=Z1gLFPLVJjY) 
@@ -260,7 +277,7 @@
 1. Какие обязательные props для Component
 	* template
 	* style
-1. Разница поведения между ng-if и style: hidden
+1. Разница поведения между ng-if и visibility: hidden
 	* `ngif` удаляет элемент из DOM
 	* можно прятать структурные директивы в ng-container
 1. В чем разница между Directive и Component.
@@ -538,6 +555,7 @@
 	* распространяется на вложенные компоненты
 	* default ("CheckAlways") - the change detector goes through the view hierarchy on each VM turn to check every data-bound property in the template. In the first phase, it compares the current state of the dependent data with the previous state, and collects changes. In the second phase, it updates the page DOM to reflect any new data values.
 	* OnPush ("CheckOnce") - 
+		* https://angular.io/guide/lifecycle-hooks#using-change-detection-hooks
 		* ручная проверка doCheck
 		* поменялась @Input ссылка(не значение)
 		* DOM event(input) для связанных свойств
@@ -549,9 +567,12 @@
 			})
 
 			constructor(private ref: ChangeDetectorRef) {
-				this.ref.markForCheck();
+				this.ref.markForCheck(); // помечает как diry
+				
 			}
 		```
+		* detectChanges - используется вместе с detach для локальной обработаки изменений 
+		* https://angular.io/api/core/ChangeDetectorRef#detectchanges
 1. Что такое zone.js, как он работает.
 	* https://medium.com/@overthesanity/zone-js-от-а-до-я-fdb995917968
 	* https://angular.io/guide/zone#zones-and-execution-contexts
@@ -559,7 +580,7 @@
 	* https://github.com/angular/angular/blob/master/packages/zone.js/README.md
 	* https://youtu.be/3IqtmUscE_U?t=116
 	* портирован из Dart
-	* контекст исполнения
+	* zone предоставляет контекст исполнения для асинхронных задач
 	* манкипатчинг и освобождение ресурсов
 	* профилирование отладка(трассировка) связывания HTML-JS
 	* заглушки для тестирования Jasmine/Mocha
