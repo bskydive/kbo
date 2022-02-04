@@ -11,7 +11,7 @@
  * constantly learning and broadening my horizons, writing articles on medium
  * there is a comfortable office within walking distance for remote work
  * creating and maintaining code agreements, improving development processes
- * intermediate(B2) english level
+ * intermediate(B2) speaking english level
  * writing human-readable, modular, structured, typed code
  * I know how a manager, analyst, architect, designer, frontend, backend and devops specialists works
  * enthusiast, pleasant to talk to, serious experience in extreme sports and active hobbies 
