@@ -3,11 +3,25 @@
  * Valeriy Stepanov - Senior Software Engineer
  * [pdf](https://stepanovv.ru/kbo/kb/карьера/resume.pdf)
 
+## Advantages
+
+ * Helping teammates
+ * 5+ years of experience in frontend Angular development
+ * quickly assimilate, structure and give out information
+ * constantly learning and broadening my horizons, writing articles on medium
+ * there is a comfortable office within walking distance for remote work
+ * creating and maintaining code agreements, improving development processes
+ * intermediate(B2) english level
+ * writing human-readable, modular, structured, typed code
+ * I know how a manager, analyst, architect, designer, frontend, backend and devops specialists works
+ * enthusiast, pleasant to talk to, serious experience in extreme sports and active hobbies 
+
 ## Summary of skills
+
  * frontend web developer, with a relevant specialist degree.
  * proficient with: Angular9+, RxJS/NGRX, HTML/SASS/TypeScript, Linux
  * recent hands-on experience with tools: JIRA, VSCode, Gitlab
- * strong skills in surrounding areas, including an enterprise class distributed IT software solutions design, and  a wide-range IT systems administration.
+ * strong skills in surrounding areas, including an enterprise class distributed IT software solutions design, and a wide-range IT systems administration.
  * job experience at software development(vendor), recruitment, IT system integration, consulting,  customer of IT solutions, IT outstaffing, sports
  * soft skills: leadership, coaching, teamwork, process improvement.
  * supporting technologies experience: UI design Figma, Webpack frontend bundler, IDE VSCode/Webstorm/IDEA, ES/TSLint, NodeJS, Java core, NGRX frontend state management
@@ -55,10 +69,10 @@
 		* VSCode IDE, Gitlab/Bitbucket CI, JIRA/Confluence, Miro/TeamRetro, AWS/EKS, Swagger API
 		* Angular 8/9/10/11, RxJS/NGRX, JS/TS, JQuery/Lodash, Jest/Spectator/Cypress, Karma/Jasmine
 	* Business domains:
-		* Sports events resource management
-		* Document image recognition tool
-		* Enterprise level  learning management system for 20M students
-		* Enterprise level HR staffing portal for 60k users
+		* International sports events resource management
+		* Document image recognition
+		* International enterprise level learning management system
+		* International enterprise level HR staffing portal
 	* Tasks performed:
 		* Improved the project architecture by creating bunch of the standard component/service/gateway/model abstract classes
 		* 1 year of communication on English: regular team meetings, demo sessions, daily standup with the customer or team members
@@ -68,7 +82,7 @@
 		* Updated the documentation for easier new team members onboarding
 		* Preformed refactoring and created components/services for business features
 		* Showed great approach to work in highly unstable situation around
-		* Developed the PoC/MVP in real product
+		* Improved the PoC/MVP document recognition quality
 		* Performed 2 open source candidates projects code quality check as a JS community member
 		* Proposed and helped to apply several ideas for remoter's community improvement
 
