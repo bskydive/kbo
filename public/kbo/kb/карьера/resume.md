@@ -15,6 +15,7 @@
  * writing human-readable, modular, structured, typed code
  * I know how a manager, analyst, architect, designer, frontend, backend and devops specialists works
  * enthusiast, pleasant to talk to, serious experience in extreme sports and active hobbies 
+
 ## Summary of skills
 
  * frontend web developer, with a relevant specialist degree.
