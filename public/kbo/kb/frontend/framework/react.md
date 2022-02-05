@@ -87,6 +87,21 @@
 ## компоненты
  * в компоненте может быть только один корневой тэг
  * компонент должен возвращать минимум один тэг
+ * предпочтительнее использовать композицию вместо наследования https://learn-reactjs.ru/basics/composition-vs-inheritance
+	
+	```tsx
+		function Message(props) {
+			return (
+				<h3 className="message__title">{props.title}</h3>
+				<p className="message__text">{props.children}</p>
+			);
+		}
+
+		function SuccessMessage(props) {
+			return (<Message title={props.title}>{props.children}</Message>);
+		}
+	```
+
  * генерация компонентов через интерполяцию (ngFor)
 	```tsx
 		{values.map( value => <div>{value}</div>)}
