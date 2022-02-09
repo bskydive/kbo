@@ -415,6 +415,7 @@ https://stackoverflow.com/questions/7905929/how-to-test-valid-uuid-guid#13653180
 	```
 	
 	```ts
+	uploadFile(){
 		let file: File = null;
 		const MAX_FILE_SIZE_BYTES = (1000*1000*10); // 10M
 		let content = null;
@@ -432,6 +433,7 @@ https://stackoverflow.com/questions/7905929/how-to-test-valid-uuid-guid#13653180
 		}
 		if (
 			file instanceof File &&
+			// https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types
 			['image/jpeg', 'image/png'].includes(file.type) &&
 			file.size <= MAX_FILE_SIZE_BYTES
 			) {
@@ -453,6 +455,7 @@ https://stackoverflow.com/questions/7905929/how-to-test-valid-uuid-guid#13653180
 			};
 			fileReader.readAsArrayBuffer(file);
 		}
+	}
 	```
 
  * 
