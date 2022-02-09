@@ -102,6 +102,16 @@
  * [Вы не гугл - обзор ограничений популярных технологий](https://habr.com/ru/post/450230/)
 
 
+## микрофронтенд
+
+ * разделение фронта на разные команды/репы
+ * [Как готовить микрофронтенды в Webpack 5 - 2021](https://habr.com/ru/post/554682/)
+	* https://github.com/module-federation/module-federation-examples/blob/master/advanced-api/dynamic-remotes/app1/src/App.js
+	* https://webpack.js.org/concepts/module-federation/#dynamic-remote-containers
+ * []()
+ * []()
+ * []()
+
 ## js performance производительность
 
  * https://www.smashingmagazine.com/2021/01/front-end-performance-2021-free-pdf-checklist/
