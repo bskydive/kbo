@@ -76,6 +76,7 @@
  * оборачивает события syntetic events
 
 ## hooks
+ * новинка в React 16.8(2019). позволяют использовать state без классов.
  * работают только на корневом уровне, нельзя вкладывать в функции
  * useState()
  * useEffect()
@@ -136,7 +137,7 @@
 		}
 		export default myComp;
 	```
- * компоненты
+ * функциональный компонент
 
 	```tsx
 		// функциональный
@@ -145,7 +146,9 @@
 
 		// 2
 		export default function myComp: FC<T>(props: T) => {}
-
+	```
+ * классовый компонент
+	```tsx
 		// классовый
 		export class NavigationComponent extends Component {
 			render() {
@@ -157,9 +160,9 @@
 		
 	```
  * props передаются во вложенные компоненты только от родителя к детям
- * для обратного проброса props надо передать функцию обратного вызова
+ * для обратного проброса props надо передать функцию обратного вызова или использовать композицию компонентов
  * условная отрисовка
-	```
+	```html
 		<div>
 			{values.length > 0 ? <div>{values.length}</div> : <div>empty</div>}
 		</div>
@@ -169,17 +172,51 @@
 	* прямое связывание через value
 	* обратное через onChange
 	```tsx
-		<input value={value} onChange={event => onChange(event.target.value)}></input>
+			constructor() {
+				this.state = {value: ''};
+			}
+
+			handleChange = (event) => {
+				this.setState({value: event.target.value});
+			}
+
+			render() {
+				return (
+					<input type="text" value={this.state.value} onChange={this.handleChange} />
+				);
+			}
 	```
- * изоляция стилей через css modules
  * неуправляемый компонент
 	* https://reactjs.org/docs/uncontrolled-components.html
 	* прямое взаимодействие через hook useRef
+
+	```tsx
+		constructor() {
+			this.input = React.createRef();  
+		}
+
+		onChange = (event) => {
+			console.log(this.input.current.value);
+		}
+
+		render() {
+			return (
+				<input type="text" ref={this.input} onChange={event => onChange(event.target.value) />
+	```
+ * изоляция стилей через css modules
  * вложенные компоненты
-	* children
+	* props.children
+	* https://reactjs.org/docs/higher-order-components.html
  * взаимодействие компонентов
 	* useMemo
+	* context 
+		* https://reactjs.org/docs/context.html
+		* useContext https://reactjs.org/docs/hooks-reference.html#usecontext
+	* https://reactjs.org/docs/render-props.html
 	* props callback
+	* redux/mobx
+	* rxJS
+	* https://reactjs.org/docs/composition-vs-inheritance.html
 ## жизненный цикл
  
  * 	

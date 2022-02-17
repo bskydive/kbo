@@ -120,6 +120,7 @@
 				]);
 			```
 	* [токен](https://angular.io/guide/dependency-injection-providers#dependency-injection-tokens) 
+		* ключ в связке с провайдером `constructor(token: Type)`
 		* объект, который реализует интерфейс [InjectionToken](https://angular.io/api/core/InjectionToken)
 	* [инжектор](https://www.youtube.com/watch?v=Z1gLFPLVJjY) 
 		* Объект, который находит именованную зависимость в своём кэше, либо создаёт её используя провайдер
