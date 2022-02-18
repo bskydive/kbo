@@ -76,17 +76,44 @@
  * оборачивает события syntetic events
 
 ## hooks
+ * новинка в React 16.8(2019). позволяют использовать state без классов.
  * работают только на корневом уровне, нельзя вкладывать в функции
  * useState()
  * useEffect()
  * useRef()
 	* ссылка на элемент
- * useMemo()
  * useCallback()
  * useContext()
+ * useMemo()
+	* мемоизация
+	* отрабатывает только при изменении зависимостей/параметров
+	```tsx
+		useMemo( () => factory: {/*...*/}, deps: [value1, value2])
+	```
+ * custom
+ * useState
+	* асинхронные гонки
+	* сохраняет текущее значение в замыкании, обновляет с асинхронной задержкой на время работы с DOM
+	* нужно пробрасывать прицепом все состояния внутрь функций по цепочке вложенности
+
 ## компоненты
  * в компоненте может быть только один корневой тэг
  * компонент должен возвращать минимум один тэг
+ * предпочтительнее использовать композицию вместо наследования https://learn-reactjs.ru/basics/composition-vs-inheritance
+	
+	```tsx
+		function Message(props) {
+			return (
+				<h3 className="message__title">{props.title}</h3>
+				<p className="message__text">{props.children}</p>
+			);
+		}
+
+		function SuccessMessage(props) {
+			return (<Message title={props.title}>{props.children}</Message>);
+		}
+	```
+
  * генерация компонентов через интерполяцию (ngFor)
 	```tsx
 		{values.map( value => <div>{value}</div>)}
@@ -110,7 +137,7 @@
 		}
 		export default myComp;
 	```
- * компоненты
+ * функциональный компонент
 
 	```tsx
 		// функциональный
@@ -119,7 +146,9 @@
 
 		// 2
 		export default function myComp: FC<T>(props: T) => {}
-
+	```
+ * классовый компонент
+	```tsx
 		// классовый
 		export class NavigationComponent extends Component {
 			render() {
@@ -131,9 +160,9 @@
 		
 	```
  * props передаются во вложенные компоненты только от родителя к детям
- * для обратного проброса props надо передать функцию обратного вызова
+ * для обратного проброса props надо передать функцию обратного вызова или использовать композицию компонентов
  * условная отрисовка
-	```
+	```html
 		<div>
 			{values.length > 0 ? <div>{values.length}</div> : <div>empty</div>}
 		</div>
@@ -143,19 +172,53 @@
 	* прямое связывание через value
 	* обратное через onChange
 	```tsx
-		<input value={value} onChange={event => onChange(event.target.value)}></input>
+			constructor() {
+				this.state = {value: ''};
+			}
+
+			handleChange = (event) => {
+				this.setState({value: event.target.value});
+			}
+
+			render() {
+				return (
+					<input type="text" value={this.state.value} onChange={this.handleChange} />
+				);
+			}
 	```
- * изоляция стилей через css modules
  * неуправляемый компонент
 	* https://reactjs.org/docs/uncontrolled-components.html
 	* прямое взаимодействие через hook useRef
+
+	```tsx
+		constructor() {
+			this.input = React.createRef();  
+		}
+
+		onChange = (event) => {
+			console.log(this.input.current.value);
+		}
+
+		render() {
+			return (
+				<input type="text" ref={this.input} onChange={event => onChange(event.target.value) />
+	```
+ * изоляция стилей через css modules
  * вложенные компоненты
-	* children
+	* props.children
+	* https://reactjs.org/docs/higher-order-components.html
  * взаимодействие компонентов
 	* useMemo
+	* context 
+		* https://reactjs.org/docs/context.html
+		* useContext https://reactjs.org/docs/hooks-reference.html#usecontext
+	* https://reactjs.org/docs/render-props.html
 	* props callback
+	* redux/mobx
+	* rxJS
+	* https://reactjs.org/docs/composition-vs-inheritance.html
 ## жизненный цикл
-
+ 
  * 	
 	```tsx
 		// mount
@@ -168,18 +231,6 @@
 ## анимации
  * react-transition-group
 
-## hooks
- * useMemo
-	* мемоизация
-	* отрабатывает только при изменении зависимостей/параметров
-	```tsx
-		useMemo( () => factory: {/*...*/}, deps: [value1, value2])
-	```
- * custom
- * useState
-	* асинхронные гонки
-	* сохраняет текущее значение в замыкании, обновляет с асинхронной задержкой на время работы с DOM
-	* нужно пробрасывать прицепом все состояния внутрь функций по цепочке вложенности
 ## API
  * axios(HTTPCLient)
 	* методы
@@ -192,9 +243,9 @@
 
  * валидация https://habr.com/ru/post/600035/#comment_23926385 https://habr.com/ru/post/600035/#comment_23924345
 
+ *
 	```tsx
-
-		isValid это ни стейт, ни проп, а производная от первых двух. Поэтому его нужно не хранить в useState, а вычислять на лету (декларативность же):
+		//isValid это ни стейт, ни проп, а производная от первых двух. Поэтому его нужно не хранить в useState, а вычислять на лету (декларативность же):
 
 		function Form({required}) {
 			const [value, setValue] = useState('')
@@ -206,14 +257,14 @@
 				<div>
 				<input
 					value={value}
-					onInput={event => setValue(event.target.value}
+					onInput={event => setValue(event.target.value)}
 				/>
 				{!isValid && 'Не валидно'}
 				</div>
 			)
 		}
 
-		Если нужно не проводить валидацию только после взаимодействия пользователя с формой, добавьте стейт isTouched.
+		//Если нужно не проводить валидацию только после взаимодействия пользователя с формой, добавьте стейт isTouched.
 
 		const [value, setValue] = useState('');
 		const isValid = getValidState(value); // or any other validator
@@ -223,6 +274,7 @@
 		// isValid, isTouched, isPristine, resetForm, setError, asyncValidator - нужны по канонам идеального UX. Ибо сама задача очень сложная. И разумеется не надо её решать по месту в каком-то отдельно взятом useEffect или onClick. Закопаетесь.
 		// вещи которые можно высчитать из значений в любой момент, нужно делать ленивыми и декларативными
 	```
+ * 
 
 ## модалки https://habr.com/ru/post/600035/#comment_23926469
 
@@ -240,7 +292,7 @@
 		st.list.push({ msg: action.msg, id: genUniqId() });
 
 		// in a <AlertManager/>
-		{alerts.map(alert => <Alert key={alert.id} msg={alert.msg}/>}
+		{alerts.map(alert => <Alert key={alert.id} msg={alert.msg}/>)}
 
 		// Состояние можно хранить в глобальным хранилище, но лучше в глобальном компоненте `<AlertManager/>` в `local state`.
 		// А вместо dispatch компоненты ниже по древу просто вызывают: const showAlert = useContext(alertManagerContext);
@@ -248,8 +300,8 @@
 		// Ну и небольшой бонус хранения этого в локальном сторе менеджера — можно хранить ссылки на компоненты (которые будут .children для <Alert/>) или ссылки на JSX elements. В настоящий глобальный store такие вещи пихать не рекомендуется (обычно), т.к. такие вещи типа не очень сериализуемы. Но это уже тоже всякие догмы.
 	```
 ## RxJS
- * 
 
+ * []()
 ## дизайн система
  * библиотека компонентов
  * общие переиспользуемые стили
@@ -292,15 +344,23 @@
 		)
 	}
  ```
+
 ## state management
- * redux
-	* 
+
+### redux
+
  * вложенные состояния
  * разделение групп состояний
  * передача данных между отдельными группами состояний
  * intersectionObserver
 	* .isIntersecting - отрабатывает только когда появляется в зоне видимости, а не когда выходит
 	* удалять старый observer.current.disconnect, создавать новый
+ * 
+
+### mobx
+
+ * разделение групп состояний
+ 	* https://mobx.js.org/defining-data-stores.html#combining-multiple-stores
  * []()
 
 ## маршрутизация

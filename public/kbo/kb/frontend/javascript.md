@@ -415,9 +415,10 @@ https://stackoverflow.com/questions/7905929/how-to-test-valid-uuid-guid#13653180
 	```
 	
 	```ts
+	uploadFile(){
 		let file: File = null;
 		const MAX_FILE_SIZE_BYTES = (1000*1000*10); // 10M
-		let content = null;
+		let content: ArrayBuffer = null;
 		let fileReader: FileReader = new FileReader();
 		let fileAPIDOMWrapper = new FormData();
 		let url = 'http://localhost:4200/api/uploadFile';
@@ -432,6 +433,7 @@ https://stackoverflow.com/questions/7905929/how-to-test-valid-uuid-guid#13653180
 		}
 		if (
 			file instanceof File &&
+			// https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types
 			['image/jpeg', 'image/png'].includes(file.type) &&
 			file.size <= MAX_FILE_SIZE_BYTES
 			) {
@@ -448,11 +450,16 @@ https://stackoverflow.com/questions/7905929/how-to-test-valid-uuid-guid#13653180
 			).subscribe(result => console.log('file uploaded', result));
 			// get content
 			fileReader.onload = function () {
-				content = this.result
+				// content = this.result;
+                content = e?.target?.result;
 				console.log('file content', content);
 			};
+
+			// fire content reading
+			//fileReader.readAsText(file);
 			fileReader.readAsArrayBuffer(file);
 		}
+	}
 	```
 
  * 

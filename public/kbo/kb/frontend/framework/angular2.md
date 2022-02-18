@@ -326,18 +326,16 @@
 
 ## CD change detection ZoneJS
 
- * abstract syntax tree
+ * абстрактное синтаксическое дерево
  * [The Last Guide For Angular Change Detection You'll Ever Need 2019](https://www.mokkapps.de/blog/the-last-guide-for-angular-change-detection-you-will-ever-need)
  * https://blog.thoughtram.io/angular/2016/02/22/angular-2-change-detection-explained.html
  * https://angular.io/guide/zone
- * When apps update HTML:
-	+ Component initialization - loads the bootstrap component and triggers the ApplicationRef.tick() to call change detection and View Rendering
+ * запуск обновления HTML:
+	+ инициализация компонента - загружает bootstrap компонент и дёргает ApplicationRef.tick() для вызова change detection и View Rendering
 	+ Event listener - <button (click)="onClickMe()">
-	+ HTTP Data Request
-	+ MacroTasks, such as setTimeout() or setInterval()
-	+ MicroTasks, such as Promise.then()
-	+ Other async operations. Some examples include WebSocket.onmessage() and Canvas.toBlob()
-	mousemove, scroll, requestAnimationFrame()
+	+ HTTP запрос
+	+ микрозадачи, например: setTimeout(), setInterval(), Promise.then()
+	+ Другие асинхронные операции, например: WebSocket.onmessage(), Canvas.toBlob(), mousemove, scroll, requestAnimationFrame()
  * https://angular.io/api/core/ChangeDetectionStrategy
 
 	```ts
