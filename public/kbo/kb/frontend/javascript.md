@@ -161,7 +161,7 @@
  * debounce throttle
 	* https://betterprogramming.pub/how-to-use-debounce-and-throttle-in-javascript-da95dc151f7b
 	* https://stephencharlesweiss.com/javascript-debounce-throttle-function/
- 
+
 ## ООП prototype наследование
 
  * [Каждый программист на javascript должен написать свою реализацию классов](https://habr.com/post/132698/#comment_4404597)
@@ -247,36 +247,17 @@
 	* [Принцип разделения интерфейса](https://blog.byndyu.ru/2009/11/blog-post_19.html)
 	* [Принцип инверсии зависимости ](https://blog.byndyu.ru/2009/12/blog-post.html)
  * [Шпаргалка по SOLID принципам 2014](http://sergeyteplyakov.blogspot.com/2014/10/solid.html)
-	* [Single Responsibility Principle](http://sergeyteplyakov.blogspot.com/2014/08/single-responsibility-principle.html)
-	* [Open/Closed Principle](http://sergeyteplyakov.blogspot.com/2014/08/open-closed-principle.html)
-	* [Liskov Substitution Principle](http://sergeyteplyakov.blogspot.com/2014/09/liskov-substitution-principle.html)
-	* [Interface Segregation Principle](http://sergeyteplyakov.blogspot.com/2014/08/interface-segregation-principle.html)
-	* [The Dependency Inversion Principle DI](http://sergeyteplyakov.blogspot.com/2014/09/the-dependency-inversion-principle.html)
-		* [Критический взгляд на принцип инверсии зависимостей](http://sergeyteplyakov.blogspot.com/2013/04/blog-post.html)
  * [SOLID ](https://info.javarush.ru/translation/2013/08/06/Пять-основных-принципов-дизайна-классов-S-O-L-I-D-в-Java.html)
     * [источник](http://howtodoinjava.com/2013/06/07/5-class-design-principles-solid-in-java/)
 	* [SOLID php](https://habr.com/ru/company/mailru/blog/412699/)
 	* [SOLID Typescript](https://medium.com/proximity-labs/solid-principles-using-typescript-5175aa06b583)
 	* [SOLID javascript Охрименко](https://www.youtube.com/watch?v=wi3wPzReKZQ)
 		* битовая маска может кодировать больше чем одно значение - нарушение принципа SRP
-	* SOLID:
-
-| смысл                                                                                 | название                        | перевод                              |
-|---------------------------------------------------------------------------------------|---------------------------------|--------------------------------------|
-| На каждый объект должна быть возложена одна единственная обязанность.                 | Single Responsibility Principle | (Принцип единственной обязанности)   |
-| Программные сущности (классы, модули, функции и т.п.) должны быть открыты 
-для расширения, но закрыты для изменения.                                               | Open Closed Principle           | (Принцип открытости/закрытости)      |
-| Объекты в программе могут быть заменены их наследниками без изменения 
-свойств программы.                                                                      | Liskov 's Substitution Principle| (Принцип подстановки Барбары Лисков) |
-| Клиенты не должны реализовывать ненужные методы, которые 
-они не будут использовать                                                               | Interface Segregation Principle | (Принцип разделения интерфейса)      |
-| Реализации на основе абстракций. Наследование от реализаций и абстракций только 
-сверху вниз. 									 										| Dependency Inversion Principle  | (Принцип инверсии зависимостей) 	 |
-|                                                                                       |                                 |                                      |
-| | | | |
-
  * [GRASP паттерны проектирования](https://habr.com/ru/post/92570/) - 9шт
  * GoF - gang of four - 23шт
+	* фабрика - штампуем
+	* адаптер - конвейер для трансформации, один к одному
+	* фасад - сокрытие, публичный интерфейс, один ко многим
  * [MVC vs MVP vs MVVM](https://habr.com/ru/post/215605/) https://habr.com/ru/company/mobileup/blog/313538/
  * [Хороший дизайн должен быть SOLID - 2008](http://igor.quatrocode.com/2008/09/solid-top-5.html)
 
