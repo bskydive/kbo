@@ -230,6 +230,8 @@
 
 			constructor(el: ElementRef) {
 				this.el = el.nativeElement;
+				@HostBinding('class.valid') get valid() { return this.control.valid; }
+				@HostBinding('class.invalid') get invalid() { return this.control.invalid; }
 			}
 
 			@HostListener('mouseenter') onMouseEnter() {
@@ -248,6 +250,11 @@
 		// HTML
 		<div appHighlight="yellow">
 		```
+
+		* [hostbinding](https://angular.io/api/core/HostBinding)
+			* установка свойств DOM
+		* hostlistener
+			* перехват событий DOM
 
 ## Конвейеры, директивы и компоненты
 
@@ -368,6 +375,17 @@
 1. TemplateRef, ElementRef, в чем разница?
 	* ссылка на ng-template или любой элемент
 	* шаблон можно передать в директиву ngTemplateOutlet а элемент в componentOutlet
+1. template input variable
+	* https://angular.io/guide/template-reference-variables#template-input-variable
+	* у let-* и #* переменных разные пространства имён
+
+	```html
+		<!-- 			объявление и присвоение  -->
+		<ng-template #hero let-hero let-i="index" let-odd="isOdd">
+			<div [class]="{'odd-row': odd}">{{i}}:{{hero.name}}</div>
+		</ng-template>
+	```
+	* охват входящих переменных ограничен текущим экземпляром шаблона а не всеми в виде наследования
 1. В чем отличие СontentChild vs ViewChild.
 	* [СontentChild](https://angular.io/guide/lifecycle-hooks#responding-to-projected-content-changes)
 		* DOM
@@ -445,7 +463,7 @@
 			this.input.nativeElement.focus();
 		} 
 
-		//renderer2
+		//renderer2 - сделан для SSR nodejs
 		let inputElement = this.renderer.createElement('input');
 		this.renderer.appendChild(parent, inputElement);
 		this.renderer.setProperty(inputElement, 'checked', true);
@@ -557,7 +575,8 @@
 	* default ("CheckAlways") - the change detector goes through the view hierarchy on each VM turn to check every data-bound property in the template. In the first phase, it compares the current state of the dependent data with the previous state, and collects changes. In the second phase, it updates the page DOM to reflect any new data values.
 	* OnPush ("CheckOnce") - 
 		* https://angular.io/guide/lifecycle-hooks#using-change-detection-hooks
-		* ручная проверка doCheck
+		* https://angular.io/api/core/ChangeDetectorRef#usage-notes
+		* ручная проверка 
 		* поменялась @Input ссылка(не значение)
 		* DOM event(input) для связанных свойств
 		* async pipe(rxjs, promise)
@@ -567,9 +586,21 @@
 				changeDetection: ChangeDetectionStrategy.OnPush
 			})
 
-			constructor(private ref: ChangeDetectorRef) {
-				this.ref.markForCheck(); // помечает как diry
-				
+			@Input() set live(value: boolean) {
+				if (value) {
+					this.ref.reattach(); // вернуть в дерево
+				} else {
+					this.ref.detach();
+				}
+			}
+
+			constructor(private changeDetectorRef: ChangeDetectorRef) {
+				this.changeDetectorRef.markForCheck(); // помечает как diry
+
+				ref.detach(); // отсоединяет от change-detection дерева
+				setInterval(() => {
+					this.ref.detectChanges(); // помечает для проверки в отсоединённом локальном дереве
+				}, 5000);
 			}
 		```
 		* detectChanges - используется вместе с detach для локальной обработаки изменений 
