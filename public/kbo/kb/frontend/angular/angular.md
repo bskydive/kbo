@@ -19,7 +19,7 @@
 	* 12 - nullish coalescing, tailwind css, webpack 5 prod, IE11 deprecated
 1. Архитектура
 	* MVVM
-	* зачем - потому что автоматическое связывание data binding(езинственное отличие от MVP)
+	* зачем - потому что автоматическое связывание data binding(единственное отличие от MVP)
 	* достоинства
 	* недостатки
 1. Различие между AngularJS и Angular
@@ -140,6 +140,15 @@
 		* для компонента: в аннотации компонента `@Component({...,providers:  [ HeroService ],...})`
 		* используется
 			* в маршрутизаторе для хранения по одной копии состояния маршрута
+	* не синглтон когда сервис регистрируется в компоненте
+
+		```ts
+			@Component({
+				selector:    'app-hero-list',
+				templateUrl: './hero-list.component.html',
+				providers:  [ HeroService ]
+			})
+		```
 	* .forRoot: модуль с providers
 	* .forChild: отдельный экземпляр модуля без providers для ленивой загрузки
 	* нельзя внедрять интерфейсы https://angular.io/guide/dependency-injection-providers#interfaces-and-dependency-injection , но можно абстрактные классы https://angular.io/guide/dependency-injection-in-action#class-interface
@@ -564,7 +573,9 @@
 1. ViewEncapsulation. Какая бывает, зачем нужна?
 	* Emulated - CSS обёртка для эмуляции стандартного поведения. если не объявлены templates/templateUrls переключается в None.
 	* None - для наследования общих стилей
-	* shadowDom - для прямого доступа к DOM https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM
+	* shadowDom - для прямого доступа к изолированным shadow DOM узлам
+	* https://angular.io/guide/view-encapsulation
+	* https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM
 1. Change detection. Какие есть стратегии, для чего используются? Какие есть методы, чтобы запустить детектор?
 	* https://angular.io/guide/zone#fundamentals-of-change-detection
 	* https://angular.io/guide/glossary#change-detection
@@ -588,18 +599,18 @@
 
 			@Input() set live(value: boolean) {
 				if (value) {
-					this.ref.reattach(); // вернуть в дерево
+					this.changeDetectorRef.reattach(); // вернуть в дерево
 				} else {
-					this.ref.detach();
+					this.changeDetectorRef.detach();
 				}
 			}
 
-			constructor(private changeDetectorRef: ChangeDetectorRef) {
+			constructor(private ref: ChangeDetectorRef) {
 				this.changeDetectorRef.markForCheck(); // помечает как diry
 
-				ref.detach(); // отсоединяет от change-detection дерева
+				changeDetectorRef.detach(); // отсоединяет от change-detection дерева
 				setInterval(() => {
-					this.ref.detectChanges(); // помечает для проверки в отсоединённом локальном дереве
+					this.changeDetectorRef.detectChanges(); // помечает для проверки в отсоединённом локальном дереве
 				}, 5000);
 			}
 		```
@@ -727,13 +738,13 @@
 1. Зачем нужен OnInit если есть Constructor?
 	* для работы с начальными @Input значениями
 1. Pure pipes / pipes
-	* By default, pipes are defined as pure so that Angular executes the pipe only when it detects a pure change to the input value. A pure change is either a change to a primitive input value (such as String, Number, Boolean, or Symbol), or a changed object reference (such as Date, Array, Function, or Object). A pure pipe must use a pure function, which is one that processes inputs and returns values without side effects. In other words, given the same input, a pure function should always return the same output.
-	* Angular executes an impure pipe every time it detects a change with every keystroke or mouse movement.
+	* По-умолчанию чистые(pure) - запуск только при изменении объекта целиком. Необходимо передавать чистые функции без побочных эффектов
+	* Грязные конвейеры запускаются при каждом нажатии или движении мышки.
 
 	```ts
 		@Pipe({
-		name: 'flyingHeroesImpure',
-		pure: false
+			name: 'flyingHeroesImpure',
+			pure: false
 		})
 	```
 1. ng-content

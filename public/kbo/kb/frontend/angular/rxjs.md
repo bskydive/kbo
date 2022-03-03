@@ -30,26 +30,26 @@
 	* behaviorSubject - есть начальное значение
 
 	```ts
-	const setFabricRunners$: Subject<{ id: number; task$: Observable<any> }[]> = new Subject();
-	const getFabricRunners$ = setFabricRunners$.asObservable().pipe();
-	getFabricRunners$.subscribe();
+		const setFabricRunners$: Subject<{ id: number; task$: Observable<any> }[]> = new Subject();
+		const getFabricRunners$ = setFabricRunners$.asObservable().pipe();
+		getFabricRunners$.subscribe();
 
-	//
-	const observable = new Observable(subscriber => {
-		subscriber.next(1);
-		subscriber.next(2);
-		subscriber.next(3);
-		setTimeout(() => {
-			subscriber.next(4);
-			subscriber.complete();
-		}, 1000);
-	});
-	
-	observable.subscribe({
-		next(x) { console.log('got value ' + x); },
-		error(err) { console.error('something wrong occurred: ' + err); },
-		complete() { console.log('done'); }
-	});
+		//
+		const observable = new Observable(subscriber => {
+			subscriber.next(1);
+			subscriber.next(2);
+			subscriber.next(3);
+			setTimeout(() => {
+				subscriber.next(4);
+				subscriber.complete();
+			}, 1000);
+		});
+		
+		observable.subscribe({
+			next(x) { console.log('got value ' + x); },
+			error(err) { console.error('something wrong occurred: ' + err); },
+			complete() { console.log('done'); }
+		});
 	```
 1. Operators
 	* are pure functions that enable a functional programming style of dealing with collections with operations like map, filter, concat, reduce, etc.
