@@ -154,6 +154,10 @@ Also, I'm using it as a bookmarking service starting from the 2014.
 * Gulp, Stylus, PUG, JS
 * CSS-first design. Less js code for animation and interaction.
 * Modular structure. One component - one folder.
+* 24575 lines in kbo md files
+	* `find ./public/kbo/ -type f -name '*.md' -exec wc -l {} \; | awk '{ total += $1 } END {print total}'`
+* 2878 lines in kbb md files
+* `find ./public/kbb/ -type f -name '*.md' -exec wc -l {} \; | awk '{ total += $1 } END {print total}'`
 
 ### What does the application interact with?  ###
 * portfolio, quotes, timer app - itself only

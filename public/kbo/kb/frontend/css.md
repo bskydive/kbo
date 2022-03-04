@@ -97,14 +97,20 @@
 ## методологии
 
  * БЭМ
- * [бэм препроцессор и линтер](https://suitcss.github.io/)
+	* [бэм препроцессор и линтер](https://suitcss.github.io/)
+	* семантические названия
+	* название блока создаёт пространство имён, использовать элементы вне блока нельзя
+	* `block-name__elem-name--mod-name`
  * smacss
  * oocss
  * https://medium.com/@stepanovv.ru/правильный-css-oocss-smacss-bem-и-sass-49351a119283/
 	
-## cascade css and inheritance
+## каскад наследование специфичность
 
  * https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Cascade_and_inheritance
+ * каскад - порядок имеет значение
+ * наследование
+ * специфичность
 
 ## layout
 
