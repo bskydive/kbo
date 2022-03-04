@@ -136,6 +136,19 @@ ls -i
 find . -inum 17040033 -exec mv {} new-directory-name1 \;
 ```
 
+
+## SMART
+
+ * https://linuxconfig.org/how-to-check-an-hard-drive-health-from-the-command-line-using-smartctl
+
+ ```bash
+	smartctl -i /dev/sdd
+	smartctl -a /dev/sdd
+	smartctl -t short /dev/sdd
+	smartctl -a /dev/sdd
+
+ ```
+
 ## smart hdd read-only Mode
 
  * включается режим только для чтения при автоматической проверке
