@@ -14,7 +14,7 @@
 * 
 ```bash
 dd if=/path/to/your/isofile of=/your/usb/disk bs=8m
-dd bs=4M if=Downloads/ubuntu-19.04-desktop-amd64.iso of=/dev/sdc conv=fdatasync status=progress
+dd bs=4M if=Downloads/ubuntu-19.04-desktop-amd64.iso of=/dev/sddddd conv=fdatasync status=progress
 ```
 
 
@@ -136,6 +136,9 @@ ls -i
 find . -inum 17040033 -exec mv {} new-directory-name1 \;
 ```
 
+## восстановление дисков
+
+ * 
 
 ## SMART
 
