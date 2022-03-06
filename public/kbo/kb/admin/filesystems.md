@@ -14,7 +14,7 @@
 * 
 ```bash
 dd if=/path/to/your/isofile of=/your/usb/disk bs=8m
-dd bs=4M if=Downloads/ubuntu-19.04-desktop-amd64.iso of=/dev/sddddd conv=fdatasync status=progress
+dd bs=4M if=Downloads/ubuntu-19.04-desktop-amd64.iso of=/dev/sdd9 conv=fdatasync status=progress
 ```
 
 
