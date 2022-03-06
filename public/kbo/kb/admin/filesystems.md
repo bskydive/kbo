@@ -11,6 +11,16 @@
 * https://www.balena.io/etcher/
 * unetbootin
 * https://en.opensuse.org/SDB%3ALive_USB_stick
+* win
+    * rufus
+    * сделать fat32
+    * sources/install.wim больше 4 Гб 
+      * https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/install-windows-from-a-usb-flash-drive?view=windows-11#if-your-windows-image-is-larger-than-4gb
+      * `Dism /Split-Image /ImageFile:"\\vmware-host\Shared Folders\wd1tbdistr\install.wim" /SWMFile:"\\vmware-host\Shared Folders\wd1tbdistr\install.swm" /FileSize:3800`
+      * получатся `install.swm install2.swm`
+    * сделать раздел активным
+    * скопировать содержимое - вот это не работает, работает через dd
+    * https://www.microsoft.com/en-us/download/windows-usb-dvd-download-tool
 * 
 ```bash
 dd if=/path/to/your/isofile of=/your/usb/disk bs=8m
@@ -63,7 +73,8 @@ mount.nfs
 
 ```
 cat /etc/exports
-      /export/data   192.168.1.2(rw,sync)
+      #/export/data   192.168.1.2(rw,sync)
+      /path/to/film  /alias      *(ro,root_squash,sync,no_subtree_check)
 cat /proc/fs/nfsd/versions
       +2 +3 +4 +4.1 +4.2
 
@@ -72,7 +83,7 @@ systemctl restart nfsserver
 mount nfs.example.com:/home /home
 
 cat /etc/fstab
-      nfs.example.com:/data /local/pathv4 nfs rw,noauto 0 0 # NFS3
+      127.0.0.1:/path/to/film /local/pathv4 nfs rw,noauto 0 0 # NFS3
       nfs.example.com:/data /local/pathv4 nfs4 rw,noauto 0 0 # NFS4
 
 mount -t nfs4 -o minorversion=1 nfs.example.com:/data /local/pathPNFS ## PNFS
