@@ -456,6 +456,7 @@
 	* content projection
 	* templateOutlet
 	* componentOutlet
+	* viewContainer - createEmbeddedView
 
 	```ts
 		//ссылки через DI на себя:
@@ -569,7 +570,7 @@
 					}
 				}
 		```
-	* ViewContainerRef  - ещё позволяет создавать дочерние элементы
+	* ViewContainerRef  - ещё позволяет создавать дочерние элементы createEmbeddedView
 1. ViewEncapsulation. Какая бывает, зачем нужна?
 	* Emulated - CSS обёртка для эмуляции стандартного поведения. если не объявлены templates/templateUrls переключается в None.
 	* None - для наследования общих стилей
