@@ -11,10 +11,20 @@
 * https://www.balena.io/etcher/
 * unetbootin
 * https://en.opensuse.org/SDB%3ALive_USB_stick
+* win
+    * rufus
+    * сделать fat32
+    * sources/install.wim больше 4 Гб 
+      * https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/install-windows-from-a-usb-flash-drive?view=windows-11#if-your-windows-image-is-larger-than-4gb
+      * `Dism /Split-Image /ImageFile:"\\vmware-host\Shared Folders\wd1tbdistr\install.wim" /SWMFile:"\\vmware-host\Shared Folders\wd1tbdistr\install.swm" /FileSize:3800`
+      * получатся `install.swm install2.swm`
+    * сделать раздел активным
+    * скопировать содержимое - вот это не работает, работает через dd
+    * https://www.microsoft.com/en-us/download/windows-usb-dvd-download-tool
 * 
 ```bash
 dd if=/path/to/your/isofile of=/your/usb/disk bs=8m
-dd bs=4M if=Downloads/ubuntu-19.04-desktop-amd64.iso of=/dev/sdc conv=fdatasync status=progress
+dd bs=4M if=Downloads/ubuntu-19.04-desktop-amd64.iso of=/dev/sdd9 conv=fdatasync status=progress
 ```
 
 
@@ -55,34 +65,36 @@ wine /distr/7z1801-extra/7za.exe x ./path/arch.zip
 
 ## NFS CIFS SMB
 
-```bash
-mount.cifs
-mount.nfs
+ * 
+```
+	mount.cifs
+	mount.nfs
 ```
  * https://doc.opensuse.org/documentation/leap/reference/html/book.opensuse.reference/cha-nfs.html
 
 ```
-cat /etc/exports
-      /export/data   192.168.1.2(rw,sync)
-cat /proc/fs/nfsd/versions
-      +2 +3 +4 +4.1 +4.2
+	cat /etc/exports
+		#/export/data   192.168.1.2(rw,sync)
+		/path/to/film  /alias      *(ro,root_squash,sync,no_subtree_check)
+	cat /proc/fs/nfsd/versions
+		+2 +3 +4 +4.1 +4.2
 
-systemctl restart nfsserver
+	systemctl restart nfsserver
 
-mount nfs.example.com:/home /home
+	mount nfs.example.com:/home /home
 
-cat /etc/fstab
-      nfs.example.com:/data /local/pathv4 nfs rw,noauto 0 0 # NFS3
-      nfs.example.com:/data /local/pathv4 nfs4 rw,noauto 0 0 # NFS4
+	cat /etc/fstab
+		127.0.0.1:/path/to/film /local/pathv4 nfs rw,noauto 0 0 # NFS3
+		nfs.example.com:/data /local/pathv4 nfs4 rw,noauto 0 0 # NFS4
 
-mount -t nfs4 -o minorversion=1 nfs.example.com:/data /local/pathPNFS ## PNFS
+	mount -t nfs4 -o minorversion=1 nfs.example.com:/data /local/pathPNFS ## PNFS
 
 ```
 
  * http://serverfault.com/questions/56588/unmount-a-nfs-mount-where-the-nfs-server-has-disappeared
 
-```bash
-mount.nfs 192.168.0.125:/nfs/My_Book-1 /mnt/My-Book-1/ -o nolock -o soft
+```
+	mount.nfs 192.168.0.125:/nfs/My_Book-1 /mnt/My-Book-1/ -o nolock -o soft
 ```
 
 ## sshfs
@@ -135,6 +147,23 @@ lsof -s | grep -iE 'deleted|command'
 ls -i
 find . -inum 17040033 -exec mv {} new-directory-name1 \;
 ```
+
+## восстановление hdd ssd дисков
+
+ * https://dmde.ru/download.html
+ * https://1victoria.ru/victoria-hdd-4-47/
+ * https://forum.ixbt.com/topic.cgi?id=11:48406
+## SMART
+
+ * https://linuxconfig.org/how-to-check-an-hard-drive-health-from-the-command-line-using-smartctl
+
+ ```bash
+	smartctl -i /dev/sdd
+	smartctl -a /dev/sdd
+	smartctl -t short /dev/sdd
+	smartctl -a /dev/sdd
+
+ ```
 
 ## smart hdd read-only Mode
 
