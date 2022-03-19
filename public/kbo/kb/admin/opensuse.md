@@ -878,6 +878,8 @@ x11uselocalhost no
 
 ## firefox
 
+* profiles https://support.mozilla.org/en-US/kb/profile-manager-create-remove-switch-firefox-profiles#w_starting-the-profile-manager
+	* `about:profiles`
 * https://wiki.archlinux.org/title/firefox#Hardware_video_acceleration
 
 	```
