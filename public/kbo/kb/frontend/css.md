@@ -118,6 +118,48 @@
  * https://www.developerdrive.com/holy-grail-layout-flexbox/
  * [раскладки layout](https://every-layout.dev/)
  * [Типовые раскладки](http://learnlayout.com/)
+ * https://csslayout.io/
+
+ ```html
+	<div>
+		<header class="header">
+			...
+		</header>
+		<div class="container">
+			<!-- Sidebar -->
+			<aside class="container__sidebar">
+				...
+			</aside>
+
+			<!-- Main -->
+			<main class="container__main">
+				...
+			</main>
+		</div>
+	</div>
+ ```
+ ```css
+ 	.header {
+		/* Stick to the top */
+		position: sticky;
+		top: 0;
+	}
+	.container {
+		display: flex;
+	}
+
+	.container__sidebar {
+		width: 30%;
+	}
+
+	.container__main {
+		/* Take the remaining width */
+		flex: 1;
+
+		/* Make it scrollable */
+		overflow: auto;
+	}
+ ```
  * [CSS Grid Layout Generator](https://css-grid-layout-generator.pw/)
 
 ### adaptive vs responsive layout
