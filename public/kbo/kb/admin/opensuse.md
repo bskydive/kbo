@@ -981,6 +981,11 @@ x11uselocalhost no
  * [реиндекс глобального поиска](https://support.mozilla.org/en-US/kb/rebuilding-global-database)
 
 ## repo
+
+ * https://flathub.org/home
+ * https://snapcraft.io/store
+ * https://appimage.github.io/
+ 	* проверенные пакеты https://github.com/vinifmor/bauh-files/blob/master/appimage/apps.txt
  * https://en.opensuse.org/images/1/17/Zypper-cheat-sheet-1.pdf
  * multimedia codecs 
 
