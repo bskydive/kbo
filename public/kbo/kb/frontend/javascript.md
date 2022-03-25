@@ -802,6 +802,8 @@ let clone = cloneDeep(orig);
 
 ```
 
+* проверка наличия свойств https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty `Object.prototype.hasOwnProperty.call(foo, 'bar'); // true`
+
 ## Общие понятия
 
  * Контекст исполнения — это абстрактное понятие, используемое спецификацией ECMAScript для типизации и разграничения исполняемого кода. 

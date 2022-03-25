@@ -275,13 +275,39 @@
 		<app-item-detail childItem="parentItem"></app-item-detail>
 		<!-- значение переменной, присвоение в атрибут -->
 		<app-item-detail childItem="{{parentItem}}"></app-item-detail>
-		<tr><td [colSpan]="1 + 1">Three-Four</td></tr>
+		<!-- верблюжий регистр -->
+		<tr><td [colSpan]="1 + 1">2</td></tr>
+		<!-- нижний регистр -->
+		<tr><td colspan="{{1 + 1}}">2</td></tr>
 		<p><img src="{{itemImageUrl}}"> is the <i>interpolated</i> image.</p>
 		<!-- присвоение в атрибут интерполированного значения, некоторые атрибуты этого требуют-->
 		<p><img attr.src="{{itemImageUrl}}"> is the <i>interpolated</i> image.</p>
+		<p><img alt="Interpolated item" src="{{itemImageUrl}}"> is the <i>interpolated</i> image.</p>
 		<p><img [src]="itemImageUrl"> is the <i>property bound</i> image.</p>
 		<p><span>"{{interpolationTitle}}" is the <i>interpolated</i> title.</span></p>
 		<p>"<span [innerHTML]="propertyTitle"></span>" is the <i>property bound</i> title.</p>
+	```
+1. https://angular.io/guide/user-input
+	```html
+		<button type="button" (click)="onClickMe()">Click me!</button>
+		<!-- passing $event breaks the separation of concerns between the template (what the user sees) and the component (how the application processes user data). -->
+		<input (keyup)="onKey($event)">
+		<!-- correct -->
+		<input #box (keyup)="onKey2(box.value)">
+		<input #box (keyup.enter)="onEnter(box.value)">
+		<input #box
+			(keyup.enter)="update(box.value)"
+			(blur)="update(box.value)">
+	```
+
+	```ts
+		onKey(event: KeyboardEvent) { // with type info
+			this.values += (event.target as HTMLInputElement).value + ' | ';
+		}
+
+		onKey2(value: string) {
+			this.values += value + ' | ';
+		}
 	```
 1. защита от null/undefined https://angular.io/guide/template-expression-operators
 
@@ -289,7 +315,6 @@
 		<!-- Assert color is defined, even if according to the `Item` type it could be undefined. -->
 		<p>The item's color is: {{item.color!.toUpperCase()}}</p>
 		<p>The item's undeclared best by date is: {{$any(item).bestByDate}}</p>
-		<p>The item's undeclared best by date is: {{$any(this).bestByDate}}</p>
 	```
 1. Какие обязательные props для Component
 	* template
@@ -453,7 +478,7 @@
 		}
 	```
 1. [динамическое создание компонентов](https://habr.com/ru/company/infowatch/blog/330030/) - как создать динамически компонент, который лежит во внешнем файле, а также вставлять его в DOM из нашего сервиса
-	* content projection
+	* content projection https://angular.io/guide/content-projection
 	* templateOutlet
 	* componentOutlet
 	* viewContainer - createEmbeddedView
@@ -748,9 +773,39 @@
 			pure: false
 		})
 	```
-1. ng-content
+1. ng-content 
 	* точка сборки для вложенных компонентов
 	* transclusion или content projection
+	* https://angular.io/guide/content-projection
+	* Single-slot content projection
+	```html
+	    <ng-content></ng-content>
+	```
+	```html
+		<app-zippy-basic>
+		<p>Is content projection cool?</p>
+		</app-zippy-basic>
+	```
+	* Multi-slot content projection
+
+	```html
+		<!-- Default: -->
+		<ng-content></ng-content>
+
+		<!-- Question: -->
+		<ng-content select="[question]"></ng-content>
+		```
+
+	```html
+		<app-zippy-multislot>
+			<p question>
+				Is content projection cool?
+			</p>
+			<p>Let's learn about content projection!</p>
+		</app-zippy-multislot>
+	```
+	* 
+
 
 ## Router
 
