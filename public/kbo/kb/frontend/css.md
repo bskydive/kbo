@@ -79,7 +79,7 @@
 	.arrow {//треугольная стрелка вверх ^
 		width: 0; 
 		height: 0;
-		border: 100px solid;//ширина основания
+		border: 100px solid transparent;//ширина основания
 		border-bottom-color: blue;//определяем направление стрелки
 	}
  ```
@@ -600,7 +600,7 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 	color: #ffffff;
 	background-color: #9555af;
 }
-/* old-school "down" effect on clic + color tweak */
+/* old-school "down" effect on click + color tweak */
 .btn:active {
 	transform: translateY(1px);
 	filter: saturate(150%);
