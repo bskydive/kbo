@@ -19,7 +19,7 @@
 	* 12 - nullish coalescing, tailwind css, webpack 5 prod, IE11 deprecated
 1. Архитектура
 	* MVVM
-	* зачем - потому что автоматическое связывание data binding(езинственное отличие от MVP)
+	* зачем - потому что автоматическое связывание data binding(единственное отличие от MVP)
 	* достоинства
 	* недостатки
 1. Различие между AngularJS и Angular
@@ -140,6 +140,15 @@
 		* для компонента: в аннотации компонента `@Component({...,providers:  [ HeroService ],...})`
 		* используется
 			* в маршрутизаторе для хранения по одной копии состояния маршрута
+	* не синглтон когда сервис регистрируется в компоненте
+
+		```ts
+			@Component({
+				selector:    'app-hero-list',
+				templateUrl: './hero-list.component.html',
+				providers:  [ HeroService ]
+			})
+		```
 	* .forRoot: модуль с providers
 	* .forChild: отдельный экземпляр модуля без providers для ленивой загрузки
 	* нельзя внедрять интерфейсы https://angular.io/guide/dependency-injection-providers#interfaces-and-dependency-injection , но можно абстрактные классы https://angular.io/guide/dependency-injection-in-action#class-interface
@@ -230,6 +239,8 @@
 
 			constructor(el: ElementRef) {
 				this.el = el.nativeElement;
+				@HostBinding('class.valid') get valid() { return this.control.valid; }
+				@HostBinding('class.invalid') get invalid() { return this.control.invalid; }
 			}
 
 			@HostListener('mouseenter') onMouseEnter() {
@@ -249,6 +260,11 @@
 		<div appHighlight="yellow">
 		```
 
+		* [hostbinding](https://angular.io/api/core/HostBinding)
+			* установка свойств DOM
+		* hostlistener
+			* перехват событий DOM
+
 ## Конвейеры, директивы и компоненты
 
 1. связывание данных
@@ -259,13 +275,39 @@
 		<app-item-detail childItem="parentItem"></app-item-detail>
 		<!-- значение переменной, присвоение в атрибут -->
 		<app-item-detail childItem="{{parentItem}}"></app-item-detail>
-		<tr><td [colSpan]="1 + 1">Three-Four</td></tr>
+		<!-- верблюжий регистр -->
+		<tr><td [colSpan]="1 + 1">2</td></tr>
+		<!-- нижний регистр -->
+		<tr><td colspan="{{1 + 1}}">2</td></tr>
 		<p><img src="{{itemImageUrl}}"> is the <i>interpolated</i> image.</p>
 		<!-- присвоение в атрибут интерполированного значения, некоторые атрибуты этого требуют-->
 		<p><img attr.src="{{itemImageUrl}}"> is the <i>interpolated</i> image.</p>
+		<p><img alt="Interpolated item" src="{{itemImageUrl}}"> is the <i>interpolated</i> image.</p>
 		<p><img [src]="itemImageUrl"> is the <i>property bound</i> image.</p>
 		<p><span>"{{interpolationTitle}}" is the <i>interpolated</i> title.</span></p>
 		<p>"<span [innerHTML]="propertyTitle"></span>" is the <i>property bound</i> title.</p>
+	```
+1. https://angular.io/guide/user-input
+	```html
+		<button type="button" (click)="onClickMe()">Click me!</button>
+		<!-- passing $event breaks the separation of concerns between the template (what the user sees) and the component (how the application processes user data). -->
+		<input (keyup)="onKey($event)">
+		<!-- correct -->
+		<input #box (keyup)="onKey2(box.value)">
+		<input #box (keyup.enter)="onEnter(box.value)">
+		<input #box
+			(keyup.enter)="update(box.value)"
+			(blur)="update(box.value)">
+	```
+
+	```ts
+		onKey(event: KeyboardEvent) { // with type info
+			this.values += (event.target as HTMLInputElement).value + ' | ';
+		}
+
+		onKey2(value: string) {
+			this.values += value + ' | ';
+		}
 	```
 1. защита от null/undefined https://angular.io/guide/template-expression-operators
 
@@ -273,7 +315,6 @@
 		<!-- Assert color is defined, even if according to the `Item` type it could be undefined. -->
 		<p>The item's color is: {{item.color!.toUpperCase()}}</p>
 		<p>The item's undeclared best by date is: {{$any(item).bestByDate}}</p>
-		<p>The item's undeclared best by date is: {{$any(this).bestByDate}}</p>
 	```
 1. Какие обязательные props для Component
 	* template
@@ -368,6 +409,17 @@
 1. TemplateRef, ElementRef, в чем разница?
 	* ссылка на ng-template или любой элемент
 	* шаблон можно передать в директиву ngTemplateOutlet а элемент в componentOutlet
+1. template input variable
+	* https://angular.io/guide/template-reference-variables#template-input-variable
+	* у let-* и #* переменных разные пространства имён
+
+	```html
+		<!-- 			объявление и присвоение  -->
+		<ng-template #hero let-hero let-i="index" let-odd="isOdd">
+			<div [class]="{'odd-row': odd}">{{i}}:{{hero.name}}</div>
+		</ng-template>
+	```
+	* охват входящих переменных ограничен текущим экземпляром шаблона а не всеми в виде наследования
 1. В чем отличие СontentChild vs ViewChild.
 	* [СontentChild](https://angular.io/guide/lifecycle-hooks#responding-to-projected-content-changes)
 		* DOM
@@ -426,9 +478,10 @@
 		}
 	```
 1. [динамическое создание компонентов](https://habr.com/ru/company/infowatch/blog/330030/) - как создать динамически компонент, который лежит во внешнем файле, а также вставлять его в DOM из нашего сервиса
-	* content projection
+	* content projection https://angular.io/guide/content-projection
 	* templateOutlet
 	* componentOutlet
+	* viewContainer - createEmbeddedView
 
 	```ts
 		//ссылки через DI на себя:
@@ -445,7 +498,7 @@
 			this.input.nativeElement.focus();
 		} 
 
-		//renderer2
+		//renderer2 - сделан для SSR nodejs
 		let inputElement = this.renderer.createElement('input');
 		this.renderer.appendChild(parent, inputElement);
 		this.renderer.setProperty(inputElement, 'checked', true);
@@ -542,11 +595,13 @@
 					}
 				}
 		```
-	* ViewContainerRef  - ещё позволяет создавать дочерние элементы
+	* ViewContainerRef  - ещё позволяет создавать дочерние элементы createEmbeddedView
 1. ViewEncapsulation. Какая бывает, зачем нужна?
 	* Emulated - CSS обёртка для эмуляции стандартного поведения. если не объявлены templates/templateUrls переключается в None.
 	* None - для наследования общих стилей
-	* shadowDom - для прямого доступа к DOM https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM
+	* shadowDom - для прямого доступа к изолированным shadow DOM узлам
+	* https://angular.io/guide/view-encapsulation
+	* https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM
 1. Change detection. Какие есть стратегии, для чего используются? Какие есть методы, чтобы запустить детектор?
 	* https://angular.io/guide/zone#fundamentals-of-change-detection
 	* https://angular.io/guide/glossary#change-detection
@@ -557,7 +612,8 @@
 	* default ("CheckAlways") - the change detector goes through the view hierarchy on each VM turn to check every data-bound property in the template. In the first phase, it compares the current state of the dependent data with the previous state, and collects changes. In the second phase, it updates the page DOM to reflect any new data values.
 	* OnPush ("CheckOnce") - 
 		* https://angular.io/guide/lifecycle-hooks#using-change-detection-hooks
-		* ручная проверка doCheck
+		* https://angular.io/api/core/ChangeDetectorRef#usage-notes
+		* ручная проверка 
 		* поменялась @Input ссылка(не значение)
 		* DOM event(input) для связанных свойств
 		* async pipe(rxjs, promise)
@@ -567,9 +623,21 @@
 				changeDetection: ChangeDetectionStrategy.OnPush
 			})
 
+			@Input() set live(value: boolean) {
+				if (value) {
+					this.changeDetectorRef.reattach(); // вернуть в дерево
+				} else {
+					this.changeDetectorRef.detach();
+				}
+			}
+
 			constructor(private ref: ChangeDetectorRef) {
-				this.ref.markForCheck(); // помечает как diry
-				
+				this.changeDetectorRef.markForCheck(); // помечает как diry
+
+				changeDetectorRef.detach(); // отсоединяет от change-detection дерева
+				setInterval(() => {
+					this.changeDetectorRef.detectChanges(); // помечает для проверки в отсоединённом локальном дереве
+				}, 5000);
 			}
 		```
 		* detectChanges - используется вместе с detach для локальной обработаки изменений 
@@ -696,18 +764,48 @@
 1. Зачем нужен OnInit если есть Constructor?
 	* для работы с начальными @Input значениями
 1. Pure pipes / pipes
-	* By default, pipes are defined as pure so that Angular executes the pipe only when it detects a pure change to the input value. A pure change is either a change to a primitive input value (such as String, Number, Boolean, or Symbol), or a changed object reference (such as Date, Array, Function, or Object). A pure pipe must use a pure function, which is one that processes inputs and returns values without side effects. In other words, given the same input, a pure function should always return the same output.
-	* Angular executes an impure pipe every time it detects a change with every keystroke or mouse movement.
+	* По-умолчанию чистые(pure) - запуск только при изменении объекта целиком. Необходимо передавать чистые функции без побочных эффектов
+	* Грязные конвейеры запускаются при каждом нажатии или движении мышки.
 
 	```ts
 		@Pipe({
-		name: 'flyingHeroesImpure',
-		pure: false
+			name: 'flyingHeroesImpure',
+			pure: false
 		})
 	```
-1. ng-content
+1. ng-content 
 	* точка сборки для вложенных компонентов
 	* transclusion или content projection
+	* https://angular.io/guide/content-projection
+	* Single-slot content projection
+	```html
+	    <ng-content></ng-content>
+	```
+	```html
+		<app-zippy-basic>
+		<p>Is content projection cool?</p>
+		</app-zippy-basic>
+	```
+	* Multi-slot content projection
+
+	```html
+		<!-- Default: -->
+		<ng-content></ng-content>
+
+		<!-- Question: -->
+		<ng-content select="[question]"></ng-content>
+		```
+
+	```html
+		<app-zippy-multislot>
+			<p question>
+				Is content projection cool?
+			</p>
+			<p>Let's learn about content projection!</p>
+		</app-zippy-multislot>
+	```
+	* 
+
 
 ## Router
 

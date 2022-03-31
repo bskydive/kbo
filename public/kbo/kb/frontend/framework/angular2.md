@@ -117,6 +117,58 @@
  * [How to define a highly scalable folder structure for your Angular project](https://itnext.io/choosing-a-highly-scalable-folder-structure-in-angular-d987de65ec7)
 	* https://angular-folder-structure.readthedocs.io
 	* https://github.com/mathisGarberg/angular-folder-structure
+	* https://angular-folder-structure.readthedocs.io/en/latest/default.html
+	```
+		├──[+] e2e
+		│   └── src
+		│--[+] media (@media)
+		│	│--[+] doc
+		│	│--[+] api
+		│	│--[+] design
+		└──[+] src
+			├──[+] app
+			│   ├──[+] core (@app)
+			│	│	├──[+] gateways
+			│	│	│	│--[+] Name1Gateway
+			│	│	│	│	│-- Name1.mock.ts
+			│	│	│	│	│-- Name1.model.ts
+			│	│	│	│	│-- Name1.service.ts
+			│	│	│	│	│-- Name1.service.spec.ts
+			│	│	│	│--[+] Name2Gateway
+			│	│	├──[+] guards
+			│	│	├──[+] interceptors
+			│	│	├──[+] services
+			│	│	│--[+] core-models
+			│	│	└── core.module.ts
+			│   ├──[+] store (@store)
+			│	│	│--[+] StoreName1
+			│	│	│--[+] StoreName2
+			│	│	└── data.module.ts
+			│   ├──[+] layout/page (@layout)
+			│	│	├──[+] main
+			│	│	├──[+] page-not-found
+			│	│	└── layout.module.ts
+			│   ├──[+] modules (@modules)
+			│	│	│--[+] ModuleName1
+			│	│	│--[+] ModuleName2
+			│	│	└── modules.module.ts
+			│   └──[+] shared (@shared)
+			│		├── components
+			│		│	│--[+] ComponentName1
+			│		│	│--[+] ComponentName2
+			│		│	└── components.module.ts
+			│		├──[+] pipes
+			│		├──[+] directives
+			│		│--[+] shared-models
+			│		└── shared.module.ts
+			├──[+] assets (@assets)
+			│	├──[+] images
+			│	├──[+] icons
+			│	├──[+] fonts
+			│	├──[+] static-pages
+			│	└──[+] styles
+			└──[+] environments (@env)
+	```
  * [High scalable folder structure in angular applications](https://medium.com/edataconsulting/high-scalable-folder-structure-in-angular-applications-a50b55f94350)
 	```
 		src

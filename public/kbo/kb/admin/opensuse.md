@@ -752,7 +752,7 @@ Code:
 
 ### зависает при выключении
 
- * выключить ntp автозапуск
+ * выключить ntp автозапуск--> синхронизировать без демона раз в 50 минут
  * удалить snapper, lvm monitor, packagekit, btrfs
 
 ```bash
@@ -878,6 +878,8 @@ x11uselocalhost no
 
 ## firefox
 
+* profiles https://support.mozilla.org/en-US/kb/profile-manager-create-remove-switch-firefox-profiles#w_starting-the-profile-manager
+	* `about:profiles`
 * https://wiki.archlinux.org/title/firefox#Hardware_video_acceleration
 
 	```
@@ -979,6 +981,11 @@ x11uselocalhost no
  * [реиндекс глобального поиска](https://support.mozilla.org/en-US/kb/rebuilding-global-database)
 
 ## repo
+
+ * https://flathub.org/home
+ * https://snapcraft.io/store
+ * https://appimage.github.io/
+ 	* проверенные пакеты https://github.com/vinifmor/bauh-files/blob/master/appimage/apps.txt
  * https://en.opensuse.org/images/1/17/Zypper-cheat-sheet-1.pdf
  * multimedia codecs 
 

@@ -79,7 +79,7 @@
 	.arrow {//треугольная стрелка вверх ^
 		width: 0; 
 		height: 0;
-		border: 100px solid;//ширина основания
+		border: 100px solid transparent;//ширина основания
 		border-bottom-color: blue;//определяем направление стрелки
 	}
  ```
@@ -97,14 +97,20 @@
 ## методологии
 
  * БЭМ
- * [бэм препроцессор и линтер](https://suitcss.github.io/)
+	* [бэм препроцессор и линтер](https://suitcss.github.io/)
+	* семантические названия
+	* название блока создаёт пространство имён, использовать элементы вне блока нельзя
+	* `block-name__elem-name--mod-name`
  * smacss
  * oocss
  * https://medium.com/@stepanovv.ru/правильный-css-oocss-smacss-bem-и-sass-49351a119283/
 	
-## cascade css and inheritance
+## каскад наследование специфичность
 
  * https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Cascade_and_inheritance
+ * каскад - порядок имеет значение
+ * наследование
+ * специфичность
 
 ## layout
 
@@ -112,6 +118,48 @@
  * https://www.developerdrive.com/holy-grail-layout-flexbox/
  * [раскладки layout](https://every-layout.dev/)
  * [Типовые раскладки](http://learnlayout.com/)
+ * https://csslayout.io/
+
+ ```html
+	<div>
+		<header class="header">
+			...
+		</header>
+		<div class="container">
+			<!-- Sidebar -->
+			<aside class="container__sidebar">
+				...
+			</aside>
+
+			<!-- Main -->
+			<main class="container__main">
+				...
+			</main>
+		</div>
+	</div>
+ ```
+ ```css
+ 	.header {
+		/* Stick to the top */
+		position: sticky;
+		top: 0;
+	}
+	.container {
+		display: flex;
+	}
+
+	.container__sidebar {
+		width: 30%;
+	}
+
+	.container__main {
+		/* Take the remaining width */
+		flex: 1;
+
+		/* Make it scrollable */
+		overflow: auto;
+	}
+ ```
  * [CSS Grid Layout Generator](https://css-grid-layout-generator.pw/)
 
 ### adaptive vs responsive layout
@@ -552,7 +600,7 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 	color: #ffffff;
 	background-color: #9555af;
 }
-/* old-school "down" effect on clic + color tweak */
+/* old-school "down" effect on click + color tweak */
 .btn:active {
 	transform: translateY(1px);
 	filter: saturate(150%);

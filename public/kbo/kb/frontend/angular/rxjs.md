@@ -30,26 +30,26 @@
 	* behaviorSubject - есть начальное значение
 
 	```ts
-	const setFabricRunners$: Subject<{ id: number; task$: Observable<any> }[]> = new Subject();
-	const getFabricRunners$ = setFabricRunners$.asObservable().pipe();
-	getFabricRunners$.subscribe();
+		const setFabricRunners$: Subject<{ id: number; task$: Observable<any> }[]> = new Subject();
+		const getFabricRunners$ = setFabricRunners$.asObservable().pipe();
+		getFabricRunners$.subscribe();
 
-	//
-	const observable = new Observable(subscriber => {
-		subscriber.next(1);
-		subscriber.next(2);
-		subscriber.next(3);
-		setTimeout(() => {
-			subscriber.next(4);
-			subscriber.complete();
-		}, 1000);
-	});
-	
-	observable.subscribe({
-		next(x) { console.log('got value ' + x); },
-		error(err) { console.error('something wrong occurred: ' + err); },
-		complete() { console.log('done'); }
-	});
+		//
+		const observable = new Observable(subscriber => {
+			subscriber.next(1);
+			subscriber.next(2);
+			subscriber.next(3);
+			setTimeout(() => {
+				subscriber.next(4);
+				subscriber.complete();
+			}, 1000);
+		});
+		
+		observable.subscribe({
+			next(x) { console.log('got value ' + x); },
+			error(err) { console.error('something wrong occurred: ' + err); },
+			complete() { console.log('done'); }
+		});
 	```
 1. Operators
 	* are pure functions that enable a functional programming style of dealing with collections with operations like map, filter, concat, reduce, etc.
@@ -61,8 +61,12 @@
 	* pipe(ObserveOn(asapScheduler))
 1. Как обработать ошибку в Observable?
 	* pipe(catchError())
-1. Как осуществить multicasting? Приведите пример.
-	*
+1. multicasting
+	* горячий источник с переиспользованием(share) побочных эффектов(источников)
+	* publish
+	* multicast
+	* share
+	* shareReplay
 1. Higher order observable
 	* Observable emits Observable
 
@@ -75,20 +79,20 @@
 1. Стратегии слияния/схлопывания [flattening](https://medium.com/@shairez/a-super-ninja-trick-to-learn-rxjss-switchmap-mergemap-concatmap-and-exhaustmap-forever-88e178a75f1b)
 	* Merge - слияние
 		* без потерь
-		* без сохранения очерёдности
+		* без сохранения очерёдности(order)
 		* без кэширования
 		* без отписок
-	* Switch - переключение
-		* с потерями
-		* с сохранением очерёдности
-		* подходит для автодополнения, выбора из списка с подгрузкой значений
-		* переподписывается(отписывается от старого) на новый поток
 	* Concat - объединение
 		* без потерь
 		* с сохранением очерёдности
 		* кэширует все новые потоки
 		* переподписывается когда текущий поток завершён
 		* для получения словарей по id
+	* Switch - переключение
+		* с потерями
+		* с сохранением очерёдности
+		* подходит для автодополнения, выбора из списка с подгрузкой значений
+		* переподписывается(отписывается от старого) на новый поток
 	* Exhaust - истощение
 		* с потерями
 		* с сохранением очерёдности
