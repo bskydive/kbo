@@ -80,8 +80,13 @@
 
  * [Тестирование JavaScript кода с Jest для чайников. Часть 1](https://habr.com/ru/post/502302/)
  * https://jestjs.io/docs/api
+ * https://jestjs.io/docs/mock-functions
+ * https://jestjs.io/docs/es6-class-mocks
  * https://github.com/jsdom/jsdom
  * https://itnext.io/testing-angular-applications-with-jest-and-spectator-c05991579807?gi=e4e9f3404fe0
+ * [Jest set, clear and reset mock/spy/stub implementation](https://codewithhugo.com/jest-stub-mock-spy-set-clear/)
+	* mockClear clears only data pertaining to mock calls, which means we get a fresh dataset to assert over with toHaveBeenX methods.
+    * mockReset resets to mock to its initial implementation, on a spy makes the implementation be a noop (function that does nothing).
  * [Angular 11 - Setting up Jest](https://dev.to/alfredoperez/angular-10-setting-up-jest-2m0l)
 
 ```ts
