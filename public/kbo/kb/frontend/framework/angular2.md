@@ -529,6 +529,17 @@
  * https://community.indepth.dev/t/ngtemplateoutlet-the-secret-to-customisation-angular-indepth/1105/3
  * [Angular — Four practical use cases of NgTemplateOutlet](https://lukeliutingchun.medium.com/angular-four-practical-use-cases-of-ngtemplateoutlet-f8e44e5483f2)
 
+## арихитектура module federation
+
+ * https://www.angulararchitects.io/en/book/
+ * https://webpack.js.org/concepts/module-federation/
+ * https://github.com/manfredsteyer/module_federation_shared_versions
+ * [Example nx](https://github.com/manfredsteyer/2022_03_24)
+ * https://auth0.com/blog/micro-frontends-with-angular-module-federation-and-auth0/
+ * 
+ * 
+ * 
+
 ## DI injectors modules services
 
  * https://medium.com/thinkster-io/3-angular-dependency-injection-tips-c4b5356541ee
