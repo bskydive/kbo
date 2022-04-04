@@ -47,7 +47,7 @@
 
  * https://dou.ua/lenta/articles/three-years-with-angular/
  * [генератор документации](https://compodoc.github.io/compodoc/)
- 
+ * [граф зависимостей webpack-dep-graph](https://github.com/heypoom/webpack-dep-graph)
 
 ## инструменты
 
