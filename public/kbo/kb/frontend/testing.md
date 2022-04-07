@@ -80,8 +80,11 @@
 
  * [Тестирование JavaScript кода с Jest для чайников. Часть 1](https://habr.com/ru/post/502302/)
  * https://jestjs.io/docs/api
- * https://jestjs.io/docs/mock-functions
- * https://jestjs.io/docs/es6-class-mocks
+	* https://jestjs.io/docs/mock-functions
+	* https://jestjs.io/docs/es6-class-mocks
+	* https://jestjs.io/docs/mock-function-api
+	* https://jestjs.io/docs/ecmascript-modules
+	* https://jestjs.io/docs/testing-frameworks
  * https://github.com/jsdom/jsdom
  * https://itnext.io/testing-angular-applications-with-jest-and-spectator-c05991579807?gi=e4e9f3404fe0
  * [Jest set, clear and reset mock/spy/stub implementation](https://codewithhugo.com/jest-stub-mock-spy-set-clear/)
@@ -97,12 +100,11 @@ cypress-test/tsconfig.cypress.json:include
 ```
 
  * https://www.devcurry.com/2020/09/testing-angular-component-using-jest.html
- * https://jestjs.io/docs/mock-function-api
  * https://codewithhugo.com/jest-fn-spyon-stub-mock/
- * https://jestjs.io/docs/ecmascript-modules
+
  * https://ordina-jworks.github.io/testing/2018/08/03/testing-angular-with-jest.html
  * https://fireship.io/snippets/testing-rxjs-observables-with-jest/
- * 
+ * https://www.npmjs.com/package/jest-preset-angular
 ### spectator
 
  * https://github.com/ngneat/spectator#component-providers
