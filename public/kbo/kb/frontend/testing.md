@@ -95,6 +95,14 @@ src/tsconfig.app.json: exclude
 cypress-test/tsconfig.cypress.json:include
 .storybook/tsconfig.json:exclude
 ```
+
+ * https://www.devcurry.com/2020/09/testing-angular-component-using-jest.html
+ * https://jestjs.io/docs/mock-function-api
+ * https://codewithhugo.com/jest-fn-spyon-stub-mock/
+ * https://jestjs.io/docs/ecmascript-modules
+ * https://ordina-jworks.github.io/testing/2018/08/03/testing-angular-with-jest.html
+ * https://fireship.io/snippets/testing-rxjs-observables-with-jest/
+ * 
 ### spectator
 
  * https://github.com/ngneat/spectator#component-providers
