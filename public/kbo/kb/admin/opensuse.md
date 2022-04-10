@@ -646,6 +646,32 @@ Code:
 	* https://github.com/Drag13/HabrSanitizer
 ## installation migration OS
 
+ * выскакивает переключение дисплеев https://bugs.kde.org/show_bug.cgi?id=426496 
+	* `plasmashell --replace `
+	* https://www.reddit.com/r/kde/comments/oum1hr/issue_with_kde_plasma_switching_between_two/
+	* https://forums.opensuse.org/showthread.php/564076-2nd-Monitor-Shutoff-upon-grub-to-Leap-on-During-Boot
+ * amd graphic встроенная видеокарта
+	* https://en.opensuse.org/SDB:AMDGPU
+	* https://askubuntu.com/questions/441040/failed-to-get-size-of-gamma-for-output-default-when-trying-to-add-new-screen-res
+
+	```bash
+		vi /etc/default/grub
+		GRUB_GFXMODE=1920x1080 
+		grub2-mkconfig -o /boot/grub2/grub.cfg
+		grub2-script-check /boot/grub2/grub.cfg;echo $?
+	```
+	* не сработало
+		```bash
+			xrandr -q
+			cvt 1920 1080 75
+				# 1920x1080 74.91 Hz (CVT 2.07M9) hsync: 84.64 kHz; pclk: 220.75 MHz
+				Modeline "1920x1080_75.00"  220.75  1920 2064 2264 2608  1080 1083 1088 1130 -hsync +vsync
+			xrandr --newmode "1920x1080_75.00"  220.75  1920 2064 2264 2608  1080 1083 1088 1130 -hsync +vsync
+			xrandr -q
+			xrandr --addmode primary 1920x1080_60.00
+			xrandr --output default --gamma 0:0:0 --mode 1980x1080_75.00
+			xrandr --newmode "1920x1080_60.00"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
+		```
  * включить numlock
  * удалить snapper packagekit
  * выключить проигрыватель на экране блокировки
@@ -1293,47 +1319,48 @@ Open a terminal and type (no 'sudo' is required in Rescue System mode):
 2m-png-jpeg
 XFCE
 
-Проблема с цифровой клавой
-http://unixforum.org/index.php?showtopic=108708&st=120&p=1263239&#entry1263239
+ * Проблема с цифровой клавой
+	* http://unixforum.org/index.php?showtopic=108708&st=120&p=1263239&#entry1263239
+	
+	```bash
+	#!/bin/bash
+	setxkbmap -rules xorg -model pc105 -layout "ru(winkeys),us" -option 'grp:alt_shift_toggle,grp_led:scroll'
+	xmodmap -e "keycode 91 = KP_Delete KP_Decimal KP_Delete KP_Decimal"
+	```
+ * http://packages.x2go.org/opensuse/
+ * addrepo 15.1
 
-```bash
-#!/bin/bash
-setxkbmap -rules xorg -model pc105 -layout "ru(winkeys),us" -option 'grp:alt_shift_toggle,grp_led:scroll'
-xmodmap -e "keycode 91 = KP_Delete KP_Decimal KP_Delete KP_Decimal"
-```
+	```bash
+	zypper addrepo http://packages.x2go.org/opensuse/15.1/main/ x2go
+	zypper addrepo http://packages.x2go.org/opensuse/15.1/extras/ x2go-extras
+	zypper refresh
+	zypper in x2goserver x2goclient x2goserver-desktopsharing
+	zypper rm x2goserver x2goserver-desktopsharing x2goserver-common x2goserver-x2goagent perl-X2Go-Serverperl-X2Go-Log perl-X2Go-Server-DB
+	```
+ * addrepo 42.1
 
-### Keyboard Shortcuts
+	```bash
+		zypper addrepo http://download.opensuse.org/repositories/X11:/RemoteDesktop:/x2go/openSUSE_Leap_42.1/X11:RemoteDesktop:x2go.repo
+		zypper addrepo http://download.opensuse.org/repositories/X11:RemoteDesktop:x2go/openSUSE_Factory/X11:RemoteDesktop:x2go.repo
+		zypper refresh
+		zypper in x2goserver x2goclient
+	```
+ * Keyboard Shortcuts
 
-```
-X2Go follows the general keyboard shortcuts of the NX client. In particular:
+	```
+	X2Go follows the general keyboard shortcuts of the NX client. In particular:
 
-    Ctrl + Alt + T: terminate session / disconnect
-    Ctrl + Alt + F: toggle fullscreen/windowed
-    Ctrl + Alt + M: minimize or maximize fullscreen window
-    Ctrl + Alt + arrow keys: move viewport (when remote screen is bigger than client window)
-```
+		Ctrl + Alt + T: terminate session / disconnect
+		Ctrl + Alt + F: toggle fullscreen/windowed
+		Ctrl + Alt + M: minimize or maximize fullscreen window
+		Ctrl + Alt + arrow keys: move viewport (when remote screen is bigger than client window)
+	```
 
-http://wihttp://wiki.x2go.org/doku.php/doc:usage:x2goclientki.x2go.org/doku.php/doc:usage:x2goclient
+ * http://wihttp://wiki.x2go.org/doku.php/doc:usage:x2goclientki.x2go.org/doku.php/doc:usage:x2goclient
+ * http://wiki.x2go.org/doku.php/doc:de-compat
+ * https://build.opensuse.org/project/repositories/X11:RemoteDesktop:x2go
 
-http://wiki.x2go.org/doku.php/doc:de-compat
 
-
-https://build.opensuse.org/project/repositories/X11:RemoteDesktop:x2go
-
-```bash
-zypper addrepo http://download.opensuse.org/repositories/X11:/RemoteDesktop:/x2go/openSUSE_Leap_42.1/X11:RemoteDesktop:x2go.repo
-zypper addrepo http://download.opensuse.org/repositories/X11:RemoteDesktop:x2go/openSUSE_Factory/X11:RemoteDesktop:x2go.repo
-zypper refresh
-zypper in x2goserver
-```
-
-```bash
-zypper addrepo http://packages.x2go.org/opensuse/15.1/main/ x2go
-zypper addrepo http://packages.x2go.org/opensuse/15.1/extras/ x2go-extras
-zypper refresh
-zypper in x2goserver x2goclient x2goserver-desktopsharing
-zypper rm x2goserver x2goserver-desktopsharing x2goserver-common x2goserver-x2goagent perl-X2Go-Serverperl-X2Go-Log perl-X2Go-Server-DB
-```
 
 ## rdp
 
