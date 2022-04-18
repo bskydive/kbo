@@ -615,6 +615,37 @@ acpitool  -W 17
 		beep_enable:           disabled
 
  ```
+
+## gpu video graphics видеокарта
+
+ * выскакивает переключение дисплеев https://bugs.kde.org/show_bug.cgi?id=426496 
+	* `plasmashell --replace `
+	* https://www.reddit.com/r/kde/comments/oum1hr/issue_with_kde_plasma_switching_between_two/
+	* https://forums.opensuse.org/showthread.php/564076-2nd-Monitor-Shutoff-upon-grub-to-Leap-on-During-Boot
+ * встроенная видеокарта Процессор AMD Ryzen 7 PRO 5750G
+	* https://en.opensuse.org/SDB:AMDGPU
+	* https://askubuntu.com/questions/441040/failed-to-get-size-of-gamma-for-output-default-when-trying-to-add-new-screen-res
+
+	```bash
+		vi /etc/default/grub
+		GRUB_GFXMODE=1920x1080 
+		grub2-mkconfig -o /boot/grub2/grub.cfg
+		grub2-script-check /boot/grub2/grub.cfg;echo $?
+	```
+	* не сработало
+		```bash
+			xrandr -q
+			cvt 1920 1080 75
+				# 1920x1080 74.91 Hz (CVT 2.07M9) hsync: 84.64 kHz; pclk: 220.75 MHz
+				Modeline "1920x1080_75.00"  220.75  1920 2064 2264 2608  1080 1083 1088 1130 -hsync +vsync
+			xrandr --newmode "1920x1080_75.00"  220.75  1920 2064 2264 2608  1080 1083 1088 1130 -hsync +vsync
+			xrandr -q
+			xrandr --addmode primary 1920x1080_60.00
+			xrandr --output default --gamma 0:0:0 --mode 1980x1080_75.00
+			xrandr --newmode "1920x1080_60.00"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
+		```
+	* https://askubuntu.com/questions/1317748/any-issues-running-20-04-with-a-ryzen-5000-cpu
+
 ## kde
 
 
@@ -646,32 +677,10 @@ Code:
 	* https://github.com/Drag13/HabrSanitizer
 ## installation migration OS
 
- * выскакивает переключение дисплеев https://bugs.kde.org/show_bug.cgi?id=426496 
-	* `plasmashell --replace `
-	* https://www.reddit.com/r/kde/comments/oum1hr/issue_with_kde_plasma_switching_between_two/
-	* https://forums.opensuse.org/showthread.php/564076-2nd-Monitor-Shutoff-upon-grub-to-Leap-on-During-Boot
- * amd graphic встроенная видеокарта
-	* https://en.opensuse.org/SDB:AMDGPU
-	* https://askubuntu.com/questions/441040/failed-to-get-size-of-gamma-for-output-default-when-trying-to-add-new-screen-res
-
-	```bash
-		vi /etc/default/grub
-		GRUB_GFXMODE=1920x1080 
-		grub2-mkconfig -o /boot/grub2/grub.cfg
-		grub2-script-check /boot/grub2/grub.cfg;echo $?
-	```
-	* не сработало
-		```bash
-			xrandr -q
-			cvt 1920 1080 75
-				# 1920x1080 74.91 Hz (CVT 2.07M9) hsync: 84.64 kHz; pclk: 220.75 MHz
-				Modeline "1920x1080_75.00"  220.75  1920 2064 2264 2608  1080 1083 1088 1130 -hsync +vsync
-			xrandr --newmode "1920x1080_75.00"  220.75  1920 2064 2264 2608  1080 1083 1088 1130 -hsync +vsync
-			xrandr -q
-			xrandr --addmode primary 1920x1080_60.00
-			xrandr --output default --gamma 0:0:0 --mode 1980x1080_75.00
-			xrandr --newmode "1920x1080_60.00"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
-		```
+ * flatpak
+	* `zypper in flatpak`
+	* от пользователя! flatpak `flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo` 
+	* или в discover - настройка - add flathub
  * включить numlock
  * удалить snapper packagekit
  * выключить проигрыватель на экране блокировки
@@ -748,7 +757,6 @@ Code:
  	* `npm i -g sass npm-check pm2 http-server`
 ### old
 
- * flatpak `flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo` далее `Discover` или в discover - настройка - add flathub
  * evolution - через discover+flathub - поиск - evolution - кликнуть по пакету - источники - flathub
 	* https://wiki.gnome.org/Apps/Evolution/EWS/OAuth2
 	* https://wiki.gnome.org/Apps/Evolution/Flatpak
