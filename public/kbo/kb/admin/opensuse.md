@@ -1328,16 +1328,25 @@ XFCE
 	xmodmap -e "keycode 91 = KP_Delete KP_Decimal KP_Delete KP_Decimal"
 	```
  * http://packages.x2go.org/opensuse/
- * addrepo 15.1
+ * tumbleweed
+
+	````bash
+		zypper addrepo http://packages.x2go.org/opensuse/tumbleweed/heuler/ x2go
+		zypper addrepo http://packages.x2go.org/opensuse/tumbleweed/extras/ x2go-extras
+		zypper refresh
+		zypper in x2goserver x2goclient
+	````
+
+ * leap 15.1
 
 	```bash
 	zypper addrepo http://packages.x2go.org/opensuse/15.1/main/ x2go
 	zypper addrepo http://packages.x2go.org/opensuse/15.1/extras/ x2go-extras
 	zypper refresh
 	zypper in x2goserver x2goclient
-	zypper rm x2goserver x2goserver-desktopsharing x2goserver-common x2goserver-x2goagent perl-X2Go-Serverperl-X2Go-Log perl-X2Go-Server-DB
+	zypper rm x2goserver x2goserver-desktopsharing x2goserver-common x2goserver-x2goagent perl-X2Go-Serverperl-X2Go-Log perl-X2Go-Server-DB nxproxy nx-libs nxagent libNX_X11-6
 	```
- * addrepo 42.1
+ * leap 42.1
 
 	```bash
 		zypper addrepo http://download.opensuse.org/repositories/X11:/RemoteDesktop:/x2go/openSUSE_Leap_42.1/X11:RemoteDesktop:x2go.repo
