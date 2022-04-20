@@ -282,6 +282,20 @@ Install libreoffice-theme-oxygen or libreoffice-theme-crystal and then follow  (
 
 ## HARDWARE
 
+### графический планшет
+
+ * krita из discover
+ * xp-pen
+	 * включить тачпад
+	 * отправить тачпад на второй монитор
+
+		```
+		xrandr
+		xinput
+		xinput map-to-input $idXinput $idXrandr
+
+		```
+
 ### info
 
  * https://mintdewdrop.wordpress.com/2013/05/04/inxi/
