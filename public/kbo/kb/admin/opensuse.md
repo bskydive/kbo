@@ -286,6 +286,8 @@ Install libreoffice-theme-oxygen or libreoffice-theme-crystal and then follow  (
 
  * krita из discover
  * xp-pen
+	 * https://www.xp-pen.com/download-51.html
+	 * https://www.youtube.com/watch?v=bnrtPoo6-d8
 	 * включить тачпад
 	 * отправить тачпад на второй монитор
 
