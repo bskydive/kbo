@@ -153,6 +153,7 @@ find . -inum 17040033 -exec mv {} new-directory-name1 \;
  * https://dmde.ru/download.html
  * https://1victoria.ru/victoria-hdd-4-47/
  * https://forum.ixbt.com/topic.cgi?id=11:48406
+
 ## SMART
 
  * https://linuxconfig.org/how-to-check-an-hard-drive-health-from-the-command-line-using-smartctl
