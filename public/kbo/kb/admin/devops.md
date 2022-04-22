@@ -32,12 +32,16 @@ https://github.com/documentationjs
  * jira
  * gitlab
 
-## Chat чат
+## Chat чат 
 
  * https://rocket.chat/
  * google hangouts
  * slack
  * mattermost
+ * https://matrix.org/clients/
+ * https://teams.vk.com/
+ * https://calls.mail.ru/
+ * 
 
 ## angular SEO
 
