@@ -1,5 +1,9 @@
 # Windows
 
+## статьи
+
+ * [Полезные мелочи Windows администратора, поиск компьютеров пользователей и не только](https://habr.com/ru/post/579114/)
+
 ## WSL windows susbsytem for linux
 
  * https://zellwk.com/blog/windows-wsl/
