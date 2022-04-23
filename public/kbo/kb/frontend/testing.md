@@ -105,6 +105,7 @@ cypress-test/tsconfig.cypress.json:include
  * https://ordina-jworks.github.io/testing/2018/08/03/testing-angular-with-jest.html
  * https://fireship.io/snippets/testing-rxjs-observables-with-jest/
  * https://www.npmjs.com/package/jest-preset-angular
+
 ### spectator
 
  * https://github.com/ngneat/spectator#component-providers
