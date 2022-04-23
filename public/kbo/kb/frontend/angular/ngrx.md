@@ -16,23 +16,29 @@
 	* единое хранилище/дерево хранилищ
 	* полностью взаимозаменямый подход для ленивой загрузки: DI—>modules—>services | DI—>modules—>ngrx.forFeature
 	* строгую типизацию действий, редукторов, селекторов, эффектов
-* проблемы
+ * проблемы
 	* много шаблонного кода
 	* нужно писать микрофреймворк для генерации/типизации шаблонного кода
-* redux
+ * redux
 	* единый источник правды в хранилище
 	* состояние только для чтения и меняется отправкой сообщений/действий
 	* данные изменяются чистыми функциями - редукторами
-* что нельзя хранить:
+ * что нельзя хранить:
 	* состояния форм, они часто мутируют, не сериализуемы, не поддерживают действия
 	* данные только для одного компонента
 	* не сериализуемые данные(роутер)
-* ReduxDevTools
+ * ReduxDevTools
 	* дерево состояний
 	* история состояний
 	* проигрыватель истории состояний
-* reducer - feature slice - subslice - root store
-* https://github.com/DeborahK/Angular-NgRx-GettingStarted
+ * reducer - feature slice - subslice - root store
+ * https://github.com/DeborahK/Angular-NgRx-GettingStarted
+ * https://github.com/DeborahK/Angular-RxJS
+ * https://github.com/DeborahK/Angular-Async-Data
+ * 
+ * 
+ * 
+
 
 ```ts
 // state types
