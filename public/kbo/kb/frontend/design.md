@@ -8,7 +8,8 @@
  * [intrinsic web design](https://www.youtube.com/watch?v=AMPKmh98XLY)
  * [atomic design](https://atomicdesign.bradfrost.com)
  * [Best practices: components, styles, and shared libraries](https://www.figma.com/best-practices/components-styles-and-shared-libraries/)
- 
+ * [ux core guide](https://keepsimple.io/uxcg)
+
 ## блоги
 
  * https://medium.com/slashdesigner

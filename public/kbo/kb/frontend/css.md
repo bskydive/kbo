@@ -98,6 +98,7 @@
 ## методологии
 
  * БЭМ
+	* https://ru.bem.info/methodology/key-concepts/
 	* [бэм препроцессор и линтер](https://suitcss.github.io/)
 	* семантические названия
 	* название блока создаёт пространство имён, использовать элементы вне блока нельзя
@@ -105,6 +106,7 @@
  * smacss
  * oocss
  * https://medium.com/@stepanovv.ru/правильный-css-oocss-smacss-bem-и-sass-49351a119283/
+ * [Эволюция CSS: от CSS, SASS, BEM и CSS-модулей до styled-components](https://habr.com/ru/company/vk/blog/319956/)
 	
 ## каскад наследование специфичность
 
