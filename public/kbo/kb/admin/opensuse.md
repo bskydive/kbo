@@ -378,7 +378,7 @@ Install libreoffice-theme-oxygen or libreoffice-theme-crystal and then follow  (
 			MatchDriver "evdev"
 			MatchIsPointer "on"
 			MatchProduct "keyword"
-			MatchDevicePath "/dev/input/event16"
+			MatchDevicePath "/dev/input/event19" # not id! see list-props device node
 			# Apply custom Options below.
 			# XP-PEN star06c Mouse                      id=16   [slave  pointer  (2)]
 		EndSection
@@ -388,7 +388,7 @@ Install libreoffice-theme-oxygen or libreoffice-theme-crystal and then follow  (
 			MatchDriver "evdev"
 			MatchIsTablet "on"
 			MatchProduct "keyword"
-			MatchDevicePath "/dev/input/event14"
+			MatchDevicePath "/dev/input/event22" # not id! see list-props device node
 			# Apply custom Options below.
 			# XP-PEN star06c Keyboard                   id=14   [slave  keyboard (3)]
 		EndSection
@@ -433,7 +433,15 @@ Install libreoffice-theme-oxygen or libreoffice-theme-crystal and then follow  (
 				libinput Drag Lock Buttons (293):       <no items>
 				libinput Horizontal Scroll Enabled (294):       1
 
+				# xinput get-button-map "XP-PEN star06c Keyboard"
+				device has no buttons
 
+				# xinput get-button-map "XP-PEN star06c Mouse"
+				1 2 3 4 5 6 7 
+
+				xinput test 'XP-PEN star06c Keyboard'
+				key press   37 # wheel
+				key press   21
 		```
 
 ### info
@@ -1475,12 +1483,16 @@ Open a terminal and type (no 'sudo' is required in Rescue System mode):
  * http://code.google.com/p/vpnpptp/downloads/detail?name=vpnpptp_setup-ru-Linux-x86_64-Install.tar.gz&can=2&q=
  * http://forums.opensuse.org/p-russian/dhydhdhdhdhundhdhdh/gnome/453520-networkmanager-l2tp.html
  * http://code.google.com/p/vpnpptp/downloads/detail?name=xroot-0.0.6-1.x86_64.rpm&can=2&q=
- * nomachine
+
+## nomachine
  * https://www.nomachine.com/download
 	
 	```bash
 		zypper in libstdc++6-32bit
 		zypper rm nomachine
+		rm -rf /usr/NX/
+		rm -rf /home/vika/.nx/
+		rm -rf /etc/NX/
 	```
 
 
@@ -1548,35 +1560,36 @@ Open a terminal and type (no 'sudo' is required in Rescue System mode):
 
 ## vnc
 
-https://habrahabr.ru/company/ruvds/blog/312556
+ * default port 5901
+ * https://habrahabr.ru/company/ruvds/blog/312556
 
 ```bash
-disable ipv6
-vncpasswd
-xinetd.d/vnc
--rfbauth /home/bsk/.vnc/passwd
-user = bsk
-dbus-launch vncserver
+	disable ipv6
+	vncpasswd
+	xinetd.d/vnc
+	-rfbauth /home/bsk/.vnc/passwd
+	user = bsk
+	dbus-launch vncserver
 
-/usr/bin/Xvnc :7 -depth 16 -alwaysshared -geometry 1024x768 -query localhost -once -rfbauth ~/.vnc/passwd
+	/usr/bin/Xvnc :7 -depth 16 -alwaysshared -geometry 1024x768 -query localhost -once -rfbauth ~/.vnc/passwd
 
 
-service vnc1
-{
-	socket_type     = stream
-	protocol        = tcp
-	wait            = no
-	user            = bsk
-	server          = /usr/bin/Xvnc
-	server_args     = -noreset -inetd -once -query localhost -geometry 1024x768 -depth 16 -rfbauth /home/bsk/.vnc/passwd
-	type            = UNLISTED
-	port            = 5901
-}
+	service vnc1
+	{
+		socket_type     = stream
+		protocol        = tcp
+		wait            = no
+		user            = bsk
+		server          = /usr/bin/Xvnc
+		server_args     = -noreset -inetd -once -query localhost -geometry 1024x768 -depth 16 -rfbauth /home/bsk/.vnc/passwd
+		type            = UNLISTED
+		port            = 5901
+	}
 
-zypper in x11vnc
-x11vnc - allow VNC connections to real X11 displays
+	zypper in x11vnc
+	x11vnc - allow VNC connections to real X11 displays
 
-/usr/bin/x11vnc -dontdisconnect -display :0 -notruecolor -noxfixes -shared -forever -rfbport 5900 -bg -o /var/log/x11vnc.log -rfbauth ~/.vnc/passwd -env  FD_XDM=1  -auth  guess
+	/usr/bin/x11vnc -dontdisconnect -display :0 -notruecolor -noxfixes -shared -forever -rfbport 5900 -bg -o /var/log/x11vnc.log -rfbauth ~/.vnc/passwd -env  FD_XDM=1  -auth  guess
 ```
 
 ## wallpapers kde
