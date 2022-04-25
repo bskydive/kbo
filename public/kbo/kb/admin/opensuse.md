@@ -285,17 +285,163 @@ Install libreoffice-theme-oxygen or libreoffice-theme-crystal and then follow  (
 ### графический планшет
 
  * krita из discover
+ * https://www.x.org/archive//X11R7.5/doc/man/man4/evdev.4.html
+ * http://digimend.github.io/support/howto/drivers/evdev/
+ * https://wiki.archlinux.org/title/Xorg#Input_devices
  * xp-pen
 	 * https://www.xp-pen.com/download-51.html
 	 * https://www.youtube.com/watch?v=bnrtPoo6-d8
 	 * включить тачпад
 	 * отправить тачпад на второй монитор
 
-		```
+		```bash
 		xrandr
 		xinput
 		xinput map-to-input $idXinput $idXrandr
 
+		```
+	* 
+		```bash
+		# xinput list
+		⎡ Virtual core pointer                          id=2    [master pointer  (3)]
+		⎜   ↳ Virtual core XTEST pointer                id=4    [slave  pointer  (2)]
+		⎜   ↳ SIGMACHIP USB Keyboard Consumer Control   id=9    [slave  pointer  (2)]
+		⎜   ↳ A4Tech USB Mouse                          id=11   [slave  pointer  (2)]
+		⎜   ↳ XP-PEN star06c                            id=13   [slave  pointer  (2)]
+		⎜   ↳ XP-PEN star06c Mouse                      id=16   [slave  pointer  (2)]
+		⎣ Virtual core keyboard                         id=3    [master keyboard (2)]
+			↳ Virtual core XTEST keyboard               id=5    [slave  keyboard (3)]
+			↳ Power Button                              id=6    [slave  keyboard (3)]
+			↳ Power Button                              id=7    [slave  keyboard (3)]
+			↳ SIGMACHIP USB Keyboard                    id=8    [slave  keyboard (3)]
+			↳ SIGMACHIP USB Keyboard System Control     id=10   [slave  keyboard (3)]
+			↳ SIGMACHIP USB Keyboard Consumer Control   id=12   [slave  keyboard (3)]
+			↳ XP-PEN star06c Keyboard                   id=14   [slave  keyboard (3)]
+			↳ XP-PEN star06c                            id=15   [slave  keyboard (3)]
+
+		# lsusb
+		Bus 004 Device 004: ID 0451:8140 Texas Instruments, Inc. TUSB8041 4-Port Hub
+		Bus 004 Device 003: ID 2001:4a00 D-Link Corp. 
+		Bus 004 Device 002: ID 0451:8140 Texas Instruments, Inc. TUSB8041 4-Port Hub
+		Bus 004 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+		Bus 003 Device 008: ID 0451:3410 Texas Instruments, Inc. TUSB3410 Microcontroller
+		# Bus 003 Device 009: ID 28bd:0062  
+		Bus 003 Device 004: ID 0451:8142 Texas Instruments, Inc. TUSB8041 4-Port Hub
+		Bus 003 Device 007: ID 09da:c10a A4Tech Co., Ltd. 
+		Bus 003 Device 005: ID 1c4f:0026 SiGma Micro Keyboard
+		Bus 003 Device 003: ID 1a40:0101 Terminus Technology Inc. Hub
+		Bus 003 Device 002: ID 0451:8142 Texas Instruments, Inc. TUSB8041 4-Port Hub
+		Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+		Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+		Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+
+
+		# cat /usr/share/X11/xorg.conf.d/10-evdev.conf
+		Section "InputClass"
+				Identifier "evdev pointer catchall"
+				MatchIsPointer "on"
+				MatchDevicePath "/dev/input/event*"
+				Driver "evdev"
+		EndSection
+
+		Section "InputClass"
+				Identifier "evdev keyboard catchall"
+				MatchIsKeyboard "on"
+				MatchDevicePath "/dev/input/event*"
+				Driver "evdev"
+		EndSection
+
+		Section "InputClass"
+				Identifier "evdev touchpad catchall"
+				MatchIsTouchpad "on"
+				MatchDevicePath "/dev/input/event*"
+				Driver "evdev"
+		EndSection
+
+		Section "InputClass"
+				Identifier "evdev tablet catchall"
+				MatchIsTablet "on"
+				MatchDevicePath "/dev/input/event*"
+				Driver "evdev"
+		EndSection
+
+		Section "InputClass"
+				Identifier "evdev touchscreen catchall"
+				MatchIsTouchscreen "on"
+				MatchDevicePath "/dev/input/event*"
+				Driver "evdev"
+		EndSection
+
+		# cat >> /usr/share/X11/xorg.conf.d/52-tablet.conf
+		Section "InputClass"
+			Identifier "XP-PEN star06c Mouse"
+			MatchDriver "evdev"
+			MatchIsPointer "on"
+			MatchProduct "keyword"
+			MatchDevicePath "/dev/input/event19" # not id! see list-props device node
+			# Apply custom Options below.
+			# XP-PEN star06c Mouse                      id=16   [slave  pointer  (2)]
+		EndSection
+
+		Section "InputClass"
+			Identifier "XP-PEN star06c Keyboard"
+			MatchDriver "evdev"
+			MatchIsTablet "on"
+			MatchProduct "keyword"
+			MatchDevicePath "/dev/input/event22" # not id! see list-props device node
+			# Apply custom Options below.
+			# XP-PEN star06c Keyboard                   id=14   [slave  keyboard (3)]
+		EndSection
+
+		# xinput list-props "XP-PEN star06c Keyboard"
+		Device 'XP-PEN star06c Keyboard':
+				Device Enabled (154):   1
+				Coordinate Transformation Matrix (156): 1.000000, 0.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000, 0.000000, 1.000000
+				libinput Send Events Modes Available (276):     1, 0
+				libinput Send Events Mode Enabled (277):        0, 0
+				libinput Send Events Mode Enabled Default (278):        0, 0
+				Device Node (279):      "/dev/input/event22"
+				Device Product ID (280):        10429, 98
+
+		# xinput list-props "XP-PEN star06c Mouse"
+		Device 'XP-PEN star06c Mouse':
+				Device Enabled (154):   1
+				Coordinate Transformation Matrix (156): 1.000000, 0.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000, 0.000000, 1.000000
+				libinput Natural Scrolling Enabled (291):       0
+				libinput Natural Scrolling Enabled Default (292):       0
+				libinput Scroll Methods Available (295):        0, 0, 1
+				libinput Scroll Method Enabled (296):   0, 0, 0
+				libinput Scroll Method Enabled Default (297):   0, 0, 0
+				libinput Button Scrolling Button (298): 2
+				libinput Button Scrolling Button Default (299): 2
+				libinput Middle Emulation Enabled (300):        0
+				libinput Middle Emulation Enabled Default (301):        0
+				libinput Accel Speed (302):     0.000000
+				libinput Accel Speed Default (303):     0.000000
+				libinput Accel Profiles Available (304):        1, 1
+				libinput Accel Profile Enabled (305):   1, 0
+				libinput Accel Profile Enabled Default (306):   1, 0
+				libinput Calibration Matrix (624):      1.000000, 0.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000, 0.000000, 1.000000
+				libinput Calibration Matrix Default (625):      1.000000, 0.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000, 0.000000, 1.000000
+				libinput Left Handed Enabled (307):     0
+				libinput Left Handed Enabled Default (308):     0
+				libinput Send Events Modes Available (276):     1, 0
+				libinput Send Events Mode Enabled (277):        0, 0
+				libinput Send Events Mode Enabled Default (278):        0, 0
+				Device Node (279):      "/dev/input/event19"
+				Device Product ID (280):        10429, 98
+				libinput Drag Lock Buttons (293):       <no items>
+				libinput Horizontal Scroll Enabled (294):       1
+
+				# xinput get-button-map "XP-PEN star06c Keyboard"
+				device has no buttons
+
+				# xinput get-button-map "XP-PEN star06c Mouse"
+				1 2 3 4 5 6 7 
+
+				xinput test 'XP-PEN star06c Keyboard'
+				key press   37 # wheel
+				key press   21
 		```
 
 ### info
@@ -1018,13 +1164,6 @@ x11uselocalhost no
 	turning off hardware acceleration in preferences > advanced > general
 ```
 
-## vpn
-
- * http://code.google.com/p/vpnpptp/downloads/detail?name=vpnpptp_setup-ru-Linux-x86_64-Install.tar.gz&can=2&q=
- * http://forums.opensuse.org/p-russian/dhydhdhdhdhundhdhdh/gnome/453520-networkmanager-l2tp.html
- * http://code.google.com/p/vpnpptp/downloads/detail?name=xroot-0.0.6-1.x86_64.rpm&can=2&q=
-
-
 ## thunderbird
 
  * http://kb.mozillazine.org/IMAP:_advanced_account_configuration
@@ -1338,11 +1477,29 @@ Open a terminal and type (no 'sudo' is required in Rescue System mode):
 
 ```
 
+
+## vpn
+
+ * http://code.google.com/p/vpnpptp/downloads/detail?name=vpnpptp_setup-ru-Linux-x86_64-Install.tar.gz&can=2&q=
+ * http://forums.opensuse.org/p-russian/dhydhdhdhdhundhdhdh/gnome/453520-networkmanager-l2tp.html
+ * http://code.google.com/p/vpnpptp/downloads/detail?name=xroot-0.0.6-1.x86_64.rpm&can=2&q=
+
+## nomachine
+ * https://www.nomachine.com/download
+	
+	```bash
+		zypper in libstdc++6-32bit
+		zypper rm nomachine
+		rm -rf /usr/NX/
+		rm -rf /home/vika/.nx/
+		rm -rf /etc/NX/
+	```
+
+
 ## x2go
 
-2m-png-jpeg
-XFCE
-
+ * 2m-png-jpeg
+ * XFCE
  * Проблема с цифровой клавой
 	* http://unixforum.org/index.php?showtopic=108708&st=120&p=1263239&#entry1263239
 	
@@ -1352,16 +1509,25 @@ XFCE
 	xmodmap -e "keycode 91 = KP_Delete KP_Decimal KP_Delete KP_Decimal"
 	```
  * http://packages.x2go.org/opensuse/
- * addrepo 15.1
+ * tumbleweed
+
+	````bash
+		zypper addrepo http://packages.x2go.org/opensuse/tumbleweed/heuler/ x2go
+		zypper addrepo http://packages.x2go.org/opensuse/tumbleweed/extras/ x2go-extras
+		zypper refresh
+		zypper in x2goserver x2goclient
+	````
+
+ * leap 15.1
 
 	```bash
 	zypper addrepo http://packages.x2go.org/opensuse/15.1/main/ x2go
 	zypper addrepo http://packages.x2go.org/opensuse/15.1/extras/ x2go-extras
 	zypper refresh
 	zypper in x2goserver x2goclient
-	zypper rm x2goserver x2goserver-desktopsharing x2goserver-common x2goserver-x2goagent perl-X2Go-Serverperl-X2Go-Log perl-X2Go-Server-DB
+	zypper rm x2goserver x2goserver-desktopsharing x2goserver-common x2goserver-x2goagent perl-X2Go-Serverperl-X2Go-Log perl-X2Go-Server-DB nxproxy nx-libs nxagent libNX_X11-6
 	```
- * addrepo 42.1
+ * leap 42.1
 
 	```bash
 		zypper addrepo http://download.opensuse.org/repositories/X11:/RemoteDesktop:/x2go/openSUSE_Leap_42.1/X11:RemoteDesktop:x2go.repo
@@ -1388,41 +1554,42 @@ XFCE
 
 ## rdp
 
-```
-zypper in yast2-rdp xrdp xorgxrdp
+```bash
+	zypper in yast2-rdp xrdp xorgxrdp
 ```
 
 ## vnc
 
-https://habrahabr.ru/company/ruvds/blog/312556
+ * default port 5901
+ * https://habrahabr.ru/company/ruvds/blog/312556
 
 ```bash
-disable ipv6
-vncpasswd
-xinetd.d/vnc
--rfbauth /home/bsk/.vnc/passwd
-user = bsk
-dbus-launch vncserver
+	disable ipv6
+	vncpasswd
+	xinetd.d/vnc
+	-rfbauth /home/bsk/.vnc/passwd
+	user = bsk
+	dbus-launch vncserver
 
-/usr/bin/Xvnc :7 -depth 16 -alwaysshared -geometry 1024x768 -query localhost -once -rfbauth ~/.vnc/passwd
+	/usr/bin/Xvnc :7 -depth 16 -alwaysshared -geometry 1024x768 -query localhost -once -rfbauth ~/.vnc/passwd
 
 
-service vnc1
-{
-	socket_type     = stream
-	protocol        = tcp
-	wait            = no
-	user            = bsk
-	server          = /usr/bin/Xvnc
-	server_args     = -noreset -inetd -once -query localhost -geometry 1024x768 -depth 16 -rfbauth /home/bsk/.vnc/passwd
-	type            = UNLISTED
-	port            = 5901
-}
+	service vnc1
+	{
+		socket_type     = stream
+		protocol        = tcp
+		wait            = no
+		user            = bsk
+		server          = /usr/bin/Xvnc
+		server_args     = -noreset -inetd -once -query localhost -geometry 1024x768 -depth 16 -rfbauth /home/bsk/.vnc/passwd
+		type            = UNLISTED
+		port            = 5901
+	}
 
-zypper in x11vnc
-x11vnc - allow VNC connections to real X11 displays
+	zypper in x11vnc
+	x11vnc - allow VNC connections to real X11 displays
 
-/usr/bin/x11vnc -dontdisconnect -display :0 -notruecolor -noxfixes -shared -forever -rfbport 5900 -bg -o /var/log/x11vnc.log -rfbauth ~/.vnc/passwd -env  FD_XDM=1  -auth  guess
+	/usr/bin/x11vnc -dontdisconnect -display :0 -notruecolor -noxfixes -shared -forever -rfbport 5900 -bg -o /var/log/x11vnc.log -rfbauth ~/.vnc/passwd -env  FD_XDM=1  -auth  guess
 ```
 
 ## wallpapers kde
