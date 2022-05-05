@@ -140,6 +140,124 @@
  * [Функциональный JavaScript: пять способов нахождения среднего арифметического элементов массива и метод .reduce()](https://habr.com/ru/company/ruvds/blog/458030/)
  * [функциональное программирование](https://habr.com/ru/company/mailru/blog/327522/)
  * [Concepts of Functional Programming in Javascript](https://medium.com/the-renaissance-developer/concepts-of-functional-programming-in-javascript-6bc84220d2aa)
+
+
+
+## singleton
+
+ * es6 modules+classes https://code.tutsplus.com/tutorials/how-to-implement-the-singleton-pattern-in-javascript-es6--cms-39927
+
+	```js
+		class DBConnection {
+			constructor(conString) {}
+
+			static getInstance(conString) {
+				if (!this.instance) {
+				this.instance = new DBConnection(conString);
+				}
+
+				return this.instance;
+			}
+		}
+
+		const dbConObj = DBConnection.getInstance('mysqldb1');
+
+		export default dbConObj;
+	```
+
+ * symbol singleton
+	* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/for
+	* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol
+	* https://coderoad.ru/26205565/Преобразование-Singleton-JS-объектов-использования-классов-на-ES6
+
+	```js
+		const singleton = Symbol();
+		const singletonEnforcer = Symbol()
+
+		class SingletonTest {
+
+		constructor(enforcer) {
+			if(enforcer != singletonEnforcer) throw "Cannot construct singleton";
+		}
+
+		static get instance() {
+			if(!this[singleton]) {
+			this[singleton] = new SingletonTest(singletonEnforcer);
+			}
+			return this[singleton];
+		}
+		}
+
+		export default SingletonTest
+
+		// Тогда вы можете использовать его, как и любой другой singleton:
+
+		import SingletonTest from 'singleton-test';
+		const instance = SingletonTest.instance;
+
+	```
+ * IIFE singleton
+	* https://stackoverflow.com/questions/27701887/what-is-instance-in-javascript
+	* https://www.digitalocean.com/community/conceptual_articles/singleton-design-pattern-in-javascript
+
+	```js
+		var printer = (function () {
+
+			var printerInstance;
+
+			function create () {
+
+				function print() {
+					// underlying printer mechanics
+				}
+
+				function turnOn() {
+					// warm up
+					// check for paper
+				}
+
+				return {
+					// public + private states and behaviors
+					print: print,
+					turnOn: turnOn
+				};
+			}
+
+			return {
+				getInstance: function() {
+					if(!printerInstance) {
+					printerInstance = create();
+					}
+					return printerInstance;
+				}
+			};
+
+			function Singleton () {
+				if(!printerInstance) {
+					printerInstance = intialize();
+				}
+			};
+		})();
+	```
+ * es6 class singleton
+	* https://stackoverflow.com/questions/1479319/simplest-cleanest-way-to-implement-a-singleton-in-javascript
+	```js
+		class MyClass {
+		constructor() {
+			if (MyClass._instance) {
+			return MyClass._instance
+			}
+			MyClass._instance = this;
+
+			// ... Your rest of the constructor code goes after this
+		}
+		}
+
+		var instanceOne = new MyClass()
+		var instanceTwo = new MyClass()
+
+		console.log(instanceOne === instanceTwo) // Logs "true"
+	```
 ## V8 движок
 
  * интерпретатор ES+WASM [ignition/байткод](https://v8.dev/blog/ignition-interpreter) и компилятор[turbofan JIT](https://v8.dev/docs/turbofan)

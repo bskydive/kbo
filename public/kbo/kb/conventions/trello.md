@@ -38,13 +38,16 @@
 
 ## чат
 
+ * ! обязательно отдельная учётка для работы
  * видео+аудио+текст, 10+ участников, файлы, рабочий стол, запись
  * https://calls.mail.ru/
  * https://telemost.yandex.ru/
  * telegram
  * discord
  * skype
-
+ * https://help.mail.ru/biz/myteam/tariffs
+ * https://360.yandex.ru/premium-plans
+ * https://support.discord.com/hc/en-us/community/posts/360044645291-Music-in-chat-rooms
 
 ## запись встреч
 
