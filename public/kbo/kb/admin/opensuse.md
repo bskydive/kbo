@@ -1176,6 +1176,7 @@ x11uselocalhost no
  * https://appimage.github.io/
  	* проверенные пакеты https://github.com/vinifmor/bauh-files/blob/master/appimage/apps.txt
  * https://en.opensuse.org/images/1/17/Zypper-cheat-sheet-1.pdf
+ * gcc++33 gcc++5 `https://download.opensuse.org/repositories/devel:/gcc/openSUSE_Leap_15.3/`
  * multimedia codecs 
 
 	```bash

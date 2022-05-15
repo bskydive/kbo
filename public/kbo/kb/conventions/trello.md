@@ -1,16 +1,17 @@
 # agile tools
 
-## итого:
-* bitbucket: git+wiki
-* trello бизнес + corello + butler +15$
-* wakatime +5$
-* google doc
-* figma: редактирование, zeplin просмотр
-* discord общение голосом и текстом
-* sentry.io логирование
-* slack опционально для оповещений
-* бесплатный хостинг: heroku
-* zoom.us - видеоконференции
+## обзор
+
+ * bitbucket: git+wiki
+ * trello бизнес + corello + butler +15$
+ * wakatime +5$
+ * google doc
+ * figma: редактирование, zeplin просмотр
+ * discord общение голосом и текстом
+ * sentry.io логирование
+ * slack опционально для оповещений
+ * бесплатный хостинг: heroku
+ * zoom.us - видеоконференции
 
 ## справочная
 
@@ -25,6 +26,33 @@
  * [тренажёр](https://play.planningpoker.com/plans) 
  * [бесплатно тренажёр](http://www.votingpoker.com)
  * [жирный плагин](https://marketplace.atlassian.com/apps/700473/agile-poker-estimation-tool-for-jira)
+
+## online whiteboard
+
+ * miro
+ * https://openmeetings.apache.org/#multi-whiteboard-and-chat - его нужно ставить на свой сервер, оно работает, но выглядит не модно
+ * https://bigbluebutton.org/teachers/features/ - тоже надо ставить, выглядит помоднее
+ * https://www.heyhi.sg/solution/meeting
+ * https://limnu.com/blog/ - похоже сдох
+ * https://padlet.com/dashboard - обмен карточками, каменты, не совсем онлайн
+
+## чат
+
+ * ! обязательно отдельная учётка для работы
+ * видео+аудио+текст, 10+ участников, файлы, рабочий стол, запись
+ * https://calls.mail.ru/
+ * https://telemost.yandex.ru/
+ * telegram
+ * discord
+ * skype
+ * https://help.mail.ru/biz/myteam/tariffs
+ * https://360.yandex.ru/premium-plans
+ * https://support.discord.com/hc/en-us/community/posts/360044645291-Music-in-chat-rooms
+
+## запись встреч
+
+ * obs studio - win/lin/mac
+ * windows xbox game bar
 
 ## trello
 
