@@ -136,12 +136,12 @@ git ls-files -o --exclude-standard
 	g shortlog --author="Valeriy Stepanov" --after="2019-12-09 8:00" --before="2019-12-16 8:00"
 	
 	g shortlog -sn --after="2019-01-01 8:00" --before="2019-04-01 8:00"
-	git shortlog -scn \-- src/
 
 	# список участников
 	git log --pretty="%an %ae%n%cn %ce" | sort | uniq
-	#[список разработчиков](https://stackoverflow.com/questions/9597410/list-all-developers-on-a-project-in-git)
+	# [список разработчиков и их коммитов](https://stackoverflow.com/questions/9597410/list-all-developers-on-a-project-in-git)
 	git shortlog --summary --numbered --email 
+	git shortlog -scn \-- src/
 
 	#
 	mcedit .mailmap
@@ -158,6 +158,9 @@ git ls-files -o --exclude-standard
  * крайний коммит
 	```bash
 		git log -1 --format='DEV: %cd #%h' --date=format:'%c' > version.txt
+
+		# первые коммиты в истории
+		git log --reverse --pretty=oneline --format='DEV: %cd #%h %s' --date=format:'%c' | head -10
 	```
 ### git diff patch
 
