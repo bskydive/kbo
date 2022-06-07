@@ -160,6 +160,16 @@
 			});
 	```
 
+## retrospective ретроспективы
+
+ * https://www.atlassian.com/ru/team-playbook/plays/retrospective#instructions
+ * https://www.funretrospectives.com/
+ * https://onlineretrospectives.com/
+ * https://reetro.io/reetro-pricing.html
+ * https://easyretro.io/pricing
+ * https://www.teamretro.com/plans
+ * https://lucid.app/ru/pricing/lucidspark#/pricing
+
 ## swagger
 
 * https://github.com/swagger-api/swagger-codegen
