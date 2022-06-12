@@ -1760,6 +1760,8 @@ const httpOptions = {
  
 ## Internatiolization перевод locale локализация translate
 
+ * @angular/localize
+ * XLIFF, ICU, ARB редакторы для выгрузки UI текстов в сторону переводчиков и обратно
  * http://www.ngx-translate.com/
  * [мультиязычность в ангуляр](https://www.creativebloq.com/how-to/add-multi-language-support-to-angular)
  * https://angular.io/guide/i18n#prerequisites
