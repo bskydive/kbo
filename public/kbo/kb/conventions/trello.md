@@ -162,67 +162,7 @@
 
 ## JIRA
 
- * [эпики, истории](https://www.atlassian.com/ru/agile/project-management/epics-stories-themes)
-	* [истории](https://www.atlassian.com/ru/agile/project-management/user-stories)
-	* [эпики](https://www.atlassian.com/ru/agile/project-management/epics)
-	* [дорожная карта](https://www.atlassian.com/ru/software/jira/features/roadmaps?tab=basic)
-	* [версии](https://www.atlassian.com/ru/agile/tutorials/versions)
- * [показатели](https://www.atlassian.com/ru/agile/project-management/metrics)
- 	* [диаграмма сгорания](https://www.atlassian.com/ru/agile/tutorials/burndown-charts)
- 	* [оценка](https://www.atlassian.com/ru/agile/project-management/estimation)
-	* [техдолг](https://www.atlassian.com/ru/agile/software-development/technical-debt)
-	* [](https://wiki.softwareplant.com/doc/all/other-features/widgets/app-widget?product=eu.softwareplant.biggantt)
- * [проверка кода](https://www.atlassian.com/ru/agile/software-development/code-reviews)
- * [типы задач, приоритеты, статусы](https://jira.XXXXXX.com/secure/ShowConstantsHelp.jspa?decorator=popup#IssueTypes)
- * столбцы доски
-	* не бери
-	* бери и делай
-	* в работе
-	* тестирование
-	* почти готово
-	* готово
- * отчёты
-	* диаграмма сгорания работ
-	* диаграмма гантта или дорожные карты
- * типы задач
-	* инициатива
-	* эпик
-	* история
-	* ошибка
-	* задача
-	* подзадача
- * Активность/запрос
-	* должна быть присвоена метка: FE, BE, DEVOPS, UX, BA, QA
-	* должно быть описание по шаблону: задача, ошибка
-	* можно свободно менять тип: задача, ошибка, эпик, история, инициатива
-	* должна быть оценка, если статус "в работе"
-	* можно выставить спринт любому типу, кроме подзадачи
-	* поля
-		* тип
-		* приоритет
-		* затронуты версии
-		* метки
-		* тип активности
-		* эпик
-		* спринт
-		* оценка
-		* статус
- * спринт
- * веха/milestone
- * шаблон ошибки
-	* Окружение, стенд, версия ПО и тестовых данных в БД
-	* Браузер: Edge, Safari, Chrome
-	* ОС: Windows, Linux, Macos
-	* Предусловие: Авторизация на портале, URL, действия
-	* Шаги: воспроизведение проблемы
-	* Фактический результат: описание, скрины, видео, curl/HAR из chrome devtools
-	* Ожидаемый результат: описание, скрины, видео, curl/HAR из chrome devtools
- * шаблон задачи
-	* История: роль, действие, ожидаемый результат
-	* описание, скрины, видео
-	* ссылки на аналитику/статьи в confluence
-	* ссылки на swagger UI
-	* пример API запроса и возврата для реализации новых контрактов или если такого описания нет в swagger
+ * [jira](jira.md)
 
 ## retrospective ретроспективы
 
