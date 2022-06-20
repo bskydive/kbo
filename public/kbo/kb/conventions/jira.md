@@ -9,9 +9,16 @@
  	1. [диаграмма сгорания](https://www.atlassian.com/ru/agile/tutorials/burndown-charts)
  	1. [оценка](https://www.atlassian.com/ru/agile/project-management/estimation)
 	1. [техдолг](https://www.atlassian.com/ru/agile/software-development/technical-debt)
-	1. [](https://wiki.softwareplant.com/doc/all/other-features/widgets/app-widget?product=eu.softwareplant.biggantt)
+	1. [biggantt](https://wiki.softwareplant.com/doc/all/other-features/widgets/app-widget?product=eu.softwareplant.biggantt)
  1. [проверка кода](https://www.atlassian.com/ru/agile/software-development/code-reviews)
- 1. [типы задач, приоритеты, статусы](https://jira.XXXXXX.com/secure/ShowConstantsHelp.jspa?decorator=popup#IssueTypes)
+ 1. Отчёты
+	1. https://confluence.atlassian.com/jirakb/reporting-in-jira-461504615.html
+	1. [скорость команды](https://confluence.atlassian.com/jirakb/reporting-in-jira-461504615.html)
+	1. []()
+	1. []()
+	1. []()
+ 1. JIRA.ххх ссылки
+	1. [типы задач, приоритеты, статусы](https://jira.XXXXXX.com/secure/ShowConstantsHelp.jspa?decorator=popup#IssueTypes)
  1. столбцы доски
 	1. не бери
 	1. бери и делай
