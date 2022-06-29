@@ -29,8 +29,12 @@
 		alias fbr="docker start dfb; docker ps"
 		alias ds="docker stop dff dfb; docker ps"
 
-		alias db="docker-compose down && docker volume prune && docker-compose up -d"
-		alias dbd="docker-compose down"
+		alias dcr="docker-compose down && docker volume prune && docker-compose up -d"
+		alias dcd="docker-compose down"
+		alias dcpu="docker-compose pull"
+		alias dpr="docker volume prune"
+		alias dps="docker ps"
+		alias di="docker images -a"
  	```
 
  * [How to cleanup (unused) resources](https://gist.github.com/bastman/5b57ddb3c11942094f8d0a97d461b430)
