@@ -335,20 +335,24 @@
 				selector: '[appHighlight]'
 			})
 		```
-1. Директивы 
+## Директивы 
 	* https://angular.io/guide/built-in-directives
 	* [ngClass](https://angular.io/guide/built-in-directives#adding-and-removing-classes-with-ngclass) 
 		* https://angular.io/api/common/NgClass#description
 		* `ngClass: string | string[] | Set<string> | { [klass: string]: any; }`
 
 		```html
+
 			<div [ngClass]="isSpecial ? 'special' : ''">
-			<div [ngClass]="currentClasses">
+			<div [ngClass]="currentClasses">  <!-- Лучше вместо функции ввести переменную-->
 			<some-element [ngClass]="'first second'">...</some-element>
 			<some-element [ngClass]="['first', 'second']">...</some-element>
 			<some-element [ngClass]="{'first': true, 'second': true, 'third': false}">...</some-element>
 			<some-element [ngClass]="stringExp|arrayExp|objExp">...</some-element>
 			<some-element [ngClass]="{'class1 class2 class3' : true}">...</some-element>
+
+			<div [class.active]="isActive">  <!-- так классы видно в отладчике, иначе 'class=[Object object]' -->
+			<div [class]="{'odd-row': odd, 'second': true}">
 		```
 
 		```ts
@@ -385,7 +389,32 @@
 1. NG-FOR. TrackBy зачем нужен, преимущества.
 	* для более быстрого вычисления признака замены значений вложенного объекта в ячейке массива, быстрота перерисовки
 
-1. LifeCycle Hooks. Назовите основные, которые используете в приложении.
+## Стили Material
+
+ * scss variables лучше через миксины, не требуется делать лишние @include
+
+  ```scss
+	@mixin variables() {
+  		--color-main: #121212;
+  	}
+	// ...
+	:root {
+		.theme-light {
+			@include variables();
+			@include light-style();
+			//@include angular-material-theme(theme-light);
+		}
+		.theme-dark {
+			@include variables();
+			@include dark-style();
+			//@include angular-material-theme(theme-dark);
+		}
+	}
+	// ...
+	color: var(--color-main);
+  ```
+
+## LifeCycle Hooks. Назовите основные, которые используете в приложении.
 	* ngOnChanges()
 
 		```ts
