@@ -129,38 +129,37 @@ git ls-files -o --exclude-standard
 
  * коммиты и Комментарии на дату ститистика
 
-```bash
-	g log  --pretty=format:%s --after="2018-07-27"
-	g log  --pretty=format:%s --after="2018-08-17 8:00" --before="2018-08-18 8:00"
-	# стендап
-	g shortlog --author="Valeriy Stepanov" --after="2019-12-09 8:00" --before="2019-12-16 8:00"
-	
-	g shortlog -sn --after="2019-01-01 8:00" --before="2019-04-01 8:00"
+	```bash
+		g log  --pretty=format:%s --after="2018-07-27"
+		g log  --pretty=format:%s --after="2018-08-17 8:00" --before="2018-08-18 8:00"
+		# стендап
+		g shortlog --author="Valeriy Stepanov" --after="2019-12-09 8:00" --before="2019-12-16 8:00"
+		
+		g shortlog -sn --after="2019-01-01 8:00" --before="2019-04-01 8:00"
 
-	# список участников
-	git log --pretty="%an %ae%n%cn %ce" | sort | uniq
-	# [список разработчиков и их коммитов](https://stackoverflow.com/questions/9597410/list-all-developers-on-a-project-in-git)
-	git shortlog --summary --numbered --email 
-	git shortlog -scn \-- src/
+		# список участников
+		git log --pretty="%an %ae%n%cn %ce" | sort | uniq
+		# [список разработчиков и их коммитов](https://stackoverflow.com/questions/9597410/list-all-developers-on-a-project-in-git)
+		git shortlog --summary --numbered --email 
+		git shortlog -scn \-- src/
 
-	#
-	mcedit .mailmap
+		#
+		mcedit .mailmap
 
-	#[список строк автора](https://stackoverflow.com/questions/1265040/how-to-count-total-lines-changed-by-a-specific-author-in-a-git-repository) 
-	git log --author="Valeriy Stepanov" --oneline --shortstat
-	git log --author="Valeriy Stepanov" --oneline --numstat
-	git log --author="Valeriy Stepanov" --oneline --stat
+		#[список строк автора](https://stackoverflow.com/questions/1265040/how-to-count-total-lines-changed-by-a-specific-author-in-a-git-repository) 
+		git log --author="Valeriy Stepanov" --oneline --shortstat
+		git log --author="Valeriy Stepanov" --oneline --numstat
+		git log --author="Valeriy Stepanov" --oneline --stat
 
-	git diff --stat feature-000 develop
-
-```
+		git diff --stat feature-000 develop
+	```
 
  * крайний коммит
 	```bash
 		git log -1 --format='DEV: %cd #%h' --date=format:'%c' > version.txt
 
 		# первые коммиты в истории
-		git log --reverse --pretty=oneline --format='DEV: %cd #%h %s' --date=format:'%c' | head -10
+		git log --reverse --pretty=oneline --format='DEV: %an %cd #%h %s' --date=format:'%c' | head -10
 	```
 ### git diff patch
 

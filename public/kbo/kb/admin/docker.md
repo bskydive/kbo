@@ -35,7 +35,7 @@
 		alias dpr="docker volume prune"
 		alias dps="docker ps"
 		alias di="docker images -a"
- 	```
+	```
 
  * [How to cleanup (unused) resources](https://gist.github.com/bastman/5b57ddb3c11942094f8d0a97d461b430)
 
