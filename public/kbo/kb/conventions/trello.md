@@ -169,7 +169,9 @@
  * https://www.atlassian.com/ru/team-playbook/plays/retrospective#instructions
  * https://www.funretrospectives.com/
  * https://onlineretrospectives.com/
+	* только практики без утилит
  * https://reetro.io/reetro-pricing.html
+	* анонимные за деньги
  * https://easyretro.io/pricing
  * https://www.teamretro.com/plans
  * https://lucid.app/ru/pricing/lucidspark#/pricing
