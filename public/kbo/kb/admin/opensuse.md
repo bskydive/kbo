@@ -22,7 +22,7 @@
 
  * simplescreenrecorder
  * peek - запись области в gif
- * KmCaster - нажатые клавиши
+ * KmCaster - нажатые клавиши - нужен JDK>14 https://www.oracle.com/java/technologies/downloads/#java18
  * OBS studio
 
 ## security
