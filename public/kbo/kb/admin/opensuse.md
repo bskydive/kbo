@@ -1201,6 +1201,13 @@ x11uselocalhost no
 		zypper addrepo -f https://download.nvidia.com/opensuse/leap/15.2 nvidia
 		#The following command should automatically install the correct driver for your card:
 		zypper install-new-recommends --repo https://download.nvidia.com/opensuse/leap/15.2
+
+		#tumbleweed https://forums.opensuse.org/showthread.php/523474-Multimedia-Guide-for-openSUSE-Tumbleweed
+		zypper ar -f http://packman.inode.at/suse/openSUSE_Tumbleweed/ packman
+		zypper ar -f http://opensuse-guide.org/repo/openSUSE_Tumbleweed/ libdvdcss
+		zypper ref
+
+		zypper install libxine2-codecs ffmpeg lame gstreamer-0_10-plugins-good gstreamer-0_10-plugins-bad gstreamer-0_10-plugins-ugly gstreamer-0_10-plugins-bad-orig-addon gstreamer-0_10-plugins-good-extra gstreamer-0_10-plugins-ugly-orig-addon gstreamer-0_10-plugins-ffmpeg libdvdcss2 dvdauthor07 gstreamer-plugins-base gstreamer-plugins-bad gstreamer-plugins-bad-orig-addon gstreamer-plugins-good gstreamer-plugins-ugly gstreamer-plugins-ugly-orig-addon gstreamer-plugins-good-extra gstreamer-0_10-plugins-fluendo_mpegdemux gstreamer-0_10-plugins-fluendo_mpegmux k3b-codecs vlc-beta h264enc x264 gstreamer-plugins-libav vlc-beta-codecs
 	```
  * общие
 
