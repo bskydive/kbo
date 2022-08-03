@@ -85,7 +85,7 @@ https://github.com/hsoft/collapseos
  * sudo apt-get install screentest
  * https://beard-studio.website.yandexcloud.net/Calibr4.html
  * https://beard-studio.website.yandexcloud.net/profiles.html
- * russianpenguin.ru/2018/04/08/управление-цветом-в-linux/
+ * https://russianpenguin.ru/2018/04/08/управление-цветом-в-linux/
 
 ## wifi routers маршрутизаторы
 
