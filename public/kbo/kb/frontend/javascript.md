@@ -44,7 +44,7 @@
  * [43 JavaScript Questions, With Their Answers Explained](https://javascriptweekly.com/link/81865/web)
  * [10 Interview Questions Every JavaScript Developer Should Know 2020](https://medium.com/javascript-scene/10-interview-questions-every-javascript-developer-should-know-6fa6bdf5ad95)
 
- * 
+ *
 
  ```ts
 	/**Реализовать метод, который на вход получает последовательность целых значений, а на выходе
@@ -66,7 +66,7 @@
 		if (typeof arr[i] === 'number' && arr[i] % 3 !== 0 && arr[i] % 5 !== 0) {
 			parsedItem = arr[i];
 		};
-		
+
 		if (typeof arr[i] === 'number' && arr[i] % 3 === 0) {
 			parsedItem = FIZZ;
 		};
@@ -83,7 +83,7 @@
 	//
  ```
 
-## инструменты 
+## инструменты
 
  * [импорт, трансформация и анализ json/csv](http://www.data-forge-js.com/)
     * [Редактируем CSV-файлы, чтобы не сломать данные](https://habr.com/company/hflabs/blog/432906/)
@@ -92,14 +92,14 @@
     * http://astexplorer.net/
     * http://esprima.org/demo/parse.html#
  * как сократить объём загрузки за счёт полифилов https://web.dev/publish-modern-javascript/ https://estimator.dev/
- * 
+ *
 ## валидаторы syntax check
 
  * https://eslint.org/docs/rules/
  * https://palantir.github.io/tslint/rules/
  * [eslint tinkoff conventions](https://github.com/TinkoffCreditSystems/linters)
- * [eslint wemake](https://sobolevn.me/2019/02/engineering-guide-to-user-stories)
- 
+
+
 ## ботанство
 
  * http://dmitrysoshnikov.com/ecmascript/javascript-the-core-2nd-edition-rus/
@@ -271,7 +271,7 @@
 	* GC garbage collection
 	* вместо алгоритма подсчёта ссылок сейчас браузеры применяют алгоритм проверки доступности(mark-compact). Например, циклические ссылки не считаются мусором в первом варианте, даже если на них нет ссылок извне.
 	* активные функции помечаются как корни, и от них проверяется доступность
-	
+
  * [mark and sweep GC garbage collection](https://www.geeksforgeeks.org/mark-and-sweep-garbage-collection-algorithm/)
  * [Как работает JavaScript: часть вторая GC утечки](https://geekbrains.ru/posts/javascript_internals_part2)
  ```js
@@ -299,7 +299,7 @@
 
  * https://proglib.io/p/9-js-questions
 
-## загрузка сторонних скриптов 
+## загрузка сторонних скриптов
 
  * http://www.lukasjakob.com/how-to-dynamically-load-external-scripts-in-angular/
  * использовать jsonp callback
@@ -346,7 +346,7 @@
  * [статическая типизация flow facebook](https://flow.org/en/docs/getting-started/)
  * [javascript linter](https://github.com/saadq/lynt)
 
-##  typescript 
+##  typescript
 
  * [см.](/kbo/kb/frontend/framework/angular2.md:1067)
  * https://www.tsmean.com/articles/
@@ -418,14 +418,14 @@
  * [MVC vs MVP vs MVVM](https://habr.com/ru/post/215605/) https://habr.com/ru/company/mobileup/blog/313538/
  * [Хороший дизайн должен быть SOLID - 2008](http://igor.quatrocode.com/2008/09/solid-top-5.html)
 
-### momentjs date дата 
+### momentjs date дата
 
 ```js
 	import * as moment from 'moment';
-	
-	
+
+
 	// https://momentjs.com/docs/#/displaying/format/
-	
+
 	export const DATE_FORMAT = {
 		emptyDataText: '',
 		parse: {
@@ -538,20 +538,20 @@ https://stackoverflow.com/questions/7905929/how-to-test-valid-uuid-guid#13653180
  * [Интерактивная выгрузка файлов на сервер с помощью RxJS](https://medium.com/ngx/upload-files-with-rxjs-eaf2027266f1)
  * [открыть файл](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications)
 	```html
-		<input 
+		<input
 			id="id-file-input"
 			type="file"
 			accept=".jpg,.jpeg,.png"
 			(change)="uploadFile()"
 			#inputFileDOMElem
 			[attr.disabled]="isDisabled ? 'disabled' : null">
-		<label 
+		<label
 			id="id-file-input-label"
 			for="inputFileDOMElem">
 			<div>Upload file</div>
 		</label>
 	```
-	
+
 	```ts
 	uploadFile(){
 		let file: File = null;
@@ -576,9 +576,9 @@ https://stackoverflow.com/questions/7905929/how-to-test-valid-uuid-guid#13653180
 			file.size <= MAX_FILE_SIZE_BYTES
 			) {
 			// file is valid, proceed to download
-			
+
 			fileAPIDOMWrapper.append('uploadedImage', file);
-			
+
 			this.http.post(url, fileAPIDOMWrapper, headers, reportProgress: true).pipe(
 				take(1),
 				catchError((error, cause) => {
@@ -600,7 +600,7 @@ https://stackoverflow.com/questions/7905929/how-to-test-valid-uuid-guid#13653180
 	}
 	```
 
- * 
+ *
 
 ##  стандарты
 
@@ -653,8 +653,8 @@ https://stateofjs.com/2017/front-end/results
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCharCode
  * https://github.com/mathiasbynens/punycode.js/blob/master/punycode.js
- * 
- * 
+ *
+ *
 
 
 ## типы данных
@@ -716,13 +716,13 @@ https://stateofjs.com/2017/front-end/results
 				orderItems()    // асинхронный вызов
 			})()
 
-			// Задачу можно решить так, как показано выше, но я предпочитаю следующий метод 
+			// Задачу можно решить так, как показано выше, но я предпочитаю следующий метод
 
 			(async () => {
 				Promise.all([selectPizza(), selectDrink()]).then(orderItems)   // асинхронный вызов
 			})()
 		```
-	* 
+	*
  * [JavaScript. Работаем с исключениями и данными в конструкциях async/await без блоков try-catch](https://habr.com/post/358896/)
 	* https://github.com/scopsy/await-to-js
 	```js
@@ -750,19 +750,19 @@ https://stateofjs.com/2017/front-end/results
 
 		callApi();
 
-		/* 
-		OUTPUT: 
+		/*
+		OUTPUT:
 		{ version: 1, hello: 'world' } (rejectPromise=false)
 		{ error: 'Error Encountered', status: 'error' } (rejectPromise=true)
 		*/
 	```
 
-## IIFE 
+## IIFE
 
- * 
+ *
 
 ##  promise
- 
+
  * https://dev.to/lydiahallie/javascript-visualized-promises-async-await-5gke
 
 	```js
@@ -795,7 +795,7 @@ https://stateofjs.com/2017/front-end/results
  * очередь задач JS
  * очередь рендернига(requestAnimationFrame): style calc, layout calc, painting
  * синхронный код блокирует рендеринг: while(true)
- * асинхронный код не блокирует, т.к. есть минимальная задержка 4мс между задачами 
+ * асинхронный код не блокирует, т.к. есть минимальная задержка 4мс между задачами
     ```js
         function loop(){setTimeout(loop,0)}
     ```
@@ -813,7 +813,7 @@ https://stateofjs.com/2017/front-end/results
  * [Further Adventures of the Event Loop - Erin Zimmer - JSConf EU 2018](https://www.youtube.com/watch?v=u1kqx6AenYw)
  * [Что ты такое, Event Loop? Или как устроен цикл событий в браузере Chrome](https://habr.com/ru/post/461401/)
  * https://dev.to/sagarrth/an-overview-of-event-loop-tasks-and-microtasks-1i31
- 
+
 ## массивы loop for
 
  * [Полезные приёмы работы с массивами в JavaScript 2018](https://habr.com/company/ruvds/blog/358306/)
@@ -823,7 +823,7 @@ https://stateofjs.com/2017/front-end/results
  * [трансдьюсеры](https://habrahabr.ru/company/ruvds/blog/329536/)
  * https://medium.com/@roman01la/understanding-transducers-in-javascript-3500d3bd9624
  * [быстрая очередь](https://www.nickang.com/implementing-queue-javascript/)
- 
+
 ```js
 	/**
 	* Implementation of Queue.
@@ -838,7 +838,7 @@ https://stateofjs.com/2017/front-end/results
 			this.end = 0;
 		}
 	}
-	
+
 	/**
 	* Add item to end of queue.
 	* @param {*} The data to store in the position.
@@ -847,20 +847,20 @@ https://stateofjs.com/2017/front-end/results
 		this.store[this.end] = data;
 		this.end++;
 	};
-	
+
 	/**
 	* Remove item from queue and return its data.
 	* @return {*} The data stored in item.
 	*/
 	Queue.prototype.dequeue = function () {
 		if (this.front === this.end) return null;
-	
+
 		const data = this.store[this.front];
 		delete this.store[this.front];
 		this.front++;
 		return data;
 	};
-	
+
 	/**
 	* Return current size of queue.
 	* @return {number} Size of queue.
@@ -868,7 +868,7 @@ https://stateofjs.com/2017/front-end/results
 	Queue.prototype.size = function () {
 		return this.end - this.front;
 	};
-	
+
 	/**
 	* Return item at front of queue without dequeueing.
 	* @return {*} The data stored in item.
@@ -884,7 +884,7 @@ https://stateofjs.com/2017/front-end/results
 
  * http://getinstance.info/articles/javascript/attributes-of-object-properties-in-javascript/
  * [глубокое копирование deep clone](https://www.webreflection.co.uk/blog/2015/10/06/how-to-copy-objects-in-javascript)
- 
+
 ```js
 	obj2 = obj1.map(item => Object.assign({}, item));
 	obj2 = JSON.parse(JSON.stringify(obj1));
@@ -899,7 +899,7 @@ https://stateofjs.com/2017/front-end/results
 	}
 ```
  * [ещё одна функция глубокого копирования](https://medium.com/@tkssharma/objects-in-javascript-object-assign-deep-copy-64106c9aefab)
- 
+
 ```js
 	function cloneObject(obj) {
 		var clone = {};
@@ -913,7 +913,7 @@ https://stateofjs.com/2017/front-end/results
 	}
 ```
  * [глубокое клонирование класса с методами](https://www.nickang.com/how-to-clone-class-instance-javascript/)
- 
+
 ```js
 	function copyInstance (original) {
 	var copied = Object.assign(
@@ -952,7 +952,7 @@ https://stateofjs.com/2017/front-end/results
 ```
 
  * глубокое клонирование [lodash](https://www.blazemeter.com/blog/the-correct-way-to-import-lodash-libraries-a-benchmark)
- 
+
 ```js
 import cloneDeep from loDash;
 let clone = cloneDeep(orig);
@@ -963,13 +963,13 @@ let clone = cloneDeep(orig);
 
 ## Общие понятия
 
- * Контекст исполнения — это абстрактное понятие, используемое спецификацией ECMAScript для типизации и разграничения исполняемого кода. 
+ * Контекст исполнения — это абстрактное понятие, используемое спецификацией ECMAScript для типизации и разграничения исполняемого кода.
  * Стек контекстов исполнения: Стек контекстов исполнения — это LIFO структура, используемая для контроля и очередности исполнения кода.
  * Каждый контекст исполнения имеет ассоциированное с ним лексическое окружение (lexical environment).
  * Лексическое окружение — это структура, используемая для ассоциации идентификаторов, появляющихся в контексте, с их значениями. Каждое лексическое окружение также может иметь ссылку на родительское окружение.
  * Функции в ECMAScript являются объектами первого класса (first-class objects). Эта концепция является фундаментальной для функционального программирования, аспекты которого поддерживаются в JavaScript.
- * Функция первого класса: функция, которая может быть использована в качестве обычных данных: т.е. сохранена в переменную, передана в качестве аргумента, или возвращена в качестве значения из другой функции. 
- * Свободная переменная: переменная, не являющаяся ни параметром, ни локальной переменной данной функции. 
+ * Функция первого класса: функция, которая может быть использована в качестве обычных данных: т.е. сохранена в переменную, передана в качестве аргумента, или возвращена в качестве значения из другой функции.
+ * Свободная переменная: переменная, не являющаяся ни параметром, ни локальной переменной данной функции.
  * Статическая/лексическая область видимости: язык программирования использует статическую область видимости, если только по анализу исходного кода, можно определить, в каком лексическом окружении будут разрешены свободные переменные.
  * Замыкание — это функция, захватывающая лексическое окружение того контекста, где она создана. В дальнейшем это окружение используется для разрешения идентификаторов.
  * [Javascript-джедай #3 - Выражения и операторы](https://www.youtube.com/watch?v=-GWOP5JdPpo)
@@ -980,7 +980,7 @@ let clone = cloneDeep(orig);
  * инструкции
  * литералы - парсер не вычисляет значение, а получает его из кода
  *
- 
+
 ##  const
 
  * https://jamie.build/const
@@ -992,7 +992,7 @@ let clone = cloneDeep(orig);
 ##  this
 
  * [Javascript-джедай #18 - this и непрямой вызов методов](https://www.youtube.com/watch?v=213r4EOHfF0)
- * контекст можно присвоить через метод 
+ * контекст можно присвоить через метод
     * Object.call(context,arguments)
     * Object.apply(context,[arguments])
     * newObject = Object.bind(context) - без выполнения Object
@@ -1034,7 +1034,7 @@ let clone = cloneDeep(orig);
 
 ##  Стрелочные функции
 
-https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Functions/Arrow_functions$revision/1236769 
+https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Functions/Arrow_functions$revision/1236769
 Объявление через => - это синтаксический сахар для сокращения кода с огромной кучей ограничений.
 
 ##  Замыкание closure
