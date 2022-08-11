@@ -9,29 +9,29 @@
 	* https://github.com/angular/angular/blob/main/CHANGELOG.md
 	* общие для большинства версий изменения: версии NS/RxJS, производительность, Material компоненты
 	* 2016 - 2 - typescript, dart
-		* https://github.com/angular/angular/blob/c0194e0115e723cf418f9cf8635790c621c47b31/CHANGELOG.md#200-proprioception-reinforcement-2016-09-14
+		* [changelog](https://github.com/angular/angular/blob/c0194e0115e723cf418f9cf8635790c621c47b31/CHANGELOG.)md#200-proprioception-reinforcement-2016-09-14
 	* 2017 - 4 - renderer v2
-		* https://github.com/angular/angular/blob/c0194e0115e723cf418f9cf8635790c621c47b31/CHANGELOG.md#400-invisible-makeover-2017-03-23
+		* [changelog](https://github.com/angular/angular/blob/c0194e0115e723cf418f9cf8635790c621c47b31/CHANGELOG.md#400-invisible-makeover-2017-03-23)
 	* 2017 - 5 - HttpClientModule заменил http
-		* https://github.com/angular/angular/blob/c0194e0115e723cf418f9cf8635790c621c47b31/CHANGELOG.md#500-pentagonal-donut-2017-11-01
+		* [changelog](https://github.com/angular/angular/blob/c0194e0115e723cf418f9cf8635790c621c47b31/CHANGELOG.md#500-pentagonal-donut-2017-11-01)
 	* 2018 - 6 - angular elements(web custom elements), tree-shakable providers(providedIn:root), rxjs 6, Ivy
-		* https://www.ngdevelop.tech/angular-cli-6-angular-material-6-features/
+		* [changelog](https://www.ngdevelop.tech/angular-cli-6-angular-material-6-features/)
 	* 2018 - 7 - drag and drop, node v10, service worker
-		* https://blog.angular.io/version-7-of-angular-cli-prompts-virtual-scroll-drag-and-drop-and-more-c594e22e7b8c
+		* [changelog](https://blog.angular.io/version-7-of-angular-cli-prompts-virtual-scroll-drag-and-drop-and-more-c594e22e7b8c)
 	* 2019 - 8 - webworker, ES6 импорт модулей `()=>`
-		* https://blog.angular.io/version-8-of-angular-smaller-bundles-cli-apis-and-alignment-with-the-ecosystem-af0261112a27
+		* [changelog](https://blog.angular.io/version-8-of-angular-smaller-bundles-cli-apis-and-alignment-with-the-ecosystem-af0261112a27)
 	* 2020 - 9 - Ivy по-умолчанию, fullTemplateTypeCheck, strictTemplates в tsc
-		* https://blog.angular.io/version-9-of-angular-now-available-project-ivy-has-arrived-23c97b63cfa3
+		* [changelog](https://blog.angular.io/version-9-of-angular-now-available-project-ivy-has-arrived-23c97b63cfa3)
 	* 2020 - 10 - исправили 700 и посмотрели 2000 ошибок, компонент диапазона дат
-		* https://blog.angular.io/version-10-of-angular-now-available-78960babd41
+		* [changelog](https://blog.angular.io/version-10-of-angular-now-available-78960babd41)
 	* 2020 - 11 - harnesses for all of the components, webpack 5 experimental, ng serve --hmr, tslint deprecated, IE9/10 deprecated
-		* https://blog.angular.io/version-11-of-angular-now-available-74721b7952f7
+		* [changelog](https://blog.angular.io/version-11-of-angular-now-available-74721b7952f7)
 	* 2021 - 12 - nullish coalescing, tailwind css, webpack 5 prod, IE11 deprecated
-		* https://blog.angular.io/angular-v12-is-now-available-32ed51fbfd49
+		* [changelog](https://blog.angular.io/angular-v12-is-now-available-32ed51fbfd49)
 	* 2021 - 13 - new API removes the need for ComponentFactoryResolver being injected into the constructor. Ivy creates the opportunity to instantiate the component with ViewContainerRef.createComponent without creating an associated factory
-		* https://blog.angular.io/angular-v13-is-now-available-cce66f7bc296
+		* [changelog](https://blog.angular.io/angular-v13-is-now-available-cce66f7bc296)
 	* 2022 - 14 - Strictly Typed Reactive Forms; standalone components, directives and pipes: add imports directly in your @Component() without an @NgModule()
-		* https://blog.angular.io/angular-v14-is-now-available-391a6db736af
+		* [changelog](https://blog.angular.io/angular-v14-is-now-available-391a6db736af)
 1. Архитектура
 	* MVVM
 	* зачем - потому что автоматическое связывание data binding(единственное отличие от MVP)
