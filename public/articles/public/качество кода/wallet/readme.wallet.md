@@ -270,10 +270,10 @@
  * [eslint.sh](https://github.com/bskydive/typescript-tspqwe-linters/blob/master/scripts/linter_folder/eslint.sh)
  * Все типы ошибок
 	* 100% файлов - 27302 ошибок(82 типа) в 366 из 366 `*.ts` файлов, прирост +7.8%/2127 ошибок
-	* [all issues](log/eslint.log)
-	* [files](log/eslint.files.log)
-	* [issues](log/eslint.issues.log)
-	* [rules](log/eslint.rules.log)
+	* [all issues](./log/eslint.log)
+	* [files](./log/eslint.files.log)
+	* [issues](./log/eslint.issues.log)
+	* [rules](./log/eslint.rules.log)
 	* ```bash
 		tail -n1 log/eslint.log
 		cat log/eslint.log | awk -F'(' '{print $1}' | sort | uniq | wc -l
