@@ -42,14 +42,14 @@
 ## Зависимости
 
  * TODO размер библиотек
-	* ![](./doc/webpack-stats.jpg)
-	* ![](./doc/webpack-stats1.jpg)
+	* ![](doc/webpack-stats.jpg)
+	* ![](doc/webpack-stats1.jpg)
  * TODO Граф зависимостей
-	* ![](./doc/dependencies-graph.jpg)
+	* ![](doc/dependencies-graph.jpg)
 	* Циклические зависимости
 		* 16,6% файлов - 61 из 366 `*.ts` файлов, прирост +1.6%/1 файл
 		* [eslint.cycle](log/eslint.cycle.log)
-		* [eslint.cycle.files](./log.wallet.2022/eslint.cycle.files.log)
+		* [eslint.cycle.files](log/eslint.cycle.files.log)
 		* ```bash
 			grep -ef log/eslint.rules.important.log | wc -l
 			cat log/eslint.important.log | awk -F'(' '{print $1}' | sort | uniq | wc -l
@@ -173,7 +173,7 @@
 		grep --include=\*.{less,scss,css,ts,html} -RiEl 'TODO|FIX' src/ | wc -l
 	```
  * 1930 `comment|JSDOC` в 296 html|css|ts файлах, прирост +00%/102 комментариев
-	* [comments](./log.wallet.2022/comments.log)
+	* [comments](log/comments.log)
 	* ```bash
 		grep --include=\*.{less,scss,css,ts,html} -RiE '/\*|//' src/ | wc -l
 		grep --include=\*.{less,scss,css,ts,html} -RilE '/\*|//' src/ | wc -l
@@ -251,9 +251,9 @@
 ## TODO Ошибки компиляции
  * ошибки связывания данных в шаблонах `fullTemplateTypeCheck="true"`
  * 00% - 00 ошибок сборки в 00 из 00 `*.html|ts` файлов, +00% прирост за год
- * [errors](./log.wallet.2022/build.errors.log)
- * [errors.files](./log.wallet.2022/build.errors.files.log)
- * [ts-numbers](./log.wallet.2022/build.ts-numbers.ts)
+ * [errors](log/build.errors.log)
+ * [errors.files](log/build.errors.files.log)
+ * [ts-numbers](log/build.ts-numbers.ts)
 
 ## Статический анализ
 
@@ -270,10 +270,10 @@
  * [eslint.sh](https://github.com/bskydive/typescript-tspqwe-linters/blob/master/scripts/linter_folder/eslint.sh)
  * Все типы ошибок
 	* 100% файлов - 27302 ошибок(82 типа) в 366 из 366 `*.ts` файлов, прирост +7.8%/2127 ошибок
-	* [all issues](./log.wallet.2022/eslint.log)
-	* [files](./log.wallet.2022/eslint.files.log)
-	* [issues](./log.wallet.2022/eslint.issues.log)
-	* [rules](./log.wallet.2022/eslint.rules.log)
+	* [all issues](log/eslint.log)
+	* [files](log/eslint.files.log)
+	* [issues](log/eslint.issues.log)
+	* [rules](log/eslint.rules.log)
 	* ```bash
 		tail -n1 log/eslint.log
 		cat log/eslint.log | awk -F'(' '{print $1}' | sort | uniq | wc -l
@@ -283,8 +283,8 @@
  * Большая длинна и сложность
 	* много строк в функциях и файлах:
 		* 32,79% файлов - 344 ошибок в 120 из 366 `*.ts` файлов, прирост +12,8%/7 ошибок
-		* [max-lines](./log.wallet.2022/eslint.max-lines.log)
-		* [max-lines.files](./log.wallet.2022/eslint.max-lines.files.log)
+		* [max-lines](log/eslint.max-lines.log)
+		* [max-lines.files](log/eslint.max-lines.files.log)
 		* ```bash
 			cat log/eslint.log | grep -i max-lines > log/eslint.max-lines.log
 			wc -l log/eslint.max-lines.log
@@ -293,8 +293,8 @@
 		```
 	* высокая сложность функций:
 		* 12,02% файлов - 68 ошибок в 44 из 366 `*.ts` файлов, прирост +20,6%/14 ошибок
-		* [complexity](./log.wallet.2022/eslint.complexity.log)
-		* [complexity.files](./log.wallet.2022/eslint.complexity.files.log)
+		* [complexity](log/eslint.complexity.log)
+		* [complexity.files](log/eslint.complexity.files.log)
 		* ```bash
 			cat log/eslint.log | grep -i complexity > log/eslint.complexity.log
 			wc -l log/eslint.complexity.log
@@ -306,8 +306,8 @@
 		* [src/components/chart-component/chart-component.ts(53,24)](): warning complexity : Method 'createElement' has a complexity of 22. Maximum allowed is 10.
  * Покрытие типами данных
 	* 88,25% файлов - 7778 ошибок в 323 из 366 `*.ts` файлов, прирост +7.6%/589 ошибок
-	* [type-sig](./log.wallet.2022/eslint.type-sig.log)
-	* [type-sig.files](./log.wallet.2022/eslint.type-sig.files.log)
+	* [type-sig](log/eslint.type-sig.log)
+	* [type-sig.files](log/eslint.type-sig.files.log)
 	* ```bash
 		cat log/eslint.log | grep -iE 'typedef|signature' | wc -l
 		cat log/eslint.type-sig.log | awk -F'(' '{print $1}' | wc -l
@@ -317,10 +317,10 @@
 
  * необходимо отредактировать `eslint.rules.important.log`
  * 00% - 00 ошибок в 00 из 00 `*.ts` файлов, прирост +00%/00 ошибок
- * [all issues](./log/eslint.important.log)
- * [files](./log/eslint.important.files.log)
- * [issues](./log/eslint.important.issues.log)
- * [rules](./log/eslint.important.rules.log)
+ * [all issues](log/eslint.important.log)
+ * [files](log/eslint.important.files.log)
+ * [issues](log/eslint.important.issues.log)
+ * [rules](log/eslint.important.rules.log)
  * [eslint.important.sh](https://github.com/bskydive/typescript-tspqwe-linters/blob/master/scripts/linter_folder/eslint.important.sh)
  * ```bash
 	tail -n1 log/eslint.important.log
@@ -332,10 +332,10 @@
 ## Стили
 
  * 91,62%(файлы) - 6068 ошибок в 164 из 179 `*.css` файлов, прирост +7,9%/482 ошибки
- * [css](./log/css.log)
- * [css.rules.uniq](./log/css.rules.uniq.log)
- * [css.short.uniq](./log/css.short.uniq.log)
- * [css.files](./log/css.files.log)
+ * [css](log/css.log)
+ * [css.rules.uniq](log/css.rules.uniq.log)
+ * [css.short.uniq](log/css.short.uniq.log)
+ * [css.files](log/css.files.log)
  * [styles.sh](https://github.com/bskydive/typescript-tspqwe-linters/blob/master/scripts/linter_folder/styles.sh)
  * ```bash
 	cat log/css.log | grep '(' | awk -F'(' '{print $2}' |grep -E ')$'|tr -d ')'|sort|uniq | wc -l
@@ -346,9 +346,9 @@
 ### TODO Важные ошибки стилей
 
  * необходимо отредактировать `log/styles.rules.important.log`
- * [styles.important.log](./log/styles.important.log)
- * [styles.important.short.log](./log/styles.important.short.log)
- * [styles.important.files.log](./log/styles.important.files.log)
+ * [styles.important.log](log/styles.important.log)
+ * [styles.important.short.log](log/styles.important.short.log)
+ * [styles.important.files.log](log/styles.important.files.log)
  * [styles.important.sh](https://github.com/bskydive/typescript-tspqwe-linters/blob/master/scripts/linter_folder/styles.important.sh)
  * ```bash
 	grep -f log/styles.rules.important.log log/styles.log | sort | uniq
@@ -362,9 +362,9 @@
  * 15,3% файлов - 56 из 366 `ts` файлов покрыты `spec.ts` файлами, прирост +0%/0 файлов
  * 16,07% строк - 12134 из 75504 строк `ts` покрыто в `spec` файлах грубо, прирост +0,19%/23 строк
  * 28.27% строк покрыто в 246 `*spec.ts` файлах [CodeCov](https://app.codecov.io/gh/bitpay/wallet)
- * [test.disabled.log](./log/test.disabled.log)
- * [test.group.disabled.log](./log/test.group.disabled.log)
- * [test.assert.disabled.log](./log/test.assert.disabled.log)
+ * [test.disabled.log](log/test.disabled.log)
+ * [test.group.disabled.log](log/test.group.disabled.log)
+ * [test.assert.disabled.log](log/test.assert.disabled.log)
  * [tests.sh](https://github.com/bskydive/typescript-tspqwe-linters/blob/master/scripts/linter_folder/tests.sh)
  * ```bash
 	grep --include=\*spec.ts -R '' src/ | wc -l
@@ -380,10 +380,10 @@
 		grep --include=\*.ts -RiE '@component\(' src/ | grep -iE '\.onpush' | wc -l
 		```
  * 100% - 366 из 366 `ts` файлов без постфиксов, прирост +0%/0 файлов
- * [angular.components.files.log](./log/angular.components.files.log)
- * [angular.components.duplicated.files.log](./log/angular.components.duplicated.files.log)
- * [angular.components.onpush.files.log](./log/angular.components.onpush.files.log)
- * [angular.named.files.log](./log/angular.named.files.log)
+ * [angular.components.files.log](log/angular.components.files.log)
+ * [angular.components.duplicated.files.log](log/angular.components.duplicated.files.log)
+ * [angular.components.onpush.files.log](log/angular.components.onpush.files.log)
+ * [angular.named.files.log](log/angular.named.files.log)
  * [angular.sh](https://github.com/bskydive/typescript-tspqwe-linters/blob/master/scripts/linter_folder/angular.sh)
  * ```bash
 	grep --include=\*.ts -RiE '@component\(' src/ | wc -l
@@ -394,20 +394,20 @@
 ## Дублирование кода
 
  * 9,51% строк HTML: 86 клонов, 1103 одинаковых строк в 193 файлах, прирост +31,82%/351 строк
-  	* [report](./log.wallet.2022/jscpd-html/jscpd-report.md)
+  	* [report](log/jscpd-html/jscpd-report.md)
  * 8.15% строк CSS: 32 клона, 890 одинаковых строк, прирост +20,34%/181 строк
-  	* [report](./log.wallet.2022/jscpd-css/jscpd-report.md)
+  	* [report](log/jscpd-css/jscpd-report.md)
  * 6,34% строк TS: 200 клонов, 3277 одинаковых строк в 332 файлах, прирост +10,86%/356 строк
-  	* [report](./log.wallet.2022/jscpd-ts/jscpd-report.md)
+  	* [report](log/jscpd-ts/jscpd-report.md)
  * [duplicates.sh](https://github.com/bskydive/typescript-tspqwe-linters/blob/master/scripts/linter_folder/duplicates.sh)
 
 ## Правописание
 
  * 14,59% - 362 ошибок в 95 из 651 js|ts файлах, прирост +3,04%/11 ошибок
- * [словарь исключений](./.cspell-dict-exclude.txt)
- * [spell-excluded](./log.wallet.2022/spell-excluded.log)
- * [spell-excluded.words](./log.wallet.2022/spell-excluded.words.log)
- * [spell-excluded.uniq-files](./log.wallet.2022/spell-excluded.uniq-files.log)
+ * [словарь исключений](.cspell-dict-exclude.txt)
+ * [spell-excluded](log/spell-excluded.log)
+ * [spell-excluded.words](log/spell-excluded.words.log)
+ * [spell-excluded.uniq-files](log/spell-excluded.uniq-files.log)
  * ```bash
 	tail -n 1 log/spell.summary.log
 	cat log/spell.log | tail -n +4 | grep -v '^[[:blank:]]*$' | wc -l
