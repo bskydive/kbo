@@ -42,11 +42,17 @@
 ## Зависимости
 
  * размер библиотек
-	* ![](doc/webpack-stats.jpg)
+	* Чтобы запустить webpack-bundle-analyzer пришлось поправить конфиг `config/webpack.config.js` и выполнить:
+		```bash
+			npm run apply:bitpay
+			npm run build:desktop
+		```
+	* ![](log/webpack-config.jpg)
+	* ![](log/webpack-stats.jpg)
 	* [stats.json](log/stats.json)
 	* [report.html](log/report.html)
  * TODO Граф зависимостей
-	* ![](doc/dependencies-graph.jpg)
+	* ![](log/dependencies-graph.jpg)
 	* Циклические зависимости
 		* 16,6% файлов - 61 из 366 `*.ts` файлов, прирост +1.6%/1 файл
 		* [eslint.cycle](log/eslint.cycle.log)
@@ -160,7 +166,7 @@
 
 ### уязвимости пакетов
 
- * 00 уязвимостей, прирост +00%
+ * 280 уязвимостей, прирост +00%
  * [npm.sh](https://github.com/bskydive/typescript-tspqwe-linters/blob/master/scripts/project_folder/npm.sh)
  * ```bash
 	grep -iE 'Path|Low|Moderate|High|Critical' log/audit.log | less

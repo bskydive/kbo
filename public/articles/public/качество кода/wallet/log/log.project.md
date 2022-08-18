@@ -19,23 +19,23 @@
   main electron/main.js
   title BitPay
   user-agent %name %ver (%osinfo)
-  webkit 
+  webkit
     page-cache false
     java false
     plugin false
-  
+
   dom_storage_quota 200
   id jid1-x7bV5evAaI1P9Q
   homepage https//bitpay.com
   license MIT
-  repository 
+  repository
     url git//github.com/bitpay/copay.git
     type git
-  
-  bugs 
+
+  bugs
     url https//github.com/bitpay/copay/issues
-  
-  scripts 
+
+  scripts
     postinstall npm run envdev && npm run prompt && npm run patchall
     electronpatch (! grep -q 'com.apple.security.app-sandbox' ./node_modules/app-builder-lib/templates/entitlements.mac.plist && sed -i -e \/<dict>/ a\\ \n<key>com.apple.security.app-sandbox</key><true/>\ ./node_modules/app-builder-lib/templates/entitlements.mac.plist) | echo 'electron patched.'
     patchbwc (sed -i -e 's/\\#private;//' ./node_modules/bitcore-wallet-client/ts_build/lib/key.d.ts) | echo 'BWC patched.'
@@ -110,8 +110,8 @@
     webpackbuild webpack --profile --json > dist/stats.json
     lintng ng lint
     build-stats nx build name --configuration production --stats-json
-  
-  dependencies 
+
+  dependencies
     @angular/animations 5.2.11
     @angular/common 5.2.11
     @angular/compiler 5.2.11
@@ -202,8 +202,8 @@
     web-animations-js 2.3.1
     webpack-bundle-analyzer ^4.5.0
     zone.js 0.8.26
-  
-  devDependencies 
+
+  devDependencies
     @angular-devkit/build-angular 0.12.4
     @angular/cli 7.1.4
     @biesbjerg/ngx-translate-extract 2.3.4
@@ -245,26 +245,26 @@
     typescript 2.6.2
     webpack 3.12.0
     webpack-obfuscator 0.17.3
-  
-  config 
+
+  config
     ionic_uglifyjs ./config/uglifyjs.config.js
     ionic_bundler webpack
     ionic_webpack ./config/webpack.config.js
-  
-  cordova 
-    plugins 
-      cordova-plugin-device 
-      cordova-plugin-splashscreen 
-      cordova-plugin-statusbar 
-      cordova-plugin-ionic-keyboard 
-      cordova-clipboard 
-      cordova-plugin-x-toast 
-      cordova-plugin-x-socialsharing 
-      cordova-plugin-qrscanner 
-      cordova-plugin-dialogs 
-      cordova-plugin-file 
-      cordova-custom-config 
-      cordova-plugin-customurlscheme-ng 
+
+  cordova
+    plugins
+      cordova-plugin-device
+      cordova-plugin-splashscreen
+      cordova-plugin-statusbar
+      cordova-plugin-ionic-keyboard
+      cordova-clipboard
+      cordova-plugin-x-toast
+      cordova-plugin-x-socialsharing
+      cordova-plugin-qrscanner
+      cordova-plugin-dialogs
+      cordova-plugin-file
+      cordova-custom-config
+      cordova-plugin-customurlscheme-ng
         URL_SCHEME bitcoin
         SECOND_URL_SCHEME bitpay
         THIRD_URL_SCHEME bitcoincash
@@ -273,52 +273,53 @@
         SIXTH_URL_SCHEME ripple
         SEVENTH_URL_SCHEME wc
         EIGHTH_URL_SCHEME dogecoin
-        ANDROID_SCHEME 
-        ANDROID_HOST 
-        ANDROID_PATHPREFIX 
-        UL_HOST 
-        UL_TEST_HOST 
-        UL_STAGING_HOST 
-        UL_PREFIX_1 
-        UL_PREFIX_2 
-      
-      cordova-plugin-fcm-ng 
+        ANDROID_SCHEME
+        ANDROID_HOST
+        ANDROID_PATHPREFIX
+        UL_HOST
+        UL_TEST_HOST
+        UL_STAGING_HOST
+        UL_PREFIX_1
+        UL_PREFIX_2
+
+      cordova-plugin-fcm-ng
         PAGE_LINK_DOMAIN bitpayapp.page.link
-      
-      cordova-plugin-globalization 
-      cordova-plugin-inappbrowser 
-      cordova-plugin-screen-orientation 
-      cordova-plugin-spinner-dialog 
-      cordova-plugin-vibration 
-      im.ltdev.cordova.UserAgent 
-      cordova-launch-review 
-      cordova-plugin-wkwebview-engine 
-      cordova-plugin-advanced-http 
-      cordova-plugin-theme-detection 
-      cordova-apple-wallet-ng 
-      cordova-plugin-add-swift-support 
-      cordova-plugin-fingerprint-aio 
-        FACEID_USAGE_DESCRIPTION  
-      
-      cordova-plugin-idfa 
+
+      cordova-plugin-globalization
+      cordova-plugin-inappbrowser
+      cordova-plugin-screen-orientation
+      cordova-plugin-spinner-dialog
+      cordova-plugin-vibration
+      im.ltdev.cordova.UserAgent
+      cordova-launch-review
+      cordova-plugin-wkwebview-engine
+      cordova-plugin-advanced-http
+      cordova-plugin-theme-detection
+      cordova-apple-wallet-ng
+      cordova-plugin-add-swift-support
+      cordova-plugin-fingerprint-aio
+        FACEID_USAGE_DESCRIPTION
+
+      cordova-plugin-idfa
         ANDROID_PLAY_ADID_VERSION 17.0.+
-      
-      cordova-plugin-androidx-adapter 
-      appboy-cordova-sdk-ng 
-    
+
+      cordova-plugin-androidx-adapter
+      appboy-cordova-sdk-ng
+
     platforms [
       android
       ios
     ]
-  
-  prettier 
+
+  prettier
     singleQuote true
     trailingComma none
     arrowParens avoid
-  
+
 
 
 ## NPM AUDIT
+found 280 vulnerabilities (16 low, 104 moderate, 124 high, 36 critical) in 3039 scanned packages
   run `npm audit fix` to fix 132 of them.
   106 vulnerabilities require semver-major dependency updates.
   42 vulnerabilities require manual review. See the full report for details.
