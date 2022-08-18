@@ -41,9 +41,10 @@
 
 ## Зависимости
 
- * TODO размер библиотек
+ * размер библиотек
 	* ![](doc/webpack-stats.jpg)
-	* ![](doc/webpack-stats1.jpg)
+	* [stats.json](log/stats.json)
+	* [report.html](log/report.html)
  * TODO Граф зависимостей
 	* ![](doc/dependencies-graph.jpg)
 	* Циклические зависимости
