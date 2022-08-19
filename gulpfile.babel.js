@@ -595,7 +595,17 @@ export const w = gulp.series(devFn(), server, wPipe);
  * При синхронном выполнении можно запускать вначале clean-dev или clean
  */
 function devFn() {
-	return gulp.series(fonts, js, css, stylus, pug, txt, versionDev);
+	return gulp.series(
+		fonts,
+		js,
+		css,
+		stylus,
+		pug,
+		txt,
+		sounds,
+		img,
+		versionDev
+	);
 }
 
 export const dev = devFn();

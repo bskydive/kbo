@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>качество_кода.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%D0%BE-%D0%BA%D0%B0%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%B5-%D0%BA%D0%BE%D0%B4%D0%B0-%D0%B7%D0%B0%D0%BC%D0%BE%D0%BB%D0%B2%D0%B8%D1%82%D0%B5-%D1%81%D0%BB%D0%BE%D0%B2%D0%BE">О качестве кода замолвите слово</h1>
+<ul>
+<li><img src="edge-of-tomorrow-4_0-780x488.jpg" alt=""></li>
+<li>Фильм &quot;грань будущего&quot; - это одна из возможных аллегорий борьбы за качество промышленного(enterprise) кода. Когда решаешь одну и ту же задачу разными способами, на разных проектах, в условиях неотвратимо сжатых сроков и бюджетов.</li>
+</ul>
+<h2 id="%D1%87%D1%82%D0%BE-%D1%8D%D1%82%D0%BE">Что это</h2>
+<p>Статья, а также набор утилит, скриптов, примеров и наставлений для анализа качества <code>JS*</code> кода в динамике за год. Рекомендации даны на основе опыта 5 лет работы промышленных проектах.</p>
+<ul>
+<li>Ссылки для торопливых
+<ul>
+<li><a href="https://github.com/bskydive/code_quality_js/tree/master/scripts">скрипты</a></li>
+<li><a href="https://github.com/bskydive/code_quality_js/blob/master/doc/report_template.rus.md">Шаблон отчёта</a></li>
+<li><a href="https://github.com/bskydive/code_quality_js/blob/master/doc/example_report/disclaimer.md">Пример анализа ENG</a></li>
+<li><a href="https://github.com/bskydive/code_quality_js/blob/master/doc/wallet/readme.wallet.md">Пример анализа wallet</a></li>
+<li>Пример анализа material UI</li>
+<li>Пример анализа taiga UI</li>
+<li>Пример анализа AG Grid</li>
+</ul>
+</li>
+<li>Ссылки на утилиты:
+<ul>
+<li><a href="https://eslint.org/">eslint</a> - js/ts linter with plugins: typescript, angular, promise, react</li>
+<li><a href="https://stylelint.io/">stylelint</a> - css</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker">cspell</a> - spelling</li>
+<li><a href="https://prettier.io/">prettier</a> - formatter</li>
+<li><a href="https://www.npmjs.com/package/jscpd">jscpd</a> - copy paste</li>
+</ul>
+</li>
+</ul>
+<h2 id="%D0%B4%D0%BB%D1%8F-%D1%87%D0%B5%D0%B3%D0%BE-%D1%8D%D1%82%D0%BE">Для чего это</h2>
+<p>Успех проекта зависит от скорости работы команды. Эта скорость определяется нашими возможностями и ограничениями. Поскольку мы, разработчики, работаем с кодом, то его сложность/качество является для нас главным объективным ограничением.</p>
+<p>Качество кода само по себе складывается из субъективных и объективных показателей, и обычно описывается размером техдолга. Впрочем, даже такой простой и распространённый показатель как количество задач зачастую применяется редко и неточно, то есть играет незначительную роль в борьбе за живучесть проекта.</p>
+<p>Кроме ежедневной борьбы за живучесть, анализ качества кода полезно делать перед:</p>
+<ul>
+<li>выходом проекта в open source</li>
+<li>планированием вех и размера команды</li>
+<li>принятием решения о входе в проект</li>
+</ul>
+<p>Объективные показатели качества могут помочь менеджерам начать думать о качестве кода. И не только думать, но и делать процесдинамике
+Перед входом в проект важно понимать совместимость возможностей и ограничений кандидата с одной стороны, и команды/кода/инструментов/процессов с другой. В этой куче субъективных метрик проще всего замерить именно код, хотя даже его оценивают субъективно, ибо &quot;нет времени&quot;. Команды набираются реже впритык, а чаще всего <a href="https://youtu.be/XDF02KmgJFE?list=PLm6zCN_KJCrX81iojL2lE2gHSbwnQE-QI&amp;t=2121">ниже минимума</a>, что порождает авралы и переработки, не даёт возможности объективно оценить происходящее.</p>
+<p>Чтобы понять насколько проект/код живучий/качественный, то есть тонет он или всплывает, необходимо ввести несколько дополнительных счётных показателей.</p>
+<p>Таких потенциальных показателей очень много, и более того, не все из них легко посчитать, а посчитав, применить на практике, в рамках борьбы за живучесть.</p>
+<p>Лёгкость счёта можно обеспечить минимализмом - однострочниками bash. Это позволит не произносить в слух страшные слова: бюджет, сроки, SP, DevOPS, CI/CD.</p>
+<p>С лёгкостью применения немного сложнее потому что применение затрагивает чувства людей. Предотвратить споры поможет использование относительных, а не абсолютных величин, т.е. сравнение показателей сейчас и год назад, а также использование процентных соотношений: количество затронутых проблемами файлов.</p>
+<p>Итого здесь собрана пачка утилит, однострочников и наставлений. Они позволяют оценить качество кода, и применить оценки на практике за считанные дни.</p>
+<p>Если же всё это покажется вам слишком сложным, то местные артефакты можно применять по частям, т.к. они слабо связаны.</p>
+<p>Если этого показалось мало, то вот вам пачка ссылок для дальнейших поисков совершенства.</p>
+<ul>
+<li>более детальный <a href="https://github.com/bskydive/code_quality_js/blob/master/doc/wallet/readme.wallet.md">пример</a> анализа кода</li>
+<li><a href="https://vc.ru/dev/302336-29-instrumentov-dlya-proverki-kachestva-koda-open-source">подборка утилит</a></li>
+<li><a href="https://github.com/flacle/truegitcodechurn">скрипт</a> анализа частоты исправления одного и того же кода</li>
+<li><a href="https://github.com/tj/git-extras">подборка</a> скриптов git</li>
+<li>документация по правилам линтера
+<ul>
+<li>https://eslint.org/docs/rules/</li>
+<li>https://typescript-eslint.io/rules/</li>
+</ul>
+</li>
+</ul>
+<h2 id="%D0%BF%D1%80%D0%B5%D0%B8%D0%BC%D1%83%D1%89%D0%B5%D1%81%D1%82%D0%B2%D0%B0">Преимущества</h2>
+<ul>
+<li>утилиты проверены на трёх типах проектов: react/angular/JS</li>
+<li>самый большой проект: 200к+ строк кода ts</li>
+<li>методика объясняет как сделать анализ полезным для разных типов проектов</li>
+<li>в отличии от утилит типа <a href="https://about.codecov.io/product/features/">codecov</a>, <a href="https://codescene.com/showcase">codescene</a>, <a href="https://www.sonarqube.org/">sonar</a> и <a href="https://github.com/google/eslint-config-google">типовых</a> наборов правил:
+<ul>
+<li>позволяет получать более значимые результаты. Типовые решения настроены выдавать как можно меньше типов ошибок, не подсказывают что делать дальше, и выдают слишком много мусора</li>
+<li>скорость анализа слабо зависит от размера проекта. Используется одинаковая методика, скрипты практически не требуют настройки производительности</li>
+<li>не требуют настройки окружения/CI,</li>
+<li>работают локально, нет внешних/облачных сервисов, которые могут сломаться после обновления версий или по желанию вендора</li>
+<li>набор скриптов, которые легко понять и переиспользовать по частям</li>
+</ul>
+</li>
+</ul>
+<h2 id="%D1%82%D1%80%D1%83%D0%B4%D0%BD%D0%BE%D1%81%D1%82%D0%B8">Трудности</h2>
+<ul>
+<li>это больше конструктор, чем готовое решение: нет пакета npm, необходимо выкачивать репозиторий с утилитами</li>
+<li>может быть трудно подобрать совместимые версии ESLint, его плагинов, его конфигурации, фреймворка</li>
+<li>скрипты не покрыты защитой от некорректных данных</li>
+<li>проверка дублирования кода работает только после <code>git commit</code> в папке линтера</li>
+<li>работа скриптов проверена только для ОС Linux, может потребоваться развернуть виртуалку или воспользоваться тестовыми стендами</li>
+<li>необходимо удалять вложенные конфиги eslint из всех папок в проектах с монорепами/NX</li>
+<li>в монорепах/NX неудобно анализировать вложенные проекты</li>
+<li>в логах нужны абсолютные пути к файлам, чтобы заработала навигация в IDE по клику на строку(eslint.log--&gt;someClass.ts)</li>
+<li>для разных фреймворков(react/angular/JS) необходимо подбирать свои группы правил ESLint</li>
+<li><code>jscpd</code> и <code>stylelint</code> обрабатывают чуть меньшее, чем скрипты количество файлов, возможно из-за настроек <code>ignore</code>, поэтому затруднительно считать соотношения с результатами скриптов</li>
+<li>если jscpd зависает на больших проектах необходима настройка
+<ul>
+<li>выключить blame</li>
+<li>уменьшить порог срабатывания</li>
+<li>проверять отдельно html|ts|css</li>
+</ul>
+</li>
+</ul>
+<h2 id="%D0%BA%D0%B0%D0%BA-%D1%8D%D1%82%D0%BE-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D1%8C">Как это использовать</h2>
+<p>Скрипты разделены на две группы - <a href="https://github.com/bskydive/code_quality_js/tree/master/scripts/linter_folder">одна</a> для запуска в папке линтера, <a href="https://github.com/bskydive/code_quality_js/tree/master/scripts/project_folder">другая</a> - в папке проекта для анализа. Потому что интегрировать скрипты линтера в папку проекта может быть затруднительно технически, организационно, а также из-за сопротивления членов команды.</p>
+<p>В <a href="https://github.com/bskydive/code_quality_js/blob/master/doc/report_template.rus.md">шаблоне</a> отчёта указаны однострочники, их можно запускать руками.</p>
+<p>Скрипты и утилиты также можно <a href="https://github.com/bskydive/code_quality_js/blob/master/README.md#how-to-use-with-existed-eslint-in-project">подключить</a> непосредственно в IDE.</p>
+<p>Результат работы скриптов - папка с <a href="https://github.com/bskydive/code_quality_js/tree/master/doc/wallet/log">логами</a>. Данные из них заносятся вручную в <a href="https://github.com/bskydive/code_quality_js/blob/master/doc/report_template.rus.md">шаблон</a>. Поскольку групп скриптов два, то на выходе у них два главных файла: <a href="https://github.com/bskydive/code_quality_js/blob/master/doc/wallet/log/log.md">log.md</a> и <a href="https://github.com/bskydive/code_quality_js/blob/master/doc/wallet/log/log.project.md">log.project.md</a>, где сырая информация отжата и подготовлена.</p>
+<h2 id="%D0%B8%D1%81%D1%85%D0%BE%D0%B4%D0%BD%D1%8B%D0%B5-%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5">исходные данные</h2>
+<p>Чтобы продемонстрировать методику в действии были проанализированы следующие проекты:</p>
+<ul>
+<li><a href="https://github.com/bitpay/wallet">Bitpay Wallet (formerly Copay) is a secure Bitcoin, Bitcoin Cash, Ethereum and ERC20 wallet platform for both desktop and mobile devices</a>
+<ul>
+<li><a href="wallet/readme.wallet.md">Пример анализа wallet</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/angular/components">The Angular Material common UI components and tools to help you build your own custom components</a>
+<ul>
+<li>Пример анализа material UI</li>
+</ul>
+</li>
+<li><a href="https://github.com/Tinkoff/taiga-ui">Taiga UI is fully-treeshakable Angular UI Kit</a> 86082f2 1,906  коммитов
+<ul>
+<li>Пример анализа taiga UI</li>
+</ul>
+</li>
+<li><a href="https://github.com/ag-grid/ag-grid">AG Grid is a fully-featured and highly customizable JavaScript data grid</a> ba951f2 28,150 коммитов
+<ul>
+<li>Пример анализа AG Grid</li>
+</ul>
+</li>
+</ul>
+<h2 id="%D0%BE%D1%82%D1%87%D1%91%D1%82">Отчёт</h2>
+<p>Почитайка aka README - пожалуй, это самый важный файл в проекте. Проект не может развиваться без программистов. А этот файл именно для них, и он неразрывно связан с кодом. Поэтому логично разместить отчёт о качестве кода именно тут. Для логов можно завести отдельную папку <code>doc</code>, откуда удобно прокликиваться до строчек в исходниках.</p>
+<p>Для разделов связанных с техдолгом указана важность и сложность исправления. Для разных проектов она может меняться в зависимости от возможностей команды и потребностей бизнеса. Важность и сложность примерная, субъективная, для сферического проекта промышленной админки возрастом более 1 года.</p>
+<p>Пробежимся по разделам <a href="https://github.com/bskydive/code_quality_js/blob/master/doc/report_template.rus.md">шаблона</a>, добавим наставления по их использованию.</p>
+<h3 id="%D0%BE%D0%B1%D1%89%D0%B8%D0%B5-%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5">Общие данные</h3>
+<p>Этот раздел неплохо дополняет результаты анализа, расширяя его до полноценной почитайки.</p>
+<h3 id="%D1%82%D0%B5%D1%85%D0%B4%D0%BE%D0%BB%D0%B3">Техдолг</h3>
+<p>Исходя из возможностей/ограничений проекта/команды необходимо прикинуть в каком порядке его будут сдувать. Для более простых частей можно даже сдувать в масштабах проекта, для более сложных частей - по файлам/папкам/доменам.</p>
+<p>Что полезно написать, чтобы не искать в чатиках:</p>
+<ul>
+<li>Ссылки на доски, вехи в жире для техдолга</li>
+<li>Ссылки на статьи про техдолг в базе знаний</li>
+<li>Краткий план снижения техдолга</li>
+</ul>
+<p>Типичный сценарий:</p>
+<ol>
+<li>берём задачки техдолга из бэклога, если нечего делать</li>
+<li>переписываем код, связанный со старыми библиотеками</li>
+<li>увеличиваем покрытие тестами</li>
+<li>правим имена переменных/классов/методов</li>
+</ol>
+<p>Прогрессивный сценарий:</p>
+<ol>
+<li>регулярно проводим анализ состояния техдолга, согласовываем приоритеты частей техдолга, прикидываем трудозатраты</li>
+<li>выделяем на регулярной основе часы/дни/недели для техдолга, например:
+<ul>
+<li>один день в спринт</li>
+<li>спринт через два спринта</li>
+<li>один спринт после закрытия вехи</li>
+</ul>
+</li>
+<li>Первая очередь
+<ul>
+<li>ошибки компиляции - это ошибки в проде</li>
+<li>покрытие типами данных кода фронта со стороны API/BE - это облегчение любых изменений, защита от появления ошибок</li>
+<li>покрытие простыми тестами инициализации модулей/компонентов - это защита от поломки модулей/компонентов целиком</li>
+<li>внедряем автоматизацию анализа качества кода - <a href="https://github.com/typicode/husky">проверка</a> кода перед локальным коммитом, локальные линтеры</li>
+</ul>
+</li>
+<li>Вторая очередь
+<ul>
+<li>заменить библиотеки/велосипеды, которые больше всего снижают скорость команды. Можно начать с написания декораторов/моделей/интерфейсов для облегчения дальнейшей замены библиотек. Не падаем духом, практикуем совместное программирование в сложных случаях.</li>
+<li>покрытие типами данных кода фронта: методы</li>
+<li>покрытие тестами ввода/вывода методов</li>
+<li>внедряем автоматизацию анализа качества кода - проверка/тестирование кода <a href="https://www.atlassian.com/ru/devops/continuous-delivery-tutorials">CI/CD</a></li>
+</ul>
+</li>
+<li>Третья очередь
+<ul>
+<li>меняем структуру файлов/папок проекта для облегчения поиска кода</li>
+<li>внедряем автогенерируемые типизированные библиотеки API со стороны FE и BE</li>
+<li>покрытие автотестами, интеграционными/регрессионными тестами</li>
+<li>внедряем автоматизацию анализа качества кода - покрытие кода тестами/документацией</li>
+</ul>
+</li>
+<li>Четвёртая очередь
+<ul>
+<li>разбиваем код на библиотеки</li>
+<li>осваиваем микрофронты на стороне FE, микросервисы на стороне BE</li>
+<li>добавляем уровни абстракции в <a href="#">хранилище</a>/<a href="#">API</a></li>
+</ul>
+</li>
+</ol>
+<p>Да, растущий проект рано или поздно упрётся в необходимость разделения кода между разными командами. Микрофронты/микросервисы - наиболее универсальный способ решения этой задачи. Главный недостаток подхода - необходимость увеличения команд для обслуживания новых уровней абстракций.
+Скорее всего, потребуется отдельная команда DevOps.</p>
+<h3 id="%D0%B7%D0%B0%D0%B2%D0%B8%D1%81%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8">Зависимости</h3>
+<p>важность: средняя
+сложность исправления: средняя</p>
+<p>Вроде бы очевидный, не требующий описания пункт. Всё же есть в <code>package.json</code>, но нет. В этом файле плохо с человеко-читаемостью, зависимости никак не сгруппированы. Это то, о чём обычно не знают рекрутёры, или очень скупо рассказывают на интервью. Кроме того, там не хватает ссылок на документацию и дату выпуска библиотеки.</p>
+<p>Прежде чем браться за оценку задач в проекте, было бы здорово почитать обо всех значительных технологиях, которые есть в проекте. Особенно о тех, которых нет в зависимостях, т.е. о самописных велосипедах. Ну хотя бы знать где они лежат, чтобы накинуть пару SP сверху, если уж документации нет, а авторы давно ушли в закат. Идеальный вариант - взять отдельное время(часы/дни) для изучения, написания тренировочного проекта с этими технологиями.</p>
+<p>Зависимости влияют на производительность. Например: на скорость сборки, которая зависит от размера библиотек. Размеры библиотек относительно легко собираются <a href="https://webpack.js.org/contribute/debugging/#stats">webpack</a>. Однако необходимо подобрать версию <a href="https://www.npmjs.com/package/webpack-bundle-analyzer">webpack-bundle-analyzer</a> под соответствующую версию, поддерживаемую фреймворком</p>
+<p>С точки зрения пользователя старые библиотеки, скорее всего, также снижают производительность. Это самая понятная часть техдолга и для менеджера, и для программиста. Поэтому замена старых библиотек на новые - это то, что делают в первую очередь. Год выпуска ищется в интернетах так: <code>lodash changelog</code></p>
+<p>Больше всего разработчиков раздражает неочевидная структура связей частей кода. А самое сложное в анализе связей - это построить граф. Он строится на базе import, зачастую не полностью. Связи через директивы в шаблонах html и через маршруты URL вообще не отображаются в популярных утилитах. В angular есть ещё пара способов связывания ts файлов: через <a href="https://angular.io/api/router/Resolve">router resolve</a> и <a href="https://angular.io/guide/http#intercepting-requests-and-responses">HTTP interceptor</a>. Внешние библиотеки типа <a href="https://ngrx.io/">NGRX</a> также скрывают связи, хотя и предоставляют взамен инструменты для отладки состояний и строгие наставления для структуры файлов.</p>
+<p>Список инструментов для построения графа связей зависимостей:</p>
+<ul>
+<li><a href="https://nx.dev/structure/dependency-graph">nx</a></li>
+<li><a href="https://github.com/compodoc/compodoc">compodoc</a></li>
+<li><a href="https://railsware.com/blog/how-to-analyze-circular-dependencies-in-es6/">скриптом</a> используя <a href="https://graphviz.gitlab.io/_pages/doc/info/lang.html">dot language</a> и <a href="https://graphviz.gitlab.io/">graphviz</a></li>
+<li>webpack
+<ul>
+<li>https://www.npmjs.com/package/webpack-dependency-tree</li>
+<li>https://github.com/heypoom/webpack-dep-graph</li>
+</ul>
+</li>
+</ul>
+<p>С циклическими зависимостями немного проще, их ловят и компиляторы, и <a href="https://www.npmjs.com/package/circular-dependency-plugin">webpack</a>.</p>
+<h3 id="%D1%80%D0%B0%D0%B7%D0%BC%D0%B5%D1%80-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0">Размер проекта</h3>
+<p>важность: средняя
+сложность исправления: средняя</p>
+<p>Он влияет на всё. И его необходимо непрерывно сдувать: удалять неиспользуемый код, переиспользовать классы и функции, использовать библиотеки. Можно ставить цели по этим метрикам, например: увеличить количество файлов, снизить количество строк.</p>
+<p>Я отдаю предпочтение количеству строк, а количество файлов использую для расчёта процентных соотношений. Поэтому в шаблоне далеко не все из собранных показателей, а только самые полезные.</p>
+<h3 id="%D0%BA%D0%BE%D0%BC%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%80%D0%B8%D0%B8">Комментарии</h3>
+<p>важность: низкая
+сложность исправления: низкая</p>
+<p>Это та самая документация, которой нет. Тема спорная. Чаще всего комментариев или вообще нет или очень мало. Я встречал проекты, где объём файлов целенаправленно уменьшали за счёт удаления всех комментариев. Средний вариант: минимум(желательно одна строка) текста, описываем не как работает код, а почему(для чего) он написан.</p>
+<p>Если вы регулярно пишете комментарии, то их количество достаточно легко регулировать во время проверки кода(code review).</p>
+<p>При желании можно допилить скрипты для расчёта покрытия функций/классов/типов.</p>
+<h3 id="%D1%8D%D0%BA%D1%81%D0%BF%D0%B5%D1%80%D1%82%D1%8B">Эксперты</h3>
+<p>Пожалуй, это самый полезный раздел. Помогает найти кому задавать вопросы по коду</p>
+<h2 id="%D0%B2%D0%BE%D0%B7%D1%80%D0%B0%D1%81%D1%82-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0">Возраст проекта</h2>
+<p>Позволяет косвенно оценить сложность кода. Количественно - сколько человеколет вложено в проект.</p>
+<h3 id="%D0%BE%D1%88%D0%B8%D0%B1%D0%BA%D0%B8-%D0%BA%D0%BE%D0%BC%D0%BF%D0%B8%D0%BB%D1%8F%D1%86%D0%B8%D0%B8">Ошибки компиляции</h3>
+<p>важность: высокая
+сложность исправления: низкая</p>
+<p>То, с чего стоит начать в первую очередь. Это ошибки, которые могут выстрелить на проде в пользователя, и их относительно легко исправить. Например, для старых angular проектов, это могут быть ошибки в html шаблонах, которые остались после переезда на новую версию. Эти ошибки можно включать в настройках сборщика опцией <a href="https://angular.io/guide/angular-compiler-options#fulltemplatetypecheck">fullTemplateTypeCheck</a>, которая появилась в 9 версии.</p>
+<h3 id="%D1%81%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9-%D0%B0%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7">Статический анализ</h3>
+<p>важность: высокая
+сложность исправления: высокая</p>
+<p>Большинство ошибок, которые отлавливают статические анализаторы - стилистические. Т.е. они про стиль кода. Именно к такому типу ошибок склоняются <a href="https://github.com/airbnb/javascript">популярные</a> наборы правил линтеров.</p>
+<p><a href="https://eslint.org/docs/latest/rules/max-lines">Большая длинна</a> и <a href="https://eslint.org/docs/latest/rules/complexity">сложность</a> - самый полезный тип ошибок, которые ловят линтеры. Длинна файлов/функций, количество циклов и ветвлений сильнее всего затрудняют чтение кода. Человекопонятные названия переменных/функций/классов можно относительно легко поддерживать во время проверки кода. А вот чтобы держать в узде сложность и длину необходимо серьёзно вчитываться в код во время проверки(code review), что зачастую затруднительно.</p>
+<p>Покрытие типами данных - это, чаще всего, наследие старых версий фреймворка. Версии библиотек подняли, добавили тайпскрипт, а типами код так и не покрыли. Покрытие типами легче всего начинать со стороны API. Скопировать json из chrome dev tools, и конвертировать его плагинами IDE сразу в <a href="https://marketplace.visualstudio.com/items?itemName=MariusAlchimavicius.json-to-ts">типы</a> и <a href="https://marketplace.visualstudio.com/items?itemName=sallar.json-to-js-object">объекты-заглушки</a>. Получится пара: заглушка и модель/интерфейс. Эту пару можно сразу использовать в тестах, а также постепенно протягивать внутрь кода.</p>
+<p>Асинхронный код - наиболее сложный для поиска и исправления тип ошибок. Они проявляют себя в сложных сочетаниях условий выполнения кода и могут зависеть от данных, окружения, действий пользователя. Самый простой путь - перенять лучшие практики из более зрелых проектов:</p>
+<ul>
+<li>https://github.com/xjamundx/eslint-plugin-promise</li>
+<li>https://github.com/cartant/eslint-plugin-rxjs</li>
+</ul>
+<h3 id="%D1%81%D1%82%D0%B8%D0%BB%D0%B8">Стили</h3>
+<p>важность: низкая
+сложность исправления: низкая</p>
+<p>Похоже, что это наименее важные ошибки, т.к они про стиль кода. Ошибки серьёзно влияющие на пользователя скриптами не ловятся. Для их отлова необходимо проводить тяжёлое регрессионное(со скриншотами) тестирование на множестве вариантов окружений(ОС+браузер).</p>
+<h3 id="%D1%83%D1%8F%D0%B7%D0%B2%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8-%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2">уязвимости пакетов</h3>
+<p>важность: высокая
+сложность исправления: средняя</p>
+<p>Это <code>npm audit</code>. Сейчас github создаёт автоматические PR в наши репы с исправлениями уязвимостей. Устраняется относительно легко, если повезёт не затронуть проблему совместимости версий библиотек. Если не повезёт - обновлять придётся много чего, включая основной фреймворк. В проектах с непубличным кодом проблема стоит чуть менее остро, т.к. открытый код атакуют роботы, которые знают об уязвимостях заранее.</p>
+<p>Для усложнения задачи атакующим можно выносить бизнес-логику в тыл(backend), и делать проверку проверку входных данных.</p>
+<h3 id="%D0%BF%D0%BE%D0%BA%D1%80%D1%8B%D1%82%D0%B8%D0%B5-%D1%82%D0%B5%D1%81%D1%82%D0%B0%D0%BC%D0%B8">Покрытие тестами</h3>
+<p>важность: высокая
+сложность исправления: высокая</p>
+<p>Самое неприятное для устранения дело. Мало того, что задачу надо сделать побыстрее, успеть протащить её через тестирование и проверку кода, так ещё и код нужно, по-хорошему, удваивать. Поэтому если тесты и есть, то очень скудные. Хотя даже такие скудные тесты помогают ловить простые, но неочевидные ошибки, которые появились во время исправления других ошибок.</p>
+<p>Скрипты позволяют косвенно оценивать покрытие кода тестами по количеству строк, независимо от тестового фреймворка и обходя проблемы интеграции монореп/микрофронтендов. Конфиги CI/CD, фреймворков, NX/SingleSPA править не нужно. Хотя и результат получается не такой богатый как в утилитах типа <a href="https://github.com/mattlewis92/karma-coverage-istanbul-reporter">Istanbul reporter</a> или <a href="https://about.codecov.io/product/features/">codecov</a></p>
+<h3 id="%D1%84%D1%80%D0%B5%D0%B9%D0%BC%D0%B2%D0%BE%D1%80%D0%BA-angular">фреймворк Angular</h3>
+<p>важность: средняя
+сложность исправления: низкая</p>
+<p>Разработчики зрелых фреймворков любят мериться производительностью, поэтому скриптов и конфигов на эту тему написано очень много. Для примера наиболее простой метрики можно посчитать покрытие теми самыми настройками производительности, которые идут в комплекте с фреймворком.</p>
+<p>Для angular - это <a href="https://angular.io/api/core/ChangeDetectorRef#usage-notes">onPush</a>.</p>
+<p>Более сложные для поиска и исправления метрики производительности требуют организовывать нагрузочное тестирование, и использовать специальные инструменты.</p>
+<p>В Angular есть хороший набор наставлений по организации кода, в частности - про <a href="https://angular.io/guide/styleguide#naming">именование файлов</a>. Так их проще искать. В слабо структурированных проектах можно замерять покрытие стандартизованными именами файлов</p>
+<h3 id="%D0%B4%D1%83%D0%B1%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BA%D0%BE%D0%B4%D0%B0">Дублирование кода</h3>
+<p>важность: низкая
+сложность исправления: средняя</p>
+<p>Для ангуляр проектов он может указать на общую проблему шаблонного подхода в html файлах, который &quot;исторически сложился&quot; со времён первой версии или после перехода с не менее старого фреймворка. Этот случай наиболее тяжелый потому что необходимо переносить логику построения html шаблонов в директивы и ts код.</p>
+<p>В целом, переиспользование кода балансирует между универсальными и специальными решениями. Меньше кода - меньше ошибок, и больше тестов.</p>
+<p>Про плюсы/минусы дублирования кода можно почитать в концепциях <a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">DRY/WET</a></p>
+<h3 id="%D0%BF%D1%80%D0%B0%D0%B2%D0%BE%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5">Правописание</h3>
+<p>важность: низкая
+сложность исправления: низкая</p>
+<p>Наиболее лёгкий для исправления тип ошибок. Отсутствие ошибок правописания увеличивает скорость поиска информации в коде.</p>
+
+</body>
+</html>
