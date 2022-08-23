@@ -21,7 +21,7 @@
 			https://angular.io/guide/strict-mode
 			https://angular.io/guide/template-typecheck#troubleshooting-template-errors
 			flags recommended by the TypeScript team. Specifically, strict, forceConsistentCasingInFileNames, noImplicitReturns, noFallthroughCasesInSwitch
-			in tsconfig.json: 
+			in tsconfig.json:
 				strictPropertyInitialization
 				strictNullChecks
 				noImplicitAny
@@ -224,15 +224,15 @@
 	* CD
 	* ng2-redux или ngrx/store(observable driven) или ng-mobx(CD off)
 	* ```ts
-		this.form.valueChanges 
+		this.form.valueChanges
 		.debounce(500)/**/
 		.distinctUntilChanged()/*прерывает debounce при изменении*/
-		.filter((value) => this.form.valid) 
+		.filter((value) => this.form.valid)
 		.switchMap((value) => { return http.post('/api', value) })
 			/*incremental backoff - увеличение задержки при повтороной отправке*/
 			.retryWhen(attempts => attempts
 				.zip(Observable.range(1, 3), (_, i) => i)
-				.flatMap((i: number) => { return Observable.timer(i * 1000); }) 
+				.flatMap((i: number) => { return Observable.timer(i * 1000); })
 		))
 	```
  * Perceive performance [NAS, Predictions, Preloading, Presudo-Isomorphism / Охрименко Алексей (Acronis)](https://www.slideshare.net/profyclub_ru/1-nas-predictions-preloading-presudo-isomorphism) неблокирующие состояния приложения, предсказания, предзагрузки, псевдоизоморфизм
@@ -276,7 +276,7 @@
  * https://angular.io/guide/aot-compiler
  * много ограничений, не поддерживает стрелочные функции
 
-## NGRX REDUX state management 
+## NGRX REDUX state management
 
  * https://medium.com/weekly-webtips/using-ngrx-store-in-2020-72f438177c77
  * https://jczacharia.medium.com/easier-angular-component-state-management-34615849a637
@@ -294,7 +294,7 @@
  * https://www.youtube.com/watch?v=FE71r5WJWSQ&list=PLW2eQOsUPlWJRfWGOi9gZdc3rE4Fke0Wv&index=9
  * https://github.com/ngrx/example-app.git
  * [Create the NgRx Feature Module Code](https://www.intertech.com/Blog/ngrx-tutorial-add-state-to-feature-module/)
-	* в корневом модуле импорт 
+	* в корневом модуле импорт
 	* ```ts
 		//src/app/users/store/selectors/index.selector.ts
 		export const getState = createFeatureSelector<IIndexUsersState>('usersFeatureState');
@@ -367,7 +367,7 @@
 	* [Реактивные приложения на Angular/NGRX. Часть 1. Введение.](https://medium.com/@demyanyuk/реактивные-приложения-на-angular-ngrx-часть-1-cb7b4f2852dc)
 	* [Практическое применение RxJS Написание собственного Ngrx](https://medium.com/ngx/practical-use-rxjs-81aaab57045c)
 	* [Стейт-машина в Angular: учимся использовать правильно](https://medium.com/ngx/practical-use-rxjs-81aaab57045c)
-		* Для сложных случаев подойдут: Dexie.js, LokiJs, sql.js, Alasql 
+		* Для сложных случаев подойдут: Dexie.js, LokiJs, sql.js, Alasql
 		* Простой и надёжной шиной сообщений являются сервисы, организованные, как рекомендовано в CQS/CQRS. Есть и готовые решения — ngx-message-bus и angular-cqrs
 		* Чаще, требуется только Store или Event Bus, альтернатив которым полно в сети или которые можно легко написать самостоятельно, и они не будут диктовать условия вашей архитектуре.
 	* [NGRX Entities: UpdateOne and UpdateMany @ngrx/entities ](https://medium.com/@daveharmswebdev/ngrx-entities-updateone-and-updatemany-ced8863d63a6)
@@ -391,13 +391,13 @@
  * https://angular.io/api/core/ChangeDetectionStrategy
 
 	```ts
-		@Component({ 
-			template: ` <h2>{{vData.name}}</h2> <span>{{vData.email}}</span> `, 
-			changeDetection: ChangeDetectionStrategy.OnPush 
-			}) 
-			
-		class VCardCmp { 
-			@Input() vData; 
+		@Component({
+			template: ` <h2>{{vData.name}}</h2> <span>{{vData.email}}</span> `,
+			changeDetection: ChangeDetectionStrategy.OnPush
+			})
+
+		class VCardCmp {
+			@Input() vData;
 			}
 	```
  * [zonejs modules](https://github.com/angular/angular/blob/master/packages/zone.js/MODULE.md)
@@ -406,37 +406,37 @@
  * [The Last Guide For Angular Change Detection You'll Ever Need - 2019](https://www.mokkapps.de/blog/the-last-guide-for-angular-change-detection-you-will-ever-need/)
 
 	```ts
-	processOutsideAngularZone() { 
-		this.progress = 0; 
+	processOutsideAngularZone() {
+		this.progress = 0;
 		this.zone.runOutsideAngular(//выполнить вне зоны, без CD
 			() => {
 				this.increaseProgress(//сделать что-то
-					() => { 
+					() => {
 						this.zone.run(//запустить проверку CD
-							() => { 
-								console.log('Outside Done!'); 
+							() => {
+								console.log('Outside Done!');
 							}
-						); 
+						);
 					}
-				); 
+				);
 			}
-		); 
-	} 
+		);
+	}
 
 	```
 
 	```ts
-	constructor(private cd: ChangeDetectorRef) {} 
+	constructor(private cd: ChangeDetectorRef) {}
 
-	ngOnInit() { 
+	ngOnInit() {
 		this.addItemStream.subscribe(
-			() => { 
-				this.counter++; // application state changed 
-				this.cd.markForCheck(); // marks path 
+			() => {
+				this.counter++; // application state changed
+				this.cd.markForCheck(); // marks path
 				}
-			) 
-		} 
-	} 
+			)
+		}
+	}
 	```
 
  * disable zonejs
@@ -482,9 +482,9 @@
 
  * [Directive Selectors, @HostBinding('rel'), :not](https://blog.angularindepth.com/beware-angular-can-steal-your-time-41fe589483df)
  * [Changing the behavior of a 3rd party Angular Component](https://medium.com/angular-in-depth/changing-the-behavior-of-a-3rd-party-angular-component-91f84fb9af28)
- 
+
 	```html
-		<!-- notice "customRadio" directive in html below --> 
+		<!-- notice "customRadio" directive in html below -->
 		<ion-select  [(ngModel)]="mdls" customRadio>
 		<ion-option *ngFor="let model of mdls" >{{model}}</ion-option>
 		</ion-select>
@@ -499,7 +499,7 @@
 			selector: '[customRadio]',
 		})
 		export class CustomRadioDirective {
-			
+
 			constructor(
 			@Host() @Self() @Optional() public hostSel : Select) {
 			// Now you can access specific instance members of host directive
@@ -536,9 +536,9 @@
  * https://github.com/manfredsteyer/module_federation_shared_versions
  * [Example nx](https://github.com/manfredsteyer/2022_03_24)
  * https://auth0.com/blog/micro-frontends-with-angular-module-federation-and-auth0/
- * 
- * 
- * 
+ *
+ *
+ *
 
 ## DI injectors modules services
 
@@ -574,17 +574,17 @@
 ```
 
 ```ts
-	@NgModule({ 
-			imports: [WorkerAppModule], 
-			bootstrap: [AppComponent], 
-			declarations: [AppComponent] 
-			}) 
-			
-	class WebWorkerModule {} 
+	@NgModule({
+			imports: [WorkerAppModule],
+			bootstrap: [AppComponent],
+			declarations: [AppComponent]
+			})
 
-	export function main() { 
-		enableProdMode(); 
-		platformWorkerAppDynamic().bootstrapModule(WebWorkerModule); 
+	class WebWorkerModule {}
+
+	export function main() {
+		enableProdMode();
+		platformWorkerAppDynamic().bootstrapModule(WebWorkerModule);
 		}
 ```
 ## курсы
@@ -605,7 +605,7 @@
 
  * https://indepth.dev/posts/1379/angular-router-revealing-some-interesting-facts-and-features
  * [Определение маршрутов](https://metanit.com/web/angular2/7.1.php)
- 
+
 
 ## angular6
 
@@ -710,8 +710,8 @@ https://stackblitz.com/edit/angular-jhutmd?file=app%2Fapp.component.html
 	```
  * [migrate-angular-8-from-tslint-to-eslint](https://medium.com/create-code/migrate-angular-8-from-tslint-to-eslint-4b0c44c8ae38)
  * [tslint-to-eslint-config](https://github.com/typescript-eslint/tslint-to-eslint-config)
- * [tslint](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin) 
- * [eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) 
+ * [tslint](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin)
+ * [eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
  * npm dev dependencies
 	```json
 			"@typescript-eslint/parser": "^1.13.0",
@@ -736,50 +736,50 @@ https://stackblitz.com/edit/angular-jhutmd?file=app%2Fapp.component.html
 
  * [почему сделали .pipe()](https://github.com/ReactiveX/rxjs/blob/91088dae1df097be2370c73300ffa11b27fd0100/doc/pipeable-operators.md)
  * http://reactive.how/rxjs/explorer
-    
+
 ### expand
 
 ```js
-@example Start emitting the powers of two on every click, at most 10 of them 
-var clicks = Rx.Observable.fromEvent(document, 'click'); 
-var powersOfTwo = clicks .mapTo(1) 
-.expand(x => Rx.Observable.of(2 * x).delay(1000)) 
-.take(10); 
+@example Start emitting the powers of two on every click, at most 10 of them
+var clicks = Rx.Observable.fromEvent(document, 'click');
+var powersOfTwo = clicks .mapTo(1)
+.expand(x => Rx.Observable.of(2 * x).delay(1000))
+.take(10);
 powersOfTwo.subscribe(x => console.log(x));
 
 /**
- * @param {function(value: T, index: number) => Observable} project - A function that, when applied to an item emitted by the source or the output Observable, returns an Observable. 
- * @param {number} [concurrent=Number.POSITIVE_INFINITY]  - Maximum number of input Observables being subscribed to concurrently. 
- * @param {Scheduler} [scheduler=null] The IScheduler to use for subscribing to each projected inner Observable. 
- * @return {Observable} An Observable that emits the source values and also result of applying the projection function to each value emitted on the output Observable and and merging the results of the Observables obtained from this transformation. 
- * @method expand 
+ * @param {function(value: T, index: number) => Observable} project - A function that, when applied to an item emitted by the source or the output Observable, returns an Observable.
+ * @param {number} [concurrent=Number.POSITIVE_INFINITY]  - Maximum number of input Observables being subscribed to concurrently.
+ * @param {Scheduler} [scheduler=null] The IScheduler to use for subscribing to each projected inner Observable.
+ * @return {Observable} An Observable that emits the source values and also result of applying the projection function to each value emitted on the output Observable and and merging the results of the Observables obtained from this transformation.
+ * @method expand
  * @owner Observable
  */
 
 ```
- 
+
 ### concatmap
 
  * https://rxjs-dev.firebaseapp.com/api/operators/concatMap
  * Note: concatMap is equivalent to mergeMap with concurrency parameter set to 1.
 
 ```js
-//@example For each click event, tick every second from 0 to 3, with no concurrency 
+//@example For each click event, tick every second from 0 to 3, with no concurrency
 
 Rx.Observable.fromEvent(document, 'click')
 .concatMap(ev => Rx.Observable.interval(1000).take(4))
 .subscribe(x => console.log(x));
 
-// Results in the following: 
-// (results are not concurrent) 
-// For every click on the "document" it will emit values 0 to 3 spaced 
-// on a 1000ms interval 
+// Results in the following:
+// (results are not concurrent)
+// For every click on the "document" it will emit values 0 to 3 spaced
+// on a 1000ms interval
 // one click = 1000ms-> 0 -1000ms-> 1 -1000ms-> 2 -1000ms-> 3
 
 /**
- * `@param {function(value: T, ?index: number): ObservableInput} project - A function that, when applied to an item emitted by the source Observable, returns an Observable. 
- * `@return {Observable} An Observable that emits the result of applying the projection function (and the optional resultSelector) to each item emitted by the source Observable and taking values from each projected inner Observable sequentially. 
- * @method concatMap 
+ * `@param {function(value: T, ?index: number): ObservableInput} project - A function that, when applied to an item emitted by the source Observable, returns an Observable.
+ * `@return {Observable} An Observable that emits the result of applying the projection function (and the optional resultSelector) to each item emitted by the source Observable and taking values from each projected inner Observable sequentially.
+ * @method concatMap
  * `@owner Observable
  */
 
@@ -788,7 +788,7 @@ Rx.Observable.fromEvent(document, 'click')
 ### flatMap
 
  * https://stackoverflow.com/questions/36984059/rxjs-array-of-observable-to-array
- 
+
  ```js
  getPostsPerUser() {
   return this.http.get('/users')
@@ -809,96 +809,96 @@ this.getPostsPerUser().subscribe(result => {
   (...)
 });
 
- 
+
  ```
 
 ### concat
 
-@example Concatenate a timer counting from 0 to 3 with a synchronous sequence from 1 to 10 
+@example Concatenate a timer counting from 0 to 3 with a synchronous sequence from 1 to 10
 
 ```js
-var timer = Rx.Observable.interval(1000).take(4); var sequence = Rx.Observable.range(1, 10); 
+var timer = Rx.Observable.interval(1000).take(4); var sequence = Rx.Observable.range(1, 10);
 var result = Rx.Observable.concat(timer, sequence); result.subscribe(x => console.log(x));
 
-// results in: 
+// results in:
 // 0 -1000ms-> 1 -1000ms-> 2 -1000ms-> 3 -immediate-> 1 ... 10
 
-@example Concatenate an array of 3 Observables 
-var timer1 = Rx.Observable.interval(1000).take(10); 
-var timer2 = Rx.Observable.interval(2000).take(6); 
-var timer3 = Rx.Observable.interval(500).take(10); 
-var result = Rx.Observable.concat([timer1, timer2, timer3]); 
+@example Concatenate an array of 3 Observables
+var timer1 = Rx.Observable.interval(1000).take(10);
+var timer2 = Rx.Observable.interval(2000).take(6);
+var timer3 = Rx.Observable.interval(500).take(10);
+var result = Rx.Observable.concat([timer1, timer2, timer3]);
 
 // note that array is passed result.subscribe(x => console.log(x));
 
-// results in the following: 
-// (Prints to console sequentially) 
-// -1000ms-> 0 -1000ms-> 1 -1000ms-> ... 9 
-// -2000ms-> 0 -2000ms-> 1 -2000ms-> ... 5 
+// results in the following:
+// (Prints to console sequentially)
+// -1000ms-> 0 -1000ms-> 1 -1000ms-> ... 9
+// -2000ms-> 0 -2000ms-> 1 -2000ms-> ... 5
 // -500ms-> 0 -500ms-> 1 -500ms-> ... 9
 
-@example Concatenate the same Observable to repeat it 
+@example Concatenate the same Observable to repeat it
 
 const timer = Rx.Observable.interval(1000).take(2);
 
-Rx.Observable.concat(timer, timer) // concating the same Observable! 
+Rx.Observable.concat(timer, timer) // concating the same Observable!
 .subscribe( value => console.log(value), err => {}, () => console.log('...and it is done!') );
 
-// Logs: 
-// 0 after 1s 
-// 1 after 2s 
-// 0 after 3s 
-// 1 after 4s 
+// Logs:
+// 0 after 1s
+// 1 after 2s
+// 0 after 3s
+// 1 after 4s
 // "...and it is done!" also after 4s
 
 /**
- * @param {ObservableInput} input1 - An input Observable to concatenate with others. 
- * @param {ObservableInput} input2 - An input Observable to concatenate with others. More than one input Observables may be given as argument. 
- * @param {Scheduler} [scheduler=null] - An optional IScheduler to schedule each Observable subscription on. 
- * @static true 
- * @return {Observable} All values of each passed Observable merged into a single Observable, in order, in serial fashion. 
- * @name concat 
+ * @param {ObservableInput} input1 - An input Observable to concatenate with others.
+ * @param {ObservableInput} input2 - An input Observable to concatenate with others. More than one input Observables may be given as argument.
+ * @param {Scheduler} [scheduler=null] - An optional IScheduler to schedule each Observable subscription on.
+ * @static true
+ * @return {Observable} All values of each passed Observable merged into a single Observable, in order, in serial fashion.
+ * @name concat
  * @owner Observable
  */
  ```
 
 ### reduce
 
- * аккумулятор входящих 
+ * аккумулятор входящих
     * The seed will be used as an initial acc (accumulation)
     * When the input stream emits an event value v:
     *     v and the latest acc are given to the accumulator
     *     The returned value will be used as the next acc
     * When the input stream completes, the output stream emits the last acc and completes
- * @example Count the number of click events that happened in 5 seconds 
- 
+ * @example Count the number of click events that happened in 5 seconds
+
  ```js
- var clicksInFiveSeconds = Rx.Observable.fromEvent(document, 'click') 
- .takeUntil(Rx.Observable.interval(5000)); 
- var ones = clicksInFiveSeconds.mapTo(1); 
- var seed = 0; 
- var count = ones.reduce((acc, one) => acc + one, seed); 
+ var clicksInFiveSeconds = Rx.Observable.fromEvent(document, 'click')
+ .takeUntil(Rx.Observable.interval(5000));
+ var ones = clicksInFiveSeconds.mapTo(1);
+ var seed = 0;
+ var count = ones.reduce((acc, one) => acc + one, seed);
  count.subscribe(x => console.log(x));
 
-@param {function(acc: R, value: T, index: number): R} accumulator - The accumulator function called on each source value. 
-@param {R} [seed] The initial accumulation value. 
-@return {Observable} An Observable that emits a single value that is the result of accumulating the values emitted by the source Observable. 
+@param {function(acc: R, value: T, index: number): R} accumulator - The accumulator function called on each source value.
+@param {R} [seed] The initial accumulation value.
+@return {Observable} An Observable that emits a single value that is the result of accumulating the values emitted by the source Observable.
 @method reduce @owner Observable
 ```
 
 ### switchMap
 
  * http://reactivex.io/documentation/operators/switch.html
- * @example Rerun an interval Observable on every click event 
+ * @example Rerun an interval Observable on every click event
 
 	```js
-		var clicks = Rx.Observable.fromEvent(document, 'click'); 
-		var result = clicks.switchMap((ev) => Rx.Observable.interval(1000)); 
+		var clicks = Rx.Observable.fromEvent(document, 'click');
+		var result = clicks.switchMap((ev) => Rx.Observable.interval(1000));
 		result.subscribe(x => console.log(x));
 
-		@param {function(value: T, ?index: number): ObservableInput} project - A function that, when applied to an item emitted by the source Observable, returns an Observable. 
-		@return {Observable} An Observable that emits the result of applying the projection function (and the optional resultSelector) to each item emitted by the source Observable and taking only the values from the most recently projected inner Observable. 
-		@method switchMap 
+		@param {function(value: T, ?index: number): ObservableInput} project - A function that, when applied to an item emitted by the source Observable, returns an Observable.
+		@return {Observable} An Observable that emits the result of applying the projection function (and the optional resultSelector) to each item emitted by the source Observable and taking only the values from the most recently projected inner Observable.
+		@method switchMap
 		@owner Observable
 	```
 
@@ -906,7 +906,7 @@ Rx.Observable.concat(timer, timer) // concating the same Observable!
 
 ### scan
 
- * аккумулятор входящих и веер 
+ * аккумулятор входящих и веер
     * The seed will be used as an initial acc (accumulation)
     * When the input stream emits an event value v:
     *     v and the latest acc are given to the accumulator
@@ -914,20 +914,20 @@ Rx.Observable.concat(timer, timer) // concating the same Observable!
     * When the input stream completes, the output stream completes
  * http://reactive.how/reduce
  * http://reactive.how/scan
- * @example Count the number of click events 
+ * @example Count the number of click events
 
 ```js
-var clicks = Rx.Observable.fromEvent(document, 'click'); 
-var ones = clicks.mapTo(1); 
-var seed = 0; 
-var count = ones.scan((acc, one) => acc + one, seed); 
+var clicks = Rx.Observable.fromEvent(document, 'click');
+var ones = clicks.mapTo(1);
+var seed = 0;
+var count = ones.scan((acc, one) => acc + one, seed);
 count.subscribe(x => console.log(x));
 
 /**
- * @param {function(acc: R, value: T, index: number): R} accumulator - The accumulator function called on each source value. 
- * @param {T|R} [seed] The initial accumulation value. 
- * @return {Observable} An observable of the accumulated values. 
- * @method scan 
+ * @param {function(acc: R, value: T, index: number): R} accumulator - The accumulator function called on each source value.
+ * @param {T|R} [seed] The initial accumulation value.
+ * @return {Observable} An observable of the accumulated values.
+ * @method scan
  * @owner Observable
  */
 ```
@@ -973,7 +973,7 @@ count.subscribe(x => console.log(x));
 
  * [нельзя отловить 302](https://stackoverflow.com/questions/37671166/angular2-how-to-prevent-from-http-redirection) вываливается JSON parse error, приходится ловить catchError, и внутри код 200 - это ошибка+302
  * в проблеме 302 косвенно может участвовать webpack. Если он от cli, то всегда сначала открывает index.html. Т.е. веб-сервер при ошибке тыла делает CORS-->302-->/ а вебпак открывает index.html. При попытке переимновать файл и index в angular.json вываливается ошибка `emitting index-html-webpack-plugin: Error: ENOENT: no such file or directory`
- 
+
 
 ### rxjs Observable<any> import
 
@@ -985,8 +985,8 @@ count.subscribe(x => console.log(x));
         import { of } from 'rxjs/observable/of';
         import { Observable } from 'rxjs/internal/Observable';
     ```
- 
- 
+
+
 ### angular reactive form
 
  * нельзя использовать `[(ngModel)]` [в реактивных формах](https://angular.io/api/forms/FormControlDirective#use-with-ngmodel)  надо `this.formControl.setValue('some value');` `<div>{{this.formControl.value}}</div>`
@@ -999,9 +999,9 @@ count.subscribe(x => console.log(x));
     import { isNull } from '@angular/compiler/src/output/output_ast';
     // WARNING in ./node_modules/@angular/compiler/src/output/output_ast.js
     // 10:24-31 Critical dependency: require function is used in a way in which dependencies cannot be statically extracted
-    
+
 ```
- 
+
 ### @Input()
 
  * работает постоянно, потому необходимо ограничивать его запуск
@@ -1010,7 +1010,7 @@ count.subscribe(x => console.log(x));
 
 ### angular router
 
- * крошки 
+ * крошки
  	* [словарь в маршрутизаторе](https://medium.com/@bo.vandersteene/angular-5-breadcrumb-c225fd9df5cf)
  	* [ngrx router state](https://www.intertech.com/Blog/ngrx-tutorial-add-router-info-to-state/)
  	* [ngrx route resolve](https://hackernoon.com/angular-ngrx-resolving-route-data-53f88e0b8a5d)
@@ -1020,7 +1020,7 @@ count.subscribe(x => console.log(x));
 		private router: Router,
 		private route: ActivatedRoute,
 	) {}
-	
+
 	ngOnInit() {
 		const url = this.route.snapshot.firstChild.url.join('');
 		const url = this.router.url;
@@ -1048,7 +1048,7 @@ count.subscribe(x => console.log(x));
  * не работает disabled
 ```scss
 	@import './colors.scss';
-	
+
 	& .mat-tab-link {
 		color: black;
 		opacity: 1;
@@ -1070,7 +1070,7 @@ count.subscribe(x => console.log(x));
 				color: map-get($md-palette-blue, 400);
 				opacity: 1;
 			}
-			
+
 			&-disabled {
 				color: grey;
 				cursor: default;
@@ -1090,7 +1090,7 @@ count.subscribe(x => console.log(x));
 				<mat-icon>{{link.icon}}</mat-icon>
 				<span>{{link.label}}</span>
 			</a>
-			
+
 			<a mat-tab-link *ngIf="link.isDisabled" [disabled]="link.isDisabled">
 				<mat-icon>{{link.icon}}</mat-icon>
 				<span>{{link.label}}</span>
@@ -1098,7 +1098,7 @@ count.subscribe(x => console.log(x));
 		</span>
 	</nav>
 ```
- 
+
 ### onchange mat-select dropdown
 
  * реакция на выбор
@@ -1122,7 +1122,7 @@ count.subscribe(x => console.log(x));
 		@ViewChild('paginatorCases') paginatorCases: MatPaginator;
 		@ViewChild('paginatorExperts') paginatorExperts: MatPaginator;
 		@ViewChild('paginatorPersons') paginatorPersons: MatPaginator;
-		
+
 		ngAfterViewInit() {
 		this.dataSourceCases.paginator = this.paginatorCases;
 		this.dataSourceExperts.paginator = this.paginatorExperts;
@@ -1168,15 +1168,15 @@ count.subscribe(x => console.log(x));
 			isFirstLastButtonsVisible: false,
 		},
 	};
-	
+
 	@ViewChild('idPaginator', { read: MatPaginator }) paginator: MatPaginator;
 	@ViewChild('idTable', { read: MatSort }) sortResults: MatSort;
-	
+
 	ngAfterViewInit() {
 		if (!(this.table.dataSource.paginator instanceof MatPaginator)) {
 			this.table.dataSource.paginator = this.paginator;
 		}
-		
+
 		if (!(this.table.dataSource.sort instanceof MatSort)) {
 			this.table.dataSource.sort = this.sortResults;
 		}
@@ -1187,7 +1187,7 @@ count.subscribe(x => console.log(x));
 	this.table.selection.clear();
 
 	this.table.dataSource.data = JSON.parse(JSON.stringify(data));
-	
+
 	setTimeout(() => {
 		this.table.paginator.index= oldIndex;
 	}
@@ -1201,7 +1201,7 @@ count.subscribe(x => console.log(x));
 		@Injectable()
 		export class CustomMatPaginatorIntl extends MatPaginatorIntl {
 		constructor() {
-			super();  
+			super();
 
 			this.getAndInitTranslations();
 		}
@@ -1226,10 +1226,10 @@ count.subscribe(x => console.log(x));
 		}
 		}
 	```
- * прибить листалку внизу 
+ * прибить листалку внизу
  	* https://indepth.dev/posts/1336/how-to-do-dom-manipulation-properly-in-angular#concepts--2
 	* https://www.tektutorialshub.com/angular/renderer2-angular/
-	* 
+	*
 
 	```ts
 		constructor(private element: ElementRef, private renderer: Renderer2) {
@@ -1262,7 +1262,7 @@ count.subscribe(x => console.log(x));
  * блокирование ручного ввода даты
 
  ```html
-    <input 
+    <input
     (keydown)="$event.stopPropagation();$event.preventDefault()"
     >
  ```
@@ -1288,7 +1288,7 @@ count.subscribe(x => console.log(x));
 	</mat-form-field>
 </div>
  ```
- 
+
 ### tree дерево
 
  * сложный тип https://material.angular.io/components/tree
@@ -1315,7 +1315,7 @@ count.subscribe(x => console.log(x));
 	import { FlatTreeControl } from '@angular/cdk/tree';
 	import { MatTreeFlattener, MatTreeFlatDataSource } from '@angular/material/tree';
 
-	/** 
+	/**
 	* Сложный вложенный тип для описания деревьев
 	* https://basarat.gitbooks.io/typescript/docs/types/index-signatures.html
 	*/
@@ -1381,7 +1381,7 @@ count.subscribe(x => console.log(x));
 		}, []);
 	}
 
-	@Input 
+	@Input
 	set value(value){
 
 	this._assignedTree = {};
@@ -1405,7 +1405,7 @@ count.subscribe(x => console.log(x));
 		this.dataSource.data = JSON.parse(JSON.stringify(this.buildFileTree(this._personsAssignedTree,0)));
 	}
 ```
- 
+
 ### debug
 
  * ворон ловит больше ошибок чем хром
@@ -1464,7 +1464,7 @@ count.subscribe(x => console.log(x));
  ```
 
  * интерфейс деревьев - сложный вложенный тип https://basarat.gitbooks.io/typescript/docs/types/index-signatures.html
- 
+
 ```ts
 	export interface ITree {
 		[keyName: string]: ITreeItem;
@@ -1492,9 +1492,9 @@ count.subscribe(x => console.log(x));
 [нельзя итерировать по свойствам объекта Property binding ngFor not used by any directive on an embedded template](https://webcake.co/object-properties-in-angular-2s-ngfor/)
 
 ### css
- 
+
  * глобальные стили css
-	* [styles.css](https://github.com/angular/angular-cli/wiki/stories-global-styles) 
+	* [styles.css](https://github.com/angular/angular-cli/wiki/stories-global-styles)
 	* https://github.com/angular/angular-cli/issues/10007
 	* [Angular2 styling issues caused by DOM attributes _ngcontent-* vs. _nghost-*](https://stackoverflow.com/questions/37689673/angular2-styling-issues-caused-by-dom-attributes-ngcontent-vs-nghost)
 	* [view encapsulation](https://angular.io/guide/component-styles#view-encapsulation)
@@ -1507,14 +1507,14 @@ count.subscribe(x => console.log(x));
 		...
 		});
 		```
-	* [::ng-deep](https://stackoverflow.com/questions/36224276/angular2-adding-ngcontent-mav-x-to-styles#36225709)	
+	* [::ng-deep](https://stackoverflow.com/questions/36224276/angular2-adding-ngcontent-mav-x-to-styles#36225709)
  * [синтаксис для pug. angular pug Syntax Error: Assigning to rvalue](https://github.com/tycho01/pug-plugin-ng)
 	```pug
 	'[class.c-header-nav-list-inline-active]'="isActiveAll"
 	button#foo.bar(#myVar='' md-raised-button='' '[disabled]'="isDisabled" '(click)'="boom") text
 	```
  * [property binding](https://angular.io/guide/template-syntax#attribute-binding)
-	```html 
+	```html
 		<tr><td [attr.colspan]="1 + 1">One-Two</td></tr>
 	```
 
@@ -1579,8 +1579,8 @@ count.subscribe(x => console.log(x));
 			//The set of components, directives, and pipes declared in this NgModule that can be used in the template of any component that is part of an NgModule that imports this NgModule. Exported declarations are the module's public API.
 		]
 		providers: [
-			//The providers array is where you list the services the app needs. When you list services here, they are available app-wide. You can scope them when using feature modules and lazy loading. 
-		
+			//The providers array is where you list the services the app needs. When you list services here, they are available app-wide. You can scope them when using feature modules and lazy loading.
+
 		{ provide: OldLogger, useClass: LoggerClass},// Not aliased! Creates two instances of `NewLogger`
 		{ provide: OldLogger, useExisting: LoggerClass}// Alias OldLogger w/ reference to NewLogger
 		{ provide: Logger, useValue: SomeObject }
@@ -1656,18 +1656,19 @@ const httpOptions = {
  * [ошибка node-gyp](https://github.com/nodejs/node-gyp/issues/454)
  * https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-16-04#how-to-install-using-nvm
  * [репа nvm](https://github.com/creationix/nvm)
- 
+
  ```bash
 	zypper rm nodejs
 	wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
 	nvm install node
 	nvm use node
  ```
+ * https://medium.com/the-tech-bench/getting-visual-studio-code-and-nvm-working-together-252ec0300895
 
 ## сборка
 
- * webpack config eject 
- 
+ * webpack config eject
+
 	```bash
 
 		npm i -D webpack uglifyjs-webpack-plugin copy-webpack-plugin clean-webpack-plugin html-webpack-plugin extract-text-webpack-plugin webpack-merge stylus pug browser-sync-webpack-plugin browser-sync babel-loader css-loader csso csso-loader file-loader image-webpack-loader img-loader postcss postcss-import postcss-loader postcss-url pug-html-loader raw-loader stylus-loader to-string-loader url-loader webpack-cli webpack-dev-server webpack-merge html-loader scss-loader
@@ -1677,7 +1678,7 @@ const httpOptions = {
 	```
 
  * темы
- 
+
 	```css
 		/*styles.css*/
 		/* @import '~@angular/material/prebuilt-themes/deeppurple-amber.css'; */
@@ -1688,20 +1689,20 @@ const httpOptions = {
 	```
 
  * https ng serve
- 
+
 ```bash
 	NODE_ENV=development;ng serve --ssl 'true' --ssl-key 'util/nginx.key' --ssl-cert='util/nginx.crt'
 ```
 
  * [env variables переменные окружения angular](https://medium.com/@kudresov/a-better-way-to-inject-environmental-variables-in-angular-d3b2d01a3c5e)
  * выключить ошибку препроцессора typescript
- 
+
 	```bash
 		ng config cli.warnings.typescriptMismatch false
 	```
- 
+
  * Минификация uglifyjs es6 сломана, надо пользовать closure или terser
- 
+
 	```
 		https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/104
 		npm i uglifyjs-webpack-plugin@1
@@ -1720,7 +1721,7 @@ const httpOptions = {
 		"jasminewd2",
 		"node"
 		]
-		
+
 	либо убрать из него:
 	"exclude": [
 		"node_modules",
@@ -1731,14 +1732,14 @@ const httpOptions = {
 	```
 
  * ошибки сборки es6 https://medium.com/@martin_hotell/tree-shake-lodash-with-webpack-jest-and-typescript-2734fa13b5cd
- 
+
 	```
 	tsconfig.json
 	"target": "es5",
 	```
 
  * ошибки конвертации html --> pug
- 
+
 ```
 кдлассы, параметры тэгов в скобках, после # теряют заглавный регистр
 многие параметры в квадратных скобках, всё со звёздочкой необходимо брать в кавычки
@@ -1752,12 +1753,12 @@ const httpOptions = {
  * [что не так с graphql](https://habr.com/post/425041/)
  * [The production-ready GraphQL client for React](https://relay.dev/)
  * [A JavaScript library for efficient data fetching](https://netflix.github.io/falcor/)
- * [Дизайн GraphQL-схем — строим схемы правильно (версия 2) / Павел Черторогов (ps.kz)](https://www.youtube.com/watch?v=tASEYJXdO_c) 
+ * [Дизайн GraphQL-схем — строим схемы правильно (версия 2) / Павел Черторогов (ps.kz)](https://www.youtube.com/watch?v=tASEYJXdO_c)
  * [Дизайн GraphQL-схем — делаем АПИ удобным](https://github.com/nodkz/conf-talks/tree/master/articles/graphql/schema-design)
  * [Переход от Rest API к GraphQL на примере реальных проектов / Антон Морев (Wormsoft)](https://www.youtube.com/watch?v=iiI5L6b0Uvo)
  * [Пентест приложений с GraphQL](https://habr.com/ru/company/dsec/blog/444708/)
  * [Руководство по языку запросов GraphQL для начинающих](https://tproger.ru/translations/graphql-beginners-guide/)
- 
+
 ## Internatiolization перевод locale локализация translate
 
  * @angular/localize
@@ -1767,7 +1768,7 @@ const httpOptions = {
  * https://angular.io/guide/i18n#prerequisites
  * https://tyapk.ru/blog/post/angular-pipe-localization `registerLocaleData(localeRu, 'ru');`
  * https://angular.io/api/common/DecimalPipe
- 
+
 ## UI/UX framework фреймворки библиотеки
 
  * using [tailwindcss](https://tailwindcss.com/) in [angular](https://medium.com/@jacobneterer/angular-and-tailwindcss-2388fb6e0bab)
@@ -1845,7 +1846,7 @@ const httpOptions = {
  * [для react](https://material-ui.com/getting-started/installation/)
 
 ### цвета color
- 
+
  * необходимо вручную сгенерировать набор фон-текст для нормальной читаемости, есть [генератор контрастов](http://mcg.mbitson.com/)
     материал не умеет делать это автоматом
  * далее делаем тему на основе сгенерированной палитры(primary/secondary/accent) [полное руководство](https://blog.thoughtram.io/angular/2017/05/23/custom-themes-with-angular-material.html)
@@ -1868,12 +1869,12 @@ const httpOptions = {
  * http://google.github.io/material-design-icons/#icon-font-for-the-web
  * https://github.com/google/material-design-icons/blob/master/iconfont/codepoints
  * https://material.angular.io/components/icon/api
- 
+
 ### поля ввода
 
  * [спецификация состояний поля ввода](https://material.io/design/components/text-fields.html#spec)
  * [общие правила применения состояний](https://material.io/design/interaction/states.html#)
- 
+
 ## SEO
 
  * https://medium.com/madhash/how-to-properly-add-google-analytics-tracking-to-your-angular-web-app-bc7750713c9e
@@ -1943,6 +1944,6 @@ const httpOptions = {
 		}
 	```
 
-## logging логирование 
+## logging логирование
 
  * https://medium.com/javascript-in-plain-english/error-logging-with-sentry-on-angular-a73fe04b3999
