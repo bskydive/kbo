@@ -48,7 +48,8 @@
 ## gitignore
 
  * [A collection of .gitignore templates](https://github.com/github/gitignore)
-
+ * https://www.toptal.com/developers/gitignore
+ 
 ## сеть
 
  * [git-retry](https://stackoverflow.com/questions/35014012/git-retry-if-http-request-failed)

@@ -51,7 +51,7 @@
  * в pavucontrol выбрать воспроизведение через LADSPA Plugin, чтобы эквалайзер заработал
  * удаление pulseaudio-equalizer
     ```
-    
+
     ~/.config/pulse/default.pa
     #закомментировать module-loadspa-sink
     ### BEGIN: Equalized audio configuration
@@ -68,7 +68,7 @@
  * https://en.opensuse.org/SDB:Audio_troubleshooting#Intel_HDA_chipset
 
 	```bash
-		/etc/pulse/daemon.conf . Try changing the line default-sample-rate = 44100 in /etc/pulse/daemon.conf by default-sample-rate = 48000 and restart the PulseAudio server. 
+		/etc/pulse/daemon.conf . Try changing the line default-sample-rate = 44100 in /etc/pulse/daemon.conf by default-sample-rate = 48000 and restart the PulseAudio server.
 
 		1
 		PULSE_PROP="filter.want=echo-cancel" skype
@@ -131,9 +131,9 @@ done
 ```
 
 ```bash
-for f in *.mp4; 
-do 
-ffmpeg -i "$f" -vn -c:a libmp3lame -ar 44100 -ac 2 -ab 192k "${f/%mp4/mp3}"; 
+for f in *.mp4;
+do
+ffmpeg -i "$f" -vn -c:a libmp3lame -ar 44100 -ac 2 -ab 192k "${f/%mp4/mp3}";
 done
 
 ```
@@ -300,7 +300,7 @@ Install libreoffice-theme-oxygen or libreoffice-theme-crystal and then follow  (
 		xinput map-to-input $idXinput $idXrandr
 
 		```
-	* 
+	*
 		```bash
 		# xinput list
 		⎡ Virtual core pointer                          id=2    [master pointer  (3)]
@@ -321,13 +321,13 @@ Install libreoffice-theme-oxygen or libreoffice-theme-crystal and then follow  (
 
 		# lsusb
 		Bus 004 Device 004: ID 0451:8140 Texas Instruments, Inc. TUSB8041 4-Port Hub
-		Bus 004 Device 003: ID 2001:4a00 D-Link Corp. 
+		Bus 004 Device 003: ID 2001:4a00 D-Link Corp.
 		Bus 004 Device 002: ID 0451:8140 Texas Instruments, Inc. TUSB8041 4-Port Hub
 		Bus 004 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
 		Bus 003 Device 008: ID 0451:3410 Texas Instruments, Inc. TUSB3410 Microcontroller
-		# Bus 003 Device 009: ID 28bd:0062  
+		# Bus 003 Device 009: ID 28bd:0062
 		Bus 003 Device 004: ID 0451:8142 Texas Instruments, Inc. TUSB8041 4-Port Hub
-		Bus 003 Device 007: ID 09da:c10a A4Tech Co., Ltd. 
+		Bus 003 Device 007: ID 09da:c10a A4Tech Co., Ltd.
 		Bus 003 Device 005: ID 1c4f:0026 SiGma Micro Keyboard
 		Bus 003 Device 003: ID 1a40:0101 Terminus Technology Inc. Hub
 		Bus 003 Device 002: ID 0451:8142 Texas Instruments, Inc. TUSB8041 4-Port Hub
@@ -437,7 +437,7 @@ Install libreoffice-theme-oxygen or libreoffice-theme-crystal and then follow  (
 				device has no buttons
 
 				# xinput get-button-map "XP-PEN star06c Mouse"
-				1 2 3 4 5 6 7 
+				1 2 3 4 5 6 7
 
 				xinput test 'XP-PEN star06c Keyboard'
 				key press   37 # wheel
@@ -450,55 +450,55 @@ Install libreoffice-theme-oxygen or libreoffice-theme-crystal and then follow  (
 
 	```bash
 		inxi -G
-		#	Graphics:  Device-1: NVIDIA GP107 [GeForce GTX 1050 Ti] driver: nvidia v: 390.141 
-		#			Display: server: X.Org 1.20.3 driver: nvidia unloaded: fbdev,modesetting,nouveau,vesa resolution: 2560x1440 
-		#			OpenGL: renderer: GeForce GTX 1050 Ti/PCIe/SSE2 v: 4.6.0 NVIDIA 390.141 
+		#	Graphics:  Device-1: NVIDIA GP107 [GeForce GTX 1050 Ti] driver: nvidia v: 390.141
+		#			Display: server: X.Org 1.20.3 driver: nvidia unloaded: fbdev,modesetting,nouveau,vesa resolution: 2560x1440
+		#			OpenGL: renderer: GeForce GTX 1050 Ti/PCIe/SSE2 v: 4.6.0 NVIDIA 390.141
 		inxi -b
-		#	System:    Host: linux-tltj Kernel: 5.3.18-lp152.72-default x86_64 bits: 64 Console: tty 7 Distro: openSUSE Leap 15.2 
-		#	Machine:   Type: Desktop Mobo: Micro-Star model: B450M PRO-VDH V2 (MS-7A38) v: 6.0 serial: IC16298648 
-		#			UEFI: American Megatrends v: 8.81 date: 08/19/2019 
-		#	CPU:       8-Core: AMD Ryzen 7 3700X type: MT MCP speed: 2822 MHz min/max: 2200/3600 MHz 
-		#	Graphics:  Device-1: NVIDIA GP107 [GeForce GTX 1050 Ti] driver: nvidia v: 390.141 
-		#			Display: server: X.Org 1.20.3 driver: nvidia unloaded: fbdev,modesetting,nouveau,vesa resolution: 2560x1440 
-		#			OpenGL: renderer: GeForce GTX 1050 Ti/PCIe/SSE2 v: 4.6.0 NVIDIA 390.141 
-		#	Network:   Device-1: Realtek RTL8111/8168/8411 PCI Express Gigabit Ethernet driver: r8169 
-		#	Drives:    Local Storage: total: 670.70 GiB used: 293.01 GiB (43.7%) 
-		#	Info:      Processes: 362 Uptime: 9h 34m Memory: 31.30 GiB used: 3.96 GiB (12.7%) Shell: bash inxi: 3.1.00 
+		#	System:    Host: linux-tltj Kernel: 5.3.18-lp152.72-default x86_64 bits: 64 Console: tty 7 Distro: openSUSE Leap 15.2
+		#	Machine:   Type: Desktop Mobo: Micro-Star model: B450M PRO-VDH V2 (MS-7A38) v: 6.0 serial: IC16298648
+		#			UEFI: American Megatrends v: 8.81 date: 08/19/2019
+		#	CPU:       8-Core: AMD Ryzen 7 3700X type: MT MCP speed: 2822 MHz min/max: 2200/3600 MHz
+		#	Graphics:  Device-1: NVIDIA GP107 [GeForce GTX 1050 Ti] driver: nvidia v: 390.141
+		#			Display: server: X.Org 1.20.3 driver: nvidia unloaded: fbdev,modesetting,nouveau,vesa resolution: 2560x1440
+		#			OpenGL: renderer: GeForce GTX 1050 Ti/PCIe/SSE2 v: 4.6.0 NVIDIA 390.141
+		#	Network:   Device-1: Realtek RTL8111/8168/8411 PCI Express Gigabit Ethernet driver: r8169
+		#	Drives:    Local Storage: total: 670.70 GiB used: 293.01 GiB (43.7%)
+		#	Info:      Processes: 362 Uptime: 9h 34m Memory: 31.30 GiB used: 3.96 GiB (12.7%) Shell: bash inxi: 3.1.00
 		inxi -D
-		#	Drives:    Local Storage: total: 670.70 GiB used: 300.07 GiB (44.7%) 
-		#			ID-1: /dev/sda vendor: Samsung model: MZ7KH480HAHQ-00005 size: 447.13 GiB 
+		#	Drives:    Local Storage: total: 670.70 GiB used: 300.07 GiB (44.7%)
+		#			ID-1: /dev/sda vendor: Samsung model: MZ7KH480HAHQ-00005 size: 447.13 GiB
 		#			ID-2: /dev/sdb vendor: Intel model: SSDSC2KB240G8 size: 223.57 GiB
 		inxi --battery
 		# PC
 		inxi -F
-		#	System:    Host: linux-tltj Kernel: 5.3.18-lp152.78-default x86_64 bits: 64 Desktop: KDE Plasma 5.18.6 
-		#			Distro: openSUSE Leap 15.2 
-		#	Machine:   Type: Desktop Mobo: Micro-Star model: B450M PRO-VDH V2 (MS-7A38) v: 6.0 serial: <superuser/root required> 
-		#			UEFI: American Megatrends v: 8.81 date: 08/19/2019 
-		#	CPU:       Topology: 8-Core model: AMD Ryzen 7 3700X bits: 64 type: MT MCP L2 cache: 4096 KiB 
-		#			Speed: 2188 MHz min/max: 2200/3600 MHz Core speeds (MHz): 1: 2188 2: 2199 3: 2483 4: 2188 5: 2227 6: 2092 7: 2182 
-		#			8: 2161 9: 2259 10: 2200 11: 2212 12: 2154 13: 2199 14: 2160 15: 2200 16: 2199 
-		#	Graphics:  Device-1: NVIDIA GP107 [GeForce GTX 1050 Ti] driver: nvidia v: 390.143 
-		#			Display: x11 server: X.Org 1.20.3 driver: nvidia unloaded: fbdev,modesetting,nouveau,vesa 
-		#			resolution: 2560x1440~60Hz 
-		#			OpenGL: renderer: GeForce GTX 1050 Ti/PCIe/SSE2 v: 4.6.0 NVIDIA 390.143 
-		#	Audio:     Device-1: NVIDIA GP107GL High Definition Audio driver: snd_hda_intel 
-		#			Device-2: Advanced Micro Devices [AMD] Starship/Matisse HD Audio driver: snd_hda_intel 
-		#			Sound Server: ALSA v: k5.3.18-lp152.78-default 
-		#	Network:   Device-1: Realtek RTL8111/8168/8411 PCI Express Gigabit Ethernet driver: r8169 
-		#			IF: eth0 state: down mac: 00:d8:61:2e:90:2b 
-		#			Device-2: D-Link type: USB driver: ax88179_178a 
-		#			IF: eth1 state: up speed: 100 Mbps duplex: full mac: 00:ad:24:3e:4d:79 
-		#			IF-ID-1: vmnet1 state: unknown speed: N/A duplex: N/A mac: 00:50:56:c0:00:01 
-		#			IF-ID-2: vmnet8 state: unknown speed: N/A duplex: N/A mac: 00:50:56:c0:00:08 
-		#	Drives:    Local Storage: total: 670.70 GiB used: 258.84 GiB (38.6%) 
-		#			ID-1: /dev/sda vendor: Samsung model: MZ7KH480HAHQ-00005 size: 447.13 GiB 
-		#			ID-2: /dev/sdb vendor: Intel model: SSDSC2KB240G8 size: 223.57 GiB 
-		#	Partition: ID-1: / size: 113.68 GiB used: 92.21 GiB (81.1%) fs: ext4 dev: /dev/sdb2 
-		#	Swap:      ID-1: swap-1 type: partition size: 4.00 GiB used: 0 KiB (0.0%) dev: /dev/sdb3 
-		#	Sensors:   System Temperatures: cpu: 56.8 C mobo: 41.0 C gpu: nvidia temp: 40 C 
-		#			Fan Speeds (RPM): fan-1: 0 fan-2: 2360 fan-3: 1202 fan-4: 0 fan-5: 0 gpu: nvidia fan: 20% 
-		#	Info:      Processes: 328 Uptime: 2h 04m Memory: 31.30 GiB used: 3.37 GiB (10.8%) Shell: bash inxi: 3.1.00 
+		#	System:    Host: linux-tltj Kernel: 5.3.18-lp152.78-default x86_64 bits: 64 Desktop: KDE Plasma 5.18.6
+		#			Distro: openSUSE Leap 15.2
+		#	Machine:   Type: Desktop Mobo: Micro-Star model: B450M PRO-VDH V2 (MS-7A38) v: 6.0 serial: <superuser/root required>
+		#			UEFI: American Megatrends v: 8.81 date: 08/19/2019
+		#	CPU:       Topology: 8-Core model: AMD Ryzen 7 3700X bits: 64 type: MT MCP L2 cache: 4096 KiB
+		#			Speed: 2188 MHz min/max: 2200/3600 MHz Core speeds (MHz): 1: 2188 2: 2199 3: 2483 4: 2188 5: 2227 6: 2092 7: 2182
+		#			8: 2161 9: 2259 10: 2200 11: 2212 12: 2154 13: 2199 14: 2160 15: 2200 16: 2199
+		#	Graphics:  Device-1: NVIDIA GP107 [GeForce GTX 1050 Ti] driver: nvidia v: 390.143
+		#			Display: x11 server: X.Org 1.20.3 driver: nvidia unloaded: fbdev,modesetting,nouveau,vesa
+		#			resolution: 2560x1440~60Hz
+		#			OpenGL: renderer: GeForce GTX 1050 Ti/PCIe/SSE2 v: 4.6.0 NVIDIA 390.143
+		#	Audio:     Device-1: NVIDIA GP107GL High Definition Audio driver: snd_hda_intel
+		#			Device-2: Advanced Micro Devices [AMD] Starship/Matisse HD Audio driver: snd_hda_intel
+		#			Sound Server: ALSA v: k5.3.18-lp152.78-default
+		#	Network:   Device-1: Realtek RTL8111/8168/8411 PCI Express Gigabit Ethernet driver: r8169
+		#			IF: eth0 state: down mac: 00:d8:61:2e:90:2b
+		#			Device-2: D-Link type: USB driver: ax88179_178a
+		#			IF: eth1 state: up speed: 100 Mbps duplex: full mac: 00:ad:24:3e:4d:79
+		#			IF-ID-1: vmnet1 state: unknown speed: N/A duplex: N/A mac: 00:50:56:c0:00:01
+		#			IF-ID-2: vmnet8 state: unknown speed: N/A duplex: N/A mac: 00:50:56:c0:00:08
+		#	Drives:    Local Storage: total: 670.70 GiB used: 258.84 GiB (38.6%)
+		#			ID-1: /dev/sda vendor: Samsung model: MZ7KH480HAHQ-00005 size: 447.13 GiB
+		#			ID-2: /dev/sdb vendor: Intel model: SSDSC2KB240G8 size: 223.57 GiB
+		#	Partition: ID-1: / size: 113.68 GiB used: 92.21 GiB (81.1%) fs: ext4 dev: /dev/sdb2
+		#	Swap:      ID-1: swap-1 type: partition size: 4.00 GiB used: 0 KiB (0.0%) dev: /dev/sdb3
+		#	Sensors:   System Temperatures: cpu: 56.8 C mobo: 41.0 C gpu: nvidia temp: 40 C
+		#			Fan Speeds (RPM): fan-1: 0 fan-2: 2360 fan-3: 1202 fan-4: 0 fan-5: 0 gpu: nvidia fan: 20%
+		#	Info:      Processes: 328 Uptime: 2h 04m Memory: 31.30 GiB used: 3.37 GiB (10.8%) Shell: bash inxi: 3.1.00
 
 	```
 
@@ -514,9 +514,9 @@ noop [deadline] cfq
 в настройках ядра yast
 
 известная проблема с kworker.
- В качестве временного решения обычно рекомендуют либо 
-acpi=noirq 
-в параметрах ядра, либо 
+ В качестве временного решения обычно рекомендуют либо
+acpi=noirq
+в параметрах ядра, либо
 echo disable > /sys/firmware/acpi/interrupts/gpeXX где XX - номер проблемного IRQ
 
 ### acpi apic
@@ -557,7 +557,7 @@ acpitool  -W 17
   18. UHC5        S4    *enabled   pci:0000:00:13.1
   19. UHC6        S4    *enabled   pci:0000:00:13.2
   20. UHC7        S4    *enabled   pci:0000:00:14.5
-  21. PWRB        S4    *enabled 
+  21. PWRB        S4    *enabled
 
 ```
 
@@ -717,7 +717,7 @@ acpitool  -W 17
 
 
 		Now follows a summary of the probes I have just done.
-		Just press ENTER to continue: 
+		Just press ENTER to continue:
 
 		Driver `nct6775':
 		* ISA bus, address 0xa20
@@ -732,13 +732,13 @@ acpitool  -W 17
 		k10temp-pci-00c3
 
 		Adapter: PCI adapter
-		Vcore:        +0.95 V  
-		Vsoc:         +1.01 V  
-		Tdie:         +58.8°C  
-		Tctl:         +58.8°C  
-		Tccd1:        +42.8°C  
-		Icore:       +11.00 A  
-		Isoc:         +6.50 A  
+		Vcore:        +0.95 V
+		Vsoc:         +1.01 V
+		Tdie:         +58.8°C
+		Tctl:         +58.8°C
+		Tccd1:        +42.8°C
+		Icore:       +11.00 A
+		Isoc:         +6.50 A
 
 		nct6795-isa-0a20
 		Adapter: ISA adapter
@@ -768,10 +768,10 @@ acpitool  -W 17
 		AUXTIN1:               -128.0°C    sensor = thermistor
 		AUXTIN2:                +46.0°C    sensor = thermistor
 		AUXTIN3:                 -3.0°C    sensor = thermistor
-		SMBUSMASTER 0:          +58.0°C  
-		PCH_CHIP_CPU_MAX_TEMP:   +0.0°C  
-		PCH_CHIP_TEMP:           +0.0°C  
-		PCH_CPU_TEMP:            +0.0°C  
+		SMBUSMASTER 0:          +58.0°C
+		PCH_CHIP_CPU_MAX_TEMP:   +0.0°C
+		PCH_CHIP_TEMP:           +0.0°C
+		PCH_CPU_TEMP:            +0.0°C
 		intrusion0:            ALARM
 		intrusion1:            ALARM
 		beep_enable:           disabled
@@ -780,7 +780,7 @@ acpitool  -W 17
 
 ## gpu video graphics видеокарта
 
- * выскакивает переключение дисплеев https://bugs.kde.org/show_bug.cgi?id=426496 
+ * выскакивает переключение дисплеев https://bugs.kde.org/show_bug.cgi?id=426496
 	* `plasmashell --replace `
 	* https://www.reddit.com/r/kde/comments/oum1hr/issue_with_kde_plasma_switching_between_two/
 	* https://forums.opensuse.org/showthread.php/564076-2nd-Monitor-Shutoff-upon-grub-to-Leap-on-During-Boot
@@ -790,7 +790,7 @@ acpitool  -W 17
 
 	```bash
 		vi /etc/default/grub
-		GRUB_GFXMODE=1920x1080 
+		GRUB_GFXMODE=1920x1080
 		grub2-mkconfig -o /boot/grub2/grub.cfg
 		grub2-script-check /boot/grub2/grub.cfg;echo $?
 	```
@@ -841,7 +841,7 @@ Code:
 
  * flatpak
 	* `zypper in flatpak`
-	* от пользователя! flatpak `flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo` 
+	* от пользователя! flatpak `flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo`
 	* или в discover - настройка - add flathub
  * включить numlock
  * удалить snapper packagekit
@@ -873,7 +873,7 @@ Code:
  * установить ключи в bb, gh, gl, удалённые ПК
  * переключение окон - компактный без группировки по столам
  * настроить короткий формат даты для Dolphin в астройках локали DD.MM.YYYY
- * настроить полный формат даты для виджета часов на панели в настройках локали  
+ * настроить полный формат даты для виджета часов на панели в настройках локали
 	* ddd dd.MM.yyyy
  * kate
  * konsole
@@ -917,6 +917,7 @@ Code:
  * nvm
 	* !!! сделать снимок ФС/ВМ
  	* `npm i -g sass npm-check pm2 http-server`
+	* https://medium.com/the-tech-bench/getting-visual-studio-code-and-nvm-working-together-252ec0300895
 ### old
 
  * evolution - через discover+flathub - поиск - evolution - кликнуть по пакету - источники - flathub
@@ -931,7 +932,7 @@ Code:
 		rm /var/lib/flatpak/repo
 	```
  * pulseaudio-equalizer
- * paprefs - для проигрывания звука по сети https://askubuntu.com/questions/28039/how-to-stream-music-over-the-network-to-multiple-computers 
+ * paprefs - для проигрывания звука по сети https://askubuntu.com/questions/28039/how-to-stream-music-over-the-network-to-multiple-computers
  * digikam
  * pidgin
  * https://support.mozilla.org/en-US/kb/profiles-tb#w_backing-up-a-profile
@@ -956,7 +957,7 @@ Code:
 	systemctl stop lvm2-monitor.service
 
 	zypper rm snapper snapper-zypp-plugin yast2-snapper libsnapper5 grub2-snapper-plugin
-	zypper rm PackageKit PackageKit-backend-zypp PackageKit-branding-openSUSE PackageKit-gstreamer-plugin PackageKit-gtk3-module PackageKit-lang discover-backend-packagekit libpackagekit-glib2-18 
+	zypper rm PackageKit PackageKit-backend-zypp PackageKit-branding-openSUSE PackageKit-gstreamer-plugin PackageKit-gtk3-module PackageKit-lang discover-backend-packagekit libpackagekit-glib2-18
 	zypper rm btrfsprogs btrfsmaintenance btrfsprogs-udev-rules
 
 ```
@@ -972,7 +973,7 @@ ibus-lang m17n-db-lang ibus-branding-openSUSE-KDE
 
 chmod a-x /usr/bin/ibus-autostart
 ```
- * 
+ *
 
 ## ms teams
 
@@ -993,23 +994,23 @@ chmod a-x /usr/bin/ibus-autostart
 zypper installlibpulse0-32bit alsa-plugins-pulse-32bit libphonon4-32bit pavucontrol
 
 The following 64 NEW packages are going to be installed:
-  Mesa-32bit Mesa-libEGL1-32bit Mesa-libGL1-32bit Mesa-libglapi0-32bit alsa-oss-32bit alsa-plugins-pulse-32bit fontconfig-32bit libFLAC8-32bit libICE6-32bit libLLVM-32bit 
-  libSM6-32bit libX11-6-32bit libX11-xcb1-32bit libXau6-32bit libXcursor1-32bit libXdamage1-32bit libXext6-32bit libXfixes3-32bit libXi6-32bit libXinerama1-32bit libXrandr2-32bit 
-  libXrender1-32bit libXxf86vm1-32bit libasound2-32bit libdrm2-32bit libdrm_intel1-32bit libdrm_nouveau2-32bit libdrm_radeon1-32bit libelf1-32bit libexpat1-32bit libffi4-32bit 
-  libfreetype6-32bit libgbm1-32bit libglib-2_0-0-32bit libgobject-2_0-0-32bit libjson0-32bit liblcms1-32bit libmng1-32bit libmysqlclient18-32bit libogg0-32bit libpciaccess0-32bit 
-  libphonon4-32bit libpulse-mainloop-glib0-32bit libpulse0-32bit libqt4-32bit libqt4-qt3support-32bit libqt4-sql-32bit libqt4-sql-mysql-32bit libqt4-sql-sqlite-32bit 
-  libqt4-x11-32bit libsndfile1-32bit libspeex1-32bit libsqlite3-0-32bit libudev1-32bit libuuid1-32bit libvorbis0-32bit libvorbisenc2-32bit libwayland-client0-32bit 
-  libwayland-server0-32bit libwrap0-32bit libxcb-dri2-0-32bit libxcb-glx0-32bit libxcb-xfixes0-32bit libxcb1-32bit 
+  Mesa-32bit Mesa-libEGL1-32bit Mesa-libGL1-32bit Mesa-libglapi0-32bit alsa-oss-32bit alsa-plugins-pulse-32bit fontconfig-32bit libFLAC8-32bit libICE6-32bit libLLVM-32bit
+  libSM6-32bit libX11-6-32bit libX11-xcb1-32bit libXau6-32bit libXcursor1-32bit libXdamage1-32bit libXext6-32bit libXfixes3-32bit libXi6-32bit libXinerama1-32bit libXrandr2-32bit
+  libXrender1-32bit libXxf86vm1-32bit libasound2-32bit libdrm2-32bit libdrm_intel1-32bit libdrm_nouveau2-32bit libdrm_radeon1-32bit libelf1-32bit libexpat1-32bit libffi4-32bit
+  libfreetype6-32bit libgbm1-32bit libglib-2_0-0-32bit libgobject-2_0-0-32bit libjson0-32bit liblcms1-32bit libmng1-32bit libmysqlclient18-32bit libogg0-32bit libpciaccess0-32bit
+  libphonon4-32bit libpulse-mainloop-glib0-32bit libpulse0-32bit libqt4-32bit libqt4-qt3support-32bit libqt4-sql-32bit libqt4-sql-mysql-32bit libqt4-sql-sqlite-32bit
+  libqt4-x11-32bit libsndfile1-32bit libspeex1-32bit libsqlite3-0-32bit libudev1-32bit libuuid1-32bit libvorbis0-32bit libvorbisenc2-32bit libwayland-client0-32bit
+  libwayland-server0-32bit libwrap0-32bit libxcb-dri2-0-32bit libxcb-glx0-32bit libxcb-xfixes0-32bit libxcb1-32bit
 
 The following recommended package was automatically selected:
-  alsa-oss-32bit 
+  alsa-oss-32bit
 
 
-zypper in skype-4.2.0.13-suse.i586.rpm 
+zypper in skype-4.2.0.13-suse.i586.rpm
 
 The following 14 NEW packages are going to be installed:
-  libQtWebKit4-32bit libXss1-32bit libXv1-32bit libgmodule-2_0-0-32bit libgstapp-0_10-0-32bit libgstinterfaces-0_10-0-32bit libgstreamer-0_10-0-32bit liborc-0_4-0-32bit libpng12-0 
-  libwebp4-32bit libxml2-2-32bit libxslt1-32bit skype xorg-x11-libs 
+  libQtWebKit4-32bit libXss1-32bit libXv1-32bit libgmodule-2_0-0-32bit libgstapp-0_10-0-32bit libgstinterfaces-0_10-0-32bit libgstreamer-0_10-0-32bit liborc-0_4-0-32bit libpng12-0
+  libwebp4-32bit libxml2-2-32bit libxslt1-32bit skype xorg-x11-libs
 
 ```
 
@@ -1127,12 +1128,12 @@ x11uselocalhost no
 
 	To use the middle mouse button to paste whatever text has been highlighted/added to the clipboard, as is common in UNIX-like operating systems, set either middlemouse.contentLoadURL or middlemouse.paste to true in about:config. Having middlemouse.contentLoadURL enabled was the default behaviour prior to Firefox 57.
 
-	To scroll on middle-click (default for Windows browsers) set general.autoScroll to true. 
+	To scroll on middle-click (default for Windows browsers) set general.autoScroll to true.
 ```
 
 * [archLinux firefox база знаний](https://wiki.archlinux.org/index.php/Firefox#Middle-click_behavior)
 
-* выключенные дополнения 
+* выключенные дополнения
 
 ```
 	about:config
@@ -1177,7 +1178,7 @@ x11uselocalhost no
  	* проверенные пакеты https://github.com/vinifmor/bauh-files/blob/master/appimage/apps.txt
  * https://en.opensuse.org/images/1/17/Zypper-cheat-sheet-1.pdf
  * gcc++33 gcc++5 `https://download.opensuse.org/repositories/devel:/gcc/openSUSE_Leap_15.3/`
- * multimedia codecs 
+ * multimedia codecs
 
 	```bash
 		#1) Add the needed repositories:
@@ -1265,7 +1266,7 @@ x11uselocalhost no
 		zypper removerepo ya_update_oss
 	```
 
- * old repos 
+ * old repos
 
 	```bash
 		http://mirror.yandex.ru/opensuse/packman/12.3/repodata/
@@ -1276,7 +1277,7 @@ x11uselocalhost no
 	```
  * hosts
 
-	```bash 
+	```bash
 		13.80.99.124		packages.microsoft.com
 		13.80.99.124		csd-apt-weu-d-1.westeurope.cloudapp.azure.com
 
@@ -1347,7 +1348,7 @@ http://www.liberatedcomputing.net/mm2fm
 		Identify the virtual machine and time of the outage
 		Take a screenshot of the virtual machine's console and note the error messages
 		In the inventory, Right Click on the VM, select 'Suspend' for the virtual machine, the checkpoint suspend (.vmss) and memory image (.vmem)  will be generated and can be found in the datastore from the virtual machine directory
-		Convert the checkpoint suspend files (.vmss and .vmem) from the virtual machine into a core dump file using the vmss2core utility. For more information, see the Debugging Virtual Machines with the Checkpoint to Core Tool technical note, and the article Converting a snapshot file to memory dump using the vmss2core tool. 
+		Convert the checkpoint suspend files (.vmss and .vmem) from the virtual machine into a core dump file using the vmss2core utility. For more information, see the Debugging Virtual Machines with the Checkpoint to Core Tool technical note, and the article Converting a snapshot file to memory dump using the vmss2core tool.
 		Resume the virtual machine to the suspended state, then reset the virtual machine to start the GuestOS.
 		Collect logs from the GuestOS kernel leading up to the outage. For more information, contact the guest operating system vendor.
 		Collect logs from the host leading up to the outage.
@@ -1361,15 +1362,15 @@ http://www.liberatedcomputing.net/mm2fm
 
 ```bash
 
-zypper in libpulse0-32bit alsa-plugins-pulse-32bit 
+zypper in libpulse0-32bit alsa-plugins-pulse-32bit
 
 The following 10 NEW packages are going to be installed:
-  alsa-plugins-pulse-32bit libFLAC8-32bit libjson0-32bit libogg0-32bit libpulse0-32bit libsndfile1-32bit libspeex1-32bit 
-  libvorbis0-32bit libvorbisenc2-32bit libwrap0-32bit 
+  alsa-plugins-pulse-32bit libFLAC8-32bit libjson0-32bit libogg0-32bit libpulse0-32bit libsndfile1-32bit libspeex1-32bit
+  libvorbis0-32bit libvorbisenc2-32bit libwrap0-32bit
 
 ```
 
-### workstation 12 
+### workstation 12
 
 install: kernel development template
 
@@ -1414,7 +1415,7 @@ onboot=yes
 
 # rm -f /etc/udev/rules.d/70-persistent-net.rules
 # reboot
-        
+
 UPDATE your interface configuration file
 
 # vim /etc/sysconfig/networking/devices/ifcfg-eth0
@@ -1425,10 +1426,10 @@ Save and exit the file
 Restart the networking service
 
 # service network restart
-        
+
 ```
 
-### archive sparce/sparse files 
+### archive sparce/sparse files
 
 tar -czSf file.tar.gz file
 
@@ -1494,7 +1495,7 @@ Open a terminal and type (no 'sudo' is required in Rescue System mode):
 
 ## nomachine
  * https://www.nomachine.com/download
-	
+
 	```bash
 		zypper in libstdc++6-32bit
 		zypper rm nomachine
@@ -1510,7 +1511,7 @@ Open a terminal and type (no 'sudo' is required in Rescue System mode):
  * XFCE
  * Проблема с цифровой клавой
 	* http://unixforum.org/index.php?showtopic=108708&st=120&p=1263239&#entry1263239
-	
+
 	```bash
 	#!/bin/bash
 	setxkbmap -rules xorg -model pc105 -layout "ru(winkeys),us" -option 'grp:alt_shift_toggle,grp_led:scroll'
@@ -1607,4 +1608,4 @@ Open a terminal and type (no 'sudo' is required in Rescue System mode):
 ## kopete icq
 
  * http://icqserver.net/forum/topic101.html
- 
+

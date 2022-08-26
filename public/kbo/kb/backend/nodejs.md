@@ -52,13 +52,13 @@ WantedBy=multi-user.target
 
  * https://github.com/creationix/nvm
  * https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-16-04
- ```bash
- > nvm install node
- > yum install gcc-c++ ##node_gyp g++ fix
- > ## ~/.nvm/versions/node/v10.7.0/bin/node
- > 
- 
- ```
+	```bash
+		> nvm install node
+		> yum install gcc-c++ ##node_gyp g++ fix
+		> ## ~/.nvm/versions/node/v10.7.0/bin/node
+		>
+	```
+ * [debug](../frontend/vscode.md#debug)
 
 ## npm local server
 
@@ -186,7 +186,7 @@ pipe добавляют последовательные конвейеры.
 			console.log(err.message);
 		}
 		else {
-			
+
 			for (var i = 0; i<data.length; i++) {
 				console.log(data[i]);
 				}
@@ -200,25 +200,25 @@ pipe добавляют последовательные конвейеры.
 * []()
 * []()
 ```js
- var http = require('http')  
-       
-     http.get(process.argv[2], function (response) {  
-       response.setEncoding('utf8')  
-       response.on('data', console.log)  
-       response.on('error', console.error)  
-     })  
+ var http = require('http')
 
-var http = require('http')  
-     var bl = require('bl')  
-       
-     http.get(process.argv[2], function (response) {  
-       response.pipe(bl(function (err, data) {  
-         if (err)  
-           return console.error(err)  
-         data = data.toString()  
-         console.log(data.length)  
-         console.log(data)  
-       }))    
+     http.get(process.argv[2], function (response) {
+       response.setEncoding('utf8')
+       response.on('data', console.log)
+       response.on('error', console.error)
+     })
+
+var http = require('http')
+     var bl = require('bl')
+
+     http.get(process.argv[2], function (response) {
+       response.pipe(bl(function (err, data) {
+         if (err)
+           return console.error(err)
+         data = data.toString()
+         console.log(data.length)
+         console.log(data)
+       }))
      })
 ```
 

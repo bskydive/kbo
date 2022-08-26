@@ -586,6 +586,7 @@ https://stackoverflow.com/questions/7905929/how-to-test-valid-uuid-guid#13653180
 					return of();
 				})
 			).subscribe(result => console.log('file uploaded', result));
+
 			// get content
 			fileReader.onload = function () {
 				// content = this.result;
