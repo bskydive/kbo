@@ -1,12 +1,16 @@
 # Тестирование
 
+## лучшие практики
+
+ * [eslint wemake](https://sobolevn.me/2019/02/engineering-guide-to-user-stories)
+
 ## TDD
 
  * https://bespoyasov.ru/ttt-tdd/
  * [Engineering guide to writing correct User Stories](https://sobolevn.me/2019/02/engineering-guide-to-user-stories)
 
 ##  unit
-	
+
  * [принципы Unit-тестирования в сложных приложениях 2016](https://habrahabr.ru/post/310826/)
 	* Так как сообщество сходится во мнении, что нет нужды в тестировании тривиального функционала, то вполне очевидно, что чем проще код или гениальнее разработчики, тем меньше поводов создавать тесты вообще и модульные тесты в частности. И наоборот, чем сложнее код или посредственнее разработчики, тем поводов больше. Т.е., если вы в одиночку разрабатываете проект на 100К строк кода, то вы вполне можете обойтись без тестов вообще, но как только к проекту подключается еще один разработчик (не такой гениальный, как вы), то необходимость создания тестов резко возрастает. А если этот разработчик еще и junior, то тесты становятся жизненно важны, т.к. даже ваша гениальность может спасовать перед тем энтузиазмом, с которым junior вносит ошибки в ваш любимый код.
  * [property based testing](https://www.youtube.com/watch?v=H-cBhNMxlCw) [jsverify](https://github.com/jsverify/jsverify) [fast check](https://github.com/dubzzz/fast-check)
@@ -65,23 +69,31 @@
 
 ### async test асинхронные
 
- * Чтобы тесты rxjs+DOM нормально заработали, надо 
+ * Чтобы тесты rxjs+DOM нормально заработали, надо
 	* добавить в src/test.ts строку `import 'zone.js/dist/zone-patch-rxjs-fake-async';`
 	* не забыть подключить стили и сторонние библиотеки в секцию angular.json—>projects.architect.test.options
  * https://angular.io/guide/testing-components-scenarios#using-the-rxjs-scheduler-inside-fakeasync
  * https://stackoverflow.com/questions/43060886/angular-2-fakeasync-waiting-for-timeout-in-a-function-using-tick
  * https://dev.to/itnext/tools-for-rxjs-code-unit-testing-in-angular-8-apps-free-udemy-video-course-3bbj
  * https://medium.com/angular-in-depth/how-to-test-observables-a00038c7faad
- * 
- * 
- * 
+ *
+ *
+ *
 
 ### jest
 
  * [Тестирование JavaScript кода с Jest для чайников. Часть 1](https://habr.com/ru/post/502302/)
  * https://jestjs.io/docs/api
+	* https://jestjs.io/docs/mock-functions
+	* https://jestjs.io/docs/es6-class-mocks
+	* https://jestjs.io/docs/mock-function-api
+	* https://jestjs.io/docs/ecmascript-modules
+	* https://jestjs.io/docs/testing-frameworks
  * https://github.com/jsdom/jsdom
  * https://itnext.io/testing-angular-applications-with-jest-and-spectator-c05991579807?gi=e4e9f3404fe0
+ * [Jest set, clear and reset mock/spy/stub implementation](https://codewithhugo.com/jest-stub-mock-spy-set-clear/)
+	* mockClear clears only data pertaining to mock calls, which means we get a fresh dataset to assert over with toHaveBeenX methods.
+    * mockReset resets to mock to its initial implementation, on a spy makes the implementation be a noop (function that does nothing).
  * [Angular 11 - Setting up Jest](https://dev.to/alfredoperez/angular-10-setting-up-jest-2m0l)
 
 ```ts
@@ -90,6 +102,14 @@ src/tsconfig.app.json: exclude
 cypress-test/tsconfig.cypress.json:include
 .storybook/tsconfig.json:exclude
 ```
+
+ * https://www.devcurry.com/2020/09/testing-angular-component-using-jest.html
+ * https://codewithhugo.com/jest-fn-spyon-stub-mock/
+
+ * https://ordina-jworks.github.io/testing/2018/08/03/testing-angular-with-jest.html
+ * https://fireship.io/snippets/testing-rxjs-observables-with-jest/
+ * https://www.npmjs.com/package/jest-preset-angular
+
 ### spectator
 
  * https://github.com/ngneat/spectator#component-providers
@@ -190,14 +210,14 @@ cypress-test/tsconfig.cypress.json:include
 	* ограниченная поддержка hover
 	* не тестирует множественные вкладки
 	* ограниченная поддержка тестирования загрузки файлов
-	* 
+	*
  * особенности
  	* работает только как внешний инструмент для работающего сервиса
  	* не требует сторонних библиотек
 	* написан на JS
 	* более качественное тестирование
-	* 
-	* 
+	*
+	*
 ## regress регрессионные тесты
 
  * https://selenium-webdriver-book.github.io/
@@ -230,7 +250,7 @@ cypress-test/tsconfig.cypress.json:include
 
  * [Е2Е тестирование Койна](https://bespoyasov.ru/blog/coin-e2e-with-cypress/)
     * https://www.cypress.io/
- 
+
 
 ##  кроссбраузерность
 

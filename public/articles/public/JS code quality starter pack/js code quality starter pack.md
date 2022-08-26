@@ -1,16 +1,16 @@
-# JS code quality starter pack: linters, conventions, best practices 
+# JS code quality starter pack: linters, conventions, best practices
 
 [dev.to article](https://dev.to/bskydive/javascript-code-conventions-starter-pack-3jff)
 
-This article is about my view to convention building. 
+This article is about my view to convention building.
 
-It includes some basic examples including linting tools setup. 
+It includes some basic examples including linting tools setup.
 
-That can be interesting for developers who like to follow coding best practices and who want to improve their own or team code quality. 
+That can be interesting for developers who like to follow coding best practices and who want to improve their own or team code quality.
 
 As for me, I've explained and use those concepts many times. So, putting them into article will be handy.
 
-First of all you can look at my linting guide with the linter pack setup [here](https://github.com/bskydive/typescript-tspqwe-linters).
+First of all you can look at my linting guide with the linter pack setup [here](https://github.com/bskydive/code_quality_js).
 
 Also you can grab my article from git repo [here](https://gitlab.com/stepanovv/kbo/-/blob/master/public/kbo/kb/conventions/starter-conventions.md).
 

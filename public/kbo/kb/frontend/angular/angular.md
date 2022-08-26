@@ -6,17 +6,32 @@
 ## Angular
 
 1. [сравнение версий 2-10](https://www.ngdevelop.tech/angular/history/)
+	* https://github.com/angular/angular/blob/main/CHANGELOG.md
 	* общие для большинства версий изменения: версии NS/RxJS, производительность, Material компоненты
-	* 2 - typescript, dart
-	* 4 - renderer v2
-	* 5 - 2017 - HttpClientModule заменил http
-	* 6 - 2018 - angular elements(web custom elements), tree-shakable providers(providedIn:root), rxjs 6, Ivy
-	* 7 - drag and drop, node v10, service worker
-	* 8 - webworker, ES6 импорт модулей `()=>`
-	* 9 - 2020 - Ivy по-умолчанию, fullTemplateTypeCheck, strictTemplates в tsc
-	* 10 - исправили 700 и посмотрели 2000 ошибок, компонент диапазона дат
-	* 11 - harnesses for all of the components, webpack 5 experimental, ng serve --hmr, tslint deprecated, IE9/10 deprecated
-	* 12 - nullish coalescing, tailwind css, webpack 5 prod, IE11 deprecated
+	* 2016 - 2 - typescript, dart
+		* [changelog](https://github.com/angular/angular/blob/c0194e0115e723cf418f9cf8635790c621c47b31/CHANGELOG.)md#200-proprioception-reinforcement-2016-09-14
+	* 2017 - 4 - renderer v2
+		* [changelog](https://github.com/angular/angular/blob/c0194e0115e723cf418f9cf8635790c621c47b31/CHANGELOG.md#400-invisible-makeover-2017-03-23)
+	* 2017 - 5 - HttpClientModule заменил http
+		* [changelog](https://github.com/angular/angular/blob/c0194e0115e723cf418f9cf8635790c621c47b31/CHANGELOG.md#500-pentagonal-donut-2017-11-01)
+	* 2018 - 6 - angular elements(web custom elements), tree-shakable providers(providedIn:root), rxjs 6, Ivy
+		* [changelog](https://www.ngdevelop.tech/angular-cli-6-angular-material-6-features/)
+	* 2018 - 7 - drag and drop, node v10, service worker
+		* [changelog](https://blog.angular.io/version-7-of-angular-cli-prompts-virtual-scroll-drag-and-drop-and-more-c594e22e7b8c)
+	* 2019 - 8 - webworker, ES6 импорт модулей `()=>`
+		* [changelog](https://blog.angular.io/version-8-of-angular-smaller-bundles-cli-apis-and-alignment-with-the-ecosystem-af0261112a27)
+	* 2020 - 9 - Ivy по-умолчанию, fullTemplateTypeCheck, strictTemplates в tsc
+		* [changelog](https://blog.angular.io/version-9-of-angular-now-available-project-ivy-has-arrived-23c97b63cfa3)
+	* 2020 - 10 - исправили 700 и посмотрели 2000 ошибок, компонент диапазона дат
+		* [changelog](https://blog.angular.io/version-10-of-angular-now-available-78960babd41)
+	* 2020 - 11 - harnesses for all of the components, webpack 5 experimental, ng serve --hmr, tslint deprecated, IE9/10 deprecated
+		* [changelog](https://blog.angular.io/version-11-of-angular-now-available-74721b7952f7)
+	* 2021 - 12 - nullish coalescing, tailwind css, webpack 5 prod, IE11 deprecated
+		* [changelog](https://blog.angular.io/angular-v12-is-now-available-32ed51fbfd49)
+	* 2021 - 13 - new API removes the need for ComponentFactoryResolver being injected into the constructor. Ivy creates the opportunity to instantiate the component with ViewContainerRef.createComponent without creating an associated factory
+		* [changelog](https://blog.angular.io/angular-v13-is-now-available-cce66f7bc296)
+	* 2022 - 14 - Strictly Typed Reactive Forms; standalone components, directives and pipes: add imports directly in your @Component() without an @NgModule()
+		* [changelog](https://blog.angular.io/angular-v14-is-now-available-391a6db736af)
 1. Архитектура
 	* MVVM
 	* зачем - потому что автоматическое связывание data binding(единственное отличие от MVP)
@@ -32,6 +47,7 @@
 	* релиз каждые 6 мес с полной обратной совместимостью
 	* не нужно думать о совместимости версий внешних библиотек, всё включено
 	* DI - контроль количества экземпляров, изоляция, оптимизация
+	* мнения https://gist.github.com/irustm/375a9db35be6273368ac16be9e844cfa
 1. недостатки
 	* больший размер из-за Angular CLI, но после компиляции его убирают. В старом режиме JIT компилятор на борту также увеличивает объём.
 	* Приложение может быть сложным, Angular - это и полный framework, и platform с набором инструментов. Из-за этого его сложнее учить. В отличие от React тут включены по-умолчанию управление состоянием, сервисы, HTTP библиотека, DI, валидация форм, маршрутизация URL.
@@ -46,7 +62,7 @@
 	* стандартный подход к компонентам без применения ангуляр специфичного синтаксиса
 	* можно написать кастомный элемент формы, например, кастомный select.
 	* Статические компоненты рисуются без участия ангуляр, на стороне браузера
-	* динамические компоненты без применения dynamic components `componentFactoryResolver.resolveComponentFactory`, т.е. меньше кода для встраивания логики в отрисовку. 
+	* динамические компоненты без применения dynamic components `componentFactoryResolver.resolveComponentFactory`, т.е. меньше кода для встраивания логики в отрисовку.
 	* https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements `customElements.define('word-count', WordCount, { extends: 'p' });`
 	* https://angular.io/guide/elements
 	* [Elements in v6 and Beyond - Rob Wormald](https://www.youtube.com/watch?v=Z1gLFPLVJjY)
@@ -89,7 +105,7 @@
 	* `platformBrowserDynamic()` создаёт `platformModuleInjector` для platform/browser специфичных зависимостей как domsanitizer. Настраивается через platformBrowser().extraProviders
 	* можно создать дочерние ModuleInjectors при ленивой загрузке
 	* стратегии разрешения зависимостей: @Optional(), @Self(), @SkipSelf(), @Host() https://angular.io/guide/dependency-injection-in-action#make-a-dependency-optional-and-limit-search-with-host
-		* @Optional() присваивает null не найденным провайдерам сервисов. Нужен для игнорирования ошибок 
+		* @Optional() присваивает null не найденным провайдерам сервисов. Нужен для игнорирования ошибок
 		* @Self() ищет в текущем ElementInjector component или directive
 		* @SkipSelf() ищет в родительском ElementInjector
 		* @Host() ищет в component и ниже по вложенному дереву
@@ -103,14 +119,14 @@
 		```
 1. Управление экземплярами https://angular.io/guide/dependency-injection-in-action
 	* песочница, отдельные экземпляры: регистрируем в providers аннотациях компонентов https://angular.io/guide/dependency-injection-in-action#multiple-service-instances-sandboxing
-	* 
+	*
 1. Сколько у нас инжекторов, у одного модуля и трёх компонентов?
 1. Dependency injection
-	* [провайдер](https://angular.io/guide/glossary#provider) 
+	* [провайдер](https://angular.io/guide/glossary#provider)
 		* Объект, который реализует один из интерфейсов [Provider](https://angular.io/api/core/Provider)
 		* предоставляет инжектору порядок разрешения зависимости, связанной с токеном/идентификатором
 		* может предоставлять разные реализации одной и той же зависимости
-		* multi для расширения токена новыми зависимостями 
+		* multi для расширения токена новыми зависимостями
 			* https://blog.thoughtram.io/angular2/2015/11/23/multi-providers-in-angular-2.html
 
 			```ts
@@ -119,10 +135,10 @@
 				{ provide: Engine, useClass: TurboEngine, deps: [] }
 				]);
 			```
-	* [токен](https://angular.io/guide/dependency-injection-providers#dependency-injection-tokens) 
+	* [токен](https://angular.io/guide/dependency-injection-providers#dependency-injection-tokens)
 		* ключ в связке с провайдером `constructor(token: Type)`
 		* объект, который реализует интерфейс [InjectionToken](https://angular.io/api/core/InjectionToken)
-	* [инжектор](https://www.youtube.com/watch?v=Z1gLFPLVJjY) 
+	* [инжектор](https://www.youtube.com/watch?v=Z1gLFPLVJjY)
 		* Объект, который находит именованную зависимость в своём кэше, либо создаёт её используя провайдер
 		* Предоставляет и внедряет синглтон
 		* Создаются автоматом для модулей в ходе bootstrap и наследуется в иерархии компонентов
@@ -270,7 +286,7 @@
 1. связывание данных
 	```html
 		<!-- значение переменной, присвоение в свойство -->
-		<img [src]="itemImageUrl"> 
+		<img [src]="itemImageUrl">
 		<!-- просто строка, присвоение в атрибут -->
 		<app-item-detail childItem="parentItem"></app-item-detail>
 		<!-- значение переменной, присвоение в атрибут -->
@@ -311,7 +327,7 @@
 	```
 1. защита от null/undefined https://angular.io/guide/template-expression-operators
 
-	```html 
+	```html
 		<!-- Assert color is defined, even if according to the `Item` type it could be undefined. -->
 		<p>The item's color is: {{item.color!.toUpperCase()}}</p>
 		<p>The item's undeclared best by date is: {{$any(item).bestByDate}}</p>
@@ -334,20 +350,24 @@
 				selector: '[appHighlight]'
 			})
 		```
-1. Директивы 
+## Директивы
 	* https://angular.io/guide/built-in-directives
-	* [ngClass](https://angular.io/guide/built-in-directives#adding-and-removing-classes-with-ngclass) 
+	* [ngClass](https://angular.io/guide/built-in-directives#adding-and-removing-classes-with-ngclass)
 		* https://angular.io/api/common/NgClass#description
 		* `ngClass: string | string[] | Set<string> | { [klass: string]: any; }`
 
 		```html
+
 			<div [ngClass]="isSpecial ? 'special' : ''">
-			<div [ngClass]="currentClasses">
+			<div [ngClass]="currentClasses">  <!-- Лучше вместо функции ввести переменную-->
 			<some-element [ngClass]="'first second'">...</some-element>
 			<some-element [ngClass]="['first', 'second']">...</some-element>
 			<some-element [ngClass]="{'first': true, 'second': true, 'third': false}">...</some-element>
 			<some-element [ngClass]="stringExp|arrayExp|objExp">...</some-element>
 			<some-element [ngClass]="{'class1 class2 class3' : true}">...</some-element>
+
+			<div [class.active]="isActive">  <!-- так классы видно в отладчике, иначе 'class=[Object object]' -->
+			<div [class]="{'odd-row': odd, 'second': true}">
 		```
 
 		```ts
@@ -380,11 +400,36 @@
 				};
 			}
 		```
-	* 
+	*
 1. NG-FOR. TrackBy зачем нужен, преимущества.
 	* для более быстрого вычисления признака замены значений вложенного объекта в ячейке массива, быстрота перерисовки
 
-1. LifeCycle Hooks. Назовите основные, которые используете в приложении.
+## Стили Material
+
+ * scss variables лучше через миксины, не требуется делать лишние @include
+
+  ```scss
+	@mixin variables() {
+  		--color-main: #121212;
+  	}
+	// ...
+	:root {
+		.theme-light {
+			@include variables();
+			@include light-style();
+			//@include angular-material-theme(theme-light);
+		}
+		.theme-dark {
+			@include variables();
+			@include dark-style();
+			//@include angular-material-theme(theme-dark);
+		}
+	}
+	// ...
+	color: var(--color-main);
+  ```
+
+## LifeCycle Hooks. Назовите основные, которые используете в приложении.
 	* ngOnChanges()
 
 		```ts
@@ -428,7 +473,7 @@
 		* прямой доступ в DOM нежелательно использовать при рендеринге на сервере из-за ИБ
 		* можно ссылаться на директивы по имени и типу, на шаблонные переменные `#`
 		* можно читать/писать в @Input компонента
-	* [viewchild](https://medium.com/technofunnel/angular-viewchild-and-viewchildren-fde2d252b9ab) 
+	* [viewchild](https://medium.com/technofunnel/angular-viewchild-and-viewchildren-fde2d252b9ab)
 		* для доступа к DOM после рендеринга afterViewInit
 		* shadowDom/JS
 		* https://angular.io/api/core/ViewChild
@@ -465,7 +510,7 @@
 		}
 	```
 
-	* viewChildren - Директива @ViewChild отличается от @ViewChildren тем, что первая всегда вернет вам только один элемент, в то время как вторая позволяет вам находить несколько элементов, возвращая вам объект типа QueryList. 
+	* viewChildren - Директива @ViewChild отличается от @ViewChildren тем, что первая всегда вернет вам только один элемент, в то время как вторая позволяет вам находить несколько элементов, возвращая вам объект типа QueryList.
 
 	```ts
 		@ViewChildren("NgModel") domReference: QueryList<NgModel>;
@@ -496,7 +541,7 @@
 
 		ngAfterContentInit() {
 			this.input.nativeElement.focus();
-		} 
+		}
 
 		//renderer2 - сделан для SSR nodejs
 		let inputElement = this.renderer.createElement('input');
@@ -582,7 +627,7 @@
 			}
 
 		```
-	* ElementRef даёт доступ к собственному DOM 
+	* ElementRef даёт доступ к собственному DOM
 		* https://angular.io/guide/testing-components-basics#nativeelement
 		* https://angular.io/guide/attribute-directives
 		* https://angular.io/guide/dependency-injection-in-action#inject-the-components-dom-element
@@ -610,10 +655,10 @@
 	* ангуляр манкипатчит browser API - mouse/input/keyb events, xhr, promise, async/await, webworkers,
 	* распространяется на вложенные компоненты
 	* default ("CheckAlways") - the change detector goes through the view hierarchy on each VM turn to check every data-bound property in the template. In the first phase, it compares the current state of the dependent data with the previous state, and collects changes. In the second phase, it updates the page DOM to reflect any new data values.
-	* OnPush ("CheckOnce") - 
+	* OnPush ("CheckOnce") -
 		* https://angular.io/guide/lifecycle-hooks#using-change-detection-hooks
 		* https://angular.io/api/core/ChangeDetectorRef#usage-notes
-		* ручная проверка 
+		* ручная проверка
 		* поменялась @Input ссылка(не значение)
 		* DOM event(input) для связанных свойств
 		* async pipe(rxjs, promise)
@@ -640,7 +685,7 @@
 				}, 5000);
 			}
 		```
-		* detectChanges - используется вместе с detach для локальной обработаки изменений 
+		* detectChanges - используется вместе с detach для локальной обработаки изменений
 		* https://angular.io/api/core/ChangeDetectorRef#detectchanges
 1. Что такое zone.js, как он работает.
 	* https://medium.com/@overthesanity/zone-js-от-а-до-я-fdb995917968
@@ -701,7 +746,7 @@
 1. pipe конвеер
 	* `<p>Message: {{ message$ | async }}</p>` - rxjs/promise без подписок
 	* `{{ amount | currency:'EUR':'Euros '}}`
-	* 
+	*
 
 	```ts
 		import { Pipe, PipeTransform } from '@angular/core';
@@ -773,7 +818,7 @@
 			pure: false
 		})
 	```
-1. ng-content 
+1. ng-content
 	* точка сборки для вложенных компонентов
 	* transclusion или content projection
 	* https://angular.io/guide/content-projection
@@ -804,7 +849,7 @@
 			<p>Let's learn about content projection!</p>
 		</app-zippy-multislot>
 	```
-	* 
+	*
 
 
 ## Router
@@ -846,8 +891,8 @@
 	* для обоих одинаковые модели форм, но они по-разному создаются
 	* fromControl
 		* `<input>`
-		* 
-		* 
+		*
+		*
 	* formGroup
 		* `<form>`
 		* .reset()
@@ -858,7 +903,7 @@
 		* модель генерируется автоматом
 		* доступ к formGroup возможен через шаблонные переменные
 		* директивы: ngForm, ngModel, ngModelGroup
-		* не подходят для: 
+		* не подходят для:
 			* отложить валидацию до конца ввода значений
 			* анализа вводимого текста на лету
 			* динамического добавления полей ввода
@@ -871,7 +916,7 @@
 		* доступ:
 			* formGroup.controls.controlName
 			* formGroup.get('controlName)
-		* запись: 
+		* запись:
 			* formGroup.setValues(valuesObj) - полный список полей
 			* formGroup.patchValues(valuesObj) - неполный список полей
 1. валидаторы
@@ -891,26 +936,26 @@
 				}, {validator: myVal})
 			})
 		```
-	* 
-	* 
-1. 	* 
-	* 
-	* 
-	* 
-	* 
-	* 
-1. 	* 
-	* 
-	* 
-	* 
-	* 
-	* 
-1. 	* 
-	* 
-	* 
-	* 
-	* 
-	* 
+	*
+	*
+1. 	*
+	*
+	*
+	*
+	*
+	*
+1. 	*
+	*
+	*
+	*
+	*
+	*
+1. 	*
+	*
+	*
+	*
+	*
+	*
 ## Angular Material и SDK.
 
 ## HTTP/websocket

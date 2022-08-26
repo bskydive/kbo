@@ -22,7 +22,7 @@
 
  * simplescreenrecorder
  * peek - запись области в gif
- * KmCaster - нажатые клавиши
+ * KmCaster - нажатые клавиши - нужен JDK>14 https://www.oracle.com/java/technologies/downloads/#java18
  * OBS studio
 
 ## security
@@ -51,7 +51,7 @@
  * в pavucontrol выбрать воспроизведение через LADSPA Plugin, чтобы эквалайзер заработал
  * удаление pulseaudio-equalizer
     ```
-    
+
     ~/.config/pulse/default.pa
     #закомментировать module-loadspa-sink
     ### BEGIN: Equalized audio configuration
@@ -68,7 +68,7 @@
  * https://en.opensuse.org/SDB:Audio_troubleshooting#Intel_HDA_chipset
 
 	```bash
-		/etc/pulse/daemon.conf . Try changing the line default-sample-rate = 44100 in /etc/pulse/daemon.conf by default-sample-rate = 48000 and restart the PulseAudio server. 
+		/etc/pulse/daemon.conf . Try changing the line default-sample-rate = 44100 in /etc/pulse/daemon.conf by default-sample-rate = 48000 and restart the PulseAudio server.
 
 		1
 		PULSE_PROP="filter.want=echo-cancel" skype
@@ -131,9 +131,9 @@ done
 ```
 
 ```bash
-for f in *.mp4; 
-do 
-ffmpeg -i "$f" -vn -c:a libmp3lame -ar 44100 -ac 2 -ab 192k "${f/%mp4/mp3}"; 
+for f in *.mp4;
+do
+ffmpeg -i "$f" -vn -c:a libmp3lame -ar 44100 -ac 2 -ab 192k "${f/%mp4/mp3}";
 done
 
 ```
@@ -282,61 +282,223 @@ Install libreoffice-theme-oxygen or libreoffice-theme-crystal and then follow  (
 
 ## HARDWARE
 
+### графический планшет
+
+ * krita из discover
+ * https://www.x.org/archive//X11R7.5/doc/man/man4/evdev.4.html
+ * http://digimend.github.io/support/howto/drivers/evdev/
+ * https://wiki.archlinux.org/title/Xorg#Input_devices
+ * xp-pen
+	 * https://www.xp-pen.com/download-51.html
+	 * https://www.youtube.com/watch?v=bnrtPoo6-d8
+	 * включить тачпад
+	 * отправить тачпад на второй монитор
+
+		```bash
+		xrandr
+		xinput
+		xinput map-to-input $idXinput $idXrandr
+
+		```
+	*
+		```bash
+		# xinput list
+		⎡ Virtual core pointer                          id=2    [master pointer  (3)]
+		⎜   ↳ Virtual core XTEST pointer                id=4    [slave  pointer  (2)]
+		⎜   ↳ SIGMACHIP USB Keyboard Consumer Control   id=9    [slave  pointer  (2)]
+		⎜   ↳ A4Tech USB Mouse                          id=11   [slave  pointer  (2)]
+		⎜   ↳ XP-PEN star06c                            id=13   [slave  pointer  (2)]
+		⎜   ↳ XP-PEN star06c Mouse                      id=16   [slave  pointer  (2)]
+		⎣ Virtual core keyboard                         id=3    [master keyboard (2)]
+			↳ Virtual core XTEST keyboard               id=5    [slave  keyboard (3)]
+			↳ Power Button                              id=6    [slave  keyboard (3)]
+			↳ Power Button                              id=7    [slave  keyboard (3)]
+			↳ SIGMACHIP USB Keyboard                    id=8    [slave  keyboard (3)]
+			↳ SIGMACHIP USB Keyboard System Control     id=10   [slave  keyboard (3)]
+			↳ SIGMACHIP USB Keyboard Consumer Control   id=12   [slave  keyboard (3)]
+			↳ XP-PEN star06c Keyboard                   id=14   [slave  keyboard (3)]
+			↳ XP-PEN star06c                            id=15   [slave  keyboard (3)]
+
+		# lsusb
+		Bus 004 Device 004: ID 0451:8140 Texas Instruments, Inc. TUSB8041 4-Port Hub
+		Bus 004 Device 003: ID 2001:4a00 D-Link Corp.
+		Bus 004 Device 002: ID 0451:8140 Texas Instruments, Inc. TUSB8041 4-Port Hub
+		Bus 004 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+		Bus 003 Device 008: ID 0451:3410 Texas Instruments, Inc. TUSB3410 Microcontroller
+		# Bus 003 Device 009: ID 28bd:0062
+		Bus 003 Device 004: ID 0451:8142 Texas Instruments, Inc. TUSB8041 4-Port Hub
+		Bus 003 Device 007: ID 09da:c10a A4Tech Co., Ltd.
+		Bus 003 Device 005: ID 1c4f:0026 SiGma Micro Keyboard
+		Bus 003 Device 003: ID 1a40:0101 Terminus Technology Inc. Hub
+		Bus 003 Device 002: ID 0451:8142 Texas Instruments, Inc. TUSB8041 4-Port Hub
+		Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+		Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+		Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+
+
+		# cat /usr/share/X11/xorg.conf.d/10-evdev.conf
+		Section "InputClass"
+				Identifier "evdev pointer catchall"
+				MatchIsPointer "on"
+				MatchDevicePath "/dev/input/event*"
+				Driver "evdev"
+		EndSection
+
+		Section "InputClass"
+				Identifier "evdev keyboard catchall"
+				MatchIsKeyboard "on"
+				MatchDevicePath "/dev/input/event*"
+				Driver "evdev"
+		EndSection
+
+		Section "InputClass"
+				Identifier "evdev touchpad catchall"
+				MatchIsTouchpad "on"
+				MatchDevicePath "/dev/input/event*"
+				Driver "evdev"
+		EndSection
+
+		Section "InputClass"
+				Identifier "evdev tablet catchall"
+				MatchIsTablet "on"
+				MatchDevicePath "/dev/input/event*"
+				Driver "evdev"
+		EndSection
+
+		Section "InputClass"
+				Identifier "evdev touchscreen catchall"
+				MatchIsTouchscreen "on"
+				MatchDevicePath "/dev/input/event*"
+				Driver "evdev"
+		EndSection
+
+		# cat >> /usr/share/X11/xorg.conf.d/52-tablet.conf
+		Section "InputClass"
+			Identifier "XP-PEN star06c Mouse"
+			MatchDriver "evdev"
+			MatchIsPointer "on"
+			MatchProduct "keyword"
+			MatchDevicePath "/dev/input/event19" # not id! see list-props device node
+			# Apply custom Options below.
+			# XP-PEN star06c Mouse                      id=16   [slave  pointer  (2)]
+		EndSection
+
+		Section "InputClass"
+			Identifier "XP-PEN star06c Keyboard"
+			MatchDriver "evdev"
+			MatchIsTablet "on"
+			MatchProduct "keyword"
+			MatchDevicePath "/dev/input/event22" # not id! see list-props device node
+			# Apply custom Options below.
+			# XP-PEN star06c Keyboard                   id=14   [slave  keyboard (3)]
+		EndSection
+
+		# xinput list-props "XP-PEN star06c Keyboard"
+		Device 'XP-PEN star06c Keyboard':
+				Device Enabled (154):   1
+				Coordinate Transformation Matrix (156): 1.000000, 0.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000, 0.000000, 1.000000
+				libinput Send Events Modes Available (276):     1, 0
+				libinput Send Events Mode Enabled (277):        0, 0
+				libinput Send Events Mode Enabled Default (278):        0, 0
+				Device Node (279):      "/dev/input/event22"
+				Device Product ID (280):        10429, 98
+
+		# xinput list-props "XP-PEN star06c Mouse"
+		Device 'XP-PEN star06c Mouse':
+				Device Enabled (154):   1
+				Coordinate Transformation Matrix (156): 1.000000, 0.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000, 0.000000, 1.000000
+				libinput Natural Scrolling Enabled (291):       0
+				libinput Natural Scrolling Enabled Default (292):       0
+				libinput Scroll Methods Available (295):        0, 0, 1
+				libinput Scroll Method Enabled (296):   0, 0, 0
+				libinput Scroll Method Enabled Default (297):   0, 0, 0
+				libinput Button Scrolling Button (298): 2
+				libinput Button Scrolling Button Default (299): 2
+				libinput Middle Emulation Enabled (300):        0
+				libinput Middle Emulation Enabled Default (301):        0
+				libinput Accel Speed (302):     0.000000
+				libinput Accel Speed Default (303):     0.000000
+				libinput Accel Profiles Available (304):        1, 1
+				libinput Accel Profile Enabled (305):   1, 0
+				libinput Accel Profile Enabled Default (306):   1, 0
+				libinput Calibration Matrix (624):      1.000000, 0.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000, 0.000000, 1.000000
+				libinput Calibration Matrix Default (625):      1.000000, 0.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000, 0.000000, 1.000000
+				libinput Left Handed Enabled (307):     0
+				libinput Left Handed Enabled Default (308):     0
+				libinput Send Events Modes Available (276):     1, 0
+				libinput Send Events Mode Enabled (277):        0, 0
+				libinput Send Events Mode Enabled Default (278):        0, 0
+				Device Node (279):      "/dev/input/event19"
+				Device Product ID (280):        10429, 98
+				libinput Drag Lock Buttons (293):       <no items>
+				libinput Horizontal Scroll Enabled (294):       1
+
+				# xinput get-button-map "XP-PEN star06c Keyboard"
+				device has no buttons
+
+				# xinput get-button-map "XP-PEN star06c Mouse"
+				1 2 3 4 5 6 7
+
+				xinput test 'XP-PEN star06c Keyboard'
+				key press   37 # wheel
+				key press   21
+		```
+
 ### info
 
  * https://mintdewdrop.wordpress.com/2013/05/04/inxi/
 
 	```bash
 		inxi -G
-		#	Graphics:  Device-1: NVIDIA GP107 [GeForce GTX 1050 Ti] driver: nvidia v: 390.141 
-		#			Display: server: X.Org 1.20.3 driver: nvidia unloaded: fbdev,modesetting,nouveau,vesa resolution: 2560x1440 
-		#			OpenGL: renderer: GeForce GTX 1050 Ti/PCIe/SSE2 v: 4.6.0 NVIDIA 390.141 
+		#	Graphics:  Device-1: NVIDIA GP107 [GeForce GTX 1050 Ti] driver: nvidia v: 390.141
+		#			Display: server: X.Org 1.20.3 driver: nvidia unloaded: fbdev,modesetting,nouveau,vesa resolution: 2560x1440
+		#			OpenGL: renderer: GeForce GTX 1050 Ti/PCIe/SSE2 v: 4.6.0 NVIDIA 390.141
 		inxi -b
-		#	System:    Host: linux-tltj Kernel: 5.3.18-lp152.72-default x86_64 bits: 64 Console: tty 7 Distro: openSUSE Leap 15.2 
-		#	Machine:   Type: Desktop Mobo: Micro-Star model: B450M PRO-VDH V2 (MS-7A38) v: 6.0 serial: IC16298648 
-		#			UEFI: American Megatrends v: 8.81 date: 08/19/2019 
-		#	CPU:       8-Core: AMD Ryzen 7 3700X type: MT MCP speed: 2822 MHz min/max: 2200/3600 MHz 
-		#	Graphics:  Device-1: NVIDIA GP107 [GeForce GTX 1050 Ti] driver: nvidia v: 390.141 
-		#			Display: server: X.Org 1.20.3 driver: nvidia unloaded: fbdev,modesetting,nouveau,vesa resolution: 2560x1440 
-		#			OpenGL: renderer: GeForce GTX 1050 Ti/PCIe/SSE2 v: 4.6.0 NVIDIA 390.141 
-		#	Network:   Device-1: Realtek RTL8111/8168/8411 PCI Express Gigabit Ethernet driver: r8169 
-		#	Drives:    Local Storage: total: 670.70 GiB used: 293.01 GiB (43.7%) 
-		#	Info:      Processes: 362 Uptime: 9h 34m Memory: 31.30 GiB used: 3.96 GiB (12.7%) Shell: bash inxi: 3.1.00 
+		#	System:    Host: linux-tltj Kernel: 5.3.18-lp152.72-default x86_64 bits: 64 Console: tty 7 Distro: openSUSE Leap 15.2
+		#	Machine:   Type: Desktop Mobo: Micro-Star model: B450M PRO-VDH V2 (MS-7A38) v: 6.0 serial: IC16298648
+		#			UEFI: American Megatrends v: 8.81 date: 08/19/2019
+		#	CPU:       8-Core: AMD Ryzen 7 3700X type: MT MCP speed: 2822 MHz min/max: 2200/3600 MHz
+		#	Graphics:  Device-1: NVIDIA GP107 [GeForce GTX 1050 Ti] driver: nvidia v: 390.141
+		#			Display: server: X.Org 1.20.3 driver: nvidia unloaded: fbdev,modesetting,nouveau,vesa resolution: 2560x1440
+		#			OpenGL: renderer: GeForce GTX 1050 Ti/PCIe/SSE2 v: 4.6.0 NVIDIA 390.141
+		#	Network:   Device-1: Realtek RTL8111/8168/8411 PCI Express Gigabit Ethernet driver: r8169
+		#	Drives:    Local Storage: total: 670.70 GiB used: 293.01 GiB (43.7%)
+		#	Info:      Processes: 362 Uptime: 9h 34m Memory: 31.30 GiB used: 3.96 GiB (12.7%) Shell: bash inxi: 3.1.00
 		inxi -D
-		#	Drives:    Local Storage: total: 670.70 GiB used: 300.07 GiB (44.7%) 
-		#			ID-1: /dev/sda vendor: Samsung model: MZ7KH480HAHQ-00005 size: 447.13 GiB 
+		#	Drives:    Local Storage: total: 670.70 GiB used: 300.07 GiB (44.7%)
+		#			ID-1: /dev/sda vendor: Samsung model: MZ7KH480HAHQ-00005 size: 447.13 GiB
 		#			ID-2: /dev/sdb vendor: Intel model: SSDSC2KB240G8 size: 223.57 GiB
 		inxi --battery
 		# PC
 		inxi -F
-		#	System:    Host: linux-tltj Kernel: 5.3.18-lp152.78-default x86_64 bits: 64 Desktop: KDE Plasma 5.18.6 
-		#			Distro: openSUSE Leap 15.2 
-		#	Machine:   Type: Desktop Mobo: Micro-Star model: B450M PRO-VDH V2 (MS-7A38) v: 6.0 serial: <superuser/root required> 
-		#			UEFI: American Megatrends v: 8.81 date: 08/19/2019 
-		#	CPU:       Topology: 8-Core model: AMD Ryzen 7 3700X bits: 64 type: MT MCP L2 cache: 4096 KiB 
-		#			Speed: 2188 MHz min/max: 2200/3600 MHz Core speeds (MHz): 1: 2188 2: 2199 3: 2483 4: 2188 5: 2227 6: 2092 7: 2182 
-		#			8: 2161 9: 2259 10: 2200 11: 2212 12: 2154 13: 2199 14: 2160 15: 2200 16: 2199 
-		#	Graphics:  Device-1: NVIDIA GP107 [GeForce GTX 1050 Ti] driver: nvidia v: 390.143 
-		#			Display: x11 server: X.Org 1.20.3 driver: nvidia unloaded: fbdev,modesetting,nouveau,vesa 
-		#			resolution: 2560x1440~60Hz 
-		#			OpenGL: renderer: GeForce GTX 1050 Ti/PCIe/SSE2 v: 4.6.0 NVIDIA 390.143 
-		#	Audio:     Device-1: NVIDIA GP107GL High Definition Audio driver: snd_hda_intel 
-		#			Device-2: Advanced Micro Devices [AMD] Starship/Matisse HD Audio driver: snd_hda_intel 
-		#			Sound Server: ALSA v: k5.3.18-lp152.78-default 
-		#	Network:   Device-1: Realtek RTL8111/8168/8411 PCI Express Gigabit Ethernet driver: r8169 
-		#			IF: eth0 state: down mac: 00:d8:61:2e:90:2b 
-		#			Device-2: D-Link type: USB driver: ax88179_178a 
-		#			IF: eth1 state: up speed: 100 Mbps duplex: full mac: 00:ad:24:3e:4d:79 
-		#			IF-ID-1: vmnet1 state: unknown speed: N/A duplex: N/A mac: 00:50:56:c0:00:01 
-		#			IF-ID-2: vmnet8 state: unknown speed: N/A duplex: N/A mac: 00:50:56:c0:00:08 
-		#	Drives:    Local Storage: total: 670.70 GiB used: 258.84 GiB (38.6%) 
-		#			ID-1: /dev/sda vendor: Samsung model: MZ7KH480HAHQ-00005 size: 447.13 GiB 
-		#			ID-2: /dev/sdb vendor: Intel model: SSDSC2KB240G8 size: 223.57 GiB 
-		#	Partition: ID-1: / size: 113.68 GiB used: 92.21 GiB (81.1%) fs: ext4 dev: /dev/sdb2 
-		#	Swap:      ID-1: swap-1 type: partition size: 4.00 GiB used: 0 KiB (0.0%) dev: /dev/sdb3 
-		#	Sensors:   System Temperatures: cpu: 56.8 C mobo: 41.0 C gpu: nvidia temp: 40 C 
-		#			Fan Speeds (RPM): fan-1: 0 fan-2: 2360 fan-3: 1202 fan-4: 0 fan-5: 0 gpu: nvidia fan: 20% 
-		#	Info:      Processes: 328 Uptime: 2h 04m Memory: 31.30 GiB used: 3.37 GiB (10.8%) Shell: bash inxi: 3.1.00 
+		#	System:    Host: linux-tltj Kernel: 5.3.18-lp152.78-default x86_64 bits: 64 Desktop: KDE Plasma 5.18.6
+		#			Distro: openSUSE Leap 15.2
+		#	Machine:   Type: Desktop Mobo: Micro-Star model: B450M PRO-VDH V2 (MS-7A38) v: 6.0 serial: <superuser/root required>
+		#			UEFI: American Megatrends v: 8.81 date: 08/19/2019
+		#	CPU:       Topology: 8-Core model: AMD Ryzen 7 3700X bits: 64 type: MT MCP L2 cache: 4096 KiB
+		#			Speed: 2188 MHz min/max: 2200/3600 MHz Core speeds (MHz): 1: 2188 2: 2199 3: 2483 4: 2188 5: 2227 6: 2092 7: 2182
+		#			8: 2161 9: 2259 10: 2200 11: 2212 12: 2154 13: 2199 14: 2160 15: 2200 16: 2199
+		#	Graphics:  Device-1: NVIDIA GP107 [GeForce GTX 1050 Ti] driver: nvidia v: 390.143
+		#			Display: x11 server: X.Org 1.20.3 driver: nvidia unloaded: fbdev,modesetting,nouveau,vesa
+		#			resolution: 2560x1440~60Hz
+		#			OpenGL: renderer: GeForce GTX 1050 Ti/PCIe/SSE2 v: 4.6.0 NVIDIA 390.143
+		#	Audio:     Device-1: NVIDIA GP107GL High Definition Audio driver: snd_hda_intel
+		#			Device-2: Advanced Micro Devices [AMD] Starship/Matisse HD Audio driver: snd_hda_intel
+		#			Sound Server: ALSA v: k5.3.18-lp152.78-default
+		#	Network:   Device-1: Realtek RTL8111/8168/8411 PCI Express Gigabit Ethernet driver: r8169
+		#			IF: eth0 state: down mac: 00:d8:61:2e:90:2b
+		#			Device-2: D-Link type: USB driver: ax88179_178a
+		#			IF: eth1 state: up speed: 100 Mbps duplex: full mac: 00:ad:24:3e:4d:79
+		#			IF-ID-1: vmnet1 state: unknown speed: N/A duplex: N/A mac: 00:50:56:c0:00:01
+		#			IF-ID-2: vmnet8 state: unknown speed: N/A duplex: N/A mac: 00:50:56:c0:00:08
+		#	Drives:    Local Storage: total: 670.70 GiB used: 258.84 GiB (38.6%)
+		#			ID-1: /dev/sda vendor: Samsung model: MZ7KH480HAHQ-00005 size: 447.13 GiB
+		#			ID-2: /dev/sdb vendor: Intel model: SSDSC2KB240G8 size: 223.57 GiB
+		#	Partition: ID-1: / size: 113.68 GiB used: 92.21 GiB (81.1%) fs: ext4 dev: /dev/sdb2
+		#	Swap:      ID-1: swap-1 type: partition size: 4.00 GiB used: 0 KiB (0.0%) dev: /dev/sdb3
+		#	Sensors:   System Temperatures: cpu: 56.8 C mobo: 41.0 C gpu: nvidia temp: 40 C
+		#			Fan Speeds (RPM): fan-1: 0 fan-2: 2360 fan-3: 1202 fan-4: 0 fan-5: 0 gpu: nvidia fan: 20%
+		#	Info:      Processes: 328 Uptime: 2h 04m Memory: 31.30 GiB used: 3.37 GiB (10.8%) Shell: bash inxi: 3.1.00
 
 	```
 
@@ -352,9 +514,9 @@ noop [deadline] cfq
 в настройках ядра yast
 
 известная проблема с kworker.
- В качестве временного решения обычно рекомендуют либо 
-acpi=noirq 
-в параметрах ядра, либо 
+ В качестве временного решения обычно рекомендуют либо
+acpi=noirq
+в параметрах ядра, либо
 echo disable > /sys/firmware/acpi/interrupts/gpeXX где XX - номер проблемного IRQ
 
 ### acpi apic
@@ -395,7 +557,7 @@ acpitool  -W 17
   18. UHC5        S4    *enabled   pci:0000:00:13.1
   19. UHC6        S4    *enabled   pci:0000:00:13.2
   20. UHC7        S4    *enabled   pci:0000:00:14.5
-  21. PWRB        S4    *enabled 
+  21. PWRB        S4    *enabled
 
 ```
 
@@ -555,7 +717,7 @@ acpitool  -W 17
 
 
 		Now follows a summary of the probes I have just done.
-		Just press ENTER to continue: 
+		Just press ENTER to continue:
 
 		Driver `nct6775':
 		* ISA bus, address 0xa20
@@ -570,13 +732,13 @@ acpitool  -W 17
 		k10temp-pci-00c3
 
 		Adapter: PCI adapter
-		Vcore:        +0.95 V  
-		Vsoc:         +1.01 V  
-		Tdie:         +58.8°C  
-		Tctl:         +58.8°C  
-		Tccd1:        +42.8°C  
-		Icore:       +11.00 A  
-		Isoc:         +6.50 A  
+		Vcore:        +0.95 V
+		Vsoc:         +1.01 V
+		Tdie:         +58.8°C
+		Tctl:         +58.8°C
+		Tccd1:        +42.8°C
+		Icore:       +11.00 A
+		Isoc:         +6.50 A
 
 		nct6795-isa-0a20
 		Adapter: ISA adapter
@@ -606,15 +768,46 @@ acpitool  -W 17
 		AUXTIN1:               -128.0°C    sensor = thermistor
 		AUXTIN2:                +46.0°C    sensor = thermistor
 		AUXTIN3:                 -3.0°C    sensor = thermistor
-		SMBUSMASTER 0:          +58.0°C  
-		PCH_CHIP_CPU_MAX_TEMP:   +0.0°C  
-		PCH_CHIP_TEMP:           +0.0°C  
-		PCH_CPU_TEMP:            +0.0°C  
+		SMBUSMASTER 0:          +58.0°C
+		PCH_CHIP_CPU_MAX_TEMP:   +0.0°C
+		PCH_CHIP_TEMP:           +0.0°C
+		PCH_CPU_TEMP:            +0.0°C
 		intrusion0:            ALARM
 		intrusion1:            ALARM
 		beep_enable:           disabled
 
  ```
+
+## gpu video graphics видеокарта
+
+ * выскакивает переключение дисплеев https://bugs.kde.org/show_bug.cgi?id=426496
+	* `plasmashell --replace `
+	* https://www.reddit.com/r/kde/comments/oum1hr/issue_with_kde_plasma_switching_between_two/
+	* https://forums.opensuse.org/showthread.php/564076-2nd-Monitor-Shutoff-upon-grub-to-Leap-on-During-Boot
+ * встроенная видеокарта Процессор AMD Ryzen 7 PRO 5750G
+	* https://en.opensuse.org/SDB:AMDGPU
+	* https://askubuntu.com/questions/441040/failed-to-get-size-of-gamma-for-output-default-when-trying-to-add-new-screen-res
+
+	```bash
+		vi /etc/default/grub
+		GRUB_GFXMODE=1920x1080
+		grub2-mkconfig -o /boot/grub2/grub.cfg
+		grub2-script-check /boot/grub2/grub.cfg;echo $?
+	```
+	* не сработало
+		```bash
+			xrandr -q
+			cvt 1920 1080 75
+				# 1920x1080 74.91 Hz (CVT 2.07M9) hsync: 84.64 kHz; pclk: 220.75 MHz
+				Modeline "1920x1080_75.00"  220.75  1920 2064 2264 2608  1080 1083 1088 1130 -hsync +vsync
+			xrandr --newmode "1920x1080_75.00"  220.75  1920 2064 2264 2608  1080 1083 1088 1130 -hsync +vsync
+			xrandr -q
+			xrandr --addmode primary 1920x1080_60.00
+			xrandr --output default --gamma 0:0:0 --mode 1980x1080_75.00
+			xrandr --newmode "1920x1080_60.00"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
+		```
+	* https://askubuntu.com/questions/1317748/any-issues-running-20-04-with-a-ryzen-5000-cpu
+
 ## kde
 
 
@@ -646,6 +839,10 @@ Code:
 	* https://github.com/Drag13/HabrSanitizer
 ## installation migration OS
 
+ * flatpak
+	* `zypper in flatpak`
+	* от пользователя! flatpak `flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo`
+	* или в discover - настройка - add flathub
  * включить numlock
  * удалить snapper packagekit
  * выключить проигрыватель на экране блокировки
@@ -676,7 +873,7 @@ Code:
  * установить ключи в bb, gh, gl, удалённые ПК
  * переключение окон - компактный без группировки по столам
  * настроить короткий формат даты для Dolphin в астройках локали DD.MM.YYYY
- * настроить полный формат даты для виджета часов на панели в настройках локали  
+ * настроить полный формат даты для виджета часов на панели в настройках локали
 	* ddd dd.MM.yyyy
  * kate
  * konsole
@@ -720,9 +917,9 @@ Code:
  * nvm
 	* !!! сделать снимок ФС/ВМ
  	* `npm i -g sass npm-check pm2 http-server`
+	* https://medium.com/the-tech-bench/getting-visual-studio-code-and-nvm-working-together-252ec0300895
 ### old
 
- * flatpak `flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo` далее `Discover` или в discover - настройка - add flathub
  * evolution - через discover+flathub - поиск - evolution - кликнуть по пакету - источники - flathub
 	* https://wiki.gnome.org/Apps/Evolution/EWS/OAuth2
 	* https://wiki.gnome.org/Apps/Evolution/Flatpak
@@ -735,7 +932,7 @@ Code:
 		rm /var/lib/flatpak/repo
 	```
  * pulseaudio-equalizer
- * paprefs - для проигрывания звука по сети https://askubuntu.com/questions/28039/how-to-stream-music-over-the-network-to-multiple-computers 
+ * paprefs - для проигрывания звука по сети https://askubuntu.com/questions/28039/how-to-stream-music-over-the-network-to-multiple-computers
  * digikam
  * pidgin
  * https://support.mozilla.org/en-US/kb/profiles-tb#w_backing-up-a-profile
@@ -760,7 +957,7 @@ Code:
 	systemctl stop lvm2-monitor.service
 
 	zypper rm snapper snapper-zypp-plugin yast2-snapper libsnapper5 grub2-snapper-plugin
-	zypper rm PackageKit PackageKit-backend-zypp PackageKit-branding-openSUSE PackageKit-gstreamer-plugin PackageKit-gtk3-module PackageKit-lang discover-backend-packagekit libpackagekit-glib2-18 
+	zypper rm PackageKit PackageKit-backend-zypp PackageKit-branding-openSUSE PackageKit-gstreamer-plugin PackageKit-gtk3-module PackageKit-lang discover-backend-packagekit libpackagekit-glib2-18
 	zypper rm btrfsprogs btrfsmaintenance btrfsprogs-udev-rules
 
 ```
@@ -776,7 +973,7 @@ ibus-lang m17n-db-lang ibus-branding-openSUSE-KDE
 
 chmod a-x /usr/bin/ibus-autostart
 ```
- * 
+ *
 
 ## ms teams
 
@@ -797,23 +994,23 @@ chmod a-x /usr/bin/ibus-autostart
 zypper installlibpulse0-32bit alsa-plugins-pulse-32bit libphonon4-32bit pavucontrol
 
 The following 64 NEW packages are going to be installed:
-  Mesa-32bit Mesa-libEGL1-32bit Mesa-libGL1-32bit Mesa-libglapi0-32bit alsa-oss-32bit alsa-plugins-pulse-32bit fontconfig-32bit libFLAC8-32bit libICE6-32bit libLLVM-32bit 
-  libSM6-32bit libX11-6-32bit libX11-xcb1-32bit libXau6-32bit libXcursor1-32bit libXdamage1-32bit libXext6-32bit libXfixes3-32bit libXi6-32bit libXinerama1-32bit libXrandr2-32bit 
-  libXrender1-32bit libXxf86vm1-32bit libasound2-32bit libdrm2-32bit libdrm_intel1-32bit libdrm_nouveau2-32bit libdrm_radeon1-32bit libelf1-32bit libexpat1-32bit libffi4-32bit 
-  libfreetype6-32bit libgbm1-32bit libglib-2_0-0-32bit libgobject-2_0-0-32bit libjson0-32bit liblcms1-32bit libmng1-32bit libmysqlclient18-32bit libogg0-32bit libpciaccess0-32bit 
-  libphonon4-32bit libpulse-mainloop-glib0-32bit libpulse0-32bit libqt4-32bit libqt4-qt3support-32bit libqt4-sql-32bit libqt4-sql-mysql-32bit libqt4-sql-sqlite-32bit 
-  libqt4-x11-32bit libsndfile1-32bit libspeex1-32bit libsqlite3-0-32bit libudev1-32bit libuuid1-32bit libvorbis0-32bit libvorbisenc2-32bit libwayland-client0-32bit 
-  libwayland-server0-32bit libwrap0-32bit libxcb-dri2-0-32bit libxcb-glx0-32bit libxcb-xfixes0-32bit libxcb1-32bit 
+  Mesa-32bit Mesa-libEGL1-32bit Mesa-libGL1-32bit Mesa-libglapi0-32bit alsa-oss-32bit alsa-plugins-pulse-32bit fontconfig-32bit libFLAC8-32bit libICE6-32bit libLLVM-32bit
+  libSM6-32bit libX11-6-32bit libX11-xcb1-32bit libXau6-32bit libXcursor1-32bit libXdamage1-32bit libXext6-32bit libXfixes3-32bit libXi6-32bit libXinerama1-32bit libXrandr2-32bit
+  libXrender1-32bit libXxf86vm1-32bit libasound2-32bit libdrm2-32bit libdrm_intel1-32bit libdrm_nouveau2-32bit libdrm_radeon1-32bit libelf1-32bit libexpat1-32bit libffi4-32bit
+  libfreetype6-32bit libgbm1-32bit libglib-2_0-0-32bit libgobject-2_0-0-32bit libjson0-32bit liblcms1-32bit libmng1-32bit libmysqlclient18-32bit libogg0-32bit libpciaccess0-32bit
+  libphonon4-32bit libpulse-mainloop-glib0-32bit libpulse0-32bit libqt4-32bit libqt4-qt3support-32bit libqt4-sql-32bit libqt4-sql-mysql-32bit libqt4-sql-sqlite-32bit
+  libqt4-x11-32bit libsndfile1-32bit libspeex1-32bit libsqlite3-0-32bit libudev1-32bit libuuid1-32bit libvorbis0-32bit libvorbisenc2-32bit libwayland-client0-32bit
+  libwayland-server0-32bit libwrap0-32bit libxcb-dri2-0-32bit libxcb-glx0-32bit libxcb-xfixes0-32bit libxcb1-32bit
 
 The following recommended package was automatically selected:
-  alsa-oss-32bit 
+  alsa-oss-32bit
 
 
-zypper in skype-4.2.0.13-suse.i586.rpm 
+zypper in skype-4.2.0.13-suse.i586.rpm
 
 The following 14 NEW packages are going to be installed:
-  libQtWebKit4-32bit libXss1-32bit libXv1-32bit libgmodule-2_0-0-32bit libgstapp-0_10-0-32bit libgstinterfaces-0_10-0-32bit libgstreamer-0_10-0-32bit liborc-0_4-0-32bit libpng12-0 
-  libwebp4-32bit libxml2-2-32bit libxslt1-32bit skype xorg-x11-libs 
+  libQtWebKit4-32bit libXss1-32bit libXv1-32bit libgmodule-2_0-0-32bit libgstapp-0_10-0-32bit libgstinterfaces-0_10-0-32bit libgstreamer-0_10-0-32bit liborc-0_4-0-32bit libpng12-0
+  libwebp4-32bit libxml2-2-32bit libxslt1-32bit skype xorg-x11-libs
 
 ```
 
@@ -931,12 +1128,12 @@ x11uselocalhost no
 
 	To use the middle mouse button to paste whatever text has been highlighted/added to the clipboard, as is common in UNIX-like operating systems, set either middlemouse.contentLoadURL or middlemouse.paste to true in about:config. Having middlemouse.contentLoadURL enabled was the default behaviour prior to Firefox 57.
 
-	To scroll on middle-click (default for Windows browsers) set general.autoScroll to true. 
+	To scroll on middle-click (default for Windows browsers) set general.autoScroll to true.
 ```
 
 * [archLinux firefox база знаний](https://wiki.archlinux.org/index.php/Firefox#Middle-click_behavior)
 
-* выключенные дополнения 
+* выключенные дополнения
 
 ```
 	about:config
@@ -968,13 +1165,6 @@ x11uselocalhost no
 	turning off hardware acceleration in preferences > advanced > general
 ```
 
-## vpn
-
- * http://code.google.com/p/vpnpptp/downloads/detail?name=vpnpptp_setup-ru-Linux-x86_64-Install.tar.gz&can=2&q=
- * http://forums.opensuse.org/p-russian/dhydhdhdhdhundhdhdh/gnome/453520-networkmanager-l2tp.html
- * http://code.google.com/p/vpnpptp/downloads/detail?name=xroot-0.0.6-1.x86_64.rpm&can=2&q=
-
-
 ## thunderbird
 
  * http://kb.mozillazine.org/IMAP:_advanced_account_configuration
@@ -987,7 +1177,8 @@ x11uselocalhost no
  * https://appimage.github.io/
  	* проверенные пакеты https://github.com/vinifmor/bauh-files/blob/master/appimage/apps.txt
  * https://en.opensuse.org/images/1/17/Zypper-cheat-sheet-1.pdf
- * multimedia codecs 
+ * gcc++33 gcc++5 `https://download.opensuse.org/repositories/devel:/gcc/openSUSE_Leap_15.3/`
+ * multimedia codecs
 
 	```bash
 		#1) Add the needed repositories:
@@ -1011,6 +1202,13 @@ x11uselocalhost no
 		zypper addrepo -f https://download.nvidia.com/opensuse/leap/15.2 nvidia
 		#The following command should automatically install the correct driver for your card:
 		zypper install-new-recommends --repo https://download.nvidia.com/opensuse/leap/15.2
+
+		#tumbleweed https://forums.opensuse.org/showthread.php/523474-Multimedia-Guide-for-openSUSE-Tumbleweed
+		zypper ar -f http://packman.inode.at/suse/openSUSE_Tumbleweed/ packman
+		zypper ar -f http://opensuse-guide.org/repo/openSUSE_Tumbleweed/ libdvdcss
+		zypper ref
+
+		zypper install libxine2-codecs ffmpeg lame gstreamer-0_10-plugins-good gstreamer-0_10-plugins-bad gstreamer-0_10-plugins-ugly gstreamer-0_10-plugins-bad-orig-addon gstreamer-0_10-plugins-good-extra gstreamer-0_10-plugins-ugly-orig-addon gstreamer-0_10-plugins-ffmpeg libdvdcss2 dvdauthor07 gstreamer-plugins-base gstreamer-plugins-bad gstreamer-plugins-bad-orig-addon gstreamer-plugins-good gstreamer-plugins-ugly gstreamer-plugins-ugly-orig-addon gstreamer-plugins-good-extra gstreamer-0_10-plugins-fluendo_mpegdemux gstreamer-0_10-plugins-fluendo_mpegmux k3b-codecs vlc-beta h264enc x264 gstreamer-plugins-libav vlc-beta-codecs
 	```
  * общие
 
@@ -1068,7 +1266,7 @@ x11uselocalhost no
 		zypper removerepo ya_update_oss
 	```
 
- * old repos 
+ * old repos
 
 	```bash
 		http://mirror.yandex.ru/opensuse/packman/12.3/repodata/
@@ -1079,7 +1277,7 @@ x11uselocalhost no
 	```
  * hosts
 
-	```bash 
+	```bash
 		13.80.99.124		packages.microsoft.com
 		13.80.99.124		csd-apt-weu-d-1.westeurope.cloudapp.azure.com
 
@@ -1150,7 +1348,7 @@ http://www.liberatedcomputing.net/mm2fm
 		Identify the virtual machine and time of the outage
 		Take a screenshot of the virtual machine's console and note the error messages
 		In the inventory, Right Click on the VM, select 'Suspend' for the virtual machine, the checkpoint suspend (.vmss) and memory image (.vmem)  will be generated and can be found in the datastore from the virtual machine directory
-		Convert the checkpoint suspend files (.vmss and .vmem) from the virtual machine into a core dump file using the vmss2core utility. For more information, see the Debugging Virtual Machines with the Checkpoint to Core Tool technical note, and the article Converting a snapshot file to memory dump using the vmss2core tool. 
+		Convert the checkpoint suspend files (.vmss and .vmem) from the virtual machine into a core dump file using the vmss2core utility. For more information, see the Debugging Virtual Machines with the Checkpoint to Core Tool technical note, and the article Converting a snapshot file to memory dump using the vmss2core tool.
 		Resume the virtual machine to the suspended state, then reset the virtual machine to start the GuestOS.
 		Collect logs from the GuestOS kernel leading up to the outage. For more information, contact the guest operating system vendor.
 		Collect logs from the host leading up to the outage.
@@ -1164,15 +1362,15 @@ http://www.liberatedcomputing.net/mm2fm
 
 ```bash
 
-zypper in libpulse0-32bit alsa-plugins-pulse-32bit 
+zypper in libpulse0-32bit alsa-plugins-pulse-32bit
 
 The following 10 NEW packages are going to be installed:
-  alsa-plugins-pulse-32bit libFLAC8-32bit libjson0-32bit libogg0-32bit libpulse0-32bit libsndfile1-32bit libspeex1-32bit 
-  libvorbis0-32bit libvorbisenc2-32bit libwrap0-32bit 
+  alsa-plugins-pulse-32bit libFLAC8-32bit libjson0-32bit libogg0-32bit libpulse0-32bit libsndfile1-32bit libspeex1-32bit
+  libvorbis0-32bit libvorbisenc2-32bit libwrap0-32bit
 
 ```
 
-### workstation 12 
+### workstation 12
 
 install: kernel development template
 
@@ -1217,7 +1415,7 @@ onboot=yes
 
 # rm -f /etc/udev/rules.d/70-persistent-net.rules
 # reboot
-        
+
 UPDATE your interface configuration file
 
 # vim /etc/sysconfig/networking/devices/ifcfg-eth0
@@ -1228,10 +1426,10 @@ Save and exit the file
 Restart the networking service
 
 # service network restart
-        
+
 ```
 
-### archive sparce/sparse files 
+### archive sparce/sparse files
 
 tar -czSf file.tar.gz file
 
@@ -1288,90 +1486,119 @@ Open a terminal and type (no 'sudo' is required in Rescue System mode):
 
 ```
 
+
+## vpn
+
+ * http://code.google.com/p/vpnpptp/downloads/detail?name=vpnpptp_setup-ru-Linux-x86_64-Install.tar.gz&can=2&q=
+ * http://forums.opensuse.org/p-russian/dhydhdhdhdhundhdhdh/gnome/453520-networkmanager-l2tp.html
+ * http://code.google.com/p/vpnpptp/downloads/detail?name=xroot-0.0.6-1.x86_64.rpm&can=2&q=
+
+## nomachine
+ * https://www.nomachine.com/download
+
+	```bash
+		zypper in libstdc++6-32bit
+		zypper rm nomachine
+		rm -rf /usr/NX/
+		rm -rf /home/vika/.nx/
+		rm -rf /etc/NX/
+	```
+
+
 ## x2go
 
-2m-png-jpeg
-XFCE
+ * 2m-png-jpeg
+ * XFCE
+ * Проблема с цифровой клавой
+	* http://unixforum.org/index.php?showtopic=108708&st=120&p=1263239&#entry1263239
 
-Проблема с цифровой клавой
-http://unixforum.org/index.php?showtopic=108708&st=120&p=1263239&#entry1263239
+	```bash
+	#!/bin/bash
+	setxkbmap -rules xorg -model pc105 -layout "ru(winkeys),us" -option 'grp:alt_shift_toggle,grp_led:scroll'
+	xmodmap -e "keycode 91 = KP_Delete KP_Decimal KP_Delete KP_Decimal"
+	```
+ * http://packages.x2go.org/opensuse/
+ * tumbleweed
 
-```bash
-#!/bin/bash
-setxkbmap -rules xorg -model pc105 -layout "ru(winkeys),us" -option 'grp:alt_shift_toggle,grp_led:scroll'
-xmodmap -e "keycode 91 = KP_Delete KP_Decimal KP_Delete KP_Decimal"
-```
+	````bash
+		zypper addrepo http://packages.x2go.org/opensuse/tumbleweed/heuler/ x2go
+		zypper addrepo http://packages.x2go.org/opensuse/tumbleweed/extras/ x2go-extras
+		zypper refresh
+		zypper in x2goserver x2goclient
+	````
 
-### Keyboard Shortcuts
+ * leap 15.1
 
-```
-X2Go follows the general keyboard shortcuts of the NX client. In particular:
+	```bash
+	zypper addrepo http://packages.x2go.org/opensuse/15.1/main/ x2go
+	zypper addrepo http://packages.x2go.org/opensuse/15.1/extras/ x2go-extras
+	zypper refresh
+	zypper in x2goserver x2goclient
+	zypper rm x2goserver x2goserver-desktopsharing x2goserver-common x2goserver-x2goagent perl-X2Go-Serverperl-X2Go-Log perl-X2Go-Server-DB nxproxy nx-libs nxagent libNX_X11-6
+	```
+ * leap 42.1
 
-    Ctrl + Alt + T: terminate session / disconnect
-    Ctrl + Alt + F: toggle fullscreen/windowed
-    Ctrl + Alt + M: minimize or maximize fullscreen window
-    Ctrl + Alt + arrow keys: move viewport (when remote screen is bigger than client window)
-```
+	```bash
+		zypper addrepo http://download.opensuse.org/repositories/X11:/RemoteDesktop:/x2go/openSUSE_Leap_42.1/X11:RemoteDesktop:x2go.repo
+		zypper addrepo http://download.opensuse.org/repositories/X11:RemoteDesktop:x2go/openSUSE_Factory/X11:RemoteDesktop:x2go.repo
+		zypper refresh
+		zypper in x2goserver x2goclient
+	```
+ * Keyboard Shortcuts
 
-http://wihttp://wiki.x2go.org/doku.php/doc:usage:x2goclientki.x2go.org/doku.php/doc:usage:x2goclient
+	```
+	X2Go follows the general keyboard shortcuts of the NX client. In particular:
 
-http://wiki.x2go.org/doku.php/doc:de-compat
+		Ctrl + Alt + T: terminate session / disconnect
+		Ctrl + Alt + F: toggle fullscreen/windowed
+		Ctrl + Alt + M: minimize or maximize fullscreen window
+		Ctrl + Alt + arrow keys: move viewport (when remote screen is bigger than client window)
+	```
+
+ * http://wihttp://wiki.x2go.org/doku.php/doc:usage:x2goclientki.x2go.org/doku.php/doc:usage:x2goclient
+ * http://wiki.x2go.org/doku.php/doc:de-compat
+ * https://build.opensuse.org/project/repositories/X11:RemoteDesktop:x2go
 
 
-https://build.opensuse.org/project/repositories/X11:RemoteDesktop:x2go
-
-```bash
-zypper addrepo http://download.opensuse.org/repositories/X11:/RemoteDesktop:/x2go/openSUSE_Leap_42.1/X11:RemoteDesktop:x2go.repo
-zypper addrepo http://download.opensuse.org/repositories/X11:RemoteDesktop:x2go/openSUSE_Factory/X11:RemoteDesktop:x2go.repo
-zypper refresh
-zypper in x2goserver
-```
-
-```bash
-zypper addrepo http://packages.x2go.org/opensuse/15.1/main/ x2go
-zypper addrepo http://packages.x2go.org/opensuse/15.1/extras/ x2go-extras
-zypper refresh
-zypper in x2goserver x2goclient x2goserver-desktopsharing
-zypper rm x2goserver x2goserver-desktopsharing x2goserver-common x2goserver-x2goagent perl-X2Go-Serverperl-X2Go-Log perl-X2Go-Server-DB
-```
 
 ## rdp
 
-```
-zypper in yast2-rdp xrdp xorgxrdp
+```bash
+	zypper in yast2-rdp xrdp xorgxrdp
 ```
 
 ## vnc
 
-https://habrahabr.ru/company/ruvds/blog/312556
+ * default port 5901
+ * https://habrahabr.ru/company/ruvds/blog/312556
 
 ```bash
-disable ipv6
-vncpasswd
-xinetd.d/vnc
--rfbauth /home/bsk/.vnc/passwd
-user = bsk
-dbus-launch vncserver
+	disable ipv6
+	vncpasswd
+	xinetd.d/vnc
+	-rfbauth /home/bsk/.vnc/passwd
+	user = bsk
+	dbus-launch vncserver
 
-/usr/bin/Xvnc :7 -depth 16 -alwaysshared -geometry 1024x768 -query localhost -once -rfbauth ~/.vnc/passwd
+	/usr/bin/Xvnc :7 -depth 16 -alwaysshared -geometry 1024x768 -query localhost -once -rfbauth ~/.vnc/passwd
 
 
-service vnc1
-{
-	socket_type     = stream
-	protocol        = tcp
-	wait            = no
-	user            = bsk
-	server          = /usr/bin/Xvnc
-	server_args     = -noreset -inetd -once -query localhost -geometry 1024x768 -depth 16 -rfbauth /home/bsk/.vnc/passwd
-	type            = UNLISTED
-	port            = 5901
-}
+	service vnc1
+	{
+		socket_type     = stream
+		protocol        = tcp
+		wait            = no
+		user            = bsk
+		server          = /usr/bin/Xvnc
+		server_args     = -noreset -inetd -once -query localhost -geometry 1024x768 -depth 16 -rfbauth /home/bsk/.vnc/passwd
+		type            = UNLISTED
+		port            = 5901
+	}
 
-zypper in x11vnc
-x11vnc - allow VNC connections to real X11 displays
+	zypper in x11vnc
+	x11vnc - allow VNC connections to real X11 displays
 
-/usr/bin/x11vnc -dontdisconnect -display :0 -notruecolor -noxfixes -shared -forever -rfbport 5900 -bg -o /var/log/x11vnc.log -rfbauth ~/.vnc/passwd -env  FD_XDM=1  -auth  guess
+	/usr/bin/x11vnc -dontdisconnect -display :0 -notruecolor -noxfixes -shared -forever -rfbport 5900 -bg -o /var/log/x11vnc.log -rfbauth ~/.vnc/passwd -env  FD_XDM=1  -auth  guess
 ```
 
 ## wallpapers kde
@@ -1381,4 +1608,4 @@ x11vnc - allow VNC connections to real X11 displays
 ## kopete icq
 
  * http://icqserver.net/forum/topic101.html
- 
+

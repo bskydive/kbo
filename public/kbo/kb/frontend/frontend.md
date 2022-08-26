@@ -315,6 +315,10 @@ https://521dimensions.com/open-source/amplitudejs
 ### анимация и рисование svg
 
  * http://svgjs.com/
+ * [Fabric.js is a powerful and simple Javascript HTML5 canvas library ](http://fabricjs.com/)
+	* Fabric provides interactive object model on top of canvas element 
+	* Fabric also has SVG-to-canvas and canvas-to-SVG parser
+	* [Пишем редактор мнемосхем для SCADA-системы на Fabric.js](https://habrahabr.ru/post/322990/)
 
 ###  галерея svg
 

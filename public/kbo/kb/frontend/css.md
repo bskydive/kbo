@@ -31,6 +31,7 @@
 
 ## обзоры, лучшие практики
 
+ * https://css-irl.info/
  * https://shop.smashingmagazine.com/products/smashing-book-5-real-life-responsive-web-design
  * https://www.joeforshaw.com/blog/css-the-bad-bits-and-how-to-avoid-them
  * https://medium.com/@ABatickaya/хорошие-и-плохие-css-практики-для-начинающих-619289ce8bae/
@@ -97,6 +98,7 @@
 ## методологии
 
  * БЭМ
+	* https://ru.bem.info/methodology/key-concepts/
 	* [бэм препроцессор и линтер](https://suitcss.github.io/)
 	* семантические названия
 	* название блока создаёт пространство имён, использовать элементы вне блока нельзя
@@ -104,6 +106,7 @@
  * smacss
  * oocss
  * https://medium.com/@stepanovv.ru/правильный-css-oocss-smacss-bem-и-sass-49351a119283/
+ * [Эволюция CSS: от CSS, SASS, BEM и CSS-модулей до styled-components](https://habr.com/ru/company/vk/blog/319956/)
 	
 ## каскад наследование специфичность
 
@@ -171,64 +174,6 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
  * https://wireframe.cc/
  * http://www.shoelace.io/
 
-##	css flexbox
-
- * https://patrickbrosset.com/articles/2021-02-02-4-Weird-Tricks-To-Become-A-10x-Flexbox-Engineer/
- * https://frontender.info/a-guide-to-flexbox/
- * https://kyusuf.com/post/almost-complete-guide-to-flexbox-without-flexbox
- * https://css-tricks.com/old-flexbox-and-new-flexbox/
- * [сборник 2016](https://www.smashingmagazine.com/2016/02/the-flexbox-reading-list/)
- * [The Complete Illustrated Flexbox Tutorial](https://medium.com/p/d35c085dbf35)
- * [MDN: justify-self](https://developer.mozilla.org/en-US/docs/Web/CSS/justify-self)
- * https://yoksel.github.io/flex-cheatsheet/
- * Вертикальная прокрутка
- 	```scss
-	 	.my-block {
-			//уровень 0
-			padding-right: 10px;//отступ справа от прокрутки если фоновый блок должен быть больше блока с прокруткой
-			background-color: gray;
-		 }
-
-		.vscroll {
-			// подготовка для вложенной прокрутки вертикального блока
-			//уровень 1
-			display: flex;
-			flex-direction: column;
-			align-self: stretch; //заполняем родительский контейнер по высоте
-			overflow: hidden; // передаём прокрутку во 2 уровень
-
-			&-scrollable {
-				//вкладывается в контейнер с фиксированной высотой
-				//уровень 2
-				display: flex;
-				flex-direction: column;
-				padding-right: 15px; //от прокрутки
-				flex-grow: 1;
-				overflow-y: hidden; //чтобы не прыгала ширина при выпадании списков
-				overflow-x: auto; //убираем глюки появления прокрутки
-				&-xy {
-					// две прокрутки
-					//вкладывается в контейнер с фиксированной высотой
-					//уровень 2
-					display: flex;
-					flex-direction: column;
-					padding-right: 15px; //от прокрутки
-					flex-grow: 1;
-					overflow: auto;
-				}
-			}
-		}
-	```
-	```html
-		<!-- надо развести отступ слева и справа от прокрутки, цвет фона, учесть прыжок при появлении -->
-		<div class='my-block'>
-			<div class='vscroll'>
-				<div class='vscroll-scrollable'>
-				</div>
-			</div>
-		</div>
-	```
- * https://tobiasahlin.com/blog/common-flexbox-patterns/
 
 ## css стилизация прокрутки scroll
 
@@ -323,11 +268,62 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 	* item - тэг на уровень ниже родительского
 	* 
 	* 
- * 
- * 
- * 
- * 
- * 
+ * https://patrickbrosset.com/articles/2021-02-02-4-Weird-Tricks-To-Become-A-10x-Flexbox-Engineer/
+ * https://frontender.info/a-guide-to-flexbox/
+ * https://kyusuf.com/post/almost-complete-guide-to-flexbox-without-flexbox
+ * https://css-tricks.com/old-flexbox-and-new-flexbox/
+ * [сборник 2016](https://www.smashingmagazine.com/2016/02/the-flexbox-reading-list/)
+ * [The Complete Illustrated Flexbox Tutorial](https://medium.com/p/d35c085dbf35)
+ * [MDN: justify-self](https://developer.mozilla.org/en-US/docs/Web/CSS/justify-self)
+ * https://yoksel.github.io/flex-cheatsheet/
+ * Вертикальная прокрутка
+ 	```scss
+	 	.my-block {
+			//уровень 0
+			padding-right: 10px;//отступ справа от прокрутки если фоновый блок должен быть больше блока с прокруткой
+			background-color: gray;
+		 }
+
+		.vscroll {
+			// подготовка для вложенной прокрутки вертикального блока
+			//уровень 1
+			display: flex;
+			flex-direction: column;
+			align-self: stretch; //заполняем родительский контейнер по высоте
+			overflow: hidden; // передаём прокрутку во 2 уровень
+
+			&-scrollable {
+				//вкладывается в контейнер с фиксированной высотой
+				//уровень 2
+				display: flex;
+				flex-direction: column;
+				padding-right: 15px; //от прокрутки
+				flex-grow: 1;
+				overflow-y: hidden; //чтобы не прыгала ширина при выпадании списков
+				overflow-x: auto; //убираем глюки появления прокрутки
+				&-xy {
+					// две прокрутки
+					//вкладывается в контейнер с фиксированной высотой
+					//уровень 2
+					display: flex;
+					flex-direction: column;
+					padding-right: 15px; //от прокрутки
+					flex-grow: 1;
+					overflow: auto;
+				}
+			}
+		}
+	```
+	```html
+		<!-- надо развести отступ слева и справа от прокрутки, цвет фона, учесть прыжок при появлении -->
+		<div class='my-block'>
+			<div class='vscroll'>
+				<div class='vscroll-scrollable'>
+				</div>
+			</div>
+		</div>
+	```
+ * https://tobiasahlin.com/blog/common-flexbox-patterns/
 
 ##	css grid
 

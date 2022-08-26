@@ -47,6 +47,31 @@
     "editor.fontLigatures": false,
 ```
 
+## debug
+
+ * [node nvm vscode debug](https://medium.com/the-tech-bench/getting-visual-studio-code-and-nvm-working-together-252ec0300895)
+ * [debug](https://code.visualstudio.com/docs/nodejs/nodejs-debugging)
+	```bash
+		nvm install 16 --default
+		#nvm i 16
+		#nvm alias default 16
+		cat >> .vscode/launch.json
+	```
+
+	```json
+		{
+			"configurations": [
+				{
+					"type": "node-terminal",
+					"name": "Run Script: debug",
+					"request": "launch",
+					"command": "npm run debug",
+					"cwd": "${workspaceFolder}"
+				}
+			]
+		}
+	```
+
 ## грабли
 
  * `/etc/zypp/vscode.repo`
@@ -58,7 +83,7 @@
 		baseurl=https://packages.microsoft.com/yumrepos/vscode
 	```
 
- * во встроенном терминале локаль английская 
+ * во встроенном терминале локаль английская
 	```bash
 		> set|grep LANG
 		LANG=en_US.UTF-8
@@ -69,7 +94,7 @@
 	```
 		editor.action.selectionClipboardPaste
 	```
- * font rendering terminal 
+ * font rendering terminal
  	* https://stackoverflow.com/questions/29966747/how-can-i-disable-gpu-rendering-in-visual-studio-code
 	```
 		"window.zoomLevel": 0,
@@ -78,7 +103,7 @@
 	```
 
 
- ## обучение
+## обучение
 
   * https://code.visualstudio.com/docs/nodejs/angular-tutorial
 

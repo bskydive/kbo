@@ -256,7 +256,7 @@
 					padding-right ($var-font-bs / $var-k * $var-k-small) px
 					margin-top ($var-font-bs / $var-k * $var-k-small) px
 
-				i //иконка внутри ссылки
+				i, svg //иконка внутри ссылки
 					display table-cell
 					color inherit
 					vertical-align text-bottom
@@ -265,6 +265,7 @@
 					text-align left
 					background-color inherit
 
+				i
 					@media (max-width $var-width-max px)
 						font-size ($var-font-bs /  $var-k-small) px
 						width ($var-font-bs * $var-k-small) px
@@ -272,6 +273,19 @@
 					@media (min-width $var-width-min px)
 						font-size ($var-font-bs) px
 						width ($var-font-bs * $var-k) px
+
+				svg
+					fill currentColor
+					padding-right $var-font-bs-svg-fix px
+					margin-left -($var-font-bs-svg-fix / 2) px
+
+					@media (max-width $var-width-max px)
+						width ($var-font-bs * $var-k-small - $var-font-bs-svg-fix) px
+						max-height ($var-font-bs * $var-k-small - $var-font-bs-svg-fix) px
+
+					@media (min-width $var-width-min px)
+						width ($var-font-bs * $var-k - $var-font-bs-svg-fix) px
+						max-height ($var-font-bs * $var-k-small - $var-font-bs-svg-fix) px
 
 		&-b
 			mixin-font-button($var-size-b)
@@ -542,6 +556,12 @@
 	&-contacts
 		display block
 		text-align center
+
+		& ul li a
+			display flex
+			flex-direction row
+			align-items center
+			text-align center
 
 	//=============================================================FOOTER==========================================================
 	&-footer

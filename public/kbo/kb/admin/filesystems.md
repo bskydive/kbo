@@ -1,5 +1,10 @@
 # Filesystems
 
+
+## сравнение файловых систем
+
+ * проектирование хранилищ данных и файловых систем [Работа с файлами — это сложно](https://habr.com/ru/post/573706/)
+
 ## тестирование производительности
 
  * [Как оценить производительность СХД на Linux: бенчмаркинг с помощью открытых инструментов](https://habr.com/ru/company/1cloud/blog/458204/)
@@ -153,6 +158,7 @@ find . -inum 17040033 -exec mv {} new-directory-name1 \;
  * https://dmde.ru/download.html
  * https://1victoria.ru/victoria-hdd-4-47/
  * https://forum.ixbt.com/topic.cgi?id=11:48406
+
 ## SMART
 
  * https://linuxconfig.org/how-to-check-an-hard-drive-health-from-the-command-line-using-smartctl
