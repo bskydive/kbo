@@ -28,7 +28,7 @@
 	* [Шаг в виртуальность](https://gitlab.com/stepanovv/kbo/-/blob/master/public/articles/public/шаг%20в%20виртуальность/шаг%20в%20виртуальность.md)
 	* [JS code quality starter pack](https://gitlab.com/stepanovv/kbo/-/blob/master/public/articles/public/JS%20code%20quality%20starter%20pack/js%20code%20quality%20starter%20pack.md)
 	* [100 операторов rxjs](https://gitlab.com/stepanovv/kbo/-/blob/master/public/articles/public/100%20операторов%20rxjs/100%20операторов%20rxjs.md)
-	* [Качество кода](https://stepanovv.ru/articles/public/качество%20кода/качество_кода.md)
+	* [Качество кода](https://gitlab.com/stepanovv/kbo/-/blob/master/public/articles/public/%D0%BA%D0%B0%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%BE%20%D0%BA%D0%BE%D0%B4%D0%B0/%D0%BA%D0%B0%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%BE_%D0%BA%D0%BE%D0%B4%D0%B0.md)
 
 ## Как отправить изменения
 
