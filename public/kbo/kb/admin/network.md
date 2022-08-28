@@ -106,23 +106,26 @@ ping добавляет 28 бит!
 
 	cd ~/easy-rsa
 	./easyrsa gen-req ${server} nopass
-	cp /home/sammy/easy-rsa/pki/private/${server}.key /etc/openvpn/server/
+	# su
+	cp /home/${user}/easy-rsa/pki/private/${server}.key /etc/openvpn/server/
 
 	cd ~/easy-rsa
-	./easyrsa import-req /tmp/${server}.req ${server}
+	#./easyrsa import-req /tmp/${server}.req ${server} # copy req to ~/easy-rsa/pki/reqs/${server}.req
 	./easyrsa sign-req server ${server}
 
-	# server.crt​​​ содержит открытый ключ шифрования сервера OpenVPN, а также новую подпись от сервера ЦС
+	# server.crt содержит открытый ключ шифрования сервера OpenVPN, а также новую подпись от сервера ЦС
 
-	cp pki/issued/${server}.crt /etc/openvpn/server
-	cp pki/ca.crt /etc/openvpn/server
+
+	sudo cp /home/${user}/easy-rsa/pki/issued/${server}.crt /etc/openvpn/server
+	sudo cp /home/${user}/easy-rsa/pki/ca.crt /etc/openvpn/server
 
 	# В качестве дополнительного уровня безопасности мы добавим дополнительный общий секретный ключ, который будет использовать сервер и все клиенты. Справляться с неудостоверенным трафиком, сканированием портов и DoS-атаками, которые могут связывать ресурсы сервера. Она также затрудняет выявление сетевого трафика OpenVPN
 
 	cd ~/easy-rsa
 
 	openvpn --genkey --secret ta.key
-	cp ta.key /etc/openvpn/server
+
+	sudo cp /home/${user}/easy-rsa/ta.key /etc/openvpn/server
 
 	# создадим одну пару из ключа и сертификата для клиентской системы
 
@@ -131,15 +134,14 @@ ping добавляет 28 бит!
 	cd ~/easy-rsa
 	./easyrsa gen-req ${client} nopass
 	cp ~/easy-rsa/pki/private/${client}.key ~/client-configs/keys/
-	./easyrsa import-req pki/reqs/${client}1.req ${client}
-	./easyrsa sign-req client ${client}
+	# ./easyrsa import-req /tmp/${client}.req ${client} # copy req to ~/easy-rsa/pki/reqs/${client}.req
+	./easyrsa sign-req client ${client} nopass
 	# yes
-	# pass
 	cp ~/easy-rsa/pki/issued/${client}.crt ~/client-configs/keys/
 
 	cp ~/easy-rsa/ta.key ~/client-configs/keys/
-	cp /etc/openvpn/server/ca.crt ~/client-configs/keys/
-	chown ${user}:${user} ~/client-configs/keys/*
+	sudo cp /etc/openvpn/server/ca.crt /home/${user}/client-configs/keys/
+	chown ${user}:${user} /home/${user}/client-configs/keys/*
 
 	# Настройка OpenVPN
 
@@ -147,13 +149,13 @@ ping добавляет 28 бит!
 	mcedit /etc/openvpn/server/server.conf
 
 	# TLS
+	;dh dh2048.pem
 	;tls-auth ta.key 0 # This file is secret
 	;cipher AES-256-CBC
-	;dh dh2048.pem
+	dh none
 	tls-crypt ta.key
 	cipher AES-256-GCM
 	auth SHA256
-	dh none
 
 	# без TLS
 	tls-auth ta.key 0 # This file is secret
@@ -179,7 +181,7 @@ ping добавляет 28 бит!
 	port ${port}
 
 	# Optional TCP!
-	proto udp
+	proto tcp
 	explicit-exit-notify 0
 
 
@@ -273,7 +275,7 @@ ping добавляет 28 бит!
 
 	openvpn --config client1.ovpn
 
-
+	systemctl status openvpn-server@server.service
 
 
 
