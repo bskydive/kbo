@@ -49,8 +49,8 @@ http://habrahabr.ru/post/270359/
 ```bash
 1. Открыть /etc/php.ini
 - Заменить
-variables_order = "GPCS" 
-на 
+variables_order = "GPCS"
+на
 variables_order = "EGPCS"
 # После этого PHP добавит в глобальное пространство переменные окружения
 # http://php.net/manual/ru/ini.core.php#ini.variables-order
@@ -73,10 +73,25 @@ clear_env = no # выключить очистку глобальных пере
 
 ## selinux
 
+ * https://www.techrepublic.com/article/how-to-use-semanage-and-avoid-disabling-selinux/
+
 ```
-seenforce 0
+cat /etc/selinux/config
+
+policycoreutils-python-utils
+semanage port -l | grep ssh
+semanage port -a -t ssh_port_t -p tcp 33000
+firewall-cmd --add-port=33000/tcp --permanent
+firewall-cmd --reload
+
+selinuxenabled
+getenforce
+
+setenforce 0
+
 mcedit /etc/selinux/config
-disable
+SELINUX=disabled
+
 ```
 
 ## yum rpm
@@ -186,27 +201,27 @@ http://mirror.logol.ru/epel/6/x86_64/epel-release-6-8.noarch.rpm
 cd /distr/
 
 wget http://fedora-mirror01.rbc.ru/pub/epel/6/i386/epel-release-6-8.noarch.rpm
-rpm -ivh epel-release-6-8.noarch.rpm 
-cat /etc/yum.repos.d/epel.repo 
+rpm -ivh epel-release-6-8.noarch.rpm
+cat /etc/yum.repos.d/epel.repo
 
 wget http://dl.iuscommunity.org/pub/ius/stable/CentOS/6/i386/ius-release-1.0-11.ius.centos6.noarch.rpm
-rpm -ivh ius-release-1.0-11.ius.centos6.noarch.rpm 
+rpm -ivh ius-release-1.0-11.ius.centos6.noarch.rpm
 
 wget http://yum.postgresql.org/9.1/redhat/rhel-6-i386/pgdg-centos91-9.1-4.noarch.rpm
-rpm -ivh pgdg-centos91-9.1-4.noarch.rpm 
-mcedit /etc/yum.repos.d/CentOS-Base.repo 
+rpm -ivh pgdg-centos91-9.1-4.noarch.rpm
+mcedit /etc/yum.repos.d/CentOS-Base.repo
 exclude=postgres*
 
 
-#rpm -ivh springdale-core-6-2.sdl6.10.noarch.rpm 
+#rpm -ivh springdale-core-6-2.sdl6.10.noarch.rpm
 #wget http://puias.princeton.edu/data/puias/6/i386/os/RPM-GPG-KEY-puias
 #rpm --import RPM-GPG-KEY-puias
 #gpg --quiet --with-fingerprint /etc/pki/rpm-gpg/RPM-GPG-KEY-puias
-#rpm -ivh springdale-core-6-2.sdl6.10.noarch.rpm 
+#rpm -ivh springdale-core-6-2.sdl6.10.noarch.rpm
 #cat >> /etc/yum.repos.d/puias.repo
 
 #wget http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.i686.rpm
-#rpm -ivh rpmforge-release-0.5.3-1.el6.rf.i686.rpm 
-#mcedit /etc/yum.repos.d/rpmforge.repo 
+#rpm -ivh rpmforge-release-0.5.3-1.el6.rf.i686.rpm
+#mcedit /etc/yum.repos.d/rpmforge.repo
 
 ```

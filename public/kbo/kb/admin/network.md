@@ -17,7 +17,7 @@
 * route add --> ip route add 192.168.0.0/24 via 192.168.0.253 dev eth2
 * [ip route static](https://www.thegeekstuff.com/2014/08/add-route-ip-command/)
 * [ip route runtime](https://www.cyberciti.biz/faq/howto-linux-configuring-default-route-with-ipcommand/)
-* 
+*
 ```bash
     arp → ip n (ip neighbor)
     ifconfig → ip a (ip addr), ip link, ip -s (ip -stats)
@@ -36,7 +36,7 @@
 	ss -ltp    # listening tcp with PID and name
 	ss -s      # prints statstics
 	ss -tn -o  # tcp connection with domain host and show keepalive timer
-	ss -tl4    # ip4 connections 
+	ss -tl4    # ip4 connections
 ```
 
 
@@ -61,6 +61,223 @@ ping добавляет 28 бит!
  * [Связываем две локальные сети с помощью Wireguard VPN на выделенном сервере](https://habr.com/ru/post/599623/)
 	* https://bitbucket.org/padavan/rt-n56u/wiki/Home
 	* https://github.com/Entware/Entware-ng
+
+## openvpn
+
+ * https://www.digitalocean.com/community/tutorials/how-to-set-up-and-configure-an-openvpn-server-on-centos-8-ru
+ * https://linuxize.com/post/how-to-configure-and-manage-firewall-on-centos-8/#opening-a-source-port
+ *
+```bash
+	yum install epel-release
+	yum openvpn easy-rsa
+
+
+	firewall-cmd --zone=public --add-port=443/tcp
+	firewall-cmd --zone=public --add-port=443/udp
+	firewall-cmd --runtime-to-permanent
+	firewall-cmd --zone=public --list-ports
+
+```
+
+```bash
+	export user="user"
+	export client="client2"
+	export server="server" # change server.conf cert&key!
+	export port="443"
+	export protocol="udp"
+
+	mkdir ~/easy-rsa
+	ln -s /usr/share/easy-rsa/3/* ~/easy-rsa/
+	chown sammy ~/easy-rsa
+	chmod 700 ~/easy-rsa
+	cd ~/easy-rsa
+	cat>> vars
+	set_var EASYRSA_ALGO "ec"
+	set_var EASYRSA_DIGEST "sha512"
+	./easyrsa init-pki
+
+	# на сервере OpenVPN не нужно создавать центр сертификации. Ваш сервер ЦС отвечает за валидацию и подпись сертификатов. PKI на вашем сервере VPN используется только в качестве удобного и централизованного места хранения запросов сертификата и публичных сертификатов.
+
+	#сгенерируем закрытый ключ и запрос подписи сертификата на вашем сервере OpenVPN. После этого вы передадите запрос в ваш центр сертификации для подписи, создав необходимый сертификат. После подписи сертификата вы передадите его назад на сервер OpenVPN и установите его для использования на сервере.
+
+	# запрос на подпись сертификата (CSR):
+	# easy-rsa/pki/private/server.key закрытый ключ для сервера
+	# easy-rsa/pki/reqs/server.req файл запроса сертификата с именем server.req
+
+	cd ~/easy-rsa
+	./easyrsa gen-req ${server} nopass
+	cp /home/sammy/easy-rsa/pki/private/${server}.key /etc/openvpn/server/
+
+	cd ~/easy-rsa
+	./easyrsa import-req /tmp/${server}.req ${server}
+	./easyrsa sign-req server ${server}
+
+	# server.crt​​​ содержит открытый ключ шифрования сервера OpenVPN, а также новую подпись от сервера ЦС
+
+	cp pki/issued/${server}.crt /etc/openvpn/server
+	cp pki/ca.crt /etc/openvpn/server
+
+	# В качестве дополнительного уровня безопасности мы добавим дополнительный общий секретный ключ, который будет использовать сервер и все клиенты. Справляться с неудостоверенным трафиком, сканированием портов и DoS-атаками, которые могут связывать ресурсы сервера. Она также затрудняет выявление сетевого трафика OpenVPN
+
+	cd ~/easy-rsa
+
+	openvpn --genkey --secret ta.key
+	cp ta.key /etc/openvpn/server
+
+	# создадим одну пару из ключа и сертификата для клиентской системы
+
+	mkdir -p ~/client-configs/keys
+	chmod -R 700 ~/client-configs
+	cd ~/easy-rsa
+	./easyrsa gen-req ${client} nopass
+	cp ~/easy-rsa/pki/private/${client}.key ~/client-configs/keys/
+	./easyrsa import-req pki/reqs/${client}1.req ${client}
+	./easyrsa sign-req client ${client}
+	# yes
+	# pass
+	cp ~/easy-rsa/pki/issued/${client}.crt ~/client-configs/keys/
+
+	cp ~/easy-rsa/ta.key ~/client-configs/keys/
+	cp /etc/openvpn/server/ca.crt ~/client-configs/keys/
+	chown ${user}:${user} ~/client-configs/keys/*
+
+	# Настройка OpenVPN
+
+	cp /usr/share/doc/openvpn/sample/sample-config-files/server.conf /etc/openvpn/server/
+	mcedit /etc/openvpn/server/server.conf
+
+	# TLS
+	;tls-auth ta.key 0 # This file is secret
+	;cipher AES-256-CBC
+	;dh dh2048.pem
+	tls-crypt ta.key
+	cipher AES-256-GCM
+	auth SHA256
+	dh none
+
+	# без TLS
+	tls-auth ta.key 0 # This file is secret
+	cipher AES-256-CBC
+	dh dh2048.pem
+	;tls-crypt ta.key
+	;cipher AES-256-GCM
+	;auth SHA256
+	;dh none
+
+
+
+	user nobody
+	group nobody
+
+	push "redirect-gateway def1 bypass-dhcp"
+
+	# https://www.opendns.com/
+
+	push "dhcp-option DNS 208.67.222.222"
+	push "dhcp-option DNS 208.67.220.220"
+
+	port ${port}
+
+	# Optional TCP!
+	proto udp
+	explicit-exit-notify 0
+
+
+	#cert ${server}.crt
+	#key ${server}.key
+
+
+	echo "net.ipv4.ip_forward = 1" >>  /etc/sysctl.conf
+	sysctl -p
+	firewall-cmd --get-active-zones
+	firewall-cmd --zone=trusted --add-interface=tun0
+	firewall-cmd --permanent --zone=trusted --add-interface=tun0
+
+
+	firewall-cmd --permanent --add-service openvpn
+	firewall-cmd --permanent --zone=trusted --add-service openvpn
+	firewall-cmd --reload
+	firewall-cmd --list-services --zone=trusted
+	# openvpn
+
+	firewall-cmd --add-masquerade
+	firewall-cmd --add-masquerade --permanent
+	firewall-cmd --query-masquerade
+	# yes
+
+
+	DEVICE=$(ip route | awk '/^default via/ {print $5}')
+
+	firewall-cmd --permanent --direct --passthrough ipv4 -t nat -A POSTROUTING -s 10.8.0.0/24 -o $DEVICE -j MASQUERADE
+
+	firewall-cmd --reload
+	systemctl enable openvpn-server@server.service
+	systemctl start openvpn-server@server.service
+	systemctl status openvpn-server@server.service
+
+	# Создание инфраструктуры конфигурации клиентских систем
+
+	mkdir -p ~/client-configs/files
+	cp /usr/share/doc/openvpn/sample/sample-config-files/client.conf ~/client-configs/base.conf
+
+	mcedit  ~/client-configs/base.conf
+	proto udp
+	user nobody
+	group nobody
+
+	# Поставьте знак комментария перед строками этих директив, поскольку вы вскоре добавите сертификаты и ключи в сам файл
+	;ca ca.crt
+	;cert client.crt
+	;key client.key
+	tls-auth ta.key 1
+
+	cipher AES-256-GCM
+	auth SHA256
+	key-direction 1
+
+	# без TLS
+	tls-crypt ta.key
+	cipher AES-256-CBC
+
+	# включать только для клиентов Linux с файлом /etc/openvpn/update-resolv-conf
+	; script-security 2
+	; up /etc/openvpn/update-resolv-conf
+	; down /etc/openvpn/update-resolv-conf
+
+
+	cat >> ~/client-configs/make_config.sh
+	#!/bin/bash
+
+	# First argument: Client identifier
+
+	KEY_DIR=~/client-configs/keys
+	OUTPUT_DIR=~/client-configs/files
+	BASE_CONFIG=~/client-configs/base.conf
+
+	cat ${BASE_CONFIG} \
+	<(echo -e '<ca>') \
+	${KEY_DIR}/ca.crt \
+	<(echo -e '</ca>\n<cert>') \
+	${KEY_DIR}/${1}.crt \
+	<(echo -e '</cert>\n<key>') \
+	${KEY_DIR}/${1}.key \
+	<(echo -e '</key>\n<tls-crypt>') \
+	${KEY_DIR}/ta.key \
+	<(echo -e '</tls-crypt>') \
+	> ${OUTPUT_DIR}/${1}.ovpn
+
+	chmod 700 ~/client-configs/make_config.sh
+
+	cd ~/client-configs
+	./make_config.sh client1
+
+	openvpn --config client1.ovpn
+
+
+
+
+
+```
 
 ## DNS
 
