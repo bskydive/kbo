@@ -66,7 +66,9 @@ ping добавляет 28 бит!
 
  * https://www.digitalocean.com/community/tutorials/how-to-set-up-and-configure-an-openvpn-server-on-centos-8-ru
  * https://linuxize.com/post/how-to-configure-and-manage-firewall-on-centos-8/#opening-a-source-port
- *
+ * https://gist.github.com/ndc33/5a7656af6b5a27762b7eea390e125985
+ * https://en.opensuse.org/SDB:OpenVPN_Installation_and_Setup#for_openSUSE_Leap_15_and_up
+
 ```bash
 	yum install epel-release
 	yum install openvpn easy-rsa
