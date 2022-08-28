@@ -69,7 +69,7 @@ ping добавляет 28 бит!
  *
 ```bash
 	yum install epel-release
-	yum openvpn easy-rsa
+	yum install openvpn easy-rsa
 
 
 	firewall-cmd --zone=public --add-port=443/tcp
