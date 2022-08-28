@@ -242,9 +242,9 @@ ping добавляет 28 бит!
 	cipher AES-256-CBC
 
 	# включать только для клиентов Linux с файлом /etc/openvpn/update-resolv-conf
-	; script-security 2
-	; up /etc/openvpn/update-resolv-conf
-	; down /etc/openvpn/update-resolv-conf
+	script-security 2
+	up /etc/openvpn/update-resolv-conf
+	down /etc/openvpn/update-resolv-conf
 
 
 	cat >> ~/client-configs/make_config.sh
