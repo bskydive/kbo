@@ -1188,7 +1188,12 @@ x11uselocalhost no
     zypper addrepo -f http://opensuse-guide.org/repo/openSUSE_Leap_15.3/ dvd
 
     #2) Then install the necessary packages:
-    zypper install --allow-vendor-change ffmpeg-3 lame gstreamer-plugins-bad gstreamer-plugins-ugly gstreamer-plugins-ugly-orig-addon gstreamer-plugins-libav libavdevice57 libdvdcss2 vlc-codecs
+    zypper install --allow-vendor-change vlc vlc-codec-gstreamer vlc-lang vlc-noX vlc-qt vlc-vdpau libvlccore9 libvlc5
+	# vlc-codecs
+
+	zypper install --allow-vendor-change libavdevice57 ffmpeg-4 lame gstreamer-plugins-bad gstreamer-plugins-ugly gstreamer-plugins-ugly-orig-addon gstreamer-plugins-libav libdvdcss2
+
+	zypper install gstreamer-plugins-bad-1.16.3-pm153.3.6.5.x86_64 ffmpeg-4-4.4-pm153.2.9.x86_64 gstreamer-plugins-libav-1.16.2-pm153.2.6.x86_64
 
     #3) Make sure all your multimedia packages are coming from the Packman Repository:
     zypper dup --allow-vendor-change --from http://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_15.3/
