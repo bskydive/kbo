@@ -1178,7 +1178,23 @@ x11uselocalhost no
  	* проверенные пакеты https://github.com/vinifmor/bauh-files/blob/master/appimage/apps.txt
  * https://en.opensuse.org/images/1/17/Zypper-cheat-sheet-1.pdf
  * gcc++33 gcc++5 `https://download.opensuse.org/repositories/devel:/gcc/openSUSE_Leap_15.3/`
- * multimedia codecs
+ * multimedia codecs https://opensuse-guide.org/codecs.php
+ * https://github.com/cb400f/opensuse-guide.org/blob/master/codecs.php
+ * 15.3
+
+    ```bash
+    #1) Add the needed repositories:
+    zypper addrepo -f http://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_15.3/ packman
+    zypper addrepo -f http://opensuse-guide.org/repo/openSUSE_Leap_15.3/ dvd
+
+    #2) Then install the necessary packages:
+    zypper install --allow-vendor-change ffmpeg-3 lame gstreamer-plugins-bad gstreamer-plugins-ugly gstreamer-plugins-ugly-orig-addon gstreamer-plugins-libav libavdevice57 libdvdcss2 vlc-codecs
+
+    #3) Make sure all your multimedia packages are coming from the Packman Repository:
+    zypper dup --allow-vendor-change --from http://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_15.3/
+    ```
+
+ * 15.2
 
 	```bash
 		#1) Add the needed repositories:
