@@ -29,6 +29,8 @@
 
  * [spectre meltdown opensuse](https://www.suse.com/support/kb/doc/?id=7022512)
  * [spectre meltdown detect](https://github.com/speed47/spectre-meltdown-checker)
+ * https://en.opensuse.org/GNOME_Keyring
+ * https://wiki.gnome.org/Projects/GnomeKeyring/
 
 ## audio
 
@@ -843,6 +845,7 @@ Code:
 	* `zypper in flatpak`
 	* от пользователя! flatpak `flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo`
 	* или в discover - настройка - add flathub
+ * для управления gcr keyring `zypper in seahorse`
  * включить numlock
  * удалить snapper packagekit
  * выключить проигрыватель на экране блокировки
