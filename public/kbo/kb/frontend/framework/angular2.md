@@ -1675,7 +1675,7 @@ const httpOptions = {
 
  * rome
  * parcel2
- * svc
+ * swc
  * vite
  * esbuild - go
  * webpack config eject
