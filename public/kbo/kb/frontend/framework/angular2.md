@@ -48,6 +48,12 @@
  * https://dou.ua/lenta/articles/three-years-with-angular/
  * [генератор документации](https://compodoc.github.io/compodoc/)
  * [граф зависимостей webpack-dep-graph](https://github.com/heypoom/webpack-dep-graph)
+ * gephi
+ * https://www.npmjs.com/package/dependency-graph
+ * https://marketplace.visualstudio.com/items?itemName=juanallo.vscode-dependency-cruiser
+ * https://www.npmjs.com/package/dependency-cruiser
+ * https://statoscope.tech/
+ *
 
 ## инструменты
 
@@ -1667,6 +1673,11 @@ const httpOptions = {
 
 ## сборка
 
+ * rome
+ * parcel2
+ * svc
+ * vite
+ * esbuild - go
  * webpack config eject
 
 	```bash
