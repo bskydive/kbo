@@ -29,6 +29,8 @@
 
  * [spectre meltdown opensuse](https://www.suse.com/support/kb/doc/?id=7022512)
  * [spectre meltdown detect](https://github.com/speed47/spectre-meltdown-checker)
+ * https://en.opensuse.org/GNOME_Keyring
+ * https://wiki.gnome.org/Projects/GnomeKeyring/
 
 ## audio
 
@@ -843,6 +845,7 @@ Code:
 	* `zypper in flatpak`
 	* от пользователя! flatpak `flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo`
 	* или в discover - настройка - add flathub
+ * для управления gcr keyring `zypper in seahorse`
  * включить numlock
  * удалить snapper packagekit
  * выключить проигрыватель на экране блокировки
@@ -1178,7 +1181,28 @@ x11uselocalhost no
  	* проверенные пакеты https://github.com/vinifmor/bauh-files/blob/master/appimage/apps.txt
  * https://en.opensuse.org/images/1/17/Zypper-cheat-sheet-1.pdf
  * gcc++33 gcc++5 `https://download.opensuse.org/repositories/devel:/gcc/openSUSE_Leap_15.3/`
- * multimedia codecs
+ * multimedia codecs https://opensuse-guide.org/codecs.php
+ * https://github.com/cb400f/opensuse-guide.org/blob/master/codecs.php
+ * 15.3
+
+    ```bash
+    #1) Add the needed repositories:
+    zypper addrepo -f http://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_15.3/ packman
+    zypper addrepo -f http://opensuse-guide.org/repo/openSUSE_Leap_15.3/ dvd
+
+    #2) Then install the necessary packages:
+    zypper install --allow-vendor-change vlc vlc-codec-gstreamer vlc-lang vlc-noX vlc-qt vlc-vdpau libvlccore9 libvlc5
+	# vlc-codecs
+
+	zypper install --allow-vendor-change libavdevice57 ffmpeg-4 lame gstreamer-plugins-bad gstreamer-plugins-ugly gstreamer-plugins-ugly-orig-addon gstreamer-plugins-libav libdvdcss2
+
+	zypper install gstreamer-plugins-bad-1.16.3-pm153.3.6.5.x86_64 ffmpeg-4-4.4-pm153.2.9.x86_64 gstreamer-plugins-libav-1.16.2-pm153.2.6.x86_64
+
+    #3) Make sure all your multimedia packages are coming from the Packman Repository:
+    zypper dup --allow-vendor-change --from http://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_15.3/
+    ```
+
+ * 15.2
 
 	```bash
 		#1) Add the needed repositories:

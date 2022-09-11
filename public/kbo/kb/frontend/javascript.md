@@ -378,6 +378,10 @@
 		"compilerOptions": {
 			"strictPropertyInitialization": false
 	```
+ * for (of) - итерируемые
+	* `for (const [key,value] of Object.entries(obj) {}`
+ * for (in) - перечисляемые
+	* `for (const key in Object.entries(obj) { obj[key as keyof typeof obj] }`
 
 ### собеседование typescript
 
