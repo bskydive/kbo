@@ -25,6 +25,11 @@
  * [Война или мир: используем MATLAB и Python вместе](https://habr.com/ru/company/etmc_exponenta/blog/596397/)
  * [О русской науке замолвите слово или за что я люблю Тинькофф, часть 1 2021](https://habr.com/ru/post/598305/)
 
+## обзоры
+
+ * [#1 Нейронные сети для начинающих. Решение задачи классификации Ирисов Фишера](https://habr.com/ru/company/ruvds/blog/679988/)
+
+
 ## трудоустройство
 
  * [О русской науке замолвите слово или за что я люблю Тинькофф, часть 1](https://habr.com/ru/post/598305/)
@@ -57,20 +62,20 @@
  * [Прямой репортаж с рождения крупного игрока в аппаратном AI, который ускоряет TensorFlow и конкурирует с NVidia](https://habr.com/post/414163/)
  * [vOICe vision звуковое зрение](https://habr.com/ru/post/458532/)
  * https://www.dailytechinfo.org/
- 
+
 ## собес
 
  * [Чему я научился, пройдя множество собеседований в компаниях и стартапах из сферы ИИ](https://habr.com/company/everydaytools/blog/413941/)
-    * https://blog.usejournal.com/what-i-learned-from-interviewing-at-multiple-ai-companies-and-start-ups-a9620415e4cc 
+    * https://blog.usejournal.com/what-i-learned-from-interviewing-at-multiple-ai-companies-and-start-ups-a9620415e4cc
  * [Опыт разработки требований к профессиональным качествам data scientist](https://habr.com/ru/post/457630/)
 
 ## проверка данных толока
- 
+
  * https://habr.com/company/yandex/blog/305956/
  * https://habr.com/company/yandex/blog/358462/
 
 ## математика
- 
+
 * http://usdp.ru/
 * [Методы наименьших квадратов без слёз и боли](https://habr.com/ru/post/429980/)
 
