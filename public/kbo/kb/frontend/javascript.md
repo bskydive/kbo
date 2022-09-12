@@ -135,6 +135,7 @@
  * [Как управлять event loop в JavaScript. Часть 1](https://skillbox.ru/media/code/event_loop_chast_1/)
  * [A crash course in memory management](https://hacks.mozilla.org/2017/06/a-crash-course-in-memory-management/)
  * [Diving Deeper in JavaScripts Objects - A Closer Look at JavaScript Object Descriptors](https://blog.bitsrc.io/diving-deeper-in-javascripts-objects-318b1e13dc12?gi=f92e90c386f5)
+ * [сборщики мусора JAVA](https://habr.com/ru/post/269621/)
 
 ### функциональное программирование
  * [Функциональный JavaScript: пять способов нахождения среднего арифметического элементов массива и метод .reduce()](https://habr.com/ru/company/ruvds/blog/458030/)
