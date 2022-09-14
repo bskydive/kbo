@@ -560,15 +560,16 @@ code {
 <p>Зависимости влияют на производительность. Например: на скорость сборки, которая зависит от размера библиотек. Размеры библиотек относительно легко собираются <a href="https://webpack.js.org/api/stats">webpack</a>. Однако необходимо подобрать версию <a href="https://www.npmjs.com/package/webpack-bundle-analyzer">webpack-bundle-analyzer</a> под соответствующую версию, поддерживаемую фреймворком</p>
 <p>С точки зрения пользователя старые библиотеки, скорее всего, также снижают производительность. Это самая понятная часть техдолга и для менеджера, и для программиста. Поэтому замена старых библиотек на новые - это то, что делают в первую очередь. Год выпуска ищется в интернетах так: <code>lodash changelog</code></p>
 <p>Больше всего разработчиков раздражает неочевидная структура связей частей кода. А самое сложное в анализе связей - это построить граф. Он строится на базе import, зачастую не полностью. Связи через директивы в шаблонах html и через маршруты URL вообще не отображаются в популярных утилитах. В angular есть ещё пара способов связывания ts файлов: через <a href="https://angular.io/api/router/Resolve">router resolve</a> и <a href="https://angular.io/guide/http#intercepting-requests-and-responses">HTTP interceptor</a>. Внешние библиотеки типа <a href="https://ngrx.io/">NGRX</a> также скрывают связи, хотя и предоставляют взамен инструменты для отладки состояний и строгие наставления для структуры файлов.</p>
-<p>Для облегчения работы с графом я <a href="https://github.com/bskydive/webpack-dep-graph">допилил</a> одну брошенную репу. Добавил туда возможность экспорта в редактор <a href="">yed</a>. На вход подаём {webpack stats.json](https://webpack.js.org/api/stats), на выход есть разные варианты dot/json, но удобнее всего graphml, который можно покрутить в редакторе, <a href="https://youtu.be/OmSTwKw7dX4?t=24">автоматически</a> расположить узлы и связи.</p>
-<p>Список инструментов для построения графа связей зависимостей:</p>
+<p>Для облегчения работы с графом я <a href="https://github.com/bskydive/webpack-dep-graph">допилил</a> одну брошенную репу. Добавил туда возможность экспорта в редактор <a href="https://www.yworks.com/products/yed/download">yed</a>. На вход подаём <a href="https://webpack.js.org/api/stats">webpack stats.json</a>, на выход есть разные варианты dot/json, но удобнее всего graphml, который можно покрутить в редакторе, <a href="https://youtu.be/OmSTwKw7dX4?t=24">автоматически</a> расположить узлы и связи.</p>
+<p>Список инструментов для анализа зависимостей:</p>
 <ul>
-<li><a href="https://github.com/pahen/madge">без webpack</a></li>
+<li>валидация/дедупликация <a href="https://statoscope.tech">зависимостей</a></li>
+<li>граф <a href="https://marketplace.visualstudio.com/items?itemName=juanallo.vscode-dependency-cruiser">плагин vscode</a></li>
+<li>граф <a href="https://github.com/pahen/madge">без webpack</a></li>
 <li><a href="https://nx.dev/structure/dependency-graph">nx</a></li>
 <li><a href="https://github.com/compodoc/compodoc">compodoc</a></li>
 <li><a href="https://npmgraph.js.org/?q=npmgraph">онлайн npm</a></li>
 <li><a href="https://railsware.com/blog/how-to-analyze-circular-dependencies-in-es6/">скриптом</a> используя <a href="https://graphviz.gitlab.io/_pages/doc/info/lang.html">dot language</a> и <a href="https://graphviz.gitlab.io/">graphviz</a></li>
-<li><a href="https://www.npmjs.com/package/webpack-dependency-tree">webpack</a></li>
 </ul>
 <p>С циклическими зависимостями немного проще, их ловят и компиляторы, и <a href="https://www.npmjs.com/package/circular-dependency-plugin">webpack</a>.</p>
 <h3 id="%D1%80%D0%B0%D0%B7%D0%BC%D0%B5%D1%80-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0">Размер проекта</h3>
