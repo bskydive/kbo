@@ -322,7 +322,16 @@ export const versionDev = versionDevPipe;
 function versionProdPipe() {
 	console.log(
 		"Build done",
-		'\n\nЧеклист: \n * npm run web-start или npm run w,\n * anchor-offset, \n * ссылки skills/nav/contacts/kb, \n * открыть на мобилке, \n * npm run web-stop, \n * npm run prod, \n * g cm "msg", \n * сделать PR на bitbucket,\n'
+		'\n\nЧеклист:',
+		' * npm run web-start или npm run w,\n',
+		' * anchor-offset,\n',
+		' * ссылки skills/nav/contacts/kb,\n',
+		' * открыть на мобилке,\n',
+		' * npm run web-stop,\n',
+		' * g add src public,\n',
+		' * npm run prod,\n',
+		' * g cm "msg",\n',
+		' * сделать PR на bitbucket,\n'
 	);
 
 	return (
