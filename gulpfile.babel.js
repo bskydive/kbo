@@ -99,7 +99,7 @@ var reportOptions = {
 //для хостинга с особенностями нужен длинный префикс
 const staticPath = "public/portfolio";
 // сайт имеет статические подсайты, потому корень выше папки сборки
-// const webServePath = 'public';
+const webServePath = './public/portfolio';
 //репозитории
 const gitRemoteMain = "gl";
 const gitremoteReserve = "bb";
@@ -384,32 +384,38 @@ function versionProdPipe() {
 export const versionProd = versionProdPipe;
 
 /*================================================WEBSERVER================================================*/
-///**
-// * Останавливает и запускает веб-сервер с автоматическим рестартом
-// * Для смены каталога запуска веб-сервера необходимо удалить сервис
-// * */
-//	'cd ./',
-//	'pm2 stop http-server',
-//	'pm2 delete http-server',
-//	'pm2 start http-server -- -c-1 -a localhost -p 8080 ./public/portfolio',
-//	'pm2 info http-server'
+//
+// Останавливает и запускает веб-сервер с автоматическим рестартом
+// Для смены каталога запуска веб-сервера необходимо удалить сервис
+// 	'cd ./',
+// 	'pm2 stop http-server',
+// 	'pm2 delete http-server',
+// 	'pm2 start http-server -- -c-1 -a localhost -p 8080 ./public/portfolio',
+// 	'pm2 info http-server'
 
-// gulp.task('web-stop', function () {
-// 	return gulp.src(webServePath)
-// 		.pipe(execModule('bash web-stop.sh', {
-// 			continueOnError: true
-// 		}))
-// 		// .pipe(execModule.reporter(reportOptions));
-// });
+/** @deprecated TODO fix */
+function webStopPipe() {
+	return (gulp.src(webServePath)
+		.pipe(execModule('bash web-stop.sh', {
+			continueOnError: true
+		})))
+		.pipe(execModule.reporter(reportOptions));
+}
 
-// gulp.task('web-start', ['web-stop'], function () {
-// 	// console.log('http://localhost:8080/portfolio.html')
-// 	return gulp.src(webServePath)
-// 		.pipe(execModule('bash web-start.sh ' + webServePath, {
-// 			continueOnError: true
-// 		}))
-// 		.pipe(execModule.reporter(reportOptions));
-// });
+export const webStop = webStopPipe;
+
+/** @deprecated TODO fix */
+function webStartPipe() {
+	// console.log('http://localhost:8080/portfolio.html')
+	return (gulp.src(webServePath)
+		.pipe(webStopPipe())
+		.pipe(execModule('bash web-start.sh ' + webServePath, {
+			continueOnError: true
+		}))
+		.pipe(execModule.reporter(reportOptions)));
+}
+
+export const webStart = webStartPipe;
 
 const syncConfig = {
 	server: {
