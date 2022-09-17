@@ -18,17 +18,18 @@ Also, I'm using it as a bookmarking service starting from the 2014.
 ### How do I get set up?
 
 ```bash
-	#!!! Currently gulp can run on node version 10 
+	#!!! Currently gulp can run on node version 10
 	nvm install 10
 	nvm use 10
-	# Install global dependencies 
+	# Install global dependencies
 	npm i -g pm2 http-server
-	# Install dependencies 
+	# Install dependencies
 	cd portfolio/
 	npm i
-	# Build dev and run 
-	npm run w
-	# npm run web-start
+	# Build dev and run
+	npm run dev
+	bash web-start.sh
+	# npm run start
 	# Open in browser http://127.0.0.1:8080/portfolio.html
 ```
 
@@ -86,11 +87,11 @@ Also, I'm using it as a bookmarking service starting from the 2014.
 	* https://cdn.jsdelivr.net/npm/docsify-copy-code
 	* https://cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js
 	* https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js
- * download fonts 
+ * download fonts
  	* https://fonts.googleapis.com/css?family=Roboto+Mono:300,400,600
 	* https://fonts.google.com/specimen/Roboto+Mono?query=roboto#standard-styles
  * modify `./src/docsify/themes/dark.styl`
-	* 
+	*
 		```styl
 			// @import url('https://fonts.googleapis.com/css?family=Roboto+Mono|Source+Sans+Pro:300,400,600')
 
@@ -161,7 +162,7 @@ Also, I'm using it as a bookmarking service starting from the 2014.
 
 ### What does the application interact with?  ###
 * portfolio, quotes, timer app - itself only
-* weather app - with https://api.openweathermap.org/ 
+* weather app - with https://api.openweathermap.org/
 
 ### How I can ask my questions? ###
 
