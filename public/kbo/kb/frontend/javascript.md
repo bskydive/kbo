@@ -127,7 +127,6 @@
  * [глюки javascript](https://habr.com/ru/company/mailru/blog/335292/)
  * [история развития инструментов для  javascript](https://habr.com/ru/company/mailru/blog/340922/)
  * [ошибочное понимание DRY](https://habr.com/ru/company/mailru/blog/349978/)
- * [сборник ошибок JS](https://habr.com/ru/company/jugru/blog/494256/)
  * [How JavaScript works: Event loop and the rise of Async programming + 5 ways to better coding with async/await Alexander Zlatkov](https://blog.sessionstack.com/how-javascript-works-event-loop-and-the-rise-of-async-programming-5-ways-to-better-coding-with-2f077c4438b5)
  * [Как работает JavaScript: часть первая](https://gb.ru/posts/javascript_internals_part1) https://gb.ru/posts/javascript_internals_part2 https://gb.ru/posts/javascript_internals_part3
  * [Планировщик задач на JavaScript](https://habr.com/ru/post/26215/)
@@ -177,16 +176,16 @@
 
 		class SingletonTest {
 
-		constructor(enforcer) {
-			if(enforcer != singletonEnforcer) throw "Cannot construct singleton";
-		}
-
-		static get instance() {
-			if(!this[singleton]) {
-			this[singleton] = new SingletonTest(singletonEnforcer);
+			constructor(enforcer) {
+				if(enforcer != singletonEnforcer) throw "Cannot construct singleton";
 			}
-			return this[singleton];
-		}
+
+			static get instance() {
+				if(!this[singleton]) {
+				this[singleton] = new SingletonTest(singletonEnforcer);
+				}
+				return this[singleton];
+			}
 		}
 
 		export default SingletonTest
