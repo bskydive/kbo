@@ -177,16 +177,16 @@
 
 		class SingletonTest {
 
-		constructor(enforcer) {
-			if(enforcer != singletonEnforcer) throw "Cannot construct singleton";
-		}
-
-		static get instance() {
-			if(!this[singleton]) {
-			this[singleton] = new SingletonTest(singletonEnforcer);
+			constructor(enforcer) {
+				if(enforcer != singletonEnforcer) throw "Cannot construct singleton";
 			}
-			return this[singleton];
-		}
+
+			static get instance() {
+				if(!this[singleton]) {
+				this[singleton] = new SingletonTest(singletonEnforcer);
+				}
+				return this[singleton];
+			}
 		}
 
 		export default SingletonTest
