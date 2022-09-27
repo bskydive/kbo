@@ -1593,6 +1593,17 @@ Open a terminal and type (no 'sudo' is required in Rescue System mode):
 
 ## vnc
 
+ * https://github.com/neutrinolabs/xrdp
+ * https://github.com/ogon-project/ogon
+ * https://github.com/Xpra-org/xpra/wiki/Download#-for-rpm-distributions
+ * https://remmina.org/how-to-install-remmina/
+ * https://guacamole.apache.org/
+ * https://wiki.gnome.org/Apps/Vinagre
+ * https://wiki.gnome.org/Apps/Boxes
+ * https://www.tightvnc.com/
+ * https://www.freerdp.com/
+ * http://www.rdesktop.org/
+ *
  * default port 5901
  * https://habrahabr.ru/company/ruvds/blog/312556
 
