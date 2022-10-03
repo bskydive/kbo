@@ -1,0 +1,86 @@
+.wrapper-nextchat-plugin-view{
+    position: fixed;
+    z-index: 1000;
+}
+.wrapper-position-nextchat-plugin{
+    position: relative;
+}
+.wrapper-position-nextchat-plugin .default-button{
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 5px 15px 0px rgba(0,0,0,0.2);
+    position: relative;
+}
+.wrapper-position-nextchat-plugin .default-button .title{
+    position: absolute;
+    color: #fff;
+    border-radius: 50px;
+    display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 3px 15px;
+    top: calc(50% - 15px);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+}
+.wrapper-position-nextchat-plugin:hover .title{
+    opacity: 1;
+    visibility: visible;
+    margin: 0 !important;
+}
+.wrapper-position-nextchat-plugin .default-button img{
+   width: 50%;
+}
+.wrapper-position-nextchat-plugin:hover .collapse-button{
+    visibility: visible;
+    opacity: 1;
+}
+.collapse-button{
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+}
+.wrap-chanel-button{
+    position: relative;
+}
+.wrap-chanel-button:hover .sub-title{
+    opacity: 1;
+    visibility: visible;
+    margin: 0 !important;
+}
+.sub-title{
+    position: absolute;
+    top: calc(50% - 12px);
+    background-color: #fff;
+    color: #757575;
+    padding: 2px 15px;
+    box-shadow: 2px 5px 10px 0px rgba(0,0,0,0.2);
+    border-radius: 50px;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.5s;
+    font-size: 14px;
+}
+.chanel-button{
+    border-radius: 50%;
+    border: none;
+    margin: 5px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    overflow: hidden;
+    padding: 0;
+    outline: none;
+    cursor: pointer;
+    box-shadow: 0px 2px 7px 0px rgba(0,0,0,0.2);
+}
+.chanel-button img{
+    width: 100%;
+    height: 100%;
+}
