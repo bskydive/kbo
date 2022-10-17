@@ -341,7 +341,7 @@
 1. В чем разница между Directive и Component.
 	* компонент - частный случай директивы, с шаблоном
 	* Структурные директивы — манипуляции с DOM: `ngif, ngfor`
-		* Обязательно импортируют: Input, TemplateRef, and ViewContainerRef symbols
+		* Обязательно импортируют: Input, TemplateRef, ViewContainerRef
 		* this.viewContainer.createEmbeddedView(this.templateRef);
 	* Атрибутные директивы — манипулирует: element, component, directive. `ngStyle, ngClass`
 
@@ -351,57 +351,56 @@
 			})
 		```
 ## Директивы
-	* https://angular.io/guide/built-in-directives
-	* [ngClass](https://angular.io/guide/built-in-directives#adding-and-removing-classes-with-ngclass)
-		* https://angular.io/api/common/NgClass#description
-		* `ngClass: string | string[] | Set<string> | { [klass: string]: any; }`
+* https://angular.io/guide/built-in-directives
+* [ngClass](https://angular.io/guide/built-in-directives#adding-and-removing-classes-with-ngclass)
+	* https://angular.io/api/common/NgClass#description
+	* `ngClass: string | string[] | Set<string> | { [klass: string]: any; }`
 
-		```html
+	```html
 
-			<div [ngClass]="isSpecial ? 'special' : ''">
-			<div [ngClass]="currentClasses">  <!-- Лучше вместо функции ввести переменную-->
-			<some-element [ngClass]="'first second'">...</some-element>
-			<some-element [ngClass]="['first', 'second']">...</some-element>
-			<some-element [ngClass]="{'first': true, 'second': true, 'third': false}">...</some-element>
-			<some-element [ngClass]="stringExp|arrayExp|objExp">...</some-element>
-			<some-element [ngClass]="{'class1 class2 class3' : true}">...</some-element>
+		<div [ngClass]="isSpecial ? 'special' : ''">
+		<div [ngClass]="currentClasses">  <!-- Лучше вместо функции ввести переменную-->
+		<some-element [ngClass]="'first second'">...</some-element>
+		<some-element [ngClass]="['first', 'second']">...</some-element>
+		<some-element [ngClass]="{'first': true, 'second': true, 'third': false}">...</some-element>
+		<some-element [ngClass]="stringExp|arrayExp|objExp">...</some-element>
+		<some-element [ngClass]="{'class1 class2 class3' : true}">...</some-element>
 
-			<div [class.active]="isActive">  <!-- так классы видно в отладчике, иначе 'class=[Object object]' -->
-			<div [class]="{'odd-row': odd, 'second': true}">
-		```
+		<div [class.active]="isActive">  <!-- так классы видно в отладчике, иначе 'class=[Object object]' -->
+		<div [class]="{'odd-row': odd, 'second': true}">
+	```
 
-		```ts
-			currentClasses: {};
-			// src/app/app.component.ts
-			setCurrentClasses() {
-				// CSS classes: added/removed per current state of component properties
-				this.currentClasses =  {
-				saveable: this.canSave,
-				modified: !this.isUnchanged,
-				special:  this.isSpecial
-				};
-			}
+	```ts
+		currentClasses: {};
+		// src/app/app.component.ts
+		setCurrentClasses() {
+			// CSS classes: added/removed per current state of component properties
+			this.currentClasses =  {
+			saveable: this.canSave,
+			modified: !this.isUnchanged,
+			special:  this.isSpecial
+			};
+		}
 
-		```
-	* [ngStyle](https://angular.io/guide/built-in-directives#setting-inline-styles-with-ngstyle)
-		```html
-			<div [ngStyle]="currentStyles">
-		```
+	```
+* [ngStyle](https://angular.io/guide/built-in-directives#setting-inline-styles-with-ngstyle)
+	```html
+		<div [ngStyle]="currentStyles">
+	```
 
-		```ts
-			currentStyles: {};
-			/* . . . */
-			setCurrentStyles() {
-				// CSS styles: set per current state of component properties
-				this.currentStyles = {
-				'font-style':  this.canSave      ? 'italic' : 'normal',
-				'font-weight': !this.isUnchanged ? 'bold'   : 'normal',
-				'font-size':   this.isSpecial    ? '24px'   : '12px'
-				};
-			}
-		```
-	*
-1. NG-FOR. TrackBy зачем нужен, преимущества.
+	```ts
+		currentStyles: {};
+		/* . . . */
+		setCurrentStyles() {
+			// CSS styles: set per current state of component properties
+			this.currentStyles = {
+			'font-style':  this.canSave      ? 'italic' : 'normal',
+			'font-weight': !this.isUnchanged ? 'bold'   : 'normal',
+			'font-size':   this.isSpecial    ? '24px'   : '12px'
+			};
+		}
+	```
+* NG-FOR. TrackBy зачем нужен, преимущества.
 	* для более быстрого вычисления признака замены значений вложенного объекта в ячейке массива, быстрота перерисовки
 
 ## Стили Material
@@ -472,7 +471,24 @@
 		* доступ после ngContentInit
 		* прямой доступ в DOM нежелательно использовать при рендеринге на сервере из-за ИБ
 		* можно ссылаться на директивы по имени и типу, на шаблонные переменные `#`
-		* можно читать/писать в @Input компонента
+		* ?можно читать/писать в @Input компонента
+		* https://angular.io/api/core/ContentChildren
+		* https://angular.io/api/core/ContentChild
+
+		```ts
+			// Query for a CONTENT child of type `ChildComponent`
+			@ContentChild(ChildComponent) contentChild!: ChildComponent;
+
+			ngAfterContentInit() {
+				// contentChild is set after the content has been initialized
+			}
+
+			ngAfterContentChecked() {
+				// contentChild is updated after the content has been checked
+				this.prevHero = this.contentChild.hero;
+				}
+			}
+		```
 	* [viewchild](https://medium.com/technofunnel/angular-viewchild-and-viewchildren-fde2d252b9ab)
 		* для доступа к DOM после рендеринга afterViewInit
 		* shadowDom/JS
@@ -482,7 +498,9 @@
 		* доступ после ngAfterViewInit
 		* прямой доступ в DOM нежелательно использовать при рендеринге на сервере из-за ИБ
 		* можно ссылаться на директивы по имени и типу, на шаблонные переменные `#`
-		* можно читать/писать в @Input компонента
+		* ?можно читать/писать в @Input компонента
+		* https://angular.io/api/core/ViewChildren
+		* https://angular.io/api/core/AfterViewChecked вызывается очень часто
 		* Property decorator that configures a view query. The change detector looks for the first element or the directive matching the selector in the view DOM. The following selectors are supported:
 			* Any class with the @Component or @Directive decorator
 			* A template reference variable as a string (e.g. query <my-component #cmp></my-component> with @ViewChild('cmp'))
