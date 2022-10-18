@@ -1,5 +1,9 @@
 # Windows
 
+## статьи
+
+ * [Полезные мелочи Windows администратора, поиск компьютеров пользователей и не только](https://habr.com/ru/post/579114/)
+
 ## WSL windows susbsytem for linux
 
  * https://zellwk.com/blog/windows-wsl/
@@ -96,6 +100,10 @@ http://www.microsoft.com/ru-ru/download/details.aspx?id=24309
  * http://lifehacker.ru/2014/07/16/vy-ne-znaete-windows-7/
  * запись экрана screencast recording https://www.theverge.com/2020/4/21/21222533/record-screen-pc-windows-laptop-xbox-game-bar-how-to
 
+## obs studio
+ * https://www.recmaster.net/how-to/fix-obs-black-screen
+	* disable Game Mode if you have enabled it under Settings -> Gaming -> Game Mode.
+	*  For Windows 10 1909 or later: Go to system Settings -> System -> Display, and click to open "Graphics settings", where you should select "Classic app", browse to where you have installed OBS (e.g D:\Program Files\obs-studio\bin\64bit\obs64.exe) and add the app into the list. After that, click "Options" of OBS Studio and alter the graphics preference of OBS Studio app form System default to "Power saving" or "High performance" manually. Power saving is recommended for display capture while High performance is for game capture or using NVENC encoder.
 
 ## OFFICE PROFESSIONAL PLUS 2010
 

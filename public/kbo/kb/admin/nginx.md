@@ -11,34 +11,40 @@
 
  * [ликбез ispsystem](https://doc.ispsystem.ru/index.php/Установка_SSL-сертификата/)
  * [openssl cli](https://www.sslshopper.com/article-most-common-openssl-commands.html)
+ * [gitlab pages ssl](https://gitlab.com/stepanovv/kbo/pages/domains/stepanovv.ru	)
  * обновление ключа
-```bash
-openssl req -text -noout -verify -in 5353333.csr 
-openssl rsa -check -in 5353333.key
-openssl x509 -enddate -noout -in 5353333/www_stepanovv_ru.crt
 
-cat 5353333/www_stepanovv_ru.crt > stepanovv.ru.chained.crt
-cat 5353333/www_stepanovv_ru.ca-bundle >> stepanovv.ru.chained.crt
-openssl x509 -noout -text -in stepanovv.ru.chained.crt | less
-openssl x509 -enddate -noout -in stepanovv.ru.chained.crt
+	```bash
+		openssl req -text -noout -verify -in 5353333.csr 
+		openssl rsa -check -in 5353333.key
+		# openssl verify -noout -in 5353333/www_stepanovv_ru.crt
+		openssl x509 -dates -noout -in 5353333/www_stepanovv_ru.crt
 
-cat 5353333.key > stepanovv.ru.key
-openssl rsa -check -in stepanovv.ru.key
+		cat 5353333/www_stepanovv_ru.crt > stepanovv.ru.chained.crt
+		cat 5353333/www_stepanovv_ru.ca-bundle >> stepanovv.ru.chained.crt
+		openssl x509 -noout -text -in stepanovv.ru.chained.crt | less
+		openssl x509 -enddate -noout -in stepanovv.ru.chained.crt
 
-openssl dhparam -out dhparam2048.pem 2048
+		cat 5353333.key > stepanovv.ru.key
+		openssl rsa -check -in stepanovv.ru.key
 
-openssl s_client -connect stepanovv.ru:443
-openssl s_client -showcerts -connect stepanovv.ru:443
-nmap -p 443 --script ssl-cert stepanovv.ru
-```
+		openssl dhparam -out dhparam2048.pem 2048
+
+		openssl s_client -connect stepanovv.ru:443
+		openssl s_client -showcerts -connect stepanovv.ru:443
+		nmap -p 443 --script ssl-cert stepanovv.ru
+	```
+
  * самоподписанный ключ [тыц](https://www.digitalocean.com/community/tutorials/how-to-create-an-ssl-certificate-on-nginx-for-ubuntu-14-04)
-```bash
-#putty
-openssl req -x509 -nodes -days 365 -newkey rsa:4096 -keyout ./nginx.key -out ./nginx.crt
-#для IIS
-pkcs12 -export -out nginx_iis.pfx -inkey ./nginx.key -in nginx.crt -name 'nginx'
 
-```
+	```bash
+		#putty
+		openssl req -x509 -nodes -days 365 -newkey rsa:4096 -keyout ./nginx.key -out ./nginx.crt
+		#для IIS
+		pkcs12 -export -out nginx_iis.pfx -inkey ./nginx.key -in nginx.crt -name 'nginx'
+
+	```
+
  * [strict trabsport security](https://www.nginx.com/blog/http-strict-transport-security-hsts-and-nginx/)
  * [ssl getting started](https://www.nginx.com/blog/nginx-https-101-ssl-basics-getting-started/)
  * [усиление ssl hardening](https://blog.ukrnames.com/administrirovanie/usilenie-ssl-dlya-veb-servera-nginx)

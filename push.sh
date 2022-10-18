@@ -20,7 +20,7 @@ exit
 #git-flow
 comment="${1}"
 dev="develop"
-origin="origin-bb"
+origin="bb"
 
 feature=`git branch | grep '*' | awk -F'* ' '{print $2}'`
 

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="robots" content="all" />
+	<title>База знаний</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="description" content="markdown knowledge base">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="/fonts/fonts.css">
+	<link rel="stylesheet" href="./lib/themes/dark1.css">
+	<!-- <link rel="stylesheet" href="./lib/themes/buble.css"> -->
+	<!-- <link rel="stylesheet" href="./lib/themes/pure.css"> -->
+	<!-- <link rel="stylesheet" href="./lib/themes/vue.css"> 	 -->
+	<link rel="shortcut icon" type="image/png" href="favicon_star.png" />
+</head>
+
+<body>
+	<div id="app"></div>
+	<script>
+		window.$docsify = {
+			name: 'База знаний',
+			repo: 'https://gitlab.com/stepanovv/kbo/tree/master/public/kbb',
+			//basePath: '/', // Base path of the website. You can set it to another directory or another domain name.
+			homepage: 'index.md',
+			formatUpdated: '{DD}.{MM}.{YYYY} {HH}:{mm}',
+			noEmoji: false,
+			// smartypants: true,
+			ext: '.md',
+			//sidebar
+			// loadSidebar: true,
+			loadSidebar: 'sidebar.md',
+			//TOC
+			maxLevel: 3, // Maximum Table of content level.
+			subMaxLevel: 3, // Add table of contents (TOC) in custom sidebar.
+			//search
+			search: 'auto',
+			// search :['/'],
+			search: {
+				maxAge: 10000, // Expiration time, the default one day
+				//maxAge: 86400000, // Expiration time, the default one day
+				placeholder: 'Строка для поиска',
+				noData: 'Нет данных',
+				// paths: ['/'], //not work
+				depth: 3 // Headline depth, 1 - 6
+				// 	// // Localization
+				// 	// placeholder: {
+				// 	// 	// '/en-us/': 'Type to search',
+				// 	// 	'/': 'Type to search'
+				// 	// },
+				// 	// noData: {
+				// 	// 	// '/en-us/': 'No results',
+				// 	// 	'/': 'No Results'
+				// 	// }
+			},
+			plugins: [
+				function (hook, vm) {
+					hook.beforeEach(function (html) {
+						var url = 'https://gitlab.com/stepanovv/kbo/tree/master/public/kbb/' + vm.route.file
+						var editHtml = '[:memo: Редактировать](' + url + ')\n'
+						return html + '\n\n----\n\n' + '| Изменён {docsify-updated} | ' + editHtml + ' | '
+					})
+				}
+			]
+		}
+	</script>
+	<script src="./lib/docsify.min.js"></script>
+	<script src="./lib/plugins/zoom-image.min.js"></script>
+	<script src="./lib/plugins/search.min.js"></script>
+	<script src="./components/prism-bash.min.js"></script>
+	<script src="./components/prism-typescript.min.js"></script>
+	<script src="./components/prism-stylus.min.js"></script>
+	<script src="./components/prism-pug.min.js"></script>
+	<script src="./components/prism-less.min.js"></script>
+	<script src="./components/prism-markdown.min.js"></script>
+	<script src="./components/prism-sql.min.js"></script>
+</body>
+
+</html>

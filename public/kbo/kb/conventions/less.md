@@ -32,12 +32,12 @@
 		* `меню справа "три палочки" --> remove set`
 		* `меню вверху слева "+" --> import icons`
 	* Новые иконки необходимо подготовить в inkScape
-    	* Высота иконки и документа 32px, положение иконки по центру вертикально и горизонтально
-    	* Перед изменением размера иконки необходимо зафиксировать соотношение сторон - "замочек" между шириной и высотой в меню
-    	* Если иконка не квадратная, то будут проблемы с выравниванием.
-    	* Иконки должны быть объединены в один контур (ctrl+k). 
-    	* После разгруппировки (shift+ctrl+g) контур не распадается на фигуры, их нельзя растащить мышкой.
-    	* Цвет заливки - чёрный #000000. Он будет изменяться при помощи CSS: color
+		* Высота иконки и документа 32px, положение иконки по центру вертикально и горизонтально
+		* Перед изменением размера иконки необходимо зафиксировать соотношение сторон - "замочек" между шириной и высотой в меню
+		* Если иконка не квадратная, то будут проблемы с выравниванием.
+		* Иконки должны быть объединены в один контур (ctrl+k). 
+		* После разгруппировки (shift+ctrl+g) контур не распадается на фигуры, их нельзя растащить мышкой.
+		* Цвет заливки - чёрный #000000. Он будет изменяться при помощи CSS: color
 	* Для добавления новой иконки
 		* `меню вверху слева "+" --> import icons`
 		* Название иконки пишем через тире, без префикса `icon-`, т.к. он добавляется автоматически
@@ -74,57 +74,61 @@
 		* Добавляем содержимое из `iconfont_2017.08.30_18.41_42_font/fonts/style.less` за исключением верхней строчки `@import "variables";`
 		* Для многоцветных иконок необходимо чуть доработать напильником, т.к. штатные margin и `icon- .path` не заработали
 		* Если иконки только добавляли, и загружали через json, то достаточно добавить новые строчки про иконки из `variables.less` и `style.less`, а также меняем `@font-face` 
-        * Если иконки удаляли или рефакторили, то оставляем без изменений только верхние строки
+		* Если иконки удаляли или рефакторили, то оставляем без изменений только верхние строки
 			```less
 			[class$="-path1"], [class*="-path1"], [class$="-path2"], [class*="-path2"], [class$="-path3"], [class*="-path3"] {
-             	position: absolute;
-             }
-            ```
-        * Меняем названия классов и конвертируем смещение
-        	```less
-        	.icon-users .path2 {
-            	&:before {
-            		content: @icon-users-path2;
-            		margin-left: -1.1259765625em;
-            		color: rgb(44, 47, 51);
-            	}
-            }
-        	```
-        	на
-        	```less
-        	.icon-users-path2 {
-            	&:before {
-            		content: @icon-users-path2;
-            		left: -18px;
-            		color: rgb(44, 47, 51);
-            	}
-            }
-        	```
-        * добавляем в PUG стили всех частей иконки и структуру под `position:absolute`
+			 	position: absolute;
+			 }
+			```
+		* Меняем названия классов и конвертируем смещение
+			```less
+			.icon-users .path2 {
+				&:before {
+					content: @icon-users-path2;
+					margin-left: -1.1259765625em;
+					color: rgb(44, 47, 51);
+				}
+			}
+			```
+
+			на
+
+			```less
+			.icon-users-path2 {
+				&:before {
+					content: @icon-users-path2;
+					left: -18px;
+					color: rgb(44, 47, 51);
+				}
+			}
+			```
+		* добавляем в PUG стили всех частей иконки и структуру под `position:absolute`
+
 			```pug
-			.c-counter-icon
-				.c-counter-icon-applicant
-					.icon-users-path1
-					.icon-users-path2
-					.icon-users-path3
+				.c-counter-icon
+					.c-counter-icon-applicant
+						.icon-users-path1
+						.icon-users-path2
+						.icon-users-path3
 			```
 		* в less компонента добавляем
+
 			```less
 				&-icon {
-            		display: inline-block;
-            		vertical-align: text-bottom;//дополнительное выравнивание по вертикали
-            		margin-bottom: -2px;//дополнительное выравнивание по вертикали
-            		margin-right: 19px;
-            		position: relative;//опора для иконок
-            		width: 57px;
-            
-            		&-applicant {
-            			position: absolute;
-            			font-size: 32px;
-            			bottom: 37px;
-            			left: 9px;
-            		}
-         		}
+					display: inline-block;
+					vertical-align: text-bottom;//дополнительное выравнивание по вертикали
+					margin-bottom: -2px;//дополнительное выравнивание по вертикали
+					margin-right: 19px;
+					position: relative;//опора для иконок
+					width: 57px;
+
+					&-applicant {
+						position: absolute;
+						font-size: 32px;
+						bottom: 37px;
+						left: 9px;
+					}
+		 		}
 			```
 	* Пересобираем проект, проверяем наличие иконок		
 1. Добавлять минимум шрифтов. Курсив точно не нужен, он сильно утяжеляет сборку. Баузер сам выбирает что лучше загрузить по весу файла и скорости сети, имхо. ttf толще, но быстрее грузится. woff2 - наоборот
@@ -133,7 +137,19 @@
 ## svg
 
 1. Выбираем для иконок svg подключение по url, хранение в отдельных файлах
- 
+	```css
+		svg { 
+			fill:currentColor;
+			color: white;
+		}
+	```
+
+ 	```xml
+		<svg xmlns="http://www.w3.org/2000/svg" id="path1" viewBox="0 0 24 24">
+			<path d="..."/>
+		</svg>
+	```
+
 	```pug
 		svg.icon.icon--arrowDown
 			use([attr.xlink:href]="getIconPath('iconName')") //-->img/icon--iconName.svg#icon--iconName
@@ -184,45 +200,45 @@
 	90% кода вёрстки находится в LESS против 10% внутри PUG.
 	```less
 		.c-landing-project {
-        	&-comfort {
-        		&-cards {
-        
-        			> ul {
-        				> li {
-        					> a {
-        						&:hover {
-        						}
-        					}
-        				}
-        			}
-        
-        			.card {
-        
-        				> h5 {
-        					font-size: 15px;
-        					line-height: 1.65;
-        				}
-        				.icon {
-        					color: @var-color-bright-blue;
-        
-        					.podium {
-        						@media (max-width: 767px) {
-        							font-size: 100px;
-        						}
-        
-        						@media (min-width: 768px) {
-        							font-size: 100px;
-        						}
-        
-        						@media (min-width: 992px) {
-        							font-size: 120px;
-        						}
-        					}
-        				}
-        			}
-        		}
-        	}
-        }
+			&-comfort {
+				&-cards {
+		
+					> ul {
+						> li {
+							> a {
+								&:hover {
+								}
+							}
+						}
+					}
+		
+					.card {
+		
+						> h5 {
+							font-size: 15px;
+							line-height: 1.65;
+						}
+						.icon {
+							color: @var-color-bright-blue;
+		
+							.podium {
+								@media (max-width: 767px) {
+									font-size: 100px;
+								}
+		
+								@media (min-width: 768px) {
+									font-size: 100px;
+								}
+		
+								@media (min-width: 992px) {
+									font-size: 120px;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 	``` 
 
 1. Для размеров текста НЕ используем pt, используем px, т.к. размер текста сильно будет отличаться от картинки.
@@ -242,7 +258,7 @@
 				&-header {
 					@media (max-width : 767px) {
 						padding-bottom : 21px;
-						font-size      : 12px;
+						font-size	  : 12px;
 					}
 					
 					@media (min-width : 768px) {
@@ -255,7 +271,7 @@
 					
 					@media (min-width : 1200px) {
 						padding-bottom : 33px;
-						font-size      : 18px;
+						font-size	  : 18px;
 					}
 				}
 			}
@@ -267,7 +283,7 @@
 		@media (max-width : 767px) {
 			.с-main-page-comfort-header {
 				padding-bottom : 21px;
-				font-size      : 12px;
+				font-size	  : 12px;
 			}
 		}
 		
@@ -286,7 +302,7 @@
 		@media (min-width : 1200px) {
 			.с-main-page-comfort-header {
 				padding-bottom : 33px;
-				font-size      : 18px;
+				font-size	  : 18px;
 			}
 		}
 	```
@@ -340,7 +356,7 @@
 	
 			@media (max-width : 767px) {//здесь исключение вместо min-width:376px, т.к. необходимо захватить от 0 до 375
 				padding-bottom : 21px;
-				font-size      : 12px;
+				font-size	  : 12px;
 			}
 			
 			@media (min-width : 768px) {//*-768.psd
@@ -353,7 +369,7 @@
 			
 			@media (min-width : 1200px) {//*-1200.psd
 				padding-bottom : 33px;
-				font-size      : 18px;
+				font-size	  : 18px;
 			}
 		}
 	```
@@ -363,11 +379,11 @@
 		> h3 {
 	
 			@media (max-width : 991px) {//*-375.psd, *-768.psd
-				padding-top    : 47px;
+				padding-top	: 47px;
 			}
 	
 			@media (min-width : 992px) {//*-992.psd, *-1200.psd
-				padding-top    : 49px;
+				padding-top	: 49px;
 			}
 		}
 	
@@ -383,7 +399,7 @@
 			}
 	
 			@media (min-width : 992px) {
-				margin-top    : 35px;
+				margin-top	: 35px;
 			}	
 		}
 	```
@@ -393,7 +409,7 @@
 	```less
 		&-button{
 			@media (min-width : 1200px) {//*-1200.psd
-    				
+					
 			}
 
 			@media (max-width : 1199px) {//*-992.psd
@@ -480,51 +496,51 @@
 
 	```stylus
 		.c-list-stacked 
-        	font-size 14px
-        	display block
-        	
-        	&-item 
-        		width 100%
-        		display inline-block
-        		position relative
-        
-        		&-name
-        			color black
-        			background-color white
-        			width 49%
-        			padding 6px
-        			display inline-block
-        
-        		&-type 
-        			color grey
-        			width 49%
-        			padding 6px
-        			background-color lightgrey
-        			display inline-block
-        		
-        		&:hover &-name, &:hover &-type
-        			background-color red;
-        			cursor pointer
-        		
+			font-size 14px
+			display block
+			
+			&-item 
+				width 100%
+				display inline-block
+				position relative
+		
+				&-name
+					color black
+					background-color white
+					width 49%
+					padding 6px
+					display inline-block
+		
+				&-type 
+					color grey
+					width 49%
+					padding 6px
+					background-color lightgrey
+					display inline-block
+				
+				&:hover &-name, &:hover &-type
+					background-color red;
+					cursor pointer
+				
 	``` 
 
 	```less
 	.c-list-stacked-item:hover .c-list-stacked-item-name,
-    .c-list-stacked-item:hover .c-list-stacked-item-type {
-        background-color: #f00;
-    }
-    //или
+	.c-list-stacked-item:hover .c-list-stacked-item-type {
+		background-color: #f00;
+	}
+	//или
 	&:hover &-name, &:hover &-type {
-            cursor: pointer;
-            background-color: @var-color-hover;
-        }
+			cursor: pointer;
+			background-color: @var-color-hover;
+		}
 	
 	```
 1. для сброса кэша favicon в браузере надо добавить параметр 
-    ```html
-    <link rel="icon" type="image/x-icon" href="favicon.ico?any=param">
+	```html
+	<link rel="icon" type="image/x-icon" href="favicon.ico?any=param">
 
-    ```
+	```
 1. вместо сокрытия элементов управления лучше делать их выключенными, и менять к ним всплывающую подсказку - "элемент такой-то, выключен, чтобы включить сделайте это"
 
 1. В мобильных ОС и браузерах необходимы свои префиксы, например для IOS8+transform, тестирование на живых устройствах, т.к. рендеринг отличается. Необходимы отдельные классы стилей под каждую платформу

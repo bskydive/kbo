@@ -8,6 +8,13 @@ section.c-portfolio-contacts
 				a(href=vurl, target="_blank")
 					i(class=vicon)
 					p=vtext
+		mixin a-btn-svg(vurl, vicon, vtext)
+			li
+				a(href=vurl, target="_blank")
+					svg.icon
+						use(href=vicon)
+					//- img(src=vicon)
+					p=vtext
 		ul
 			li
 				button(onclick="copyToClipboard('stepanovv.ru@yandex.ru')")
@@ -31,11 +38,15 @@ section.c-portfolio-contacts
 			"skype:bskydive?chat",
 			"icon-skype",
 			"Написать в Skype")
-			+a-btn(
+			+a-btn-svg(
+			"https://t.me/stepanovv_ru",
+			"img/telegram-rounded-black.svg#telegram-rounded-black",
+			"Написать в TG")
+			+a-btn-svg(
 			"https://career.habr.com/conversations/stepanov-valeriy14",
-			"",
-			"Написать в Мойкруг")
-			//	
+			"img/habr.svg#habr",
+			"Написать в ХабрКарьера")
+			//
 				+a-btn(
 				"icq://people/304234629",
 				"icon-icq",

@@ -198,7 +198,36 @@
 		}, 1);
 	}
 	```
-1. В сложных интерфейсах лучше делать CSS код для интерактива. На переключение - невидимый` <input id=id class='c0' style="display:none">`, `<label for=id class="c1">`, селектор `c0:checked~c1{...}` , `c0:not(:checked)~c1{...}`. На сортировку добавляем `display: flex;	flex-direction: column-reverse;`. Чтобы прибить элемент к потолку можно использовать `display:flex;order:1` Это лучший способ разгрузить Zone.js
+1. В сложных интерфейсах лучше делать CSS код для интерактива. Это лучший способ разгрузить Zone.js
+	* На переключение - невидимый input
+
+		```html
+			<input id=id class='c0'>
+			<label for=id class="c1">
+		```
+
+		```css
+			c0:checked~c1{
+				display: none;
+			}
+			c0:not(:checked)~c1{
+				display: block;
+			}
+		```
+
+	* Сортировка
+	
+		```css 
+			display: flex;
+			flex-direction: column-reverse;
+		```
+
+	* Чтобы прибить элемент к потолку
+
+		```css
+			display:flex;
+			order:1;
+		```
 
 1. Чтобы менять css во вложенных компонентах необходимо отключать `encapsulation: ViewEncapsulation.None` . Для обоих случаев желательно указать стили компонента или псевдокласс(для включенной инкапсуляции).
 	```css
