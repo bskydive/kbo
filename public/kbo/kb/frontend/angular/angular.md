@@ -542,17 +542,14 @@
 	```
 1. [динамическое создание компонентов](https://habr.com/ru/company/infowatch/blog/330030/) - как создать динамически компонент, который лежит во внешнем файле, а также вставлять его в DOM из нашего сервиса
 	* content projection https://angular.io/guide/content-projection
-	* templateOutlet
-	* componentOutlet
-	* viewContainer - createEmbeddedView
+    *
 
 	```ts
 		//ссылки через DI на себя:
 		constructor(
-			private viewContainerRef: ViewContainerRef
 			private templateRef: TemplateRef<any>,
 			private el: ElementRef
-		)
+		){}
 
 		//viewChild
 		@ViewChild('input') input;
@@ -576,32 +573,68 @@
 			let buttonElement = this.renderer.createElement('button');
 			this.renderer.appendChild(this.elementRef.nativeElement, buttonElement);
 		}
+    ```
+	* [viewContainer - createEmbeddedView](https://angular.io/guide/dynamic-component-loader)
+        ```ts
+            constructor(
+			    private viewContainerRef: ViewContainerRef
+            ){}
 
-		// viewContainer - можно создать Host(component)/Embedded(template) view
-		//ангуляр не вставляет View-элемент внутрь указанного контейнера, а добавляет его сразу после контейнера
-		//динамически добавляемые компоненты не поддерживают Input- и Output-декораторы
-		this._contentViewRef = this.popover.createEmbeddedView();
-		const componentFactory = this._cfResolver.resolveComponentFactory(Popover);
-		this._componentRef = this.viewContainerRef.createComponent(
-			componentFactory,
-			this._injector,
-			0,
-			[this._contentViewRef.rootNodes]
-		);
+            // viewContainer - можно создать Host(component)/Embedded(template) view
+            //ангуляр не вставляет View-элемент внутрь указанного контейнера, а добавляет его сразу после контейнера
+            //динамически добавляемые компоненты не поддерживают Input- и Output-декораторы
+            this._contentViewRef = this.popover.createEmbeddedView();
+            const componentFactory = this._cfResolver.resolveComponentFactory(Popover);
+            this._componentRef = this.viewContainerRef.createComponent(
+                componentFactory,
+                this._injector,
+                0,
+                [this._contentViewRef.rootNodes]
+            );
 
-		this._componentRef.instance.title = this.title;
-		this._contentViewRef.detectChanges();
+            this._componentRef.instance.title = this.title;
+            this._contentViewRef.detectChanges();
+        ```
+	* [templateOutlet](https://angular.io/guide/content-projection#conditional-content-projection)
+        ```html
+            <ng-container *ngTemplateOutlet="svk; context: myContext"></ng-container>
+            <ng-template #svk><span>Hello</span></ng-template>
+		```
+		```html
+            <!-- content-projection/src/app/example-zippy.template.html -->
+            <ng-container [ngTemplateOutlet]="content.templateRef"></ng-container>
+			<!-- content-projection/src/app/app.component.html -->
+            <ng-template appExampleZippyContent>
+                It depends on what you do with it.
+            </ng-template>
+        ```
+        ```ts
+			//content-projection/src/app/example-zippy.component.ts
+            @Directive({
+                selector: '[appExampleZippyContent]'
+            })
+            export class ZippyContentDirective {
+                constructor(public templateRef: TemplateRef<unknown>) {}
+            }
 
-		//ngTemplateOutlet
-		<ng-container *ngTemplateOutlet="svk; context: myContext"></ng-container>
-      	<ng-template #svk><span>Hello</span></ng-template>
-
-		//ngComponentOutlet
-		<ng-container *ngComponentOutlet="HelloWorld"></ng-container>
-		...
-		class ComponentOutletExample {
-   			public HelloWorld = HelloWorldComponent
-	```
+			@ContentChild(ZippyContentDirective) content!: ZippyContentDirective;
+        ```
+		```html
+			<p question>
+				Is content projection cool?
+			</p>
+			<ng-container ngProjectAs="[question]">
+				<p>Is content projection cool?</p>
+			</ng-container>
+		```
+	* [componentOutlet](https://angular.io/api/common/NgComponentOutlet)
+        ```html
+            //ngComponentOutlet
+            <ng-container *ngComponentOutlet="HelloWorld"></ng-container>
+            ...
+            class ComponentOutletExample {
+                public HelloWorld = HelloWorldComponent
+        ```
 1. Как получить доступ к HTML Element из компонента.
 	* https://angular.io/guide/component-interaction
 	* шаблонные переменные в родителе дают доступ в HTML к свойствам компонента
