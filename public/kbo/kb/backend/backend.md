@@ -37,11 +37,11 @@ https://habrahabr.ru/post/276731/
 
 ## SOAP
 
- * 
+ *
 
 ## XML-RPC
 
- * 
+ *
 
 ##  DB Хранение данных
 
@@ -60,3 +60,4 @@ https://habrahabr.ru/company/badoo/blog/342564/
  * [Что делать, когда CSS блокирует парсинг страницы?](https://habr.com/ru/company/ruvds/blog/490628/)
     * `<link rel="stylesheet" href="/path/to/my.css" media="print" onload="this.media='all'">`
 
+ * https://github.com/DedSecInside/Awesome-Scripts/tree/master/Web%20Scraping

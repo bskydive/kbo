@@ -16,23 +16,29 @@
 	* единое хранилище/дерево хранилищ
 	* полностью взаимозаменямый подход для ленивой загрузки: DI—>modules—>services | DI—>modules—>ngrx.forFeature
 	* строгую типизацию действий, редукторов, селекторов, эффектов
-* проблемы
+ * проблемы
 	* много шаблонного кода
 	* нужно писать микрофреймворк для генерации/типизации шаблонного кода
-* redux
+ * redux
 	* единый источник правды в хранилище
 	* состояние только для чтения и меняется отправкой сообщений/действий
 	* данные изменяются чистыми функциями - редукторами
-* что нельзя хранить:
+ * что нельзя хранить:
 	* состояния форм, они часто мутируют, не сериализуемы, не поддерживают действия
 	* данные только для одного компонента
 	* не сериализуемые данные(роутер)
-* ReduxDevTools
+ * ReduxDevTools
 	* дерево состояний
 	* история состояний
 	* проигрыватель истории состояний
-* reducer - feature slice - subslice - root store
-* https://github.com/DeborahK/Angular-NgRx-GettingStarted
+ * reducer - feature slice - subslice - root store
+ * https://github.com/DeborahK/Angular-NgRx-GettingStarted
+ * https://github.com/DeborahK/Angular-RxJS
+ * https://github.com/DeborahK/Angular-Async-Data
+ * 
+ * 
+ * 
+
 
 ```ts
 // state types
@@ -225,6 +231,7 @@
 	* лучше оперировать id чем объектом
 	* хорошо, immutable: map, find, concat, ...spread, filter
 	* плохо, mutable: forEach, concat, shift, splice
+	* https://doesitmutate.xyz/ https://stackoverflow.com/questions/54836118/how-to-remember-if-a-method-mutates-the-original-array/54836218#54836218
 	* презентационный компонент: UI, HTML+CSS, без внешних зависимостей, данные только через @Input/@Output, может включать вложенные компоненты
 		* включаем onPush для игнорирования XHR
 	* контейнерный компонент: Без разметки/стилей, внешние зависимости, хранит состояние, привязан к корневым route, может включать вложенные компоненты

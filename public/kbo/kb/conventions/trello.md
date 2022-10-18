@@ -1,23 +1,24 @@
 # agile tools
 
-## итого:
-* bitbucket: git+wiki
-* trello бизнес + corello + butler +15$
-* wakatime +5$
-* google doc
-* figma: редактирование, zeplin просмотр
-* discord общение голосом и текстом
-* sentry.io логирование
-* slack опционально для оповещений
-* бесплатный хостинг: heroku
-* zoom.us - видеоконференции
+## обзор
+
+ * bitbucket: git+wiki
+ * trello бизнес + corello + butler +15$
+ * wakatime +5$
+ * google doc
+ * figma: редактирование, zeplin просмотр
+ * discord общение голосом и текстом
+ * sentry.io логирование
+ * slack опционально для оповещений
+ * бесплатный хостинг: heroku
+ * zoom.us - видеоконференции
 
 ## справочная
 
-| № | ФИО | роль | город | время MSK+X | рабочее время MSK | на связи MSK | skype(резервная связь) | тел(экстренная связь) | gmail(для сервисов/календарей) | примечание |
+| № | ФИО | роль, чем может помочь | город | время MSK+X | рабочее время MSK | на связи MSK | skype/TG(резервная связь) | тел(экстренная связь) | gmail(для сервисов/календарей) | примечание |
 | --- | --- 				| --- 		| --- 			| --- | --- | --- | --- 			| --- 			| --- 						| --- 	|
-| 10 |               		|        	| Москва 		| +0 |  9-18 |  9-18 |          	| 8  | @gmail.com				| 		|
-| 11 |               		|        	| Москва 		| +0 |  9-18 |  9-18 |          	| 8  | @gmail.com				| 		|
+| 10 | Вася					|  фронтовик, стенды 	| Москва 		| +0 |  9-18 |  9-18 |          	| 8  | @gmail.com				| 		|
+| 11 | Петя           		|  девопс, мониторинг	| Москва 		| +0 |  9-18 |  9-18 |          	| 8  | @gmail.com				| 		|
 | 12 |               		|        	| Москва 		| +0 |  9-18 |  9-18 |          	| 8  | @gmail.com				| 		|
 
 ## planning poker
@@ -25,6 +26,33 @@
  * [тренажёр](https://play.planningpoker.com/plans) 
  * [бесплатно тренажёр](http://www.votingpoker.com)
  * [жирный плагин](https://marketplace.atlassian.com/apps/700473/agile-poker-estimation-tool-for-jira)
+
+## online whiteboard
+
+ * miro
+ * https://openmeetings.apache.org/#multi-whiteboard-and-chat - его нужно ставить на свой сервер, оно работает, но выглядит не модно
+ * https://bigbluebutton.org/teachers/features/ - тоже надо ставить, выглядит помоднее
+ * https://www.heyhi.sg/solution/meeting
+ * https://limnu.com/blog/ - похоже сдох
+ * https://padlet.com/dashboard - обмен карточками, каменты, не совсем онлайн
+
+## чат
+
+ * ! обязательно отдельная учётка для работы
+ * видео+аудио+текст, 10+ участников, файлы, рабочий стол, запись
+ * https://calls.mail.ru/
+ * https://telemost.yandex.ru/
+ * telegram
+ * discord
+ * skype
+ * https://help.mail.ru/biz/myteam/tariffs
+ * https://360.yandex.ru/premium-plans
+ * https://support.discord.com/hc/en-us/community/posts/360044645291-Music-in-chat-rooms
+
+## запись встреч
+
+ * obs studio - win/lin/mac
+ * windows xbox game bar
 
 ## trello
 
@@ -131,6 +159,22 @@
 			task:'0000'
 			});
 	```
+
+## JIRA
+
+ * [jira](jira.md)
+
+## retrospective ретроспективы
+
+ * https://www.atlassian.com/ru/team-playbook/plays/retrospective#instructions
+ * https://www.funretrospectives.com/
+ * https://onlineretrospectives.com/
+	* только практики без утилит
+ * https://reetro.io/reetro-pricing.html
+	* анонимные за деньги
+ * https://easyretro.io/pricing
+ * https://www.teamretro.com/plans
+ * https://lucid.app/ru/pricing/lucidspark#/pricing
 
 ## swagger
 

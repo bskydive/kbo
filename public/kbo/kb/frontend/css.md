@@ -23,10 +23,15 @@
 
 ## фигуры
 
-[стрелки](https://freebiesupply.com/blog/css-arrows/)
+* [стрелки](https://freebiesupply.com/blog/css-arrows/)
+* clip-path обрезка 
+	* [как понять свойство clip-path](https://habr.com/ru/company/skillfactory/blog/539064/)
+	* https://bennettfeely.com/clippy/ `clip-path: polygon(21% 0, 78% 0, 100% 100%, 0% 100%);`
+	* [overlapping css tabs](https://codepen.io/raymassie/pen/NMELNP)
 
 ## обзоры, лучшие практики
 
+ * https://css-irl.info/
  * https://shop.smashingmagazine.com/products/smashing-book-5-real-life-responsive-web-design
  * https://www.joeforshaw.com/blog/css-the-bad-bits-and-how-to-avoid-them
  * https://medium.com/@ABatickaya/хорошие-и-плохие-css-практики-для-начинающих-619289ce8bae/
@@ -36,7 +41,7 @@
  * https://mrmlnc.gitbooks.io/less-guidebook-for-beginners/content/chapter_2/media-queries.html
  * [специфичность не каскад](http://css-live.ru/css/nikto-ne-znaet-css-specifichnost-ne-kaskad.html)
  * [специфичность по рыбам](http://www.standardista.com/css3/css-specificity/)
- * [специфичность по стхм](https://stuffandnonsense.co.uk/archives/css_specificity_wars.html)
+ * [специфичность по ситхам](https://stuffandnonsense.co.uk/archives/css_specificity_wars.html)
  * [сильные стороны css](http://css-live.ru/articles/ustojchivyj-deklarativnyj-kontekstnyj-novyj-vzglyad-na-silnye-storony-css.html)
  * [ограничения сокращённой записи свойств](https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties#Tricky_edge_cases)
  * [ТОП-6 рецептов на чистом HTML и CSS без использования JS](https://proglib.io/p/html-css-tricks/)
@@ -75,7 +80,7 @@
 	.arrow {//треугольная стрелка вверх ^
 		width: 0; 
 		height: 0;
-		border: 100px solid;//ширина основания
+		border: 100px solid transparent;//ширина основания
 		border-bottom-color: blue;//определяем направление стрелки
 	}
  ```
@@ -93,14 +98,22 @@
 ## методологии
 
  * БЭМ
- * [бэм препроцессор и линтер](https://suitcss.github.io/)
+	* https://ru.bem.info/methodology/key-concepts/
+	* [бэм препроцессор и линтер](https://suitcss.github.io/)
+	* семантические названия
+	* название блока создаёт пространство имён, использовать элементы вне блока нельзя
+	* `block-name__elem-name--mod-name`
  * smacss
  * oocss
  * https://medium.com/@stepanovv.ru/правильный-css-oocss-smacss-bem-и-sass-49351a119283/
+ * [Эволюция CSS: от CSS, SASS, BEM и CSS-модулей до styled-components](https://habr.com/ru/company/vk/blog/319956/)
 	
-## cascade css and inheritance
+## каскад наследование специфичность
 
  * https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Cascade_and_inheritance
+ * каскад - порядок имеет значение
+ * наследование
+ * специфичность
 
 ## layout
 
@@ -108,6 +121,48 @@
  * https://www.developerdrive.com/holy-grail-layout-flexbox/
  * [раскладки layout](https://every-layout.dev/)
  * [Типовые раскладки](http://learnlayout.com/)
+ * https://csslayout.io/
+
+ ```html
+	<div>
+		<header class="header">
+			...
+		</header>
+		<div class="container">
+			<!-- Sidebar -->
+			<aside class="container__sidebar">
+				...
+			</aside>
+
+			<!-- Main -->
+			<main class="container__main">
+				...
+			</main>
+		</div>
+	</div>
+ ```
+ ```css
+ 	.header {
+		/* Stick to the top */
+		position: sticky;
+		top: 0;
+	}
+	.container {
+		display: flex;
+	}
+
+	.container__sidebar {
+		width: 30%;
+	}
+
+	.container__main {
+		/* Take the remaining width */
+		flex: 1;
+
+		/* Make it scrollable */
+		overflow: auto;
+	}
+ ```
  * [CSS Grid Layout Generator](https://css-grid-layout-generator.pw/)
 
 ### adaptive vs responsive layout
@@ -119,64 +174,6 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
  * https://wireframe.cc/
  * http://www.shoelace.io/
 
-##	css flexbox
-
- * https://patrickbrosset.com/articles/2021-02-02-4-Weird-Tricks-To-Become-A-10x-Flexbox-Engineer/
- * https://frontender.info/a-guide-to-flexbox/
- * https://kyusuf.com/post/almost-complete-guide-to-flexbox-without-flexbox
- * https://css-tricks.com/old-flexbox-and-new-flexbox/
- * [сборник 2016](https://www.smashingmagazine.com/2016/02/the-flexbox-reading-list/)
- * [The Complete Illustrated Flexbox Tutorial](https://medium.com/p/d35c085dbf35)
- * [MDN: justify-self](https://developer.mozilla.org/en-US/docs/Web/CSS/justify-self)
- * https://yoksel.github.io/flex-cheatsheet/
- * Вертикальная прокрутка
- 	```scss
-	 	.my-block {
-			//уровень 0
-			padding-right: 10px;//отступ справа от прокрутки если фоновый блок должен быть больше блока с прокруткой
-			background-color: gray;
-		 }
-
-		.vscroll {
-			// подготовка для вложенной прокрутки вертикального блока
-			//уровень 1
-			display: flex;
-			flex-direction: column;
-			align-self: stretch; //заполняем родительский контейнер по высоте
-			overflow: hidden; // передаём прокрутку во 2 уровень
-
-			&-scrollable {
-				//вкладывается в контейнер с фиксированной высотой
-				//уровень 2
-				display: flex;
-				flex-direction: column;
-				padding-right: 15px; //от прокрутки
-				flex-grow: 1;
-				overflow-y: hidden; //чтобы не прыгала ширина при выпадании списков
-				overflow-x: auto; //убираем глюки появления прокрутки
-				&-xy {
-					// две прокрутки
-					//вкладывается в контейнер с фиксированной высотой
-					//уровень 2
-					display: flex;
-					flex-direction: column;
-					padding-right: 15px; //от прокрутки
-					flex-grow: 1;
-					overflow: auto;
-				}
-			}
-		}
-	```
-	```html
-		<!-- надо развести отступ слева и справа от прокрутки, цвет фона, учесть прыжок при появлении -->
-		<div class='my-block'>
-			<div class='vscroll'>
-				<div class='vscroll-scrollable'>
-				</div>
-			</div>
-		</div>
-	```
- * https://tobiasahlin.com/blog/common-flexbox-patterns/
 
 ## css стилизация прокрутки scroll
 
@@ -271,11 +268,62 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 	* item - тэг на уровень ниже родительского
 	* 
 	* 
- * 
- * 
- * 
- * 
- * 
+ * https://patrickbrosset.com/articles/2021-02-02-4-Weird-Tricks-To-Become-A-10x-Flexbox-Engineer/
+ * https://frontender.info/a-guide-to-flexbox/
+ * https://kyusuf.com/post/almost-complete-guide-to-flexbox-without-flexbox
+ * https://css-tricks.com/old-flexbox-and-new-flexbox/
+ * [сборник 2016](https://www.smashingmagazine.com/2016/02/the-flexbox-reading-list/)
+ * [The Complete Illustrated Flexbox Tutorial](https://medium.com/p/d35c085dbf35)
+ * [MDN: justify-self](https://developer.mozilla.org/en-US/docs/Web/CSS/justify-self)
+ * https://yoksel.github.io/flex-cheatsheet/
+ * Вертикальная прокрутка
+ 	```scss
+	 	.my-block {
+			//уровень 0
+			padding-right: 10px;//отступ справа от прокрутки если фоновый блок должен быть больше блока с прокруткой
+			background-color: gray;
+		 }
+
+		.vscroll {
+			// подготовка для вложенной прокрутки вертикального блока
+			//уровень 1
+			display: flex;
+			flex-direction: column;
+			align-self: stretch; //заполняем родительский контейнер по высоте
+			overflow: hidden; // передаём прокрутку во 2 уровень
+
+			&-scrollable {
+				//вкладывается в контейнер с фиксированной высотой
+				//уровень 2
+				display: flex;
+				flex-direction: column;
+				padding-right: 15px; //от прокрутки
+				flex-grow: 1;
+				overflow-y: hidden; //чтобы не прыгала ширина при выпадании списков
+				overflow-x: auto; //убираем глюки появления прокрутки
+				&-xy {
+					// две прокрутки
+					//вкладывается в контейнер с фиксированной высотой
+					//уровень 2
+					display: flex;
+					flex-direction: column;
+					padding-right: 15px; //от прокрутки
+					flex-grow: 1;
+					overflow: auto;
+				}
+			}
+		}
+	```
+	```html
+		<!-- надо развести отступ слева и справа от прокрутки, цвет фона, учесть прыжок при появлении -->
+		<div class='my-block'>
+			<div class='vscroll'>
+				<div class='vscroll-scrollable'>
+				</div>
+			</div>
+		</div>
+	```
+ * https://tobiasahlin.com/blog/common-flexbox-patterns/
 
 ##	css grid
 
@@ -548,7 +596,7 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 	color: #ffffff;
 	background-color: #9555af;
 }
-/* old-school "down" effect on clic + color tweak */
+/* old-school "down" effect on click + color tweak */
 .btn:active {
 	transform: translateY(1px);
 	filter: saturate(150%);

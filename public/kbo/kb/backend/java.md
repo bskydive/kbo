@@ -1,5 +1,11 @@
 # Java
 
+
+## сборка мусора
+
+ * [Дюк, вынеси мусор! — 1. Введение](https://habr.com/ru/post/269621/)
+
+
 ## блоги
 
  * [Шипилёв](https://bitbucket.org/clawiz/)
@@ -8,11 +14,11 @@
 ## личные репы
 
  * [abdrashitovta@gmail.com](https://bitbucket.org/clawiz/org-clawiz-core-common/src)
- 
+
 ## оптимизация
 
  * [Алексей Шипилёв об оптимизации в крупных проектах](https://habr.com/company/jugru/blog/338732/)
- 
+
 ## Java-doc
 
 http://skipy.ru/technics/serialization.html
@@ -25,11 +31,13 @@ https://dzone.com/articles/jpa-basic-projections
 
 http://stackoverflow.com/questions/10268583/downloading-java-jdk-on-linux-via-wget-is-shown-license-page-instead#10959815
 
-```java
-
-wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jre-8u131-linux-x64.rpm
-
+```bash
+	wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jre-8u131-linux-x64.rpm
 ```
+
+## kotlin
+
+ * [Грабли, спрятанные в Kotlin](https://habr.com/ru/company/maxilect/blog/590061)
 
 ## собеседование JAVA
 
@@ -155,10 +163,10 @@ before verifying other code logic.
 
 public - можно обращаться из любого места программы
 protected - из того же класса или наследника
-package local/default - из того же пакета 
+package local/default - из того же пакета
 private - из того же класса
 
-## другие модификаторы 
+## другие модификаторы
 
 transient - запрет сериализации
 volatile - при доступе работать с собственной копией(хранить).
@@ -171,20 +179,20 @@ static - применяется к нелокальным переменным, 
 
 ## конструкторы
 
-Характеристики конструктора:
-— Имя конструктора должно совпадать с именем класса (по договоренности, первая буква — заглавная, обычно имя существительное);
-— Конструктор имеется в любом классе. Даже если вы его не написали, компилятор Java сам создаст конструктор по умолчанию (default constructor), который будет пустым и не делает ничего, кроме вызова конструктора суперкласса.
-— Конструктор похож на метод, но не является методом, он даже не считается членом класса. Поэтому его нельзя наследовать или переопределить в подклассе;
-— Конструкторы не наследуются;
-— Конструкторов может быть несколько в классе. В этом случае конструкторы называют перегруженными;
-— Если в классе не описан конструктор, компилятор автоматически добавляет в код конструктор без параметров;
-— Конструктор не имеет возвращаемого типа, им не может быть даже тип void, если возвращается тип void, то это уже не конструктор а метод, несмотря на совпадение с именем класса.
-— В конструкторе допускается оператор return, но только пустой, без всякого возвращаемого значения;
-— В конструкторе допускается применение модификаторов доступа, можно задать один из модификаторов: public , protected, private или без модификатора.
-— Конструктор не может иметь модификаторов abstract, final, native, static или synchronized;
-— Ключевое слово this cсылается на другой конструктор в этом же классе. Если используется, то обращение должно к нему быть первой строкой конструктора;
-— Ключевое слово super вызывает конструктор родительского класса. Если используется, должно обращение к нему быть первой строкой конструктора;
-— Если конструктор не делает вызов конструктора super класса-предка (с аргументами или без аргументов), компилятор автоматически добавляет код вызова конструктора класса-предка без аргументов;
+ * Характеристики конструктора:
+	* Имя конструктора должно совпадать с именем класса (по договоренности, первая буква — заглавная, обычно имя существительное);
+	* Конструктор имеется в любом классе. Даже если вы его не написали, компилятор Java сам создаст конструктор по умолчанию (default constructor), который будет пустым и не делает ничего, кроме вызова конструктора суперкласса.
+	* Конструктор похож на метод, но не является методом, он даже не считается членом класса. Поэтому его нельзя наследовать или переопределить в подклассе;
+	* Конструкторы не наследуются;
+	* Конструкторов может быть несколько в классе. В этом случае конструкторы называют перегруженными;
+	* Если в классе не описан конструктор, компилятор автоматически добавляет в код конструктор без параметров;
+	* Конструктор не имеет возвращаемого типа, им не может быть даже тип void, если возвращается тип void, то это уже не конструктор а метод, несмотря на совпадение с именем класса.
+	* В конструкторе допускается оператор return, но только пустой, без всякого возвращаемого значения;
+	* В конструкторе допускается применение модификаторов доступа, можно задать один из модификаторов: public , protected, private или без модификатора.
+	* Конструктор не может иметь модификаторов abstract, final, native, static или synchronized;
+	* Ключевое слово this cсылается на другой конструктор в этом же классе. Если используется, то обращение должно к нему быть первой строкой конструктора;
+	* Ключевое слово super вызывает конструктор родительского класса. Если используется, должно обращение к нему быть первой строкой конструктора;
+	* Если конструктор не делает вызов конструктора super класса-предка (с аргументами или без аргументов), компилятор автоматически добавляет код вызова конструктора класса-предка без аргументов;
 
 ## типы
 
@@ -194,7 +202,7 @@ http://tproger.ru/articles/9-things-about-null-in-java/
 
 ### примитивные типы primitive
 
-boolean 
+boolean
 byte 8
 int 16
 char 16
@@ -210,40 +218,42 @@ double 64
 
 ### enum множества
 
-специальный класс
+ * специальный класс
 
-enum X {a,b,c};//можно без ;
-X xx;
-void mm(){
-xx=X.a;
-}
+	```java
+		enum X {a,b,c};//можно без ;
+		X xx;
+		void mm(){
+		xx=X.a;
+		}
 
-может быть объявлен вне класса(в пакете) как public или [default]
-всегда static final
-конструктор всегда private
-можно перегружать конструктор:
+		может быть объявлен вне класса(в пакете) как public или [default]
+		всегда static final
+		конструктор всегда private
+		можно перегружать конструктор:
 
-package ***;
-enum X {
-a(1),b(2),c(2){//анонимный внутренний класс для перегрузки конструктора
-public getI(){return 22;} }
-};
+		package ***;
+		enum X {
+		a(1),b(2),c(2){//анонимный внутренний класс для перегрузки конструктора
+		public getI(){return 22;} }
+		};
 
-X (int i){//constructor
-this.i=i; }
+		X (int i){//constructor
+		this.i=i; }
 
-private int i;
-public getI(){return this.i;} }
+		private int i;
+		public getI(){return this.i;} }
 
-class one{
-psvm(){
-X x=X.a;
-sout(x.getI);
-}}
+		class one{
+		psvm(){
+		X x=X.a;
+		sout(x.getI);
+		}}
+	```
 
 ### виды переменных
 
-local/automatic/stack локальные 
+local/automatic/stack локальные
 вне методов
 хранятся в стэке(stack)
 нет значений по-умолчанию, надо инициализировать
@@ -260,7 +270,7 @@ int a [];
 
 ## аргументы переменной длины var-args
 
-В списке параметров должен быть только один параметр переменной длины. 
+В списке параметров должен быть только один параметр переменной длины.
 При наличии двух параметров переменной длины компилятору невозможно определить, где заканчивается один параметр и начинается другой.
 параметр только крайний справа
 MyMethod(int ... x){};
@@ -281,7 +291,7 @@ MyMethod(int ... x){};
 
 ## статические и нестатические методы static
 
-При вызове метода в виде «объект» точка «имя метода», на самом деле вызывается метод класса, в который первым аргументом передаётся тот самый объект. Внутри метода он получает имя this. Именно с ним и его данными происходят все действия. 
+При вызове метода в виде «объект» точка «имя метода», на самом деле вызывается метод класса, в который первым аргументом передаётся тот самый объект. Внутри метода он получает имя this. Именно с ним и его данными происходят все действия.
 При вызове статического метода, никакого объекта внутрь не передаётся. Т.е. this равен null, поэтому статический метод не имеет доступа к нестатическим переменным и методам (ему нечего передать в такие методы в качестве this).
 
 ## методы
@@ -307,12 +317,12 @@ try {
 
 ## компилятор интерпретатор
 
-Интерпретатор Java 
-Сначала проверяет переменную окружения CLASSPATH 
-Начиная с этих корневых каталогов, интерпретатор берет имя пакета и заменяет точки на слеши для получения полного пути 
-(таким образом, директива package foo.bar.baz преобразуется в foo\bar\baz, foo/bar/baz или что-то еще в зависимости от вашей операционной системы). 
-Затем полученное имя присоединяется к различным элементам CLASSPATH. 
-В указанных местах ведется поиск файлов .class, имена которых совпадают с именем создаваемого программой класса. 
+Интерпретатор Java
+Сначала проверяет переменную окружения CLASSPATH
+Начиная с этих корневых каталогов, интерпретатор берет имя пакета и заменяет точки на слеши для получения полного пути
+(таким образом, директива package foo.bar.baz преобразуется в foo\bar\baz, foo/bar/baz или что-то еще в зависимости от вашей операционной системы).
+Затем полученное имя присоединяется к различным элементам CLASSPATH.
+В указанных местах ведется поиск файлов .class, имена которых совпадают с именем создаваемого программой класса.
 (Поиск также ведется в стандартных каталогах, определяемых местонахождением интерпретатора Java.)
 
 ## javaBean
@@ -416,17 +426,15 @@ http://se.cs.karelia.ru/wiki/Справочник_охотника:_Соглаш
 
 ### Maven жизненный цикл
 
-```java
-1) archetype — создание темплейта и обработка ресурсов. На этой фазе разрешаются и, при необходимости, скачиваются из интернета зависимости;
-2) compile — компиляция;
-3) обработка тестовых ресурсов (например — скачивается из интернета JUnit-пакет);
-4) компиляция тестов (тестирующие классы не передаются конечным пользователям);
-5) test — тестирование;
-6) package — упаковка (обычно речь идёт о создании JAR- или WAR-файла);
-7) install — инсталляция проекта в локальном Maven-репозитории (теперь он доступен как модуль для других локальных проектов);
-8) deploy — инсталляция в удаленном Maven-репозитории (теперь стабильная версия проекта доступна широкому кругу разработчиков).
-Maven имеет также стандартный жизненный цикл для чистки (cleaning) и для генерации его страницы (site). Если бы ‘clean ' было частью обычного жизненного цикла, проект подвергался бы чистке при каждом построении, что нежелательно.
-```
+ 1. archetype — создание темплейта и обработка ресурсов. На этой фазе разрешаются и, при необходимости, скачиваются из интернета зависимости;
+ 2. compile — компиляция;
+ 3. обработка тестовых ресурсов (например — скачивается из интернета JUnit-пакет);
+ 4 компиляция тестов (тестирующие классы не передаются конечным пользователям);
+ 5. test — тестирование;
+ 6. package — упаковка (обычно речь идёт о создании JAR- или WAR-файла);
+ 7. install — инсталляция проекта в локальном Maven-репозитории (теперь он доступен как модуль для других локальных проектов);
+ 8. deploy — инсталляция в удаленном Maven-репозитории (теперь стабильная версия проекта доступна широкому кругу разработчиков).
+ * Maven имеет также стандартный жизненный цикл для чистки (cleaning) и для генерации его страницы (site). Если бы `clean` было частью обычного жизненного цикла, проект подвергался бы чистке при каждом построении, что нежелательно.
 
 ## WEB-JAVA
 
@@ -447,7 +455,7 @@ Servlet.java
         Writer w = response.getWriter();
         String name = request.getParameter("name");
         w.write("Тест сервелет: " + name);
-}      
+}
 ```
 
 WEB-INF/web.xml
@@ -476,76 +484,75 @@ WEB-INF/web.xml
 
 ### jsp
 
-вставка java кода
+ * вставка java кода
 
-```java
-<% ... %>
-```
+	```java
+		<% ... %>
+	```
+ * WEB-INF/web.xml
+	```java
+		<servlet>
+			<servlet-name>resumeList</servlet-name>
+			<jsp-file>/WEB-INF/jsp/list.jsp</jsp-file>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>resumeList</servlet-name>
+			<url-pattern>/list</url-pattern>
+		</servlet-mapping>
 
-WEB-INF/web.xml
-```java
-    <servlet>
-        <servlet-name>resumeList</servlet-name>
-        <jsp-file>/WEB-INF/jsp/list.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>resumeList</servlet-name>
-        <url-pattern>/list</url-pattern>
-    </servlet-mapping>
-
-    <welcome-file-list>
-        <welcome-file>/WEB-INF/jsp/list.jsp</welcome-file>
-    </welcome-file-list>
-```
+		<welcome-file-list>
+			<welcome-file>/WEB-INF/jsp/list.jsp</welcome-file>
+		</welcome-file-list>
+	```
 
 ### tomcat administration
 
-старт дебаг
-catalina.sh jpda start
+ * старт дебаг
+ 	* `catalina.sh jpda start`
+ * управление развёртыванием http://127.0.0.1/manager
+ *
+	```bash
+		tomcat-dir\conf\tomcat-users.xml
+		<user username="tomcat" password="tomcat" roles="tomcat,manager-gui,admin-gui"/>
 
-управление развёртыванием http://127.0.0.1/manager
+		# cat /distr/tomcat_profile.sh
+		#!/bin/bash
+		export JAVA_HOME=/usr/java/latest
+		export PATH=${PATH}:${JAVA_HOME}/bin:
+		export TOMCAT_USER="tomcat"
+		export CATALINA_HOME="/opt/tomcat"
+		export CATALINA_BASE="/opt/tomcat"
+		export CATALINA_PID="${CATALINA_HOME}/catalina.pid"
+		export CATALINA_OPTS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=1099 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false"
 
-```java
-tomcat-dir\conf\tomcat-users.xml
-<user username="tomcat" password="tomcat" roles="tomcat,manager-gui,admin-gui"/>
+	```
+ *
 
-# cat /distr/tomcat_profile.sh
-#!/bin/bash
-export JAVA_HOME=/usr/java/latest
-export PATH=${PATH}:${JAVA_HOME}/bin:
-export TOMCAT_USER="tomcat"
-export CATALINA_HOME="/opt/tomcat"
-export CATALINA_BASE="/opt/tomcat"
-export CATALINA_PID="${CATALINA_HOME}/catalina.pid"
-export CATALINA_OPTS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=1099 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false"
+	```bash
 
-```
+		# cat /etc/init.d/tomcat.sh
+		case $1 in
+		start)
+		/bin/su - $TOMCAT_USER -c "$CATALINA_HOME/bin/catalina.sh jpda start"
+		;;
+		stop)
+		/bin/su - $TOMCAT_USER -c "$CATALINA_HOME/bin/shutdown.sh"
+		;;
+		restart)
+		/bin/su - $TOMCAT_USER -c "$CATALINA_HOME/bin/shutdown.sh"
+		/bin/su - $TOMCAT_USER -c "$CATALINA_HOME/bin/catalina.sh jpda start"
+		#/bin/su - $TOMCAT_USER -c "tomcat $CATALINA_HOME/bin/shutdown.sh"
+		#/bin/su - $TOMCAT_USER -c "t $CATALINA_HOME/bin/startup.sh"
+		;;
+		esac
+		exit 0
+	```
+ * Netbeans default pass
 
-```java
-
-# cat /etc/init.d/tomcat.sh
-case $1 in
-start)
-/bin/su - $TOMCAT_USER -c "$CATALINA_HOME/bin/catalina.sh jpda start"
-;;
-stop)
-/bin/su - $TOMCAT_USER -c "$CATALINA_HOME/bin/shutdown.sh"
-;;
-restart)
-/bin/su - $TOMCAT_USER -c "$CATALINA_HOME/bin/shutdown.sh"
-/bin/su - $TOMCAT_USER -c "$CATALINA_HOME/bin/catalina.sh jpda start"
-#/bin/su - $TOMCAT_USER -c "tomcat $CATALINA_HOME/bin/shutdown.sh"
-#/bin/su - $TOMCAT_USER -c "t $CATALINA_HOME/bin/startup.sh"
-;;
-esac
-exit 0
-```
-
-Netbeans default pass 
-
-```java
-<user username="ide" password="r4ma0nsa" roles="manager-script,admin"/>
-```
+	```xml
+		<user username="ide" password="r4ma0nsa" roles="manager-script,admin"/>
+	```
+ * tomcat log https://www.baeldung.com/spring-boot-embedded-tomcat-logs
 
 ### tomcat windows service install
 
@@ -682,16 +689,16 @@ alt+enter   -  подсветка синтаксиса для строк в ка
 
 ```java
 File -> Project Structure -> Modules; сделать «ошибочные» программы исключенными (Excluded).
-file — invalidate caches 
-в настройках Solutian (используемый по умолчанию для Run) убрал make (во фрейме before lanch). И теперь все программы запускаю методом: C-S-F9 (для каждого ф-ла), C-S-F10 
+file — invalidate caches
+в настройках Solutian (используемый по умолчанию для Run) убрал make (во фрейме before lanch). И теперь все программы запускаю методом: C-S-F9 (для каждого ф-ла), C-S-F10
 
 Run -> Edit Configurations… -> Defaults -> Application. Убери «Make» из Before launch.
 ИЛИ (для одного раза)
-Через Ctrl + Shift + F9 компилируешь нужную вкладку (один раз получишь ошибку), затем вверху рядом с кнопкой Run (зелёный треугольник) выбираешь нужный для запуска и жмешь Edit Configurations… убираешь Make. 
+Через Ctrl + Shift + F9 компилируешь нужную вкладку (один раз получишь ошибку), затем вверху рядом с кнопкой Run (зелёный треугольник) выбираешь нужный для запуска и жмешь Edit Configurations… убираешь Make.
 
- всю папку d:\java\JavaRushHomeWork\src\com\javarush\test\ копирую в другое место на диске при помощи проводника, потом удаляю всю папку в исходном месте при необходимости все можно восстановить как было простым копированием папки на исходное место. И не надо ничего комментировать!!! Быстро и просто кстати IDEA работает после этого ощутимо быстрее на слабом нетбуке. 
+ всю папку d:\java\JavaRushHomeWork\src\com\javarush\test\ копирую в другое место на диске при помощи проводника, потом удаляю всю папку в исходном месте при необходимости все можно восстановить как было простым копированием папки на исходное место. И не надо ничего комментировать!!! Быстро и просто кстати IDEA работает после этого ощутимо быстрее на слабом нетбуке.
 
-закомментируй как сказали выше, нажимай alt+shift+f10, выбирай новый Solution (он у тебя будет под цифрой 2) и все скомпилируется. 
+закомментируй как сказали выше, нажимай alt+shift+f10, выбирай новый Solution (он у тебя будет под цифрой 2) и все скомпилируется.
 ```
 
 ## ECLIPSE

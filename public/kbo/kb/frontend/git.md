@@ -23,27 +23,37 @@
 
  * http://pcottle.github.io/learnGitBranching/
  * http://www-cs-students.stanford.edu/~blynn/gitmagic/intl/ru/index.html
- 
+
 ## инструменты
 
  * https://github.com/github/git-sizer/#getting-started
  * [javascript git](https://github.com/isomorphic-git/isomorphic-git)
  * [оценка производительности разработчика gitlean](https://www.youtube.com/watch?v=-yDLzoX4re4)
- * [скрипты git-extras](https://github.com/tj/git-extras)
+ 	* [скрипты tools utils git-extras](https://github.com/tj/git-extras)
+	* https://github.com/garybernhardt/dotfiles/blob/main/bin/git-churn
+	* https://github.com/flacle/truegitcodechurn
+		* ```bash
+			set -e
+			git log --all -M -C --name-only --format='format:' "$@" | sort | grep -v '^$' | uniq -c | sort -n
+		```
+	* https://github.com/adamtornhill/code-maat
+	* https://github.com/jwiegley/git-scripts
+	*
  * https://github.com/IonicaBizau/git-stats
  * [gitk](https://www.atlassian.com/git/tutorials/gitk)
- * 
+ *
  * [строк кода на дату]()
  * []()
- 
+
 ## gitignore
 
  * [A collection of .gitignore templates](https://github.com/github/gitignore)
-
+ * https://www.toptal.com/developers/gitignore
+ 
 ## сеть
 
  * [git-retry](https://stackoverflow.com/questions/35014012/git-retry-if-http-request-failed)
-	
+
 ```bash
 	#https://github.com/jamiesnape/git-retry
 	'-v', '--verbose', default=0,
@@ -62,7 +72,7 @@
 ## gitlab
 
  * http://doc.gitlab.com/ce/
- 
+
 ### backup
 
  * http://doc.gitlab.com/ce/raketasks/README.html
@@ -106,41 +116,70 @@
 
  * [малоизвестные команды](https://habr.com/ru/company/mailru/blog/318508/)
  * http://mindspill.net/computing/linux-notes/git-notes/
+ * git reset
+ 	* https://git-scm.com/book/ru/v2/Инструменты-Git-Раскрытие-тайн-reset
+
+	```
+		Обратите внимание, изменяется не сам HEAD (что происходит при выполнении команды checkout); reset перемещает ветку, на которую указывает HEAD. Таким образом, если HEAD указывает на ветку master (то есть вы сейчас работаете с веткой master), выполнение команды git reset 9e5e6a4 сделает так, что master будет указывать на 9e5e6a4.
+	```
+
+### модифицированные файлы
+
+```bash
+git status -uno --porcelain
+# added not shown
+git diff --name-only --diff-filter=ATCMR
+git ls-files -m
+
+# untracked files
+git ls-files -o --exclude-standard
+```
 
 ### log
 
  * коммиты и Комментарии на дату ститистика
 
-```bash
-	g log  --pretty=format:%s --after="2018-07-27"
-	g log  --pretty=format:%s --after="2018-08-17 8:00" --before="2018-08-18 8:00"
-	# стендап
-	g shortlog --author="Valeriy Stepanov" --after="2019-12-09 8:00" --before="2019-12-16 8:00"
-	
-	g shortlog -sn --after="2019-01-01 8:00" --before="2019-04-01 8:00"
-	git shortlog -scn \-- src/
+	```bash
+		g log  --pretty=format:%s --after="2018-07-27"
+		g log  --pretty=format:%s --after="2018-08-17 8:00" --before="2018-08-18 8:00"
+		# стендап
+		g shortlog --author="Valeriy Stepanov" --after="2019-12-09 8:00" --before="2019-12-16 8:00"
 
-	# список участников
-	git log --pretty="%an %ae%n%cn %ce" | sort | uniq
-	#[список разработчиков](https://stackoverflow.com/questions/9597410/list-all-developers-on-a-project-in-git)
-	git shortlog --summary --numbered --email 
+		g shortlog -sn --after="2019-01-01 8:00" --before="2019-04-01 8:00"
 
-	#
-	mcedit .mailmap
+		# список участников
+		git log --pretty="%an %ae%n%cn %ce" | sort | uniq
+		# [список разработчиков и их коммитов](https://stackoverflow.com/questions/9597410/list-all-developers-on-a-project-in-git)
+		git shortlog --summary --numbered --email
+		git shortlog -scn \-- src/
 
-	#[список строк автора](https://stackoverflow.com/questions/1265040/how-to-count-total-lines-changed-by-a-specific-author-in-a-git-repository) 
-	git log --author="Valeriy Stepanov" --oneline --shortstat
-	git log --author="Valeriy Stepanov" --oneline --numstat
-	git log --author="Valeriy Stepanov" --oneline --stat
+		#
+		mcedit .mailmap
 
-	git diff --stat feature-000 develop
+		#[список строк автора](https://stackoverflow.com/questions/1265040/how-to-count-total-lines-changed-by-a-specific-author-in-a-git-repository)
+		git log --author="Valeriy Stepanov" --oneline --shortstat
+		git log --author="Valeriy Stepanov" --oneline --numstat
+		git log --author="Valeriy Stepanov" --oneline --stat
 
-```
+		git diff --stat feature-000 develop
+	```
 
  * крайний коммит
 	```bash
 		git log -1 --format='DEV: %cd #%h' --date=format:'%c' > version.txt
+
+		# первые коммиты в истории
+		git log --reverse --pretty=oneline --format='DEV: %an %cd #%h %s' --date=format:'%c' | head -10
 	```
+### git diff patch
+
+```bash
+
+g format-patch -1 94cb8415ef1834000f0f4da95232a2ac7cb0e8a4
+git apply patch
+
+```
+
 ### git push
 
 ```bash
@@ -148,7 +187,7 @@
 
 	current_branch=`git rev-parse --abbrev-ref HEAD`
 	[[ $result == 'develop' ]] && echo -e "\n\n!!!необходимо перейти ИЗ develop!!!\n\n"
-	[[ $result == 'develop' ]] && exit 
+	[[ $result == 'develop' ]] && exit
 
 	git add src/*
 	#npm run build
@@ -241,7 +280,7 @@ https://help.github.com/articles/configuring-a-remote..
 
 Т.е. добавить как upstream
 git remote add upstream https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY..
- 
+
 2. Далее нужно слить изменения с удаленного репозитория, перейти в свою ветку мастер и слить изменения в эту ветку
 https://help.github.com/articles/syncing-a-fork/
 
@@ -300,13 +339,23 @@ git merge upstream/master
 	```
  * спрятать изменения
 	```bash
-		git stash 
-		git stash list
+		git stash
+		git stash list --date=local
 		git stash apply stash@{0}
-		git stash drop stash@{0}
+		git stash apply 0
+		git stash drop 0
 		git stash list
 	```
 
+### git squash rebase
+
+ * https://htmlacademy.ru/blog/boost/tools/how-to-squash-commits-and-why-it-is-needed
+
+ ```bash
+	git rebase -i 123456 # коммит после крайнего
+	# git add
+ 	git rebase --continue
+ ```
 
 ## workflow
 
@@ -350,7 +399,7 @@ GitHub flow ставит своей целью короткий релизный
  * https://geekforum.wordpress.com/2015/02/25/move-git-repository-to-new-server/
  * https://stackoverflow.com/questions/5769568/how-to-set-up-a-git-hook-so-that-after-pushing-to-ssh-peterfoo-com-bar-com#5769715
  * настройка репы
- 
+
 ```
 	ssh://USER_NAME@IP_ADDR:PORT_NUM/path_to_repo/repo_name.git
 ```
@@ -359,7 +408,7 @@ GitHub flow ставит своей целью короткий релизный
 
 ```bash
 	#!/bin/sh
-	
+
 	#Обновляет копию в облаке, на сервере разработки и на развёрнутом проекте в одну команду на машине разработчика
 	#
 	#							/-->репозиторий в облаке
@@ -370,7 +419,7 @@ GitHub flow ставит своей целью короткий релизный
 	#
 	#Сделать зеркало на сервере разработки
 	# cd /path/repo/;git clone --mirror cloudurl/name.git
-	#Добавить ссылку на зеркало в развёрнутый проект 
+	#Добавить ссылку на зеркало в развёрнутый проект
 	# cd /path/site/name/;git remote add devsrv /path/repo/name.git
 	#Добавить вызов скрипта в хук
 	# cat > /path/repo/name.git/hook/post-hook
@@ -378,7 +427,7 @@ GitHub flow ставит своей целью короткий релизный
 	#	sh post-update-script devsrv /path/site/name/ master
 	# chmod a+x /path/repo/name.git/hook/post-hook
 	#
-	#на машине разработчика: 
+	#на машине разработчика:
 	# git remote add devsrv ssh://user@srv:port/path/repo/name.git
 	# git push devsrv
 	#
@@ -477,7 +526,7 @@ https://gist.github.com/esoupy/3823712
 ```
 
 
-## bitbucket
+## git remote
 
 ### переезд на битбакет
 
@@ -494,6 +543,44 @@ https://gist.github.com/esoupy/3823712
 	git push -u origin-bb --tags
 ```
 
+### add remote
+
+```bash
+
+Git global setup
+
+git config --global user.name "Валерий"
+git config --global user.email "stepanovv.ru@yandex.ru"
+
+Create a new repository
+
+git clone git@gitlab.com:stepanovv/code_quality_js.git
+cd code_quality_js
+git switch -c main
+touch README.md
+git add README.md
+git commit -m "add README"
+git push -u origin main
+
+Push an existing folder
+
+cd existing_folder
+git init --initial-branch=main
+git remote add origin git@gitlab.com:stepanovv/code_quality_js.git
+git add .
+git commit -m "Initial commit"
+git push -u origin main
+
+Push an existing Git repository
+
+cd existing_repo
+git remote rename origin old-origin
+git remote add origin git@gitlab.com:stepanovv/code_quality_js.git
+git push -u origin --all
+git push -u origin --tags
+
+
+```
 
 ## merge tool
 
@@ -517,7 +604,7 @@ https://gist.github.com/esoupy/3823712
 	git clone xo https://bskydive@github.com/bskydive/xo_project.git
 	cd xo_project
 	git config core.autocrlf false
-	git config core.autocrlf 
+	git config core.autocrlf
 	git config user.name "bskydive"
 	git config user.email "stepanovv.ru@yandex.ru"
 	git add -A xo_project/
@@ -533,7 +620,7 @@ https://gist.github.com/esoupy/3823712
 	Initialized empty Git repository in .../idea/.git/
 	# cd idea
 	# git config core.autocrlf false
-	# git config core.autocrlf 
+	# git config core.autocrlf
 	false
 	# git add -A xo_project/
 	# git status

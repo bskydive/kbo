@@ -8,6 +8,10 @@
 
 https://github.com/documentationjs
 
+## SRE site reliability engineering
+
+ * https://sre.google/books/
+
 ## Performance
 
  * http://techblog.netflix.com/2015/08/netflix-at-velocity-2015-linux.html
@@ -38,11 +42,15 @@ https://github.com/documentationjs
  * google hangouts
  * slack
  * mattermost
+ * https://matrix.org/clients/
+ * https://teams.vk.com/
+ * https://calls.mail.ru/
+ *
 
 ## angular SEO
 
  * [HTML5/AngularJS/Nginx приложение с правильным с google-индексированием](https://habr.com/post/187008/)
- 
+
 ##  инфраструктура
 
 [https://habrahabr.ru/post/319582/](https://habrahabr.ru/post/319582/)
@@ -78,7 +86,7 @@ https://habrahabr.ru/post/244721/
 #### v4
 
  * [05.2018](https://tproger.ru/translations/configure-webpack4/)
- 
+
 #### 3-->4
  * https://thebrainfiles.wearebrain.com/moving-from-webpack-3-to-webpack-4-f8cdacd290f9
  * https://bluebottle.idv.tw/?p=12482

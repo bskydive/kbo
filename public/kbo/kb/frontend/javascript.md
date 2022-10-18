@@ -44,7 +44,46 @@
  * [43 JavaScript Questions, With Their Answers Explained](https://javascriptweekly.com/link/81865/web)
  * [10 Interview Questions Every JavaScript Developer Should Know 2020](https://medium.com/javascript-scene/10-interview-questions-every-javascript-developer-should-know-6fa6bdf5ad95)
 
-## инструменты 
+ *
+
+ ```ts
+	/**Реализовать метод, который на вход получает последовательность целых значений, а на выходе
+	выводит последовательность, где все значения кратные 3 заменены на 'Fizz', кратные 5 на 'Buzz',
+	кратные 3 и 5 на 'FizzBuzz'*/
+
+	const arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 15, 25, 34, 33, 9];
+	const FIZZ = 'Fizz';
+	const BUZZ = 'Buzz';
+	// const res = [1, 2, Fizz, 4, Buzz, Fizz, 7, 8, FizzBuzz, 'Buzz', 34, 'Fizz', 'Fizz'];
+	//				1, 2, Fizz, 4, Buzz, Fizz, 7, 8, FizzBuzz, Buzz,   34,  Fizz, Fizz
+
+	let result: (number|string)[] = [];
+	let parsedItem: number|string;
+
+	for (let i = 0; i < arr.length; i++) {
+		parsedItem = '';
+
+		if (typeof arr[i] === 'number' && arr[i] % 3 !== 0 && arr[i] % 5 !== 0) {
+			parsedItem = arr[i];
+		};
+
+		if (typeof arr[i] === 'number' && arr[i] % 3 === 0) {
+			parsedItem = FIZZ;
+		};
+
+		if (typeof arr[i] === 'number' && arr[i] % 5 === 0) {
+			parsedItem = parsedItem + BUZZ;
+		};
+
+		result.push(parsedItem);
+	}
+
+	console.log(`src=${arr};\nresult=${result};`);
+
+	//
+ ```
+
+## инструменты
 
  * [импорт, трансформация и анализ json/csv](http://www.data-forge-js.com/)
     * [Редактируем CSV-файлы, чтобы не сломать данные](https://habr.com/company/hflabs/blog/432906/)
@@ -53,17 +92,33 @@
     * http://astexplorer.net/
     * http://esprima.org/demo/parse.html#
  * как сократить объём загрузки за счёт полифилов https://web.dev/publish-modern-javascript/ https://estimator.dev/
- * 
+ *
 ## валидаторы syntax check
 
  * https://eslint.org/docs/rules/
  * https://palantir.github.io/tslint/rules/
  * [eslint tinkoff conventions](https://github.com/TinkoffCreditSystems/linters)
- * [eslint wemake](https://sobolevn.me/2019/02/engineering-guide-to-user-stories)
- 
+
+
 ## ботанство
 
  * http://dmitrysoshnikov.com/ecmascript/javascript-the-core-2nd-edition-rus/
+
+	```js
+		let x = 10;
+
+		function foo() {
+		console.log(x);
+		}
+
+		function bar(funArg) {
+			let x = 20;
+			funArg(); // 10, но не 20!
+		}
+
+		// Передаем `foo` в качестве аргумента в `bar`.
+		bar(foo);
+	```
  * https://medium.com/@DmitrySoshnikov
  * [параллельные конкурентные потоки многопоточность](https://hacks.mozilla.org/2017/06/a-crash-course-in-memory-management/)
  * [Основы движков JavaScript: общие формы и Inline кэширование. Часть 2](https://habr.com/ru/company/otus/blog/447220/)
@@ -72,7 +127,6 @@
  * [глюки javascript](https://habr.com/ru/company/mailru/blog/335292/)
  * [история развития инструментов для  javascript](https://habr.com/ru/company/mailru/blog/340922/)
  * [ошибочное понимание DRY](https://habr.com/ru/company/mailru/blog/349978/)
- * [сборник ошибок JS](https://habr.com/ru/company/jugru/blog/494256/)
  * [How JavaScript works: Event loop and the rise of Async programming + 5 ways to better coding with async/await Alexander Zlatkov](https://blog.sessionstack.com/how-javascript-works-event-loop-and-the-rise-of-async-programming-5-ways-to-better-coding-with-2f077c4438b5)
  * [Как работает JavaScript: часть первая](https://gb.ru/posts/javascript_internals_part1) https://gb.ru/posts/javascript_internals_part2 https://gb.ru/posts/javascript_internals_part3
  * [Планировщик задач на JavaScript](https://habr.com/ru/post/26215/)
@@ -80,11 +134,130 @@
  * [Как управлять event loop в JavaScript. Часть 1](https://skillbox.ru/media/code/event_loop_chast_1/)
  * [A crash course in memory management](https://hacks.mozilla.org/2017/06/a-crash-course-in-memory-management/)
  * [Diving Deeper in JavaScripts Objects - A Closer Look at JavaScript Object Descriptors](https://blog.bitsrc.io/diving-deeper-in-javascripts-objects-318b1e13dc12?gi=f92e90c386f5)
+ * [сборщики мусора JAVA](https://habr.com/ru/post/269621/)
 
 ### функциональное программирование
  * [Функциональный JavaScript: пять способов нахождения среднего арифметического элементов массива и метод .reduce()](https://habr.com/ru/company/ruvds/blog/458030/)
  * [функциональное программирование](https://habr.com/ru/company/mailru/blog/327522/)
  * [Concepts of Functional Programming in Javascript](https://medium.com/the-renaissance-developer/concepts-of-functional-programming-in-javascript-6bc84220d2aa)
+
+
+
+## singleton
+
+ * es6 modules+classes https://code.tutsplus.com/tutorials/how-to-implement-the-singleton-pattern-in-javascript-es6--cms-39927
+
+	```js
+		class DBConnection {
+			constructor(conString) {}
+
+			static getInstance(conString) {
+				if (!this.instance) {
+				this.instance = new DBConnection(conString);
+				}
+
+				return this.instance;
+			}
+		}
+
+		const dbConObj = DBConnection.getInstance('mysqldb1');
+
+		export default dbConObj;
+	```
+
+ * symbol singleton
+	* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/for
+	* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol
+	* https://coderoad.ru/26205565/Преобразование-Singleton-JS-объектов-использования-классов-на-ES6
+
+	```js
+		const singleton = Symbol();
+		const singletonEnforcer = Symbol()
+
+		class SingletonTest {
+
+			constructor(enforcer) {
+				if(enforcer != singletonEnforcer) throw "Cannot construct singleton";
+			}
+
+			static get instance() {
+				if(!this[singleton]) {
+				this[singleton] = new SingletonTest(singletonEnforcer);
+				}
+				return this[singleton];
+			}
+		}
+
+		export default SingletonTest
+
+		// Тогда вы можете использовать его, как и любой другой singleton:
+
+		import SingletonTest from 'singleton-test';
+		const instance = SingletonTest.instance;
+
+	```
+ * IIFE singleton
+	* https://stackoverflow.com/questions/27701887/what-is-instance-in-javascript
+	* https://www.digitalocean.com/community/conceptual_articles/singleton-design-pattern-in-javascript
+
+	```js
+		var printer = (function () {
+
+			var printerInstance;
+
+			function create () {
+
+				function print() {
+					// underlying printer mechanics
+				}
+
+				function turnOn() {
+					// warm up
+					// check for paper
+				}
+
+				return {
+					// public + private states and behaviors
+					print: print,
+					turnOn: turnOn
+				};
+			}
+
+			return {
+				getInstance: function() {
+					if(!printerInstance) {
+					printerInstance = create();
+					}
+					return printerInstance;
+				}
+			};
+
+			function Singleton () {
+				if(!printerInstance) {
+					printerInstance = intialize();
+				}
+			};
+		})();
+	```
+ * es6 class singleton
+	* https://stackoverflow.com/questions/1479319/simplest-cleanest-way-to-implement-a-singleton-in-javascript
+	```js
+		class MyClass {
+		constructor() {
+			if (MyClass._instance) {
+			return MyClass._instance
+			}
+			MyClass._instance = this;
+
+			// ... Your rest of the constructor code goes after this
+		}
+		}
+
+		var instanceOne = new MyClass()
+		var instanceTwo = new MyClass()
+
+		console.log(instanceOne === instanceTwo) // Logs "true"
+	```
 ## V8 движок
 
  * интерпретатор ES+WASM [ignition/байткод](https://v8.dev/blog/ignition-interpreter) и компилятор[turbofan JIT](https://v8.dev/docs/turbofan)
@@ -98,7 +271,7 @@
 	* GC garbage collection
 	* вместо алгоритма подсчёта ссылок сейчас браузеры применяют алгоритм проверки доступности(mark-compact). Например, циклические ссылки не считаются мусором в первом варианте, даже если на них нет ссылок извне.
 	* активные функции помечаются как корни, и от них проверяется доступность
-	
+
  * [mark and sweep GC garbage collection](https://www.geeksforgeeks.org/mark-and-sweep-garbage-collection-algorithm/)
  * [Как работает JavaScript: часть вторая GC утечки](https://geekbrains.ru/posts/javascript_internals_part2)
  ```js
@@ -126,7 +299,7 @@
 
  * https://proglib.io/p/9-js-questions
 
-## загрузка сторонних скриптов 
+## загрузка сторонних скриптов
 
  * http://www.lukasjakob.com/how-to-dynamically-load-external-scripts-in-angular/
  * использовать jsonp callback
@@ -145,7 +318,7 @@
  * debounce throttle
 	* https://betterprogramming.pub/how-to-use-debounce-and-throttle-in-javascript-da95dc151f7b
 	* https://stephencharlesweiss.com/javascript-debounce-throttle-function/
- 
+
 ## ООП prototype наследование
 
  * [Каждый программист на javascript должен написать свою реализацию классов](https://habr.com/post/132698/#comment_4404597)
@@ -173,7 +346,7 @@
  * [статическая типизация flow facebook](https://flow.org/en/docs/getting-started/)
  * [javascript linter](https://github.com/saadq/lynt)
 
-##  typescript 
+##  typescript
 
  * [см.](/kbo/kb/frontend/framework/angular2.md:1067)
  * https://www.tsmean.com/articles/
@@ -205,6 +378,10 @@
 		"compilerOptions": {
 			"strictPropertyInitialization": false
 	```
+ * for (of) - итерируемые
+	* `for (const [key,value] of Object.entries(obj) {}`
+ * for (in) - перечисляемые
+	* `for (const key in Object.entries(obj) { obj[key as keyof typeof obj] }`
 
 ### собеседование typescript
 
@@ -231,48 +408,28 @@
 	* [Принцип разделения интерфейса](https://blog.byndyu.ru/2009/11/blog-post_19.html)
 	* [Принцип инверсии зависимости ](https://blog.byndyu.ru/2009/12/blog-post.html)
  * [Шпаргалка по SOLID принципам 2014](http://sergeyteplyakov.blogspot.com/2014/10/solid.html)
-	* [Single Responsibility Principle](http://sergeyteplyakov.blogspot.com/2014/08/single-responsibility-principle.html)
-	* [Open/Closed Principle](http://sergeyteplyakov.blogspot.com/2014/08/open-closed-principle.html)
-	* [Liskov Substitution Principle](http://sergeyteplyakov.blogspot.com/2014/09/liskov-substitution-principle.html)
-	* [Interface Segregation Principle](http://sergeyteplyakov.blogspot.com/2014/08/interface-segregation-principle.html)
-	* [The Dependency Inversion Principle DI](http://sergeyteplyakov.blogspot.com/2014/09/the-dependency-inversion-principle.html)
-		* [Критический взгляд на принцип инверсии зависимостей](http://sergeyteplyakov.blogspot.com/2013/04/blog-post.html)
  * [SOLID ](https://info.javarush.ru/translation/2013/08/06/Пять-основных-принципов-дизайна-классов-S-O-L-I-D-в-Java.html)
     * [источник](http://howtodoinjava.com/2013/06/07/5-class-design-principles-solid-in-java/)
 	* [SOLID php](https://habr.com/ru/company/mailru/blog/412699/)
 	* [SOLID Typescript](https://medium.com/proximity-labs/solid-principles-using-typescript-5175aa06b583)
 	* [SOLID javascript Охрименко](https://www.youtube.com/watch?v=wi3wPzReKZQ)
 		* битовая маска может кодировать больше чем одно значение - нарушение принципа SRP
-	* SOLID:
-
-| смысл                                                                                 | название                        | перевод                              |
-|---------------------------------------------------------------------------------------|---------------------------------|--------------------------------------|
-| На каждый объект должна быть возложена одна единственная обязанность.                 | Single Responsibility Principle | (Принцип единственной обязанности)   |
-| Программные сущности (классы, модули, функции и т.п.) должны быть открыты 
-для расширения, но закрыты для изменения.                                               | Open Closed Principle           | (Принцип открытости/закрытости)      |
-| Объекты в программе могут быть заменены их наследниками без изменения 
-свойств программы.                                                                      | Liskov 's Substitution Principle | (Принцип подстановки Барбары Лисков) |
-| Клиенты не должны быть вынуждены реализовывать ненужные методы, которые 
-они не будут использовать                                                               | Interface Segregation Principle | (Принцип разделения интерфейса)      |
-| Зависимости внутри системы строятся на основе абстракций. Модули верхнего 
-уровня не зависят от модулей нижнего уровня. Абстракции не должны зависеть 
-от деталей. Детали должны зависеть от абстракций. | Dependency Inversion Principle      | (Принцип инверсии зависимостей) |                                      |
-|                                                                                       |                                 |                                      |
-| | | | |
-
- * [GRASP паттерны проектирования](https://habr.com/ru/post/92570/)
- * GoF - gang of four
+ * [GRASP паттерны проектирования](https://habr.com/ru/post/92570/) - 9шт
+ * GoF - gang of four - 23шт
+	* фабрика - штампуем
+	* адаптер - конвейер для трансформации, один к одному
+	* фасад - сокрытие, публичный интерфейс, один ко многим
  * [MVC vs MVP vs MVVM](https://habr.com/ru/post/215605/) https://habr.com/ru/company/mobileup/blog/313538/
  * [Хороший дизайн должен быть SOLID - 2008](http://igor.quatrocode.com/2008/09/solid-top-5.html)
 
-### momentjs date дата 
+### momentjs date дата
 
 ```js
 	import * as moment from 'moment';
-	
-	
+
+
 	// https://momentjs.com/docs/#/displaying/format/
-	
+
 	export const DATE_FORMAT = {
 		emptyDataText: '',
 		parse: {
@@ -385,24 +542,25 @@ https://stackoverflow.com/questions/7905929/how-to-test-valid-uuid-guid#13653180
  * [Интерактивная выгрузка файлов на сервер с помощью RxJS](https://medium.com/ngx/upload-files-with-rxjs-eaf2027266f1)
  * [открыть файл](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications)
 	```html
-		<input 
+		<input
 			id="id-file-input"
 			type="file"
 			accept=".jpg,.jpeg,.png"
 			(change)="uploadFile()"
 			#inputFileDOMElem
 			[attr.disabled]="isDisabled ? 'disabled' : null">
-		<label 
+		<label
 			id="id-file-input-label"
 			for="inputFileDOMElem">
 			<div>Upload file</div>
 		</label>
 	```
-	
+
 	```ts
+	uploadFile(){
 		let file: File = null;
 		const MAX_FILE_SIZE_BYTES = (1000*1000*10); // 10M
-		let content = null;
+		let content: ArrayBuffer = null;
 		let fileReader: FileReader = new FileReader();
 		let fileAPIDOMWrapper = new FormData();
 		let url = 'http://localhost:4200/api/uploadFile';
@@ -417,13 +575,14 @@ https://stackoverflow.com/questions/7905929/how-to-test-valid-uuid-guid#13653180
 		}
 		if (
 			file instanceof File &&
+			// https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types
 			['image/jpeg', 'image/png'].includes(file.type) &&
 			file.size <= MAX_FILE_SIZE_BYTES
 			) {
 			// file is valid, proceed to download
-			
+
 			fileAPIDOMWrapper.append('uploadedImage', file);
-			
+
 			this.http.post(url, fileAPIDOMWrapper, headers, reportProgress: true).pipe(
 				take(1),
 				catchError((error, cause) => {
@@ -431,16 +590,22 @@ https://stackoverflow.com/questions/7905929/how-to-test-valid-uuid-guid#13653180
 					return of();
 				})
 			).subscribe(result => console.log('file uploaded', result));
+
 			// get content
 			fileReader.onload = function () {
-				content = this.result
+				// content = this.result;
+                content = e?.target?.result;
 				console.log('file content', content);
 			};
+
+			// fire content reading
+			//fileReader.readAsText(file);
 			fileReader.readAsArrayBuffer(file);
 		}
+	}
 	```
 
- * 
+ *
 
 ##  стандарты
 
@@ -477,6 +642,26 @@ https://stateofjs.com/2017/front-end/results
  * [The Essential Guide To JavaScript's Newest Data Type: BigInt 2019](https://www.smashingmagazine.com/2019/07/essential-guide-javascript-newest-data-type-bigint/)
  * https://github.com/MikeMcl/bignumber.js/
 
+
+## строки string
+
+ * https://stackoverflow.com/questions/9932957/how-can-i-remove-a-character-from-a-string-using-javascript
+
+	```js
+		value.split(',').join('')
+	```
+ * https://tproger.ru/articles/metody-strok-v-javascript-shpargalka-dlja-nachinajushhih/
+ * https://mathiasbynens.be/notes/javascript-unicode
+ * замена набора символов `str.replace(/[aeiou]/gi, "");`
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCodePoint
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCharCode
+ * https://github.com/mathiasbynens/punycode.js/blob/master/punycode.js
+ *
+ *
+
+
 ## типы данных
 
  * [maybe](https://dev.to/aminnairi/the-maybe-data-type-in-javascript-3bj8)
@@ -500,15 +685,89 @@ https://stateofjs.com/2017/front-end/results
 
 ##  async await
 
- * https://habrahabr.ru/company/ruvds/blog/353658/
+ * [Побег из ада async/await](https://habrahabr.ru/company/ruvds/blog/353658/)
+	* прежде чем система сможет заняться следующей функцией, ей необходимо дождаться завершения выполнения предыдущей функции
+	* группируйте параллельные функции
+		```js
+			// ошибка
+			(async () => {
+			const pizzaData = await getPizzaData()    // асинхронный вызов
+			const drinkData = await getDrinkData()    // асинхронный вызов
+			const chosenPizza = choosePizza()    // синхронный вызов
+			const chosenDrink = chooseDrink()    // синхронный вызов
+			await addPizzaToCart(chosenPizza)    // асинхронный вызов
+			await addDrinkToCart(chosenDrink)    // асинхронный вызов
+			orderItems()    // асинхронный вызов
+			})()
+
+			// решение
+			async function selectPizza() {
+				const pizzaData = await getPizzaData()    // асинхронный вызов
+				const chosenPizza = choosePizza()    // синхронный вызов
+				await addPizzaToCart(chosenPizza)    // асинхронный вызов
+			}
+
+			async function selectDrink() {
+				const drinkData = await getDrinkData()    // асинхронный вызов
+				const chosenDrink = chooseDrink()    // синхронный вызов
+				await addDrinkToCart(chosenDrink)    // асинхронный вызов
+			}
+
+			(async () => {
+				const pizzaPromise = selectPizza()
+				const drinkPromise = selectDrink()
+				await pizzaPromise
+				await drinkPromise
+				orderItems()    // асинхронный вызов
+			})()
+
+			// Задачу можно решить так, как показано выше, но я предпочитаю следующий метод
+
+			(async () => {
+				Promise.all([selectPizza(), selectDrink()]).then(orderItems)   // асинхронный вызов
+			})()
+		```
+	*
  * [JavaScript. Работаем с исключениями и данными в конструкциях async/await без блоков try-catch](https://habr.com/post/358896/)
+	* https://github.com/scopsy/await-to-js
+	```js
+		// wrapper.js
+		const wrapper = promise => (
+		promise
+			.then(data => ({ data, error: null }))
+			.catch(error => ({ error, data: null }))
+		);
 
-## IIFE 
+		module.exports = wrapper;
 
- * 
+		//
+		const { fetchData } = require('./api');
+		const wrapper = require('./wrapper');
+
+		const callApi = async () => {
+		const { error, data } = await wrapper(fetchData(2000, false));
+		if (!error) {
+			console.info(data);
+			return;
+		}
+		console.error(error);
+		}
+
+		callApi();
+
+		/*
+		OUTPUT:
+		{ version: 1, hello: 'world' } (rejectPromise=false)
+		{ error: 'Error Encountered', status: 'error' } (rejectPromise=true)
+		*/
+	```
+
+## IIFE
+
+ *
 
 ##  promise
- 
+
  * https://dev.to/lydiahallie/javascript-visualized-promises-async-await-5gke
 
 	```js
@@ -541,7 +800,7 @@ https://stateofjs.com/2017/front-end/results
  * очередь задач JS
  * очередь рендернига(requestAnimationFrame): style calc, layout calc, painting
  * синхронный код блокирует рендеринг: while(true)
- * асинхронный код не блокирует, т.к. есть минимальная задержка 4мс между задачами 
+ * асинхронный код не блокирует, т.к. есть минимальная задержка 4мс между задачами
     ```js
         function loop(){setTimeout(loop,0)}
     ```
@@ -559,7 +818,7 @@ https://stateofjs.com/2017/front-end/results
  * [Further Adventures of the Event Loop - Erin Zimmer - JSConf EU 2018](https://www.youtube.com/watch?v=u1kqx6AenYw)
  * [Что ты такое, Event Loop? Или как устроен цикл событий в браузере Chrome](https://habr.com/ru/post/461401/)
  * https://dev.to/sagarrth/an-overview-of-event-loop-tasks-and-microtasks-1i31
- 
+
 ## массивы loop for
 
  * [Полезные приёмы работы с массивами в JavaScript 2018](https://habr.com/company/ruvds/blog/358306/)
@@ -569,7 +828,7 @@ https://stateofjs.com/2017/front-end/results
  * [трансдьюсеры](https://habrahabr.ru/company/ruvds/blog/329536/)
  * https://medium.com/@roman01la/understanding-transducers-in-javascript-3500d3bd9624
  * [быстрая очередь](https://www.nickang.com/implementing-queue-javascript/)
- 
+
 ```js
 	/**
 	* Implementation of Queue.
@@ -584,7 +843,7 @@ https://stateofjs.com/2017/front-end/results
 			this.end = 0;
 		}
 	}
-	
+
 	/**
 	* Add item to end of queue.
 	* @param {*} The data to store in the position.
@@ -593,20 +852,20 @@ https://stateofjs.com/2017/front-end/results
 		this.store[this.end] = data;
 		this.end++;
 	};
-	
+
 	/**
 	* Remove item from queue and return its data.
 	* @return {*} The data stored in item.
 	*/
 	Queue.prototype.dequeue = function () {
 		if (this.front === this.end) return null;
-	
+
 		const data = this.store[this.front];
 		delete this.store[this.front];
 		this.front++;
 		return data;
 	};
-	
+
 	/**
 	* Return current size of queue.
 	* @return {number} Size of queue.
@@ -614,7 +873,7 @@ https://stateofjs.com/2017/front-end/results
 	Queue.prototype.size = function () {
 		return this.end - this.front;
 	};
-	
+
 	/**
 	* Return item at front of queue without dequeueing.
 	* @return {*} The data stored in item.
@@ -630,7 +889,7 @@ https://stateofjs.com/2017/front-end/results
 
  * http://getinstance.info/articles/javascript/attributes-of-object-properties-in-javascript/
  * [глубокое копирование deep clone](https://www.webreflection.co.uk/blog/2015/10/06/how-to-copy-objects-in-javascript)
- 
+
 ```js
 	obj2 = obj1.map(item => Object.assign({}, item));
 	obj2 = JSON.parse(JSON.stringify(obj1));
@@ -645,7 +904,7 @@ https://stateofjs.com/2017/front-end/results
 	}
 ```
  * [ещё одна функция глубокого копирования](https://medium.com/@tkssharma/objects-in-javascript-object-assign-deep-copy-64106c9aefab)
- 
+
 ```js
 	function cloneObject(obj) {
 		var clone = {};
@@ -659,7 +918,7 @@ https://stateofjs.com/2017/front-end/results
 	}
 ```
  * [глубокое клонирование класса с методами](https://www.nickang.com/how-to-clone-class-instance-javascript/)
- 
+
 ```js
 	function copyInstance (original) {
 	var copied = Object.assign(
@@ -698,25 +957,27 @@ https://stateofjs.com/2017/front-end/results
 ```
 
  * глубокое клонирование [lodash](https://www.blazemeter.com/blog/the-correct-way-to-import-lodash-libraries-a-benchmark)
- 
+
 ```js
 import cloneDeep from loDash;
 let clone = cloneDeep(orig);
 
 ```
 
+* проверка наличия свойств https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty `Object.prototype.hasOwnProperty.call(foo, 'bar'); // true`
+
 ## Общие понятия
 
- * Контекст исполнения — это абстрактное понятие, используемое спецификацией ECMAScript для типизации и разграничения исполняемого кода. 
+ * Контекст исполнения — это абстрактное понятие, используемое спецификацией ECMAScript для типизации и разграничения исполняемого кода.
  * Стек контекстов исполнения: Стек контекстов исполнения — это LIFO структура, используемая для контроля и очередности исполнения кода.
  * Каждый контекст исполнения имеет ассоциированное с ним лексическое окружение (lexical environment).
  * Лексическое окружение — это структура, используемая для ассоциации идентификаторов, появляющихся в контексте, с их значениями. Каждое лексическое окружение также может иметь ссылку на родительское окружение.
  * Функции в ECMAScript являются объектами первого класса (first-class objects). Эта концепция является фундаментальной для функционального программирования, аспекты которого поддерживаются в JavaScript.
- * Функция первого класса: функция, которая может быть использована в качестве обычных данных: т.е. сохранена в переменную, передана в качестве аргумента, или возвращена в качестве значения из другой функции. 
- * Свободная переменная: переменная, не являющаяся ни параметром, ни локальной переменной данной функции. 
+ * Функция первого класса: функция, которая может быть использована в качестве обычных данных: т.е. сохранена в переменную, передана в качестве аргумента, или возвращена в качестве значения из другой функции.
+ * Свободная переменная: переменная, не являющаяся ни параметром, ни локальной переменной данной функции.
  * Статическая/лексическая область видимости: язык программирования использует статическую область видимости, если только по анализу исходного кода, можно определить, в каком лексическом окружении будут разрешены свободные переменные.
  * Замыкание — это функция, захватывающая лексическое окружение того контекста, где она создана. В дальнейшем это окружение используется для разрешения идентификаторов.
- * https://www.youtube.com/watch?v=-GWOP5JdPpo
+ * [Javascript-джедай #3 - Выражения и операторы](https://www.youtube.com/watch?v=-GWOP5JdPpo)
  * инструкции - набор выражений или инструкций до разделителя(;)
  * выражение - возвращает значение
     * простое/основное primary expression - без вложенных: литералы, идентификаторы, ключевые слова
@@ -724,7 +985,7 @@ let clone = cloneDeep(orig);
  * инструкции
  * литералы - парсер не вычисляет значение, а получает его из кода
  *
- 
+
 ##  const
 
  * https://jamie.build/const
@@ -736,7 +997,7 @@ let clone = cloneDeep(orig);
 ##  this
 
  * [Javascript-джедай #18 - this и непрямой вызов методов](https://www.youtube.com/watch?v=213r4EOHfF0)
- * контекст можно присвоить через метод 
+ * контекст можно присвоить через метод
     * Object.call(context,arguments)
     * Object.apply(context,[arguments])
     * newObject = Object.bind(context) - без выполнения Object
@@ -778,7 +1039,7 @@ let clone = cloneDeep(orig);
 
 ##  Стрелочные функции
 
-https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Functions/Arrow_functions$revision/1236769 
+https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Functions/Arrow_functions$revision/1236769
 Объявление через => - это синтаксический сахар для сокращения кода с огромной кучей ограничений.
 
 ##  Замыкание closure

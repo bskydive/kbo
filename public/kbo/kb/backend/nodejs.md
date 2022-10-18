@@ -52,13 +52,13 @@ WantedBy=multi-user.target
 
  * https://github.com/creationix/nvm
  * https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-16-04
- ```bash
- > nvm install node
- > yum install gcc-c++ ##node_gyp g++ fix
- > ## ~/.nvm/versions/node/v10.7.0/bin/node
- > 
- 
- ```
+	```bash
+		> nvm install node
+		> yum install gcc-c++ ##node_gyp g++ fix
+		> ## ~/.nvm/versions/node/v10.7.0/bin/node
+		>
+	```
+ * [debug](../frontend/vscode.md#debug)
 
 ## npm local server
 
@@ -70,6 +70,9 @@ WantedBy=multi-user.target
 ## API
 
  * [Портирование API на TypeScript как способ решения проблем](https://habr.com/ru/company/ruvds/blog/499664/)
+ * [Node.js: документирование и визуализация API с помощью Swagger](https://habr.com/ru/company/timeweb/blog/594081/)
+	* https://www.npmjs.com/package/swagger-autogen
+	* https://www.npmjs.com/package/swagger-ui-express
 
 ## REST API
 
@@ -92,6 +95,9 @@ WantedBy=multi-user.target
  * [Full Stack Authentication: Cookies and Local Storage React+express](https://www.taniarascia.com/full-stack-cookies-localstorage-react-express/)
  * http://www.passportjs.org/ 300+ authentication strategies
  * [Криптография](https://nodejsdev.ru/doc/cryptography/)
+ * [Node.js: шаблон сервера для аутентификации и авторизации](https://habr.com/ru/post/593063)
+	* https://github.com/panva/node-oidc-provider
+	* https://auth0.com/
 
 ## db
 
@@ -180,7 +186,7 @@ pipe добавляют последовательные конвейеры.
 			console.log(err.message);
 		}
 		else {
-			
+
 			for (var i = 0; i<data.length; i++) {
 				console.log(data[i]);
 				}
@@ -194,25 +200,25 @@ pipe добавляют последовательные конвейеры.
 * []()
 * []()
 ```js
- var http = require('http')  
-       
-     http.get(process.argv[2], function (response) {  
-       response.setEncoding('utf8')  
-       response.on('data', console.log)  
-       response.on('error', console.error)  
-     })  
+ var http = require('http')
 
-var http = require('http')  
-     var bl = require('bl')  
-       
-     http.get(process.argv[2], function (response) {  
-       response.pipe(bl(function (err, data) {  
-         if (err)  
-           return console.error(err)  
-         data = data.toString()  
-         console.log(data.length)  
-         console.log(data)  
-       }))    
+     http.get(process.argv[2], function (response) {
+       response.setEncoding('utf8')
+       response.on('data', console.log)
+       response.on('error', console.error)
+     })
+
+var http = require('http')
+     var bl = require('bl')
+
+     http.get(process.argv[2], function (response) {
+       response.pipe(bl(function (err, data) {
+         if (err)
+           return console.error(err)
+         data = data.toString()
+         console.log(data.length)
+         console.log(data)
+       }))
      })
 ```
 
@@ -231,6 +237,15 @@ npm publish
 npm dist-tag @user/pkg@2.0.0 coolestversion //можно назначить на другую версию, но нельзя удалить latest
 
 //edit,bugs,explore
+```
+
+
+### node-sass failed
+
+```
+npm cache clean -f
+npm rebuild node-sass --force
+
 ```
 
 ## test

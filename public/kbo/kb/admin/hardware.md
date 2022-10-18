@@ -8,7 +8,7 @@ https://github.com/hsoft/collapseos
  * http://www.jonnyguru.com
  * http://www.logicalincrements.com/
  * https://cpu.userbenchmark.com/
-
+ * https://www.pcbenchmarks.net/
 ## Бесперебойник APC
 
   * APC smart 1000 - 2 шт [ Батарея CSB GP 1272(28W) - 12В, 7.2Ач, 151мм/65мм/100мм](https://www.xcom-shop.ru/csb_gp_127228w_376547.html)
@@ -45,8 +45,27 @@ https://github.com/hsoft/collapseos
  * [Casil CA1213 ](http://www.ups-mag.ru/catalog/battery/casil/ca1213/ )
 
 
+## мобильники
+
+ * [Веб-сервер на старом смартфоне Android](https://habr.com/ru/company/first/blog/586910/)
+	* https://github.com/meefik/linuxdeploy
+	* https://termux.com/
+	* https://www.urbackup.org/download.html
 
 ## ноутбуки
+
+ * полная клавиатура
+ * отличный монитор
+ * отличный процессор
+ * 24+ Гб памяти
+ * без ОС
+ * большой аккумулятор
+ * разгон как можно меньше, базовая частота как можно больше, больше ядер
+
+### Dell Ноутбук Inspiron 5570-5840
+
+ * i5-8250U/8Gb/1Tb/AMD 530 2Gb/15.6"/TN/FHD/Lin
+ * https://1001zip.ru/products/ventilyator-dlya-noutbuka-dell-inspiron-15-5570-5575-latitude-3590-l3590-e3590
 
 ### память
 
@@ -58,6 +77,15 @@ https://github.com/hsoft/collapseos
  * https://www.nix.ru/autocatalog/mouse_sven/SVEN-Optical-Mouse-RX-555-Silent-Antistress-Green-RTL-USB-3btn-plus-Roll_211056.html
 
  * [How to take apart HP 7500A Multifunction printer](https://www.youtube.com/watch?v=YeJOPX5u3yQ)
+
+### монитор display
+
+ * http://lcdtech.info/en/tests/dead.pixel.htm
+ * http://zeroset.mnim.org/2014/02/25/lcd-dead-pixel-test-on-linux/
+ * sudo apt-get install screentest
+ * https://beard-studio.website.yandexcloud.net/Calibr4.html
+ * https://beard-studio.website.yandexcloud.net/profiles.html
+ * https://russianpenguin.ru/2018/04/08/управление-цветом-в-linux/
 
 ## wifi routers маршрутизаторы
 
