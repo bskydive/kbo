@@ -464,14 +464,11 @@
 		</ng-template>
 	```
 	* охват входящих переменных ограничен текущим экземпляром шаблона а не всеми в виде наследования
-1. В чем отличие СontentChild vs ViewChild.
+1. В чем отличие [СontentChild vs ViewChild](https://angular.io/guide/lifecycle-hooks#responding-to-view-changes)
+	* одинаковые по способностям
 	* [СontentChild](https://angular.io/guide/lifecycle-hooks#responding-to-projected-content-changes)
-		* DOM
 		* ng-content внешний HTML, transclusion, content projection
 		* доступ после ngContentInit
-		* прямой доступ в DOM нежелательно использовать при рендеринге на сервере из-за ИБ
-		* можно ссылаться на директивы по имени и типу, на шаблонные переменные `#`
-		* ?можно читать/писать в @Input компонента
 		* https://angular.io/api/core/ContentChildren
 		* https://angular.io/api/core/ContentChild
 
@@ -498,11 +495,11 @@
 		* доступ после ngAfterViewInit
 		* прямой доступ в DOM нежелательно использовать при рендеринге на сервере из-за ИБ
 		* можно ссылаться на директивы по имени и типу, на шаблонные переменные `#`
-		* ?можно читать/писать в @Input компонента
+		* можно читать/писать в @Input компонента
 		* https://angular.io/api/core/ViewChildren
 		* https://angular.io/api/core/AfterViewChecked вызывается очень часто
-		* Property decorator that configures a view query. The change detector looks for the first element or the directive matching the selector in the view DOM. The following selectors are supported:
-			* Any class with the @Component or @Directive decorator
+		* view query. The change detector looks for the first element or the directive matching the selector in the view DOM. The following selectors are supported:
+			* класс @Component or @Directive decorator
 			* A template reference variable as a string (e.g. query <my-component #cmp></my-component> with @ViewChild('cmp'))
 			* Any provider defined in the child component tree of the current component (e.g. @ViewChild(SomeService) someService: SomeService)
 			* Any provider defined through a string token (e.g. @ViewChild('someToken') someTokenVal: any)
@@ -629,9 +626,9 @@
 		```
 	* [componentOutlet](https://angular.io/api/common/NgComponentOutlet)
         ```html
-            //ngComponentOutlet
             <ng-container *ngComponentOutlet="HelloWorld"></ng-container>
-            ...
+        ```
+		```ts
             class ComponentOutletExample {
                 public HelloWorld = HelloWorldComponent
         ```
