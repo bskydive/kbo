@@ -19,18 +19,14 @@ Also, I'm using it as a bookmarking service starting from the 2014.
 
 ```bash
 	#!!! Currently gulp can run on node version 10
-	nvm install 10
-	nvm use 10
-	# Install global dependencies
-	npm i -g pm2 http-server
+	nvm install 16
+	nvm use 16
 	# Install dependencies
-	cd portfolio/
 	npm i
 	# Build dev and run
 	npm run dev
-	bash web-start.sh
-	# npm run start
-	# Open in browser http://127.0.0.1:8080/portfolio.html
+	npm run start
+	# Open in browser http://127.0.0.1:8080/portfolio/portfolio.html
 ```
 
 ### How can I contribute?
