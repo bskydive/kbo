@@ -139,7 +139,7 @@
 		* ключ в связке с провайдером `constructor(token: Type)`
 		* объект, который реализует интерфейс [InjectionToken](https://angular.io/api/core/InjectionToken)
 	* [инжектор](https://www.youtube.com/watch?v=Z1gLFPLVJjY)
-		* Объект(абстрактный класс), который находит именованную зависимость в своём кэше, либо создаёт её используя провайдер
+		* Объект(абстрактный класс)(абстрактный класс), который находит именованную зависимость в своём кэше, либо создаёт её используя провайдер
 		* Предоставляет и внедряет синглтон
 		* Создаются автоматом для модулей в ходе bootstrap и наследуется в иерархии компонентов
 	* зачем
@@ -546,7 +546,7 @@
 		constructor(
 			private templateRef: TemplateRef<any>,
 			private el: ElementRef
-		){}
+		){}{}
 
 		//viewChild
 		@ViewChild('input') input;
@@ -570,6 +570,12 @@
 			let buttonElement = this.renderer.createElement('button');
 			this.renderer.appendChild(this.elementRef.nativeElement, buttonElement);
 		}
+    ```
+	* [viewContainer - createEmbeddedView](https://angular.io/guide/dynamic-component-loader)
+        ```ts
+            constructor(
+			    private viewContainerRef: ViewContainerRef
+            ){}
     ```
 	* [viewContainer - createEmbeddedView](https://angular.io/guide/dynamic-component-loader)
         ```ts
