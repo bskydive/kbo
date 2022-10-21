@@ -19,7 +19,42 @@ top -cd0.5 -o%CPU
 zypper in sysstat operf
 ```
 
+## strace ptrace
 
+```bash
+	lsof -c ${procName}|less
+	strace -p ${PID} -f -e trace=all -s 10000 -o ./log/`${procName}`.strace.all.log
+	strace -p ${PID} -f -e trace=network -s 10000 -o ./log/`${procName}`.strace.network.log
+	tail -f /var/log/${procName}/error.log | ./log/`${procName}`.error.log
+	# high memory usage
+	top -d1 -o RES -c
+	# high CPU TIME
+	top -d1 -o TIME+ -c
+```
+
+## Network debug
+ * код статуса
+
+```bash
+code=`curl -X 'GET' -sw '%{http_code}' -m 100 --max-redirs 10 --retry 3 -H 'Accept: */*' -H 'Origin: localhost' -H 'Referer: localhost' -o /dev/null 'https://api.waifu.pics/sfw/waifu'`;\
+[[ ${code} == '200' ]] && echo okok
+
+```
+ * метрики API
+	* response time
+	* response body length или sha256
+	* response http code
+	* response headers
+	* response body
+	* logging: output+timestamp+server_address+query headers(tail/head/sah256)+query body(tail/head/sha356) --> ${some_metric_log}.log
+
+## log
+
+```bash
+# сортировка по минутам: сортируем всё, выбираем столбец минут, суммируем и выводим по счётчику +1 минута(если 0 - выводим 0)
+grep -iE 'error|warn' /doc/messages-20220808.log |sort -nk1 -r |les
+#2022-08-08T10:42:45.764559+03:00
+```
 ### sar
 
 собирает статистику из /proc/ в файл по всем подсистемам ПК
