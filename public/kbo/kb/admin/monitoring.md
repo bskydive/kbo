@@ -33,13 +33,14 @@ zypper in sysstat operf
 ```
 
 ## Network debug
+
  * код статуса
 
-```bash
-code=`curl -X 'GET' -sw '%{http_code}' -m 100 --max-redirs 10 --retry 3 -H 'Accept: */*' -H 'Origin: localhost' -H 'Referer: localhost' -o /dev/null 'https://api.waifu.pics/sfw/waifu'`;\
-[[ ${code} == '200' ]] && echo okok
+	```bash
+	code=`curl -X 'GET' -sw '%{http_code}' -m 100 --max-redirs 10 --retry 3 -H 'Accept: */*' -H 'Origin: localhost' -H 'Referer: localhost' -o /dev/null 'https://api.waifu.pics/sfw/waifu'`;\
+	[[ ${code} == '200' ]] && echo okok
 
-```
+	```
  * метрики API
 	* response time
 	* response body length или sha256
@@ -51,10 +52,15 @@ code=`curl -X 'GET' -sw '%{http_code}' -m 100 --max-redirs 10 --retry 3 -H 'Acce
 ## log
 
 ```bash
-# сортировка по минутам: сортируем всё, выбираем столбец минут, суммируем и выводим по счётчику +1 минута(если 0 - выводим 0)
-grep -iE 'error|warn' /doc/messages-20220808.log |sort -nk1 -r |les
-#2022-08-08T10:42:45.764559+03:00
+	# сортировка по минутам: сортируем всё, выбираем столбец минут, суммируем и выводим по счётчику +1 минута(если 0 - выводим 0)
+	#2022-08-08T10:42:45.764559+03:00
+	grep -iE 'error|warn' /doc/messages-20220808.log |sort -nk1 -r |less
+	#awk '{print $0|"sort -t',' -nk3 "}'
+	#cat input.txt | awk -F '|' '{sprintf("date +%%s -d \"%s\"", $3) | getline tm};
+	grep -iE 'error|warn' /doc/messages-20220808.log | awk -F '|' '{sprintf("date +%%s -d \"%s\"", $1) | getline tm}' | less
+	grep -iE 'error|warn' /doc/messages-20220808.log | awk '{printf(date +%s, $1)}' | less
 ```
+
 ### sar
 
 собирает статистику из /proc/ в файл по всем подсистемам ПК
