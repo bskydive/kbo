@@ -1,6 +1,6 @@
 #	css
 
-## производительность и оптимизация 
+## производительность и оптимизация
 
  * https://medium.com/web-standards/critical-and-progressive-css-d6611f034d7d
  * [https://github.com/GoogleChromeLabs/css-paint-polyfill](https://github.com/GoogleChromeLabs/css-paint-polyfill)
@@ -24,11 +24,11 @@
 ## фигуры
 
 * [стрелки](https://freebiesupply.com/blog/css-arrows/)
-* clip-path обрезка 
+* clip-path обрезка
 	* [как понять свойство clip-path](https://habr.com/ru/company/skillfactory/blog/539064/)
 	* https://bennettfeely.com/clippy/ `clip-path: polygon(21% 0, 78% 0, 100% 100%, 0% 100%);`
 	* [overlapping css tabs](https://codepen.io/raymassie/pen/NMELNP)
-
+* крутилки spinner https://loading.io/css/
 ## обзоры, лучшие практики
 
  * https://css-irl.info/
@@ -51,16 +51,16 @@
 	* Псевдокласс placeholder-shown
 	* вкладки через :target
 	* Аккордеон <details> и <summary>
-	* 
+	*
  * [Keeping it simple with CSS that scales - css conventions](https://archive.hankchizljaw.com/wrote/keeping-it-simple-with-css-that-scales/)
  * [prefers-color-scheme: Hello darkness, my old friend](https://web.dev/prefers-color-scheme/)
 ### решение проблем
- 
+
  * [Шпаргалка по вёрстке 2012](https://habr.com/post/163871/)
  * [шпаргалка по специфичности селекторов](http://css-live.ru/css/pravilnaya-shpargalka-po-css-kaskadu.html)
  * [набор простых приёмов на 30 секунд](https://habr.com/ru/company/mailru/blog/350160/)
 
-#### схлопывание 
+#### схлопывание
 
  * схлопывание не работает в следующих случаях:
 	* с «плавающими» блоками, которые используют свойство float;
@@ -71,20 +71,20 @@
 	* Элементы со свойством cleared не схлопываются верхними отступами с нижними отступами их родителей.
  * [Победа над неочевидным. Схлопывание внешних отступов](https://habr.com/post/257327/)
  * [Схлопывание внешних отступов mdn](https://developer.mozilla.org/ru/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing)
- 
+
 #### треугольный ярлычок
 
  * [Все о свойстве border http://net.tutsplus.com/tutorials/html-css-techniques/css-refreshers-borders/ ](https://habr.com/post/141658/)
- 
+
  ```css
 	.arrow {//треугольная стрелка вверх ^
-		width: 0; 
+		width: 0;
 		height: 0;
 		border: 100px solid transparent;//ширина основания
 		border-bottom-color: blue;//определяем направление стрелки
 	}
  ```
- 
+
 #### границы-рисунки
 
  * www.xiper.net/manuals/css/properties/border-image.html
@@ -94,7 +94,7 @@
  * www.dynamicdrive.com/style/csslibrary/item/image_frames_using_css3_border_image/
  * [Демо](www.norabrowndesign.com/css-experiments/border-image-anim.html)
  * [генератор](http://border-image.com/#{%22src%22%3A%22http%3A%2F%2Fwww.w3.org%2FTR%2Fcss3-background%2Fborder.png%22%2C%22linkBorder%22%3Atrue%2C%22borderWidth%22%3A[0%2C0%2C0%2C0]%2C%22imageOffset%22%3A[27%2C27%2C27%2C27]%2C%22setRepat%22%3Afalse%2C%22repeat%22%3A[%22repeat%22%2C%22repeat%22]%2C%22scaleFactor%22%3A3%2C%22setRepeat%22%3Atrue})
- 
+
 ## методологии
 
  * БЭМ
@@ -107,7 +107,7 @@
  * oocss
  * https://medium.com/@stepanovv.ru/правильный-css-oocss-smacss-bem-и-sass-49351a119283/
  * [Эволюция CSS: от CSS, SASS, BEM и CSS-модулей до styled-components](https://habr.com/ru/company/vk/blog/319956/)
-	
+
 ## каскад наследование специфичность
 
  * https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Cascade_and_inheritance
@@ -179,7 +179,7 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 
 * https://ishadeed.com/article/css-scroll-snap/
 * https://www.filamentgroup.com/lab/scrollbars/
-* 
+*
 	```scss
 		& ::-webkit-scrollbar {
 			//https://css-tricks.com/custom-scrollbars-in-webkit/
@@ -256,7 +256,7 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 	}
 	```
 
-##	Анимация css 
+##	Анимация css
 
 * 60 FPS	https://habrahabr.ru/post/308006/
 
@@ -266,8 +266,8 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
  * термины
 	* container - родительский элемент
 	* item - тэг на уровень ниже родительского
-	* 
-	* 
+	*
+	*
  * https://patrickbrosset.com/articles/2021-02-02-4-Weird-Tricks-To-Become-A-10x-Flexbox-Engineer/
  * https://frontender.info/a-guide-to-flexbox/
  * https://kyusuf.com/post/almost-complete-guide-to-flexbox-without-flexbox
@@ -350,7 +350,7 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 
 ###  ликбез
 
- * 
+ *
 	```scss
 		@supports not (display: grid) {}
 
@@ -397,8 +397,8 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 		* dense `grid-auto-flow: dense row;` - разрешить заполнять предыдущие свободные места
 	* grid-auto-rows - автоматически создаёт строки
 	* grid-auto-columns - автоматически создаёт столбцы
-	* grid-row-gap, grid-column-gap, grid-gap 
-	* span - режим стэка|пролётов, отсчёт от ближайшего 
+	* grid-row-gap, grid-column-gap, grid-gap
+	* span - режим стэка|пролётов, отсчёт от ближайшего
 		* `grid-column-start: 2; grid-column-end: span 3;` = `grid-column-start: 2; grid-column-end: 5;`
 		* `grid-column-start: 2; grid-column-end: 4;` = `grid-column-start: span 2; grid-column-end: 4;` - здесь отсчёт span от 4
 		* `grid-column-start: 1; grid-column-end: 2;` = `grid-column-start: span 2`
@@ -430,7 +430,7 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 	 * naming
 	 * можно писать несколько псевдонимов для линии
 	 * `grid-template-rows: [a-start] 1f [a-end middle center b-start] 1fr [b-end]`
-	 * 
+	 *
 	 	```scss
 			.container {
 				grid-template-columns: [edge-left] repeat(auto-fill, [block-start] 1em 2em [block-end]) [edge-right];
@@ -463,7 +463,7 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 				footer { grid-area: footer;}
 			}
 		```
-	 * ограничения area псевдонимов: 
+	 * ограничения area псевдонимов:
 	 	* нельзя L
 			```css
 			grid-template-areas: "
@@ -496,7 +496,7 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 				grid-template-columns: repeat(12, 1fr);
 				grid-gap: 0.5em;
 			}
-		``` 
+		```
 	 * для упрощения кода можно указать subgrid
 	 	```css
 			.subgrid {
@@ -504,7 +504,7 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 				display: grid;
 				grid-template-columns: subgrid;
 			}
-		``` 
+		```
 	 * на 2020 год очень плохая поддержка браузеров
  * изменение размеров
 	 * рост от минимального размера до максимального в зависимости от ширины родительского контейнера
@@ -573,7 +573,7 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 
 ```
 
- * а можно классом 
+ * а можно классом
 
 ```css
 .btn {
@@ -769,7 +769,7 @@ https://medium.com/eightshapes-llc/cropping-away-negative-impacts-of-line-height
 	word-spacing: 6px; /* word spacing wow such */
 	}
 	```
- * 
+ *
  ```css
  ```
  * []()
