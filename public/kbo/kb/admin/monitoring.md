@@ -53,12 +53,26 @@ zypper in sysstat operf
 
 ```bash
 	# сортировка по минутам: сортируем всё, выбираем столбец минут, суммируем и выводим по счётчику +1 минута(если 0 - выводим 0)
-	#2022-08-08T10:42:45.764559+03:00
+	# 2022-08-01T00:31:54.540548+03:00 localhost kwin_x11[2602]: file:///usr/share/kwin/decorations/kwin4_decoration_qml_plastik/contents/ui/main.qml:91: TypeError: Type error
 	grep -iE 'error|warn' /doc/messages-20220808.log |sort -nk1 -r |less
 	#awk '{print $0|"sort -t',' -nk3 "}'
 	#cat input.txt | awk -F '|' '{sprintf("date +%%s -d \"%s\"", $3) | getline tm};
-	grep -iE 'error|warn' /doc/messages-20220808.log | awk -F '|' '{sprintf("date +%%s -d \"%s\"", $1) | getline tm}' | less
-	grep -iE 'error|warn' /doc/messages-20220808.log | awk '{printf(date +%s, $1)}' | less
+	grep -iE 'error|warn' /doc/messages-20220807.log | awk '{sprintf("date +%%s -d \"%s\"", $1) | getline tm}' | less
+
+	grep -iE 'error|warn' /doc/messages-20220807.log | awk '{print strftime("Time = %m/%d/%Y %H:%M:%S", $1)}' | less
+
+# sort log by date
+grep -iE 'error|warn' /doc/messages-20220807.log | awk 'BEGIN {cmd = "date +%s"} { cmd | getline result; close(cmd); print result, $0 }' | sort -nk1 > /doc/messages-20220807.sorted.log
+
+# save the result in array
+
+grep -iE 'error|warn' /doc/messages-20220807.log | awk 'BEGIN {cmd = "date +%s"} { cmd | getline varConverted; close(cmd); result[NR] = varConverted " " $0 } END { for (i = NR; i > 0; i--) print result[i]}' | less
+
+#
+
+cat /doc/messages-20220807.sorted.log | awk 'BEGIN {nextTick = 0; tick = 60} { if curSec = $1;  } END { for (i = NR; i > 0; i--) print result[i]}' | less
+
+
 ```
 
 ### sar
