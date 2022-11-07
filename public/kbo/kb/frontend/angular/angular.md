@@ -1020,6 +1020,32 @@
  * update - put - подходит для конкретного экземпляра, идемпотентный
  * delete - delete
 
+ * interceptors перехватчики  https://javascript.plainenglish.io/angular-interceptors-a-complete-guide-7294e2317ecf
+
+ ```ts
+	import { HTTP_INTERCEPTORS } from '@angular/common/http';
+	// Rest imports...
+
+	@NgModule({
+	declarations: [AppComponent],
+	imports: [
+		// ...
+	],
+	providers: [
+		//
+		/*
+		the order of processing for requests is: LogInterceptor-->CacheInterceptor-->AuthInterceptor-->MockInterceptor, while the order of processing for responses is the opposite: MockInterceptor-->AuthInterceptor-->CacheInterceptor-->LogInterceptor
+		*/
+		{ provide: HTTP_INTERCEPTORS, useClass: LogInterceptor, multi: true },
+		{ provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true },
+		{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+		{ provide: HTTP_INTERCEPTORS, useClass: MockInterceptor, multi: true },
+	],
+	bootstrap: [AppComponent],
+	})
+	export class AppModule {}
+ ```
+
 ## RxJS
  * public/kbo/kb/frontend/angular/rxjs.md
 
