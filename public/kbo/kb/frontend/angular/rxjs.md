@@ -9,23 +9,42 @@
 	* много потоков
 	* готовые операторы
 	* серия значений, а не только одно
-
-    * A Function is a lazily evaluated computation that synchronously returns a single value on invocation.
-    * A generator is a lazily evaluated computation that synchronously returns zero to (potentially) infinite values on iteration.
-    * A Promise is a computation that may (or may not) eventually return a single value.
-    * An Observable is a lazily evaluated computation that can synchronously or asynchronously return zero to (potentially) infinite values from the time it's invoked onwards.
-1. Observable - наблюдаемый
-	* represents the idea of an invokable collection of future values or events.
-	* lazy push collection
+	* observable - отложенное вычисление, которое синхронно или асинхронно может вернуть от одного до бесконечного количества значений с момента вызова
+		* функция - отложенное вычисление, которое синхронно возвращает одно значение
+		* генератор - отложенное вычисление, которое синхронно возвращает от ноля до бесконечного количества значений во время итерации
+		* promise - вычисление, которое может вернуть значение
+1. Observer - наблюдатель
+	* коллекция callback для обработки значений от наблюдаемого
+	```ts
+		const observer = {
+			next: value => console.log('Observer got the next value:' + value),
+			error: error => console.log('Observer got an error' + error),
+			complete:() => console.log('Observer got a complete notification'),
+		};
+	```
+1. Subscription
+	* экземпляр выполняемого Observable
+	* отменяемый(disposable) через unsubscribe объект
+1. [Observable](https://github.com/ReactiveX/rxjs/blob/master/src/internal/Observable.ts) - наблюдаемый поток
+	* реализует идею вызываемой коллекции значений или событий
+	* lazy push collection - consumer waits for producer data
+	* unicast
 	* обратный вызов next -
 	* обратный вызов error -
 	* обратный вызов complete -
-1. Observer - наблюдатель
-	* is a collection of callbacks that knows how to listen to values delivered by the Observable
-1. Subject
-	* разновидность наблюдаемого, можно подписаться нескольким наблюдателям - multicast
-	* is equivalent to an EventEmitter, and the only way of multicasting a value or event to multiple Observers
-	* asyncSubject
+	* lifecycle: creation, subscription, execution, and destruction
+	```ts
+		const myObservable = new Observable(observer =>
+			setTimeout(() => {
+				observer.next('Hello world!');
+			}, 2000)
+		);
+	```
+1. [Subject](https://github.com/ReactiveX/rxjs/blob/master/src/internal/Subject.ts)
+	* разновидность наблюдаемого потока
+	* можно подписаться нескольким наблюдателям - multicast
+	* похож на EventEmitter, единственный способ multicasting
+	* [asyncSubject](https://www.learnrxjs.io/learn-rxjs/subjects/asyncsubject) - отдаёт только после закрытия входного потока
 	* replaySubject - кэширование и повторение
 	* behaviorSubject - есть начальное значение
 
@@ -44,23 +63,20 @@
 				subscriber.complete();
 			}, 1000);
 		});
-		
+
 		observable.subscribe({
 			next(x) { console.log('got value ' + x); },
 			error(err) { console.error('something wrong occurred: ' + err); },
 			complete() { console.log('done'); }
 		});
 	```
-1. Operators
-	* are pure functions that enable a functional programming style of dealing with collections with operations like map, filter, concat, reduce, etc.
-1. Subscription
-	* экземпляр выполняемого Observable
-	* отменяемый(disposable) через unsubscribe объект
-1. Schedulers
-	* are centralized dispatchers to control concurrency, allowing us to coordinate when computation happens on e.g. setTimeout or requestAnimationFrame or others.
+1. Operators - чистые функции для обработки коллекций в функциональном стиле как map/concat
+1. Schedulers - планировщики
+	* централизованная отправка значений для контроля конкурентности, времени выполнения вычислений как в setTimeout или requestAnimationFrame
 	* pipe(ObserveOn(asapScheduler))
 1. Как обработать ошибку в Observable?
 	* pipe(catchError())
+	* .subscribe(error())
 1. multicasting
 	* горячий источник с переиспользованием(share) побочных эффектов(источников)
 	* publish
@@ -75,24 +91,30 @@
 			map(item=>of(item)) // inner observable
 		).subscribe(outer=>outer.subscribe(inner=>console.log(inner, outer)))
 	```
-	* наблюдаемые высшего порядка уплощаются операторами concatMap, switchMap, MergeMap 
+	* наблюдаемые высшего порядка уплощаются операторами concatMap, switchMap, MergeMap
 1. Стратегии слияния/схлопывания [flattening](https://medium.com/@shairez/a-super-ninja-trick-to-learn-rxjss-switchmap-mergemap-concatmap-and-exhaustmap-forever-88e178a75f1b)
 	* Merge - слияние
 		* без потерь
 		* без сохранения очерёдности(order)
 		* без кэширования
 		* без отписок
-	* Concat - объединение
+	* Concat - объединение потоков целиком
 		* без потерь
-		* с сохранением очерёдности
+		* с сохранением очерёдности внутри потоков
 		* кэширует все новые потоки
-		* переподписывается когда текущий поток завершён
+		* переподписывается только когда текущий поток завершён
 		* для получения словарей по id
-	* Switch - переключение
+	* Combine - парсинг, стартует pipe
+        * теряет начальные
+        * стартует только когда пришли значения от всех потоков
+        * кэширует
+        * сохраняет очерёдность
+        * если необходимо обработать неизвестное количество входных потоков как массив
+    * Switch - переключение
 		* с потерями
 		* с сохранением очерёдности
-		* подходит для автодополнения, выбора из списка с подгрузкой значений
 		* переподписывается(отписывается от старого) на новый поток
+		* подходит для автодополнения, выбора из списка с подгрузкой значений
 	* Exhaust - истощение
 		* с потерями
 		* с сохранением очерёдности
@@ -109,7 +131,7 @@
 	* just in time по требованию - mergeMap, switchMap=>(item)=>mergeMap(item)
 	* get it all предзагрузка - combineLatest.pipe(filter())
 1. лучше комбинировать все потоки в один для упрощения связывания кода в HTML
-	* 
+	*
 		```html
 			<div *ngIf = combineLatest$ | async as model>
 				<div>{{model.data1}}
