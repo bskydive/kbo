@@ -32,12 +32,12 @@ https://github.com/hsoft/collapseos
  * [BB Battery BPS7-12 - 10 лет ](http://tpower.ru/bps7_12/320/buy/ )
  * [BB Battery BP7-12 - 8 лет ](http://tpower.ru/bp7_12/184/buy/ )
  * [BB Battery BC7-12 ](http://tpower.ru/bc7_12/1/buy/ )
- 
+
 ### гелевые GEL
  * [Sonnenschein A512/1,2 S ](http://tpower.ru/a512_1_2_s/405/buy/ )
 
- 
-###  1.2-1,3 А 
+
+###  1.2-1,3 А
  * [Yuasa NP 1,2-12 ](http://tpower.ru/np1_2_12/211/buy/ )
  * [Ventura GP 12-1,2-S ](http://tpower.ru/gp12_1_2s/516/buy/ )
  * [Аккумулятор BB Battery BP1.2-12 - 10 лет ](http://www.ups-mag.ru/catalog/battery/bb-battery/bp/bp1.2-12 )
@@ -71,7 +71,7 @@ https://github.com/hsoft/collapseos
 
  * [M471A1K43CB1-CRC](https://www.nix.ru/autocatalog/notebook_memory/Original-SAMSUNG-DDR4-SODIMM-8Gb-PC4-19200-for-NoteBook_294412.html)
  * https://www.samsung.com/semiconductor/dram/module/M471A1K43CB1-CRC/
- 
+
 ## периферия
 
  * https://www.nix.ru/autocatalog/mouse_sven/SVEN-Optical-Mouse-RX-555-Silent-Antistress-Green-RTL-USB-3btn-plus-Roll_211056.html
@@ -92,4 +92,14 @@ https://github.com/hsoft/collapseos
  * https://wikidevi.wi-cat.ru/ZyXEL/Keenetic_series
  * [Для чего хакерам Микротик и как я спрятал 100 тыс. RouterOS от ботнета](https://habr.com/ru/post/424433/)
  * [Ubiquiti Routers are in Trouble Again](https://youtu.be/u5YuzpVQL8M?t=373)
- * 
+ *
+
+## nettop неттоп
+
+ * https://wikidevi.wi-cat.ru/List_of_Single-board_computers#Wireless_embedded_boards
+ * [wifi 802.11ax](https://www.wildberries.ru/catalog/128074928/detail.aspx?size=222999722)
+ * [Кабель, пигтейл IPEX/UFL Female --> SMA Female для антенн Wi-Fi/GSM/2G/3G/4G](https://www.wildberries.ru/catalog/67112013/detail.aspx?size=116295445)
+ * [	Корпус Asus TINKER BOARD Fanless Aluminium Case](https://www.nix.ru/autocatalog/thin_clients/ASUS-TINKER-FANLESS-CASE_394333.html#pid=2235)
+ * [ASUS Tinker Board](https://www.wildberries.ru/catalog/122340876/detail.aspx)
+ * []()
+ * []()
