@@ -101,45 +101,45 @@ https://github.com/hsoft/collapseos
  * [How to Put WiFi Interface into Monitor Mode in Linux](https://www.geeksforgeeks.org/how-to-put-wifi-interface-into-monitor-mode-in-linux/?ref=rp)
 
 	```bash
-ip link set wlp1s0 down
-iw wlp1s0 set monitor none
-ip link set wlp1s0 up
+	ip link set wlp1s0 down
+	iw wlp1s0 set monitor none
+	ip link set wlp1s0 up
 
-sudo ip link set wlp1s0 down
-sudo iw wlp1s0 set type managed
-sudo ip link set wlp1s0 up
+	sudo ip link set wlp1s0 down
+	sudo iw wlp1s0 set type managed
+	sudo ip link set wlp1s0 up
 
-sudo ifconfig wlp1s0 down
-sudo iwconfig wlp1s0 mode monitor
-sudo ifconfig wlp1s0 up
+	sudo ifconfig wlp1s0 down
+	sudo iwconfig wlp1s0 mode monitor
+	sudo ifconfig wlp1s0 up
 
-airmon-ng
-airmon-ng check
-airmon-ng check kill
-airmon-ng start wlp1s0
-iwconfig
-airmon-ng stop wlp1s0mon
-iwconfig
+	airmon-ng
+	airmon-ng check
+	airmon-ng check kill
+	airmon-ng start wlp1s0
+	iwconfig
+	airmon-ng stop wlp1s0mon
+	iwconfig
 
 
-iwlist wlan0 freq
-wlan0     14 channels in total; available frequencies :
-          Channel 01 : 2.412 GHz
-          Channel 02 : 2.417 GHz
-          Channel 03 : 2.422 GHz
-          Channel 04 : 2.427 GHz
-          Channel 05 : 2.432 GHz
-          Channel 06 : 2.437 GHz
-          Channel 07 : 2.442 GHz
-          Channel 08 : 2.447 GHz
-          Channel 09 : 2.452 GHz
-          Channel 10 : 2.457 GHz
-          Channel 11 : 2.462 GHz
-          Channel 12 : 2.467 GHz
-          Channel 13 : 2.472 GHz
-          Channel 14 : 2.484 GHz
-inxi -n
- ```
+	iwlist wlan0 freq
+	wlan0     14 channels in total; available frequencies :
+			Channel 01 : 2.412 GHz
+			Channel 02 : 2.417 GHz
+			Channel 03 : 2.422 GHz
+			Channel 04 : 2.427 GHz
+			Channel 05 : 2.432 GHz
+			Channel 06 : 2.437 GHz
+			Channel 07 : 2.442 GHz
+			Channel 08 : 2.447 GHz
+			Channel 09 : 2.452 GHz
+			Channel 10 : 2.457 GHz
+			Channel 11 : 2.462 GHz
+			Channel 12 : 2.467 GHz
+			Channel 13 : 2.472 GHz
+			Channel 14 : 2.484 GHz
+	inxi -n
+	```
 
  * https://wiki.archlinux.org/title/WPA_supplicant#Connecting_with_wpa_cli
  * []()
@@ -154,4 +154,8 @@ inxi -n
  * [OpenWrt](https://openwrt.org/docs/guide-developer/start)
  * [Raspberry Pi Zero: подключение, настройка и начало работы](http://wiki.amperka.ru/rpi:raspberry-pi-zero)
  * []()
+
+### модули
+
+ * [Микросхема CH340G - преобразователь интерфейса USB в UART](http://mypractic.ru/mikrosxema-ch340g-preobrazovatel-interfejsa-usb-v-uart-most-usb-uart-xarakteristiki-usloviya-ekspluatacii-tipovye-sxemy-vklyucheniya.html)
  * []()
