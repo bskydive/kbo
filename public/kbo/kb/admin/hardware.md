@@ -92,7 +92,57 @@ https://github.com/hsoft/collapseos
  * https://wikidevi.wi-cat.ru/ZyXEL/Keenetic_series
  * [Для чего хакерам Микротик и как я спрятал 100 тыс. RouterOS от ботнета](https://habr.com/ru/post/424433/)
  * [Ubiquiti Routers are in Trouble Again](https://youtu.be/u5YuzpVQL8M?t=373)
- *
+ * [Linux Wi-Fi Driver Tutorial](https://www.apriorit.com/dev-blog/645-lin-linux-wi-fi-driver-tutorial-how-to-write-simple-linux-wireless-driver-prototype)
+ * [Adding WiFi To Black Magic For Wireless GDB Action](https://hackaday.com/2020/06/04/adding-wifi-to-black-magic-for-wireless-gdb-action/)
+ * [Black Magic Probe is a modern, in-application debugging tool for embedded microprocessors](https://github.com/blackmagic-debug/blackmagic)
+ * [8 Best Wireless Penetration Testing Tools for Linux](https://www.makeuseof.com/best-wireless-penetration-testing-linux-tools/)
+ * [Aircrack-ng 1.7](https://github.com/aircrack-ng/aircrack-ng)
+ * [Aircrack-ng](https://www.aircrack-ng.org/downloads.html)
+ * [How to Put WiFi Interface into Monitor Mode in Linux](https://www.geeksforgeeks.org/how-to-put-wifi-interface-into-monitor-mode-in-linux/?ref=rp)
+
+	```bash
+ip link set wlp1s0 down
+iw wlp1s0 set monitor none
+ip link set wlp1s0 up
+
+sudo ip link set wlp1s0 down
+sudo iw wlp1s0 set type managed
+sudo ip link set wlp1s0 up
+
+sudo ifconfig wlp1s0 down
+sudo iwconfig wlp1s0 mode monitor
+sudo ifconfig wlp1s0 up
+
+airmon-ng
+airmon-ng check
+airmon-ng check kill
+airmon-ng start wlp1s0
+iwconfig
+airmon-ng stop wlp1s0mon
+iwconfig
+
+
+iwlist wlan0 freq
+wlan0     14 channels in total; available frequencies :
+          Channel 01 : 2.412 GHz
+          Channel 02 : 2.417 GHz
+          Channel 03 : 2.422 GHz
+          Channel 04 : 2.427 GHz
+          Channel 05 : 2.432 GHz
+          Channel 06 : 2.437 GHz
+          Channel 07 : 2.442 GHz
+          Channel 08 : 2.447 GHz
+          Channel 09 : 2.452 GHz
+          Channel 10 : 2.457 GHz
+          Channel 11 : 2.462 GHz
+          Channel 12 : 2.467 GHz
+          Channel 13 : 2.472 GHz
+          Channel 14 : 2.484 GHz
+inxi -n
+ ```
+
+ * https://wiki.archlinux.org/title/WPA_supplicant#Connecting_with_wpa_cli
+ * []()
 
 ## nettop неттоп
 
@@ -101,5 +151,7 @@ https://github.com/hsoft/collapseos
  * [Кабель, пигтейл IPEX/UFL Female --> SMA Female для антенн Wi-Fi/GSM/2G/3G/4G](https://www.wildberries.ru/catalog/67112013/detail.aspx?size=116295445)
  * [	Корпус Asus TINKER BOARD Fanless Aluminium Case](https://www.nix.ru/autocatalog/thin_clients/ASUS-TINKER-FANLESS-CASE_394333.html#pid=2235)
  * [ASUS Tinker Board](https://www.wildberries.ru/catalog/122340876/detail.aspx)
+ * [OpenWrt](https://openwrt.org/docs/guide-developer/start)
+ * [Raspberry Pi Zero: подключение, настройка и начало работы](http://wiki.amperka.ru/rpi:raspberry-pi-zero)
  * []()
  * []()
