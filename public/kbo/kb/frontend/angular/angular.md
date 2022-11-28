@@ -286,8 +286,8 @@
 		```
 
 		* [hostbinding](https://angular.io/api/core/HostBinding)
-			* установка свойств DOM
-		* hostlistener
+			* перехват изменения свойств DOM
+		* [hostlistener](https://angular.io/api/core/HostListener)
 			* перехват событий DOM
 
 ## Конвейеры, директивы и компоненты
@@ -359,9 +359,10 @@
 				selector: '[appHighlight]'
 			})
 		```
+
 ## Директивы
-* https://angular.io/guide/built-in-directives
-* [ngClass](https://angular.io/guide/built-in-directives#adding-and-removing-classes-with-ngclass)
+ * https://angular.io/guide/built-in-directives
+ * [ngClass](https://angular.io/guide/built-in-directives#adding-and-removing-classes-with-ngclass)
 	* https://angular.io/api/common/NgClass#description
 	* `ngClass: string | string[] | Set<string> | { [klass: string]: any; }`
 
@@ -392,7 +393,7 @@
 		}
 
 	```
-* [ngStyle](https://angular.io/guide/built-in-directives#setting-inline-styles-with-ngstyle)
+ * [ngStyle](https://angular.io/guide/built-in-directives#setting-inline-styles-with-ngstyle)
 	```html
 		<div [ngStyle]="currentStyles">
 	```
@@ -409,7 +410,7 @@
 			};
 		}
 	```
-* NG-FOR. TrackBy зачем нужен, преимущества.
+ * NG-FOR. TrackBy зачем нужен, преимущества.
 	* для более быстрого вычисления признака замены значений вложенного объекта в ячейке массива, быстрота перерисовки
 
 ## Стили Material
@@ -581,11 +582,11 @@
 		}
     ```
 	* [viewContainer - createEmbeddedView](https://angular.io/guide/dynamic-component-loader)
-        ```ts
-            constructor(
-			    private viewContainerRef: ViewContainerRef
-            ){}
-    ```
+	```ts
+		constructor(
+			private viewContainerRef: ViewContainerRef
+		){}
+	```
 	* [viewContainer - createEmbeddedView](https://angular.io/guide/dynamic-component-loader)
         ```ts
             constructor(
@@ -658,7 +659,7 @@
 			<app-countdown-timer #timer></app-countdown-timer>
 		```
 
-	* @viewChild даёт доступ к экземпляру другого компонента
+	* [@viewChild даёт доступ к экземпляру другого компонента](https://angular.io/api/core/ViewChild)
 
 		```ts
 			@Component({
