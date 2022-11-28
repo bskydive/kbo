@@ -144,6 +144,30 @@ https://github.com/hsoft/collapseos
  * https://wiki.archlinux.org/title/WPA_supplicant#Connecting_with_wpa_cli
  * []()
 
+## SDR software defined radio
+
+ * http://www.voxforge.org/home/docs/faq/faq/linux-how-to-determine-your-audio-cards-or-usb-mics-maximum-sampling-rate
+
+	```bash
+		# arecord --list-devices
+			**** List of CAPTURE Hardware Devices ****
+			card 1: Generic [HD-Audio Generic], device 0: ALC287 Analog [ALC287 Analog]
+			Subdevices: 1/1
+			Subdevice #0: subdevice #0
+			card 2: C920 [HD Pro Webcam C920], device 0: USB Audio [USB Audio]
+			Subdevices: 1/1
+			Subdevice #0: subdevice #0
+		# arecord -f dat -r 60000 -D hw:1,0 -d 5 /distr/test.wav
+			Recording WAVE '/distr/test.wav' : Signed 16 bit Little Endian, Rate 60000 Hz, Stereo
+			Warning: rate is not accurate (requested = 60000Hz, got = 48000Hz)
+					please, try the plug plugin
+		# arecord -f dat -r 60000 -D hw:2,0 -d 5 /distr/test.wav
+			Recording WAVE '/distr/test.wav' : Signed 16 bit Little Endian, Rate 60000 Hz, Stereo
+			Warning: rate is not accurate (requested = 60000Hz, got = 32000Hz)
+					please, try the plug plugin
+
+	```
+
 ## nettop неттоп
 
  * https://wikidevi.wi-cat.ru/List_of_Single-board_computers#Wireless_embedded_boards
