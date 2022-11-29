@@ -101,11 +101,11 @@ https://github.com/hsoft/collapseos
  * [How to Put WiFi Interface into Monitor Mode in Linux](https://www.geeksforgeeks.org/how-to-put-wifi-interface-into-monitor-mode-in-linux/?ref=rp)
 
 	```bash
+        zypper in sysstat iw
 		ip link
 		iwconfig
 		iw dev
 		iw wlan1 info
-		iw wlan1 freq
 		iwlist wlan1 freq
 		ip link set wlan1 down
 		iwconfig wlan1 mode monitor
@@ -240,12 +240,21 @@ https://github.com/hsoft/collapseos
 		17.usbmon3 (USB bus number 3)
 		18.usbmon4 (USB bus number 4)
 
-
 	inxi -n
 	```
 
  * https://wiki.archlinux.org/title/WPA_supplicant#Connecting_with_wpa_cli
  * []()
+ * https://github.com/morrownr/88x2bu-20210702
+    * less /etc/modprobe.d/88x2bu.conf
+    * Realtek drivers do not support more than one adapter with the same chipset in the same computer.
+    * https://github.com/morrownr/88x2bu-20210702#faq
+    * my STRONG recommendation is for Linux users to seek out USB WiFi solutions based on Mediatek chipsets: https://github.com/morrownr/USB-WiFi
+    * https://github.com/morrownr/Monitor_Mode
+
+    ```bash
+        ps -A -o pid=PID -o comm=Name | grep -iE "wpa_action|wpa_supplicant|wpa_cli|dhclient|ifplugd|dhcdbd|dhcpcd|udhcpc|NetworkManager|knetworkmanager|avahi-autoipd|avahi-daemon|wlassistant|wifibox|net_applet|wicd-daemon|wicd-client\|iwd|PID"
+    ```
 
 ## SDR software defined radio
 
