@@ -101,17 +101,41 @@ https://github.com/hsoft/collapseos
  * [How to Put WiFi Interface into Monitor Mode in Linux](https://www.geeksforgeeks.org/how-to-put-wifi-interface-into-monitor-mode-in-linux/?ref=rp)
 
 	```bash
+		ip link
+		iwconfig
+		iw dev
+		iw wlan1 info
+		iw wlan1 freq
+		iwlist wlan1 freq
+		ip link set wlan1 down
+		iwconfig wlan1 mode monitor
+		ip link set wlan1 up
+		iw dev wlan1 set channel 52
+
+		iwconfig
+		ip link set wlan1 down
+		iwconfig wlan1 mode managed
+		iw phy phy0 interface add mon0 type monitor
+		iw dev
+		iwconfig
+		ip link set mon0 up
+		iwconfig
+		iw dev mon0 set freq 2437
+		iwconfig
+		iw dev mon0 set channel 52
+
+
 	ip link set wlp1s0 down
 	iw wlp1s0 set monitor none
 	ip link set wlp1s0 up
 
-	sudo ip link set wlp1s0 down
-	sudo iw wlp1s0 set type managed
-	sudo ip link set wlp1s0 up
+	ip link set wlp1s0 down
+	iw wlp1s0 set type managed
+	ip link set wlp1s0 up
 
-	sudo ifconfig wlp1s0 down
-	sudo iwconfig wlp1s0 mode monitor
-	sudo ifconfig wlp1s0 up
+	ifconfig wlp1s0 down
+	iwconfig wlp1s0 mode monitor
+	ifconfig wlp1s0 up
 
 	airmon-ng
 	airmon-ng check
@@ -121,6 +145,28 @@ https://github.com/hsoft/collapseos
 	airmon-ng stop wlp1s0mon
 	iwconfig
 
+	iw dev
+	phy#2
+			Interface wlan2
+					ifindex 8
+					wdev 0x200000001
+					addr 1a:46:74:9b:f8:97
+					type managed
+					txpower 42949572.96 dBm
+	phy#0
+			Unnamed/non-netdev interface
+					wdev 0x2
+					addr 38:fc:98:8e:5b:9d
+					type P2P-device
+					txpower 0.00 dBm
+			Interface wlan1
+					ifindex 3
+					wdev 0x1
+					addr 38:fc:98:8e:5b:9d
+					ssid scArU125
+					type managed
+					channel 52 (5260 MHz), width: 160 MHz, center1: 5250 MHz
+					txpower 22.00 dBm
 
 	iwlist wlan0 freq
 	wlan0     14 channels in total; available frequencies :
@@ -138,6 +184,63 @@ https://github.com/hsoft/collapseos
 			Channel 12 : 2.467 GHz
 			Channel 13 : 2.472 GHz
 			Channel 14 : 2.484 GHz
+	wlist wlan1 freq
+	wlan1     32 channels in total; available frequencies :
+          Channel 01 : 2.412 GHz
+          Channel 02 : 2.417 GHz
+          Channel 03 : 2.422 GHz
+          Channel 04 : 2.427 GHz
+          Channel 05 : 2.432 GHz
+          Channel 06 : 2.437 GHz
+          Channel 07 : 2.442 GHz
+          Channel 08 : 2.447 GHz
+          Channel 09 : 2.452 GHz
+          Channel 10 : 2.457 GHz
+          Channel 11 : 2.462 GHz
+          Channel 12 : 2.467 GHz
+          Channel 13 : 2.472 GHz
+          Channel 36 : 5.18 GHz
+          Channel 40 : 5.2 GHz
+          Channel 44 : 5.22 GHz
+          Channel 48 : 5.24 GHz
+          Channel 52 : 5.26 GHz
+          Channel 56 : 5.28 GHz
+          Channel 60 : 5.3 GHz
+          Channel 64 : 5.32 GHz
+          Channel 100 : 5.5 GHz
+          Channel 104 : 5.52 GHz
+          Channel 108 : 5.54 GHz
+          Channel 112 : 5.56 GHz
+          Channel 116 : 5.58 GHz
+          Channel 120 : 5.6 GHz
+          Channel 124 : 5.62 GHz
+          Channel 128 : 5.64 GHz
+          Channel 132 : 5.66 GHz
+          Channel 136 : 5.68 GHz
+          Channel 140 : 5.7 GHz
+          Current Frequency:5.26 GHz (Channel 52)
+
+	tcpdump -D
+		1.vmnet1 [Up, Running]
+		2.wlan2 [Up, Running]
+		3.eth4 [Up, Running]
+		4.vmnet8 [Up, Running]
+		5.any (Pseudo-device that captures on all interfaces) [Up, Running]
+		6.lo [Up, Running, Loopback]
+		7.eth0 [Up]
+		8.wlan1 [Up]
+		9.bluetooth0 (Bluetooth adapter number 0)
+		10.bluetooth-monitor (Bluetooth Linux Monitor)
+		11.nflog (Linux netfilter log (NFLOG) interface)
+		12.nfqueue (Linux netfilter queue (NFQUEUE) interface)
+		13.dbus-system (D-Bus system bus)
+		14.dbus-session (D-Bus session bus)
+		15.usbmon1 (USB bus number 1)
+		16.usbmon2 (USB bus number 2)
+		17.usbmon3 (USB bus number 3)
+		18.usbmon4 (USB bus number 4)
+
+
 	inxi -n
 	```
 
