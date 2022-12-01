@@ -254,7 +254,12 @@ https://github.com/hsoft/collapseos
 
     ```bash
         ps -A -o pid=PID -o comm=Name | grep -iE "wpa_action|wpa_supplicant|wpa_cli|dhclient|ifplugd|dhcdbd|dhcpcd|udhcpc|NetworkManager|knetworkmanager|avahi-autoipd|avahi-daemon|wlassistant|wifibox|net_applet|wicd-daemon|wicd-client\|iwd|PID"
+
+		airodump-ng -w dump.log
+		tcpdump
     ```
+	* https://www.aircrack-ng.org/doku.php?id=airodump-ng
+	*
 
 ## SDR software defined radio
 
