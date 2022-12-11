@@ -143,7 +143,7 @@ service ssh restart
 mkdir /home/user-ssh/.ssh
 cat >> /home/user-ssh/.ssh/authorized_keys
 chown -R user-ssh:user-ssh /home/user-ssh
-chmod 700 /home/user-ssh
+chmod 700 /home/user-ssh/.ssh
 
 ```
 
