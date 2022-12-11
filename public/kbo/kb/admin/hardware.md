@@ -146,6 +146,17 @@ https://github.com/hsoft/collapseos
 	airmon-ng stop wlp1s0mon
 	iwconfig
 
+	#рабочий вариант
+	ip link set wlan1 down
+	iw wlan1 set monitor none
+	iwconfig wlan1 channel 52
+	iwconfig wlan1 key off
+	ip link set wlan1 up
+	#
+	ip link set wlan1 down
+	iwconfig wlan1 mode Managed
+	ip link set wlan1 up
+
 	iw dev
 	phy#2
 			Interface wlan2
