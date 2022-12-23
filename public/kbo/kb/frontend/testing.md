@@ -95,13 +95,12 @@
 	* mockClear clears only data pertaining to mock calls, which means we get a fresh dataset to assert over with toHaveBeenX methods.
     * mockReset resets to mock to its initial implementation, on a spy makes the implementation be a noop (function that does nothing).
  * [Angular 11 - Setting up Jest](https://dev.to/alfredoperez/angular-10-setting-up-jest-2m0l)
-
-```ts
-src/tsconfig.spec.json: include
-src/tsconfig.app.json: exclude
-cypress-test/tsconfig.cypress.json:include
-.storybook/tsconfig.json:exclude
-```
+	```ts
+		src/tsconfig.spec.json: include
+		src/tsconfig.app.json: exclude
+		cypress-test/tsconfig.cypress.json:include
+		.storybook/tsconfig.json:exclude
+	```
 
  * https://www.devcurry.com/2020/09/testing-angular-component-using-jest.html
  * https://codewithhugo.com/jest-fn-spyon-stub-mock/
@@ -109,6 +108,7 @@ cypress-test/tsconfig.cypress.json:include
  * https://ordina-jworks.github.io/testing/2018/08/03/testing-angular-with-jest.html
  * https://fireship.io/snippets/testing-rxjs-observables-with-jest/
  * https://www.npmjs.com/package/jest-preset-angular
+ * опция рендеринга https://jestjs.io/ru/docs/mock-function-api/#jestmockedsource-options
 
 ### spectator
 
@@ -226,6 +226,7 @@ cypress-test/tsconfig.cypress.json:include
 		shallow: true, // Defaults to false
 		});
 	```
+	* https://jestjs.io/ru/docs/mock-function-api/#jestmockedsource-options
 
 ##  cypress test
 
