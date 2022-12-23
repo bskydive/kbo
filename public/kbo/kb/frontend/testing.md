@@ -201,6 +201,31 @@ cypress-test/tsconfig.cypress.json:include
 
 		expect(paginatorComponent).toHaveClass('disabled');
 	```
+ * shallow - теститрование без рендеринга
+	* https://itnext.io/testing-angular-applications-with-jest-and-spectator-c05991579807#252f
+	* https://github.com/ngneat/spectator#testing-components
+	```js
+		const createComponent = createComponentFactory({
+		component: ButtonComponent,
+		imports: [],
+		providers: [],
+		declarations: [],
+		entryComponents: [],
+		componentProviders: [], // Override the component's providers
+		componentViewProviders: [], // Override the component's view providers
+		overrideModules: [], // Override modules
+		overrideComponents: [], // Override components in case of testing standalone component
+		overrideDirectives: [], // Override directives in case of testing standalone directive
+		overridePipes: [], // Override pipes in case of testing standalone pipe
+		mocks: [], // Providers that will automatically be mocked
+		componentMocks: [], // Component providers that will automatically be mocked
+		componentViewProvidersMocks: [], // Component view providers that will be automatically mocked
+		detectChanges: false, // Defaults to true
+		declareComponent: false, // Defaults to true
+		disableAnimations: false, // Defaults to true
+		shallow: true, // Defaults to false
+		});
+	```
 
 ##  cypress test
 
