@@ -19,14 +19,14 @@
 * win
     * rufus
     * сделать fat32
-    * sources/install.wim больше 4 Гб 
+    * sources/install.wim больше 4 Гб
       * https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/install-windows-from-a-usb-flash-drive?view=windows-11#if-your-windows-image-is-larger-than-4gb
       * `Dism /Split-Image /ImageFile:"\\vmware-host\Shared Folders\wd1tbdistr\install.wim" /SWMFile:"\\vmware-host\Shared Folders\wd1tbdistr\install.swm" /FileSize:3800`
       * получатся `install.swm install2.swm`
     * сделать раздел активным
     * скопировать содержимое - вот это не работает, работает через dd
     * https://www.microsoft.com/en-us/download/windows-usb-dvd-download-tool
-* 
+*
 ```bash
 dd if=/path/to/your/isofile of=/your/usb/disk bs=8m
 dd bs=4M if=Downloads/ubuntu-19.04-desktop-amd64.iso of=/dev/sdd9 conv=fdatasync status=progress
@@ -51,7 +51,7 @@ CLEAR_TMP_DIRS_AT_BOOTUP = yes
 ## linux file encoding кодировка конвертирование текста
 
 ```bash
-file -bi index.js 
+file -bi index.js
 cat index.js | tr -d '\15\32' > index.lf.js
 iconv -f cp1251 -t utf-8 ./index.lf.js > index.lf.utf8.js
 
@@ -70,7 +70,7 @@ wine /distr/7z1801-extra/7za.exe x ./path/arch.zip
 
 ## NFS CIFS SMB
 
- * 
+ *
 ```
 	mount.cifs
 	mount.nfs
@@ -109,16 +109,16 @@ $ cat /etc/fstab
 USERNAME@HOSTNAME_OR_IP:/REMOTE/DIRECTORY  /LOCAL/MOUNTPOINT  fuse.sshfs  defaults,_netdev  0  0
 ```
 
-## fat from ext filenames 
+## fat from ext filenames
 
 ```bash
-cat /mnt/disk/music/fatrename.sh 
+cat /mnt/disk/music/fatrename.sh
 #! /bin/bash
-                        
-SRC=$1                        
-DST=$2                        
+
+SRC=$1
+DST=$2
 # copy music to FAT media
-                        
+
 find ${SRC} -type f | while read f ; do
 
     d=${DST}/$( echo $f | sed 's/[^-A-Za-z0-9А-Яа-яёЁ/._ ()]/_/g' )
@@ -188,7 +188,7 @@ find . -inum 17040033 -exec mv {} new-directory-name1 \;
 ```bash
 cat /proc/mounts
 
-##ищем какой диск 
+##ищем какой диск
 > cat /etc/fstab
 /dev/vda3 /                       ext4    defaults,data=journal        1 1
 
@@ -252,7 +252,7 @@ chown
 
 getfacl a+c file.sh
 
-
+ntfsfix /dev/sdXY
 
 ```
 
@@ -297,9 +297,9 @@ unused devices: <none>
     /dev/md0 — swap
     /dev/md1 — /boot
     /dev/md2 — /
-    /dev/md3 — /home 
+    /dev/md3 — /home
 
-Например, /dev/sdb — это сбойный диск. [U_] или [_U] показывает, что массив не синхронизирован. 
+Например, /dev/sdb — это сбойный диск. [U_] или [_U] показывает, что массив не синхронизирован.
 Когда массив в порядке, он отображается как [UU].
 
 # cat /proc/mdstat
@@ -318,8 +318,8 @@ md0 : active raid1 sda1[0] sdb1[1](F)
 
 unused devices: <none>
 
-Вносить изменения в программном RAID можно из работающей системы. 
-Если один из дисков не отображается в массиве как показано ниже, 
+Вносить изменения в программном RAID можно из работающей системы.
+Если один из дисков не отображается в массиве как показано ниже,
 то можете сразу согласовать время замены диска.
 
 # cat /proc/mdstat
@@ -340,7 +340,7 @@ unused devices: <none>
 
 Изъятие повреждённого жёсткого диска
 
-Перед установкой нового диска необходимо удалить сбойный диск из RAID-массива. 
+Перед установкой нового диска необходимо удалить сбойный диск из RAID-массива.
 Это необходимо сделать для каждого раздела.
 
 # mdadm /dev/md0 -r /dev/sdb1
@@ -352,8 +352,8 @@ unused devices: <none>
 
 # mdadm --detail /dev/md0
 
-В некоторых случаях, жёсткий диск может быть повреждён частично, например, 
-статус [U_] только у массива /dev/md0, а все другие массивы имеют статус [UU]. 
+В некоторых случаях, жёсткий диск может быть повреждён частично, например,
+статус [U_] только у массива /dev/md0, а все другие массивы имеют статус [UU].
 В таком случае команда
 
 # mdadm /dev/md1 -r /dev/sdb2
@@ -367,24 +367,24 @@ unused devices: <none>
 чтобы изменить статус RAID-массива на [U_].
 Согласование с поддержкой времени замены повреждённого жёсткого диска
 
-Для того, чтобы заменить вышедший из строя диск необходимо заранее 
-согласовать с поддержкой время замены. Сервер будет необходимо остановить 
+Для того, чтобы заменить вышедший из строя диск необходимо заранее
+согласовать с поддержкой время замены. Сервер будет необходимо остановить
 на короткое время.
 
 Пожалуйста, используйте для этого форму контакта в панели Robot.
 Подготовка нового жёсткого диска
 
-Оба диска в массиве должны иметь абсолютно одинаковое разбиение. 
-В зависимости от используемого типа таблицы разделов (MBR или GPT) необходимо 
+Оба диска в массиве должны иметь абсолютно одинаковое разбиение.
+В зависимости от используемого типа таблицы разделов (MBR или GPT) необходимо
 использовать соответствующие утилиты для копирования таблицы разделов.
  Как правило, GPT используется в дисках более 2ТБ (например, EX4 и EX6).
 Жёсткий диск с GPT
 
-На жёстком диске хранится несколько копий таблицы разделов GUID (GPT), 
-поэтому для её редактирования следует использовать утилиты, 
-поддерживающие GPT, например parted или GPT fdisk. Утилита sgdisk из 
-GPT fdisk (уже установленная в Rescue-системе) позволяет простым 
-способом скопировать таблицу разделов на новый жёсткий диск. 
+На жёстком диске хранится несколько копий таблицы разделов GUID (GPT),
+поэтому для её редактирования следует использовать утилиты,
+поддерживающие GPT, например parted или GPT fdisk. Утилита sgdisk из
+GPT fdisk (уже установленная в Rescue-системе) позволяет простым
+способом скопировать таблицу разделов на новый жёсткий диск.
 Пример копирования таблицы разделов с sda на sdb:
 
 sgdisk -R /dev/sdb /dev/sda
@@ -406,11 +406,11 @@ sgdisk -G /dev/sdb
 
 # sfdisk -R /dev/sdb
 
-Конечно же, разделы можно создать вручную с помощью fdisk, cfdisk 
+Конечно же, разделы можно создать вручную с помощью fdisk, cfdisk
 или других инструментов. Разделы должны иметь тип Linux raid autodetect (ID fd).
 Добавление нового жёсткого диска
 
-Как только повреждённый диск удалён, можно добавлять новый. 
+Как только повреждённый диск удалён, можно добавлять новый.
 Это необходимо сделать для каждого раздела.
 
 # mdadm /dev/md0 -a /dev/sdb1
@@ -418,9 +418,9 @@ sgdisk -G /dev/sdb
 # mdadm /dev/md2 -a /dev/sdb3
 # mdadm /dev/md3 -a /dev/sdb4
 
-Новый жёсткий диск теперь является частью массива, и теперь 
-массив производит синхронизацию. Эта процедура, в зависимости 
-от размера, может занять некоторое время. Статус процедуры 
+Новый жёсткий диск теперь является частью массива, и теперь
+массив производит синхронизацию. Эта процедура, в зависимости
+от размера, может занять некоторое время. Статус процедуры
 синхронизации можно просмотреть с помощью cat /proc/mdstat.
 
 
@@ -443,12 +443,12 @@ unused devices: <none>
 
 Установка загрузчика
 
-Если вы производите починку в загруженной системе, то будет достаточно, 
+Если вы производите починку в загруженной системе, то будет достаточно,
 в случае GRUB2, выполнить grub-install на новый жёсткий диск, например, так:
 
 grub-install /dev/sdb
 
-В случае Grub1 (устаревшая версия grub) то, в зависимости от того какой 
+В случае Grub1 (устаревшая версия grub) то, в зависимости от того какой
 диск выпал, потребуется больше шагов
 
     Запустить консоль grub: grub
@@ -456,8 +456,8 @@ grub-install /dev/sdb
     Записать загрузчик в MBR: setup (hd0)
     Для того чтобы записать загрузчик на второй жёсткий диск:
         Укажите grub переключиться на sdb: device (hd0) /dev/sdb
-        В точности повторить шаги 2 и 3 
-    Завершить консоль grub: quit 
+        В точности повторить шаги 2 и 3
+    Завершить консоль grub: quit
 
 Probing devices to guess BIOS drives. This may take a long time.
 
@@ -520,7 +520,7 @@ mdadm --detail /dev/md0
   Intent Bitmap : Internal
 
     Update Time : Sat Aug 23 20:13:25 2014
-          State : active 
+          State : active
  Active Devices : 2
 Working Devices : 2
  Failed Devices : 0
@@ -539,11 +539,11 @@ cp file_disk_1 file_disk_2
 losetup -a
 losetup -f --show /mnt/raid_home/file_disk_2
 losetup -f --show /mnt/raid_home/file_disk_3
-fdisk /dev/loop0 
+fdisk /dev/loop0
 mdadm --create --verbose /dev/md100 --level=1 --raid-devices=2 /dev/loop0 /dev/loop1
-mdadm --detail /dev/md100 
+mdadm --detail /dev/md100
 
-mkfs -t ext4 /dev/md100 
+mkfs -t ext4 /dev/md100
 mkdir /mnt/md_test
 chown bsk:users /mnt/md_test/
 mount /dev/md100 /mnt/md_test/
@@ -560,8 +560,8 @@ losetup /dev/loop2 /mnt/raid_home/file_disk_1
 losetup /dev/loop3 /mnt/raid_home/file_disk_2
 mdadm --assemble /dev/md100  /dev/loop2 /dev/loop3
 mount /dev/md100 /mnt/md_test/
-uimount /dev/md100 
-umount /dev/md100 
+uimount /dev/md100
+umount /dev/md100
 df -h
 
 ```
