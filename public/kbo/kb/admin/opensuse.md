@@ -931,6 +931,7 @@ Code:
 	* !!! сделать снимок ФС/ВМ
  	* `npm i -g sass npm-check pm2 http-server`
 	* https://medium.com/the-tech-bench/getting-visual-studio-code-and-nvm-working-together-252ec0300895
+
 ### old
 
  * evolution - через discover+flathub - поиск - evolution - кликнуть по пакету - источники - flathub
