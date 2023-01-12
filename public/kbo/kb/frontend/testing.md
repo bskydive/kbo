@@ -45,6 +45,12 @@
 			}
 		}
 	```
+ * убрать `exports` перед class
+	```
+	'ispdci-aside-menu' is not a known element:
+	1. If 'ispdci-aside-menu' is an Angular component, then verify that it is part of this module.
+	2. If 'ispdci-aside-menu' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@NgModule.schemas' of this component to suppress this message.
+	```
  * [запуск параллельно](https://karma-runner.github.io/6.3/config/configuration-file.html#concurrency)
  * https://www.forbes.com/sites/forbesdigitalgroup/2019/05/14/improve-your-angular-jasmine-unit-test-speeds-by-500/
 	* создавать testBed один раз, чтобы не компилировать заново
@@ -227,6 +233,8 @@
 		});
 	```
 	* https://jestjs.io/ru/docs/mock-function-api/#jestmockedsource-options
+		* jest.mocked(source, options?) The mocked() helper method wraps types of the source object and its deep nested members with type definitions of Jest mock function. You can pass {shallow: true} as the options argument to disable the deeply mocked behavior.
+
 
 ##  cypress test
 
