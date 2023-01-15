@@ -32,6 +32,18 @@
  * https://en.opensuse.org/GNOME_Keyring
  * https://wiki.gnome.org/Projects/GnomeKeyring/
 
+## очистка диска
+
+```
+npm cache clean -f
+/home/bsk/.local/share/TelegramDesktop
+/home/bsk/.config
+docker
+rm -rf /tmp/*
+df -h
+du -sm /*|sort -n
+```
+
 ## audio
 
  * ffmpegyag

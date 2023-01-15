@@ -29,7 +29,8 @@
  * [Angular: Unit Testing Jasmine, Karma (step by step)](https://medium.com/swlh/angular-unit-testing-jasmine-karma-step-by-step-e3376d110ab4)
  * [Настройка VSCdode debug test](https://stackoverflow.com/questions/43916649/debug-tests-in-ng-test/44308743#44308743)
  * [запуск одного теста](https://stackoverflow.com/questions/26552729/karma-run-single-test)
-	`fit fdescribe`
+	* `fit fdescribe`
+    * `ng test --include **/counter.component.spec.ts`
  * проверка сложных объектов
 	* https://rav.pw/jasmine-custom-matchers/
 	* https://masonwebdev.wordpress.com/2016/05/10/jasmine-spy-matching-functions-and-testing-with-es6/
