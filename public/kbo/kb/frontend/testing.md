@@ -112,6 +112,79 @@
 		.storybook/tsconfig.json:exclude
 	```
 
+ * jest.config.js
+ ```js
+	module.exports = {
+		displayName: 'some-component',
+		verbose: true, // console.log
+		preset: '../jest.preset.js',
+		setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+		globals: {
+			'ts-jest': {
+				tsconfig: '<rootDir>/tsconfig.spec.json',
+				stringifyContentPathRegex: '\\.(html|svg)$',
+			},
+		},
+		coverageDirectory: '../coverage/libs/aside-menu',
+		transform: {
+			'^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
+		},
+		transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$)'],
+		snapshotSerializers: [
+			'jest-preset-angular/build/serializers/no-ng-attributes',
+			'jest-preset-angular/build/serializers/ng-snapshot',
+			'jest-preset-angular/build/serializers/html-comment',
+		],
+	};
+ ```
+
+ * nx jest.preset.js
+	```js
+		const nxPreset = require('@nrwl/jest/preset');
+		module.exports = {
+		...nxPreset,
+		testMatch: ['**/+(*.)+(spec|test).+(ts|js)?(x)'],
+		transform: {
+			'^.+\\.(ts|js|html)$': 'ts-jest',
+		},
+		resolver: '@nrwl/jest/plugins/resolver',
+		moduleFileExtensions: ['ts', 'js', 'html'],
+		coverageReporters: ['html'],
+		};
+	```
+
+ * nx root jest.config.js
+	```js
+		const { getJestProjects } = require('@nrwl/jest');
+
+		module.exports = { projects: getJestProjects() };
+	```
+
+ * nx launch.json
+	```json
+		{
+		"version": "0.2.0",
+		"configurations": [
+			{
+			"name": "vscode-jest-tests",
+			"type": "node",
+			"request": "launch",
+			"program": "${workspaceFolder}/node_modules/@angular/cli/bin/ng",
+			"args": [
+				"test",
+				"customers-users",
+				"--runInBand=true",
+				"--codeCoverage=false"
+			],
+			"cwd": "${workspaceFolder}",
+			"console": "integratedTerminal",
+			"internalConsoleOptions": "neverOpen",
+			"trace": "all"
+			}
+		]
+		}
+	```
+
  * https://www.devcurry.com/2020/09/testing-angular-component-using-jest.html
  * https://codewithhugo.com/jest-fn-spyon-stub-mock/
 

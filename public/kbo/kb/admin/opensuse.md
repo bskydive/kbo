@@ -38,6 +38,7 @@
 npm cache clean -f
 /home/bsk/.local/share/TelegramDesktop
 /home/bsk/.config
+/mnt/vm/user/.cache/vmware/drag_and_drop/
 docker
 rm -rf /tmp/*
 df -h
