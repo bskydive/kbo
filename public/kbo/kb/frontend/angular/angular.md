@@ -925,7 +925,8 @@
 	```ts
 		const routes: Routes = [{
 			path: 'items',
-			loadChildren: () => import('./items/items.module').then(m => m.ItemsModule)
+			// loadChildren: () => import('./items/items.module').then(m => m.ItemsModule)
+			loadChildren: () => ItemsModule
 		}];
 	```
 1. Разница между root и forChild routes
@@ -939,6 +940,14 @@
 			this.id$ = route.paramMap.map(params=>params.get('id'))
 		}
 
+	```
+ * router debug
+
+	```ts
+		RouterModule.forRoot(
+		appRoutes,
+		{ enableTracing: true } // <-- debugging purposes only
+		)
 	```
 
 ## Формы
