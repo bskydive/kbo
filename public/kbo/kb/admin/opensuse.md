@@ -870,6 +870,7 @@ Code:
 	* или в discover - настройка - add flathub
  * для управления gcr keyring `zypper in seahorse`
  * включить numlock
+ * настроить очистку tmp см `public/kbo/kb/admin/filesystems.md:56`
  * удалить snapper packagekit
  * выключить проигрыватель на экране блокировки
  * выключить ntpd синхронизацию при загрузке, включить по таймеру каждые 50 минут
@@ -1496,43 +1497,94 @@ pbzip2
 
 ## grub2
 
-http://sourceforge.net/projects/kcm-grub2/
+ * http://ksmanis.wordpress.com/projects/grub2-editor/
+ * http://sourceforge.net/projects/kcm-grub2/
+    ```bash
+    zypper addrepo http://download.opensuse.org/repositories/home:ksmanis/openSUSE_12.3/home:ksmanis.repo
+    zypper refresh
+    zypper install kcm-grub2
+    ```
+ * после клонирования нужно назначить метки и в fdisk и в mtools
+    * https://unix.stackexchange.com/questions/12858/how-to-change-filesystem-uuid-2-same-uuid
+    ```bash
+        # tune2fs -U 6bc068c6-9e57-4d6f-bab1-53185f0912f4 /dev/sde2 # не работает
 
-http://ksmanis.wordpress.com/projects/grub2-editor/
+        # fdisk
+        # extra functionality (experts only)
+        #  GPT
+        #   i   change disk GUID
+        #   n   change partition name
+        #   u   change partition UUID
 
-```bash
-zypper addrepo http://download.opensuse.org/repositories/home:ksmanis/openSUSE_12.3/home:ksmanis.repo
-zypper refresh
-zypper install kcm-grub2
-```
+        # диск
+        fdisk /dev/sde
+        x
+        i
+        r
+        w
 
+        # раздел
+        fdisk /dev/sde
+        x
+        u
+        r
+        w
 
-```bash
-Figure out from the partition table what is your (main) linux partition, e.g. /dev/sda3:
+        fdisk -lo +UUID|less
 
-fdisk -l
+        # vfat efi
+        mcedit /etc/mtools.conf
+            drive e: file="/dev/sde1" exclusive # efi linux
+            drive f: file="/dev/sde5" exclusive # efi win
 
-mount /dev/sda3 /mnt
-mount --bind /dev /mnt/dev
-mount --bind /proc /mnt/proc # maybe superfluous
-mount --bind /sys /mnt/sys # maybe superfluous
+        mlabel -n e:
+        swaplabel -U 195d01cf-7a25-4688-980b-73c234806c1c /dev/sde3
+    ```
+    * после смены меток нужно перезаписать загрузчик
+ * grub2 install
+    ```bash
+    # просто
+        fdisk -l
 
-chroot /mnt
-grub2-install /dev/sda
-exit
-reboot
+        mount /dev/sda3 /mnt
+        mount --bind /dev /mnt/dev
+        mount --bind /proc /mnt/proc # maybe superfluous
+        mount --bind /sys /mnt/sys # maybe superfluous
 
-If using legacy grub
+        chroot /mnt
+        grub2-install /dev/sda
+        exit
+        reboot
 
-Open a terminal and type (no 'sudo' is required in Rescue System mode):
+    # сложнее
+        fdisk -lo +UUID|less
 
- sudo /usr/sbin/grub
- grub> find /boot/grub/stage2 (will show the path of actual grub installation, you will need on the next step)
- grub> root (hdx,y)
- grub> setup (hdx)
- grub> quit
+        mcedit /etc/default/grub
+        mcedit /boot/grub2/grub.cfg
+        mcedit /etc/default/grub
 
-```
+        grub2-script-check /boot/grub2/grub.cfg;echo $?
+        grub2-mkconfig -o /boot/grub2/grub.cfg
+        grub2-script-check /boot/grub2/grub.cfg;echo $?
+        mcedit /boot/grub2/grub.cfg
+
+        /usr/sbin/grub2-install --target=i386-pc --force /dev/sdb
+        exit
+        reboot
+    ```
+ * grub 1
+    ```
+    If using legacy grub
+
+    Open a terminal and type (no 'sudo' is required in Rescue System mode):
+
+    sudo /usr/sbin/grub
+    grub> find /boot/grub/stage2 (will show the path of actual grub installation, you will need on the next step)
+    grub> root (hdx,y)
+    grub> setup (hdx)
+    grub> quit
+
+    ```
 
 
 ## vpn
