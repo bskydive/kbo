@@ -1504,6 +1504,7 @@ pbzip2
     zypper refresh
     zypper install kcm-grub2
     ```
+ * использовать графическую консоль `/boot/grub2/themes/openSUSE/theme.txt`
  * после клонирования нужно назначить метки и в fdisk и в mtools
     * https://unix.stackexchange.com/questions/12858/how-to-change-filesystem-uuid-2-same-uuid
     ```bash
@@ -1585,7 +1586,23 @@ pbzip2
     grub> quit
 
     ```
+ * windows grub2.cfg
+	```
+		# LABEL="SYSTEM_DRV" UUID="782F-EA03" TYPE="vfat" PARTLABEL="EFI system partition"
+		### BEGIN /etc/grub.d/30_os-prober ###
+		menuentry 'Windows Boot Manager (on /dev/nvme0n1p1)' --class windows --class os $menuentry_id_option 'osprober-efi-782F-EA03' {
+				insmod part_gpt
+				insmod fat
+				if [ x$feature_platform_search_hint = xy ]; then
+				search --no-floppy --fs-uuid --set=root  782F-EA03
+				else
+				search --no-floppy --fs-uuid --set=root 782F-EA03
+				fi
+				chainloader /efi/Microsoft/Boot/bootmgfw.efi
+		}
+		### END /etc/grub.d/30_os-prober ###
 
+	```
 
 ## vpn
 
