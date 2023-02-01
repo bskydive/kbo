@@ -266,6 +266,8 @@ find . -inum 17040033 -exec mv {} new-directory-name1 \;
 	#замена суперблока
 	> e2fsck -f -b 8193 /dev/sda3
 
+	# обнуление свободного места
+	e2fsck -E discard /dev/sde1 -y
  ```
 
 ## noexec permission denied
