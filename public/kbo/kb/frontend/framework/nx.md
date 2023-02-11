@@ -1,26 +1,29 @@
 # NRWL NX
 
- *
- *
- *
- *
- ```
-npm run generate:lib
+ * cli
+
+ ```bash
+ 	npm run nx test some
+ 	npm run nx build some
+	npm run nx generate:lib some-lib
+	npm run nx publish:lib some-lib
+	# параметры:
+	# --stable - публикует пакет без суффикса `beta`
+	# --yes - пропустить подтверждение публикации
+	# --skip-test
+	# --skip-build
  ```
 
 ## грабли
 
- * `npm run nx build some`
- 	```
-		Compiling with Angular sources in Ivy partial compilation mode.
-		libs/some/src/lib/some.component.ts - error NG3001: Unsupported private class SomeComponent. This class is visible to consumers via SomeModule -> SomeComponent, but is not exported from the top-level library entrypoint.
+ * This class is visible to consumers via SomeModule -> SomeComponent, but is not exported from the top-level library entrypoint
 
-		libs/some/src/index.ts
-
-		export * from './lib/some.module';
-		export * from './lib/some.service';
-		export * from './lib/some.component';
-		export * from './lib/models';
+ 	```bash
+		# добавить в корень пакета
+		# libs/some/src/index.ts
+		# export * from './lib/some.module';
+		# export * from './lib/assets';
+		# export * from './lib/models';
 	```
 
 ## ngx-translate localization перевод
@@ -143,9 +146,8 @@ npm run generate:lib
 			Some2Module,
 		} from '@repo-name/some2';
 
-		// для импорта из json можно использовать @angular/HTTPLoader или настроить tsconfig.json
-		import {SOME_RU_DICT} from '../assets/some.ru.dict.json';
-		import {SOME_EN_DICT} from '../assets/some.en.dict.json';
+		import {SOME_RU_DICT} from '../assets/some.ru.dictionary.ts';
+		import {SOME_EN_DICT} from '../assets/some.en.dictionary.ts';
 
 		const SOME_RU_DICT = {
 				...SOME_RU_DICT,
