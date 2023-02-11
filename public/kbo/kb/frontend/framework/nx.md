@@ -150,17 +150,13 @@ npm run generate:lib
 		const SOME_RU_DICT = {
 				...SOME_RU_DICT,
 				...SOME1_RU_DICT,
+				...SOME2_RU_DICT,
 		};
 
 		const SOME_EN_DICT = {
 				...SOME_EN_DICT,
 				...SOME1_EN_DICT,
-		};
-
-		// пример изолированного словаря
-		const SOME2_DICT = {
-			ru: SOME2_EN_DICT,
-			en: SOME2_RU_DICT,
+				...SOME2_EN_DICT,
 		};
 
 		@NgModule({
@@ -177,9 +173,9 @@ npm run generate:lib
 					useFactory: () => ({
 					getTranslation: (lang?: string) => {
 						if (lang === 'ru') {
-						return of(SOME_DICT);
+						return of(SOME_RU_DICT);
 						}
-						return of(SOME_DICT);
+						return of(SOME_EN_DICT);
 					},
 					}),
 				},
