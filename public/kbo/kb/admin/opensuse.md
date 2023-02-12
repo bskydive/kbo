@@ -1756,6 +1756,7 @@ pbzip2
 ## wallpapers kde
 
 /usr/share/wallpapers
+~/.local/share/wallpapers/
 
 ## kopete icq
 
