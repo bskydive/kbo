@@ -1539,7 +1539,23 @@ pbzip2
             drive f: file="/dev/sde5" exclusive # efi win
 
         mlabel -n e:
+
+		blkid /dev/sdb5
+			# /dev/sdb5: UUID="F6E3-2B39" TYPE="vfat" PARTLABEL="EFI system partition" PARTUUID="085fa944-f2b0-419c-ab92-43af050c9378"
         swaplabel -U 195d01cf-7a25-4688-980b-73c234806c1c /dev/sde3
+
+		lsblk -f
+			# NAME   FSTYPE LABEL         UUID                                 FSAVAIL FSUSE% MOUNTPOINT
+			# sdb
+			# ├─sdb1 vfat   suse-efi      9C4C-C63E                                  0   100% /mnt/efi1
+			# ├─sdb2 ext4   suse-root     73569ce4-c412-41d3-9da7-beda2c6938d8     19G    78% /
+			# ├─sdb3 swap   suse-swap     0cfc836c-ca40-46f6-856c-6ae5a5c861f2                [SWAP]
+			# ├─sdb4 ntfs                 A01EFC211EFBEE62
+			# ├─sdb5 vfat                 F6E3-2B39                              69.4M    28% /mnt/efi2
+			# ├─sdb6
+			# ├─sdb7 ntfs                 24545D9E545D7410
+			# └─sdb8 ext4   ssd480_2_data f7ff927c-43ee-4b9d-95bc-ec2368dc7ae8  151.6G    26% /mnt/ssd480_2_data
+
     ```
     * после смены меток нужно перезаписать загрузчик
  * grub2 install
@@ -1573,6 +1589,14 @@ pbzip2
         exit
         reboot
     ```
+ * загрузчик win
+
+ ```bash
+	# включаем os-prober, он выключен для защиты от сканирования систем
+	/etc/default/grub
+		# GRUB_DISABLE_OS_PROBER=false
+
+ 	```
  * grub 1
     ```
     If using legacy grub
@@ -1732,6 +1756,7 @@ pbzip2
 ## wallpapers kde
 
 /usr/share/wallpapers
+~/.local/share/wallpapers/
 
 ## kopete icq
 

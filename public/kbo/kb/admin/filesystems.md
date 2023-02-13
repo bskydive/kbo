@@ -266,6 +266,8 @@ find . -inum 17040033 -exec mv {} new-directory-name1 \;
 	#замена суперблока
 	> e2fsck -f -b 8193 /dev/sda3
 
+	# обнуление свободного места
+	e2fsck -E discard /dev/sde1 -y
  ```
 
 ## noexec permission denied
@@ -281,6 +283,11 @@ find . -inum 17040033 -exec mv {} new-directory-name1 \;
 
 	getfacl a+c file.sh
 
+	# The disk contains an unclean file system (0, 0).
+	# Metadata kept in Windows cache, refused to mount.
+	# Falling back to read-only mount because the NTFS partition is in an
+	# unsafe state. Please resume and shutdown Windows fully (no hibernation
+	# or fast restarting.)
 	ntfsfix /dev/sdXY
 
 ```
