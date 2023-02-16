@@ -26,6 +26,30 @@
  * после замены uuid необходимо переустановить grub2 см `public/kbo/kb/admin/opensuse.md`
  *
 
+## увеличение фс
+
+ * fs resize grow part
+
+	```bash
+		e2ffsck -f /dev/sda1
+		fdisk /de/sda
+		# v - verify
+		# w
+
+		parted /dev/sda
+		# print
+		# resizepart 1 XXGB
+		# quit
+
+		resize2fs /dev/sda1
+
+		e2ffsck -f /dev/sda1
+		fdisk /dev/sda
+		# v - verify
+		# w
+
+	```
+
 ## iso to usb
 
  * http://www.osforensics.com/tools/create-disk-images.html
