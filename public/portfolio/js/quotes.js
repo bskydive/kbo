@@ -1,6 +1,8 @@
 
 const quotes = [
 	['Программисты', '#',
+        'это похоже на рекурсивный терморектальный криптоанализ',
+		'идеальный work/life баланс: днём - сон и семейные дела, ночью - работа',
 		'бантики бантиками, а техдолг техдолгом и архитектура архитектурой',
 		'я своё веское слово выгрыз в граните, облил кровью, и запил пивом',
 		'потому что DRY противоречит KISS',
@@ -407,7 +409,7 @@ function showQuote() {
 
 	function getRandomNum(min, max) {
 		let cryptoList = new Int8Array(max);
-		let result = Math.floor(Math.random() * (max - min)) + min; 
+		let result = Math.floor(Math.random() * (max - min)) + min;
 
 		let cryptoResult = 0;
 
@@ -428,12 +430,12 @@ function showQuote() {
 
 	let authorInd = getRandomNum(0, quotes.length);
 	if (document.querySelector('#id-a-quoteAuthor').innerText === quotes[authorInd][0]) {
-		authorInd = getRandomNum(0, quotes.length); 
+		authorInd = getRandomNum(0, quotes.length);
 	}
 
-	let quoteInd = getRandomNum(2, quotes[authorInd].length - 2); 
+	let quoteInd = getRandomNum(2, quotes[authorInd].length - 2);
 	if (document.querySelector('#id-p-quoteText').innerHTML === quotes[authorInd][quoteInd]) {
-		quoteInd = getRandomNum(2, quotes[authorInd].length - 2); 
+		quoteInd = getRandomNum(2, quotes[authorInd].length - 2);
 	}
 
 	document.querySelector('#id-p-quoteText').innerHTML = quotes[authorInd][quoteInd];
@@ -444,7 +446,7 @@ function showQuote() {
 	let quoteTwitText = quotes[authorInd][quoteInd] + ' &hashtags=' + quotes[authorInd][0].replace(/\s+/g, '');
 
 	if (quoteTwitText.length > 140) {
-		quoteTwitText = quotes[authorInd][quoteInd].substring(0, 140 - 6 - quotes[authorInd][0].length) + ' ...' + ' &hashtags=' + quotes[authorInd][0].replace(/\s+/g, ''); 
+		quoteTwitText = quotes[authorInd][quoteInd].substring(0, 140 - 6 - quotes[authorInd][0].length) + ' ...' + ' &hashtags=' + quotes[authorInd][0].replace(/\s+/g, '');
 	}
 
 	document.querySelector('#id_twitOutBtn').setAttribute('href', 'https://twitter.com/intent/tweet?text=' + quoteTwitText);
