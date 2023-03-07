@@ -400,7 +400,7 @@ const quotes = [
 		'Если твое сердце и твой ум беспокойны, чего же тебе больше? Кто перестал любить и делать ошибки, тот может похоронить себя заживо.',
 	],
 	['Сунь-Цзы «Искусство войны»', '#',
-		'«Когда вы хорошо знаете возможности своей армии, но не знаете возможности армии своего врага, ваши шансы на победу или поражение равны. Если вы не наблюдаете и не анализируете способности своей армии и армии своего врага, вы будете проигрывать каждую битву'
+		'«Когда вы хорошо знаете возможности своей армии, но не знаете возможности армии своего врага, ваши шансы на победу или поражение равны. Если вы не наблюдаете и не анализируете способности своей армии и армии своего врага, вы будете проигрывать каждую битву',
 	]
 ];
 
@@ -432,9 +432,9 @@ function showQuote() {
 		authorInd = getRandomNum(0, quotes.length); 
 	}
 
-	let quoteInd = getRandomNum(2, quotes[authorInd].length - 2); 
+	let quoteInd = getRandomNum(2, quotes[authorInd].length); 
 	if (document.querySelector('#id-p-quoteText').innerHTML === quotes[authorInd][quoteInd]) {
-		quoteInd = getRandomNum(2, quotes[authorInd].length - 2); 
+		quoteInd = getRandomNum(2, quotes[authorInd].length); 
 	}
 
 	document.querySelector('#id-p-quoteText').innerHTML = quotes[authorInd][quoteInd];
