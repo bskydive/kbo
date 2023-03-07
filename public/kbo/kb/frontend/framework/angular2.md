@@ -1263,6 +1263,25 @@ count.subscribe(x => console.log(x));
 		}
 	```
 
+ * типизирование onChanges
+
+ ```ts
+	/** типизируем свойства класса для onChanges */
+	type TSomeChanges<T> = {
+	[key in keyof T]: SimpleChange;
+	};
+
+	export class SomeComponent implements OnChanges {
+		@Input() index: number = 0;
+
+		ngOnChanges(changes: TTabChanges<SomeComponent>): void {
+        	if (parseInt(changes?.index?.currentValue, 10) >= 0) {
+				// ...
+			}
+		}
+	}
+ ```
+
 ### mat-datepicker
 
  * блокирование ручного ввода даты
