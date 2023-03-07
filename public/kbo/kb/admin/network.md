@@ -285,12 +285,23 @@ ping добавляет 28 бит!
 
 ## DNS
 
-[DNS вручную](https://habrahabr.ru/post/346098/)
+ * [DNS вручную](https://habrahabr.ru/post/346098/)
+ * [Что такое DNS](https://habrahabr.ru/post/303446/)
+ * [DKIM, DMARC и SPF](https://habrahabr.ru/post/343128/)
+ * https://serverfault.com/questions/965368/how-do-i-ask-dig-to-only-return-the-ip-from-a-cname-record
 
-[Что такое DNS](https://habrahabr.ru/post/303446/)
+	```bash
+		nslookup docs.sbonds.org
+		host docs.sbonds.org
+		getent hosts docs.sbonds.org
+		perl -MSocket -E 'say inet_ntoa(inet_aton("docs.sbonds.org"))'
+		curl --silent -H 'accept: application/dns-json' 'https://cloudflare-dns.com/dns-query?name=docs.sbonds.org&type=A' | jq -c '.Answer[] | select(.type == 1) | .data'
 
-[DKIM, DMARC и SPF](https://habrahabr.ru/post/343128/)
+		systemd-resolve docs.sbonds.org
 
+		dig +noall +answer host.example.com  | awk '/ IN A\t/ { print $5 }'
+		dig +short docs.sbonds.org | grep -v '\.$'
+	```
 
 ## ipv6
 

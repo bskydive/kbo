@@ -32,6 +32,19 @@
  * https://en.opensuse.org/GNOME_Keyring
  * https://wiki.gnome.org/Projects/GnomeKeyring/
 
+## очистка диска
+
+```
+npm cache clean -f
+/home/bsk/.local/share/TelegramDesktop
+/home/bsk/.config
+/mnt/vm/user/.cache/vmware/drag_and_drop/
+docker
+rm -rf /tmp/*
+df -h
+du -sm /*|sort -n
+```
+
 ## audio
 
  * ffmpegyag
@@ -234,6 +247,16 @@ xauth -
     convert -quality 100 -density 100 -trim test*.jpeg single.pdf
     convert -geometry 1024 -quality 100 -density 100 -trim 09.STEPANOV.ACT*.jpeg 09.STEPANOV.ACT.SIGNED.pdf
     ```
+## pdf to jpeg
+
+```bash
+mcedit /etc/ImageMagick-7/policy.xml
+	<policymap>
+		<!-- <policy domain="coder" rights="write" pattern="PDF" /> -->
+		<policy domain="coder" rights="read|write" pattern="PDF" />
+
+convert -density 300 -depth 8 -quality 90 input.pdf output.png
+```
 
 ## network
 
@@ -847,6 +870,7 @@ Code:
 	* или в discover - настройка - add flathub
  * для управления gcr keyring `zypper in seahorse`
  * включить numlock
+ * настроить очистку tmp см `public/kbo/kb/admin/filesystems.md:56`
  * удалить snapper packagekit
  * выключить проигрыватель на экране блокировки
  * выключить ntpd синхронизацию при загрузке, включить по таймеру каждые 50 минут
@@ -921,6 +945,7 @@ Code:
 	* !!! сделать снимок ФС/ВМ
  	* `npm i -g sass npm-check pm2 http-server`
 	* https://medium.com/the-tech-bench/getting-visual-studio-code-and-nvm-working-together-252ec0300895
+
 ### old
 
  * evolution - через discover+flathub - поиск - evolution - кликнуть по пакету - источники - flathub
@@ -1472,44 +1497,136 @@ pbzip2
 
 ## grub2
 
-http://sourceforge.net/projects/kcm-grub2/
+ * http://ksmanis.wordpress.com/projects/grub2-editor/
+ * http://sourceforge.net/projects/kcm-grub2/
+    ```bash
+    zypper addrepo http://download.opensuse.org/repositories/home:ksmanis/openSUSE_12.3/home:ksmanis.repo
+    zypper refresh
+    zypper install kcm-grub2
+    ```
+ * использовать графическую консоль `/boot/grub2/themes/openSUSE/theme.txt`
+ * после клонирования нужно назначить метки и в fdisk и в mtools
+    * https://unix.stackexchange.com/questions/12858/how-to-change-filesystem-uuid-2-same-uuid
+    ```bash
+        # tune2fs -U 6bc068c6-9e57-4d6f-bab1-53185f0912f4 /dev/sde2 # не работает
 
-http://ksmanis.wordpress.com/projects/grub2-editor/
+        # fdisk
+        # extra functionality (experts only)
+        #  GPT
+        #   i   change disk GUID
+        #   n   change partition name
+        #   u   change partition UUID
 
-```bash
-zypper addrepo http://download.opensuse.org/repositories/home:ksmanis/openSUSE_12.3/home:ksmanis.repo
-zypper refresh
-zypper install kcm-grub2
-```
+        # диск
+        fdisk /dev/sde
+        x
+        i
+        r
+        w
 
+        # раздел
+        fdisk /dev/sde
+        x
+        u
+        r
+        w
 
-```bash
-Figure out from the partition table what is your (main) linux partition, e.g. /dev/sda3:
+        fdisk -lo +UUID|less
 
-fdisk -l
+        # vfat efi
+        mcedit /etc/mtools.conf
+            drive e: file="/dev/sde1" exclusive # efi linux
+            drive f: file="/dev/sde5" exclusive # efi win
 
-mount /dev/sda3 /mnt
-mount --bind /dev /mnt/dev
-mount --bind /proc /mnt/proc # maybe superfluous
-mount --bind /sys /mnt/sys # maybe superfluous
+        mlabel -n e:
 
-chroot /mnt
-grub2-install /dev/sda
-exit
-reboot
+		blkid /dev/sdb5
+			# /dev/sdb5: UUID="F6E3-2B39" TYPE="vfat" PARTLABEL="EFI system partition" PARTUUID="085fa944-f2b0-419c-ab92-43af050c9378"
+        swaplabel -U 195d01cf-7a25-4688-980b-73c234806c1c /dev/sde3
 
-If using legacy grub
+		lsblk -f
+			# NAME   FSTYPE LABEL         UUID                                 FSAVAIL FSUSE% MOUNTPOINT
+			# sdb
+			# ├─sdb1 vfat   suse-efi      9C4C-C63E                                  0   100% /mnt/efi1
+			# ├─sdb2 ext4   suse-root     73569ce4-c412-41d3-9da7-beda2c6938d8     19G    78% /
+			# ├─sdb3 swap   suse-swap     0cfc836c-ca40-46f6-856c-6ae5a5c861f2                [SWAP]
+			# ├─sdb4 ntfs                 A01EFC211EFBEE62
+			# ├─sdb5 vfat                 F6E3-2B39                              69.4M    28% /mnt/efi2
+			# ├─sdb6
+			# ├─sdb7 ntfs                 24545D9E545D7410
+			# └─sdb8 ext4   ssd480_2_data f7ff927c-43ee-4b9d-95bc-ec2368dc7ae8  151.6G    26% /mnt/ssd480_2_data
 
-Open a terminal and type (no 'sudo' is required in Rescue System mode):
+    ```
+    * после смены меток нужно перезаписать загрузчик
+ * grub2 install
+    ```bash
+    # просто
+        fdisk -l
 
- sudo /usr/sbin/grub
- grub> find /boot/grub/stage2 (will show the path of actual grub installation, you will need on the next step)
- grub> root (hdx,y)
- grub> setup (hdx)
- grub> quit
+        mount /dev/sda3 /mnt
+        mount --bind /dev /mnt/dev
+        mount --bind /proc /mnt/proc # maybe superfluous
+        mount --bind /sys /mnt/sys # maybe superfluous
 
-```
+        chroot /mnt
+        grub2-install /dev/sda
+        exit
+        reboot
 
+    # сложнее
+        fdisk -lo +UUID|less
+
+        mcedit /etc/default/grub
+        mcedit /boot/grub2/grub.cfg
+        mcedit /etc/default/grub
+
+        grub2-script-check /boot/grub2/grub.cfg;echo $?
+        grub2-mkconfig -o /boot/grub2/grub.cfg
+        grub2-script-check /boot/grub2/grub.cfg;echo $?
+        mcedit /boot/grub2/grub.cfg
+
+        /usr/sbin/grub2-install --target=i386-pc --force /dev/sdb
+        exit
+        reboot
+    ```
+ * загрузчик win
+
+ ```bash
+	# включаем os-prober, он выключен для защиты от сканирования систем
+	/etc/default/grub
+		# GRUB_DISABLE_OS_PROBER=false
+
+ 	```
+ * grub 1
+    ```
+    If using legacy grub
+
+    Open a terminal and type (no 'sudo' is required in Rescue System mode):
+
+    sudo /usr/sbin/grub
+    grub> find /boot/grub/stage2 (will show the path of actual grub installation, you will need on the next step)
+    grub> root (hdx,y)
+    grub> setup (hdx)
+    grub> quit
+
+    ```
+ * windows grub2.cfg
+	```
+		# LABEL="SYSTEM_DRV" UUID="782F-EA03" TYPE="vfat" PARTLABEL="EFI system partition"
+		### BEGIN /etc/grub.d/30_os-prober ###
+		menuentry 'Windows Boot Manager (on /dev/nvme0n1p1)' --class windows --class os $menuentry_id_option 'osprober-efi-782F-EA03' {
+				insmod part_gpt
+				insmod fat
+				if [ x$feature_platform_search_hint = xy ]; then
+				search --no-floppy --fs-uuid --set=root  782F-EA03
+				else
+				search --no-floppy --fs-uuid --set=root 782F-EA03
+				fi
+				chainloader /efi/Microsoft/Boot/bootmgfw.efi
+		}
+		### END /etc/grub.d/30_os-prober ###
+
+	```
 
 ## vpn
 
@@ -1639,6 +1756,7 @@ Open a terminal and type (no 'sudo' is required in Rescue System mode):
 ## wallpapers kde
 
 /usr/share/wallpapers
+~/.local/share/wallpapers/
 
 ## kopete icq
 

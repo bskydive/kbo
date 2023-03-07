@@ -32,6 +32,15 @@
 		* [changelog](https://blog.angular.io/angular-v13-is-now-available-cce66f7bc296)
 	* 2022 - 14 - Strictly Typed Reactive Forms; standalone components, directives and pipes: add imports directly in your @Component() without an @NgModule()
 		* [changelog](https://blog.angular.io/angular-v14-is-now-available-391a6db736af)
+	* 2022 - 15 - ngmodule --> standalone migration
+		* [changelog](https://blog.angular.io/angular-v15-is-now-available-df7be7f2f4c8)
+		* deprecating providedIn: NgModule. If you should truly scope providers to a specific NgModule, use NgModule.providers instead
+		* default formatting configuration for DatePipe
+		* ng g component --standalone
+		* experimental esbuild support
+		* Component Dev Kit - listbox
+		* refactoring of the Angular material components based on Material Design Components for Web (MDC) is now done
+		* Better stack traces
 1. Архитектура
 	* MVVM
 	* зачем - потому что автоматическое связывание data binding(единственное отличие от MVP)
@@ -277,8 +286,8 @@
 		```
 
 		* [hostbinding](https://angular.io/api/core/HostBinding)
-			* установка свойств DOM
-		* hostlistener
+			* перехват изменения свойств DOM
+		* [hostlistener](https://angular.io/api/core/HostListener)
 			* перехват событий DOM
 
 ## Конвейеры, директивы и компоненты
@@ -350,9 +359,10 @@
 				selector: '[appHighlight]'
 			})
 		```
+
 ## Директивы
-* https://angular.io/guide/built-in-directives
-* [ngClass](https://angular.io/guide/built-in-directives#adding-and-removing-classes-with-ngclass)
+ * https://angular.io/guide/built-in-directives
+ * [ngClass](https://angular.io/guide/built-in-directives#adding-and-removing-classes-with-ngclass)
 	* https://angular.io/api/common/NgClass#description
 	* `ngClass: string | string[] | Set<string> | { [klass: string]: any; }`
 
@@ -383,7 +393,7 @@
 		}
 
 	```
-* [ngStyle](https://angular.io/guide/built-in-directives#setting-inline-styles-with-ngstyle)
+ * [ngStyle](https://angular.io/guide/built-in-directives#setting-inline-styles-with-ngstyle)
 	```html
 		<div [ngStyle]="currentStyles">
 	```
@@ -400,7 +410,7 @@
 			};
 		}
 	```
-* NG-FOR. TrackBy зачем нужен, преимущества.
+ * NG-FOR. TrackBy зачем нужен, преимущества.
 	* для более быстрого вычисления признака замены значений вложенного объекта в ячейке массива, быстрота перерисовки
 
 ## Стили Material
@@ -572,11 +582,11 @@
 		}
     ```
 	* [viewContainer - createEmbeddedView](https://angular.io/guide/dynamic-component-loader)
-        ```ts
-            constructor(
-			    private viewContainerRef: ViewContainerRef
-            ){}
-    ```
+	```ts
+		constructor(
+			private viewContainerRef: ViewContainerRef
+		){}
+	```
 	* [viewContainer - createEmbeddedView](https://angular.io/guide/dynamic-component-loader)
         ```ts
             constructor(
@@ -649,7 +659,7 @@
 			<app-countdown-timer #timer></app-countdown-timer>
 		```
 
-	* @viewChild даёт доступ к экземпляру другого компонента
+	* [@viewChild даёт доступ к экземпляру другого компонента](https://angular.io/api/core/ViewChild)
 
 		```ts
 			@Component({
@@ -915,7 +925,8 @@
 	```ts
 		const routes: Routes = [{
 			path: 'items',
-			loadChildren: () => import('./items/items.module').then(m => m.ItemsModule)
+			// loadChildren: () => import('./items/items.module').then(m => m.ItemsModule)
+			loadChildren: () => ItemsModule
 		}];
 	```
 1. Разница между root и forChild routes
@@ -929,6 +940,14 @@
 			this.id$ = route.paramMap.map(params=>params.get('id'))
 		}
 
+	```
+ * router debug
+
+	```ts
+		RouterModule.forRoot(
+		appRoutes,
+		{ enableTracing: true } // <-- debugging purposes only
+		)
 	```
 
 ## Формы

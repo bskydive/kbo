@@ -29,11 +29,15 @@
  * [Angular: Unit Testing Jasmine, Karma (step by step)](https://medium.com/swlh/angular-unit-testing-jasmine-karma-step-by-step-e3376d110ab4)
  * [Настройка VSCdode debug test](https://stackoverflow.com/questions/43916649/debug-tests-in-ng-test/44308743#44308743)
  * [запуск одного теста](https://stackoverflow.com/questions/26552729/karma-run-single-test)
+	* `fit fdescribe`
+    * `ng test --include **/counter.component.spec.ts`
  * проверка сложных объектов
 	* https://rav.pw/jasmine-custom-matchers/
 	* https://masonwebdev.wordpress.com/2016/05/10/jasmine-spy-matching-functions-and-testing-with-es6/
 	* https://github.com/JamieMason/Jasmine-Matchers
 	* https://jasmine.github.io/tutorials/custom_argument_matchers
+ * console.log
+	`src/karma.conf.js-->logLevel: config.LOG_DEBUG,`
  * для автоподстановки
 
 	```ts
@@ -44,6 +48,12 @@
 				}
 			}
 		}
+	```
+ * убрать `exports` перед class
+	```
+	'ispdci-aside-menu' is not a known element:
+	1. If 'ispdci-aside-menu' is an Angular component, then verify that it is part of this module.
+	2. If 'ispdci-aside-menu' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@NgModule.schemas' of this component to suppress this message.
 	```
  * [запуск параллельно](https://karma-runner.github.io/6.3/config/configuration-file.html#concurrency)
  * https://www.forbes.com/sites/forbesdigitalgroup/2019/05/14/improve-your-angular-jasmine-unit-test-speeds-by-500/
@@ -95,13 +105,85 @@
 	* mockClear clears only data pertaining to mock calls, which means we get a fresh dataset to assert over with toHaveBeenX methods.
     * mockReset resets to mock to its initial implementation, on a spy makes the implementation be a noop (function that does nothing).
  * [Angular 11 - Setting up Jest](https://dev.to/alfredoperez/angular-10-setting-up-jest-2m0l)
+	```ts
+		src/tsconfig.spec.json: include
+		src/tsconfig.app.json: exclude
+		cypress-test/tsconfig.cypress.json:include
+		.storybook/tsconfig.json:exclude
+	```
 
-```ts
-src/tsconfig.spec.json: include
-src/tsconfig.app.json: exclude
-cypress-test/tsconfig.cypress.json:include
-.storybook/tsconfig.json:exclude
-```
+ * jest.config.js
+ ```js
+	module.exports = {
+		displayName: 'some-component',
+		verbose: true, // console.log
+		preset: '../jest.preset.js',
+		setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+		globals: {
+			'ts-jest': {
+				tsconfig: '<rootDir>/tsconfig.spec.json',
+				stringifyContentPathRegex: '\\.(html|svg)$',
+			},
+		},
+		coverageDirectory: '../coverage/libs/aside-menu',
+		transform: {
+			'^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
+		},
+		transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$)'],
+		snapshotSerializers: [
+			'jest-preset-angular/build/serializers/no-ng-attributes',
+			'jest-preset-angular/build/serializers/ng-snapshot',
+			'jest-preset-angular/build/serializers/html-comment',
+		],
+	};
+ ```
+
+ * nx jest.preset.js
+	```js
+		const nxPreset = require('@nrwl/jest/preset');
+		module.exports = {
+		...nxPreset,
+		testMatch: ['**/+(*.)+(spec|test).+(ts|js)?(x)'],
+		transform: {
+			'^.+\\.(ts|js|html)$': 'ts-jest',
+		},
+		resolver: '@nrwl/jest/plugins/resolver',
+		moduleFileExtensions: ['ts', 'js', 'html'],
+		coverageReporters: ['html'],
+		};
+	```
+
+ * nx root jest.config.js
+	```js
+		const { getJestProjects } = require('@nrwl/jest');
+
+		module.exports = { projects: getJestProjects() };
+	```
+
+ * nx launch.json
+	```json
+		{
+		"version": "0.2.0",
+		"configurations": [
+			{
+			"name": "vscode-jest-tests",
+			"type": "node",
+			"request": "launch",
+			"program": "${workspaceFolder}/node_modules/@angular/cli/bin/ng",
+			"args": [
+				"test",
+				"customers-users",
+				"--runInBand=true",
+				"--codeCoverage=false"
+			],
+			"cwd": "${workspaceFolder}",
+			"console": "integratedTerminal",
+			"internalConsoleOptions": "neverOpen",
+			"trace": "all"
+			}
+		]
+		}
+	```
 
  * https://www.devcurry.com/2020/09/testing-angular-component-using-jest.html
  * https://codewithhugo.com/jest-fn-spyon-stub-mock/
@@ -109,6 +191,7 @@ cypress-test/tsconfig.cypress.json:include
  * https://ordina-jworks.github.io/testing/2018/08/03/testing-angular-with-jest.html
  * https://fireship.io/snippets/testing-rxjs-observables-with-jest/
  * https://www.npmjs.com/package/jest-preset-angular
+ * опция рендеринга https://jestjs.io/ru/docs/mock-function-api/#jestmockedsource-options
 
 ### spectator
 
@@ -201,6 +284,34 @@ cypress-test/tsconfig.cypress.json:include
 
 		expect(paginatorComponent).toHaveClass('disabled');
 	```
+ * shallow - теститрование без рендеринга
+	* https://itnext.io/testing-angular-applications-with-jest-and-spectator-c05991579807#252f
+	* https://github.com/ngneat/spectator#testing-components
+	```js
+		const createComponent = createComponentFactory({
+		component: ButtonComponent,
+		imports: [],
+		providers: [],
+		declarations: [],
+		entryComponents: [],
+		componentProviders: [], // Override the component's providers
+		componentViewProviders: [], // Override the component's view providers
+		overrideModules: [], // Override modules
+		overrideComponents: [], // Override components in case of testing standalone component
+		overrideDirectives: [], // Override directives in case of testing standalone directive
+		overridePipes: [], // Override pipes in case of testing standalone pipe
+		mocks: [], // Providers that will automatically be mocked
+		componentMocks: [], // Component providers that will automatically be mocked
+		componentViewProvidersMocks: [], // Component view providers that will be automatically mocked
+		detectChanges: false, // Defaults to true
+		declareComponent: false, // Defaults to true
+		disableAnimations: false, // Defaults to true
+		shallow: true, // Defaults to false
+		});
+	```
+	* https://jestjs.io/ru/docs/mock-function-api/#jestmockedsource-options
+		* jest.mocked(source, options?) The mocked() helper method wraps types of the source object and its deep nested members with type definitions of Jest mock function. You can pass {shallow: true} as the options argument to disable the deeply mocked behavior.
+
 
 ##  cypress test
 
