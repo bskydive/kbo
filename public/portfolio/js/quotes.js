@@ -1,13 +1,12 @@
 
 const quotes = [
 	['Программисты', '#',
-        'это похоже на рекурсивный терморектальный криптоанализ',
-		'идеальный work/life баланс: днём - сон и семейные дела, ночью - работа',
+		'В женской общаге посуду моют после еды, в мужской - перед. А когда у вас происходит рефакторинг: после релиза в плановом порядке или до, в авральном? Рефакторинг - это не вопрос эффективности, это про чистоту и гигиену. Про то, как часто вы наводите порядок у себя дома или на рабочем месте. Порядок не нужно наводить только там, где ничего не происходит.',
 		'бантики бантиками, а техдолг техдолгом и архитектура архитектурой',
 		'я своё веское слово выгрыз в граните, облил кровью, и запил пивом',
 		'потому что DRY противоречит KISS',
 		'Это потому что имя нашего стартапа - Внезапность',
-		'Не слышал что ли как гугл закэшировал интранет wiki яндекса, а потом яндекс её перезакешировал сам из гугла? Это как Siri посадить разговаривать с Алисой',
+		'Однажды гугл закэшировал интранет wiki яндекса, а потом яндекс её перезакешировал из гугла. Это как Siri посадить разговаривать с Алисой',
 		'C# - это соль диез',
 		'Карточная игра Стартап - она про дилемму заключённых',
 		'какие у тебя предложения по снижению технического долга? У меня полный MR этих предложений!',
@@ -24,7 +23,7 @@ const quotes = [
 		'потому что у нас бизнес, а не технологически ориентированный проект',
 		'потому что сроки считали верстальщики',
 		'так сложилось исторически',
-		'синканёмся на дейлике, заассайним ишью, бэкендеры заэкспандяд ноду, т.е.: заслушаем доклады на утренней линейке, нарежем задачи, тыловики поширят узел',
+		'синканёмся на дейлике, заассайним ишью, бэкендеры заэкспандяд ноду, т.е.: заслушаем доклады на утренней линейке, нарежем задачи, тыловики добавят места',
 		'мы бежим впереди машиниста, который бежит впереди паровоза, чтобы показать куда ехать',
 		'https://www.youtube.com/watch?v=u-ZREh7geL8 Zimtstern Leaves Spot - TransWorld SNOWboarding >катим в прод досрочно глазами менеджера<',
 		'https://www.youtube.com/watch?v=3Szc_pOz9fw Громыка - Говорил я вам >ретроспектива<',
@@ -409,7 +408,7 @@ function showQuote() {
 
 	function getRandomNum(min, max) {
 		let cryptoList = new Int8Array(max);
-		let result = Math.floor(Math.random() * (max - min)) + min;
+		let result = Math.floor(Math.random() * (max - min)) + min; 
 
 		let cryptoResult = 0;
 
@@ -430,12 +429,12 @@ function showQuote() {
 
 	let authorInd = getRandomNum(0, quotes.length);
 	if (document.querySelector('#id-a-quoteAuthor').innerText === quotes[authorInd][0]) {
-		authorInd = getRandomNum(0, quotes.length);
+		authorInd = getRandomNum(0, quotes.length); 
 	}
 
-	let quoteInd = getRandomNum(2, quotes[authorInd].length - 2);
+	let quoteInd = getRandomNum(2, quotes[authorInd].length - 2); 
 	if (document.querySelector('#id-p-quoteText').innerHTML === quotes[authorInd][quoteInd]) {
-		quoteInd = getRandomNum(2, quotes[authorInd].length - 2);
+		quoteInd = getRandomNum(2, quotes[authorInd].length - 2); 
 	}
 
 	document.querySelector('#id-p-quoteText').innerHTML = quotes[authorInd][quoteInd];
@@ -446,7 +445,7 @@ function showQuote() {
 	let quoteTwitText = quotes[authorInd][quoteInd] + ' &hashtags=' + quotes[authorInd][0].replace(/\s+/g, '');
 
 	if (quoteTwitText.length > 140) {
-		quoteTwitText = quotes[authorInd][quoteInd].substring(0, 140 - 6 - quotes[authorInd][0].length) + ' ...' + ' &hashtags=' + quotes[authorInd][0].replace(/\s+/g, '');
+		quoteTwitText = quotes[authorInd][quoteInd].substring(0, 140 - 6 - quotes[authorInd][0].length) + ' ...' + ' &hashtags=' + quotes[authorInd][0].replace(/\s+/g, ''); 
 	}
 
 	document.querySelector('#id_twitOutBtn').setAttribute('href', 'https://twitter.com/intent/tweet?text=' + quoteTwitText);
