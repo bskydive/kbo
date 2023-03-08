@@ -740,7 +740,7 @@ https://medium.com/eightshapes-llc/cropping-away-negative-impacts-of-line-height
 	white-space: nowrap;
 	```
  * [переносы текста](https://justmarkup.com/log/2019/01/a-look-at-css-hyphenation-in-2019/)
- * Disable selecting text of an element
+ * Disable selecting text of an element отключить выделение текста
 	```css
 	element {
 	-webkit-user-select: none; /* Safari */
