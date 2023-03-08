@@ -148,7 +148,7 @@
 		* ключ в связке с провайдером `constructor(token: Type)`
 		* объект, который реализует интерфейс [InjectionToken](https://angular.io/api/core/InjectionToken)
 	* [инжектор](https://www.youtube.com/watch?v=Z1gLFPLVJjY)
-		* Объект(абстрактный класс)(абстрактный класс), который находит именованную зависимость в своём кэше, либо создаёт её используя провайдер
+		* Объект(абстрактный класс), который находит именованную зависимость в своём кэше, либо создаёт её используя провайдер
 		* Предоставляет и внедряет синглтон
 		* Создаются автоматом для модулей в ходе bootstrap и наследуется в иерархии компонентов
 	* зачем
@@ -158,9 +158,10 @@
 		* облегчение юнит-тестирования сервисов
 		* переиспользование сервисов
 	* синглтон https://angular.io/guide/architecture-services#providing-services
-		* для всего приложения: в аннотации компонента `@Injectable({providedIn: 'root',})` https://angular.io/api/core/Injectable#injectable
+		* для всего приложения: в аннотации компонента `@Injectable({providedIn: 'root'})` https://angular.io/api/core/Injectable#injectable
 			* root: для приложения
 			* platform - для всех приложений
+			* [в любой модуль](https://habr.com/ru/company/tinkoff/blog/523160/)
 		* для модуля: в модуле `@NgModule({providers: [...]`
 		* для компонента: в аннотации компонента `@Component({...,providers:  [ HeroService ],...})`
 		* используется
@@ -174,8 +175,8 @@
 				providers:  [ HeroService ]
 			})
 		```
-	* .forRoot: модуль с providers
-	* .forChild: отдельный экземпляр модуля без providers для ленивой загрузки
+	* RouterModule.forRoot: модуль с providers
+	* RouterModule.forChild: отдельный экземпляр модуля без providers для ленивой загрузки
 	* нельзя внедрять интерфейсы https://angular.io/guide/dependency-injection-providers#interfaces-and-dependency-injection , но можно абстрактные классы https://angular.io/guide/dependency-injection-in-action#class-interface
 	* [внедрение лёгких токенов](https://angular.io/guide/lightweight-injection-tokens) для уменьшения размера библиотек
 		```ts
@@ -262,7 +263,7 @@
 
 			private el: HTMLElement;
 
-			constructor(el: ElementRef) {
+			constructor(public el: ElementRef, public control: NgModel) {
 				this.el = el.nativeElement;
 				@HostBinding('class.valid') get valid() { return this.control.valid; }
 				@HostBinding('class.invalid') get invalid() { return this.control.invalid; }
@@ -283,6 +284,7 @@
 
 		// HTML
 		<div appHighlight="yellow">
+		<input [(ngModel)]="prop">
 		```
 
 		* [hostbinding](https://angular.io/api/core/HostBinding)
@@ -581,12 +583,6 @@
 			this.renderer.appendChild(this.elementRef.nativeElement, buttonElement);
 		}
     ```
-	* [viewContainer - createEmbeddedView](https://angular.io/guide/dynamic-component-loader)
-	```ts
-		constructor(
-			private viewContainerRef: ViewContainerRef
-		){}
-	```
 	* [viewContainer - createEmbeddedView](https://angular.io/guide/dynamic-component-loader)
         ```ts
             constructor(
@@ -992,6 +988,20 @@
 		* запись:
 			* formGroup.setValues(valuesObj) - полный список полей
 			* formGroup.patchValues(valuesObj) - неполный список полей
+		* [типизированные(14+)](https://angular.io/guide/typed-forms)
+
+		```ts
+		interface LoginForm {
+			email: FormControl<string>;
+			password?: FormControl<string>;
+		}
+
+		const login = new FormGroup<LoginForm>({
+			email: new FormControl('', {nonNullable: true}),
+			password: new FormControl('', {nonNullable: true}),
+		});
+
+		```
 1. валидаторы
 	* formControl.clearValidators();
 	* formControl.updateValueAndValidity();
