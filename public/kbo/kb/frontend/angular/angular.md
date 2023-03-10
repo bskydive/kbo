@@ -921,8 +921,8 @@
 	```ts
 		const routes: Routes = [{
 			path: 'items',
-			// loadChildren: () => import('./items/items.module').then(m => m.ItemsModule)
-			loadChildren: () => ItemsModule
+			loadChildren: () => import('./items/items.module').then(m => m.ItemsModule)
+			// loadChildren: () => ItemsModule
 		}];
 	```
 1. Разница между root и forChild routes
