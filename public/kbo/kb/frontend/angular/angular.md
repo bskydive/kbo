@@ -1074,9 +1074,42 @@
 	})
 	export class AppModule {}
  ```
+ * long pooling - держим соединение с сервером, пока он не ответит, затем переподключаемся
+ * short pooling - пингуем сервер
+ * websocket
+ * rpc
+ * soap
+ * restful
 
 ## RxJS
  * public/kbo/kb/frontend/angular/rxjs.md
 
 ## NGRX
  * public/kbo/kb/frontend/angular/ngrx.md
+
+## angular CSS
+
+ * [shadow dom](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM)
+ * https://angular.io/guide/component-styles
+ * [Как работает ViewEncapsulation и ng-deep в Angular](https://habr.com/ru/post/665040/)
+ * селекторы со скобками - функциональная форма
+ * [псевдо-класс](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes) - специальное состояние элемента
+	* `:host(tag)|:host` - добавляет генерируемый префикс к стилям
+	* `:root` - синоним `<html>`
+	* `:default, :checked, :nth-of-type, :hover, :active`
+ * [псевдо-элементы](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements) - выбор элемента
+	* `::before, ::after`
+	* `::ng-deep` - отключает инкапсуляцию
+		* общее правило - добавлять :host или связывать с селектором компонента для предотвращения расползания охвата `:host ::ng-deep h3 {`
+	* `::part()` - [дополнительный идентификатор](https://developer.mozilla.org/en-US/docs/Web/CSS/::part)
+
+		```scss
+			//<div part="tab">Tab 3</div>
+			tabbed-custom-element::part(tab):focus {
+			}
+		```
+ * css variables(css custom properties)
+
+## сеть
+
+ *
