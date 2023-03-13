@@ -31,7 +31,7 @@
  * fs resize grow part
 
 	```bash
-		e2ffsck -f /dev/sda1
+		e2fsck -f /dev/sda1
 		fdisk /de/sda
 		# v - verify
 		# w
@@ -43,7 +43,7 @@
 
 		resize2fs /dev/sda1
 
-		e2ffsck -f /dev/sda1
+		e2fsck -f /dev/sda1
 		fdisk /dev/sda
 		# v - verify
 		# w
