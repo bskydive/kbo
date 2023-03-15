@@ -335,6 +335,10 @@
  * [Тестирование вёрстки на визуальные регрессии с помощью PhantomCSS, grunt](http://habrahabr.ru/post/271379/)
  * [тестирование вёрстки gulp+makeup](https://habrahabr.ru/company/2gis/blog/277457/)
  * [Playwright](https://habr.com/ru/company/jugru/blog/487294/) https://github.com/microsoft/playwright
+ * phantom+loki
+ * https://storybook.js.org/docs/react/writing-tests/visual-testing/
+ * https://github.com/mojoaxel/awesome-regression-testing
+ * jest snapshot - тестирует xml DOM на изменения
 
 ## Selenium
 

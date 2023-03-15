@@ -46,43 +46,6 @@
 
  *
 
- ```ts
-	/**Реализовать метод, который на вход получает последовательность целых значений, а на выходе
-	выводит последовательность, где все значения кратные 3 заменены на 'Fizz', кратные 5 на 'Buzz',
-	кратные 3 и 5 на 'FizzBuzz'*/
-
-	const arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 15, 25, 34, 33, 9];
-	const FIZZ = 'Fizz';
-	const BUZZ = 'Buzz';
-	// const res = [1, 2, Fizz, 4, Buzz, Fizz, 7, 8, FizzBuzz, 'Buzz', 34, 'Fizz', 'Fizz'];
-	//				1, 2, Fizz, 4, Buzz, Fizz, 7, 8, FizzBuzz, Buzz,   34,  Fizz, Fizz
-
-	let result: (number|string)[] = [];
-	let parsedItem: number|string;
-
-	for (let i = 0; i < arr.length; i++) {
-		parsedItem = '';
-
-		if (typeof arr[i] === 'number' && arr[i] % 3 !== 0 && arr[i] % 5 !== 0) {
-			parsedItem = arr[i];
-		};
-
-		if (typeof arr[i] === 'number' && arr[i] % 3 === 0) {
-			parsedItem = FIZZ;
-		};
-
-		if (typeof arr[i] === 'number' && arr[i] % 5 === 0) {
-			parsedItem = parsedItem + BUZZ;
-		};
-
-		result.push(parsedItem);
-	}
-
-	console.log(`src=${arr};\nresult=${result};`);
-
-	//
- ```
-
 ## инструменты
 
  * [импорт, трансформация и анализ json/csv](http://www.data-forge-js.com/)
@@ -93,6 +56,7 @@
     * http://esprima.org/demo/parse.html#
  * как сократить объём загрузки за счёт полифилов https://web.dev/publish-modern-javascript/ https://estimator.dev/
  *
+
 ## валидаторы syntax check
 
  * https://eslint.org/docs/rules/
@@ -137,6 +101,7 @@
  * [сборщики мусора JAVA](https://habr.com/ru/post/269621/)
 
 ### функциональное программирование
+
  * [Функциональный JavaScript: пять способов нахождения среднего арифметического элементов массива и метод .reduce()](https://habr.com/ru/company/ruvds/blog/458030/)
  * [функциональное программирование](https://habr.com/ru/company/mailru/blog/327522/)
  * [Concepts of Functional Programming in Javascript](https://medium.com/the-renaissance-developer/concepts-of-functional-programming-in-javascript-6bc84220d2aa)
@@ -145,119 +110,18 @@
 
 ## singleton
 
+ * Примеры: https://github.com/bskydive/typescript-ey6nut-algs
  * es6 modules+classes https://code.tutsplus.com/tutorials/how-to-implement-the-singleton-pattern-in-javascript-es6--cms-39927
-
-	```js
-		class DBConnection {
-			constructor(conString) {}
-
-			static getInstance(conString) {
-				if (!this.instance) {
-				this.instance = new DBConnection(conString);
-				}
-
-				return this.instance;
-			}
-		}
-
-		const dbConObj = DBConnection.getInstance('mysqldb1');
-
-		export default dbConObj;
-	```
-
  * symbol singleton
 	* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/for
 	* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol
 	* https://coderoad.ru/26205565/Преобразование-Singleton-JS-объектов-использования-классов-на-ES6
-
-	```js
-		const singleton = Symbol();
-		const singletonEnforcer = Symbol()
-
-		class SingletonTest {
-
-			constructor(enforcer) {
-				if(enforcer != singletonEnforcer) throw "Cannot construct singleton";
-			}
-
-			static get instance() {
-				if(!this[singleton]) {
-				this[singleton] = new SingletonTest(singletonEnforcer);
-				}
-				return this[singleton];
-			}
-		}
-
-		export default SingletonTest
-
-		// Тогда вы можете использовать его, как и любой другой singleton:
-
-		import SingletonTest from 'singleton-test';
-		const instance = SingletonTest.instance;
-
-	```
  * IIFE singleton
 	* https://stackoverflow.com/questions/27701887/what-is-instance-in-javascript
 	* https://www.digitalocean.com/community/conceptual_articles/singleton-design-pattern-in-javascript
-
-	```js
-		var printer = (function () {
-
-			var printerInstance;
-
-			function create () {
-
-				function print() {
-					// underlying printer mechanics
-				}
-
-				function turnOn() {
-					// warm up
-					// check for paper
-				}
-
-				return {
-					// public + private states and behaviors
-					print: print,
-					turnOn: turnOn
-				};
-			}
-
-			return {
-				getInstance: function() {
-					if(!printerInstance) {
-					printerInstance = create();
-					}
-					return printerInstance;
-				}
-			};
-
-			function Singleton () {
-				if(!printerInstance) {
-					printerInstance = intialize();
-				}
-			};
-		})();
-	```
  * es6 class singleton
 	* https://stackoverflow.com/questions/1479319/simplest-cleanest-way-to-implement-a-singleton-in-javascript
-	```js
-		class MyClass {
-		constructor() {
-			if (MyClass._instance) {
-			return MyClass._instance
-			}
-			MyClass._instance = this;
 
-			// ... Your rest of the constructor code goes after this
-		}
-		}
-
-		var instanceOne = new MyClass()
-		var instanceTwo = new MyClass()
-
-		console.log(instanceOne === instanceTwo) // Logs "true"
-	```
 ## V8 движок
 
  * интерпретатор ES+WASM [ignition/байткод](https://v8.dev/blog/ignition-interpreter) и компилятор[turbofan JIT](https://v8.dev/docs/turbofan)
@@ -265,35 +129,16 @@
  * [Основы движков JavaScript: общие формы и Inline кэширование. Часть 1](https://habr.com/ru/company/otus/blog/446446/)
 
 ## модель памяти memory model
+
+ * Примеры: https://github.com/bskydive/typescript-ey6nut-algs
  * https://geekbrains.ru/posts/javascript_internals_part1
  * куча, стэк и очередь. В стэк попадают через event loop
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management
 	* GC garbage collection
 	* вместо алгоритма подсчёта ссылок сейчас браузеры применяют алгоритм проверки доступности(mark-compact). Например, циклические ссылки не считаются мусором в первом варианте, даже если на них нет ссылок извне.
 	* активные функции помечаются как корни, и от них проверяется доступность
-
  * [mark and sweep GC garbage collection](https://www.geeksforgeeks.org/mark-and-sweep-garbage-collection-algorithm/)
  * [Как работает JavaScript: часть вторая GC утечки](https://geekbrains.ru/posts/javascript_internals_part2)
- ```js
-	var theThing = null;
-	var replaceThing = function () {
-		var originalThing = theThing;
-		var unused = function () {
-			if (originalThing) // a reference to 'originalThing'
-				console.log("hi");
-			};
-
-			theThing = {
-				longStr: new Array(1000000).join('*'),
-				someMethod: function () {
-					console.log("message");
-			}
-		};
-	};
-
-	setInterval(replaceThing, 1000);
-
- ```
 
 ## вопросы интервью
 
@@ -416,9 +261,33 @@
 		* битовая маска может кодировать больше чем одно значение - нарушение принципа SRP
  * [GRASP паттерны проектирования](https://habr.com/ru/post/92570/) - 9шт
  * GoF - gang of four - 23шт
-	* фабрика - штампуем
-	* адаптер - конвейер для трансформации, один к одному
-	* фасад - сокрытие, публичный интерфейс, один ко многим
+	* порождающие - новый экземпляр
+		* простая фабрика - создание с параметрами
+		* фабричный метод - создание с абстрактным методом/логикой
+		* строитель - многоэтапное создание/модификация/достраивание нового объекта, облегчение конструктора класса
+		* абстрактная фабрика - связывание фабрик с разной логикой через интерфейс+абстрактный класс
+		* прототип - клонирование существующего объекта
+		* одиночка(синглтон) - предотвращение создания копий класса
+	* структурные - способ взаимодействия, доступные извне методы
+		* адаптер - конвейер для трансформации, один к одному. Связывание через общие методы в интерфейсе
+		* мост - предпочтение компоновки наследованию, отделение абстракции от реализации. Логика передаётся между классами
+		* компоновщик
+		* декоратор
+		* фасад
+		* приспособленец
+		* заместитель
+	* поведенческие
+		* Цепочка ответственности
+    	* Команда
+    	* Итератор
+    	* Посредник
+    	* Хранитель
+    	* Наблюдатель
+    	* Посетитель
+    	* Стратегия
+    	* Состояние
+    	* Шаблонный метод
+
  * [MVC vs MVP vs MVVM](https://habr.com/ru/post/215605/) https://habr.com/ru/company/mobileup/blog/313538/
  * [Хороший дизайн должен быть SOLID - 2008](http://igor.quatrocode.com/2008/09/solid-top-5.html)
 
