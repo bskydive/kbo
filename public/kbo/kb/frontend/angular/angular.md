@@ -417,6 +417,8 @@
 
 ## Стили Material
 
+ * [cdk-virtual-scroll-viewport](https://github.com/angular/components/blob/main/src/cdk/scrolling/scrollable.ts) - появился в 7 версии для бесконечной прокрутки, использует событие scroll
+ * https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
  * scss variables лучше через миксины, не требуется делать лишние @include
 
   ```scss
@@ -1041,14 +1043,9 @@
 	*
 ## Angular Material и SDK.
 
-## HTTP/websocket
+## Сеть
 
  * angular in memory web api https://angular.io/tutorial/toh-pt6#simulate-a-data-server
- * create - post - можно много записей за раз, не идемпотентный(разный результат)
- * read - get
- * update - put - подходит для конкретного экземпляра, идемпотентный
- * delete - delete
-
  * interceptors перехватчики  https://javascript.plainenglish.io/angular-interceptors-a-complete-guide-7294e2317ecf
 
  ```ts
@@ -1074,13 +1071,7 @@
 	})
 	export class AppModule {}
  ```
- * long pooling - держим соединение с сервером, пока он не ответит, затем переподключаемся
- * short pooling - пингуем сервер
- * websocket
- * rpc
- * soap
- * restful
-
+ * 
 ## RxJS
  * public/kbo/kb/frontend/angular/rxjs.md
 
@@ -1110,6 +1101,4 @@
 		```
  * css variables(css custom properties)
 
-## сеть
 
- *
