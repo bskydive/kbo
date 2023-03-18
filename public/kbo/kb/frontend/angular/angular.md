@@ -148,7 +148,7 @@
 		* ключ в связке с провайдером `constructor(token: Type)`
 		* объект, который реализует интерфейс [InjectionToken](https://angular.io/api/core/InjectionToken)
 	* [инжектор](https://www.youtube.com/watch?v=Z1gLFPLVJjY)
-		* Объект(абстрактный класс)(абстрактный класс), который находит именованную зависимость в своём кэше, либо создаёт её используя провайдер
+		* Объект(абстрактный класс), который находит именованную зависимость в своём кэше, либо создаёт её используя провайдер
 		* Предоставляет и внедряет синглтон
 		* Создаются автоматом для модулей в ходе bootstrap и наследуется в иерархии компонентов
 	* зачем
@@ -158,9 +158,10 @@
 		* облегчение юнит-тестирования сервисов
 		* переиспользование сервисов
 	* синглтон https://angular.io/guide/architecture-services#providing-services
-		* для всего приложения: в аннотации компонента `@Injectable({providedIn: 'root',})` https://angular.io/api/core/Injectable#injectable
+		* для всего приложения: в аннотации компонента `@Injectable({providedIn: 'root'})` https://angular.io/api/core/Injectable#injectable
 			* root: для приложения
 			* platform - для всех приложений
+			* [в любой модуль](https://habr.com/ru/company/tinkoff/blog/523160/)
 		* для модуля: в модуле `@NgModule({providers: [...]`
 		* для компонента: в аннотации компонента `@Component({...,providers:  [ HeroService ],...})`
 		* используется
@@ -174,8 +175,8 @@
 				providers:  [ HeroService ]
 			})
 		```
-	* .forRoot: модуль с providers
-	* .forChild: отдельный экземпляр модуля без providers для ленивой загрузки
+	* RouterModule.forRoot: модуль с providers
+	* RouterModule.forChild: отдельный экземпляр модуля без providers для ленивой загрузки
 	* нельзя внедрять интерфейсы https://angular.io/guide/dependency-injection-providers#interfaces-and-dependency-injection , но можно абстрактные классы https://angular.io/guide/dependency-injection-in-action#class-interface
 	* [внедрение лёгких токенов](https://angular.io/guide/lightweight-injection-tokens) для уменьшения размера библиотек
 		```ts
@@ -262,7 +263,7 @@
 
 			private el: HTMLElement;
 
-			constructor(el: ElementRef) {
+			constructor(public el: ElementRef, public control: NgModel) {
 				this.el = el.nativeElement;
 				@HostBinding('class.valid') get valid() { return this.control.valid; }
 				@HostBinding('class.invalid') get invalid() { return this.control.invalid; }
@@ -283,6 +284,7 @@
 
 		// HTML
 		<div appHighlight="yellow">
+		<input [(ngModel)]="prop">
 		```
 
 		* [hostbinding](https://angular.io/api/core/HostBinding)
@@ -415,6 +417,8 @@
 
 ## Стили Material
 
+ * [cdk-virtual-scroll-viewport](https://github.com/angular/components/blob/main/src/cdk/scrolling/scrollable.ts) - появился в 7 версии для бесконечной прокрутки, использует событие scroll
+ * https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
  * scss variables лучше через миксины, не требуется делать лишние @include
 
   ```scss
@@ -581,12 +585,6 @@
 			this.renderer.appendChild(this.elementRef.nativeElement, buttonElement);
 		}
     ```
-	* [viewContainer - createEmbeddedView](https://angular.io/guide/dynamic-component-loader)
-	```ts
-		constructor(
-			private viewContainerRef: ViewContainerRef
-		){}
-	```
 	* [viewContainer - createEmbeddedView](https://angular.io/guide/dynamic-component-loader)
         ```ts
             constructor(
@@ -925,8 +923,8 @@
 	```ts
 		const routes: Routes = [{
 			path: 'items',
-			// loadChildren: () => import('./items/items.module').then(m => m.ItemsModule)
-			loadChildren: () => ItemsModule
+			loadChildren: () => import('./items/items.module').then(m => m.ItemsModule)
+			// loadChildren: () => ItemsModule
 		}];
 	```
 1. Разница между root и forChild routes
@@ -992,6 +990,20 @@
 		* запись:
 			* formGroup.setValues(valuesObj) - полный список полей
 			* formGroup.patchValues(valuesObj) - неполный список полей
+		* [типизированные(14+)](https://angular.io/guide/typed-forms)
+
+		```ts
+		interface LoginForm {
+			email: FormControl<string>;
+			password?: FormControl<string>;
+		}
+
+		const login = new FormGroup<LoginForm>({
+			email: new FormControl('', {nonNullable: true}),
+			password: new FormControl('', {nonNullable: true}),
+		});
+
+		```
 1. валидаторы
 	* formControl.clearValidators();
 	* formControl.updateValueAndValidity();
@@ -1031,14 +1043,9 @@
 	*
 ## Angular Material и SDK.
 
-## HTTP/websocket
+## Сеть
 
  * angular in memory web api https://angular.io/tutorial/toh-pt6#simulate-a-data-server
- * create - post - можно много записей за раз, не идемпотентный(разный результат)
- * read - get
- * update - put - подходит для конкретного экземпляра, идемпотентный
- * delete - delete
-
  * interceptors перехватчики  https://javascript.plainenglish.io/angular-interceptors-a-complete-guide-7294e2317ecf
 
  ```ts
@@ -1064,9 +1071,34 @@
 	})
 	export class AppModule {}
  ```
-
+ * 
 ## RxJS
  * public/kbo/kb/frontend/angular/rxjs.md
 
 ## NGRX
  * public/kbo/kb/frontend/angular/ngrx.md
+
+## angular CSS
+
+ * [shadow dom](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM)
+ * https://angular.io/guide/component-styles
+ * [Как работает ViewEncapsulation и ng-deep в Angular](https://habr.com/ru/post/665040/)
+ * селекторы со скобками - функциональная форма
+ * [псевдо-класс](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes) - специальное состояние элемента
+	* `:host(tag)|:host` - добавляет генерируемый префикс к стилям
+	* `:root` - синоним `<html>`
+	* `:default, :checked, :nth-of-type, :hover, :active`
+ * [псевдо-элементы](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements) - выбор элемента
+	* `::before, ::after`
+	* `::ng-deep` - отключает инкапсуляцию
+		* общее правило - добавлять :host или связывать с селектором компонента для предотвращения расползания охвата `:host ::ng-deep h3 {`
+	* `::part()` - [дополнительный идентификатор](https://developer.mozilla.org/en-US/docs/Web/CSS/::part)
+
+		```scss
+			//<div part="tab">Tab 3</div>
+			tabbed-custom-element::part(tab):focus {
+			}
+		```
+ * css variables(css custom properties)
+
+

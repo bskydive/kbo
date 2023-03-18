@@ -1758,6 +1758,10 @@ pbzip2
 /usr/share/wallpapers
 ~/.local/share/wallpapers/
 
+## корзина
+
+ * /home/.local/share/Trash/
+
 ## kopete icq
 
  * http://icqserver.net/forum/topic101.html
