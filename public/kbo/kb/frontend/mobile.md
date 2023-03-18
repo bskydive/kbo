@@ -3,6 +3,7 @@
 
 ##  конвертирование в мобильные приложения
 
+ * capacitor
  * cordova
  * phonegap
  * https://habrahabr.ru/company/ruvds/blog/352200/
@@ -18,5 +19,6 @@
 
 ##  desktop web app
 
-https://medium.com/web-standards/манифест-а-что-зачем-865e609f6f47/
+ * electron
+ * https://medium.com/web-standards/манифест-а-что-зачем-865e609f6f47/
 

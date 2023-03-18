@@ -177,13 +177,14 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 
 ## css стилизация прокрутки scroll
 
-* https://ishadeed.com/article/css-scroll-snap/
-* https://www.filamentgroup.com/lab/scrollbars/
-*
+ * https://ishadeed.com/article/css-scroll-snap/
+ * https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-width
+ * https://www.filamentgroup.com/lab/scrollbars/
+ * https://css-tricks.com/custom-scrollbars-in-webkit/
+ * https://stackoverflow.com/questions/11691718/css-webkit-scrollbar-and-safari
+ *
 	```scss
 		& ::-webkit-scrollbar {
-			//https://css-tricks.com/custom-scrollbars-in-webkit/
-			//https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-scrollbar
 			position: absolute;
 			padding-top: 0;
 			padding-bottom: 0;
@@ -511,42 +512,55 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 	 * fractional ячейки растут во вторую очередь после minmax и auto
 	 * auto растёт бесконечно, но если есть fractional - до max-content
 
-## clearing очистка стилей
+## clearing reset очистка стилей
 
-```stylus
-&-clearing
-	font-family Arial, Helvetica, monospace
-	-webkit-text-size-adjust 100%
-	-ms-text-size-adjust 100%
-	box-sizing border-box
-	margin 0
-	padding 0
-	display block
-	max-width 100%
-	background-color white
-	overflow: auto; //убирает статическое масштабирование для экранов уже 376
-	//overflow: hidden;//убирает белую полосу при смахивании влево уже 376
+ * [Firefoxs reset CSS](https://hg.mozilla.org/mozilla-central/file/tip/layout/style/res/html.css)
+ * [Safaris reset CSS](https://trac.webkit.org/browser/trunk/Source/WebCore/css/html.css)
+ * [Chromes reset CSS](https://chromium.googlesource.com/chromium/blink/+/master/Source/core/css/html.css)
+ * [Microsoft IE reset CSS](https://web.archive.org/web/20170306080528/http://www.iecss.com/)
+ * [Microsoft Edge reset CSS](https://web.archive.org/web/20161031003455/http://www.iecss.com/edgehtml-13.10586.)
+ * [Сброс стилей с помощью CSS Reset](https://habr.com/ru/post/45296/)
+ *
+	```stylus
+		&-clearing
+			font-family Arial, Helvetica, monospace
+			-webkit-text-size-adjust 100%
+			-ms-text-size-adjust 100%
+			box-sizing border-box
+			margin 0
+			padding 0
+			display block
+			max-width 100%
+			background-color white
+			overflow: auto; //убирает статическое масштабирование для экранов уже 376
+			//overflow: hidden;//убирает белую полосу при смахивании влево уже 376
 
-	a
-		&:active, &:hover
-			outline 0
-			cursor pointer
-			cursor pointer
-			text-decoration none
+			a
+				&:active, &:hover
+					outline 0
+					cursor pointer
+					cursor pointer
+					text-decoration none
 
-	html, body
-		width 100%
-		display inline
-	ul
-		display inline-block
-		margin 0
-		padding 0
+			html, body
+				width 100%
+				display inline
+			ul
+				display inline-block
+				margin 0
+				padding 0
 
-	button
-		border-style none
-		padding-top 0
-		padding-bottom 0
-```
+			button
+				border-style none
+				padding-top 0
+				padding-bottom 0
+	```
+
+### css safari
+
+ * https://www.w3docs.com/snippets/css/how-to-fix-css-issues-on-safari.html
+ * https://stackoverflow.com/questions/62408108/how-to-make-css-style-work-in-safari-browser
+ * https://stackoverflow.com/questions/24899943/how-do-i-make-flex-box-work-in-safari
 
 ### button
 
