@@ -24,14 +24,12 @@ html
 							| Генератор цитат
 							sup β
 						span#id_divHeaderText
-						a#id_getQuoteBtn.btn.btn-default(role='button')
-							i.fa.fa-graduation-cap.fa-fw
+						a#id_getQuoteBtn.btn.btn-default(role='button', class="icon-comments")
 							|  Ещё цитату
 						|
-						|
-						a#id_twitOutBtn.btn.btn-default(role='button', href='http://twitter.com/home/?status=', target='_blank')
-							i.fa.fa-twitter.fa-fw
-							|  Поделиться
+						span#id_divHeaderText
+						a#id_copyBtn.btn.btn-default(role='button', class="icon-heart", target='_blank')
+							|  Копировать
 					.col-md-1
 				.row
 					.col-md-1
@@ -40,4 +38,3 @@ html
 						a#id-a-quoteAuthor(href='#')
 					.col-md-1
 	script(type='text/javascript', src='js/quotes.js')
-	script(type='text/javascript', src='https://platform.twitter.com/widgets.js')
