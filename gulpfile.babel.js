@@ -143,7 +143,7 @@ const pathSoundsSrc = [`src/sounds/*`];
 const pathSoundsDest = `./${staticPath}/sounds`;
 
 const pathHtmlClean = `${staticPath}/*.html`;
-const pathPugSrcWatch = [`src/app/portfolio/**/*.pug`];
+const pathPugSrcWatch = [`src/app/**/*.pug`];
 const pathPugSrc = [
 	`src/app/timer/timer.pug`,
 	`src/app/portfolio/portfolio.pug`,
@@ -595,7 +595,7 @@ export const pug = gulp.series(cleanHtml, pugPipe);
 function wPipe(done) {
 	gulp.watch(pathStylusSrcWatch.concat(pathCssSrc), stylus);
 	gulp.watch(pathPugSrcWatch, pug);
-	gulp.watch(pathMDSrc, md);
+	// gulp.watch(pathMDSrc, md);
 	gulp.watch(pathJsSrc, js);
 	gulp.watch(pathFontsSrc, fonts);
 	//	gulp.watch(pathImgSrc,
