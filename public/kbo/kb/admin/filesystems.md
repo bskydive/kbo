@@ -282,7 +282,12 @@ find . -inum 17040033 -exec mv {} new-directory-name1 \;
 		2      118GB   119GB   790MB                   primary  bios_grub
 
 	#принудительная проверка с автоблокировкой плохих секторов
-	> e2fsck -cCVf /dev/sda3
+	#> e2fsck -cCVf /dev/sda3
+	> e2fsck -ckttf -j fsck.log -z fsck.undo /dev/sda1
+		#e2fsck 1.46.4 (18-Aug-2021)
+		#Overwriting existing filesystem; this can be undone using the command:
+		#	e2undo fsck.undo /dev/sda1
+		#Checking for bad blocks (read-only test):  30.64% done, 0:29 elapsed. (0/0/0 errors)
 	#поиск резервных суперблоков
 	> dumpe2fs /dev/sda3|grep -i superblock
 	#бэкап
