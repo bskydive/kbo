@@ -746,86 +746,90 @@ https://stateofjs.com/2017/front-end/results
 
 ```
 
-##  свойства объектов
+##  deep clone клонирование объектов
 
+ * https://developer.mozilla.org/en-US/docs/Web/API/structuredClone
+    `structuredClone(value)`
+ * https://developer.mozilla.org/en-US/docs/Glossary/Deep_copy
+ * только через JSON*, остальное - shallow copy
  * http://getinstance.info/articles/javascript/attributes-of-object-properties-in-javascript/
  * [глубокое копирование deep clone](https://www.webreflection.co.uk/blog/2015/10/06/how-to-copy-objects-in-javascript)
 
-```js
-	obj2 = obj1.map(item => Object.assign({}, item));
-	obj2 = JSON.parse(JSON.stringify(obj1));
-	function copy(o) {
-		var output, v, key;
-		output = Array.isArray(o) ? [] : {};
-		for (key in o) {
-			v = o[key];
-			output[key] = (typeof v === "object") ? copy(v) : v;
-		}
-		return output;
-	}
-```
+    ```js
+        obj2 = obj1.map(item => Object.assign({}, item));
+        obj2 = JSON.parse(JSON.stringify(obj1));
+        function copy(o) {
+            var output, v, key;
+            output = Array.isArray(o) ? [] : {};
+            for (key in o) {
+                v = o[key];
+                output[key] = (typeof v === "object") ? copy(v) : v;
+            }
+            return output;
+        }
+    ```
  * [ещё одна функция глубокого копирования](https://medium.com/@tkssharma/objects-in-javascript-object-assign-deep-copy-64106c9aefab)
 
-```js
-	function cloneObject(obj) {
-		var clone = {};
-		for(var i in obj) {
-			if(obj[i] != null &&  typeof(obj[i])=="object")
-				clone[i] = cloneObject(obj[i]);
-			else
-				clone[i] = obj[i];
-		}
-		return clone;
-	}
-```
+    ```js
+        function cloneObject(obj) {
+            var clone = {};
+            for(var i in obj) {
+                if(obj[i] != null &&  typeof(obj[i])=="object")
+                    clone[i] = cloneObject(obj[i]);
+                else
+                    clone[i] = obj[i];
+            }
+            return clone;
+        }
+    ```
  * [глубокое клонирование класса с методами](https://www.nickang.com/how-to-clone-class-instance-javascript/)
 
-```js
-	function copyInstance (original) {
-	var copied = Object.assign(
-		Object.create(
-		Object.getPrototypeOf(original)
-		),
-		original
-	);
-	return copied;
-	}
-```
+    ```js
+        function copyInstance (original) {
+        var copied = Object.assign(
+            Object.create(
+            Object.getPrototypeOf(original)
+            ),
+            original
+        );
+        return copied;
+        }
+    ```
  * глубокое клонирование, сломано
 
-```ts
-	cloneDeep<T>(obj: T) {
-		let clone: T = Object.assign({}, obj);
-		const keys: string[] = Object.keys(obj);
+    ```ts
+        cloneDeep<T>(obj: T) {
+            let clone: T = Object.assign({}, obj);
+            const keys: string[] = Object.keys(obj);
 
-		for (let indexL0 = 0; indexL0 < keys.length; indexL0++) {
-			if (obj[keys[indexL0]] !== null) {
-				if (typeof obj[keys[indexL0]] === "object") {
-					if (obj[keys[indexL0]] instanceof Array) {
-						for (let indexL1 = 0; indexL1 < obj[keys[indexL0]].length; indexL1++) {
-							clone[keys[indexL0]] = Object.assign({}, obj[keys[indexL0]]);
-						}
-					} else {
-						clone[keys[indexL0]] = this.cloneDeep(obj[keys[indexL0]]);
-					}
-				} else {
-					clone[keys[indexL0]] = obj[keys[indexL0]];
-				}
-			}
-		}
-		return clone;
-	}
-```
+            for (let indexL0 = 0; indexL0 < keys.length; indexL0++) {
+                if (obj[keys[indexL0]] !== null) {
+                    if (typeof obj[keys[indexL0]] === "object") {
+                        if (obj[keys[indexL0]] instanceof Array) {
+                            for (let indexL1 = 0; indexL1 < obj[keys[indexL0]].length; indexL1++) {
+                                clone[keys[indexL0]] = Object.assign({}, obj[keys[indexL0]]);
+                            }
+                        } else {
+                            clone[keys[indexL0]] = this.cloneDeep(obj[keys[indexL0]]);
+                        }
+                    } else {
+                        clone[keys[indexL0]] = obj[keys[indexL0]];
+                    }
+                }
+            }
+            return clone;
+        }
+    ```
 
  * глубокое клонирование [lodash](https://www.blazemeter.com/blog/the-correct-way-to-import-lodash-libraries-a-benchmark)
 
-```js
-import cloneDeep from loDash;
-let clone = cloneDeep(orig);
+    ```js
+    import cloneDeep from loDash;
+    let clone = cloneDeep(orig);
 
-```
+    ```
 
-* проверка наличия свойств https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty `Object.prototype.hasOwnProperty.call(foo, 'bar'); // true`
+ * проверка наличия свойств https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty `Object.prototype.hasOwnProperty.call(foo, 'bar'); // true`
 
 ## Общие понятия
 

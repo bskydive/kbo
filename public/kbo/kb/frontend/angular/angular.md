@@ -467,6 +467,8 @@
 1. TemplateRef, ElementRef, в чем разница?
 	* ссылка на ng-template или любой элемент
 	* шаблон можно передать в директиву ngTemplateOutlet а элемент в componentOutlet
+        * `<ng-container *ngTemplateOutlet='someVar'>`
+        * `<ng-container *ngComponentOutlet='someVar'>`
 1. template input variable
 	* https://angular.io/guide/template-reference-variables#template-input-variable
 	* у let-* и #* переменных разные пространства имён
@@ -720,7 +722,8 @@
 	* OnPush ("CheckOnce") -
 		* https://angular.io/guide/lifecycle-hooks#using-change-detection-hooks
 		* https://angular.io/api/core/ChangeDetectorRef#usage-notes
-		* ручная проверка
+		* влияет на хук ngOnChanges
+        * ручная проверка
 		* поменялась @Input ссылка(не значение)
 		* DOM event(input) для связанных свойств
 		* async pipe(rxjs, promise)
@@ -1071,7 +1074,7 @@
 	})
 	export class AppModule {}
  ```
- * 
+ *
 ## RxJS
  * public/kbo/kb/frontend/angular/rxjs.md
 
@@ -1094,11 +1097,24 @@
 		* общее правило - добавлять :host или связывать с селектором компонента для предотвращения расползания охвата `:host ::ng-deep h3 {`
 	* `::part()` - [дополнительный идентификатор](https://developer.mozilla.org/en-US/docs/Web/CSS/::part)
 
-		```scss
-			//<div part="tab">Tab 3</div>
-			tabbed-custom-element::part(tab):focus {
+	```scss
+		//<div part="tab">Tab 3</div>
+		tabbed-custom-element::part(tab):focus {
+		}
+	```
+ * [css variables, css custom properties](https://netbasal.com/binding-css-variables-in-angular-69dfd4136e21)
+
+ 	```html
+		<button *ngFor="let item of items; index as index"
+				[style.--animation-delay]="index * 0.2 + 's'">
+		{{ item }}
+		</button>
+	```
+	```scss
+			:button {
+				...
+				animation-delay: var(--animation-delay);
 			}
-		```
- * css variables(css custom properties)
+	```
 
 
