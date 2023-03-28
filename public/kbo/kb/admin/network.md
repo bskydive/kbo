@@ -39,6 +39,9 @@
 	ss -tl4    # ip4 connections
 ```
 
+## wireshark
+
+ * [Wireshark для всех. Лайфхаки на каждый день](https://habr.com/ru/company/vdsina/blog/562110/)
 
 ## ss
 

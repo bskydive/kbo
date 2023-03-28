@@ -9,6 +9,7 @@
  * [nagios](https://www.nagios.org/)
  * [sensu](https://sensuapp.org/)
  * [monitorix](https://www.monitorix.org/features.html)
+ * [Мониторим парк ИБП. Ч.3, заключительная](https://habr.com/ru/post/562952/)
 
 ## linux monitoring performance
 

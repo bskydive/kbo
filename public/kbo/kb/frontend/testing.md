@@ -324,7 +324,8 @@
 	```
 	* https://jestjs.io/ru/docs/mock-function-api/#jestmockedsource-options
 		* jest.mocked(source, options?) The mocked() helper method wraps types of the source object and its deep nested members with type definitions of Jest mock function. You can pass {shallow: true} as the options argument to disable the deeply mocked behavior.
-
+ * [тестирование angular HTTP interceptors](https://tenmilesquare.com/resources/software-development/testing-angular-10-interceptors-with-spectator-and-jest/)
+ * [Testing Asynchronous Code in Angular Using FakeAsync](https://netbasal.com/testing-asynchronous-code-in-angular-using-fakeasync-fc777f86ed13)
 
 ##  cypress test
 
@@ -342,6 +343,11 @@
 	* более качественное тестирование
 	*
 	*
+
+## e2e integration интеграционные тесты
+
+ * [How To Write Simple Angular Integration Tests With Spectator ](https://dev.to/cjcoops/how-to-write-simple-angular-integration-tests-with-spectator-1i1b)
+
 ## regress регрессионные тесты
 
  * https://selenium-webdriver-book.github.io/
