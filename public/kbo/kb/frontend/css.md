@@ -328,6 +328,7 @@ http://itchief.ru/lessons/bootstrap-3/lesson-no.-6-adaptive-site-layout-on-the-e
 
 ##	css grid
 
+ * ![css grid cheatsheet](./files/css-grid-1.jpg)
  * https://www.smashingmagazine.com/2018/05/future-of-web-design/
  * [Becoming a CSS Grid Ninja 05.2018](https://medium.com/@elad/becoming-a-css-grid-ninja-f4c6db018cc1)
  * https://tproger.ru/translations/css-flexbox-grid/
