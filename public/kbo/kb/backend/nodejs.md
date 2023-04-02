@@ -224,6 +224,16 @@ var http = require('http')
 
 ## npm
 
+ * npm-check
+ * https://www.npmjs.com/package/depcheck
+ * [короткая шпаргалка по lockfile](https://habr.com/ru/company/alfa/blog/705876/)
+ * npm строит дерево зависимостей, дедуплицирует, вычисляет совместимые версии из диапазонов.
+ * yarn dedupe
+ * npm audit --fix
+ * semver semantic versioning семантическое версионирование
+ 	* Учитывая номер версии МАЖОРНАЯ.МИНОРНАЯ.ПАТЧ, следует увеличивать: МАЖОРНУЮ версию, когда сделаны обратно несовместимые изменения API.МИНОРНУЮ версию, когда вы добавляете новую функциональность, не нарушая обратной совместимости.ПАТЧ-версию, когда вы делаете обратно совместимые исправления.
+ * [Convert yarn.lock to package-lock.json and vice versa.](https://www.npmjs.com/package/synp)
+ *
 ```bash
 npm i npm -g // or npm outdated; npm update
 npm adduser

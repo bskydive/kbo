@@ -222,11 +222,36 @@ find . -inum 17040033 -exec mv {} new-directory-name1 \;
 	smartctl -t short /dev/sdd
 	smartctl -a /dev/sdd
 
+	#температура всех дисков
+	smartctl --scan | awk '{print $1}' | xargs -n 1 smartctl -a | grep -i temperature_celsius
+
+	# 194 Temperature_Celsius     0x0022   064   046   000    Old_age   Always       -       36 (Min/Max 23/54)
+	# 194 Temperature_Celsius     0x0022   112   091   000    Old_age   Always       -       31
+	# 194 Temperature_Celsius     0x0022   112   089   000    Old_age   Always       -       31
+	# 194 Temperature_Celsius     0x0022   064   054   000    Old_age   Always       -       36 (Min/Max 24/46)
+
+	#ошибки
+	smartctl --scan | awk '{print $1}' | xargs -n 1 smartctl -a | grep -i reallocated_sector
+
+	# 5 Reallocated_Sector_Ct   0x0033   100   100   010    Pre-fail  Always       -       0
+	# 5 Reallocated_Sector_Ct   0x0033   200   200   140    Pre-fail  Always       -       0
+	# 5 Reallocated_Sector_Ct   0x0033   200   200   140    Pre-fail  Always       -       0
+	# 5 Reallocated_Sector_Ct   0x0033   100   100   010    Pre-fail  Always       -       0
+
+	# максимальная температура
+	smartctl --scan | awk '{print $1}' | xargs -n 1 smartctl -x | grep -i lifetime | grep -i celsius
+
+	# Lifetime    Min/Max Temperature:     23/54 Celsius
+	# Lifetime    Min/Max Temperature:     24/52 Celsius
+	# Lifetime    Min/Max Temperature:     24/55 Celsius
+	# Lifetime    Min/Max Temperature:     24/46 Celsius
  ```
 
-## smart hdd read-only Mode
+ *
+ *
 
- * включается режим только для чтения при автоматической проверке
+ * gsmartcontrol
+ * smart hdd read-only Mode: включается режим только для чтения при автоматической проверке
     ```bash
 		systemctl status smartd
 		systemctl stop smartd

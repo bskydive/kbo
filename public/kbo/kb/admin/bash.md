@@ -40,16 +40,27 @@
 
 ## xargs
 
-http://habrahabr.ru/company/selectel/blog/248207/
+ * https://www.commandlinefu.com/commands/browse
+ * [Xargs: многообразие вариантов использования](http://habrahabr.ru/company/selectel/blog/248207/)
+ *
+ ```bash
+	find . -name "*.sh" -print0 | xargs -0 rm -rf
 
-```bash
-	#Если иметь
+	# скачать все графические файлы в 10 потоков
+	wget -nv <ссылка> | egrep -o "http://[^[:space:]]*.jpg" | xargs -P 10 -n 1 wget -nv
 
-	"\C-n": history-search-forward
-	"\C-p": history-search-backward
+	# сжать в 3 потока
+	echo dir1 dir2 dir3 | xargs -P 3 -I NAME tar czf NAME.tar.gz NAME
+ ```
+ *
+	```bash
+		#Если иметь
 
-	#в .inputrc то по <C-n>/<C-p>
-```
+		"\C-n": history-search-forward
+		"\C-p": history-search-backward
+
+		#в .inputrc то по <C-n>/<C-p>
+	```
 
 ## tips
 
@@ -64,7 +75,7 @@ http://habrahabr.ru/company/selectel/blog/248207/
 		# % % - разрешение подстановочного символа в двух местах
 	```
  * [10 (or so) bash Tricks I can't live without](http://axixmiqui.wordpress.com/bash-tricks/)
- * 
+ *
 	```bash
 
 		#Correct small typing mistakes of cd
@@ -72,7 +83,7 @@ http://habrahabr.ru/company/selectel/blog/248207/
 		#Setup history searches
 		bind '&quot;\e[A&quot;:history-search-backward'
 		bind '&quot;\e[B&quot;:history-search-forward'
-		
+
 		#see: http://aplawrence.com/Linux/bash_history.html
 		# don't put duplicate lines in the history. See bash(1) for more options
 		export HISTCONTROL=erasedups
@@ -95,7 +106,7 @@ http://habrahabr.ru/company/selectel/blog/248207/
 		fi
 	```
 
- * 
+ *
 
 	```bash
 		#set prompt
@@ -106,7 +117,7 @@ http://habrahabr.ru/company/selectel/blog/248207/
 		sh_inverse=&quot;\[33[40m\]\[33[1;37m\]&quot;
 		sh_inverse_red=&quot;\[33[41m\]\[33[1;37m\]&quot;
 		sh_ssh=&quot;\[33[32m\]&quot;
-		
+
 		if [ &quot;$SSH_CONNECTION&quot; ] ; then
 		SSH_FLAG=1
 		#TODO get hostname from $SSH_CONNECTION
@@ -114,9 +125,9 @@ http://habrahabr.ru/company/selectel/blog/248207/
 		else
 		SSH_FLAG=
 		fi
-		
+
 		PS1='${debian_chroot:+($debian_chroot)}''${SSH_FLAG:+('${ssh_prompt}')}'${sh_inverse}'${ERROR_FLAG:+'${sh_inverse_red}'}\u'${sh_norm}':${SSH_FLAG:+'${sh_ssh}'}\h${SSH_FLAG:+'${sh_norm}'}['${sh_blue}'\w'${sh_norm}']${ERROR_FLAG:+'${sh_light_red}'}\$${ERROR_FLAG:+'${sh_norm}'} '
-		
+
 		PROMPT_COMMAND='if [ $? -ne 0 ]; then ERROR_FLAG=1; else ERROR_FLAG=; fi; '
 
 	```

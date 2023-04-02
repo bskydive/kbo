@@ -57,12 +57,16 @@
  * [Сила PWA: Система видеонаблюдения с нейросетью в 300 строчек JS-кода](https://habr.com/ru/post/492006/) на основе https://nanonets.com/blog/object-detection-tensorflow-js/
  * [Видеоаналитика на производстве. Как искусственный интеллект работает там, где не справляется человек. ЕВРАЗ 2022](https://habr.com/ru/post/581882/)
  * [Самообучающийся трекер объектов: как отслеживать цель в изменчивых условиях сцены](https://habr.com/ru/post/688524/)
+ * [Расчет транспортного потока на основе YOLOv5 и DeepSORT на базе Deepstream](https://habr.com/ru/post/725916/)
+ * [Вижу, значит существую: обзор Deep Learning в Computer Vision (часть 2) VANB](https://habr.com/ru/company/mipt/blog/458190/)
+ * [Самая сложная задача в Computer Vision](https://habr.com/ru/company/recognitor/blog/505694/)
 
 ## железо
 
  * [Прямой репортаж с рождения крупного игрока в аппаратном AI, который ускоряет TensorFlow и конкурирует с NVidia](https://habr.com/post/414163/)
  * [vOICe vision звуковое зрение](https://habr.com/ru/post/458532/)
  * https://www.dailytechinfo.org/
+ * [Как выбрать плату для Computer Vision в 2022](https://habr.com/ru/company/recognitor/blog/688346/)
 
 ## собес
 
