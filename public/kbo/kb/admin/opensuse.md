@@ -888,13 +888,6 @@ Code:
  * десктоп - /usr/share/applications/
  * работа с документами - офис+экспорт в пдф
  * запомнить/перенести пароли для страниц в браузере
- * снести системный firefox, установить плагины
- 	* adblock / ublock
-	* noscript / whitelist
-	* treestyletab https://addons.mozilla.org/ru/firefox/addon/tree-style-tab/?src=search
-	* downthemall
- * снести системный thunderbird
- * pavucontrol - можно вместо него использовать kde плагин plasma
  * перенести ключи/скрипты удаленного доступа, папка scripts
  * `ssh-keygen -t rsa -b 4096`
  * установить ключи в bb, gh, gl, удалённые ПК
@@ -902,24 +895,94 @@ Code:
  * настроить короткий формат даты для Dolphin в астройках локали DD.MM.YYYY
  * настроить полный формат даты для виджета часов на панели в настройках локали
 	* ddd dd.MM.yyyy
- * kate
  * konsole
 	* шрифт
 	* цвет
 	* 10к строк лога
 	* вкладки всегда видны
- * krdc
- * konqueror/dolphin
  * заменить ~/.kde4/share/apps/konqueror/bookmarks.xml
  * видео кодеки wmv. см #repo 		http://opensuse-guide.org/codecs.php
  * spectacle скриншоты починить
 	* Настройки - глобальные комбинации клавиш - KDE daemon - выключить prtscr
 	* Настройки - глобальные комбинации клавиш - + добавить - spectacle - назначить prtscr - снимок прямоугольной области
- * yed
  * настроить внешнюю видеокамеру/микрофон
- * git, kgit, git-gui
  * утилиты консоли
  * убрать boot splash screen
+ * убрать синхронизацию ntp
+
+### установка программ
+
+ * снести системный firefox, установить плагины
+ 	* adblock / ublock
+	* noscript / whitelist
+	* treestyletab https://addons.mozilla.org/ru/firefox/addon/tree-style-tab/?src=search
+	* downthemall
+ * снести системный thunderbird
+ * yed
+ * krdc, freeRDP, remmnia
+ * zypper in git gitk gitg git-cola java-17-openjdk-devel
+ * zypper in pavucontrol pulseaudio-equalizer kfind lame
+ * zypper in gimp kdenlive inkscape simplescreenrecorder
+ * digikam - коллекция фото
+ * flatpak+flathub
+	 * freefilesync
+	 * blender
+	 * krita
+	 * Piper - назначение кнопок мыши
+	 * Figma for linux
+	 * octave - 3d графики
+	 * flowtime - pomodoro
+ 	 * obs studio
+	 * postman
+	 * KmCaster
+	 * opentodolist
+	 * GraphUI
+	 * GitFiend
+
+ *
+	* разработка
+		* цветовая палитра
+		* teamspeak - клиент
+		* GittyUp
+		* Oh My SVG
+		* Apache JMeter - нагрузочный тест
+	* дроны
+		* QGroundControl - MAVLink
+		* gpx-viewer, Enroute Flight Navigation
+		* Satellite - GPS ModemManager, gnss-share
+	* ИБ
+		* SCAP workbench
+	* железо
+	 	* pulseview, GTKWave, OpenHantek6022, pyfda - осцилограф
+		* SerialTest
+	 	* raspberry pi imager
+	 	* jstest-gtk - тест джойстика
+		* nvidia system monitor, GreenWithEnvy - nvidia
+		* modem manager gui
+		* redshift - цветовая температура
+	 	* hardware probe
+		* UEFITool
+		* JRomManager
+		* Zint Barcode Studio - qr коды
+		* gmone-firmware - прошивка fwupd
+		* LibrePCB
+ 	* офис, файлы, доки
+	 	* minder, freemind - mindmap
+	 	* pdf arranger, pdf slicer - пакетная обработка
+		* jPDF Tweak
+		* KRename - пакетное переименование файлов
+		* Converseen - пакетное перекодирование фото
+	 	* nextcloud desktop client, vup
+		* owncloud
+	* звук, видео
+	 	* audacity - обработка звука
+		* avidemux - редактор видео
+	* математика
+		* Kbrunch - упражнения с дробями
+
+ * zypper in grsync gsmartcontrol
+ * vmware pro
+ * heaptrack - визуализация использования памяти
  * vscode https://code.visualstudio.com/docs/setup/linux#_visual-studio-code-is-unable-to-watch-for-file-changes-in-this-large-workspace-error-enospc
 	```bash
 		# vscode extensions export backup
@@ -951,7 +1014,7 @@ Code:
 	* оформление рабочей среды - breeze
 	* оформление рабочего стола - breeze
 	* цвета - загрузить - honey oak
- * nvm
+ * [nvm](https://github.com/nvm-sh/nvm)
 	* !!! сделать снимок ФС/ВМ
  	* `npm i -g sass npm-check pm2 http-server`
 	* https://medium.com/the-tech-bench/getting-visual-studio-code-and-nvm-working-together-252ec0300895
@@ -969,7 +1032,6 @@ Code:
 
 		rm /var/lib/flatpak/repo
 	```
- * pulseaudio-equalizer
  * paprefs - для проигрывания звука по сети https://askubuntu.com/questions/28039/how-to-stream-music-over-the-network-to-multiple-computers
  * digikam
  * pidgin
@@ -978,11 +1040,7 @@ Code:
  * kalendar
  * akregator
  * перенести kwallet
- * sqldeveloper java
- * akonadi
  * ssh_keys
- * kfind
- * lame для диктофона
  * apcupsd установить, настроить
 
 ### зависает при выключении
@@ -1717,6 +1775,8 @@ pbzip2
 ```bash
 	zypper in yast2-rdp xrdp xorgxrdp
 ```
+ * remmnia
+ * krdc
 
 ## vnc
 
