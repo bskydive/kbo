@@ -307,6 +307,14 @@ Install libreoffice-theme-oxygen or libreoffice-theme-crystal and then follow  (
 
 ## HARDWARE
 
+
+### UEFI
+
+ * ["Cannot open /dev/vmmon: No such file or directory" error when powering on a VM (2146460)](https://kb.vmware.com/s/article/2146460)
+ * https://edk2-docs.gitbook.io/understanding-the-uefi-secure-boot-chain/additional_secure_boot_chain_implementations/machine_owner_key_mok
+ * https://en.opensuse.org/openSUSE:UEFI
+
+
 ### графический планшет
 
  * krita из discover
@@ -938,8 +946,7 @@ Code:
 	 * opentodolist
 	 * GraphUI
 	 * GitFiend
-
- *
+ * Ещё программы
 	* разработка
 		* цветовая палитра
 		* teamspeak - клиент
