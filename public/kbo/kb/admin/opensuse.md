@@ -872,11 +872,12 @@ Code:
 	* https://github.com/Drag13/HabrSanitizer
 ## installation migration OS
 
- * flatpak
-	* `zypper in flatpak`
-	* от пользователя! flatpak `flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo`
-	* или в discover - настройка - add flathub
- * для управления gcr keyring `zypper in seahorse`
+ * скачать firefox, chrome
+ * zypper rm MozillaFirefox MozillaFirefox-branding-openSUSE MozillaFirefox-translations-common
+ ```
+    zypper in zip rar unrar Crystalcursors dmz-icon-theme-cursors oxygen5-cursors tuxcursors oxygen5 oxygen5-icon-theme oxygen5-icon-theme-scalable oxygen5-style yast2-theme-oxygen pulseaudio-equalizer pavucontrol kfind
+ ```
+
  * включить numlock
  * настроить очистку tmp см `public/kbo/kb/admin/filesystems.md:56`
  * удалить snapper packagekit
@@ -890,9 +891,15 @@ Code:
  * рамки окна: цвета-цветовая схема-общие-цвет заголовка окна
  	* толщина рамки окна: оформление приложений - оформление окон - справа-внизу границы окна-тонкие
  * установка и настройка скайп SDB:Skype — openSUSE  PulseAudio — openSUSE (pavucontrol)
+    * для управления gcr keyring `zypper in seahorse`
+ * flatpak
+	* `zypper in flatpak`
+	* от пользователя! flatpak `flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo`
+	* или в discover - настройка - add flathub
  * перенос /home
  * перенос закладок в браузер
  * добавить ярлыки на таскбар, индикатор ЦП, погода, сеть
+ * виджет обновления - настроить - раз в месяц
  * десктоп - /usr/share/applications/
  * работа с документами - офис+экспорт в пдф
  * запомнить/перенести пароли для страниц в браузере
@@ -917,6 +924,9 @@ Code:
  * утилиты консоли
  * убрать boot splash screen
  * убрать синхронизацию ntp
+ * выключить поиск
+ * время блокировки экрана
+ * управление питанием - выключение, закрытие крышки
 
 ### установка программ
 
@@ -928,6 +938,7 @@ Code:
  * снести системный thunderbird
  * yed
  * krdc, freeRDP, remmnia
+ * openvpn
  * zypper in git gitk gitg git-cola java-17-openjdk-devel
  * zypper in pavucontrol pulseaudio-equalizer kfind lame
  * zypper in gimp kdenlive inkscape simplescreenrecorder
@@ -946,7 +957,46 @@ Code:
 	 * opentodolist
 	 * GraphUI
 	 * GitFiend
- * Ещё программы
+ * zypper in grsync gsmartcontrol
+ * vmware pro
+ * heaptrack - визуализация использования памяти
+ * vscode https://code.visualstudio.com/docs/setup/linux#_visual-studio-code-is-unable-to-watch-for-file-changes-in-this-large-workspace-error-enospc
+	```bash
+		# vscode extensions export backup
+		code --list-extensions >> vs_code_extensions_list.txt
+		code --list-extensions | xargs -n 1 code --uninstall-extension
+		cat vs_code_extensions_list.txt | xargs -n 1 code --force --install-extension
+
+		#Windows %APPDATA%\Code\User\settings.json
+		#macOS $HOME/Library/ApplicationSupport/Code/User/settings.json
+		#Linux $HOME/.config/Code/User/settings.json
+
+
+		cat > /etc/sysctl.d/vscode.sysctl.conf
+		# fs.inotify.max_user_watches=524288
+		# fs.file-max=1632119
+		sysctl -p
+		sysctl --system
+		sysctl fs.inotify.max_user_watches
+		cat /proc/sys/fs/inotify/max_user_watches
+		sysctl fs.file-max
+
+		cat /etc/security/limits.conf
+		# user hard nofile 16384
+		# user soft nofile 9216
+		ulimit -Sn
+		ulimit -Hn
+	```
+ * настроить цвета
+	* оформление рабочей среды - breeze
+	* оформление рабочего стола - breeze
+	* цвета - загрузить - honey oak
+ * [nvm](https://github.com/nvm-sh/nvm)
+	* !!! сделать снимок ФС/ВМ
+ 	* `npm i -g sass npm-check pm2 http-server`
+	* https://medium.com/the-tech-bench/getting-visual-studio-code-and-nvm-working-together-252ec0300895
+
+### Ещё программы
 	* разработка
 		* цветовая палитра
 		* teamspeak - клиент
@@ -987,44 +1037,6 @@ Code:
 	* математика
 		* Kbrunch - упражнения с дробями
 
- * zypper in grsync gsmartcontrol
- * vmware pro
- * heaptrack - визуализация использования памяти
- * vscode https://code.visualstudio.com/docs/setup/linux#_visual-studio-code-is-unable-to-watch-for-file-changes-in-this-large-workspace-error-enospc
-	```bash
-		# vscode extensions export backup
-		code --list-extensions >> vs_code_extensions_list.txt
-		code --list-extensions | xargs -n 1 code --uninstall-extension
-		cat vs_code_extensions_list.txt | xargs -n 1 code --force --install-extension
-
-		#Windows %APPDATA%\Code\User\settings.json
-		#macOS $HOME/Library/ApplicationSupport/Code/User/settings.json
-		#Linux $HOME/.config/Code/User/settings.json
-
-
-		cat > /etc/sysctl.d/vscode.sysctl.conf
-		# fs.inotify.max_user_watches=524288
-		# fs.file-max=1632119
-		sysctl -p
-		sysctl --system
-		sysctl fs.inotify.max_user_watches
-		cat /proc/sys/fs/inotify/max_user_watches
-		sysctl fs.file-max
-
-		cat /etc/security/limits.conf
-		# user hard nofile 16384
-		# user soft nofile 9216
-		ulimit -Sn
-		ulimit -Hn
-	```
- * настроить цвета
-	* оформление рабочей среды - breeze
-	* оформление рабочего стола - breeze
-	* цвета - загрузить - honey oak
- * [nvm](https://github.com/nvm-sh/nvm)
-	* !!! сделать снимок ФС/ВМ
- 	* `npm i -g sass npm-check pm2 http-server`
-	* https://medium.com/the-tech-bench/getting-visual-studio-code-and-nvm-working-together-252ec0300895
 
 ### old
 
