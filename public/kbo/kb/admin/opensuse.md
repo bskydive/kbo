@@ -930,6 +930,7 @@ Code:
 
 ### установка программ
 
+
  * снести системный firefox, установить плагины
  	* adblock / ublock
 	* noscript / whitelist
@@ -955,7 +956,7 @@ Code:
 	 * postman
 	 * KmCaster
 	 * opentodolist
-	 * GraphUI
+	 * GraphUI - graphviz
 	 * GitFiend
  * zypper in grsync gsmartcontrol
  * vmware pro
@@ -1003,15 +1004,20 @@ Code:
 		* GittyUp
 		* Oh My SVG
 		* Apache JMeter - нагрузочный тест
+		* RegExTester
 	* дроны
 		* QGroundControl - MAVLink
 		* gpx-viewer, Enroute Flight Navigation
 		* Satellite - GPS ModemManager, gnss-share
 	* ИБ
 		* SCAP workbench
+	* игры
+		* protontrics, protonplus
+		* flightgear - aero sim
 	* железо
 	 	* pulseview, GTKWave, OpenHantek6022, pyfda - осцилограф
 		* SerialTest
+		* Logisim evolution - digital logic designer and simulator
 	 	* raspberry pi imager
 	 	* jstest-gtk - тест джойстика
 		* nvidia system monitor, GreenWithEnvy - nvidia
@@ -1023,14 +1029,18 @@ Code:
 		* Zint Barcode Studio - qr коды
 		* gmone-firmware - прошивка fwupd
 		* LibrePCB
+		* Hotwire - tcpdump wireshark UI
  	* офис, файлы, доки
 	 	* minder, freemind - mindmap
 	 	* pdf arranger, pdf slicer - пакетная обработка
 		* jPDF Tweak
-		* KRename - пакетное переименование файлов
+		* KRename, CoreRenamer - пакетное переименование файлов
 		* Converseen - пакетное перекодирование фото
-	 	* nextcloud desktop client, vup
-		* owncloud
+	 	* owncloud, nextcloud desktop client, vup
+		* toggl track - time tracker
+		* czkawka, - dedupe
+		* AppImage pool - appimaagehub client
+		* converter now - unit converter
 	* звук, видео
 	 	* audacity - обработка звука
 		* avidemux - редактор видео
