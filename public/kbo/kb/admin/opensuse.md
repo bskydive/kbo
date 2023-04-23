@@ -981,6 +981,8 @@ Code:
 		* Converseen - пакетное перекодирование фото
 	 	* nextcloud desktop client, vup
 		* owncloud
+		* calibre - электронная библиотека, конвертер
+		* tellico - коллекция книг музыки
 	* звук, видео
 	 	* audacity - обработка звука
 		* avidemux - редактор видео
