@@ -4,6 +4,13 @@
 ## сравнение файловых систем
 
  * проектирование хранилищ данных и файловых систем [Работа с файлами — это сложно](https://habr.com/ru/post/573706/)
+ * https://serverfault.com/questions/1000767/ext4-vs-xfs-vs-btrfs-vs-zfs-for-nas
+ * https://losst.pro/obzor-ext4-vs-btrfs-vs-xfs
+ * ext4 - стандарт, есть ограничения по количеству файлов
+ * xfs - больше файлов
+ * btrfs - умеет снимки, управление томами типа LVM
+ * zfs - требует оперативку ECC
+ * [дедупликация](https://news.ycombinator.com/item?id=22183330) dupremove, bedup, btrfs-dedupe, bees, dduper.
 
 ## тестирование производительности
 
