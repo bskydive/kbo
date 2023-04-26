@@ -237,26 +237,30 @@ xauth -
 
 ```
 
-## crop pdf
+## PDF
 
- * https://pdf.online/crop-pdf
 
-## jpeg to pdf
+ * fix pdf
+	```
+	gs -o repaired.pdf -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress damaged.pdf
+	```
+ * crop pdf
+	 * https://pdf.online/crop-pdf
+ * jpeg to pdf
 
     ```bash
     convert -quality 100 -density 100 -trim test*.jpeg single.pdf
     convert -geometry 1024 -quality 100 -density 100 -trim 09.STEPANOV.ACT*.jpeg 09.STEPANOV.ACT.SIGNED.pdf
     ```
-## pdf to jpeg
+ * pdf to jpeg
+	```bash
+	mcedit /etc/ImageMagick-7/policy.xml
+		<policymap>
+			<!-- <policy domain="coder" rights="write" pattern="PDF" /> -->
+			<policy domain="coder" rights="read|write" pattern="PDF" />
 
-```bash
-mcedit /etc/ImageMagick-7/policy.xml
-	<policymap>
-		<!-- <policy domain="coder" rights="write" pattern="PDF" /> -->
-		<policy domain="coder" rights="read|write" pattern="PDF" />
-
-convert -density 300 -depth 8 -quality 90 input.pdf output.png
-```
+	convert -density 300 -depth 8 -quality 90 input.pdf output.png
+	```
 
 ## network
 
