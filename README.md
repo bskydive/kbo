@@ -164,3 +164,7 @@ Also, I'm using it as a bookmarking service starting from the 2014.
 
 * [Contacts](https://stepanovv.ru/portfolio/portfolio.html#id-contacts)
 
+## TODO
+
+ * remove obsolete tslint.json
+ * replace docsify with obsidian
