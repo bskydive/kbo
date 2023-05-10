@@ -703,7 +703,6 @@
 .c-portfolio-button ul li button {
   display: inline-block;
   background-color: #757575;
-  width: -webkit-max-content;
   width: max-content;
   box-shadow: 4px 4px 4px 0 #000;
   -webkit-box-shadow: 4px 4px 4px 0 #000;
@@ -742,7 +741,6 @@
   background-color: #757575;
   color: inherit;
   display: inline-block;
-  width: -webkit-max-content;
   width: max-content;
 }
 .c-portfolio-button ul li span:hover,

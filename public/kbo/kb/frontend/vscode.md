@@ -55,7 +55,8 @@
 		nvm install 16 --default
 		#nvm i 16
 		#nvm alias default 16
-		cat >> .vscode/launch.json
+		#nvm alias default node
+		cat >> ~/.vscode/launch.json
 	```
 
 	```json

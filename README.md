@@ -18,9 +18,11 @@ Also, I'm using it as a bookmarking service starting from the 2014.
 ### How do I get set up?
 
 ```bash
-	#!!! Currently gulp can run on node version 10
-	nvm install 16
-	nvm use 16
+	# Currently gulp can run on node version 20
+	nvm install 20 --default
+	nvm alias default 20
+	nvm alias default node
+	nvm current
 	# Install dependencies
 	npm i
 	# Build dev and run
@@ -50,11 +52,21 @@ Also, I'm using it as a bookmarking service starting from the 2014.
 
 ### Docsify upgrade
 
+ * update packages
+ ```bash
+	# lock the "gulp-imagemin": "7.1.0" version or use "type": "module", in package.json
+	nvm use 20
+ 	npm run up
+	rm -r node_modules/
+	npm i
+ ```
  * init docsify
 	```bash
-	 	npm run kbo-init
+		rm -r public/docsify-init/
+	 	npm run kb-init
+		# see public/docsify-init
 	```
- * [BROKEN] js+css [PrismJS](https://prismjs.com/download.html#themes=prism-dark&languages=markup+css+clike+javascript+bash+java+javadoc+javadoclike+jsdoc+json+json5+less+markdown+pug+python+sass+scss+stylus+typescript+yaml&plugins=toolbar+download-button) to `vendor/`
+ * [BROKEN] js+css [PrismJS](https://prismjs.com/download.html#themes=prism-dark&languages=markup+css+clike+javascript&plugins=line-numbers+toolbar+copy-to-clipboard+download-button) to `vendor/`
  *  download highlight plugin js except `core`: https://cdn.jsdelivr.net/npm/prismjs@1/components/
 	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-bash.min.js
 	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-css.min.js
@@ -168,4 +180,3 @@ Also, I'm using it as a bookmarking service starting from the 2014.
 
  * remove obsolete tslint.json
  * replace docsify with obsidian
- 
