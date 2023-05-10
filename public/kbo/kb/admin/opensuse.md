@@ -949,23 +949,79 @@ Code:
  * zypper in gimp kdenlive inkscape simplescreenrecorder
  * digikam - коллекция фото
  * flatpak+flathub
-	 * freefilesync
-	 * blender
-	 * krita
-	 * Piper - назначение кнопок мыши
-	 * Figma for linux
-	 * octave - 3d графики
-	 * flowtime - pomodoro
- 	 * obs studio
-	 * postman
-	 * KmCaster
-	 * opentodolist
-	 * GraphUI - graphviz
-	 * GitFiend
+	* freefilesync
+	* blender
+	* krita
+	* Piper - назначение кнопок мыши
+	* Figma for linux
+	* octave - 3d графики
+	* flowtime - pomodoro
+ 	* obs studio
+	* postman
+	* KmCaster
+	* opentodolist
+	* GitFiend
+	* GittyUp
  * zypper in grsync gsmartcontrol
  * vmware pro
  * heaptrack - визуализация использования памяти
  * vscode https://code.visualstudio.com/docs/setup/linux#_visual-studio-code-is-unable-to-watch-for-file-changes-in-this-large-workspace-error-enospc
+	* extensions
+	```txt
+		adammaras.overtype
+		Angular.ng-template
+		dbaeumer.vscode-eslint
+		donjayamanne.githistory
+		eamodio.gitlens
+		EditorConfig.EditorConfig
+		esbenp.prettier-vscode
+		ezforo.copy-relative-path-and-line-numbers
+		firsttris.vscode-jest-runner
+		formulahendry.auto-rename-tag
+		joaompinto.vscode-graphviz
+		jock.svg
+		johnpapa.Angular2
+		johnpapa.vscode-peacock
+		k--kato.intellij-idea-keybindings
+		maptz.camelcasenavigation
+		MariusAlchimavicius.json-to-ts
+		mhutchie.git-graph
+		MS-CEINTL.vscode-language-pack-ru
+		ms-vscode.vscode-typescript-tslint-plugin
+		nhoizey.gremlins
+		obenjiro.arrr
+		paragdiwan.gitpatch
+		rctay.karma-problem-matcher
+		redhat.vscode-yaml
+		rokoroku.vscode-theme-darcula
+		sallar.json-to-js-object
+		SimonTest.simontest
+		streetsidesoftware.code-spell-checker
+		streetsidesoftware.code-spell-checker-russian
+		stylelint.vscode-stylelint
+		sysoev.language-stylus
+		usernamehw.todo-md
+		vscode-icons-team.vscode-icons
+		yzane.markdown-pdf
+	```
+	* disabled
+	```txt
+		pustelto.bracketeer
+		cmstead.js-codeformer
+		hangxingliu.vscode-coding-tracker
+		ms-vscode-remote.remote-ssh
+		ms-vscode-remote.remote-ssh-edit
+		ms-vscode.remote-explorer
+		CoenraadS.bracket-pair-colorizer-2
+		dsznajder.es7-react-js-snippets
+		p42ai.refactor
+		thisismanta.stylus-supremacy
+		Shan.code-settings-sync
+		WakaTime.vscode-wakatime
+		VisualStudioExptTeam.intellicode-api-usage-examples
+		VisualStudioExptTeam.vscodeintellicode
+	```
+	*
 	```bash
 		# vscode extensions export backup
 		code --list-extensions >> vs_code_extensions_list.txt
@@ -1007,10 +1063,10 @@ Code:
 * разработка
 	* цветовая палитра
 	* teamspeak - клиент
-	* GittyUp
 	* Oh My SVG
 	* Apache JMeter - нагрузочный тест
 	* RegExTester
+	* GraphUI - graphviz
 * дроны
 	* QGroundControl - MAVLink
 	* gpx-viewer, Enroute Flight Navigation
