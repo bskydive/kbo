@@ -52,52 +52,66 @@ Also, I'm using it as a bookmarking service starting from the 2014.
 
 ### Docsify upgrade
 
+#### Upgrade from packages
+
  * update packages
  ```bash
 	# lock the "gulp-imagemin": "7.1.0" version or use "type": "module", in package.json
-	nvm use 20
  	npm run up
 	rm -r node_modules/
+	nvm use 20
 	npm i
  ```
  * init docsify
 	```bash
 		rm -r public/docsify-init/
 	 	npm run kb-init
-		# see public/docsify-init
+		cp public/docsify-init/docsify.js public/vendor/
+		rm -r public/docsify-init/
 	```
- * [BROKEN] js+css [PrismJS](https://prismjs.com/download.html#themes=prism-dark&languages=markup+css+clike+javascript&plugins=line-numbers+toolbar+copy-to-clipboard+download-button) to `vendor/`
- *  download highlight plugin js except `core`: https://cdn.jsdelivr.net/npm/prismjs@1/components/
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-bash.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-css.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-css-extras.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-java.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-javadoc.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-javascript.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-js-extras.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-jsdoc.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-json.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-jsx.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-less.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-log.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-markdown.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-markup.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-markup-templating.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-pug.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-python.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-sass.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-scss.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-stylus.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-typescript.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-tsx.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-yaml.min.js
+ * [download prism highlight plugins(ts won't work)](https://prismjs.com/download.html#themes=prism-dark&languages=markup+css+clike+javascript+bash+java+javadoc+javadoclike+jsdoc+json+json5+less+markdown+pug+python+sass+scss+stylus+typescript+yaml&plugins=line-numbers+toolbar+download-button)
+ *  [download prism highlight plugins except `core`(works fine)](https://cdn.jsdelivr.net/npm/prismjs@1/components/)
+```bash
+	cd public/vendor/
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css-extras.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javadoc.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-js-extras.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsdoc.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-less.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-log.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markdown.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markup.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markup-templating.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-pug.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-sass.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-scss.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-stylus.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-yaml.min.js
+```
+
  * download plugins
-	* https://cdn.jsdelivr.net/npm/docsify-copy-code
-	* https://cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js
-	* https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js
+```bash
+	cd public/vendor/
+	wget https://cdn.jsdelivr.net/npm/docsify-copy-code
+	wget https://cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js
+	wget https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js
+```
+
  * download fonts
  	* https://fonts.googleapis.com/css?family=Roboto+Mono:300,400,600
 	* https://fonts.google.com/specimen/Roboto+Mono?query=roboto#standard-styles
+
+#### Upgrade from sources
+
  * modify `./src/docsify/themes/dark.styl`
 	*
 		```styl
