@@ -37,6 +37,7 @@
 	 * [GIT](kb/frontend/git.md)
 	 * [html](kb/frontend/html.md)
 	 * [javaScript](kb/frontend/javascript.md)
+	 * [typeScript](kb/frontend/typescript.md)
 	 * [IDEA](kb/frontend/idea/idea.md)
 	 * [Мобильная разработка](kb/frontend/mobile.md)
 	 * [android](kb/frontend/android)

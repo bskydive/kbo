@@ -1,8 +1,8 @@
 # JavaScript
 
-1. В chrome заблокирован вывод window.confirm по событию закрытия вкладки. 
+1. В chrome заблокирован вывод window.confirm по событию закрытия вкладки.
 	Поэтому, выполняем [хак](https://stackoverflow.com/questions/7794301/window-onunload-is-not-working-properly-in-chrome-browser-can-any-one-help-me)
-	
+
 	```js
 	$window.onbeforeunload = function (event)
 								{
@@ -29,24 +29,24 @@
 	const NUMBER_VOCABULARY_POSITION = 888;
 
 	```
-	
+
 1. Числовые значения не обозначающие количество/порядковый номер необходимо объявлять как константы для удобства чтения.
 
 	Неверно:
-	
+
 	```js
 		if (user.type === 888) {}
 	```
-	
+
 	Верно:
-    	
+
     ```js
     	const USER_TYPE_RECRUITER = 888;
     	if (user.type === USER_TYPE_RECRUITER) {}
     ```
-    
+
 1. Константы, логически отосящиеся к сервисам необходимо объявлять внутри них для сокращения кода.
-	
+
 	```js
         if (user.type === authService.USER_TYPE_RECRUITER) {}
 	```
@@ -70,27 +70,27 @@
 
 1. При рефакторинге кода необходимо [описывать функции](http://usejsdoc.org/) для удобства чтения.
 	Если потратили время на разбор, то необходимо сохранить и переиспользовтаь результаты труда.
-	
+
 	пример:
 	```js
 	/**
 		* Что делает функция с точки зрения бизнес-логики, а не перечисление названий переменных.
 	 	* Крайне желательно указать где её вызывают
- 		* Крайне желательно описать формат объектов переменных на вход и выход 
+ 		* Крайне желательно описать формат объектов переменных на вход и выход
 		*
 		* @param {тип_данных} название_входного_параметра - описание возможных вариантов значений
 		* @return {тип_данных} -  описание возможных вариантов значений
 		*/
-	
+
 	```
-	
+
 
 1. Функции с возвратом промиссов должны возвращать одинаковый тип данных
 
 	Верно:
 	```js
 	function fun1(){
-		if (var1){	
+		if (var1){
 			return service1.fun2()
 						.then(data => {
 							//...
@@ -105,7 +105,7 @@
 		}
 	};
 	```
-	
+
 	НеВерно:
 	```js
 	function fun1(){
@@ -120,7 +120,7 @@
   		}
     };
 	```
-	
+
 1. В код вывода в консоль при отладке необходимо вставлять указание на место вызова, чтобы быстрее удалять ненужный код.
 	В intellij* IDE это ctrl+shift+alt+c, ctrl+v
 
@@ -128,7 +128,7 @@
 	console.log('src/app/main/login/login-modal-controller.js:68',user);
 
 	```
-	
+
 1. Для перехвата catch() промисов необходимо возвращать промис:
 
 	Верно:
@@ -149,9 +149,9 @@
         						})
         						.catch(error => {
 	       						 });
-	
-	``` 
-	
+
+	```
+
 	НеВерно:
 	```js
 		loginToken = function (token) {
@@ -171,16 +171,16 @@
 								})
 								.catch(error => {
 								 });
-	``` 
-	
-1. Если для одинарного показа модального окна необходимо перед вызовом функции показа записывать 
-	`localStorage.setItem('isModalXYZOpenedOnce' , '1')`, то необходимо 
-   добавить в `authService.cleanUserLocalData --> localStorage.removeItem('isModalXYZOpenedOnce')`. 
+	```
+
+1. Если для одинарного показа модального окна необходимо перед вызовом функции показа записывать
+	`localStorage.setItem('isModalXYZOpenedOnce' , '1')`, то необходимо
+   добавить в `authService.cleanUserLocalData --> localStorage.removeItem('isModalXYZOpenedOnce')`.
    Т.к. после логина нового пользователя он может быть уже другим даже на одном и том же браузере.
-   
+
 1. Использовать вызовы сервисов вместо прямого доступа к переменным. Это сокращает код.
 	`authService.getUserLocalData().typeName` вместо $rootScope.user.typeName
-	
+
 1. Дублированный код необходимо переносить в отдельный сервис/функцию.
 
 1. Использовать для отображения и логгирования ошибок errorService: `src/app/common/services/error-service.js`:
@@ -234,21 +234,21 @@
 1. Параметры функций необходимо описывать как объект чтобы избежать ошибок перепутанных местами параметров. Это также позволяет исопльзовать интерфейсы для описания параметров
 
     ```ts
-    interface IOneParams {a?:string; b?:string}
-    
-    function one(params?: IOneParams) {}
-    
-    one({b:'aaa', a:'bbb'})
-    
+		interface IOneParams {a?:string; b?:string}
+
+		function one(params?: IOneParams) {}
+
+		one({b:'aaa', a:'bbb'})
+
     ```
 1. использовать объекты для логически связанных структур данных. Помогает валидировать и добавляет автоподстановку через IDE в HTML/js.
     ```ts
-    obj:{
-    param1:string,
-    param2:string,
-    param3:ISomeInterface[] = DEFAULT.obj.param3;
-    param3Modified:ISomeInterface[] = DEFAULT.obj.param3;
-    param3Filtered:ISomeInterface[] = DEFAULT.obj.param3;
-    sendData: () => {return apiService.getObj({param1:param1})}
-    }
+		obj: {
+			param1:string,
+			param2:string,
+			param3:ISomeInterface[] = DEFAULT.obj.param3;
+			param3Modified:ISomeInterface[] = DEFAULT.obj.param3;
+			param3Filtered:ISomeInterface[] = DEFAULT.obj.param3;
+			sendData: () => {return apiService.getObj({param1:param1})}
+		}
     ```

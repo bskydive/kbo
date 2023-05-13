@@ -1,6 +1,8 @@
 
 # bash
 
+ * https://github.com/bskydive/ssh-agentless-monitoring/blob/master/monitoring.sh
+
 ## unlimited bash history
 
 
