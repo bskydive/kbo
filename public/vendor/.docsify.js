@@ -3,7 +3,7 @@
 
 window.$docsify = {
 	name: 'База знаний',
-	repo: 'https://github.com/bskydive/kbo/blob/master/public/kbo/index.md',
+	repo: 'https://gitlab.com/stepanovv/kbo/tree/master/public/kbo/index.md',
 	// basePath: '/kbo/', // Base path of the website. You can set it to another directory or another domain name.
 	homepage: 'index.md',
 	formatUpdated: '{DD}.{MM}.{YYYY} {HH}:{mm}',
