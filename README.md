@@ -169,12 +169,13 @@ Also, I'm using it as a bookmarking service starting from the 2014.
 
 ### That is the features? ###
 
+* markdown KB docsify@4.13.0 engine
 * System and icons fonts
 * Responsive design
 * noScript warning
 * free hosting
 * Open repository on gitlab
-* Gulp, Stylus, PUG, JS
+* Gulp@4.0.2, Stylus, PUG, JS frameworkless code
 * CSS-first design. Less js code for animation and interaction.
 * Modular structure. One component - one folder.
 * 27977 lines in kbo md files
@@ -183,6 +184,7 @@ Also, I'm using it as a bookmarking service starting from the 2014.
 	* `find ./public/kbb/ -type f -name '*.md' -exec wc -l {} \; | awk '{ total += $1 } END {print total}'`
 
 ### What does the application interact with?  ###
+
 * portfolio, quotes, timer app - itself only
 * weather app - with https://api.openweathermap.org/
 
