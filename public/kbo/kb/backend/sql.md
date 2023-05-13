@@ -1,5 +1,6 @@
 # SQL
 
+ * https://bitbucket.org/bskydive/bookstore-server/src/master/bookStoreServer/sql/
  * [транзакционность DDL](https://wiki.postgresql.org/wiki/Transactional_DDL_in_PostgreSQL:_A_Competitive_Analysis)
  * [join](https://habrahabr.ru/post/278087/)
  * [Понимание джойнов сломано. Это точно не пересечение кругов, честно](https://habr.com/ru/post/448072/)
@@ -43,7 +44,7 @@
 ## Анализ sql
 
  * https://livesql.oracle.com/apex/livesql/file/index.html
- 
+
 
 
 

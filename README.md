@@ -18,9 +18,11 @@ Also, I'm using it as a bookmarking service starting from the 2014.
 ### How do I get set up?
 
 ```bash
-	#!!! Currently gulp can run on node version 10
-	nvm install 16
-	nvm use 16
+	# Currently gulp can run on node version 20
+	nvm install 20 --default
+	nvm alias default 20
+	nvm alias default node
+	nvm current
 	# Install dependencies
 	npm i
 	# Build dev and run
@@ -50,42 +52,66 @@ Also, I'm using it as a bookmarking service starting from the 2014.
 
 ### Docsify upgrade
 
+#### Upgrade from packages
+
+ * update packages
+ ```bash
+	# lock the "gulp-imagemin": "7.1.0" version or use "type": "module", in package.json
+ 	npm run up
+	rm -r node_modules/
+	nvm use 20
+	npm i
+ ```
  * init docsify
 	```bash
-	 	npm run kbo-init
+		rm -r public/docsify-init/
+	 	npm run kb-init
+		cp public/docsify-init/docsify.js public/vendor/
+		rm -r public/docsify-init/
 	```
- * [BROKEN] js+css [PrismJS](https://prismjs.com/download.html#themes=prism-dark&languages=markup+css+clike+javascript+bash+java+javadoc+javadoclike+jsdoc+json+json5+less+markdown+pug+python+sass+scss+stylus+typescript+yaml&plugins=toolbar+download-button) to `vendor/`
- *  download highlight plugin js except `core`: https://cdn.jsdelivr.net/npm/prismjs@1/components/
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-bash.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-css.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-css-extras.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-java.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-javadoc.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-javascript.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-js-extras.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-jsdoc.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-json.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-jsx.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-less.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-log.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-markdown.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-markup.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-markup-templating.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-pug.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-python.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-sass.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-scss.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-stylus.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-typescript.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-tsx.min.js
-	* https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-yaml.min.js
+ * [download prism highlight plugins(ts won't work)](https://prismjs.com/download.html#themes=prism-dark&languages=markup+css+clike+javascript+bash+java+javadoc+javadoclike+jsdoc+json+json5+less+markdown+pug+python+sass+scss+stylus+typescript+yaml&plugins=line-numbers+toolbar+download-button)
+ *  [download prism highlight plugins except `core`(works fine)](https://cdn.jsdelivr.net/npm/prismjs@1/components/)
+```bash
+	cd public/vendor/
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css-extras.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javadoc.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-js-extras.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsdoc.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-less.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-log.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markdown.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markup.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markup-templating.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-pug.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-sass.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-scss.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-stylus.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js
+	wget https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-yaml.min.js
+```
+
  * download plugins
-	* https://cdn.jsdelivr.net/npm/docsify-copy-code
-	* https://cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js
-	* https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js
+```bash
+	cd public/vendor/
+	wget https://cdn.jsdelivr.net/npm/docsify-copy-code
+	wget https://cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js
+	wget https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js
+```
+
  * download fonts
  	* https://fonts.googleapis.com/css?family=Roboto+Mono:300,400,600
 	* https://fonts.google.com/specimen/Roboto+Mono?query=roboto#standard-styles
+
+#### Upgrade from sources
+
  * modify `./src/docsify/themes/dark.styl`
 	*
 		```styl
@@ -143,20 +169,22 @@ Also, I'm using it as a bookmarking service starting from the 2014.
 
 ### That is the features? ###
 
+* markdown KB docsify@4.13.0 engine
 * System and icons fonts
 * Responsive design
 * noScript warning
 * free hosting
 * Open repository on gitlab
-* Gulp, Stylus, PUG, JS
+* Gulp@4.0.2, Stylus, PUG, JS frameworkless code
 * CSS-first design. Less js code for animation and interaction.
 * Modular structure. One component - one folder.
-* 24575 lines in kbo md files
+* 27977 lines in kbo md files
 	* `find ./public/kbo/ -type f -name '*.md' -exec wc -l {} \; | awk '{ total += $1 } END {print total}'`
-* 2878 lines in kbb md files
-* `find ./public/kbb/ -type f -name '*.md' -exec wc -l {} \; | awk '{ total += $1 } END {print total}'`
+* 2921 lines in kbb md files
+	* `find ./public/kbb/ -type f -name '*.md' -exec wc -l {} \; | awk '{ total += $1 } END {print total}'`
 
 ### What does the application interact with?  ###
+
 * portfolio, quotes, timer app - itself only
 * weather app - with https://api.openweathermap.org/
 
@@ -166,6 +194,5 @@ Also, I'm using it as a bookmarking service starting from the 2014.
 
 ## TODO
 
- * remove obsolete tslint.json
+ * add automatic stats collection: lines of md files
  * replace docsify with obsidian
- 

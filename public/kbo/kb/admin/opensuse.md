@@ -949,49 +949,24 @@ Code:
  * zypper in gimp kdenlive inkscape simplescreenrecorder
  * digikam - коллекция фото
  * flatpak+flathub
-	 * freefilesync
-	 * blender
-	 * krita
-	 * Piper - назначение кнопок мыши
-	 * Figma for linux
-	 * octave - 3d графики
-	 * flowtime - pomodoro
- 	 * obs studio
-	 * postman
-	 * KmCaster
-	 * opentodolist
-	 * GraphUI - graphviz
-	 * GitFiend
+	* freefilesync
+	* blender
+	* krita
+	* Piper - назначение кнопок мыши
+	* Figma for linux
+	* octave - 3d графики
+	* flowtime - pomodoro
+ 	* obs studio
+	* postman
+	* KmCaster
+	* opentodolist
+	* GitFiend
+	* GittyUp
  * zypper in grsync gsmartcontrol
  * vmware pro
  * heaptrack - визуализация использования памяти
  * vscode https://code.visualstudio.com/docs/setup/linux#_visual-studio-code-is-unable-to-watch-for-file-changes-in-this-large-workspace-error-enospc
-	```bash
-		# vscode extensions export backup
-		code --list-extensions >> vs_code_extensions_list.txt
-		code --list-extensions | xargs -n 1 code --uninstall-extension
-		cat vs_code_extensions_list.txt | xargs -n 1 code --force --install-extension
-
-		#Windows %APPDATA%\Code\User\settings.json
-		#macOS $HOME/Library/ApplicationSupport/Code/User/settings.json
-		#Linux $HOME/.config/Code/User/settings.json
-
-
-		cat > /etc/sysctl.d/vscode.sysctl.conf
-		# fs.inotify.max_user_watches=524288
-		# fs.file-max=1632119
-		sysctl -p
-		sysctl --system
-		sysctl fs.inotify.max_user_watches
-		cat /proc/sys/fs/inotify/max_user_watches
-		sysctl fs.file-max
-
-		cat /etc/security/limits.conf
-		# user hard nofile 16384
-		# user soft nofile 9216
-		ulimit -Sn
-		ulimit -Hn
-	```
+ * [extensions](/kbo/#/kb/frontend/vscode)
  * настроить цвета
 	* оформление рабочей среды - breeze
 	* оформление рабочего стола - breeze
@@ -1007,10 +982,10 @@ Code:
 * разработка
 	* цветовая палитра
 	* teamspeak - клиент
-	* GittyUp
 	* Oh My SVG
 	* Apache JMeter - нагрузочный тест
 	* RegExTester
+	* GraphUI - graphviz
 * дроны
 	* QGroundControl - MAVLink
 	* gpx-viewer, Enroute Flight Navigation
