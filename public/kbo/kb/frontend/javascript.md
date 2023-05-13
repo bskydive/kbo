@@ -1,5 +1,7 @@
 #  Javascript
 
+ * https://gitlab.com/stepanovv/kbo/blob/master/src/app/timer/timer.js
+
 ##  лучшие практики
 
  * [стили](/kbo/developer/frontend.md)

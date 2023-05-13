@@ -1770,12 +1770,8 @@ const httpOptions = {
 
 ## angular material
 
- * [The complete guide to Angular Material Themes](https://medium.com/@tomastrajan/the-complete-guide-to-angular-material-themes-4d165a9d24d1)
- * https://material.angular.io/guide/theming
- * https://material.angular.io/guide/theming-your-components
- * https://github.com/angular/material2/blob/master/src/lib/core/theming/_theming.scss
- * https://material.angular.io/guide/customizing-component-styles
- * http://blog.bogdancarpean.com/create-custom-color-theme-on-angular-material/
+* [material angular](kb/frontend/design)
+
 ### material CDK
 
  * [Tooltip with Angular CDK](https://medium.com/angular-in-depth/building-tooltips-for-angular-3cdaac16d138)

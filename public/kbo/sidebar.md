@@ -11,6 +11,7 @@
 	 * [pug](kb/conventions/pug.md)
 	 * [организация](kb/conventions/организация.md)
 	 * [trello](kb/conventions/trello.md)
+	 * [trello](kb/conventions/jira.md)
  * Библиотеки и экосистемы
 	 * [angular1](kb/frontend/framework/angular1.md)
 	 * [angular2](kb/frontend/framework/angular2.md)
