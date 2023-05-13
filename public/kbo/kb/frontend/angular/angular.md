@@ -32,6 +32,7 @@
 		* [changelog](https://blog.angular.io/angular-v13-is-now-available-cce66f7bc296)
 	* 2022 - 14 - Strictly Typed Reactive Forms; standalone components, directives and pipes: add imports directly in your @Component() without an @NgModule()
 		* [changelog](https://blog.angular.io/angular-v14-is-now-available-391a6db736af)
+		* standalone components dev preview
 	* 2022 - 15 - ngmodule --> standalone migration
 		* [changelog](https://blog.angular.io/angular-v15-is-now-available-df7be7f2f4c8)
 		* deprecating providedIn: NgModule. If you should truly scope providers to a specific NgModule, use NgModule.providers instead
@@ -157,6 +158,32 @@
 		* облегчение рефакторинга, автоматическая инъекция зависимостей по всей цепочке
 		* облегчение юнит-тестирования сервисов
 		* переиспользование сервисов
+	* в версии 15 появился [standalone component](https://angular.io/guide/standalone-components) - обёртка компонентов без модулей
+		```ts
+			// импорт внутрь автономного
+			@Component({
+				standalone: true,
+				selector: 'photo-gallery',
+				imports: [RegularComponent, RegularModule],
+				template: `
+					... <image-grid [images]="imageList"></image-grid>
+				`,
+			})
+			export class StandaloneComponent {
+				// component logic
+			}
+
+			// импорт автономного в обычный модуль
+			@NgModule({
+				declarations: [AlbumComponent],
+				exports: [AlbumComponent],
+				imports: [StandaloneComponent],
+			})
+			export class AlbumModule {}
+
+			// можно стартовать в main.ts из автономного компонента
+			bootstrapApplication(StandaloneComponent);
+		```
 	* синглтон https://angular.io/guide/architecture-services#providing-services
 		* для всего приложения: в аннотации компонента `@Injectable({providedIn: 'root'})` https://angular.io/api/core/Injectable#injectable
 			* root: для приложения
@@ -467,6 +494,8 @@
 1. TemplateRef, ElementRef, в чем разница?
 	* ссылка на ng-template или любой элемент
 	* шаблон можно передать в директиву ngTemplateOutlet а элемент в componentOutlet
+        * `<ng-container *ngTemplateOutlet='someVar'>`
+        * `<ng-container *ngComponentOutlet='someVar'>`
 1. template input variable
 	* https://angular.io/guide/template-reference-variables#template-input-variable
 	* у let-* и #* переменных разные пространства имён
@@ -720,7 +749,8 @@
 	* OnPush ("CheckOnce") -
 		* https://angular.io/guide/lifecycle-hooks#using-change-detection-hooks
 		* https://angular.io/api/core/ChangeDetectorRef#usage-notes
-		* ручная проверка
+		* влияет на хук ngOnChanges
+        * ручная проверка
 		* поменялась @Input ссылка(не значение)
 		* DOM event(input) для связанных свойств
 		* async pipe(rxjs, promise)
@@ -1071,7 +1101,7 @@
 	})
 	export class AppModule {}
  ```
- * 
+ *
 ## RxJS
  * public/kbo/kb/frontend/angular/rxjs.md
 
@@ -1094,11 +1124,24 @@
 		* общее правило - добавлять :host или связывать с селектором компонента для предотвращения расползания охвата `:host ::ng-deep h3 {`
 	* `::part()` - [дополнительный идентификатор](https://developer.mozilla.org/en-US/docs/Web/CSS/::part)
 
-		```scss
-			//<div part="tab">Tab 3</div>
-			tabbed-custom-element::part(tab):focus {
+	```scss
+		//<div part="tab">Tab 3</div>
+		tabbed-custom-element::part(tab):focus {
+		}
+	```
+ * [css variables, css custom properties](https://netbasal.com/binding-css-variables-in-angular-69dfd4136e21)
+
+ 	```html
+		<button *ngFor="let item of items; index as index"
+				[style.--animation-delay]="index * 0.2 + 's'">
+		{{ item }}
+		</button>
+	```
+	```scss
+			:button {
+				...
+				animation-delay: var(--animation-delay);
 			}
-		```
- * css variables(css custom properties)
+	```
 
 

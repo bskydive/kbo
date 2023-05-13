@@ -4,6 +4,13 @@
 ## сравнение файловых систем
 
  * проектирование хранилищ данных и файловых систем [Работа с файлами — это сложно](https://habr.com/ru/post/573706/)
+ * https://serverfault.com/questions/1000767/ext4-vs-xfs-vs-btrfs-vs-zfs-for-nas
+ * https://losst.pro/obzor-ext4-vs-btrfs-vs-xfs
+ * ext4 - стандарт, есть ограничения по количеству файлов
+ * xfs - больше файлов
+ * btrfs - умеет снимки, управление томами типа LVM
+ * zfs - требует оперативку ECC
+ * [дедупликация](https://news.ycombinator.com/item?id=22183330) dupremove, bedup, btrfs-dedupe, bees, dduper.
 
 ## тестирование производительности
 
@@ -222,11 +229,36 @@ find . -inum 17040033 -exec mv {} new-directory-name1 \;
 	smartctl -t short /dev/sdd
 	smartctl -a /dev/sdd
 
+	#температура всех дисков
+	smartctl --scan | awk '{print $1}' | xargs -n 1 smartctl -a | grep -i temperature_celsius
+
+	# 194 Temperature_Celsius     0x0022   064   046   000    Old_age   Always       -       36 (Min/Max 23/54)
+	# 194 Temperature_Celsius     0x0022   112   091   000    Old_age   Always       -       31
+	# 194 Temperature_Celsius     0x0022   112   089   000    Old_age   Always       -       31
+	# 194 Temperature_Celsius     0x0022   064   054   000    Old_age   Always       -       36 (Min/Max 24/46)
+
+	#ошибки
+	smartctl --scan | awk '{print $1}' | xargs -n 1 smartctl -a | grep -i reallocated_sector
+
+	# 5 Reallocated_Sector_Ct   0x0033   100   100   010    Pre-fail  Always       -       0
+	# 5 Reallocated_Sector_Ct   0x0033   200   200   140    Pre-fail  Always       -       0
+	# 5 Reallocated_Sector_Ct   0x0033   200   200   140    Pre-fail  Always       -       0
+	# 5 Reallocated_Sector_Ct   0x0033   100   100   010    Pre-fail  Always       -       0
+
+	# максимальная температура
+	smartctl --scan | awk '{print $1}' | xargs -n 1 smartctl -x | grep -i lifetime | grep -i celsius
+
+	# Lifetime    Min/Max Temperature:     23/54 Celsius
+	# Lifetime    Min/Max Temperature:     24/52 Celsius
+	# Lifetime    Min/Max Temperature:     24/55 Celsius
+	# Lifetime    Min/Max Temperature:     24/46 Celsius
  ```
 
-## smart hdd read-only Mode
+ *
+ *
 
- * включается режим только для чтения при автоматической проверке
+ * gsmartcontrol
+ * smart hdd read-only Mode: включается режим только для чтения при автоматической проверке
     ```bash
 		systemctl status smartd
 		systemctl stop smartd
@@ -282,7 +314,12 @@ find . -inum 17040033 -exec mv {} new-directory-name1 \;
 		2      118GB   119GB   790MB                   primary  bios_grub
 
 	#принудительная проверка с автоблокировкой плохих секторов
-	> e2fsck -cCVf /dev/sda3
+	#> e2fsck -cCVf /dev/sda3
+	> e2fsck -ckttf -j fsck.log -z fsck.undo /dev/sda1
+		#e2fsck 1.46.4 (18-Aug-2021)
+		#Overwriting existing filesystem; this can be undone using the command:
+		#	e2undo fsck.undo /dev/sda1
+		#Checking for bad blocks (read-only test):  30.64% done, 0:29 elapsed. (0/0/0 errors)
 	#поиск резервных суперблоков
 	> dumpe2fs /dev/sda3|grep -i superblock
 	#бэкап

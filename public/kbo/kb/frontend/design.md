@@ -34,7 +34,7 @@
 	* https://www.figma.com/c/plugin/732240841094697441/%E2%9A%A1%EF%B8%8F-Viewports
     * [Figma REST API to Angular Converter](https://github.com/irustm/figma-to-angular)
  * [Делаем Frontend в Figma](https://docs.google.com/presentation/d/1y3hqGWEy--tArJs0N6Bv0dbV809NP-YLLib1eudZwtE/edit#slide=id.p)
- 
+
 ## элементы дизайна
 
  * параллакс
@@ -53,6 +53,14 @@
     * https://www.sketchappsources.com/free-source/2193-material-text-fields-sketch-freebie-resource.html
     * https://www.sketchappsources.com/free-source/1988-data-table-component-sketch-freebie-resource.html
     * https://www.sketchappsources.com/free-source/597-google-material-design-ui-sketch-app.html
+
+ * [The complete guide to Angular Material Themes](https://medium.com/@tomastrajan/the-complete-guide-to-angular-material-themes-4d165a9d24d1)
+ * https://material.angular.io/guide/theming
+ * https://material.angular.io/guide/theming-your-components
+ * https://github.com/angular/material2/blob/master/src/lib/core/theming/_theming.scss
+ * https://material.angular.io/guide/customizing-component-styles
+ * http://blog.bogdancarpean.com/create-custom-color-theme-on-angular-material/
+ * [material angular](kb/frontend/framework/angular2)
 
 ##  библиотеки компонентов
 
@@ -108,7 +116,7 @@
  * http://lostandtaken.com/gallery
  * http://cgtextures.com/
  * http://www.smashingmagazine.com/2009/02/06/100-beautiful-free-textures/
- 
+
 
 ##  фото макеты
 

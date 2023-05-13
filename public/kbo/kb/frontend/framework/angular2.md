@@ -1436,77 +1436,6 @@ count.subscribe(x => console.log(x));
  * ворон ловит больше ошибок чем хром
  * отладку через ноду пока запустить не удалось, можно только через хром
 
-### typescript
-
- * [interface или type](https://medium.com/@martin_hotell/interface-vs-type-alias-in-typescript-2-7-2a8f1777af4c)
- * [тяжело итерировать по необъявленным свойствам и непонятно как комбинировать с объявленными](https://www.sitepen.com/blog/2014/08/22/advanced-typescript-concepts-classes-types/)
- * [properties is undefined](http://blogs.microsoft.co.il/gilf/2013/01/22/creating-properties-in-typescript/)
- * https://stackoverflow.com/questions/40636292/get-properties-of-a-class-using-typescript
- * https://stackoverflow.com/questions/16508435/implementing-typescript-interface-with-bare-function-signature-plus-other-fields
- * можно сделать необязательными параметры и присвоить изначально пустой объект, чтобы можно было свойства добавлять, либо посмтрть на extends {}
- * https://stackoverflow.com/questions/47139581/upgraded-to-angular-5-ts6046-and-ts5024-errors
-
-```js
-	{
-		"extends": "../tsconfig.json",
-		"compilerOptions": {
-			"outDir": "../out-tsc/app",
-			"module": "amd",
-			"target": "es2017",
-			"baseUrl": "",
-			"lib": [
-			"es2017"
-			],
-			"types": []
-	},
-		"exclude": [
-			"test.ts",
-			"**/*.spec.ts"
-		]
-	}
-```
- * модель с классом для API
-
- ```ts
-	export interface IObject {field: IObjectFields<string> | IObjectField1 | IObjectField2;}
-
-	export type IObjectField<T> = {[P in keyof T]: string;}
-
-	export interface IObjectField1 extends IObjectField<IObjectField1> {field1: ''}
-
-	export class ObjectClass1 implements IObjectField1 {
-		field1: string = null;
-
-		constructor (data?:IObjectField1) {this.parse(data)}
-
-		parse(data?:IObjectField1){
-			if (data) {
-				if (typeof data.field1 === 'string') {this.field1 = }
-			}
-			return this;
-		}
-	}
- ```
-
- * интерфейс деревьев - сложный вложенный тип https://basarat.gitbooks.io/typescript/docs/types/index-signatures.html
-
-```ts
-	export interface ITree {
-		[keyName: string]: ITreeItem;
-	}
-```
-
- * функция с выбором из 2 типов
-
-```ts
-	func<T extends (IInterface1|IInterface2)>(params: { param1: T[], param2: string[] }) {
-		let result: T[] = [];
-	}
-
-	func<T extends [])>(params: { param1: T[], param2: string[] }) {
-		let result: T[] = [];
-	}
-```
 
 ### subscribe
 
@@ -1523,7 +1452,8 @@ count.subscribe(x => console.log(x));
 	* https://github.com/angular/angular-cli/issues/10007
 	* [Angular2 styling issues caused by DOM attributes _ngcontent-* vs. _nghost-*](https://stackoverflow.com/questions/37689673/angular2-styling-issues-caused-by-dom-attributes-ngcontent-vs-nghost)
 	* [view encapsulation](https://angular.io/guide/component-styles#view-encapsulation)
-	* ```ts
+	*
+	```ts
 		import {Component, ViewEncapsulation} from 'angular2/core'
 
 		@Component({
@@ -1531,7 +1461,7 @@ count.subscribe(x => console.log(x));
 		encapsulation: ViewEncapsulation.None,
 		...
 		});
-		```
+	```
 	* [::ng-deep](https://stackoverflow.com/questions/36224276/angular2-adding-ngcontent-mav-x-to-styles#36225709)
  * [синтаксис для pug. angular pug Syntax Error: Assigning to rvalue](https://github.com/tycho01/pug-plugin-ng)
 	```pug
@@ -1840,12 +1770,8 @@ const httpOptions = {
 
 ## angular material
 
- * [The complete guide to Angular Material Themes](https://medium.com/@tomastrajan/the-complete-guide-to-angular-material-themes-4d165a9d24d1)
- * https://material.angular.io/guide/theming
- * https://material.angular.io/guide/theming-your-components
- * https://github.com/angular/material2/blob/master/src/lib/core/theming/_theming.scss
- * https://material.angular.io/guide/customizing-component-styles
- * http://blog.bogdancarpean.com/create-custom-color-theme-on-angular-material/
+* [material angular](kb/frontend/design)
+
 ### material CDK
 
  * [Tooltip with Angular CDK](https://medium.com/angular-in-depth/building-tooltips-for-angular-3cdaac16d138)

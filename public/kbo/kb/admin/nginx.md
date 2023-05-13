@@ -1,5 +1,8 @@
 # Nginx
 
+ * [Nginx. О чем не пишут в книгах](https://habr.com/ru/post/561758/)
+ * http://openresty.org/download/agentzh-nginx-tutorials-en.html
+
 ## multilocation
 
  * https://serverfault.com/questions/361159/nginx-multiple-location-issues
@@ -15,7 +18,7 @@
  * обновление ключа
 
 	```bash
-		openssl req -text -noout -verify -in 5353333.csr 
+		openssl req -text -noout -verify -in 5353333.csr
 		openssl rsa -check -in 5353333.key
 		# openssl verify -noout -in 5353333/www_stepanovv_ru.crt
 		openssl x509 -dates -noout -in 5353333/www_stepanovv_ru.crt
@@ -51,7 +54,7 @@
  * [rewrite](https://wiki.nginx.org/blog/creating-nginx-rewrite-rules/)
  * [цепочки сертификатов chained.*](http://nginx.org/ru/docs/http/configuring_https_servers.html#chains)
 
-### http 2 
+### http 2
 
  * https://dassur.ma/things/h2setup/
  ```
@@ -75,10 +78,10 @@
     response.end('Hello world!');
     }).listen(8080);
  ```
- 
+
 ### debian
 
-comment out 
+comment out
 
 /etc/nginx/sites-available/default
 
@@ -119,8 +122,8 @@ max_execution_time = 300
 server_tokens off;
 limit_conn one 3;
 client_max_body_size 100m;
-	fastcgi_read_timeout 300; 
-	fastcgi_send_timeout 300; 
+	fastcgi_read_timeout 300;
+	fastcgi_send_timeout 300;
 ```
 
 

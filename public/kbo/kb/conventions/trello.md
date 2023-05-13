@@ -23,7 +23,7 @@
 
 ## planning poker
 
- * [тренажёр](https://play.planningpoker.com/plans) 
+ * [тренажёр](https://play.planningpoker.com/plans)
  * [бесплатно тренажёр](http://www.votingpoker.com)
  * [жирный плагин](https://marketplace.atlassian.com/apps/700473/agile-poker-estimation-tool-for-jira)
 
@@ -81,7 +81,7 @@
 	* интеграция фигма
 	* интеграция диск
 	* ссылка на карточку
- * интеграция: 
+ * интеграция:
 	 * google drive
 	 * draw.io
 	 * figma
@@ -95,10 +95,10 @@
 	 * [timecamp](https://www.timecamp.com/app#/timesheets/timer)
 	 * [discord](https://discordbots.org/bot/trello) [](https://www.youtube.com/watch?v=f3HHi7h_R9o)
 	 * [api key](https://trello.com/app-key) и нажать там на генерацию токена
-	 * 
+	 *
  * planning pocker в каждой карточке
  * есть локальные плагины для IDE https://marketplace.visualstudio.com/items?itemName=mkloubert.vscode-kanban
- * 
+ *
 
 ### статьи
 
@@ -162,7 +162,7 @@
 
 ## JIRA
 
- * [jira](jira.md)
+ * [jira](kb/conventions/jira.md)
 
 ## retrospective ретроспективы
 
@@ -196,7 +196,7 @@
 Пример конфигурационного json для бэкенда(gen_opt.json):
 ```json
 {
-	"modelPackage":"ru.name.company.services.auth.dto", 
+	"modelPackage":"ru.name.company.services.auth.dto",
 	"apiPackage":"ru.name.company.services.auth.api",
 	"invokerPackage":"ru.name.company.services.auth",
 	"groupId":"ru.name.company",
@@ -244,7 +244,7 @@ swagger-codegen-cli можно взять с https://github.com/swagger-api/swag
 * лимиты https://devcenter.heroku.com/articles/limits
 * сколько израсходовано https://dashboard.heroku.com/account/billing
 * выкурить стартовый ман https://devcenter.heroku.com/articles/deploying-nodejs
-* подкрутить GC node [procfile](https://devcenter.heroku.com/articles/procfile): `web: node --optimize_for_size --max_old_space_size=460 --gc_interval=100 server.js` https://devcenter.heroku.com/articles/node-best-practices#avoid-garbage 
+* подкрутить GC node [procfile](https://devcenter.heroku.com/articles/procfile): `web: node --optimize_for_size --max_old_space_size=460 --gc_interval=100 server.js` https://devcenter.heroku.com/articles/node-best-practices#avoid-garbage
 * сделать в package.json scripts `npm run start --port 5000` https://devcenter.heroku.com/articles/dynos#local-environment-variables
 * добавить в package.json scripts `"heroku-postbuild": "ng build --aot --prod"`
 * при необходимости перенести  `"@angular/cli": "^7.3.3","@angular/compiler-cli": "^7.2.6",` в секцию "dependencies" - иначе не найдёт `ng`
@@ -265,7 +265,7 @@ swagger-codegen-cli можно взять с https://github.com/swagger-api/swag
 
 ## gitlab pages
 
- * надо сделать репу в гитлаб, можно приватную. 
+ * надо сделать репу в гитлаб, можно приватную.
  * Там вот сделать каталог public, в ём отгородить index.html и 404.html. Симлинки вроде не катят.
  * закопать .gitlab-ci.yml в корень проекта:
 	```
@@ -283,7 +283,7 @@ swagger-codegen-cli можно взять с https://github.com/swagger-api/swag
 	```
  * Потом настроить на вкладке CI/CD pipeline
  * для bitbucket надо index+404 разместить в корне
- 
+
 ## готовые дизайн системы и библиотеки кода
 
  * https://akveo.github.io/ngx-admin/
