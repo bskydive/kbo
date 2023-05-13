@@ -237,26 +237,30 @@ xauth -
 
 ```
 
-## crop pdf
+## PDF
 
- * https://pdf.online/crop-pdf
 
-## jpeg to pdf
+ * fix pdf
+	```
+	gs -o repaired.pdf -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress damaged.pdf
+	```
+ * crop pdf
+	 * https://pdf.online/crop-pdf
+ * jpeg to pdf
 
     ```bash
     convert -quality 100 -density 100 -trim test*.jpeg single.pdf
     convert -geometry 1024 -quality 100 -density 100 -trim 09.STEPANOV.ACT*.jpeg 09.STEPANOV.ACT.SIGNED.pdf
     ```
-## pdf to jpeg
+ * pdf to jpeg
+	```bash
+	mcedit /etc/ImageMagick-7/policy.xml
+		<policymap>
+			<!-- <policy domain="coder" rights="write" pattern="PDF" /> -->
+			<policy domain="coder" rights="read|write" pattern="PDF" />
 
-```bash
-mcedit /etc/ImageMagick-7/policy.xml
-	<policymap>
-		<!-- <policy domain="coder" rights="write" pattern="PDF" /> -->
-		<policy domain="coder" rights="read|write" pattern="PDF" />
-
-convert -density 300 -depth 8 -quality 90 input.pdf output.png
-```
+	convert -density 300 -depth 8 -quality 90 input.pdf output.png
+	```
 
 ## network
 
@@ -306,6 +310,14 @@ Install libreoffice-gtk (this will integrate your theme with you system theme (e
 Install libreoffice-theme-oxygen or libreoffice-theme-crystal and then follow  (Tools > Options > View).
 
 ## HARDWARE
+
+
+### UEFI
+
+ * ["Cannot open /dev/vmmon: No such file or directory" error when powering on a VM (2146460)](https://kb.vmware.com/s/article/2146460)
+ * https://edk2-docs.gitbook.io/understanding-the-uefi-secure-boot-chain/additional_secure_boot_chain_implementations/machine_owner_key_mok
+ * https://en.opensuse.org/openSUSE:UEFI
+
 
 ### графический планшет
 
@@ -864,11 +876,12 @@ Code:
 	* https://github.com/Drag13/HabrSanitizer
 ## installation migration OS
 
- * flatpak
-	* `zypper in flatpak`
-	* от пользователя! flatpak `flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo`
-	* или в discover - настройка - add flathub
- * для управления gcr keyring `zypper in seahorse`
+ * скачать firefox, chrome
+ * zypper rm MozillaFirefox MozillaFirefox-branding-openSUSE MozillaFirefox-translations-common
+ ```
+    zypper in zip rar unrar Crystalcursors dmz-icon-theme-cursors oxygen5-cursors tuxcursors oxygen5 oxygen5-icon-theme oxygen5-icon-theme-scalable oxygen5-style yast2-theme-oxygen pulseaudio-equalizer pavucontrol kfind
+ ```
+
  * включить numlock
  * настроить очистку tmp см `public/kbo/kb/admin/filesystems.md:56`
  * удалить snapper packagekit
@@ -882,19 +895,18 @@ Code:
  * рамки окна: цвета-цветовая схема-общие-цвет заголовка окна
  	* толщина рамки окна: оформление приложений - оформление окон - справа-внизу границы окна-тонкие
  * установка и настройка скайп SDB:Skype — openSUSE  PulseAudio — openSUSE (pavucontrol)
+    * для управления gcr keyring `zypper in seahorse`
+ * flatpak
+	* `zypper in flatpak`
+	* от пользователя! flatpak `flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo`
+	* или в discover - настройка - add flathub
  * перенос /home
  * перенос закладок в браузер
  * добавить ярлыки на таскбар, индикатор ЦП, погода, сеть
+ * виджет обновления - настроить - раз в месяц
  * десктоп - /usr/share/applications/
  * работа с документами - офис+экспорт в пдф
  * запомнить/перенести пароли для страниц в браузере
- * снести системный firefox, установить плагины
- 	* adblock / ublock
-	* noscript / whitelist
-	* treestyletab https://addons.mozilla.org/ru/firefox/addon/tree-style-tab/?src=search
-	* downthemall
- * снести системный thunderbird
- * pavucontrol - можно вместо него использовать kde плагин plasma
  * перенести ключи/скрипты удаленного доступа, папка scripts
  * `ssh-keygen -t rsa -b 4096`
  * установить ключи в bb, gh, gl, удалённые ПК
@@ -902,49 +914,123 @@ Code:
  * настроить короткий формат даты для Dolphin в астройках локали DD.MM.YYYY
  * настроить полный формат даты для виджета часов на панели в настройках локали
 	* ddd dd.MM.yyyy
- * kate
  * konsole
 	* шрифт
 	* цвет
 	* 10к строк лога
 	* вкладки всегда видны
- * krdc
- * konqueror/dolphin
  * заменить ~/.kde4/share/apps/konqueror/bookmarks.xml
  * видео кодеки wmv. см #repo 		http://opensuse-guide.org/codecs.php
  * spectacle скриншоты починить
 	* Настройки - глобальные комбинации клавиш - KDE daemon - выключить prtscr
 	* Настройки - глобальные комбинации клавиш - + добавить - spectacle - назначить prtscr - снимок прямоугольной области
- * yed
  * настроить внешнюю видеокамеру/микрофон
- * git, kgit, git-gui
  * утилиты консоли
  * убрать boot splash screen
- * vscode https://code.visualstudio.com/docs/setup/linux#_visual-studio-code-is-unable-to-watch-for-file-changes-in-this-large-workspace-error-enospc
-	```bash
-		cat > /etc/sysctl.d/vscode.sysctl.conf
-		# fs.inotify.max_user_watches=524288
-		# fs.file-max=1632119
-		sysctl -p
-		sysctl --system
-		sysctl fs.inotify.max_user_watches
-		cat /proc/sys/fs/inotify/max_user_watches
-		sysctl fs.file-max
+ * убрать синхронизацию ntp
+ * выключить поиск
+ * время блокировки экрана
+ * управление питанием - выключение, закрытие крышки
 
-		cat /etc/security/limits.conf
-		# user hard nofile 16384
-		# user soft nofile 9216
-		ulimit -Sn
-		ulimit -Hn
-	```
+### установка программ
+
+
+ * снести системный firefox, установить плагины
+ 	* adblock / ublock
+	* noscript / whitelist
+	* treestyletab https://addons.mozilla.org/ru/firefox/addon/tree-style-tab/?src=search
+	* downthemall
+ * снести системный thunderbird
+ * yed
+ * krdc, freeRDP, remmnia
+ * openvpn
+ * zypper in git gitk gitg git-cola java-17-openjdk-devel
+ * zypper in pavucontrol pulseaudio-equalizer kfind lame
+ * zypper in gimp kdenlive inkscape simplescreenrecorder
+ * digikam - коллекция фото
+ * flatpak+flathub
+	* freefilesync
+	* blender
+	* krita
+	* Piper - назначение кнопок мыши
+	* Figma for linux
+	* octave - 3d графики
+	* flowtime - pomodoro
+ 	* obs studio
+	* postman
+	* KmCaster
+	* opentodolist
+	* GitFiend
+	* GittyUp
+ * zypper in grsync gsmartcontrol
+ * vmware pro
+ * heaptrack - визуализация использования памяти
+ * vscode https://code.visualstudio.com/docs/setup/linux#_visual-studio-code-is-unable-to-watch-for-file-changes-in-this-large-workspace-error-enospc
+ * [extensions](/kbo/#/kb/frontend/vscode)
  * настроить цвета
 	* оформление рабочей среды - breeze
 	* оформление рабочего стола - breeze
 	* цвета - загрузить - honey oak
- * nvm
+ * [nvm](https://github.com/nvm-sh/nvm)
 	* !!! сделать снимок ФС/ВМ
  	* `npm i -g sass npm-check pm2 http-server`
 	* https://medium.com/the-tech-bench/getting-visual-studio-code-and-nvm-working-together-252ec0300895
+
+### Ещё программы
+
+ * [альтернатива импортозамещение аналоги иностранного по](https://переходим.рф/)
+* разработка
+	* цветовая палитра
+	* teamspeak - клиент
+	* Oh My SVG
+	* Apache JMeter - нагрузочный тест
+	* RegExTester
+	* GraphUI - graphviz
+* дроны
+	* QGroundControl - MAVLink
+	* gpx-viewer, Enroute Flight Navigation
+	* Satellite - GPS ModemManager, gnss-share
+* ИБ
+	* SCAP workbench
+* игры
+	* protontrics, protonplus
+	* flightgear - aero sim
+* железо
+	* pulseview, GTKWave, OpenHantek6022, pyfda - осцилограф
+	* SerialTest
+	* Logisim evolution - digital logic designer and simulator
+	* raspberry pi imager
+	* jstest-gtk - тест джойстика
+	* nvidia system monitor, GreenWithEnvy - nvidia
+	* modem manager gui
+	* redshift - цветовая температура
+	* hardware probe
+	* UEFITool
+	* JRomManager
+	* Zint Barcode Studio - qr коды
+	* gmone-firmware - прошивка fwupd
+	* LibrePCB
+	* Hotwire - tcpdump wireshark UI
+* офис, файлы, доки
+	* minder, freemind - mindmap
+	* pdf arranger, pdf slicer - пакетная обработка
+	* jPDF Tweak
+	* KRename, CoreRenamer - пакетное переименование файлов
+	* Converseen - пакетное перекодирование фото
+	* owncloud, nextcloud desktop client, vup
+	* toggl track - time tracker
+	* czkawka, - dedupe
+	* AppImage pool - appimaagehub client
+	* converter now - unit converter
+		* calibre - электронная библиотека, конвертер
+		* tellico - коллекция книг музыки
+		* converter now - конвертирование единиц
+* звук, видео
+	* audacity - обработка звука
+	* avidemux - редактор видео
+* математика
+	* Kbrunch - упражнения с дробями
+
 
 ### old
 
@@ -959,7 +1045,6 @@ Code:
 
 		rm /var/lib/flatpak/repo
 	```
- * pulseaudio-equalizer
  * paprefs - для проигрывания звука по сети https://askubuntu.com/questions/28039/how-to-stream-music-over-the-network-to-multiple-computers
  * digikam
  * pidgin
@@ -968,11 +1053,7 @@ Code:
  * kalendar
  * akregator
  * перенести kwallet
- * sqldeveloper java
- * akonadi
  * ssh_keys
- * kfind
- * lame для диктофона
  * apcupsd установить, настроить
 
 ### зависает при выключении
@@ -1707,6 +1788,8 @@ pbzip2
 ```bash
 	zypper in yast2-rdp xrdp xorgxrdp
 ```
+ * remmnia
+ * krdc
 
 ## vnc
 

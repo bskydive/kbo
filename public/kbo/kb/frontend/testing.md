@@ -4,7 +4,20 @@
 
  * [eslint wemake](https://sobolevn.me/2019/02/engineering-guide-to-user-stories)
 
+
+## F.I.R.S.T.
+
+ * Fast. Тесты должны выполняться быстро.
+ * Independent. Тесты не должны зависеть друг от друга и выполняться в любом порядке.
+ * Repeatable. Тесты должны давать воспроизводимые в любой среде результаты.
+ * Self-validating. Результат выполнения теста - логический признак: тест пройден или нет. Иначе результаты приобретают субъективный характер.
+ * Timely. Тест должен создаваться своевременно. Тесты нужно писать непосредственно перед написанием кода.
+
 ## TDD
+
+ * Не пишете код продукта, пока не напишете отказной модульный тест.
+ * Не пишите модульный тест в объеме большем, чем необходимо для отказа.
+ * Не пишите код продукта в объеме большем, чем необходимо для прохождения текущего отказного теста.
 
  * https://bespoyasov.ru/ttt-tdd/
  * [Engineering guide to writing correct User Stories](https://sobolevn.me/2019/02/engineering-guide-to-user-stories)
@@ -311,7 +324,8 @@
 	```
 	* https://jestjs.io/ru/docs/mock-function-api/#jestmockedsource-options
 		* jest.mocked(source, options?) The mocked() helper method wraps types of the source object and its deep nested members with type definitions of Jest mock function. You can pass {shallow: true} as the options argument to disable the deeply mocked behavior.
-
+ * [тестирование angular HTTP interceptors](https://tenmilesquare.com/resources/software-development/testing-angular-10-interceptors-with-spectator-and-jest/)
+ * [Testing Asynchronous Code in Angular Using FakeAsync](https://netbasal.com/testing-asynchronous-code-in-angular-using-fakeasync-fc777f86ed13)
 
 ##  cypress test
 
@@ -329,6 +343,11 @@
 	* более качественное тестирование
 	*
 	*
+
+## e2e integration интеграционные тесты
+
+ * [How To Write Simple Angular Integration Tests With Spectator ](https://dev.to/cjcoops/how-to-write-simple-angular-integration-tests-with-spectator-1i1b)
+
 ## regress регрессионные тесты
 
  * https://selenium-webdriver-book.github.io/

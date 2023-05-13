@@ -1,5 +1,7 @@
 #  Javascript
 
+ * https://gitlab.com/stepanovv/kbo/blob/master/src/app/timer/timer.js
+
 ##  лучшие практики
 
  * [стили](/kbo/developer/frontend.md)
@@ -99,6 +101,22 @@
  * [Планировщик задач на JavaScript](https://habr.com/ru/post/26215/)
  * [Знай свой инструмент: Event Loop в libuv](https://habr.com/ru/post/336498/)
  * [Как управлять event loop в JavaScript. Часть 1](https://skillbox.ru/media/code/event_loop_chast_1/)
+	* Как формируется контекст исполнения
+	```
+		JavaScript — интерпретируемый язык. Это значит, что любой код проходит через интерпретатор, который исполняет его построчно. Но и здесь есть нюансы.
+
+		Как только скрипт попадает в интерпретатор, формируются глобальный контекст и глобальная область видимости, в которой держится Variable Object, или VO — объект переменных.
+
+		Он формируется из переменных вида Function Declaration и атрибутов функции по следующему принципу. Интерпретатор считывает код и находит все объявления:
+
+			переменных по ключевому слову var (const или let в ES6 и выше);
+			функций, объявленных ключевым словом function, без присваивания.
+
+		Это складывается в VO текущего контекста исполнения. Затем берётся Variable Object внешней области видимости и к нему добавляется сформированный выше VO. Сверху он дополняется параметрами функции и их значениями на момент исполнения.
+
+		При этом нет разницы, в каком месте функции они определяются. Переменная может быть определена в любой части кода, как и функция.
+	```
+
  * [A crash course in memory management](https://hacks.mozilla.org/2017/06/a-crash-course-in-memory-management/)
  * [Diving Deeper in JavaScripts Objects - A Closer Look at JavaScript Object Descriptors](https://blog.bitsrc.io/diving-deeper-in-javascripts-objects-318b1e13dc12?gi=f92e90c386f5)
  * [сборщики мусора JAVA](https://habr.com/ru/post/269621/)
@@ -193,47 +211,6 @@
 
  * [статическая типизация flow facebook](https://flow.org/en/docs/getting-started/)
  * [javascript linter](https://github.com/saadq/lynt)
-
-##  typescript
-
- * [см.](/kbo/kb/frontend/framework/angular2.md:1067)
- * https://www.tsmean.com/articles/
- * [знакомство с typescript 2015](https://msdn.microsoft.com/ru-ru/magazine/dn890374.aspx)
- * https://www.sitepen.com/blog/2014/08/22/advanced-typescript-concepts-classes-types/
- * https://www.sitepen.com/blog/2013/12/31/definitive-guide-to-typescript/
- * [доки](https://www.gitbook.com/book/basarat/typescript)
- * http://2ality.com/2018/03/javascript-typescript-reasonml.html
- * https://medium.freecodecamp.org/typescript-javascript-with-super-powers-a333b0fcabc9
- * https://www.typescriptlang.org/index.html#download-links
- * https://github.com/Microsoft/TypeScript-React-Conversion-Guide#typescript-react-conversion-guide
- * http://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html
- * https://habrahabr.ru/company/piter/blog/347364/
- * [typescript на node сервере](https://habr.com/ru/post/328466/)
- * [расширенный ликбез 2019](https://www.youtube.com/watch?v=_-tSzfGkrew)
- * [TypeScript. Магия выражений](typescript)
- * [typescript deep dive](https://habr.com/ru/company/oleg-bunin/blog/499634/) Михаил Башуров (saitonakamura) — Senior Frontend Engineer в компании WiseBits
- * [Runtime type checking with io-ts in Typescript](https://medium.com/@ottoki/runtime-type-checking-with-io-ts-in-typescript-14465169fb02) https://github.com/gcanti/io-ts
- * https://medium.com/@fivedicephoto/understanding-enums-in-typescript-d4dcb40c1413
- * https://levelup.gitconnected.com/typescript-best-practices-namespaces-exceptions-and-type-definitions-131d85579fa3
- * [12 советов по внедрению TypeScript в React-приложениях](https://habr.com/ru/company/tinkoff/blog/505488/)
- * [Номинативная типизация в TypeScript или как защитить свой интерфейс от чужих идентификаторов](https://habr.com/ru/post/446768/)
- * https://stackoverflow.com/questions/49761972/difference-between-string-enums-and-string-literal-types-in-ts/54455743#54455743
- * [The TypeScript Tax: A Cost vs Benefit Analysis](https://javascriptweekly.com/link/81862/web)
- * [7 New and Exciting TypeScript Features](https://blog.bitsrc.io/7-new-and-exciting-typescript-features-48b760ae0b73)
- * [warning TS(2564)](https://www.ryadel.com/en/ts2564-ts-property-has-no-initializer-typescript-error-fix-visual-studio-2017-vs2017/)
-	```json
-		tsconfig.json
-		"compilerOptions": {
-			"strictPropertyInitialization": false
-	```
- * for (of) - итерируемые
-	* `for (const [key,value] of Object.entries(obj) {}`
- * for (in) - перечисляемые
-	* `for (const key in Object.entries(obj) { obj[key as keyof typeof obj] }`
-
-### собеседование typescript
-
- * [Собеседование по TypeScript: 20 вопросов и ответов](https://habr.com/ru/company/ruvds/blog/419993/)
 
 ##  шаблоны patterns
 
@@ -730,86 +707,90 @@ https://stateofjs.com/2017/front-end/results
 
 ```
 
-##  свойства объектов
+##  deep clone клонирование объектов
 
+ * https://developer.mozilla.org/en-US/docs/Web/API/structuredClone
+    `structuredClone(value)`
+ * https://developer.mozilla.org/en-US/docs/Glossary/Deep_copy
+ * только через JSON*, остальное - shallow copy
  * http://getinstance.info/articles/javascript/attributes-of-object-properties-in-javascript/
  * [глубокое копирование deep clone](https://www.webreflection.co.uk/blog/2015/10/06/how-to-copy-objects-in-javascript)
 
-```js
-	obj2 = obj1.map(item => Object.assign({}, item));
-	obj2 = JSON.parse(JSON.stringify(obj1));
-	function copy(o) {
-		var output, v, key;
-		output = Array.isArray(o) ? [] : {};
-		for (key in o) {
-			v = o[key];
-			output[key] = (typeof v === "object") ? copy(v) : v;
-		}
-		return output;
-	}
-```
+    ```js
+        obj2 = obj1.map(item => Object.assign({}, item));
+        obj2 = JSON.parse(JSON.stringify(obj1));
+        function copy(o) {
+            var output, v, key;
+            output = Array.isArray(o) ? [] : {};
+            for (key in o) {
+                v = o[key];
+                output[key] = (typeof v === "object") ? copy(v) : v;
+            }
+            return output;
+        }
+    ```
  * [ещё одна функция глубокого копирования](https://medium.com/@tkssharma/objects-in-javascript-object-assign-deep-copy-64106c9aefab)
 
-```js
-	function cloneObject(obj) {
-		var clone = {};
-		for(var i in obj) {
-			if(obj[i] != null &&  typeof(obj[i])=="object")
-				clone[i] = cloneObject(obj[i]);
-			else
-				clone[i] = obj[i];
-		}
-		return clone;
-	}
-```
+    ```js
+        function cloneObject(obj) {
+            var clone = {};
+            for(var i in obj) {
+                if(obj[i] != null &&  typeof(obj[i])=="object")
+                    clone[i] = cloneObject(obj[i]);
+                else
+                    clone[i] = obj[i];
+            }
+            return clone;
+        }
+    ```
  * [глубокое клонирование класса с методами](https://www.nickang.com/how-to-clone-class-instance-javascript/)
 
-```js
-	function copyInstance (original) {
-	var copied = Object.assign(
-		Object.create(
-		Object.getPrototypeOf(original)
-		),
-		original
-	);
-	return copied;
-	}
-```
+    ```js
+        function copyInstance (original) {
+        var copied = Object.assign(
+            Object.create(
+            Object.getPrototypeOf(original)
+            ),
+            original
+        );
+        return copied;
+        }
+    ```
  * глубокое клонирование, сломано
 
-```ts
-	cloneDeep<T>(obj: T) {
-		let clone: T = Object.assign({}, obj);
-		const keys: string[] = Object.keys(obj);
+    ```ts
+        cloneDeep<T>(obj: T) {
+            let clone: T = Object.assign({}, obj);
+            const keys: string[] = Object.keys(obj);
 
-		for (let indexL0 = 0; indexL0 < keys.length; indexL0++) {
-			if (obj[keys[indexL0]] !== null) {
-				if (typeof obj[keys[indexL0]] === "object") {
-					if (obj[keys[indexL0]] instanceof Array) {
-						for (let indexL1 = 0; indexL1 < obj[keys[indexL0]].length; indexL1++) {
-							clone[keys[indexL0]] = Object.assign({}, obj[keys[indexL0]]);
-						}
-					} else {
-						clone[keys[indexL0]] = this.cloneDeep(obj[keys[indexL0]]);
-					}
-				} else {
-					clone[keys[indexL0]] = obj[keys[indexL0]];
-				}
-			}
-		}
-		return clone;
-	}
-```
+            for (let indexL0 = 0; indexL0 < keys.length; indexL0++) {
+                if (obj[keys[indexL0]] !== null) {
+                    if (typeof obj[keys[indexL0]] === "object") {
+                        if (obj[keys[indexL0]] instanceof Array) {
+                            for (let indexL1 = 0; indexL1 < obj[keys[indexL0]].length; indexL1++) {
+                                clone[keys[indexL0]] = Object.assign({}, obj[keys[indexL0]]);
+                            }
+                        } else {
+                            clone[keys[indexL0]] = this.cloneDeep(obj[keys[indexL0]]);
+                        }
+                    } else {
+                        clone[keys[indexL0]] = obj[keys[indexL0]];
+                    }
+                }
+            }
+            return clone;
+        }
+    ```
 
  * глубокое клонирование [lodash](https://www.blazemeter.com/blog/the-correct-way-to-import-lodash-libraries-a-benchmark)
 
-```js
-import cloneDeep from loDash;
-let clone = cloneDeep(orig);
+    ```js
+    import cloneDeep from loDash;
+    let clone = cloneDeep(orig);
 
-```
+    ```
 
-* проверка наличия свойств https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty `Object.prototype.hasOwnProperty.call(foo, 'bar'); // true`
+ * проверка наличия свойств https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty `Object.prototype.hasOwnProperty.call(foo, 'bar'); // true`
 
 ## Общие понятия
 

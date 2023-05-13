@@ -1,5 +1,7 @@
 # Vue
 
+ * [соглашения vue](kb/conventions/vue.md)
+
 ## links
 
  * https://medium.com/js-dojo/4-essential-es2015-features-for-vue-js-development-e3a526046c7c
@@ -35,12 +37,12 @@ https://medium.com/@nupoor_neha/starting-with-webpack-4-and-vuejs-a-quick-start-
  * https://router.vuejs.org/ru/
  * https://medium.com/js-dojo/build-a-food-ordering-app-using-vue-and-africas-talking-bd271cf6ef72
  * [https://habr.com/post/358766/](https://habr.com/post/358766/)
- * 
+ *
 
 ## test
 
  * https://medium.com/js-dojo/end-to-end-testing-a-vuejs-hackernews-clone-23b9415fd5c5
- 
+
 ## обзоры
 
 https://medium.mybridge.co/tagged/javascript

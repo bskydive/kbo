@@ -11,6 +11,7 @@
 	 * [pug](kb/conventions/pug.md)
 	 * [организация](kb/conventions/организация.md)
 	 * [trello](kb/conventions/trello.md)
+	 * [trello](kb/conventions/jira.md)
  * Библиотеки и экосистемы
 	 * [angular1](kb/frontend/framework/angular1.md)
 	 * [angular2](kb/frontend/framework/angular2.md)
@@ -37,6 +38,7 @@
 	 * [GIT](kb/frontend/git.md)
 	 * [html](kb/frontend/html.md)
 	 * [javaScript](kb/frontend/javascript.md)
+	 * [typeScript](kb/frontend/typescript.md)
 	 * [IDEA](kb/frontend/idea/idea.md)
 	 * [Мобильная разработка](kb/frontend/mobile.md)
 	 * [android](kb/frontend/android)
