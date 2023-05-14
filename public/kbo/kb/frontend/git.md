@@ -32,10 +32,11 @@
  	* [скрипты tools utils git-extras](https://github.com/tj/git-extras)
 	* https://github.com/garybernhardt/dotfiles/blob/main/bin/git-churn
 	* https://github.com/flacle/truegitcodechurn
-		* ```bash
-			set -e
-			git log --all -M -C --name-only --format='format:' "$@" | sort | grep -v '^$' | uniq -c | sort -n
-		```
+
+	```bash
+		set -e
+		git log --all -M -C --name-only --format='format:' --since='1 month ago' someDir1 someDir2 | sort | grep -v '^$' | uniq -c | sort -n
+	```
 	* https://github.com/adamtornhill/code-maat
 	* https://github.com/jwiegley/git-scripts
 	*
