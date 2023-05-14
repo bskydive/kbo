@@ -439,7 +439,7 @@ let quoteCopyText = "";
 function showQuote() {
 	function getRandomNum(min, max) {
 		let cryptoList = new Int8Array(max);
-		let result = Math.floor(Math.random() * (max - min)) + min; 
+		let result = Math.floor(Math.random() * (max - min)) + min;
 
 		let cryptoResult = 0;
 
@@ -467,15 +467,15 @@ function showQuote() {
 		document.querySelector("#id-a-quoteAuthor").innerText ===
 		quotes[authorInd][0]
 	) {
-		authorInd = getRandomNum(0, quotes.length); 
+		authorInd = getRandomNum(0, quotes.length);
 	}
 
-	let quoteInd = getRandomNum(2, quotes[authorInd].length); 
+	let quoteInd = getRandomNum(2, quotes[authorInd].length);
 	if (
 		document.querySelector("#id-p-quoteText").innerHTML ===
 		quotes[authorInd][quoteInd]
 	) {
-		quoteInd = getRandomNum(2, quotes[authorInd].length); 
+		quoteInd = getRandomNum(2, quotes[authorInd].length);
 	}
 
 	document.querySelector("#id-p-quoteText").innerHTML =
