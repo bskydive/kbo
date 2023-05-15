@@ -8,62 +8,41 @@
 ## Зачем это?
 
 Для экономии времени на поиск информации.
-Использован проект docsify для перехода из dokuwiki/php на markdown/JS, унификации с соглашениями по коду markdown/webpack, упрощения сопровождения моих проектов
 
 ## Как увидеть рабочий проект?
 
-* https://stepanovv.ru/kbo
-
-## Как запустить у себя?
-
- * git clone git@gitlab.com:stepanovv/kbo.git
- * cd kb
- * npm install -g docsify-cli
- * npm run start
- * http://127.0.0.1:3000
- * если необходимо открывать по ссылкам файлы из /files необходимо запускать без docsify serve
- 
-## Как помочь улучшить проект?
-
-* Я не готов поддерживать процесс совместной работы
-* Можете [написать](https://stepanovv.ru/portfolio/portfolio.html#id-contacts) письмо с предложениями
+* [База знаний программиста](https://stepanovv.ru/kbo)
+* [База знаний человека-мужика](https://stepanovv.ru/kbb): сорян, часть ссылок в формате dokuwiki
 
 ## Где документация по проекту?
 
- * https://docsify.js.org/#/markdown
- * https://marked.js.org/#/README.md#README.md
+ * https://gitlab.com/stepanovv/kbo/-/blob/master/README.md
  * https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
  * http://prismjs.com/
+ * https://docsify.js.org/#/markdown
+ * https://marked.js.org/#/README.md
 
 ## Какие особенности проекта?
 
- * Наполняется посредством любого IDE
- * не требует сборки, конвертирует markdown в html в браузере клиента
- * текстовый поиск без индексации
- * редактируется онлайн через bitbucket/github
- * оповещение об изменениях через bitgbucket git web hooks в slack
- * При создании новых файлов необходимо сделать оглавление со ссылками на них в каждой папке
-    * Файл называется sidebar.md и находится в папке, где лежат цели его ссылок
-        ```md
-        * ОГЛАВЛЕНИЕ
-            * Соглашения по коду
-                * [общие](kb/conventions/conventions.md)
-                * [angular](kb/conventions/angular.md)
-        ```
-    * Пути указываются от корня ./static/
+ * Использован markdown+JS движок [docsify](https://github.com/docsifyjs/docsify/blob/develop/docs/README.md) с [открытой лицензией](https://github.com/docsifyjs/docsify/blob/develop/LICENSE)
+ * Просмотр/редактирование оффлайн в любом IDE с плагинами markdown
+ * просмотр/редактирование онлайн без движка docsify через bitbucket/github/gitlab
+ * не требует сборки, конвертирует markdown-->html в браузере
+ * текстовый поиск без необходимости индексации
+ * можно настроить оповещение об изменениях через bitbucket git web hooks в slack
+ * Нет автоматического оглавления. Новые файлы добавляются вручную в [sidebar.md](https://gitlab.com/stepanovv/kbo/-/blob/master/public/kbo/sidebar.md)
+    * Пути указываются от [web корня](https://gitlab.com/stepanovv/kbo/-/tree/master/public)
     * Подзаголовки в оглавлении будут добавлены автоматически
- * Плагины подсветки добавляются в index.html [Prism](http://prismjs.com/)
- * по отношению к оригиналу добавлены собственные шрифты, изменены стили
- * ссылки на картинки указываются от пути расположения текущего файла со ссылкой
+ * [Плагины](http://prismjs.com/) подсветки добавляются в [index.html](https://gitlab.com/stepanovv/kbo/-/blob/master/public/index.html)
+ * по отношению к оригинальному docsify добавлены собственные шрифты, изменены стили
+ * есть markdown таблицы и плагин для предпросмотра картинок
+ * ссылки на картинки указываются относительно текущего md файла со ссылкой
 
-## Чего не хватает? 
- 
- * онлайн редактора с загрузкой файлов
- * сборщика для индексации структуры файлов и каталогов в оглавление
+## Чего не хватает?
+
+ * индексации структуры файлов и каталогов в оглавление
  * тэгов-ссылок с автоматической генерацией в тексте
  * RSS/xmpp оповещалки об изменениях
- * рабочих ссылок на файлы из текущего каталога
- * предпросмотр и ссылки на картинки из текущего каталога
 
 ## С чем взаимодейстует проект?
 

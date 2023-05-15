@@ -68,8 +68,12 @@ https://habrahabr.ru/post/244721/
 
 ### bazel
 
+ * технология google, со своей спецификой, запуск параллельно, аналог gulp, умеет кэшировать
+
 ###  webpack
 
+ * [webpack v3 config](https://bitbucket.org/bskydive/bookstore-client/src/master/webpack/v3.vue/)
+ * [webpack v4 config](https://bitbucket.org/bskydive/bookstore-client/src/master/webpack.config.js)
  * [ускорение сборки кэшированием](https://github.com/mzgoddard/hard-source-webpack-plugin)
  * https://webpack.js.org/guides/typescript/
  * [анализ](https://medium.com/@joeclever/three-simple-ways-to-inspect-a-webpack-bundle-7f6a8fe7195d)
