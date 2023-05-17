@@ -52,6 +52,7 @@
  * Тыл
 	 * [тыл](kb/backend/backend.md)
 	 * [алгоритмы](kb/backend/алгоритмы.md)
+	 * [моделирование](kb/backend/моделирование.md)
 	 * [java](kb/backend/java.md)
 	 * [mongo](kb/backend/mongo.md)
 	 * [нейросети](kb/backend/neural.md)
