@@ -28,8 +28,10 @@
 
  * https://github.com/github/git-sizer/#getting-started
  * [javascript git](https://github.com/isomorphic-git/isomorphic-git)
+ * [docker+clojure анализ git, первая версия codeScene](https://github.com/adamtornhill/code-maat)
+ * https://github.com/jwiegley/git-scripts
+ * [скрипты tools utils git-extras](https://github.com/tj/git-extras)
  * [оценка производительности разработчика gitlean](https://www.youtube.com/watch?v=-yDLzoX4re4)
- 	* [скрипты tools utils git-extras](https://github.com/tj/git-extras)
 	* https://github.com/garybernhardt/dotfiles/blob/main/bin/git-churn
 	* https://github.com/flacle/truegitcodechurn
 
@@ -37,12 +39,37 @@
 		set -e
 		git log --all -M -C --name-only --format='format:' --since='1 month ago' someDir1 someDir2 | sort | grep -v '^$' | uniq -c | sort -n
 	```
-	* https://github.com/adamtornhill/code-maat
-	* https://github.com/jwiegley/git-scripts
-	*
- * https://github.com/IonicaBizau/git-stats
- * [gitk](https://www.atlassian.com/git/tutorials/gitk)
- *
+ * [git commit calendar](https://github.com/IonicaBizau/git-stats/blob/master/bin/git-stats)
+
+	```bash
+		# Local git statistics including GitHub-like contributions calendars.
+		# Options:
+		# -r, --raw              Outputs a dump of the raw JSON data.
+		# -g, --global-activity  Shows global activity calendar in the current
+		# 						repository.
+		# -d, --data <path>      Sets a custom data store file.
+		# -l, --light            Enables the light theme.
+		# -n, --disable-ansi     Forces the tool not to use ANSI styles.
+		# -A, --author           Filter author related contributions in the current
+		# 						repository.
+		# -a, --authors          Shows a pie chart with the author related
+		# 						contributions in the current repository.
+		# -u, --until <date>     Optional end date.
+		# -s, --since <date>     Optional start date.
+		# --record <data>        Records a new commit. Don't use this unless you are
+		# 						a mad scientist. If you are a developer just use
+		# 						this option as part of the module.
+		# -h, --help             Displays this help.
+		# -v, --version          Displays version information.
+
+		# Examples:
+		git-stats # Default behavior (stats in the last year)
+		git-stats -l # Light mode
+		git-stats -s '1 January 2012' # All the commits from 1 January 2012 to now
+		git-stats -s '1 January 2012' -u '31 December 2012' # All the commits from 2012
+	```
+
+ * [Gitk is a graphical repository browser/client](https://www.atlassian.com/git/tutorials/gitk)
  * [строк кода на дату]()
  * []()
  * https://codescene.com/
@@ -50,8 +77,7 @@
  * https://waydev.co/
  * https://www.pluralsight.com/product/flow
  * https://linearb.io/
- * https://www.gitclear.com/
-
+ * [Next-level software developer metrics](https://www.gitclear.com/)
 
 ## аналитика git
 
@@ -103,6 +129,14 @@
 		* на этапе проверки гипотез эффективность низкая, переписываемость высокая
 		* эффективность позволяет понять стиль программирования
 
+## аналоги github
+
+ * https://trends.rbc.ru/trends/industry/622b8b4f9a7947053add4807
+	* русская https://gitflic.ru/
+	* китайская https://gitee.com/
+	* https://gogs.io/
+	* немецкая https://rhodecode.com/
+	* canonical https://launchpad.net/
 
 ## gitignore
 

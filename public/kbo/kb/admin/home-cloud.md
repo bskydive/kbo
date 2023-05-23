@@ -20,3 +20,11 @@
 ## freeNas
 
  * http://freenas.org/
+
+## локально
+
+ * [Офлайн-приложения: где общаться и работать без подключения к Сети](https://trends.rbc.ru/trends/industry/621b9b1d9a7947043c6b370d)
+ * [Share Files Offline](https://www.feem.io/)
+ * [NewNode — это мессенджер, который продолжает работать во время отключений интернета](https://play.google.com/store/apps/details?id=com.newnode.messenger&hl=ru&gl=US&pli=1)
+
+ * [Что делать в случае блокировки почтовых сервисов Google](https://trends.rbc.ru/trends/industry/621f62569a7947837e4be55f)
