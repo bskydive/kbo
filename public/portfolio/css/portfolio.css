@@ -973,25 +973,6 @@
   }
 }
 
-.c-quotes {
-  font-family: Arial, Helvetica, monospace;
-}
-.c-quotes-background-main {
-  background: url("../img/background-wood-backgroundlab.jpg") repeat repeat;
-}
-.c-quotes-column-center {
-  background: url("../img/pattern-lines-ava7-1527-bright.png") repeat fixed;
-  padding: 1em 3em 1em 2em;
-  text-align: center;
-}
-.c-quotes #id_divQuoteText {
-  padding-top: 1em;
-  font-size: large;
-}
-.c-quotes-row-header span {
-  padding-right: 15px;
-}
-
 .c-timer {
   font-family: Arial, Helvetica, monospace;
   font-size: 14px;
@@ -1062,6 +1043,25 @@
   position: relative;
   font-size: 0.75em;
   float: right;
+}
+
+.c-quotes {
+  font-family: Arial, Helvetica, monospace;
+}
+.c-quotes-background-main {
+  background: url("../img/background-wood-backgroundlab.jpg") repeat repeat;
+}
+.c-quotes-column-center {
+  background: url("../img/pattern-lines-ava7-1527-bright.png") repeat fixed;
+  padding: 1em 3em 1em 2em;
+  text-align: center;
+}
+.c-quotes #id_divQuoteText {
+  padding-top: 1em;
+  font-size: large;
+}
+.c-quotes-row-header span {
+  padding-right: 15px;
 }
 
 .c-weather {
