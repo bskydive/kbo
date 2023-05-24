@@ -1,7 +1,7 @@
 # React
 
  * https://pomb.us/build-your-own-react/
-	* 
+	*
 		```jsx
 			// 1
 			const element = <h1 title="foo">Hello</h1>
@@ -20,9 +20,9 @@
 				},
 			}
 
-			// 2 
+			// 2
 			const container = document.getElementById("root")
-			
+
 			// 3
 			ReactDOM.render(element, container)
 			// 3.1
@@ -35,14 +35,14 @@
 				node.appendChild(text)
 				container.appendChild(node)
 
-			// 
-			// 
-			// 
+			//
+			//
+			//
 
 
 		```
-	* 
-		``` 
+	*
+		```
 		```
  * https://ru.hexlet.io/courses/reactjs
  * https://learn.javascript.ru/courses/react
@@ -65,7 +65,24 @@
 	* высокий риск дублирования кода
 
 ## курсы
- * [React JS фундаментальный курс от А до Я - 2021](https://www.youtube.com/watch?v=GNrdg3PzpJQ)
+
+ * [React. Разработка сложных клиентских приложений](https://htmlacademy.ru/intensive/react)
+	* 2 месяца по 20 часов
+ * [Курс по React Ильи Кантора](https://learn.javascript.ru/courses/react)
+	* 1,5 месяца
+ * [Онлайн-курс по созданию одностраничного приложения (SPA) на React](https://school.csssr.com/ru/course/react/junior)
+	* Курс состоит из 11 практических заданий, 31 видео-лекции и 26 теоретических глав
+	* бесплатно
+ * [hexlet основы React](https://ru.hexlet.io/courses/js-react)
+	* 23 урока (видео и/или текст), 20 упражнений в тренажере, 42 проверочных теста
+ * [Курс «React-разработчик» yandex](https://practicum.yandex.ru/react/)
+	* хуки, State Management,TypeScript, Jest и Cypress
+	* 3 месяца по 20-25 часов в неделю
+ * [Продвинутый Frontend В Production на React](https://ulbitv.ru/frontend)
+	* минимум 4 месяца обучения. В неделю открывается один модуль на 2.5-3ч материала. На успешное освоение и закрепление необходимо будет в неделю около 8-10ч
+ * [React JS фундаментальный курс от А до Я](https://www.youtube.com/watch?v=GNrdg3PzpJQ)
+ * [React: фреймворк фронтенд-разработки нетология](https://netology.ru/programs/react#/main)
+	* 2,5 месяца, 13 часов теории и 76 часов практики
  * https://github.com/utimur/react-fundamental-course
  * https://github.com/utimur/React-typescript-course
 
@@ -100,7 +117,7 @@
  * в компоненте может быть только один корневой тэг
  * компонент должен возвращать минимум один тэг
  * предпочтительнее использовать композицию вместо наследования https://learn-reactjs.ru/basics/composition-vs-inheritance
-	
+
 	```tsx
 		function Message(props) {
 			return (
@@ -157,7 +174,7 @@
 		}
 
 		export default NavigationComponent;
-		
+
 	```
  * props передаются во вложенные компоненты только от родителя к детям
  * для обратного проброса props надо передать функцию обратного вызова или использовать композицию компонентов
@@ -192,7 +209,7 @@
 
 	```tsx
 		constructor() {
-			this.input = React.createRef();  
+			this.input = React.createRef();
 		}
 
 		onChange = (event) => {
@@ -209,7 +226,7 @@
 	* https://reactjs.org/docs/higher-order-components.html
  * взаимодействие компонентов
 	* useMemo
-	* context 
+	* context
 		* https://reactjs.org/docs/context.html
 		* useContext https://reactjs.org/docs/hooks-reference.html#usecontext
 	* https://reactjs.org/docs/render-props.html
@@ -218,8 +235,8 @@
 	* rxJS
 	* https://reactjs.org/docs/composition-vs-inheritance.html
 ## жизненный цикл
- 
- * 	
+
+ *
 	```tsx
 		// mount
 		useEffect<IObject>(()=>{/*...*/}, [])
@@ -249,10 +266,10 @@
 
 		function Form({required}) {
 			const [value, setValue] = useState('')
-			
+
 			// Добавьте useMemo, если переживаете за производительность
 			const isValid = validate(value, required)
-			
+
 			return (
 				<div>
 				<input
@@ -274,11 +291,11 @@
 		// isValid, isTouched, isPristine, resetForm, setError, asyncValidator - нужны по канонам идеального UX. Ибо сама задача очень сложная. И разумеется не надо её решать по месту в каком-то отдельно взятом useEffect или onClick. Закопаетесь.
 		// вещи которые можно высчитать из значений в любой момент, нужно делать ленивыми и декларативными
 	```
- * 
+ *
 
 ## модалки https://habr.com/ru/post/600035/#comment_23926469
 
- * 
+ *
 	```tsx
 
 		// на верхнем уровне приложения есть HoC, который wrap-ает древо context-ом, в котором есть императивный метод showError(msg: ReactNode | Component, isFixed?: boolean): Promise<void> (и другие методы).
@@ -317,8 +334,8 @@
 	function Example()  {
 		return (
 			<div class="alert alert-danger alert-dismissible fade show" role="alert">
-			<strong>Oh snap! You got an error!</strong> 
-			<p> 
+			<strong>Oh snap! You got an error!</strong>
+			<p>
 				Change this and that and try again.
 			</p>
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -355,7 +372,7 @@
  * intersectionObserver
 	* .isIntersecting - отрабатывает только когда появляется в зоне видимости, а не когда выходит
 	* удалять старый observer.current.disconnect, создавать новый
- * 
+ *
 
 ### mobx
 
@@ -381,9 +398,9 @@
 	* useHistory
 
 		```tsx
-			
+
 		```
-	* авторизация 
+	* авторизация
 		* по условию добавляем одни или другие доступные маршруты в дерево switch
 		* useContext - добавляем глобальные объекты с правами
 
@@ -397,9 +414,9 @@
 	* render()
  * группировка и взаимодействие групп состояний
 
-## 
+##
 
-## 
+##
 
-## 
+##
 
