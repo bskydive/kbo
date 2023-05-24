@@ -70,7 +70,7 @@
 	```
 
  * [Gitk is a graphical repository browser/client](https://www.atlassian.com/git/tutorials/gitk)
- * [строк кода на дату]()
+ * строк кода на дату
  * []()
  * https://codescene.com/
  * https://codeclimate.com/velocity
