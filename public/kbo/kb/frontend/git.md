@@ -71,7 +71,8 @@
 
  * [Gitk is a graphical repository browser/client](https://www.atlassian.com/git/tutorials/gitk)
  * строк кода на дату
- * []()
+ * [bash скрипты с консольной графикой](https://github.com/arzzen/git-quick-stats)
+ * [генерация(очень медленно) json файла и веб-визуализатор коммитов gitstat](https://github.com/nielskrijger/gitstat)
  * https://codescene.com/
  * https://codeclimate.com/velocity
  * https://waydev.co/
