@@ -2,6 +2,7 @@
 # bash
 
  * https://github.com/bskydive/ssh-agentless-monitoring/blob/master/monitoring.sh
+ * https://github.com/bskydive/mysql_bash_highload_test
 
 ## unlimited bash history
 
@@ -46,6 +47,8 @@
 
 ```bash
 	date +%H.%M.%S_%d.%m.%Y
+	for (( i=0 ; i<10 ; i++ )); do
+	done
 ```
 
 ## xargs
