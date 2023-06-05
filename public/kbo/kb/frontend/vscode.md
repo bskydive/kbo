@@ -152,7 +152,7 @@
 				"program": "${workspaceFolder}/index.ts",
 				"preLaunchTask": "tsc: build - tsconfig.json",
 				"outFiles": ["${workspaceFolder}/out/**/*.js"],
-				"runtimeArgs": ["-r","esm", "--preserve-symlinks"],
+				"runtimeArgs": ["--preserve-symlinks"],
 			}]
 		}
 	```
@@ -162,7 +162,7 @@
 			"compilerOptions": {
 				"target": "es5",
 				"module": "commonjs",
-				"outDir": "out",
+				"outDir": "dist",
 				"sourceMap": true
 			}
 		}
