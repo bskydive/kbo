@@ -146,6 +146,12 @@
 		{
 			"version": "0.2.0",
 			"configurations": [{
+				// "type": "node-terminal",
+				// "name": "node-debug",
+				// "request": "launch",
+				// "command": "npm run debug",
+				// "cwd": "${workspaceFolder}/dist",
+
 				"type": "node",
 				"request": "launch",
 				"name": "Launch Program",
