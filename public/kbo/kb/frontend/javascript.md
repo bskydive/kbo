@@ -246,34 +246,78 @@
 
 ### momentjs date дата
 
-```js
-	import * as moment from 'moment';
+ * [форматирование разницы дат](https://stackoverflow.com/questions/8528382/javascript-show-milliseconds-as-dayshoursmins-without-seconds)
+	```ts
+		/** Just date formatting from milliseconds to DD-HH-MM-SS */
+		function msToDate(dateMs: number): string {
+			const SEP = "-";
+			const daysMs = 86400000; // 24 * 60 * 60 * 1000,
+			const hoursMs = 3600000; // 60 * 60 * 1000;
+			const minutesMs = 60000; // 60 * 1000;
+			const secondsMs = 1000; // 1000;
+
+			let days: number;
+			let hours: number;
+			let minutes: number;
+			let seconds: number;
+
+			days = Math.floor(dateMs / daysMs);
+			hours = Math.floor((dateMs - days * daysMs) / hoursMs);
+			if (hours === 24) {
+				days++;
+				hours = 0;
+			}
+			minutes = Math.floor(
+				(dateMs - days * daysMs - hours * hoursMs) / minutesMs
+			);
+			if (minutes === 60) {
+				hours++;
+				minutes = 0;
+			}
+			seconds = Math.floor(
+				(dateMs - days * daysMs - hours * hoursMs - minutes * minutesMs) /
+					secondsMs
+			);
+
+			return [
+				days.toString().padStart(2, "0") + "D",
+				hours.toString().padStart(2, "0") + "H",
+				minutes.toString().padStart(2, "0") + "M",
+				seconds.toString().padStart(2, "0") + "S",
+			].join(SEP);
+		}
+	```
+ * форматирование momentjs
+
+	```js
+		import * as moment from 'moment';
 
 
-	// https://momentjs.com/docs/#/displaying/format/
+		// https://momentjs.com/docs/#/displaying/format/
 
-	export const DATE_FORMAT = {
-		emptyDataText: '',
-		parse: {
-			dateInput: 'X',
-			// dateInput: 'YYYY MM DD HH:mm:SS',
-		},
-		display: {
-			dateInput: 'DD.MM.YYYY',
-			dateOutput: 'YYYY MM DD HH:mm:SS',
-			monthYearLabel: 'MMM YYYY',
-			// locale: 'ru'
-			// dateA11yLabel: 'YYYY MM DD HH:mm:SS',
-			// monthYearA11yLabel: 'MMMM YYYY',
-		},
-	};
-	moment().format('X'));
-	moment().unix();
-	moment(date, DATE_FORMAT.parse.dateInput).format(DATE_FORMAT.display.dateInput);
-	moment(params.toDate, DATE_FORMAT.parse.dateInput).day()
-	moment().add(1,'day').format(DATE_FORMAT.display.dateOutput);
+		export const DATE_FORMAT = {
+			emptyDataText: '',
+			parse: {
+				dateInput: 'X',
+				// dateInput: 'YYYY MM DD HH:mm:SS',
+			},
+			display: {
+				dateInput: 'DD.MM.YYYY',
+				dateOutput: 'YYYY MM DD HH:mm:SS',
+				monthYearLabel: 'MMM YYYY',
+				// locale: 'ru'
+				// dateA11yLabel: 'YYYY MM DD HH:mm:SS',
+				// monthYearA11yLabel: 'MMMM YYYY',
+			},
+		};
+		moment().format('X'));
+		moment().unix();
+		moment(date, DATE_FORMAT.parse.dateInput).format(DATE_FORMAT.display.dateInput);
+		moment(params.toDate, DATE_FORMAT.parse.dateInput).day()
+		moment().add(1,'day').format(DATE_FORMAT.display.dateOutput);
 
-```
+	```
+
  * [You Dont Need Momentjs](https://github.com/you-dont-need/You-Dont-Need-Momentjs)  Moment.js/Luxon/date-fns/dayjs/vanillajs comparison and samples
  * [Luxon — новая библиотека для работы с датами от команды Moment.js](https://habr.com/ru/post/433850/)
  * [$mol_time — работаем с датами и временем правильно](https://habr.com/ru/post/263041/)
@@ -448,7 +492,7 @@ https://stateofjs.com/2017/front-end/results
 ##  state management
 
  * [akita](https://github.com/datorama/akita)
-	* [I Built the Ngrx Demo App with Akita. Here’s the Result.](https://engineering.datorama.com/i-built-the-ngrx-demo-app-with-akita-heres-the-result-57f83fe92192)
+	* [I Built the Ngrx Demo App with Akita. Here's the Result.](https://engineering.datorama.com/i-built-the-ngrx-demo-app-with-akita-heres-the-result-57f83fe92192)
  * [vibe.js](https://habrahabr.ru/post/341126/)
  * redux
  * mobx-tree-store
