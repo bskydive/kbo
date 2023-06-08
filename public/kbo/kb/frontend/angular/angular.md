@@ -547,26 +547,26 @@
 			* Any provider defined in the child component tree of the current component (e.g. @ViewChild(SomeService) someService: SomeService)
 			* Any provider defined through a string token (e.g. @ViewChild('someToken') someTokenVal: any)
 			* A TemplateRef (e.g. query <ng-template></ng-template> with @ViewChild(TemplateRef) template;)
+		*
+		```ts
+			// Accessing DOM element with JavaScript
+			let domReference = document.getElementById("someElement");
 
-	```ts
-		// Accessing DOM element with JavaScript
-		let domReference = document.getElementById("someElement");
+			// Access DOM element using Angular @ViewChild
+			@ViewChild("someElement") domReference;
+			@ViewChild(NgModel) userNameReference: NgModel;
+			@ViewChild("userInformation") childComponentReference: any;
 
-		// Access DOM element using Angular @ViewChild
-		@ViewChild("someElement") domReference;
-		@ViewChild(NgModel) userNameReference: NgModel;
-		@ViewChild("userInformation") childComponentReference: any;
+			ngAfterViewInit(): void {
+				this.domReference.nativeElement.focus();
+				this.userNameReference.valueChanges.subscribe(() => { this.executeOtherFunction() })
+				// Accessing Property of Child Component
+				this.childComponentReference.userName = "Updated Name";
 
-		ngAfterViewInit(): void {
-			this.domReference.nativeElement.focus();
-			this.userNameReference.valueChanges.subscribe(() => { this.executeOtherFunction() })
-			// Accessing Property of Child Component
-			this.childComponentReference.userName = "Updated Name";
-
-			// Accessing Functions of Child Component
-			this.childComponentReference.updateUserName();
-		}
-	```
+				// Accessing Functions of Child Component
+				this.childComponentReference.updateUserName();
+			}
+		```
 
 	* viewChildren - Директива @ViewChild отличается от @ViewChildren тем, что первая всегда вернет вам только один элемент, в то время как вторая позволяет вам находить несколько элементов, возвращая вам объект типа QueryList.
 
