@@ -24,6 +24,7 @@
  * [5 грязных трюков в соревновательном Data Science](https://habr.com/ru/post/600067/) https://www.theregister.com/2020/01/21/ai_kaggle_contest_cheat/
  * [Война или мир: используем MATLAB и Python вместе](https://habr.com/ru/company/etmc_exponenta/blog/596397/)
  * [О русской науке замолвите слово или за что я люблю Тинькофф, часть 1 2021](https://habr.com/ru/post/598305/)
+ * [После GPT-4](https://habr.com/ru/articles/723660/)
 
 ## обзоры
 
@@ -60,6 +61,8 @@
  * [Расчет транспортного потока на основе YOLOv5 и DeepSORT на базе Deepstream](https://habr.com/ru/post/725916/)
  * [Вижу, значит существую: обзор Deep Learning в Computer Vision (часть 2) VANB](https://habr.com/ru/company/mipt/blog/458190/)
  * [Самая сложная задача в Computer Vision](https://habr.com/ru/company/recognitor/blog/505694/)
+ * [Unbounded High Dynamic Range Photography using a Modulo Camera](https://web.media.mit.edu/~hangzhao/modulo.html)
+ * [Короче, сделал столетний блокбастер цветным](https://habr.com/ru/articles/481710/)
 
 ## железо
 

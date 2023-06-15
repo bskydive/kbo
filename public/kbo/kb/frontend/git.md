@@ -446,6 +446,7 @@ git merge upstream/master
  * https://htmlacademy.ru/blog/boost/tools/how-to-squash-commits-and-why-it-is-needed
 
  ```bash
+	git rebase -i HEAD~5
 	git rebase -i 123456 # коммит после крайнего
 	# git add
  	git rebase --continue
