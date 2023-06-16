@@ -70,8 +70,9 @@
 	```
 
  * [Gitk is a graphical repository browser/client](https://www.atlassian.com/git/tutorials/gitk)
- * [строк кода на дату]()
- * []()
+ * строк кода на дату
+ * [bash скрипты с консольной графикой](https://github.com/arzzen/git-quick-stats)
+ * [генерация(очень медленно) json файла и веб-визуализатор коммитов gitstat](https://github.com/nielskrijger/gitstat)
  * https://codescene.com/
  * https://codeclimate.com/velocity
  * https://waydev.co/
@@ -445,6 +446,7 @@ git merge upstream/master
  * https://htmlacademy.ru/blog/boost/tools/how-to-squash-commits-and-why-it-is-needed
 
  ```bash
+	git rebase -i HEAD~5
 	git rebase -i 123456 # коммит после крайнего
 	# git add
  	git rebase --continue

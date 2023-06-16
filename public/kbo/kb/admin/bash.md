@@ -2,6 +2,7 @@
 # bash
 
  * https://github.com/bskydive/ssh-agentless-monitoring/blob/master/monitoring.sh
+ * https://github.com/bskydive/mysql_bash_highload_test
 
 ## unlimited bash history
 
@@ -39,6 +40,16 @@
 
 ```
 
+## bash scripts
+
+ * [backup](./backup.md)
+ * [monitoring](./monitoring.md)
+
+```bash
+	date +%H.%M.%S_%d.%m.%Y
+	for (( i=0 ; i<10 ; i++ )); do
+	done
+```
 
 ## xargs
 
@@ -66,7 +77,49 @@
 
 ## tips
 
+ * http://mywiki.wooledge.org/BashFAQ
+ * http://mywiki.wooledge.org/BashGuide/TestsAndConditionals
+ * http://wiki.bash-hackers.org/syntax/ccmd/if_clause
  * [подводные камни bash](https://habr.com/ru/company/mailru/blog/311762)
+
+	```bash
+		for i in *.mp3; do
+			[ -e "$i" ] || continue
+			cp "./$i" /target
+		done
+
+		cp -- "$file" "$target"
+		# -- - сигнал прекращения поиска опций
+
+		#posix
+		[ "$foo" = bar ]
+		[ bar = "$foo" ] && [ foo = "$bar" ]
+		[ "$foo" -gt 7 ]
+
+		case $foo in
+			*[![:digit:]]*)
+				printf '$foo expanded to a non-digit: %s\n' "$foo" >&2
+				exit 1
+				;;
+			*)
+				[ $foo -gt 7 ]
+		esac
+
+		if [ false ]; then echo "HELP"; fi
+		if test false; then echo "HELP"; fi
+		if [ a = b ] && [ c = d ]; then
+		if test a = b && test c = d; then
+		if [[ a = b && c = d ]]; then
+
+		#bash/ksh
+		[[ $foo == bar ]]
+		[[ $foo == "$match" ]]
+		[[ $foo = bar && $bar = foo ]]
+		((foo > 7))
+
+		#TODO спарсить после 11 пункта
+	```
+
  * https://github.com/you-dont-need/You-Dont-Need-GUI#find-a-stale-file
  * [Bash-скрипты, часть 2: циклы](https://habrahabr.ru/company/ruvds/blog/325928/)
  * https://opensource.com/article/18/5/gnu-parallel

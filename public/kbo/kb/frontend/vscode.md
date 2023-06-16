@@ -17,7 +17,6 @@
 		esbenp.prettier-vscode
 		ezforo.copy-relative-path-and-line-numbers
 		firsttris.vscode-jest-runner
-		formulahendry.auto-rename-tag
 		joaompinto.vscode-graphviz
 		jock.svg
 		johnpapa.Angular2
@@ -46,6 +45,7 @@
 	```
 	* disabled
 	```txt
+		formulahendry.auto-rename-tag
 		pustelto.bracketeer
 		cmstead.js-codeformer
 		hangxingliu.vscode-coding-tracker
@@ -127,31 +127,51 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "editor.fontLigatures": false,
+	"editor.linkedEditing": true,
 ```
 
 ## debug
 
  * [node nvm vscode debug](https://medium.com/the-tech-bench/getting-visual-studio-code-and-nvm-working-together-252ec0300895)
- * [debug](https://code.visualstudio.com/docs/nodejs/nodejs-debugging)
+ * https://code.visualstudio.com/docs/nodejs/nodejs-debugging
+ * https://stackoverflow.com/questions/65097694/to-load-an-es-module-set-type-module-in-the-package-json-or-use-the-mjs-e
+ * [debug typescript](https://code.visualstudio.com/docs/typescript/typescript-debugging)
 	```bash
 		nvm install 16 --default
 		#nvm i 16
 		#nvm alias default 16
 		#nvm alias default node
-		cat >> ~/.vscode/launch.json
 	```
-
+ * `~/.vscode/launch.json`
 	```json
 		{
-			"configurations": [
-				{
-					"type": "node-terminal",
-					"name": "Run Script: debug",
-					"request": "launch",
-					"command": "npm run debug",
-					"cwd": "${workspaceFolder}"
-				}
-			]
+			"version": "0.2.0",
+			"configurations": [{
+				// "type": "node-terminal",
+				// "name": "node-debug",
+				// "request": "launch",
+				// "command": "npm run debug",
+				// "cwd": "${workspaceFolder}/dist",
+
+				"type": "node",
+				"request": "launch",
+				"name": "Launch Program",
+				"program": "${workspaceFolder}/index.ts",
+				"preLaunchTask": "tsc: build - tsconfig.json",
+				"outFiles": ["${workspaceFolder}/dist/**/*.js"],
+				"runtimeArgs": ["--preserve-symlinks"],
+			}]
+		}
+	```
+ * `./tsconfig.json`
+	```json
+		{
+			"compilerOptions": {
+				"target": "es5",
+				"module": "commonjs",
+				"outDir": "dist",
+				"sourceMap": true
+			}
 		}
 	```
 

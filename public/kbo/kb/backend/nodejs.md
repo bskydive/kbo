@@ -17,23 +17,24 @@
  * [Особенности работы и внутреннего устройства express.js](https://habr.com/post/414079/)
     * https://www.sohamkamani.com/blog/2018/05/30/understanding-how-expressjs-works/
 
-```js
-[Service]
-ExecStart=/usr/bin/node /opt/bookstore/bookStoreServer/bin/www
-WorkingDirectory=/opt/bookstore/bookStoreServer/
-Restart=on-failure
-TimeoutStartSec=10
-TimeoutStopSec=10
-StandardOutput=syslog
-StandardError=syslog
-SyslogIdentifier=node-bookstore
-User=bookstore
-Group=nginx
-Environment=NODE_ENV=production
+	```js
+		[Service]
+		ExecStart=/usr/bin/node /opt/bookstore/bookStoreServer/bin/www
+		WorkingDirectory=/opt/bookstore/bookStoreServer/
+		Restart=on-failure
+		TimeoutStartSec=10
+		TimeoutStopSec=10
+		StandardOutput=syslog
+		StandardError=syslog
+		SyslogIdentifier=node-bookstore
+		User=bookstore
+		Group=nginx
+		Environment=NODE_ENV=production
 
-[Install]
-WantedBy=multi-user.target
-```
+		[Install]
+		WantedBy=multi-user.target
+	```
+
 ##  logging
 
  * https://www.loggly.com/ultimate-guide/node-logging-basics/

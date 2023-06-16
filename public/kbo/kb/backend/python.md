@@ -1,4 +1,13 @@
-# Python 
+# Python
+
+
+## ссылки
+
+ * https://pogromista.blog/
+
+## линтер python
+
+ * [Груг против сложности. Я пролинтил все посты на Хабре про Python, и вот что я нашёл](https://habr.com/ru/companies/breakpoint/articles/686104/)
 
 
 ## python framework
@@ -7,12 +16,14 @@
  * что-то асинхронное и простое, как топор (aiohttp)
  * что-то напичканное полезными батарейками (FastApi/Django, чаще DRF)
 
+ * [Окей, Джанго, у меня к тебе несколько вопросов](https://habr.com/ru/articles/594601/)
+
 ## install
 
  * 1
 	```bash
 
-		# CentOS 
+		# CentOS
 		yum install libpqxx libpqxx-devel openjpeg-libs gd openjpeg openjpeg-devel freetype-devel freetype libxml2-devel python-setuptools python27-devel python27-libs python27-tools python27 python27-distribute --enablerepo=ius
 
 		easy_install -U virtualenv
@@ -20,7 +31,7 @@
 		# если проблемы с каналом связи:
 		cd /distr/
 		wget http://pypi.python.org/packages/source/v/virtualenv/virtualenv-1.9.1.tar.gz
-		easy_install -U ./virtualenv-1.9.1.tar.gz 
+		easy_install -U ./virtualenv-1.9.1.tar.gz
 
 		mkdir /opt/env27
 
@@ -56,7 +67,7 @@
 		# see http://docs.pylonsproject.org/projects/pyramid/en/latest/narr/install.html
 		# Installing Pyramid on a UNIX System
 		wget http://peak.telecommunity.com/dist/ez_setup.py
-		sudo python ez_setup.py 
+		sudo python ez_setup.py
 		# Возможно потребует sudo python ez_setup.py -U setuptools
 
 		sudo easy_install virtualenv
@@ -81,7 +92,7 @@
 		# настраиваем приложение и инициализируем БД
 		cd skyProject
 		../bin/python setyp.py develop
-		#создаем в БД схему skydb 
+		#создаем в БД схему skydb
 
 
 
