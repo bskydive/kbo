@@ -17,7 +17,6 @@
 		esbenp.prettier-vscode
 		ezforo.copy-relative-path-and-line-numbers
 		firsttris.vscode-jest-runner
-		formulahendry.auto-rename-tag
 		joaompinto.vscode-graphviz
 		jock.svg
 		johnpapa.Angular2
@@ -46,6 +45,7 @@
 	```
 	* disabled
 	```txt
+		formulahendry.auto-rename-tag
 		pustelto.bracketeer
 		cmstead.js-codeformer
 		hangxingliu.vscode-coding-tracker
@@ -127,6 +127,7 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "editor.fontLigatures": false,
+	"editor.linkedEditing": true,
 ```
 
 ## debug
