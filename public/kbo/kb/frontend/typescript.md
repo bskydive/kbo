@@ -97,12 +97,6 @@
  * https://stackoverflow.com/questions/49761972/difference-between-string-enums-and-string-literal-types-in-ts/54455743#54455743
  * [The TypeScript Tax: A Cost vs Benefit Analysis](https://javascriptweekly.com/link/81862/web)
  * [7 New and Exciting TypeScript Features](https://blog.bitsrc.io/7-new-and-exciting-typescript-features-48b760ae0b73)
- * [warning TS(2564)](https://www.ryadel.com/en/ts2564-ts-property-has-no-initializer-typescript-error-fix-visual-studio-2017-vs2017/)
-	```json
-		tsconfig.json
-		"compilerOptions": {
-			"strictPropertyInitialization": false
-	```
  * for (of) - итерируемые
 	* `for (const [key,value] of Object.entries(obj) {}`
  * for (in) - перечисляемые
@@ -111,3 +105,27 @@
 ### собеседование typescript
 
  * [Собеседование по TypeScript: 20 вопросов и ответов](https://habr.com/ru/company/ruvds/blog/419993/)
+
+
+## tsconfig сборка
+
+ * [warning TS(2564)](https://www.ryadel.com/en/ts2564-ts-property-has-no-initializer-typescript-error-fix-visual-studio-2017-vs2017/)
+	```json
+		tsconfig.json
+		"compilerOptions": {
+			"strictPropertyInitialization": false
+	```
+
+### борода node+browser+debug+dev-web-server+typescript+imports
+	* express блокирует загрузку `script type="module"`
+ 	* без модулей можно собирать в UMD, но он не работает с `import`
+	* можно поставить локальный веб-сервер, который отключает заголовок nosniff, тогда `script type="module"` заработает, можно будет делать import без транспилера, подавать голый ES2020 в script
+	* https://stackoverflow.com/questions/40728554/resource-blocked-due-to-mime-type-mismatch-x-content-type-options-nosniff
+	* [UMD globals](https://github.com/microsoft/TypeScript/issues/10178) - не взлетело
+	* [добавить в HTML скрипт для модулей AMD+requireJS](https://jasonfavrod.com/typescript-web-browser-modules/)
+	* [Export TypeScript Class to Browser Window and Node.js without bundler (browserify or webpack)](https://stackoverflow.com/questions/45061052/export-typescript-class-to-browser-window-and-node-js-without-bundler-browserif)
+	* [Build for both browser and nodejs](https://stackoverflow.com/questions/44709031/build-for-both-browser-and-nodejs)
+	* [TypeScript and <script type="module"></script>](https://github.com/Microsoft/TypeScript/issues/13422)
+	* [попытка решить проблему на стороне http-server](https://github.com/http-party/http-server/issues/484) - не взлетело
+	* [Set package.json "type": "module" Set tsconfig.json "module": "nodenext"](https://github.com/Qminder/javascript-api/pull/431) - не взлетело
+	* [commonJS+rollup/webpack/browserify](https://rollupjs.org/tutorial/#installing-rollup-locally) - самый простой вариант
