@@ -118,7 +118,7 @@
 
 ### борода node+browser+debug+dev-web-server+typescript+imports
 
-* express блокирует загрузку `script type="module"`
+* [node+express](https://www.npmjs.com/package/http-server) блокирует загрузку `script type="module"` из-за заголовка `nosniff`, потому что тип `module` нет в разрешённых `MIME` типах
 * без модулей можно собирать в UMD, но он не работает с `import`
 * можно поставить локальный веб-сервер, который отключает заголовок nosniff, тогда `script type="module"` заработает, можно будет делать import без транспилера, подавать голый ES2020 в script
 * https://stackoverflow.com/questions/40728554/resource-blocked-due-to-mime-type-mismatch-x-content-type-options-nosniff
