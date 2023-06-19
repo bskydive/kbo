@@ -115,7 +115,8 @@
 		"compilerOptions": {
 			"strictPropertyInitialization": false
 	```
- * борода node+debug+import+browser
+
+### борода node+browser+debug+dev-web-server+typescript+imports
 	* express блокирует загрузку `script type="module"`
  	* без модулей можно собирать в UMD, но он не работает с `import`
 	* можно поставить локальный веб-сервер, который отключает заголовок nosniff, тогда `script type="module"` заработает, можно будет делать import без транспилера, подавать голый ES2020 в script
