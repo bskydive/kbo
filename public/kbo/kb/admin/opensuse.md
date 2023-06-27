@@ -852,19 +852,19 @@ acpitool  -W 17
  * как отключить проигрыватель на экране блокировки https://forums.opensuse.org/showthread.php/525618-How-to-disable-media-controls-on-lock-screen
 
  ```
- /usr/share/plasma/look-and-feel/org.openSUSE.desktop/contents/lockscreen/LockScreenUi.qml
-/usr/share/plasma/look-and-feel/org.kde.breeze.desktop/contents/lockscreen/LockScreenUi.qml
+    /usr/share/plasma/look-and-feel/org.openSUSE.desktop/contents/lockscreen/LockScreenUi.qml
+    /usr/share/plasma/look-and-feel/org.kde.breeze.desktop/contents/lockscreen/LockScreenUi.qml
 
-This is part of the plasma5-workspace-5.10.4-1.1.x86_64 package.
+    This is part of the plasma5-workspace-5.10.4-1.1.x86_64 package.
 
-Code:
+    Code:
 
-                Loader {
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: item ? item.implicitHeight : 0
-                    active: true // TODO configurable
-                    source: "MediaControls.qml"
-                }
+    Loader {
+        Layout.fillWidth: true
+        Layout.preferredHeight: item ? item.implicitHeight : 0
+        active: true // TODO configurable
+        source: "MediaControls.qml"
+    }
 
  ```
 
