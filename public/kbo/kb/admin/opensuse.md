@@ -1442,6 +1442,13 @@ http://www.liberatedcomputing.net/mm2fm
 
 ## vmware
 
+ * netwok manager, сеть отвалилась
+ ```
+nmcli networking on
+nmcli
+
+ ```
+
  * [VMWare Workstation 15.5.1 on Kernel Linux 5.4.6 : fail to compile vmci-only](https://communities.vmware.com/thread/623768)
 	```bash
 		git clone https://github.com/mkubecek/vmware-host-modules.git
