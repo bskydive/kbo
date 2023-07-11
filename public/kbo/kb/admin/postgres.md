@@ -205,9 +205,27 @@ https://en.opensuse.org/SDB:PostgreSQL
 
 	su - postgres -c "initdb --locale=ru_RU.utf8 --auth=trust --encoding=UTF8 --username=postgres --pgdata=/var/lib/pgsql/data"
 
-	su - postgres -c "pgtune -i /var/lib/pgsql/data/postgresql.conf.old /var/lib/pgsq/data/postgresql.conf"
 
-	su - postgres -c 'SHOW hba_file;'
+
+    su - postgres
+	psql -c "show data_directory;"
+	pg_lsclusters
+	# Ver Cluster Port Status Owner    Data directory              Log file
+	# 12  main    5432 online postgres /var/lib/postgresql/12/main /var/log/postgresql/postgresql-12-main.log
+
+	#systemctl stop postgresql
+	#pg_ctlcluster stop 12 main
+	#pg_dropcluster 12 main
+
+    /usr/lib/postgresql/12/bin/pg_ctl status -D /var/lib/postgresql/12/main
+
+	pgtune -i /var/lib/pgsql/data/postgresql.conf.old /var/lib/pgsq/data/postgresql.conf
+
+	psql -c 'SHOW hba_file;'
+    psql -c 'SHOW config_file;'
+    psql -c 'SHOW SERVER_ENCODING;'
+    psql -c 'SHOW LC_COLLATE;'
+    psql -c '\password postgres'
 
 	mcedit /home/postgres/pg_hba.conf
 	local   all             all                                     trust
