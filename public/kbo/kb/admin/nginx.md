@@ -1,5 +1,9 @@
 # Nginx
 
+
+ * [moodle](./moodle.md)
+ * [openmeetings](./openmeetings.md)
+ * [redmine](./redmine.md)
  * [Nginx. О чем не пишут в книгах](https://habr.com/ru/post/561758/)
  * http://openresty.org/download/agentzh-nginx-tutorials-en.html
 
