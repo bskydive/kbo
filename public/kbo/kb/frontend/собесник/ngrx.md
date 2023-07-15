@@ -38,7 +38,6 @@
 
 ## примеры
 
-* ![](./angular-injector-tree.png)
 * ![](./angular-ngrx-architecture.jpg)
 * ![](./angular-ngrx.jpg)
 * редукторы
