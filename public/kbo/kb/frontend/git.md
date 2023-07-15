@@ -2,6 +2,7 @@
 
 ## документация
 
+ * https://marklodato.github.io/visual-git-guide/index-en.html
  * https://github.com/k88hudson/git-flight-rules
  * https://services.github.com/on-demand/downloads/github-git-cheat-sheet/
  * https://medium.com/@ABatickaya/%D1%88%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0-%D0%BF%D0%BE-git-55eeea487676#.38x1yx7en
@@ -216,6 +217,26 @@
 	```
 		Обратите внимание, изменяется не сам HEAD (что происходит при выполнении команды checkout); reset перемещает ветку, на которую указывает HEAD. Таким образом, если HEAD указывает на ветку master (то есть вы сейчас работаете с веткой master), выполнение команды git reset 9e5e6a4 сделает так, что master будет указывать на 9e5e6a4.
 	```
+
+### git credential
+
+ * win https://stackoverflow.com/questions/15381198/remove-credentials-from-git
+ * https://git-scm.com/book/en/v2/Git-Tools-Credential-Storage
+ * https://stackoverflow.com/questions/44246876/how-to-remove-cached-credentials-from-git
+
+ ```bash
+ 	git config --global -l
+	git config --local  -l
+	git config --system -l
+	git config --global --unset credential.helper
+	git config --local --unset credential.helper
+	git config --system --unset credential.helper
+
+	mcedit ./.git/config
+	#origin
+	#https://**username**@gitlab.com/user/projectgit
+
+ ```
 
 ### модифицированные файлы
 

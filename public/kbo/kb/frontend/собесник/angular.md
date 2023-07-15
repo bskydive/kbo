@@ -102,6 +102,7 @@
 
 ## DI
 
+1. ![](./angular-injector-tree.png)
 1. Иерархия Injector'ов, какие бывают, сколько их может быть?
 	* https://angular.io/guide/hierarchical-dependency-injection
 	* https://medium.com/angular-in-depth/angular-dependency-injection-and-tree-shakeable-tokens-4588a8f70d5d

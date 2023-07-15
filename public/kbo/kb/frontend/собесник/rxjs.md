@@ -47,7 +47,7 @@
 	* похож на EventEmitter, единственный способ multicasting
 	* [asyncSubject](https://www.learnrxjs.io/learn-rxjs/subjects/asyncsubject) - отдаёт только после закрытия входного потока
 	* replaySubject - кэширование и повторение
-	* behaviorSubject - есть начальное значение
+	* behaviorSubject - есть начальное значение и кэширование крайнего
 
 	```ts
 		const setFabricRunners$: Subject<{ id: number; task$: Observable<any> }[]> = new Subject();

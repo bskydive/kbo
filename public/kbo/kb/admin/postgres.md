@@ -11,10 +11,10 @@
  * https://habrahabr.ru/post/314048/
  * [курсы](https://www.youtube.com/playlist?list=PLaFqU3KCWw6KzGwUubZm-9-vKsi6vh5qC)
  * [Олимпиада SQL: разбор задачи про календарь](https://habr.com/post/359064/)
- * [Задачи и решения для бойца PostgreSQL](https://habr.com/post/423097/) 
+ * [Задачи и решения для бойца PostgreSQL](https://habr.com/post/423097/)
  * [SQL индексы ликбез](https://habr.com/company/oleg-bunin/blog/348172/)
  * [Иван Панченко — Воркшоп: Постгрес для фронтендеров (часть 1) holyjs](https://www.youtube.com/watch?v=-LqaGUKTALo)
- 
+
 ## Оптимизации
 
  * [Три аспекта оптимизации (БД и ПО)](https://habr.com/post/349910/)
@@ -24,7 +24,7 @@
  * [GIN индекс указатель терминов](https://habr.com/company/postgrespro/blog/340978/)
  * [BRIN индекс секционирование](https://habr.com/company/postgrespro/blog/346460/)
  * [GIST индекс деревья](https://habr.com/company/postgrespro/blog/333878/)
- * [SP-GiST индекс деревья с секционированием](https://habr.com/company/postgrespro/blog/337502/) 
+ * [SP-GiST индекс деревья с секционированием](https://habr.com/company/postgrespro/blog/337502/)
  * [Декларативное партиционирование](https://habr.com/post/422753/)
 
 ## Древовидные структуры
@@ -32,23 +32,23 @@
  * http://www.ibase.ru/treedb/
  * http://www.codenet.ru/db/other/trees/
  * https://stackoverrun.com/ru/q/64838
- * [Идеальный каталог](https://habr.com/post/322930/) 
- 
+ * [Идеальный каталог](https://habr.com/post/322930/)
+
 
 ## утилиты
 
  * https://github.com/NikolayS/postgres_dba
- 
-## postgres remote access 
+
+## postgres remote access
 
 ```bash
 
 
-mcedit /var/lib/pgsql/10/data/pg_hba.conf 
+mcedit /var/lib/pgsql/10/data/pg_hba.conf
 host    all             all             127.0.0.1/32            trust
 host    all             all             192.168.0.0/24            trust
 
-mcedit /var/lib/pgsql/9.1/data/postgresql.conf 
+mcedit /var/lib/pgsql/9.1/data/postgresql.conf
 bytea_output = 'escape'
 listen_addresses = '*'
 
@@ -88,8 +88,8 @@ su - postgres -c "psql -U userlist_user -d userlist_db --password"
 	dpkg-reconfigure locales
 
 	aptitude install postgresql
-	The following NEW packages will be installed:
-	libpq5{a} postgresql postgresql-9.1{a} postgresql-client-9.1{a} postgresql-client-common{a} postgresql-common{a} ssl-cert{a}
+	#The following NEW packages will be installed:
+	#libpq5{a} postgresql postgresql-9.1{a} postgresql-client-9.1{a} postgresql-client-common{a} postgresql-common{a} ssl-cert{a}
 
 	echo $LANG
 
@@ -148,8 +148,8 @@ echo $?
 ```bash
 
 #wget http://yum.postgresql.org/9.1/redhat/rhel-6-x86_64/pgdg-centos91-9.1-4.noarch.rpm
-#rpm -ivh pgdg-centos91-9.1-4.noarch.rpm 
-mcedit /etc/yum.repos.d/CentOS-Base.repo 
+#rpm -ivh pgdg-centos91-9.1-4.noarch.rpm
+mcedit /etc/yum.repos.d/CentOS-Base.repo
 exclude=postgres*
 
 yum install postgresql91-server postgresql91-libs pgstat2 pg_top91 barman --disablerepo=epel
@@ -173,7 +173,7 @@ su - postgres -c "initdb --locale=ru_RU.utf8"
 ##service postgresql-9.1 initdb
 service postgresql-9.1 start
 
-mcedit /var/lib/pgsql/9.1/data/pg_hba.conf 
+mcedit /var/lib/pgsql/9.1/data/pg_hba.conf
 local   all             all                                     trust
 host    all             all             127.0.0.1/32            trust
 host    all             all             192.168.1.0/24            trust
@@ -205,9 +205,27 @@ https://en.opensuse.org/SDB:PostgreSQL
 
 	su - postgres -c "initdb --locale=ru_RU.utf8 --auth=trust --encoding=UTF8 --username=postgres --pgdata=/var/lib/pgsql/data"
 
-	su - postgres -c "pgtune -i /var/lib/pgsql/data/postgresql.conf.old /var/lib/pgsq/data/postgresql.conf"
 
-	su - postgres -c 'SHOW hba_file;'
+
+    su - postgres
+	psql -c "show data_directory;"
+	pg_lsclusters
+	# Ver Cluster Port Status Owner    Data directory              Log file
+	# 12  main    5432 online postgres /var/lib/postgresql/12/main /var/log/postgresql/postgresql-12-main.log
+
+	#systemctl stop postgresql
+	#pg_ctlcluster stop 12 main
+	#pg_dropcluster 12 main
+
+    /usr/lib/postgresql/12/bin/pg_ctl status -D /var/lib/postgresql/12/main
+
+	pgtune -i /var/lib/pgsql/data/postgresql.conf.old /var/lib/pgsq/data/postgresql.conf
+
+	psql -c 'SHOW hba_file;'
+    psql -c 'SHOW config_file;'
+    psql -c 'SHOW SERVER_ENCODING;'
+    psql -c 'SHOW LC_COLLATE;'
+    psql -c '\password postgres'
 
 	mcedit /home/postgres/pg_hba.conf
 	local   all             all                                     trust
@@ -323,4 +341,4 @@ Large Objects
   \lo_list
   \lo_unlink LOBOID      large object operations
 
-``` 
+```

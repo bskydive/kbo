@@ -852,19 +852,19 @@ acpitool  -W 17
  * как отключить проигрыватель на экране блокировки https://forums.opensuse.org/showthread.php/525618-How-to-disable-media-controls-on-lock-screen
 
  ```
- /usr/share/plasma/look-and-feel/org.openSUSE.desktop/contents/lockscreen/LockScreenUi.qml
-/usr/share/plasma/look-and-feel/org.kde.breeze.desktop/contents/lockscreen/LockScreenUi.qml
+    /usr/share/plasma/look-and-feel/org.openSUSE.desktop/contents/lockscreen/LockScreenUi.qml
+    /usr/share/plasma/look-and-feel/org.kde.breeze.desktop/contents/lockscreen/LockScreenUi.qml
 
-This is part of the plasma5-workspace-5.10.4-1.1.x86_64 package.
+    This is part of the plasma5-workspace-5.10.4-1.1.x86_64 package.
 
-Code:
+    Code:
 
-                Loader {
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: item ? item.implicitHeight : 0
-                    active: true // TODO configurable
-                    source: "MediaControls.qml"
-                }
+    Loader {
+        Layout.fillWidth: true
+        Layout.preferredHeight: item ? item.implicitHeight : 0
+        active: true // TODO configurable
+        source: "MediaControls.qml"
+    }
 
  ```
 
@@ -967,6 +967,12 @@ Code:
  * vmware pro
  * heaptrack - визуализация использования памяти
  * vscode https://code.visualstudio.com/docs/setup/linux#_visual-studio-code-is-unable-to-watch-for-file-changes-in-this-large-workspace-error-enospc
+
+	```bash
+		sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+		sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/zypp/repos.d/vscode.repo'
+	```
+
  * [extensions](/kbo/#/kb/frontend/vscode)
  * настроить цвета
 	* оформление рабочей среды - breeze
@@ -1441,6 +1447,13 @@ http://www.liberatedcomputing.net/mm2fm/scripts/mm2fm
 http://www.liberatedcomputing.net/mm2fm
 
 ## vmware
+
+ * netwok manager, сеть отвалилась
+ ```
+nmcli networking on
+nmcli
+
+ ```
 
  * [VMWare Workstation 15.5.1 on Kernel Linux 5.4.6 : fail to compile vmci-only](https://communities.vmware.com/thread/623768)
 	```bash

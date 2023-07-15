@@ -214,7 +214,8 @@
 ## performance оптимизация и утечки памяти производительность
 
  * https://github.com/Angular-RU/change-detection-tree
- * https://lukeliutingchun.medium.com/angular-performance-issue-caused-by-function-calls-in-template-a1a930f40464
+ * [onpush template functions performance issue](https://lukeliutingchun.medium.com/angular-performance-issue-caused-by-function-calls-in-template-a1a930f40464)
+	* 
  * https://medium.com/@dammytrager/lazy-loading-angular-modules-51b2cfdb6190
  * https://blog.bitsrc.io/top-reasons-why-your-angular-app-is-slow-c36780a0a289
  * https://netbasal.com/lazy-load-modal-components-in-angular-8cb54bba7bf7
