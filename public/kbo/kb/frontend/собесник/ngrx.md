@@ -1,4 +1,4 @@
-## NGRX
+# NGRX
 
 * курсы https://app.pluralsight.com/library/courses/angular-ngrx-getting-started
 * нужен, когда:
@@ -35,13 +35,36 @@
  * https://github.com/DeborahK/Angular-NgRx-GettingStarted
  * https://github.com/DeborahK/Angular-RxJS
  * https://github.com/DeborahK/Angular-Async-Data
- *
- *
- *
 
+## примеры
+
+* ![](./angular-injector-tree.png)
+* ![](./angular-ngrx-architecture.jpg)
+* ![](./angular-ngrx.jpg)
+* редукторы
+	* слушают события/действия
+	* меняют состояние в хранилище путём создания нового объекта
+	* принимают на вход начальное состояние, отдают новое
+	* чистая функция без сторонних эффектов
+* хранилище
+* состояния, лучшие практики
+	* null - не выбрано
+	* 0 - новое
+	* лучше оперировать id чем объектом
+	* хорошо, immutable: map, find, concat, ...spread, filter
+	* плохо, mutable: forEach, concat, shift, splice
+	* https://doesitmutate.xyz/
+	* https://stackoverflow.com/questions/54836118/how-to-remember-if-a-method-mutates-the-original-array/54836218#54836218
+	* презентационный компонент: UI, HTML+CSS, без внешних зависимостей, данные только через @Input/@Output, может включать вложенные компоненты
+		* включаем onPush для игнорирования XHR
+	* контейнерный компонент: Без разметки/стилей, внешние зависимости, хранит состояние, привязан к корневым route, может включать вложенные компоненты
+	* index.ts для реекспорта селекторов и интерфейсов
+	* разделение `some-page.actions.ts` и `some-api.actions.ts`
+
+### state types
 
 ```ts
-// state types
+
 	import * as AppState from '../../state/app.state';
 	import { ProductState } from './product.reducer';
 
@@ -52,8 +75,10 @@
 		products: ProductState;
 	}
 ```
+
+### store
+
 ```ts
-// store
 	@NgModule({
 		imports: [
 			StoreModule.forRoot({}), // ,RootStoreConfig),
@@ -65,8 +90,10 @@
 			EffectsModule.forRoot([])
 		],
 ```
+
+### feature store
+
 ```ts
-// feature store
 	@NgModule({
 		imports: [
 			StoreModule.forFeature('productsSlice', productReducer),
@@ -77,8 +104,11 @@
 			EffectsModule.forFeature([ProductEffects])
 		],
 ```
+
+### selector
+
 ```ts
-// selector
+
 	const getProductFeatureState = createFeatureSelector<ProductState>('productsSlice');
 	export const getProducts = createSelector(
 		getProductFeatureState, // select slice
@@ -114,8 +144,11 @@
 		state => state.error
 	);
 ```
+
+### reducer
+
 ```ts
-// reducer
+
 	const initialState: ProductState = {
 		showProductCode: true,
 		currentProductId: null,
@@ -141,14 +174,19 @@
 		// ...on
 	)
 ```
+
+### actions
+
 ```ts
-// actions
+
 	export const loadProducts = createAction(
 		'[Product Page] Load'
 	);
 ```
+
+### data
+
 ```ts
-// data
 	products$: Observable<Product[]>;
 
 	constructor(private store: Store<State>) { }
@@ -160,8 +198,10 @@
 		this.store.dispatch(ProductPageActions.loadProducts());
 	}
 ```
+### effects
+
 ```ts
-// effects
+
 
 	constructor(private actions$: Actions, private productService: ProductService) { }
 
@@ -219,24 +259,4 @@
 		);
 	});
 ```
-* редукторы
-	* слушают события/действия
-	* меняют состояние в хранилище путём создания нового объекта
-	* принимают на вход начальное состояние, отдают новое
-	* чистая функция без сторонних эффектов
-* хранилище
-* состояния, лучшие практики
-	* null - не выбрано
-	* 0 - новое
-	* лучше оперировать id чем объектом
-	* хорошо, immutable: map, find, concat, ...spread, filter
-	* плохо, mutable: forEach, concat, shift, splice
-	* https://doesitmutate.xyz/
-	* https://stackoverflow.com/questions/54836118/how-to-remember-if-a-method-mutates-the-original-array/54836218#54836218
-	* презентационный компонент: UI, HTML+CSS, без внешних зависимостей, данные только через @Input/@Output, может включать вложенные компоненты
-		* включаем onPush для игнорирования XHR
-	* контейнерный компонент: Без разметки/стилей, внешние зависимости, хранит состояние, привязан к корневым route, может включать вложенные компоненты
-	* index.ts для реекспорта селекторов и интерфейсов
-	* разделение `some-page.actions.ts` и `some-api.actions.ts`
-* ![](./angular-ngrx-architecture.jpg)
-* ![](./angular-ngrx.jpg)
+
