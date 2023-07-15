@@ -2,6 +2,7 @@
 
 ## документация
 
+ * https://marklodato.github.io/visual-git-guide/index-en.html
  * https://github.com/k88hudson/git-flight-rules
  * https://services.github.com/on-demand/downloads/github-git-cheat-sheet/
  * https://medium.com/@ABatickaya/%D1%88%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0-%D0%BF%D0%BE-git-55eeea487676#.38x1yx7en
