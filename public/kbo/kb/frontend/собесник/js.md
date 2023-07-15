@@ -268,56 +268,58 @@
  * JavaScript Modules
 
 ## ES2021(12)
-	* https://levelup.gitconnected.com/top-5-javascript-es12-features-you-should-start-using-now-b16a8b5353b1
-		* promise.any()
-		* ||= Logical OR assignment operator
-			* if false
-			* `a || (a = b)`
-		* &&= Logical AND assignment operator
-			* is true
-			* `a && (a = b)`
-		* ??= Nullish coalescing assignment operator
-			* is null or undefined
-			* `a ?? (a = b)`
+
+* https://levelup.gitconnected.com/top-5-javascript-es12-features-you-should-start-using-now-b16a8b5353b1
+	* promise.any()
+	* ||= Logical OR assignment operator
+		* if false
+		* `a || (a = b)`
+	* &&= Logical AND assignment operator
+		* is true
+		* `a && (a = b)`
+	* ??= Nullish coalescing assignment operator
+		* is null or undefined
+		* `a ?? (a = b)`
 
 ## ES modules
-	* https://v8.dev/features/modules#mjs
-	* https://hacks.mozilla.org/2015/08/es6-in-depth-modules/
-        * автоматически "use strict"
-        * можно делать import/export
-    *
 
-	```js
-		// <script type="module" src="main.js"></script>
+* https://v8.dev/features/modules#mjs
+* https://hacks.mozilla.org/2015/08/es6-in-depth-modules/
+	* автоматически "use strict"
+	* можно делать import/export
+*
 
-		// Aggregating modules
-		export * from 'nested1.js'
-		export { name } from 'nested2.js'
+```js
+	// <script type="module" src="main.js"></script>
 
-		export {a,b,c}
-		const a = false, b = 0, c = '';
+	// Aggregating modules
+	export * from 'nested1.js'
+	export { name } from 'nested2.js'
 
-		// Dynamic module loading
-		import('./modules/myModule.js')
-			.then((module) => {
-				// Do something with the module.
-			});
+	export {a,b,c}
+	const a = false, b = 0, c = '';
 
-		// Top level await
-		const colors = fetch('../some.json')
-			.then(response => response.json());
+	// Dynamic module loading
+	import('./modules/myModule.js')
+		.then((module) => {
+			// Do something with the module.
+		});
 
-		export default await colors;
-		// import colors from './modules/getColors.js';
+	// Top level await
+	const colors = fetch('../some.json')
+		.then(response => response.json());
 
-	```
+	export default await colors;
+	// import colors from './modules/getColors.js';
 
-	* в браузере пока лучше использовать .js вместо .mjs - нужен `Content-Type text/javascript`. Иначе будет strict MIME type checking error: `"The server responded with a non-JavaScript MIME type"`
-	* локально через `file://` не работает - CORS
-	* по-умолчанию strict mode
-	* по-умолчанию используют defer script attribute
-	* модули исполняются только один раз, даже в нескольких <script>
-	* модули не видны в глобальной области видимости, только локально
+```
+
+* в браузере пока лучше использовать .js вместо .mjs - нужен `Content-Type text/javascript`. Иначе будет strict MIME type checking error: `"The server responded with a non-JavaScript MIME type"`
+* локально через `file://` не работает - CORS
+* по-умолчанию strict mode
+* по-умолчанию используют defer script attribute
+* модули исполняются только один раз, даже в нескольких <script>
+* модули не видны в глобальной области видимости, только локально
 
 ## Промисы
 
