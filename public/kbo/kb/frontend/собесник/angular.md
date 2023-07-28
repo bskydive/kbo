@@ -582,6 +582,7 @@
 		}
 	```
 1. [динамическое создание компонентов](https://habr.com/ru/company/infowatch/blog/330030/) - как создать динамически компонент, который лежит во внешнем файле, а также вставлять его в DOM из нашего сервиса
+	* [view-hierarchy](https://angular.io/guide/glossary#view-hierarchy) host view-->embedded view
 	* content projection https://angular.io/guide/content-projection
     *
 
@@ -872,6 +873,7 @@
 	* https://angular.io/guide/router-tutorial-toh#preloading-background-loading-of-feature-areas
 	* https://codeburst.io/understanding-resolvers-in-angular-736e9db71267
 	* https://medium.com/first-byte/resolvers-in-angular-simplified-85becdd6932b
+	* нужен внешний сервис spinner/loader на время выполнения resolver
 	* блокируют загрузку страницы до окончания отрисовки компонента
 
 	```ts
@@ -991,50 +993,51 @@
 		* validity: valid, errors: <errorName:any>[]
 		* visited: touched, untouched
 	* для обоих одинаковые модели форм, но они по-разному создаются
-	* fromControl
-		* `<input>`
-		*
-		*
-	* formGroup
-		* `<form>`
-		* .reset()
-		* .setControl('formControlName', any[])
-	* шаблонные
-		* в шаблон: form, input, связывание со свойствами, правила валидации, ошибки валидации
-		* в класс: свойства, методы
-		* модель генерируется автоматом
-		* доступ к formGroup возможен через шаблонные переменные
-		* директивы: ngForm, ngModel, ngModelGroup
-		* не подходят для:
-			* отложить валидацию до конца ввода значений
-			* анализа вводимого текста на лету
-			* динамического добавления полей ввода
-			* валидация по условию
-			* иммутабельные данные
-	* реактивные
-		* в шаблон: form, input, связывание с моделью
-		* в класс:  правила валидации, ошибки валидации, свойства, методы, модель
-		* директивы: formGroup, formControl, formControlName, formGroupName, formArrayName
-		* доступ:
-			* formGroup.controls.controlName
-			* formGroup.get('controlName)
-		* запись:
-			* formGroup.setValues(valuesObj) - полный список полей
-			* formGroup.patchValues(valuesObj) - неполный список полей
-		* [типизированные(14+)](https://angular.io/guide/typed-forms)
+* шаблонные
+	* в шаблон: form, input, связывание со свойствами, правила валидации, ошибки валидации
+	* в класс: свойства, методы
+	* модель генерируется автоматом
+	* доступ к formGroup возможен через шаблонные переменные
+	* директивы: ngForm, ngModel, ngModelGroup
+	* не подходят для:
+		* отложить валидацию до конца ввода значений
+		* анализа вводимого текста на лету
+		* динамического добавления полей ввода
+		* валидация по условию
+		* иммутабельные данные
 
-		```ts
-		interface LoginForm {
-			email: FormControl<string>;
-			password?: FormControl<string>;
-		}
+## Реактивные формы
 
-		const login = new FormGroup<LoginForm>({
-			email: new FormControl('', {nonNullable: true}),
-			password: new FormControl('', {nonNullable: true}),
-		});
+* в шаблон: form, input, связывание с моделью
+* в класс:  правила валидации, ошибки валидации, свойства, методы, модель
+* директивы: formGroup, formControl, formControlName, formGroupName, formArrayName
+* доступ:
+	* formGroup.controls.controlName
+	* formGroup.get('controlName)
+* запись:
+	* formGroup.setValues(valuesObj) - полный список полей
+	* formGroup.patchValues(valuesObj) - неполный список полей
+* [типизированные(14+)](https://angular.io/guide/typed-forms)
 
-		```
+```ts
+	interface LoginForm {
+		email: FormControl<string>;
+		password?: FormControl<string>;
+	}
+
+	const login = new FormGroup<LoginForm>({
+		email: new FormControl('', {nonNullable: true}),
+		password: new FormControl('', {nonNullable: true}),
+	});
+
+```
+* fromControl
+	* `<input>`
+	*
+* formGroup
+	* `<form>`
+	* .reset()
+	* .setControl('formControlName', any[])
 1. валидаторы
 	* formControl.clearValidators();
 	* formControl.updateValueAndValidity();
@@ -1052,26 +1055,26 @@
 				}, {validator: myVal})
 			})
 		```
-	*
-	*
-1. 	*
-	*
-	*
-	*
-	*
-	*
-1. 	*
-	*
-	*
-	*
-	*
-	*
-1. 	*
-	*
-	*
-	*
-	*
-	*
+1. Вложенные формы
+	* https://www.dotnetsurfers.com/blog/2020/10/11/3-approaches-for-implementing-nested-forms-in-angular/
+		* ControlValueAccessor
+			* There's a lot more boilerplate code to write.
+		* Injecting ControlContainer
+			* additional properties for tracking validity and dirty state of the component
+		* Pass FormGroup reference to child components using @Input
+			* an additional @Input on the Component to pass FormGroup.
+			* additional properties for tracking validity and dirty state of the component.
+	* [https://angular.io/api/forms/DefaultValueAccessor](ControlValueAccessor) for writing a value and listening to changes on input elements
+	```ts
+		interface ControlValueAccessor {
+		writeValue(obj: any): void
+		registerOnChange(fn: any): void
+		registerOnTouched(fn: any): void
+		setDisabledState(isDisabled: boolean)?: void
+		}
+	```
+	* [ControlContainer](https://angular.io/api/forms/ControlContainer) A base class for directives that contain multiple registered instances of NgControl for formGroup/formArray
+
 ## Angular Material и SDK.
 
 ## Сеть
