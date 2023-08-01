@@ -1,8 +1,23 @@
 # network сеть
 
+## network performance
+
 * [отладка сетевого стека linux](https://habr.com/ru/company/mailru/blog/314168)
 * [Настройка сетевого стека Linux для высоконагруженных систем 2021](https://habr.com/ru/company/otus/blog/550820/)
-	* https://levelup.gitconnected.com/linux-kernel-tuning-for-high-performance-networking-configuring-kernel-settings-96b519a3305f
+ * https://access.redhat.com/sites/default/files/attachments/20150325_network_performance_tuning.pdf
+ * https://cdrdv2-public.intel.com/636781/636781_800%20Series%20Linux%20Performance%20Tuning%20Guide_Rev1.0.pdf
+
+## мониторинг
+
+ * https://networkguru.ru/monitoring-seti-setevogo-oborudovaniia-serverov/
+	* cacti
+	* nagios
+	* icinga 2
+	* nedi
+	* ntopng
+	* zabbix
+	* observum
+	* протокол SNMP
 
 ## HTTP
 
