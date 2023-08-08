@@ -52,6 +52,10 @@
 
 ### nvm
 
+ * https://github.com/nvm-sh/nvm#install--update-script
+	```bash
+	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+	```
  * https://github.com/creationix/nvm
  * https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-16-04
 	```bash

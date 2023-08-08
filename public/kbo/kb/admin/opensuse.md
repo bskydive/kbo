@@ -969,11 +969,14 @@ acpitool  -W 17
  * vscode https://code.visualstudio.com/docs/setup/linux#_visual-studio-code-is-unable-to-watch-for-file-changes-in-this-large-workspace-error-enospc
 
 	```bash
+		rm -r ~/.config/Code
+		rm -r ~/.vscode
+
 		sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 		sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/zypp/repos.d/vscode.repo'
 	```
 
- * [extensions](/kbo/#/kb/frontend/vscode)
+ * [extensions](../frontend/vscode)
  * настроить цвета
 	* оформление рабочей среды - breeze
 	* оформление рабочего стола - breeze
