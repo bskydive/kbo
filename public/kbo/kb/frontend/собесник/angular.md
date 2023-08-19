@@ -980,6 +980,9 @@
 		{ enableTracing: true } // <-- debugging purposes only
 		)
 	```
+1. resolver
+	* https://angular.io/api/router/ResolveFn#description
+	* после guard
 
 ## Формы
 
@@ -1067,10 +1070,10 @@
 	* [https://angular.io/api/forms/DefaultValueAccessor](ControlValueAccessor) for writing a value and listening to changes on input elements
 	```ts
 		interface ControlValueAccessor {
-		writeValue(obj: any): void
-		registerOnChange(fn: any): void
-		registerOnTouched(fn: any): void
-		setDisabledState(isDisabled: boolean)?: void
+			writeValue(obj: any): void
+			registerOnChange(fn: any): void
+			registerOnTouched(fn: any): void
+			setDisabledState(isDisabled: boolean)?: void
 		}
 	```
 	* [ControlContainer](https://angular.io/api/forms/ControlContainer) A base class for directives that contain multiple registered instances of NgControl for formGroup/formArray

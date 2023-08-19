@@ -874,6 +874,7 @@ acpitool  -W 17
 	* geektimes.ru#?#li:-abp-has(a.user-info[href*="username"])
  * [Я никогда не писал расширения для Хрома, но ](https://habr.com/ru/post/525728/)
 	* https://github.com/Drag13/HabrSanitizer
+
 ## installation migration OS
 
  * скачать firefox, chrome
@@ -934,7 +935,6 @@ acpitool  -W 17
  * управление питанием - выключение, закрытие крышки
 
 ### установка программ
-
 
  * снести системный firefox, установить плагины
  	* adblock / ublock

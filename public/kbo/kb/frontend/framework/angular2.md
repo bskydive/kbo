@@ -686,10 +686,25 @@ https://stackblitz.com/edit/angular-jhutmd?file=app%2Fapp.component.html
 ### unsubscribe
 
  * [unsubscribe Почему вам НАДО отписываться от Observable?](https://medium.com/ngx/why-do-you-need-unsubscribe-ee0c62b5d21f)
- * https://medium.com/swlh/rxjs-angular-unsubscribe-like-a-pro-ffeedec60aa7
  * [The Best Way To Unsubscribe RxJS Observables In The Angular Applications!](https://medium.com/angular-in-depth/the-best-way-to-unsubscribe-rxjs-observable-in-the-angular-applications-d8f9aa42f6a0)
  * [Different ways of unsubscribing from RxJS Observables with Angular](https://blog.codecentric.de/en/2018/01/different-ways-unsubscribing-rxjs-observables-angular/)
  * [When to Unsubscribe in Angular](https://netbasal.com/when-to-unsubscribe-in-angular-d61c6b21bad3)
+ * https://medium.com/swlh/rxjs-angular-unsubscribe-like-a-pro-ffeedec60aa7
+	* https://github.com/talohana/rxjs-angular-unsubscribe-like-a-pro/blob/master/src/app/destroyed.component.ts
+	* https://www.npmjs.com/package/@ngneat/until-destroy
+	* https://github.com/ngneat/until-destroy
+
+	```ts
+		import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+
+		@UntilDestroy()
+		@Component({})
+		export class InboxComponent {
+		ngOnInit() {
+			interval(1000).pipe(untilDestroyed(this)).subscribe();
+		}
+		}
+	```
 
 
 
