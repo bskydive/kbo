@@ -942,7 +942,7 @@ acpitool  -W 17
 	* treestyletab https://addons.mozilla.org/ru/firefox/addon/tree-style-tab/?src=search
 	* downthemall
  * снести системный thunderbird
- * yed
+ * yed `-Dsun.java2d.uiScale=2`
  * krdc, freeRDP, remmnia
  * openvpn
  * zypper in git gitk gitg git-cola java-17-openjdk-devel
