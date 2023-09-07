@@ -18,6 +18,7 @@
 ## оптимизация
 
  * [Алексей Шипилёв об оптимизации в крупных проектах](https://habr.com/company/jugru/blog/338732/)
+ * java high dpi -Dsun.java2d.uiScale=2
 
 ## Java-doc
 

@@ -582,6 +582,7 @@
 		}
 	```
 1. [динамическое создание компонентов](https://habr.com/ru/company/infowatch/blog/330030/) - как создать динамически компонент, который лежит во внешнем файле, а также вставлять его в DOM из нашего сервиса
+	* https://angular.io/guide/dynamic-component-loader
 	* [view-hierarchy](https://angular.io/guide/glossary#view-hierarchy) host view-->embedded view
 	* content projection https://angular.io/guide/content-projection
     *
