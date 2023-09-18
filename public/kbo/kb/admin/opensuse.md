@@ -874,6 +874,7 @@ acpitool  -W 17
 	* geektimes.ru#?#li:-abp-has(a.user-info[href*="username"])
  * [Я никогда не писал расширения для Хрома, но ](https://habr.com/ru/post/525728/)
 	* https://github.com/Drag13/HabrSanitizer
+
 ## installation migration OS
 
  * скачать firefox, chrome
@@ -935,14 +936,13 @@ acpitool  -W 17
 
 ### установка программ
 
-
  * снести системный firefox, установить плагины
  	* adblock / ublock
 	* noscript / whitelist
 	* treestyletab https://addons.mozilla.org/ru/firefox/addon/tree-style-tab/?src=search
 	* downthemall
  * снести системный thunderbird
- * yed
+ * yed `-Dsun.java2d.uiScale=2`
  * krdc, freeRDP, remmnia
  * openvpn
  * zypper in git gitk gitg git-cola java-17-openjdk-devel
