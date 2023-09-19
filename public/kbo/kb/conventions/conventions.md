@@ -158,7 +158,6 @@
  | obligate |  | обязать |
  | intention |  | намерение |
  | intentional |  | преднамеренный |
- | essence |  | сущность |
  | compliance | соответствие стандартам | стандарт |
  | evaluation |  | аттестация |
  | involve |  | вовлекать |
@@ -176,7 +175,9 @@
  | unreliable |  | ненадёжный |
  | conceal |  | прятать |
  | substitute |  | заменитель |
+ | essence |  | сущность |
  | essentials |  | сущность |
+ | essentials |  | существенный |
  | trail |  | след |
  | contradictory |  | противоречивый |
  | severity |  | важность |
