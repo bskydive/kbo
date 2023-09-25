@@ -230,6 +230,7 @@ var http = require('http')
 
 ## npm
 
+ * обновление пакетов - `npm link` или `yalc`
  * npm-check
  * https://www.npmjs.com/package/depcheck
  * [короткая шпаргалка по lockfile](https://habr.com/ru/company/alfa/blog/705876/)

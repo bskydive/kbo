@@ -264,8 +264,8 @@ xauth -
 
 ## network
 
-
-смотреть в /etc/NetworkManager/system-connections/
+ * `nmcli networking on; nmcli device show; nmcli connection show`
+ * смотреть в /etc/NetworkManager/system-connections/
 
 ```bash
 $ nmcli c modify <name> wifi-sec.key-mgmt wpa-psk wifi-sec.psk <password>
