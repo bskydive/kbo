@@ -264,6 +264,7 @@ xauth -
 
 ## network
 
+ * [network](/public/kbo/kb/admin/network.md)
  * `nmcli networking on; nmcli device show; nmcli connection show`
  * смотреть в /etc/NetworkManager/system-connections/
 

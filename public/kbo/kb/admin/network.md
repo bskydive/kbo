@@ -1,5 +1,8 @@
 # network сеть
 
+ * [network opensuse](/public/kbo/kb/admin/opensuse.md)
+ * [hadware wifi](/public/kbo/kb/admin/hardware.md)
+
 ## network performance
 
 * [отладка сетевого стека linux](https://habr.com/ru/company/mailru/blog/314168)
@@ -26,13 +29,25 @@
  * [http2 и спрайты](https://habr.com/ru/post/308862/)
  * [TLS](https://www.freecodecamp.org/news/what-is-tls-transport-layer-security-encryption-explained-in-plain-english/)
 
-## netstat --> ss
+## ifconfig
+
+ * https://losst.pro/nastrojka-seti-v-linux
+ * https://wiki.merionet.ru/articles/komanda-ip-v-linux-rukovodstvo-s-primerami
+
+```bash
+ip addr add 10.0.2.100/255.255.255.0 dev enp0s3
+
+
+```
+
+## netstat
 
 * netstat -rn --> ip route
 * route add --> ip route add 192.168.0.0/24 via 192.168.0.253 dev eth2
 * [ip route static](https://www.thegeekstuff.com/2014/08/add-route-ip-command/)
 * [ip route runtime](https://www.cyberciti.biz/faq/howto-linux-configuring-default-route-with-ipcommand/)
-*
+* [ss](https://habrahabr.ru/company/ruvds/blog/346744/)
+
 ```bash
     arp → ip n (ip neighbor)
     ifconfig → ip a (ip addr), ip link, ip -s (ip -stats)
@@ -58,9 +73,6 @@
 
  * [Wireshark для всех. Лайфхаки на каждый день](https://habr.com/ru/company/vdsina/blog/562110/)
 
-## ss
-
-https://habrahabr.ru/company/ruvds/blog/346744/
 
 ## mtr
 
