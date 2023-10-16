@@ -87,6 +87,96 @@ https://github.com/hsoft/collapseos
  * https://beard-studio.website.yandexcloud.net/profiles.html
  * https://russianpenguin.ru/2018/04/08/управление-цветом-в-linux/
 
+## network hardware
+
+```bash
+
+ethtool -i eth0
+# driver: r8169
+# version: 5.14.21-150400.24.84-default
+# firmware-version: rtl8168h-2_0.0.2 02/26/15
+# expansion-rom-version:
+# bus-info: 0000:03:00.0
+# supports-statistics: yes
+# supports-test: no
+# supports-eeprom-access: no
+# supports-register-dump: yes
+# supports-priv-flags: no
+lsusb -t
+# /:  Bus 04.Port 1: Dev 1, Class=root_hub, Driver=xhci_hcd/2p, 10000M
+
+#    |__ Port 2: Dev 2, If 0, Class=Vendor Specific Class, Driver=ax88179_178a, 5000M
+
+# /:  Bus 03.Port 1: Dev 1, Class=root_hub, Driver=xhci_hcd/4p, 480M
+#     |__ Port 4: Dev 2, If 0, Class=Wireless, Driver=btusb, 12M
+#     |__ Port 4: Dev 2, If 1, Class=Wireless, Driver=btusb, 12M
+# /:  Bus 02.Port 1: Dev 1, Class=root_hub, Driver=xhci_hcd/2p, 10000M
+#     |__ Port 2: Dev 2, If 0, Class=Hub, Driver=hub/3p, 5000M
+#         |__ Port 2: Dev 3, If 0, Class=Hub, Driver=hub/4p, 5000M
+# /:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=xhci_hcd/4p, 480M
+#     |__ Port 2: Dev 2, If 0, Class=Hub, Driver=hub/3p, 480M
+#         |__ Port 2: Dev 4, If 0, Class=Hub, Driver=hub/4p, 480M
+#             |__ Port 2: Dev 5, If 0, Class=Human Interface Device, Driver=usbhid, 1.5M
+#             |__ Port 3: Dev 6, If 0, Class=Hub, Driver=hub/4p, 480M
+#                 |__ Port 3: Dev 7, If 1, Class=Human Interface Device, Driver=usbhid, 1.5M
+#                 |__ Port 3: Dev 7, If 0, Class=Human Interface Device, Driver=usbhid, 1.5M
+#     |__ Port 4: Dev 3, If 0, Class=Human Interface Device, Driver=usbhid, 12M
+
+
+ethtool -i eth3
+# driver: ax88179_178a <--- USB d-link
+# version: 5.14.21-150400.24.84-default
+# firmware-version:
+# expansion-rom-version:
+# bus-info: 4-2:1.0
+# supports-statistics: no
+# supports-test: no
+# supports-eeprom-access: yes
+# supports-register-dump: no
+# supports-priv-flags: no
+
+inxi -n
+# Network:   Device-1: Realtek RTL8111/8168/8411 PCI Express Gigabit Ethernet driver: r8169
+#            IF: eth0 state: down mac: 38:f3:ab:87:01:17
+#            Device-2: Intel Wi-Fi 6 AX200 driver: iwlwifi
+#            IF: wlan0 state: down mac: ea:8e:3b:ce:46:55
+#            Device-3: D-Link DUB-1312 Gigabit Ethernet Adapter type: USB driver: ax88179_178a
+#            IF: eth3 state: up speed: 1000 Mbps duplex: full mac: 78:32:1b:a8:af:cb
+#            IF-ID-1: vmnet1 state: unknown speed: N/A duplex: N/A mac: 00:50:56:c0:00:01
+#            IF-ID-2: vmnet8 state: unknown speed: N/A duplex: N/A mac: 00:50:56:c0:00:08
+
+# modules
+
+cat /proc/modules | less
+modinfo ahci -F 'description'
+ls -l /sys/class/net/eth0/device/driver/module
+
+# dummy
+lsmod | grep dummy
+$ sudo modprobe dummy
+$ sudo lsmod | grep dummy
+ip link add eth10 type dummy
+ip link set name eth10 dev dummy0
+ip link show eth10
+ip link set dev eth0 down
+ip link set dev eth0 address AA:BB:CC:DD:EE:FF
+ip addr add 192.168.100.199/24 brd + dev eth10 label eth10:0
+
+ip addr del 192.168.100.199/24 brd + dev eth10 label eth10:0
+ip link delete eth10 type dummy
+rmmod dummy
+
+# virtual
+ip link add veth0 type veth peer name veth1
+sysctl -w net.ipv4.conf.veth0.forwarding=1
+
+# Ethernet over USB
+#The relevant host-size drivers are CDC_ETHER and RNDIS.
+#Their slave-size counterparts (that essentially emulate an USB-Ethernet bridge in software) are USB_ETH, USB_ETH_RNDIS.
+#USB_G_ANDROID also supports RNDIS protocol, which is great in my case, since the devices in question use Android kernel, so the driver is enabled by default.
+
+```
+
 ## wifi routers маршрутизаторы
 
  * https://wikidevi.wi-cat.ru/ZyXEL/Keenetic_series
