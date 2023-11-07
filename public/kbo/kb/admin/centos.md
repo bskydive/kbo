@@ -119,9 +119,13 @@ yum install elasticsearch-5.0.2-1
 ssh-keygen -b 2048 -t rsa -f /distr/mykey.priv
 засылай в редмайн /distr/mykey.priv.pub
 заходи от ПОЛЬЗОВАТЕЛЯ:
-ssh -p52508 88kvnkGpu@198.61.225.104 -i /distr/mykey.priv
+ssh -p0000 user@11.12.11.12 -i /distr/mykey.priv
 
 ```
+ * проброс портов
+ 	* from local to remote `ssh -L LOCAL_PORT:localhost:REMOTE_PORT REMOTE_USER@REMOTE_HOST`
+	* from remote to local `ssh -R REMOTE_PORT:localhost:LOCAL_PORT REMOTE_USER@REMOTE_HOST`
+	* `ssh -fNL`
 
 ## SSHD
 

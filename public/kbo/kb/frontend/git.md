@@ -446,6 +446,7 @@ git merge upstream/master
 
 ### разрешение конфиликтов
 
+ * утилита gitrerere
  * перезаписать длинный файл, отличия в котором не видны в git
 	```bash
 		git checkout develop

@@ -264,17 +264,32 @@ xauth -
 
 ## network
 
+ * [network](/public/kbo/kb/admin/network.md)
+ * https://wiki.archlinux.org/title/NetworkManager
+ * смотреть в /etc/NetworkManager/system-connections/
+ *
+	```bash
+		nmcli networking on
+		nmcli device show
+		nmcli connection show
+		cat > /etc/NetworkManager/NetworkManager.conf
+		[main]
+		plugins=keyfile
+		dhcp=dhclient
 
-смотреть в /etc/NetworkManager/system-connections/
+		[connectivity]
+		uri=https://77.88.8.8/
+		interval=10
+		response=Not Found
+		#uri=http://conncheck.opensuse.org
 
-```bash
-$ nmcli c modify <name> wifi-sec.key-mgmt wpa-psk wifi-sec.psk <password>
-```
-https://docs.ubuntu.com/core/en/stacks/network/network-manager/docs/configure-wifi-connections
+		nmcli general reload
 
-Configure WiFi Connections | NetworkManager documentation
-
+		nmcli c modify <name> wifi-sec.key-mgmt wpa-psk wifi-sec.psk <password>
+	```
+ * https://docs.ubuntu.com/core/en/stacks/network/network-manager/docs/configure-wifi-connections
  * http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/
+
 ## policy-kit
 
 org.freedesktop.login1.hibernate-multiple-sessions
