@@ -4,8 +4,8 @@ git add -A ./*
 git commit -am "${1} add files"
 git push gl develop
 git push gh develop
-git push bb develop
-echo "проверить на одинаковость два index.html и два 404.html для bb+gl"
+#git push bb develop
+echo "проверить на одинаковость два index.html и два 404.html для gh+gl"
 echo "npm run prod"
 echo "сделать ПР https://gitlab.com/stepanovv/kbo/merge_requests и проверить сборку https://gitlab.com/stepanovv/kbo/pipelines"
 #сначала в облако, на сервере потом будем из него качать по хуку
@@ -20,7 +20,7 @@ exit
 #git-flow
 comment="${1}"
 dev="develop"
-origin="bb"
+origin="gl"
 
 feature=`git branch | grep '*' | awk -F'* ' '{print $2}'`
 
