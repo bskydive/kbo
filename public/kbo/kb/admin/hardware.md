@@ -87,6 +87,10 @@ https://github.com/hsoft/collapseos
  * https://beard-studio.website.yandexcloud.net/profiles.html
  * https://russianpenguin.ru/2018/04/08/управление-цветом-в-linux/
 
+## USB
+
+ * [hidviz - usb hid debug - rosa2021.1](https://abf.io/build_lists/4827483)
+
 ## network hardware
 
 ```bash
