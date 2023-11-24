@@ -326,6 +326,11 @@ Install libreoffice-theme-oxygen or libreoffice-theme-crystal and then follow  (
 
 ## HARDWARE
 
+### смартфоны
+
+ * не видит mtp - закрыть dolphin, подключить смарт, тыкнуть открыть смартфон
+ * установить mtpfs mtp-tools
+ * включить режим разработчика - отладку по USB+usb-mtp режим
 
 ### UEFI
 
