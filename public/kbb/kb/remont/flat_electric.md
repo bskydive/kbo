@@ -25,6 +25,7 @@ http://www.a-kabel.ru/kalkulyator-secheniya
 ## Ликбез
 
   * [с чего начать?](http://zametkielectrika.ru/elektroprovodka-v-kvartire/)
+  * [Как подключить УЗО — наиболее распостраненные схемы](https://hmelectro.ru/poleznye_statyi/kak-podklyuchit-uzo-naibolee-raspostranennye-shemy)
   * [УЗО(дифференциальный выключатель)](http://zametkielectrika.ru/sxemy-podklyucheniya-uzo-vybor-uzo-po-nominalnomu-i-differencialnomu-toku-toku-utechki/) Если у Вас вводной автоматический выключатель имеет номинальный ток до 40 (А) включительно, то вводное УЗО можно устанавливать с током утечки 30 (мА). Если же номинал вводного автомата больше 50 (А), то скорее всего УЗО придется устанавливать с током утечки 100 (мА).
   * [отличия УЗО от диффавтомата](http://zametkielectrika.ru/otlichie-differencialnogo-avtomata-ot-uzo/)
   * [что выбрать - УЗО/Диффавтомат](http://zametkielectrika.ru/uzo-ili-difavtomat-chto-vybrat/)
@@ -40,6 +41,11 @@ http://www.a-kabel.ru/kalkulyator-secheniya
   * НЕЛЬЗЯ соединять медь и алюминий. Только через стальные клеммы. Они окисляются, греются, горят при длительном соприкосновении.
   * вся современная проводка в квартире - медная
   * [гофра проверка на горючесть](http://www.youtube.com/watch?v=4EXy3irUudY)
+
+## заземление полотенцесушителя
+
+ * https://remdomkv.ru/electrics/kak-zazemlit-polotentsesushitel
+ * https://electricvdome.ru/zazemlenie/zazemlenie-polotencesushitelja.html
 
 ##  сечение кабеля
 

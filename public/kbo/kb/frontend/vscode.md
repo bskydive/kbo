@@ -6,7 +6,9 @@
 	* Gist ID: 85bd451c247d9e960ba40440150d6cd5
 	* [Плагин для синхронизации настроек с github](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync)
  * для перехода по ссылокам: alt+ctrl+click
- * extensions
+
+## extensions
+
 	```txt
 		adammaras.overtype
 		Angular.ng-template
@@ -44,6 +46,7 @@
 		yzane.markdown-pdf
 	```
 	* disabled
+
 	```txt
 		formulahendry.auto-rename-tag
 		pustelto.bracketeer
@@ -62,7 +65,9 @@
 		VisualStudioExptTeam.vscodeintellicode
 	```
 	* vscode extensions cli setup
+
 	```bash
+		code --disable-extensions
 		# vscode extensions export backup
 		code --list-extensions >> vs_code_extensions_list.txt
 		code --list-extensions | xargs -n 1 code --uninstall-extension
@@ -88,8 +93,11 @@
 		ulimit -Sn
 		ulimit -Hn
 	```
- *
+
+## settings
+
 ```json
+	"window.zoomLevel": 1.2, // font size 14
 	"workbench.iconTheme": "vscode-icons",
     "workbench.colorTheme": "Darcula",
     "editor.minimap.enabled": false,
