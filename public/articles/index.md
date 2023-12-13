@@ -6,7 +6,7 @@
 
 Статьи, в основном, для разработчиков, потому можно читать и в IDE.
 
-[yaspeller](https://github.com/hcodes/yaspeller) канул в Лету, поэтому переключился на [cspell](https://github.com/streetsidesoftware/cspell-dicts/tree/main/dictionaries/ru_RU#readme)
+[yaspeller](https://github.com/hcodes/yaspeller) канул в [Лету](https://github.com/hcodes/yaspeller/issues/204), поэтому переключился на [cspell](https://www.npmjs.com/package/cspell)
 
 ## Ссылки
 
