@@ -6,6 +6,8 @@
 
 Статьи, в основном, для разработчиков, потому можно читать и в IDE.
 
+[yaspeller](https://github.com/hcodes/yaspeller) канул в Лету, поэтому переключился на [cspell](https://github.com/streetsidesoftware/cspell-dicts/tree/main/dictionaries/ru_RU#readme)
+
 ## Ссылки
 
  * git markdown:
@@ -25,6 +27,7 @@
 Раньше я писал на medium, однако там появилась неприятная практика ограничения [доступа](https://wptavern.com/freecodecamp-moves-off-of-medium-after-being-pressured-to-put-articles-behind-paywalls).
 
 Для англоязычной аудитории статьи опубликованы в DevTo.
+
 
  * [Medium](https://medium.com/@stepanovv.ru)
  * DevTo
@@ -50,7 +53,7 @@
 
 ## ЗЫ
 
- * проверено [yaspeller](https://yandex.ru/dev/speller/)
  * [Контакты автора](https://stepanovv.ru/portfolio/portfolio.html#id-contacts)
- * поставить звёздочку в [gitlab](https://gitlab.com/stepanovv/kbo)
- * похлопать в [medium](https://medium.com/@stepanovv.ru/)
+ * проверено [cspell](https://github.com/streetsidesoftware/cspell-dicts/tree/main/dictionaries/ru_RU#readme)
+
+
