@@ -485,10 +485,10 @@ code {
 	);
 
 	<span class="hljs-comment">//запускаем потоки и выводим всё в консоль. префиксы нужны, чтобы понимать, что значение долетело до конца</span>
-	audit$.subscribe(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> 
+	audit$.subscribe(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span>
 		logAll(<span class="hljs-string">'получил: '</span>, item), <span class="hljs-comment">// пишем всё, что получили по сигналу next().</span>
 		err =&gt; logAll(<span class="hljs-string">'ошибка:'</span>, err), <span class="hljs-comment">// пишем что прилетело по сигналу error()</span>
-		() =&gt; logAll(<span class="hljs-string">'audit поток закрыт'</span>) <span class="hljs-comment">// пишем когда прилетело complete(). Отдельно указываем какой именно оператор закончил тестирование, чтобы быстрее ловить другие ошибочно не закоментированные операторы</span>
+		() =&gt; logAll(<span class="hljs-string">'audit поток закрыт'</span>) <span class="hljs-comment">// пишем когда прилетело complete(). Отдельно указываем какой именно оператор закончил тестирование, чтобы быстрее ловить другие ошибочно не закомментированные операторы</span>
 	);
 </div></code></pre>
 <h2 id="%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F-%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B0-%D0%BA%D0%BE%D0%B4%D0%B0">Автоматическая проверка кода</h2>
