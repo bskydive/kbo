@@ -1,23 +1,18 @@
 {
 	"excludeFiles": [
 		".git",
-		".yaspellerrc.json",
-		"node_modules",
-		"libs"
+		".yaspellerrc.json"
 	],
 	"format": "markdown",
-	"lang": "en,ru",
 	"fileExtensions": [
 		".md"
 	],
-	"report": ["console"],
-	"ignoreTags": ["code", "script"],
 	"ignoreUrls": true,
 	"ignoreText": [],
-	"findRepeatWords": true,
-	"maxRequests": 5,
-	"checkYo": true,
-	"ignoreUppercase": true,
+	"findRepeatWords": false,
+	"maxRequests": 1,
+	"checkYo": false,
+	"ignoreCapitalization": true,
 	"ignoreDigits": true,
 	"dictionary": [
 		"RxJs",

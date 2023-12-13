@@ -75,8 +75,8 @@
 		npm run b
 	```
 * Список плагинов VSCode, которые относятся к теме:
-	* [TSLint](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin) 
-	* [eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) 
+	* [TSLint](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin)
+	* [eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 	* [учёт времени с привязкой к git wakatime](https://marketplace.visualstudio.com/items?itemName=WakaTime.vscode-wakatime)
 	* [открытый аналог локально](https://marketplace.visualstudio.com/items?itemName=hangxingliu.vscode-coding-tracker)
 	* [открытый аналог локально для подсчёта эффективности без привязки к веткам и коммитам](https://marketplace.visualstudio.com/items?itemName=softwaredotcom.swdc-vscode)
@@ -109,7 +109,7 @@
 ```ts
 	const auditProbe$ = item => { // функция-аргумент для передачи в оператор
 		logAll('проверка: ' + item); // для отладки пишем полученное значение
-		return interval(300).pipe(take(3)); // возвращаем наблюдатель. В данном случае - для имитации трёх значений. 
+		return interval(300).pipe(take(3)); // возвращаем наблюдатель. В данном случае - для имитации трёх значений.
 		//.pipe(take(X)) - хорошее правило для ограничения утечек памяти
 	}
 
@@ -130,10 +130,10 @@
 	);
 
 	//запускаем потоки и выводим всё в консоль. префиксы нужны, чтобы понимать, что значение долетело до конца
-	audit$.subscribe((item) => 
+	audit$.subscribe((item) =>
 		logAll('получил: ', item), // пишем всё, что получили по сигналу next().
 		err => logAll('ошибка:', err), // пишем что прилетело по сигналу error()
-		() => logAll('audit поток закрыт') // пишем когда прилетело complete(). Отдельно указываем какой именно оператор закончил тестирование, чтобы быстрее ловить другие ошибочно не закоментированные операторы
+		() => logAll('audit поток закрыт') // пишем когда прилетело complete(). Отдельно указываем какой именно оператор закончил тестирование, чтобы быстрее ловить другие ошибочно не закомментированные операторы
 	);
 ```
 
