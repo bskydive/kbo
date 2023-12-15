@@ -470,6 +470,11 @@ git merge upstream/master
  ```bash
 	git rebase -i HEAD~5
 	git rebase -i 123456 # коммит после крайнего
+	# pick aabbc4 comment
+	# squash aabbc3 comment
+	# squash aabbc2 comment
+	# squash aabbc1 comment
+
 	# git add
  	git rebase --continue
  ```
