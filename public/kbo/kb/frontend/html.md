@@ -1,13 +1,17 @@
 ##  HTML5
 
  * histori api
- * https://habrahabr.ru/post/200106/
- * https://habrahabr.ru/post/114911/
- * [перетаскивание](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Drag_operations)
-	https://www.html5rocks.com/ru/tutorials/dnd/basics/
+ * [Прекратите использовать location.hash, да здравствует HTML5 History API!](https://habrahabr.ru/post/200106/)
+ * [Hash-навигация в AJAX-сайтах](https://habrahabr.ru/post/114911/)
  * https://developers.google.com/web/
- * https://www.smashingmagazine.com/2019/01/html5-input-types/
- * [DOM](https://proglib.io/p/ne-pasi-zadnih-ispolzuy-dom-kak-professional-2019-09-11)
+ * [HTML5 Input Types: Where Are They Now? 2019](https://www.smashingmagazine.com/2019/01/html5-input-types/)
+ * [используй DOM как профессионал 2019](https://proglib.io/p/ne-pasi-zadnih-ispolzuy-dom-kak-professional-2019-09-11)
+
+## HTML drag and drop
+
+ * [перетаскивание](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Drag_operations)
+ * [Using the HTML5 Drag and Drop API](https://web.dev/articles/drag-and-drop?hl=en)
+
 
 ## http2
 

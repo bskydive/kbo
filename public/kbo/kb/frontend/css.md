@@ -878,6 +878,7 @@ https://stackoverflow.com/questions/16647380/max-width-vs-min-width
 
  * чистый css, без смахиваний, только кнопки
 	 * https://medium.com/@_jh3y/how-to-pure-css-carousel-ce1a8cb231c8
+	 	* https://codepen.io/jh3y/pen/WwVKLN
 	 * https://www.mobila.name/post/53df6f9da9ec5
  * [непрерывные смахивания](https://css-tricks.com/creating-responsive-touch-friendly-carousels-with-flickity/)
  * [статические смахивания](https://owlcarousel2.github.io/OwlCarousel2/docs/api-options.html)
