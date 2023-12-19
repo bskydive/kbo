@@ -19,6 +19,7 @@
  * https://developer.atlassian.com/blog/2015/12/tips-tools-to-solve-git-conflicts/
  * http://zeroturnaround.com/rebellabs/git-commands-and-best-practices-cheat-sheet/
  * https://ericdouglas.github.io/2016/04/01/Git-Useful-Tips/
+ * [conventionalcommits](https://www.conventionalcommits.org/en/v1.0.0/)
 
 ### тренажёры
 
