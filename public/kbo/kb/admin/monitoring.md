@@ -62,17 +62,16 @@ zypper in sysstat operf
 
 	grep -iE 'error|warn' /doc/messages-20220807.log | awk '{print strftime("Time = %m/%d/%Y %H:%M:%S", $1)}' | less
 
-# sort log by date
-grep -iE 'error|warn' /doc/messages-20220807.log | awk 'BEGIN {cmd = "date +%s"} { cmd | getline result; close(cmd); print result, $0 }' | sort -nk1 > /doc/messages-20220807.sorted.log
+	# sort log by date
+	grep -iE 'error|warn' /doc/messages-20220807.log | awk 'BEGIN {cmd = "date +%s"} { cmd | getline result; close(cmd); print result, $0 }' | sort -nk1 > /doc/messages-20220807.sorted.log
 
-# save the result in array
+	# save the result in array
 
-grep -iE 'error|warn' /doc/messages-20220807.log | awk 'BEGIN {cmd = "date +%s"} { cmd | getline varConverted; close(cmd); result[NR] = varConverted " " $0 } END { for (i = NR; i > 0; i--) print result[i]}' | less
+	grep -iE 'error|warn' /doc/messages-20220807.log | awk 'BEGIN {cmd = "date +%s"} { cmd | getline varConverted; close(cmd); result[NR] = varConverted " " $0 } END { for (i = NR; i > 0; i--) print result[i]}' | less
 
-#
+	#
 
-cat /doc/messages-20220807.sorted.log | awk 'BEGIN {nextTick = 0; tick = 60} { if curSec = $1;  } END { for (i = NR; i > 0; i--) print result[i]}' | less
-
+	cat /doc/messages-20220807.sorted.log | awk 'BEGIN {nextTick = 0; tick = 60} { if curSec = $1;  } END { for (i = NR; i > 0; i--) print result[i]}' | less
 
 ```
 

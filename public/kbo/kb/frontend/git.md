@@ -302,8 +302,8 @@ git apply patch
 	#!/bin/bash
 
 	current_branch=`git rev-parse --abbrev-ref HEAD`
-	[[ $result == 'develop' ]] && echo -e "\n\n!!!необходимо перейти ИЗ develop!!!\n\n"
-	[[ $result == 'develop' ]] && exit
+	[[ $current_branch == 'develop' ]] && echo -e "\n\n!!!необходимо перейти ИЗ develop!!!\n\n"
+	[[ $current_branch == 'develop' ]] && exit
 
 	git add src/*
 	#npm run build
