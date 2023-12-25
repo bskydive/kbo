@@ -962,6 +962,19 @@ acpitool  -W 17
 	* treestyletab https://addons.mozilla.org/ru/firefox/addon/tree-style-tab/?src=search
 	* downthemall
  * снести системный thunderbird
+ * https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+ 	* https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+	* https://www.google.com/linuxrepositories/
+
+	```bash
+		wget https://dl.google.com/linux/linux_signing_key.pub
+		sudo rpm --import linux_signing_key.pub
+		# You can verify the key installation by running:
+		rpm -qi gpg-pubkey-d38b4796-*
+		# NOTE: From early 2023 onward, all Linux RPM packages are signed with periodically rotated subkeys of the 0xD38B4796 signing key. The 0x7FAC5991 signing key is obsoleted by this change.
+		# To manually verify an RPM package, you can run the command:
+		rpm --verbose --checksig -v packagename.rpm
+	```
  * yed `-Dsun.java2d.uiScale=2`
  * krdc, freeRDP, remmnia
  * openvpn
