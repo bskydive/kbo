@@ -1322,6 +1322,27 @@ x11uselocalhost no
  * http://kb.mozillazine.org/IMAP:_advanced_account_configuration
  * [реиндекс глобального поиска](https://support.mozilla.org/en-US/kb/rebuilding-global-database)
 
+## zypper-log
+
+ * команды `zypper-log`
+ * логи за прошлый день `/var/log/zypp/*.xz`
+
+```
+2023-12-25 21:25:22 <1> pc-3(13154) [zypp] ZYppImpl.cc(commit):189 Commit (CommitPolicy( DownloadDefault )) returned: CommitResult  (total 772, done 772, error 0, skipped 0, updateMessages 0)
+2023-12-25 21:25:22 <1> pc-3(13154) [zypper] solve-commit.cc(solve_and_commit):884
+2023-12-25 21:25:22 <1> pc-3(13154) [zypper] solve-commit.cc(solve_and_commit):884 DONE
+2023-12-25 21:25:22 <1> pc-3(13154) [librpmDb++] librpmDb.cc(D):79 DBACCESS {NULL(/)/usr/lib/sysimage/rpm}
+2023-12-25 21:25:22 <1> pc-3(13154) [librpmDb++] librpmDb.cc(dbRelease):296 dbRelease: release, outstanding 0
+2023-12-25 21:25:22 <1> pc-3(13154) [zypp::exec++] forkspawnengine.cc(start):181 Executing 'lsof' '-n' '-FpcuLRftkn0' '-K' 'i'
+2023-12-25 21:25:22 <1> pc-3(13154) [zypp::exec++] forkspawnengine.cc(start):333 pid 22113 launched
+2023-12-25 21:25:22 <1> pc-3(13154) [zypp::misc] CheckAccessDeleted.cc(filterInput):400 Silently scanning lsof output...
+2023-12-25 21:25:22 <1> pc-3(13154) [zypp::exec++] abstractspawnengine.cc(checkStatus):189 Pid 22113 successfully completed
+2023-12-25 21:25:22 <2> pc-3(13154) [zypper] Zypper.h(setExitCode):161 setExitCode 0
+2023-12-25 21:25:22 <1> pc-3(13154) [zypper] Zypper.cc(doCommand):677 Done
+2023-12-25 21:25:22 <1> pc-3(13154) [zypper] Zypper.cc(cleanup):729 START
+2023-12-25 21:25:22 <1> pc-3(13154) [zypper] main.cc(~Bye):98 ===== Exiting main(0) =====
+```
+
 ## repo
 
  * https://flathub.org/home
