@@ -82,6 +82,18 @@ mtr -o "LDRS NBAWV GJMXI" -b -s 1500 -i 0.1 91.240.86.5
 ```
 ping добавляет 28 бит!
 
+## P2P peer-to-peer torrent
+
+ * теория
+ 	* [Как работает JS: WebRTC и механизмы P2P-коммуникаций](https://habr.com/ru/companies/ruvds/articles/416821/)
+	* https://doc-kurento.readthedocs.io/en/latest/knowledge/nat.html
+	* https://stackoverflow.com/questions/4118272/do-websockets-allow-for-p2p-browser-to-browser-communication
+ * утилиты
+	* https://docs.libp2p.io/guides/getting-started/javascript/
+	* https://www.stunprotocol.org/
+		* https://github.com/tking/JSTUN
+		* https://jstun.javawi.de/
+	* https://unix.stackexchange.com/questions/25019/checking-the-type-of-nat
 
 ## VPN
 
