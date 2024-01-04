@@ -9,6 +9,10 @@
 
 ## extensions
 
+ * [28 расширений VS Code для разработки документации](https://habr.com/ru/articles/698702/)
+ * из коробки
+	* https://marketplace.visualstudio.com/items?itemName=goessner.mdmath
+ *
 	```txt
 		adammaras.overtype
 		Angular.ng-template

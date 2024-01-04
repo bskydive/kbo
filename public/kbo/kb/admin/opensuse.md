@@ -14,9 +14,17 @@
 
 ## просмотр markdown файлов
 
-* [установить плагин в хром](https://chrome.google.com/webstore/detail/markdown-preview/jmchmkecamhbiokiopfpnfgbidieafmd?utm_source=chrome-app-launcher-info-dialog)
-* [установить pandoc и настроить kate](https://www.maketecheasier.com/convert-markdown-to-html-in-kate-text-editor/)
-* [смотреть плагином в idea](https://plugins.jetbrains.com/plugin/5970?pr=idea)
+ * https://www.markdownguide.org/getting-started/
+ * [установить плагин в хром](https://chrome.google.com/webstore/detail/markdown-preview/jmchmkecamhbiokiopfpnfgbidieafmd?utm_source=chrome-app-launcher-info-dialog)
+ * [установить pandoc и настроить kate](https://www.maketecheasier.com/convert-markdown-to-html-in-kate-text-editor/)
+ * [смотреть плагином в idea](https://plugins.jetbrains.com/plugin/5970?pr=idea)
+ * Visualize your Markdown as mindmaps
+ 	* https://github.com/markmap/markmap
+	* https://github.com/dundalek/markmap
+ * markdown формулы
+	* https://katex.org/docs/supported.html#style-color-size-and-font
+	* https://github.com/KaTeX/KaTeX
+	* https://github.com/goessner/markdown-it-texmath
 
 ## screencast
 

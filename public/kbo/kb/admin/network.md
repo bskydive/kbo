@@ -82,10 +82,12 @@ mtr -o "LDRS NBAWV GJMXI" -b -s 1500 -i 0.1 91.240.86.5
 ```
 ping добавляет 28 бит!
 
+
 ## P2P peer-to-peer torrent
 
  * теория
  	* [Как работает JS: WebRTC и механизмы P2P-коммуникаций](https://habr.com/ru/companies/ruvds/articles/416821/)
+	* https://github.com/sergystepanov/webrtc-troubleshooting
 	* https://doc-kurento.readthedocs.io/en/latest/knowledge/nat.html
 	* https://stackoverflow.com/questions/4118272/do-websockets-allow-for-p2p-browser-to-browser-communication
  * утилиты
@@ -94,6 +96,17 @@ ping добавляет 28 бит!
 		* https://github.com/tking/JSTUN
 		* https://jstun.javawi.de/
 	* https://unix.stackexchange.com/questions/25019/checking-the-type-of-nat
+ * bittorrent
+	* [Пишем свой BitTorrent-клиент на базе библиотеки Bt](https://habr.com/ru/articles/350076/)
+	* https://github.com/atomashpolskiy/bt
+	* https://github.com/mpetazzoni/ttorrent
+	* https://github.com/bitletorg/bitlet
+	* https://wiki.theory.org/BitTorrentSpecification#Related_Documents
+	* [Simple, robust, BitTorrent tracker (client & server) implementation](https://github.com/webtorrent/bittorrent-tracker)
+	* [TorrServer: как смотреть торренты онлайн](https://habr.com/ru/articles/549704/)
+	* [Следим за качественными цифровыми релизами фильмов без суеты](https://habr.com/ru/articles/443584/)
+		* https://github.com/Kyrie1965/torrentReleases/tree/master
+		* https://github.com/YouROK/TorrServer
 
 ## VPN
 
