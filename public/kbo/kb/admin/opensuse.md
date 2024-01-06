@@ -56,6 +56,7 @@ du -sm /*|sort -n
 ## audio
 
  * ffmpegyag
+ * paplay /usr/share/sounds/Oxygen-Sys-Log-In-Short.ogg
 
 ### pulse
 
@@ -964,6 +965,7 @@ acpitool  -W 17
 
 ### установка программ
 
+ * установить плагин kde timer, добавить оповещение `paplay /usr/share/sounds/Oxygen-Sys-Log-In-Short.ogg`
  * снести системный firefox, установить плагины
  	* adblock / ublock
 	* noscript / whitelist

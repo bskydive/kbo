@@ -25,6 +25,7 @@
  * [Война или мир: используем MATLAB и Python вместе](https://habr.com/ru/company/etmc_exponenta/blog/596397/)
  * [О русской науке замолвите слово или за что я люблю Тинькофф, часть 1 2021](https://habr.com/ru/post/598305/)
  * [После GPT-4](https://habr.com/ru/articles/723660/)
+ * ![](./ai_tech_map.jpg)
 
 ## обзоры
 
@@ -50,6 +51,13 @@
 ## биоинформатика
 
  * [разговор с Гольфандом](https://habr.com/ru/post/476164)
+
+## видео/аудио
+
+ * [увеличение разрешения](https://www.topazlabs.com/topaz-video-ai)
+ * https://ultimatevocalremover.com/
+ 	* https://github.com/Anjok07/ultimatevocalremovergui/releases/tag/v5.5.0
+ * [сжатие](https://handbrake.fr/)
 
 ## зрение
 
