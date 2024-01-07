@@ -100,6 +100,8 @@
 
 ## settings
 
+ * `~/.config/Code/User/settings.json`
+
 ```json
 	"window.zoomLevel": 1.2, // font size 14
 	"workbench.iconTheme": "vscode-icons",
@@ -140,6 +142,8 @@
     },
     "editor.fontLigatures": false,
 	"editor.linkedEditing": true,
+	"window.restoreFullscreen": true,
+	"window.newWindowDimensions": "maximized",
 ```
 
 ## debug
