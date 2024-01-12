@@ -1,5 +1,7 @@
 # Neural Нейронные сети
 
+[](../frontend/bigdata.md)
+
  * https://proglib.io/p/obuchenie-data-science-osnovy-nauki-o-dannyh-za-10-minut-2020-12-21
  * https://itnext.io/you-can-build-a-neural-network-in-javascript-even-if-you-dont-really-understand-neural-networks-e63e12713a3
  * [классификация](https://habrahabr.ru/post/343700/)
