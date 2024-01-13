@@ -5,6 +5,10 @@
 
  * https://pogromista.blog/
 
+## обучение
+
+ * https://coderun.yandex.ru/catalog
+
 ## линтер python
 
  * [Груг против сложности. Я пролинтил все посты на Хабре про Python, и вот что я нашёл](https://habr.com/ru/companies/breakpoint/articles/686104/)
