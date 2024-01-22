@@ -28,6 +28,8 @@
 
 ## инструменты
 
+ * https://github.com/Everduin94/better-commits
+	* `npm install -g better-commits`
  * https://github.com/github/git-sizer/#getting-started
  * [javascript git](https://github.com/isomorphic-git/isomorphic-git)
  * [docker+clojure анализ git, первая версия codeScene](https://github.com/adamtornhill/code-maat)
