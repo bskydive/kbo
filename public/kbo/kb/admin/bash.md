@@ -44,6 +44,7 @@
 
  * [backup](./backup.md)
  * [monitoring](./monitoring.md)
+ * [git](../frontend/git.md#ssh-bash)
 
 ```bash
 	date +%H.%M.%S_%d.%m.%Y
@@ -110,6 +111,14 @@
 		if [ a = b ] && [ c = d ]; then
 		if test a = b && test c = d; then
 		if [[ a = b && c = d ]]; then
+		if [ false ]; then echo "HELP"; fi
+
+		# https://linuxhandbook.com/if-else-bash/
+		if [ $(whoami) = 'root' ]; then
+			echo "You are root"
+		else
+			echo "You are not root"
+		fi
 
 		#bash/ksh
 		[[ $foo == bar ]]

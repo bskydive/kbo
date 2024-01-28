@@ -6,7 +6,7 @@
 
 ## ETL
 
- * [ETL в анализе данных без перерывов на кофе и курилку](https://habr.com/ru/post/574110/) 
+ * [ETL в анализе данных без перерывов на кофе и курилку](https://habr.com/ru/post/574110/)
 	* генерация чистых форматов
 	* [кроссплатформенное хранение, есть возможность частичной выборки и фильтрации данных еще на этапе загрузки](https://arrow.apache.org/docs/r/)
 	* [табличное хранение для ограниченного количества типов с возможностью частичной загрузки требуемых колонок](http://www.fstpackage.org/index.html )
@@ -33,7 +33,13 @@
 	* https://opensource.com/article/18/5/gnu-parallel
 	* http://xmlsoft.org/xslt/xsltproc.html
 	* [mawk](https://brenocon.com/blog/2009/09/dont-mawk-awk-the-fastest-and-most-elegant-big-data-munging-language/)
- 
+
 ## cuda
 
   * https://www.youtube.com/watch?v=XXfxHIpSlTw
+
+## message-brokers
+
+ * [Построение архитектур для обработки данных в режиме реального времени при помощи Apache Kafka, Flink и Druid](https://habr.com/ru/companies/timeweb/articles/783758/)
+ * RabbitMQ, Kafka и Pulsar
+ * zeroMQ

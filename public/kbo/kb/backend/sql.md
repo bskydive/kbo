@@ -32,11 +32,6 @@
  * полнотекстовые (Elasticsearch, Sphinx)
  * control-plane (ZooKeeper, Consul, Etcd)
 
-## message-brokers
-
- * основные это: RabbitMQ, Kafka и Pulsar
- * zeroMQ
-
 ## облачные калькуляторы
 
  * http://sqlfiddle.com

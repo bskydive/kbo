@@ -14,9 +14,17 @@
 
 ## просмотр markdown файлов
 
-* [установить плагин в хром](https://chrome.google.com/webstore/detail/markdown-preview/jmchmkecamhbiokiopfpnfgbidieafmd?utm_source=chrome-app-launcher-info-dialog)
-* [установить pandoc и настроить kate](https://www.maketecheasier.com/convert-markdown-to-html-in-kate-text-editor/)
-* [смотреть плагином в idea](https://plugins.jetbrains.com/plugin/5970?pr=idea)
+ * https://www.markdownguide.org/getting-started/
+ * [установить плагин в хром](https://chrome.google.com/webstore/detail/markdown-preview/jmchmkecamhbiokiopfpnfgbidieafmd?utm_source=chrome-app-launcher-info-dialog)
+ * [установить pandoc и настроить kate](https://www.maketecheasier.com/convert-markdown-to-html-in-kate-text-editor/)
+ * [смотреть плагином в idea](https://plugins.jetbrains.com/plugin/5970?pr=idea)
+ * Visualize your Markdown as mindmaps
+ 	* https://github.com/markmap/markmap
+	* https://github.com/dundalek/markmap
+ * markdown формулы
+	* https://katex.org/docs/supported.html#style-color-size-and-font
+	* https://github.com/KaTeX/KaTeX
+	* https://github.com/goessner/markdown-it-texmath
 
 ## screencast
 
@@ -48,6 +56,7 @@ du -sm /*|sort -n
 ## audio
 
  * ffmpegyag
+ * paplay /usr/share/sounds/Oxygen-Sys-Log-In-Short.ogg
 
 ### pulse
 
@@ -956,12 +965,26 @@ acpitool  -W 17
 
 ### установка программ
 
+ * установить плагин kde timer, добавить оповещение `paplay /usr/share/sounds/Oxygen-Sys-Log-In-Short.ogg`
  * снести системный firefox, установить плагины
  	* adblock / ublock
 	* noscript / whitelist
 	* treestyletab https://addons.mozilla.org/ru/firefox/addon/tree-style-tab/?src=search
 	* downthemall
  * снести системный thunderbird
+ * https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+ 	* https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+	* https://www.google.com/linuxrepositories/
+
+	```bash
+		wget https://dl.google.com/linux/linux_signing_key.pub
+		sudo rpm --import linux_signing_key.pub
+		# You can verify the key installation by running:
+		rpm -qi gpg-pubkey-d38b4796-*
+		# NOTE: From early 2023 onward, all Linux RPM packages are signed with periodically rotated subkeys of the 0xD38B4796 signing key. The 0x7FAC5991 signing key is obsoleted by this change.
+		# To manually verify an RPM package, you can run the command:
+		rpm --verbose --checksig -v packagename.rpm
+	```
  * yed `-Dsun.java2d.uiScale=2`
  * krdc, freeRDP, remmnia
  * openvpn
@@ -1308,6 +1331,27 @@ x11uselocalhost no
 
  * http://kb.mozillazine.org/IMAP:_advanced_account_configuration
  * [реиндекс глобального поиска](https://support.mozilla.org/en-US/kb/rebuilding-global-database)
+
+## zypper-log
+
+ * команды `zypper-log`
+ * логи за прошлый день `/var/log/zypp/*.xz`
+
+```
+2023-12-25 21:25:22 <1> pc-3(13154) [zypp] ZYppImpl.cc(commit):189 Commit (CommitPolicy( DownloadDefault )) returned: CommitResult  (total 772, done 772, error 0, skipped 0, updateMessages 0)
+2023-12-25 21:25:22 <1> pc-3(13154) [zypper] solve-commit.cc(solve_and_commit):884
+2023-12-25 21:25:22 <1> pc-3(13154) [zypper] solve-commit.cc(solve_and_commit):884 DONE
+2023-12-25 21:25:22 <1> pc-3(13154) [librpmDb++] librpmDb.cc(D):79 DBACCESS {NULL(/)/usr/lib/sysimage/rpm}
+2023-12-25 21:25:22 <1> pc-3(13154) [librpmDb++] librpmDb.cc(dbRelease):296 dbRelease: release, outstanding 0
+2023-12-25 21:25:22 <1> pc-3(13154) [zypp::exec++] forkspawnengine.cc(start):181 Executing 'lsof' '-n' '-FpcuLRftkn0' '-K' 'i'
+2023-12-25 21:25:22 <1> pc-3(13154) [zypp::exec++] forkspawnengine.cc(start):333 pid 22113 launched
+2023-12-25 21:25:22 <1> pc-3(13154) [zypp::misc] CheckAccessDeleted.cc(filterInput):400 Silently scanning lsof output...
+2023-12-25 21:25:22 <1> pc-3(13154) [zypp::exec++] abstractspawnengine.cc(checkStatus):189 Pid 22113 successfully completed
+2023-12-25 21:25:22 <2> pc-3(13154) [zypper] Zypper.h(setExitCode):161 setExitCode 0
+2023-12-25 21:25:22 <1> pc-3(13154) [zypper] Zypper.cc(doCommand):677 Done
+2023-12-25 21:25:22 <1> pc-3(13154) [zypper] Zypper.cc(cleanup):729 START
+2023-12-25 21:25:22 <1> pc-3(13154) [zypper] main.cc(~Bye):98 ===== Exiting main(0) =====
+```
 
 ## repo
 

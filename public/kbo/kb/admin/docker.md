@@ -57,5 +57,7 @@
 
 # kubernetes
 
- * https://habr.com/ru/article/720322/
+ * [Исследование VK Cloud о том, как компании работают с Kubernetes в России](https://cloud.vk.com/promopage/state-of-kubernetes/)
+ * [Весна идёт — весне дорогу! Итоги сезона Kubernetes](https://habr.com/ru/article/720322/)
  * https://habr.com/ru/hub/kubernetes/
+ * [Крупномасштабный стриминг видео с использованием Kubernetes и RabbitMQ](https://habr.com/ru/companies/timeweb/articles/785050/)

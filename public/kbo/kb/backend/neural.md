@@ -1,5 +1,7 @@
 # Neural Нейронные сети
 
+[](../frontend/bigdata.md)
+
  * https://proglib.io/p/obuchenie-data-science-osnovy-nauki-o-dannyh-za-10-minut-2020-12-21
  * https://itnext.io/you-can-build-a-neural-network-in-javascript-even-if-you-dont-really-understand-neural-networks-e63e12713a3
  * [классификация](https://habrahabr.ru/post/343700/)
@@ -25,6 +27,7 @@
  * [Война или мир: используем MATLAB и Python вместе](https://habr.com/ru/company/etmc_exponenta/blog/596397/)
  * [О русской науке замолвите слово или за что я люблю Тинькофф, часть 1 2021](https://habr.com/ru/post/598305/)
  * [После GPT-4](https://habr.com/ru/articles/723660/)
+ * ![](./ai_tech_map.jpg)
 
 ## обзоры
 
@@ -50,6 +53,13 @@
 ## биоинформатика
 
  * [разговор с Гольфандом](https://habr.com/ru/post/476164)
+
+## видео/аудио
+
+ * [увеличение разрешения](https://www.topazlabs.com/topaz-video-ai)
+ * https://ultimatevocalremover.com/
+ 	* https://github.com/Anjok07/ultimatevocalremovergui/releases/tag/v5.5.0
+ * [сжатие](https://handbrake.fr/)
 
 ## зрение
 

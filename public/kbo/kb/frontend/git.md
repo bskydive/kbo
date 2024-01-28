@@ -19,6 +19,7 @@
  * https://developer.atlassian.com/blog/2015/12/tips-tools-to-solve-git-conflicts/
  * http://zeroturnaround.com/rebellabs/git-commands-and-best-practices-cheat-sheet/
  * https://ericdouglas.github.io/2016/04/01/Git-Useful-Tips/
+ * [conventionalcommits](https://www.conventionalcommits.org/en/v1.0.0/)
 
 ### тренажёры
 
@@ -27,6 +28,8 @@
 
 ## инструменты
 
+ * https://github.com/Everduin94/better-commits
+	* `npm install -g better-commits`
  * https://github.com/github/git-sizer/#getting-started
  * [javascript git](https://github.com/isomorphic-git/isomorphic-git)
  * [docker+clojure анализ git, первая версия codeScene](https://github.com/adamtornhill/code-maat)
@@ -301,8 +304,8 @@ git apply patch
 	#!/bin/bash
 
 	current_branch=`git rev-parse --abbrev-ref HEAD`
-	[[ $result == 'develop' ]] && echo -e "\n\n!!!необходимо перейти ИЗ develop!!!\n\n"
-	[[ $result == 'develop' ]] && exit
+	[[ $current_branch == 'develop' ]] && echo -e "\n\n!!!необходимо перейти ИЗ develop!!!\n\n"
+	[[ $current_branch == 'develop' ]] && exit
 
 	git add src/*
 	#npm run build
@@ -470,6 +473,11 @@ git merge upstream/master
  ```bash
 	git rebase -i HEAD~5
 	git rebase -i 123456 # коммит после крайнего
+	# pick aabbc4 comment
+	# squash aabbc3 comment
+	# squash aabbc2 comment
+	# squash aabbc1 comment
+
 	# git add
  	git rebase --continue
  ```

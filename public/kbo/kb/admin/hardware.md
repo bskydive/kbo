@@ -9,6 +9,16 @@ https://github.com/hsoft/collapseos
  * http://www.logicalincrements.com/
  * https://cpu.userbenchmark.com/
  * https://www.pcbenchmarks.net/
+
+## ИБП UPS
+
+ * [Смена аккумуляторов: ИБП на технологии Li-Ion](https://habr.com/ru/companies/bigdatahosting/articles/351140/)
+ * [Литий-ионные ИБП: какой тип батарей выбрать, LMO или LFP?](https://habr.com/ru/companies/open_technologies/articles/430798/)
+ * есть liFePo аккумы https://bast.ru/products/li-ion/
+ * есть DC UPS или mini UPS
+	* https://bast.ru/products/rapan/bbp-rapan-10p-isp-12
+	* https://aliexpress.ru/wholesale?SearchText=mini+ups
+
 ## Бесперебойник APC
 
   * APC smart 1000 - 2 шт [ Батарея CSB GP 1272(28W) - 12В, 7.2Ач, 151мм/65мм/100мм](https://www.xcom-shop.ru/csb_gp_127228w_376547.html)
