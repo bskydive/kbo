@@ -52,7 +52,8 @@ https://habrahabr.ru/post/276731/
  * типы
 	* SAML - XML+claims
 	* OpenAuth - access+refresh
-	* openID - jwt
+	* openID/JWT - JSON
+	* SWT - simple web tokens
 	*
 
 ##  DB Хранение данных
