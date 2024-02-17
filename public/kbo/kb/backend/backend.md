@@ -44,6 +44,12 @@ https://habrahabr.ru/post/276731/
 
  *
 
+## auth SSO
+
+ * https://gitlab.com/stepanovv/articles-manager/-/tree/master
+
+
+
 ##  DB Хранение данных
 
 https://habrahabr.ru/company/badoo/blog/342564/

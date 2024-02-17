@@ -1,5 +1,54 @@
 # React
 
+## отличия от ангуляр
+
+* вместо HTML/декларативного/shadowDOM - virtualDOM/императивный/JS аннотации
+	* хорошо для сложных состояний и сложной асинхронщины
+	* полностью отдельно рендеринг от браузера
+	* должна быть хуже оптимизация/отладка, потому что это не гугл, у которого свой браузер
+* стили и разметка вместе с логикой
+	* лучше использовать отдельные библиотеки стилей
+	* высокий риск дублирования кода
+
+
+## собес
+
+ * [Любимая задачка на знание React](https://habr.com/ru/companies/tensor/articles/779718/)
+	```ts
+		function useFetch(url) {
+		const [data, setData] = useState(null);
+		const [isLoading, setIsLoading] = useState(false);
+		const [error, setError] = useState(null);
+
+		useEffect(() => {
+			// флаг отмены
+			let cancelled = false;
+
+			setIsLoading(true);
+			setData(null);
+			setError(null);
+			fetch(url)
+				.then((res) => res.json())
+				.then((respData) => {
+					if (!cancelled) setData(respData);
+				})
+				.catch((e) => {
+					if (!cancelled) setError(e);
+				})
+				.finally(() => {
+					if (!cancelled) setIsLoading(false);
+				});
+
+			return () => {
+				// выставим признак того, что запрос отменен
+				cancelled = true;
+			};
+		}, [url]);
+
+		return [data, isLoading, error];
+		}
+
+	```
  * https://pomb.us/build-your-own-react/
 	*
 		```jsx
@@ -41,28 +90,6 @@
 
 
 		```
-	*
-		```
-		```
- * https://ru.hexlet.io/courses/reactjs
- * https://learn.javascript.ru/courses/react
- * https://www.gitbook.com/@maxfarseer/
- * http://itvdn.com/ru/video/react-js-essential
-
- * [React Router 6 Tutorial](https://www.robinwieruch.de/react-router/)
- * [Best practices for React iframes](https://blog.logrocket.com/best-practices-react-iframes/)
- * [React Context & Hooks Tutorial # 19 - Редукторы, действия и состояние](https://www.youtube.com/watch?v=uXWycyeTeCs)
- * [Full React Tutorial - 2020](https://www.youtube.com/watch?v=j942wKiXFu8&list=PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d&index=1)
-
-## отличия от ангуляр
-
-* вместо HTML/декларативного/shadowDOM - virtualDOM/императивный/JS аннотации
-	* хорошо для сложных состояний и сложной асинхронщины
-	* полностью отдельно рендеринг от браузера
-	* должна быть хуже оптимизация/отладка, потому что это не гугл, у которого свой браузер
-* стили и разметка вместе с логикой
-	* лучше использовать отдельные библиотеки стилей
-	* высокий риск дублирования кода
 
 ## курсы
 
@@ -85,6 +112,15 @@
 	* 2,5 месяца, 13 часов теории и 76 часов практики
  * https://github.com/utimur/react-fundamental-course
  * https://github.com/utimur/React-typescript-course
+ * https://ru.hexlet.io/courses/reactjs
+ * https://learn.javascript.ru/courses/react
+ * https://www.gitbook.com/@maxfarseer/
+ * http://itvdn.com/ru/video/react-js-essential
+
+ * [React Router 6 Tutorial](https://www.robinwieruch.de/react-router/)
+ * [Best practices for React iframes](https://blog.logrocket.com/best-practices-react-iframes/)
+ * [React Context & Hooks Tutorial # 19 - Редукторы, действия и состояние](https://www.youtube.com/watch?v=uXWycyeTeCs)
+ * [Full React Tutorial - 2020](https://www.youtube.com/watch?v=j942wKiXFu8&list=PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d&index=1)
 
 ## react DOM
  * работает и на react native и в SSR
@@ -413,10 +449,6 @@
 	* constructor
 	* render()
  * группировка и взаимодействие групп состояний
-
-##
-
-##
 
 ##
 

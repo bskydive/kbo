@@ -24,6 +24,7 @@
 	* window workspace color [Peacock](https://marketplace.visualstudio.com/items?itemName=johnpapa.vscode-peacock)
 	* [Todo MD](https://marketplace.visualstudio.com/items?itemName=usernamehw.todo-md)
 	* docx converter [vscode-pandoc](https://marketplace.visualstudio.com/items?itemName=ChrisChinchilla.vscode-pandoc)
+	* `"markdown.validate.enabled": true,`
 
  *
 	```txt
@@ -157,6 +158,7 @@
 	"editor.linkedEditing": true,
 	"window.restoreFullscreen": true,
 	"window.newWindowDimensions": "maximized",
+	"markdown.validate.enabled": true,
 ```
 
 ## debug
@@ -206,6 +208,10 @@
 
 ## грабли
 
+ * `Could not register service workers`
+ * https://stackoverflow.com/questions/67698176/error-loading-webview-error-could-not-register-service-workers-typeerror-fai
+ * https://github.com/microsoft/vscode/issues/125993
+	* `rm -rf .config/Code/Service\ Worker/{CacheStorage,ScriptCache}`
  * `/etc/zypp/vscode.repo`
 
 	```bash
