@@ -57,7 +57,7 @@
 	* RESTful vs RPC (JSON RPC) vs GraphQL
  * long pooling - держим соединение с сервером, пока он не ответит, затем переподключаемся
  * quick pooling - пингуем сервер
- * [https://html.spec.whatwg.org/multipage/comms.html#the-eventsource-interface](MessageEvent) Messages in server-sent events, cross-document messaging, channel messaging, broadcast channels, and WebSockets use the MessageEvent interface for their message events
+ * [MessageEvent](https://html.spec.whatwg.org/multipage/comms.html#the-eventsource-interface) Messages in server-sent events, cross-document messaging, channel messaging, broadcast channels, and WebSockets use the MessageEvent interface for their message events
  * [WEBSOCKET](https://mcs.mail.ru/blog/websocket-kogda-sleduet-ispolzovat-i-preimushhestva) - двунаправленный, с сохранением соединения, с подписками на события, быстрый, есть шифрование wss
  * [gRPC](https://grpc.io/docs/what-is-grpc/introduction/) - преимущества двоичных сообщений, высокую производительность и низкий уровень использования сети, одно/двух направленный, синхронный/асинхронный, сохранение/сброс соединения, тип данных Buffer/stream
  * GRAPHQL - язык запросов для формирования пакетов данных, требует доработок в тылу
@@ -207,7 +207,7 @@
 	* [media-feature-rule](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#media_features)
 		* описывают свойства user-agent, устройства или окружения
  * [типовые раскладки](https://developer.mozilla.org/en-US/docs/Web/CSS/Layout_cookbook)
- * [отзывчивый дизайн раскладок](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design
+ * [отзывчивый дизайн раскладок](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design)
 	* статическая/overflow
 	* резиновая/Responsive
 	* адаптивная

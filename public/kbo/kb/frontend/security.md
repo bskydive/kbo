@@ -42,7 +42,7 @@
 	#Define .npmrc and set ignore-scripts=true
 ```
 
-* [npm dependency tree](npm.anvaka.com/)
+* [npm dependency tree](https://npm.anvaka.com/)
 * https://github.com/megahertz/howfat
 * `yarn why <MODULE>`
 
@@ -240,7 +240,7 @@ let img=new Image(); img.src="https://LULsite.com/?credit="+$('.credit')[0].valu
 
  * https://rescan.pro/
  * [google dorks scanner](https://habrahabr.ru/post/283210/)
- * [linux malware detect](firstwiki.ru/index.php/Поиск_различных_malware_скриптов/)
+ * [linux malware detect](https://firstwiki.ru/index.php/Поиск_различных_malware_скриптов/)
  * [aibolit](http://www.revisium.com/ai/)
  * http://online.drweb.com/?url=1
  * http://antivirus-alarm.ru/

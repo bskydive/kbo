@@ -1,5 +1,6 @@
 # Filesystems
 
+ * [Пишем файловую систему в ядре Linux](https://habr.com/ru/companies/JetBrains-education/articles/218833/)
 
 ## сравнение файловых систем
 
