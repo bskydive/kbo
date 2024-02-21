@@ -174,7 +174,7 @@
 
 ## JIRA
 
- * [jira](kb/conventions/jira.md)
+ * [jira](./jira.md)
 
 ## retrospective ретроспективы
 
