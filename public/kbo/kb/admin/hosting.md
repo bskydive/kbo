@@ -1,3 +1,56 @@
+# Хостинг
+
+## heroku
+
+### в облаке
+
+* сделать pipeline
+* сделать app и добавить nodejs build pack в pipeline
+* привязать тестовый апп к продуктивному в pipeline
+
+### локально
+
+* общий ман со стартом через node+express https://medium.com/@hellotunmbi/how-to-deploy-angular-application-to-heroku-1d56e09c5147
+* лимиты https://devcenter.heroku.com/articles/limits
+* сколько израсходовано https://dashboard.heroku.com/account/billing
+* выкурить стартовый ман https://devcenter.heroku.com/articles/deploying-nodejs
+* подкрутить GC node [procfile](https://devcenter.heroku.com/articles/procfile): `web: node --optimize_for_size --max_old_space_size=460 --gc_interval=100 server.js` https://devcenter.heroku.com/articles/node-best-practices#avoid-garbage
+* сделать в package.json scripts `npm run start --port 5000` https://devcenter.heroku.com/articles/dynos#local-environment-variables
+* добавить в package.json scripts `"heroku-postbuild": "ng build --aot --prod"`
+* при необходимости перенести  `"@angular/cli": "^7.3.3","@angular/compiler-cli": "^7.2.6",` в секцию "dependencies" - иначе не найдёт `ng`
+* проверить `npm run heroku-postbuild`
+* проверить `heroku local web`
+* указать версию ноды https://devcenter.heroku.com/articles/deploying-nodejs
+* запушить ветку в мастер хероку `git push heroku T68-aggrid:master` https://devcenter.heroku.com/articles/multiple-environments#advanced-linking-local-branches-to-remote-apps
+* выбрать тип виртуалки https://devcenter.heroku.com/articles/dyno-types для 1 гига от 50 долл/мес/дина проверка: `heroku ps:scale`
+* поширить память, она 512 `heroku config:set WEB_MEMORY=1024`
+* команды для виртуалок https://devcenter.heroku.com/articles/dynos#cli-commands-for-dyno-management
+* `heroku logs --tail`
+* `heroku labs:enable log-runtime-metrics`
+
+
+## gitlab pages
+
+ * надо сделать репу в гитлаб, можно приватную.
+ * Там вот сделать каталог public, в ём отгородить index.html и 404.html. Симлинки вроде не катят.
+ * закопать .gitlab-ci.yml в корень проекта:
+	```
+		image: alpine:latest
+
+		pages:
+		stage: deploy
+		script:
+		- echo 'Nothing to do...'
+		artifacts:
+			paths:
+			- public
+		only:
+		- master
+	```
+ * Потом настроить на вкладке CI/CD pipeline
+ * для bitbucket надо index+404 разместить в корне
+
+
 ## migration vm
 
 http://cloudscraper.migrate2iaas.com/faq
@@ -13,18 +66,18 @@ http://cloudscraper.migrate2iaas.com/faq
 rackspace-mon
 ```bash
 curl https://monitoring.api.rackspacecloud.com/pki/agent/linux.asc | tee -a linux.asc
-rpm --import linux.asc 
+rpm --import linux.asc
 cat >> rackspace_mon.repo
 [rackspace]
 name=Rackspace Monitoring
-baseurl="http://stable.packages.cloudmonitoring.rackspace.com/centos-6-x86_64" 
+baseurl="http://stable.packages.cloudmonitoring.rackspace.com/centos-6-x86_64"
 enabled=0
 
 ln -s /distr/rackspace_mon.repo /etc/yum.repos.d/rackspace_mon.repo
 
 yum update
 yum repolist
-cat rackspace_mon.repo 
+cat rackspace_mon.repo
 
 yum install rackspace-monitoring-agent
 rackspace-monitoring-agent --setup
@@ -81,7 +134,7 @@ ssh -i "17062016pair.pem" ec2-user@ec2-54-172-136-194.compute-1.amazonaws.com
 at S3 bucket add to vm-import-export@amazon.com list, upload/download, view permissions
 
 ```bash
-~> ec2-create-instance-export-task i-abe820eb -e Vmware -f vmdk -b svv-bucket-ireland-1 
+~> ec2-create-instance-export-task i-abe820eb -e Vmware -f vmdk -b svv-bucket-ireland-1
 EXPORTTASK      export-i-fgnb7lid               active          i-abe820eb      vmware  vmdk            svv-bucket-ireland-1    export-i-fgnb7lid.vmdk
 You may monitor the progress of this task by running ec2-describe-export-tasks.
 
@@ -103,7 +156,7 @@ workstation - file - export to ovf
 -w _W_KEY_ \
 --instance-initiated-shutdown-behavior stop \
 -b svv-bucket-ireland-1 \
--a x86_64 \ 
+-a x86_64 \
 -v --no-upload
 
 Requesting volume size: 20 GB
@@ -132,27 +185,27 @@ TaskType        IMPORTINSTANCE  TaskId  import-i-fghqogfd       ExpirationTime  
 DISKIMAGE       DiskImageFormat VMDK    DiskImageSize   958827520       VolumeId        vol-c1ba3fc6    VolumeSize      20      AvailabilityZone        eu-west-1a      ApproximateBytesConverted       958825616  Status  completed
 
 
-~> ec2-delete-disk-image -t import-i-fghqogfd -o _O_KEY_ -w _W_KEY_ 
+~> ec2-delete-disk-image -t import-i-fghqogfd -o _O_KEY_ -w _W_KEY_
 The task import-i-fghqogfd is still active. Use --ignore-active-task to force the deletion.
 
 ~> ec2-describe-instances | grep -iE 'name|instance'
 INSTANCE        i-0d37fa4d      ami-678c4c10            ip-172-31-25-223.eu-west-1.compute.internal     stopped amazon_my_eu1a_keys     0               t1.micro        2014-05-31T19:37:19+0000        eu-west-1a                 windows monitoring-disabled             172.31.25.223   vpc-d4c22eb1    subnet-87e11be2 ebs                                     hvm     xen     BMaze1401565039110      sg-b069afd5default false
 TAG     instance        i-0d37fa4d      Name    win2008_x64_vpc_eu-west-1a
-INSTANCE        i-abe820eb      ami-cf9f50b8            ip-172-31-20-247.eu-west-1.compute.internal     stopped         0               m3.medium       2014-06-04T19:45:24+0000        eu-west-1a        monitoring-disabled              172.31.20.247   vpc-d4c22eb1    subnet-87e11be2 ebs   
+INSTANCE        i-abe820eb      ami-cf9f50b8            ip-172-31-20-247.eu-west-1.compute.internal     stopped         0               m3.medium       2014-06-04T19:45:24+0000        eu-west-1a        monitoring-disabled              172.31.20.247   vpc-d4c22eb1    subnet-87e11be2 ebs
 
 ```
 
 ```bash
-ec2-import-instance 
--t m1.large /mnt/wdc500/vm/cloudscraper-images/2013-11-30/C.VHD 
--f VHD -p Windows 
--z us-east-1c 
---subnet vpc-51b8b033 
--o AKIAJFVNMRSGULXJU3EQ 
--w MkM7vZUuWg3uBLeEUnEBjhzxyhNFKkhrBCDu5bKm 
---instance-initiated-shutdown-behavior stop 
--b us-east-1-buck-bsk 
--a x86_64 
+ec2-import-instance
+-t m1.large /mnt/wdc500/vm/cloudscraper-images/2013-11-30/C.VHD
+-f VHD -p Windows
+-z us-east-1c
+--subnet vpc-51b8b033
+-o AKIAJFVNMRSGULXJU3EQ
+-w MkM7vZUuWg3uBLeEUnEBjhzxyhNFKkhrBCDu5bKm
+--instance-initiated-shutdown-behavior stop
+-b us-east-1-buck-bsk
+-a x86_64
 -v --no-upload
 ```
 
@@ -175,8 +228,8 @@ export EC2_URL=https://ec2.us-east-1.amazonaws.com
 ~> file $(which java)
 /usr/bin/java: symbolic link to '/etc/alternatives/java'
 
-This location is the actual binary (notice that it is listed as an executable). 
-The Java home directory is where bin/java lives; in this example, 
+This location is the actual binary (notice that it is listed as an executable).
+The Java home directory is where bin/java lives; in this example,
 the Java home directory is /usr/lib/jvm/java-7-openjdk-amd64/jre.
     $ export JAVA_HOME="/usr/lib/jvm/java-7-openjdk-amd64/jre"
     You can verify your JAVA_HOME setting using this command.
@@ -185,16 +238,16 @@ the Java home directory is /usr/lib/jvm/java-7-openjdk-amd64/jre.
 
 Tell the CLI Tools Where They Live
 
-~> export EC2_HOME=/usr/local/ec2/ec2-api-tools-1.6.14.0  
-~> export PATH=$PATH:$EC2_HOME/bin 
+~> export EC2_HOME=/usr/local/ec2/ec2-api-tools-1.6.14.0
+~> export PATH=$PATH:$EC2_HOME/bin
 
 Tell the CLI Tools Who You Are
 
 Every time you issue a command, you must specify your access keys using the --aws-access-key and
- --aws-secret-key (or -O and -W) options. Alternatively, you might find it easier to store your 
+ --aws-secret-key (or -O and -W) options. Alternatively, you might find it easier to store your
 access keys using the following environment variables:
 
-~> export AWS_ACCESS_KEY=your-aws-access-key-id 
+~> export AWS_ACCESS_KEY=your-aws-access-key-id
 ~> export AWS_SECRET_KEY=your-aws-secret-key
 
 Verify the Tools Setup
@@ -203,7 +256,7 @@ Verify the Tools Setup
 
 (Optional) Set the Region
 
-By default, the Amazon EC2 CLI tools use the US East (Northern Virginia) region (us-east-1) 
+By default, the Amazon EC2 CLI tools use the US East (Northern Virginia) region (us-east-1)
 with the ec2.us-east-1.amazonaws.com service endpoint URL.
 
 ~> export EC2_URL=https://ec2.us-east-1.amazonaws.com
