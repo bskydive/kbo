@@ -1068,7 +1068,7 @@
 		* Pass FormGroup reference to child components using @Input
 			* an additional @Input on the Component to pass FormGroup.
 			* additional properties for tracking validity and dirty state of the component.
-	* [https://angular.io/api/forms/DefaultValueAccessor](ControlValueAccessor) for writing a value and listening to changes on input elements
+	* [ControlValueAccessor](https://angular.io/api/forms/DefaultValueAccessor) for writing a value and listening to changes on input elements
 	```ts
 		interface ControlValueAccessor {
 			writeValue(obj: any): void
