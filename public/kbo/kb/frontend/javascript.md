@@ -221,7 +221,7 @@
  	* [Структурные шаблоны](https://tproger.ru/translations/design-patterns-simple-words-2/)
  	* [Поведенческие шаблоны](https://tproger.ru/translations/design-patterns-simple-words-3/)
  * [Шаблоны проектирования с человеческим лицом](https://habr.com/ru/company/mailru/blog/325492/)
- * [инструменты проектирование](/kbo/инструменты/инструменты#проектирование)
+ * [инструменты проектирование](../инструменты/инструменты#проектирование)
  * [Создание архитектуры программы или как проектировать табуретку](https://habr.com/post/276593/)
  * [синглтоны и общие экземпляры](https://habr.com/ru/company/mailru/blog/334078/)
  * [шпаргалка по шаблонам проектирования](https://habr.com/ru/post/210288/)

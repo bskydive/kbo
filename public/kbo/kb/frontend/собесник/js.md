@@ -509,7 +509,7 @@
 
 ## Шаблоны проектирования
 
- * [GOF/GRASP](public/kbo/kb/frontend/javascript.md:220)
+ * [GOF/GRASP](../javascript.md#шаблоны-patterns)
 
 ## Циклы
 
