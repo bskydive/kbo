@@ -9,22 +9,7 @@
 
 ## extensions
 
- * [28 расширений VS Code для разработки документации](https://habr.com/ru/articles/698702/)
- * из коробки, не нужно устанавливать, математика
-	* https://marketplace.visualstudio.com/items?itemName=goessner.mdmath
-	* https://katex.org/docs/supported.html
- * markdown
-	* pdf converter [Markdown PDF](https://marketplace.visualstudio.com/items?itemName=yzane.markdown-pdf)
-	* [Markdown Table Prettifier](https://marketplace.visualstudio.com/items?itemName=darkriszty.markdown-table-prettify)
-	* mindmap [Markmap](https://marketplace.visualstudio.com/items?itemName=gera2ld.markmap-vscode)
-	* [Case Change](https://marketplace.visualstudio.com/items?itemName=AkankshaSingh872.case-change)
-	* [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
-	* [Russian - Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker-russian)
-	* [Overtype](https://marketplace.visualstudio.com/items?itemName=DrMerfy.overtype)
-	* window workspace color [Peacock](https://marketplace.visualstudio.com/items?itemName=johnpapa.vscode-peacock)
-	* [Todo MD](https://marketplace.visualstudio.com/items?itemName=usernamehw.todo-md)
-	* docx converter [vscode-pandoc](https://marketplace.visualstudio.com/items?itemName=ChrisChinchilla.vscode-pandoc)
-	* `"markdown.validate.enabled": true,`
+ * articles-manager/карьера/инструменты.md
 
  *
 	```txt

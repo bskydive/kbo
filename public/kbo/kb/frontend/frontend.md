@@ -1,23 +1,26 @@
 # Frontend
 
+ * большая свалка ссылок
+
 ##  Обучение
 
 ### книги
- 
+
   * https://codedojo.ru/library
 
 ###  Статьи
 
  * [псевдоэлементы и псевдоклассы](https://medium.com/@ABatickaya/исчерпывающее-руководство-по-псевдоэлементам-и-псевдоклассам-в-css-3282b5ea029/)
- * [КМБ](http://habrahabr.ru/post/273795/)
+ * [Создание веб-сайта. Курс молодого бойца 2015](http://habrahabr.ru/post/273795/)
  * [WEB-оливье: небольшой микс из опасностей и ошибок разработчика](http://habrahabr.ru/company/bonjoin/blog/274221/)
  * [перевод https://umaar.com/dev-tips/](https://habrahabr.ru/company/mailru/blog/278021/)
  * [Дайджест](https://habrahabr.ru/company/zfort/)
- * [Чему я научился на своём горьком опыте (за 30 лет в разработке ПО)]. [orig](https://blog.juliobiason.net/books/things-i-learnt/)
+ * [Чему я научился на своём горьком опыте (за 30 лет в разработке ПО)](https://habr.com/ru/companies/vk/articles/456862/)
+ 	* [orig](https://blog.juliobiason.net/books/things-i-learnt/)
  * [The frontend is a fullstack](https://speakerd.s3.amazonaws.com/presentations/fbb463ccb56c4095a12333db52f12a10/The_Frontend_is_a_Fullstack.pdf)
 
 ### блоги, журналы
- 
+
  * http://dmitry.baranovskiy.com/
  * http://dmitrysoshnikov.com/
  * http://perfectionkills.com/
@@ -56,11 +59,11 @@
 ###  Много всего
 
  * http://devdocs.io/
- 
+
  * http://www.cyberguru.ru/web/html.html
  * http://www.tutorialrepublic.com/
- * http://www.cheat-sheets.org/ 
- * http://www.cyberforum.ru/ 
+ * http://www.cheat-sheets.org/
+ * http://www.cyberforum.ru/
  * http://www.java2s.com/
  * https://metanit.com/
 
@@ -135,15 +138,15 @@
 	 * Интерфейсы событий имеют удобные константы: если вы захотите узнать фазу обработки события, вместо `e.eventPhase === 2` вы можете использовать более читабельное `e.eventPhase === Event.AT_TARGET` (если ввести `Event.AT_TARGET` в консоли, вы увидите просто `'2'`)
 	 * document.images содержит список всех изображений на странице. Не знаю, зачем.
 	 * Можно вызвать отмену (Ctrl+z) программно: `document.execCommand('undo')`.
-	 * С помощью `Node.contains()` можно узнать, содержит ли элемент другой элемент. Например: 
+	 * С помощью `Node.contains()` можно узнать, содержит ли элемент другой элемент. Например:
 	 ```js
 	 if (document.querySelector('.modal').contains(e.target)) return
 	 ```
 	 * Метод `Element.matches()` вернет true или false, в зависимости от того, соответствует ли элемент указанному CSS-селектору.
 	 * Трио `TreeWalker`, NodeIterator и NodeFilter может понадобиться, например, для удаления всех комментариев в DOM.
 	 * Метод `Element.classList.toggle` добавляет класс, если он отсутствует у элемента, иначе — убирает. Когда вторым параметром передано false — удаляет указанный класс, а если true — добавляет.
-	 * В новых браузерах можно использовать forEach для NodeList, например, 
-	 ```js 
+	 * В новых браузерах можно использовать forEach для NodeList, например,
+	 ```js
 	 	document.querySelectorAll('img').forEach(img => console.log(img.src))
 	 ```
 	 выводит ссылки на все изображения в консоль.
@@ -316,7 +319,7 @@ https://521dimensions.com/open-source/amplitudejs
 
  * http://svgjs.com/
  * [Fabric.js is a powerful and simple Javascript HTML5 canvas library ](http://fabricjs.com/)
-	* Fabric provides interactive object model on top of canvas element 
+	* Fabric provides interactive object model on top of canvas element
 	* Fabric also has SVG-to-canvas and canvas-to-SVG parser
 	* [Пишем редактор мнемосхем для SCADA-системы на Fabric.js](https://habrahabr.ru/post/322990/)
 
@@ -356,6 +359,7 @@ http://glivera-team.github.io/svg/2016/06/13/svg-sprites-2.html
 
 ## api swagger контракты
 
+ * [страшная сила красоты](../../../articles/public/страшная сила красоты/страшная сила красоты.md)
  * нормального способа для js пока нет, только копипаст из шваггера
  * Плагины для VSCode по работе со шваггером
  	* [линтер](https://marketplace.visualstudio.com/items?itemName=mermade.openapi-lint)
@@ -369,7 +373,7 @@ http://glivera-team.github.io/svg/2016/06/13/svg-sprites-2.html
  * https://github.com/swagger-api/swagger-codegen#generating-a-client-from-local-files
  * https://github.com/wcandillon/swagger-js-codegen
  * https://github.com/swagger-api/swagger-js
- 
+
  ### api codegen
 
  * https://github.com/jnwltr/swagger-angular-generator
@@ -473,7 +477,7 @@ http://glivera-team.github.io/svg/2016/06/13/svg-sprites-2.html
 		ze-ph
 	kotlin-server
 	```
- * 
+ *
 
 	```ts
 
@@ -497,7 +501,7 @@ http://glivera-team.github.io/svg/2016/06/13/svg-sprites-2.html
 
 				/**
 				 * node_modules/@types/yaml/index.d.ts:97
-				 * 
+				 *
 				 * Allow non-JSON JavaScript objects to remain in the `toJSON` output.
 				 * Relevant with the YAML 1.1 `!!timestamp` and `!!binary` tags. By default `true`.
 				 *    keepBlobsInJSON?: boolean;

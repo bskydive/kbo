@@ -24,11 +24,7 @@
 
 ## HTTP
 
- * [HTTP/3 от А до Я: основные концепции. Часть 1](https://habr.com/ru/companies/slurm/articles/575464/)
- * [HTTP-заголовки для ответственного разработчика](https://habr.com/ru/company/mailru/blog/450816/)
- * [http протокол - Иван Бибилов 2014](https://www.youtube.com/watch?v=yUHlrabtEaU)
- * [http2 и спрайты](https://habr.com/ru/post/308862/)
- * [TLS](https://www.freecodecamp.org/news/what-is-tls-transport-layer-security-encryption-explained-in-plain-english/)
+ * articles-manager/теория/сети.md
 
 ## ifconfig
 
@@ -85,11 +81,7 @@ ping добавляет 28 бит!
 
 ## P2P peer-to-peer torrent
 
- * теория
- 	* [Как работает JS: WebRTC и механизмы P2P-коммуникаций](https://habr.com/ru/companies/ruvds/articles/416821/)
-	* https://github.com/sergystepanov/webrtc-troubleshooting
-	* https://doc-kurento.readthedocs.io/en/latest/knowledge/nat.html
-	* https://stackoverflow.com/questions/4118272/do-websockets-allow-for-p2p-browser-to-browser-communication
+ * articles-manager/теория/сети.md
  * утилиты
 	* https://docs.libp2p.io/guides/getting-started/javascript/
 	* https://www.stunprotocol.org/
@@ -107,6 +99,7 @@ ping добавляет 28 бит!
 	* [Следим за качественными цифровыми релизами фильмов без суеты](https://habr.com/ru/articles/443584/)
 		* https://github.com/Kyrie1965/torrentReleases/tree/master
 		* https://github.com/YouROK/TorrServer
+
 
 ## VPN
 
