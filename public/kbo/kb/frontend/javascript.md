@@ -868,8 +868,8 @@ https://stateofjs.com/2017/front-end/results
 
  * [Javascript-джедай #18 - this и непрямой вызов методов](https://www.youtube.com/watch?v=213r4EOHfF0)
  * контекст можно присвоить через метод
-    * Object.call(context,arguments)
-    * Object.apply(context,[arguments])
+    * `Object.call(context,arguments)`
+    * `Object.apply(context,[arguments])`
     * newObject = Object.bind(context) - без выполнения Object
  * Значение this называется контекстом вызова(лексическим окружением) и будет определено в момент вызова функции.
  * ES5 по-умолчанию использует global namespace - window, а ES6 и use strict делают его undefined, например, у стрелочных функций
