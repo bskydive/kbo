@@ -26,13 +26,13 @@ http://www.a-kabel.ru/kalkulyator-secheniya
 
   * [с чего начать?](http://zametkielectrika.ru/elektroprovodka-v-kvartire/)
   * [Как подключить УЗО — наиболее распостраненные схемы](https://hmelectro.ru/poleznye_statyi/kak-podklyuchit-uzo-naibolee-raspostranennye-shemy)
-  * [УЗО(дифференциальный выключатель)](http://zametkielectrika.ru/sxemy-podklyucheniya-uzo-vybor-uzo-po-nominalnomu-i-differencialnomu-toku-toku-utechki/) Если у Вас вводной автоматический выключатель имеет номинальный ток до 40 (А) включительно, то вводное УЗО можно устанавливать с током утечки 30 (мА). Если же номинал вводного автомата больше 50 (А), то скорее всего УЗО придется устанавливать с током утечки 100 (мА).
+  * [УЗО(дифференциальный выключатель)](http://zametkielectrika.ru/sxemy-podklyucheniya-uzo-vybor-uzo-po-nominalnomu-i-differencialnomu-toku-toku-utechki/) 	* Если у Вас вводной автоматический выключатель имеет номинальный ток до 40 (А) включительно, то вводное УЗО можно устанавливать с током утечки 30 (мА). Если же номинал вводного автомата больше 50 (А), то скорее всего УЗО придется устанавливать с током утечки 100 (мА).
   * [отличия УЗО от диффавтомата](http://zametkielectrika.ru/otlichie-differencialnogo-avtomata-ot-uzo/)
   * [что выбрать - УЗО/Диффавтомат](http://zametkielectrika.ru/uzo-ili-difavtomat-chto-vybrat/)
   * [электронные(А) и электромеханические(АС) УЗО](http://elektrik-sam.info/kak-proverit-tip-uzo/)
   * [токовые характеристики автоматов (A/B/C/D)](http://elektrik-sam.info/tokovye-harakteristiki-avtomaticheskih-vyklyuchateley/)
-  * [СУП](http://zametkielectrika.ru/cistema-uravnivaniya-potencialov/)
-  * [Электроплита](http://zametkielectrika.ru/podklyuchenie-elektroplity/)
+
+
   * [гофры](http://zametkielectrika.ru/smenyaemost-elektroprovodki-v-gofre-mif-ili-realnost/)
   * [типовые ошибки](http://zametkielectrika.ru/oshibki-gore-elektrika-ili-kak-ne-nuzhno-delat-elektromontazh/)
   * [как пользоваться пресс-клещами](http://zametkielectrika.ru/press-kleshhi-dlya-opressovki-izolirovannyx-nakonechnikov/)
@@ -42,10 +42,24 @@ http://www.a-kabel.ru/kalkulyator-secheniya
   * вся современная проводка в квартире - медная
   * [гофра проверка на горючесть](http://www.youtube.com/watch?v=4EXy3irUudY)
 
-## заземление полотенцесушителя
+  * освещение в щитке в соседних помещениях разводится на разные выключатели, чтобы можно было подсветить помещение из соседней лампы на время ремонта
+  * ставится минимум 2 УЗО - на ванную+туалет и на остальное
+  * свет желательно повесить на отдельное УЗО, если выбивает розетки, то удобно идти к щитку
+  * нежелательно ставить УЗО 30мА на всю квартиру, нужно делить
 
- * https://remdomkv.ru/electrics/kak-zazemlit-polotentsesushitel
+## уравнивание потенциалов
+
+ * для предотвращения электрохимической корозии, при разрыве проводимости через пластиковые трубы
+ * можно уравнять потенциалы с трубой стояка, без отвода в щиток
+ * [Уравнивание потенциалов](http://zametkielectrika.ru/cistema-uravnivaniya-potencialov/)
+	* СУП запрещены в устаревшей системе заземления tn-c
+	* ![](./files/система_заземления_tn-c.jpg)
+ 	* штатная система заземления tn-c-s
+	* ![](./files/система_заземления_tn-c-s.jpg)
+ 	* ![](./files/система_уравнивания_потенциалов.jpg)
+ * [заземление полотенцесушителя](https://remdomkv.ru/electrics/kak-zazemlit-polotentsesushitel)
  * https://electricvdome.ru/zazemlenie/zazemlenie-polotencesushitelja.html
+
 
 ##  сечение кабеля
 
@@ -69,9 +83,13 @@ http://ydoma.info/electricity-vybor-secheniya-provoda.html
 
 ##  варочная панель
 
-http://jelektro.ru/vse-o-elektromontazhe/podkljuchenie-varochnoj-paneli.html
+ * http://jelektro.ru/vse-o-elektromontazhe/podkljuchenie-varochnoj-paneli.html
+ * автомат 32 А, провод 6кв
 
+## электроплита
 
+ * [Электроплита](http://zametkielectrika.ru/podklyuchenie-elektroplity/)
+ * автомат
 
 ##  Резервное питание, ИБП, батарейки, котлы
 
