@@ -45,7 +45,7 @@ https://github.com/documentationjs
  * https://matrix.org/clients/
  * https://teams.vk.com/
  * https://calls.mail.ru/
- *
+ * «МТС Линк», SberJazz, Яндекс.Телемост, «Труконф» trueconf, «VK Звонки»
 
 ## angular SEO
 
