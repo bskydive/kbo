@@ -40,7 +40,7 @@ https://support.office.com/en-us/article/Turn-off-or-uninstall-OneDrive-f32a17ce
 ## windows 10
 
  * http://www.intowindows.com/how-to-enable-windows-photo-viewer-in-windows-10/
- * [windows 10 file system image snapshot](https://support.microsoft.com/en-us/windows/backup-and-restore-in-windows-10-352091d2-bb9d-3ea3-ed18-52ef2b88cbef) 
+ * [windows 10 file system image snapshot](https://support.microsoft.com/en-us/windows/backup-and-restore-in-windows-10-352091d2-bb9d-3ea3-ed18-52ef2b88cbef)
 	* https://windows.gadgethacks.com/how-to/make-full-system-image-backup-windows-10-0162966/
  * [windows 10](https://www.microsoft.com/ru-ru/software-download/windows10ISO) install [usb from iso](https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/install-windows-from-a-usb-flash-drive)
 
@@ -76,7 +76,50 @@ https://support.office.com/en-us/article/Turn-off-or-uninstall-OneDrive-f32a17ce
 
 	Note, Windows Setup automatically installs from this file, so long as you name it install.swm.
  ```
+ *
+
+### переключение языка ввода
+
+ * https://www.autohotkey.com/
+ * http://flydom.ru/capslang/
+ * https://www.autohotkey.com/docs/v2/misc/Languages.htm
  * 
+ * https://superuser.com/questions/429930/using-capslock-to-switch-the-keyboard-language-layout-on-windows-7
+
+	```
+		SetCapsLockState, AlwaysOff
+		+CapsLock::CapsLock
+
+		CapsLock::Send, {Ctrl down}{Shift down}{Shift up}{Ctrl up}{Ctrl up}
+		return
+	```
+
+	```
+		SetCapsLockState, AlwaysOff
+		+CapsLock::CapsLock
+
+		$~CapsLock::SetDefaultKeyboard(0x0419) ; Russian
+		$~CapsLock up::SetDefaultKeyboard(0x0409) ; english-US
+
+		SetDefaultKeyboard(LocaleID){
+			Global
+			SPI_SETDEFAULTINPUTLANG := 0x005A
+			SPIF_SENDWININICHANGE := 2
+			Lan := DllCall("LoadKeyboardLayout", "Str", Format("{:08x}", LocaleID), "Int", 0)
+			VarSetCapacity(Lan%LocaleID%, 4, 0)
+			NumPut(LocaleID, Lan%LocaleID%)
+			DllCall("SystemParametersInfo", "UInt", SPI_SETDEFAULTINPUTLANG, "UInt", 0, "UPtr", &Lan%LocaleID%, "UInt", SPIF_SENDWININICHANGE)
+			WinGet, windows, List
+			Loop %windows% {
+				PostMessage 0x50, 0, %Lan%, , % "ahk_id " windows%A_Index%
+			}
+		}
+		return
+	```
+
+### буфер обмена на мышке
+
+ * https://superuser.com/questions/84550/select-to-copy-and-middle-click-to-paste-in-windows
 
 ## ssh putty
 
@@ -92,7 +135,7 @@ http://technet.microsoft.com/ru-RU/evalcenter/dn407368
 
 ## ms picture manager
 
-Microsoft SharePoint Designer 2010 (64-bit) 
+Microsoft SharePoint Designer 2010 (64-bit)
 http://www.microsoft.com/ru-ru/download/details.aspx?id=24309
 
 ## win7 tips
@@ -159,7 +202,7 @@ http://habrahabr.ru/post/246743/
 #
 #Поддерживаются полные и дифференциальные копии (на основе архивного атрибута файлов)
 #
-#Системные требования: 
+#Системные требования:
 #	Windows 7+, 2008+
 #	Установленный архиватор 7-Zip (тестировалось на версии 9.30b)
 #
@@ -183,12 +226,12 @@ $ErrorActionPreference = "Continue"
 #Пример: $ArchiveTaskName="DiskE"
 $ArchiveTaskName="DiskE"
 
-#Путь до диска-источника резервного копирования 
+#Путь до диска-источника резервного копирования
 #Перечень целевых папок этого диска определяется отдельно
 #Пример: $SrcDrivePath="D:\"
 $SrcDrivePath="D:\"
 
-#Путь до целевого диска 
+#Путь до целевого диска
 #Пример: $BackupDrivePath="E:\"
 $BackupDrivePath="E:\"
 
@@ -252,7 +295,7 @@ echo "Backup started at: $(Get-Date)"
 
 function BackupFull {
     echo "Backup type: full"
-    
+
     #Создаем теневую копию
     $s1 = (gwmi -List Win32_ShadowCopy).Create($SrcDrivePath, "ClientAccessible")
     $s2 = gwmi Win32_ShadowCopy | ? { $_.ID -eq $s1.ShadowID }
@@ -265,7 +308,7 @@ function BackupFull {
     #Составляем список папок для архивации
     "" | Set-Content $BackupFilesList
     Get-Content $SubfoldersToBackupFile | Foreach-Object {CMD /C "echo $VSCPath\$_\* >> $BackupFilesList" }
-    
+
     #Создаем массив параметров для 7-Zip
     $Arg1="a"
     $Arg2=$ArchiveDstPath+"\"+$ArchiveTaskName+"_$(Get-Date -format "yyyy-MM-dd")_`(Full`).zip"
@@ -279,12 +322,12 @@ function BackupFull {
 
     #Зипуем
     & $SevenZipExecutablePath ($Arg1,$Arg2,$Arg3,$Arg4,$Arg5,$Arg6,$Arg7,$Arg8,$Arg9)
-    
+
     Remove-Item $BackupFilesList
 
     #Если теневые копии имеют необъяснимую тенденцию копиться, лучше удалим их все
     #CMD /C "vssadmin delete shadows /All /Quiet"
-    
+
     #Или можно удалить только конкретную созданную в рамках данного бекапа
     "vssadmin delete shadows /Shadow=""$($s2.ID.ToLower())"" /Quiet" | iex
 
@@ -293,15 +336,15 @@ function BackupFull {
 
     #Снимаем архивный бит
     Get-Content $SubfoldersToBackupFile | Foreach-Object {CMD /C "attrib -A -H -S $SrcDrivePath$_\* /S /L" }
-    
+
     #делаем rotation
     echo "Rotating old files..."
     CMD /C "forfiles /D -$BackupRotationIntervalDays /S /P ""$ArchiveDstPath"" /C ""CMD /C del @file"""
     }
-    
+
 function BackupDiff {
     echo "Backup type: differential"
-    
+
     #Создаем теневую копию
     $s1 = (gwmi -List Win32_ShadowCopy).Create($SrcDrivePath, "ClientAccessible")
     $s2 = gwmi Win32_ShadowCopy | ? { $_.ID -eq $s1.ShadowID }
@@ -310,25 +353,25 @@ function BackupDiff {
     #Создаем на нее ярлык (удалим предыдущий, если остался после прерванной архивации)
     CMD /C rmdir $VSCPath
     cmd /c mklink /d $VSCPath "$d"
-    
+
     #Включаем UTF-8
     CMD /C "chcp 65001 > nul"
-    
+
     #Составляем список файлов, измененных с момента предыдущей архивации
     "" | Set-Content $BackupFilesList
     Get-Content $SubfoldersToBackupFile | Foreach-Object {CMD /C "dir $VSCPath\$_ /B /S /A:A >> $BackupFilesList" }
-    
+
     CMD /C "chcp 866 > nul"
-    
+
     $SearchPattern="^"+$BackupDrivePath.Substring(0,1)+"\:\\"
-    
+
     #Отрезаем букву диска, иначе 7-zip при архивации по списочному файлу глючит, находя несуществующие дубли
     #(Get-Content $BackupFilesList) -replace $SearchPattern,'' > $BackupFilesListTmp
     Get-Content $BackupFilesList | ForEach-Object { $_ -replace $SearchPattern,"" } | Set-Content ($BackupFilesListTmp)
-    
+
     Remove-Item $BackupFilesList
     Rename-Item $BackupFilesListTmp $BackupFilesList
-    
+
     #Поскольку имя диска в путях удалили, нужно перейти в нужную директорию
     cd $BackupDrivePath
 
@@ -345,19 +388,19 @@ function BackupDiff {
 
     #Зипуем
     & $SevenZipExecutablePath ($Arg1,$Arg2,$Arg3,$Arg4,$Arg5,$Arg6,$Arg7,$Arg8,$Arg9)
-    
+
     Remove-Item $BackupFilesList
 
     #Если теневые копии имеют необъяснимую тенденцию копиться, лучше удалим их все
     #CMD /C "vssadmin delete shadows /All /Quiet"
-    
+
     #Или можно удалить только конкретную созданную в рамках данного бекапа
     "vssadmin delete shadows /Shadow=""$($s2.ID.ToLower())"" /Quiet" | iex
 
     #Удаляем ярлык
     CMD /C rmdir $VSCPath
     }
-    
+
 if ($backuptype -eq "diff") {
     BackupDiff | Out-Host
     }
