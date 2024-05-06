@@ -93,10 +93,10 @@ https://support.office.com/en-us/article/Turn-off-or-uninstall-OneDrive-f32a17ce
 		SetCapsLockState "AlwaysOff"
 
 		;capslock - en
-		CapsLock::Send "{Alt Down}{Shift Down}{8 Down}{Shift Up}{Alt Up}{8 Up}"
+		CapsLock::Send "{Shift Down}{Alt Down}{8 Down}{Shift Up}{Alt Up}{8 Up}"
 
 		;shift+capslock - ru
-		+CapsLock::Send "{Alt Down}{Shift Down}{9 Down}{Shift Up}{Alt Up}{9 Up}"
+		+CapsLock::Send "{Shift Down}{Alt Down}{9 Down}{Shift Up}{Alt Up}{9 Up}"
 
 		return
 	```
