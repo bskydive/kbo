@@ -1,4 +1,15 @@
-# Хостинг
+# Хостинг приложений
+
+ * Netlify
+ * Back4app
+ * Elastic Beanstalk (AWS)
+ * Google App Engine
+ * Dokku on Digital Ocean
+ * Firebase
+ * OpenShift
+ * Engine Yard
+ * Docker
+ * Kubernetes
 
 ## heroku
 
