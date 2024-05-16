@@ -358,6 +358,17 @@ http://glivera-team.github.io/svg/2016/06/13/svg-sprites-2.html
  * https://www.youtube.com/watch?v=pwMfwbbzgl8
  * https://www.apple.com/business/vpp/
 
+## microfrontends микрофронты
+
+ * [7 Top Micro Frontend Frameworks  2024](https://www.aceinfoway.com/blog/micro-frontend-frameworks)
+    * Single-SPA framework
+    * Piral Framework
+    * Luigi Framework
+    * OpenComponents Framework
+    * Mosaic Framework
+    * NanoFrame
+    * FusionFront
+
 ## api swagger контракты
 
  * [страшная сила красоты](../../../articles/public/страшная сила красоты/страшная сила красоты.md)

@@ -1894,6 +1894,7 @@ const httpOptions = {
 
 ## SEO
 
+ * [HTML5/AngularJS/Nginx приложение с правильным с google-индексированием](https://habr.com/post/187008/)
  * https://medium.com/madhash/how-to-properly-add-google-analytics-tracking-to-your-angular-web-app-bc7750713c9e
  * title
 	```ts

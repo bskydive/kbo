@@ -1,16 +1,26 @@
 #  devops
 
-## agile гибкие методологии
+ * [Основы Ansible 2.9 для сетевых инженеров](https://ansible-for-network-engineers.readthedocs.io/ru/latest/)
+ * [утилиты документирования](https://github.com/documentationjs)
+ * [SRE site reliability engineering](https://sre.google/books/)
+* promteus - node exporter - alert manager
+* logstash kibana grafana
+* доступ в kibana или grafana+loki
+* elasticsearch - источник данных для kibana про логи, посмотреть для чего его вкрячивают
+* prometeus - источник данных(agentless node exporter) для kibana про события
+* victoria metrics - аналог prometeus
+* где посмотреть ограничения технологий, их предельную нагрузку? ноды, события, потоки
+* ansible - хранит в себе конфиги, оркестратор, 100-200 строк в файле, есть гуй tower(500 хостов платный), avx - бесплатный гуй
+* terraform(go) - оркестратор виртуалок/сетей в облаках, у провайдера должен быть коннектор
+* для мониторинга облаков и биллинга - prometeus+grafana
+* grafana умеет в математику
+* kubernetes или docker compose - иерархия микросервисов
+* artifactory или аналоги docker hub
 
- * https://www.scaledagileframework.com/
+## собесы
 
-## документирование
-
-https://github.com/documentationjs
-
-## SRE site reliability engineering
-
- * https://sre.google/books/
+ * [Пришёл Intern - оказался JUNIOR Strong / Интервью на позицию DevOps Engineer / Мок собес / 1 - Александр Донской | DevOps фабрика ](https://www.youtube.com/watch?v=pLU3zrUq87Y)
+ * [из ЭНИКЕЙЩИКА с двух ног В ДЕВОПС / Интервью на позицию DevOps Engineer / 2](https://www.youtube.com/watch?v=4Srds1XzXwU)
 
 ## Performance
 
@@ -20,21 +30,21 @@ https://github.com/documentationjs
  * [tarantool in-memory nosql db](https://habrahabr.ru/company/oleg-bunin/blog/310690/)
  * [Разбираемся в DevOps и Js на примере Dillinger.io](https://habrahabr.ru/post/280968/)
 
+## monorepo монорепа
+
+ * [nrwl/NX](https://nx.dev/)
+	* https://github.com/nrwl/nx
+
 ## Load balancing
 
- * https://habrahabr.ru/company/mailru/blog/347026/
- * https://habrahabr.ru/post/279777/
+ * [Введение в современную сетевую балансировку и проксирование - 2018](https://habrahabr.ru/company/mailru/blog/347026/)
+ * [«Щадящая» балансировка между несколькими провайдерами на офисном шлюзе - 2016](https://habrahabr.ru/post/279777/)
  * haproxy
  * nginx
  * dns
  * ipvs
-
-## ALM
-
- * https://ru.yougile.com/product
- * redmine
- * jira
- * gitlab
+ * https://www.serverwatch.com/guides/load-balancing-software/
+	* ![](./devops/load_balancing_software.jpg)
 
 ## Chat чат
 
@@ -47,22 +57,13 @@ https://github.com/documentationjs
  * https://calls.mail.ru/
  * «МТС Линк», SberJazz, Яндекс.Телемост, «Труконф» trueconf, «VK Звонки»
 
-## angular SEO
-
- * [HTML5/AngularJS/Nginx приложение с правильным с google-индексированием](https://habr.com/post/187008/)
-
 ##  инфраструктура
 
 [https://habrahabr.ru/post/319582/](https://habrahabr.ru/post/319582/)
 
 ##  автоматизация
 
-###  grunt
-
-https://habrahabr.ru/post/244721/
-
-###  разное
-
+ * [Пересмотренное руководство по Grunt для начинающих - 2014](https://habrahabr.ru/post/244721/)
  * https://medium.com/@ericsimons/introducing-turbo-5x-faster-than-yarn-npm-and-runs-natively-in-browser-cc2c39715403
  * https://parceljs.org/
 
