@@ -17,6 +17,10 @@
 * kubernetes или docker compose - иерархия микросервисов
 * artifactory или аналоги docker hub
 
+## курсы
+
+ * https://devops-factory.com/
+
 ## собесы
 
  * [Пришёл Intern - оказался JUNIOR Strong / Интервью на позицию DevOps Engineer / Мок собес / 1 - Александр Донской | DevOps фабрика ](https://www.youtube.com/watch?v=pLU3zrUq87Y)
