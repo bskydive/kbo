@@ -61,7 +61,7 @@
  * https://docs.docker.com/build/building/multi-stage/
  * Используйте инструкцию COPY вместо ADD, т.к. add может выполнять команды распаковки
 
-## docker cli
+## cli
 
 ```bash
 curl -s --unix-socket /var/run/docker.sock http://localhost/containers/json | jq .
@@ -73,7 +73,11 @@ dockerenjoyer@ubuntu:~$ docker exec -it ubuntu1 bash # запуск консол
 
 ```
 
-## docker security
+## performance
+
+ * docker network mode host отключает накладные расходы на NAT
+
+## security
 
  * [Часто забываемые правила безопасности Docker: заметки энтузиаста ИБ](https://habr.com/ru/company/dataline/blog/567790/)
  * install

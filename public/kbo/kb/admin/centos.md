@@ -154,17 +154,17 @@ chmod 700 /home/user-ssh/.ssh
 ## LocalTime
 
 ```bash
-[root@centos ~]# cp /etc/localtime /etc/localtime.oldd
-[root@centos ~]# ln -fs /usr/share/zoneinfo/Europe/Moscow /etc/localtime
-[root@centos ~]# ll /etc/localtime
-lrwxrwxrwx 1 root root 33 May 13 11:02 /etc/localtime -> /usr/share/zoneinfo/Europe/Moscow
-[root@centos ~]# date
-Mon May 13 11:02:16 MSK 2013
-[root@centos ~]# cat /etc/adjtime
-0.0 0 0.0
-0
-UTC
-[root@centos ~]#
+cp /etc/localtime /etc/localtime.oldd
+ln -fs /usr/share/zoneinfo/Europe/Moscow /etc/localtime
+ll /etc/localtime
+#lrwxrwxrwx 1 root root 33 May 13 11:02 /etc/localtime -> /usr/share/zoneinfo/Europe/Moscow
+date
+#Mon May 13 11:02:16 MSK 2013
+cat /etc/adjtime
+#0.0 0 0.0
+#0
+#UTC
+
 ```
 
 ## iptables
@@ -172,7 +172,7 @@ UTC
 ```bash
 iptables -L
 cat >> iptables.rackspace.sh
-ssh_port=0000
+#ssh_port=0000
 
 at -f /distr/test.iptables.sh now + 1 min
 atq
