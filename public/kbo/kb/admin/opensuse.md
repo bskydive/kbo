@@ -1642,10 +1642,14 @@ Restart the networking service
 
 ### archive sparce/sparse files
 
-tar -czSf file.tar.gz file
-
-pigz
-pbzip2
+```bash
+	tar -czSf file.tar.gz file
+	# лучше сразу на флешку
+	zypper in pbzip2 plzip
+	tar -cv -I"pigz -6" -Sf /run/media/file.tar.gzp ./file/
+	tar -cv -I"pbzip2 -6" -Sf /run/media/file.tar.gzp ./file/ # работает в 2 раза быстрее
+	tar -cv -I"pblzip -6" -Sf /run/media/file.tar.gzp ./file/
+```
 
 ### external folder
 
