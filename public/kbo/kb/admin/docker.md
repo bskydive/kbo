@@ -14,10 +14,11 @@
  * [Контейнеры для взрослых (Часть 02): Практический гид по терминологии](https://habr.com/company/redhatrussia/blog/416827/)
  * [Контейнеры для взрослых (Часть 03): 10 вещей, которые не надо делать с контейнерами](https://habr.com/company/redhatrussia/blog/421663/)
 
+
 ## теория
 
  * основой контейнеризации являются Linux namespace
-
+ * [Основы безопасности в Docker-контейнерах](https://selectel.ru/blog/courses/docker-security/)
 
 ## лучшие практики для dockerfile
 

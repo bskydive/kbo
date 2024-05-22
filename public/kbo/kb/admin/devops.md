@@ -1,9 +1,8 @@
 #  devops
 
- * [Основы Ansible 2.9 для сетевых инженеров](https://ansible-for-network-engineers.readthedocs.io/ru/latest/)
  * [утилиты документирования](https://github.com/documentationjs)
  * [SRE site reliability engineering](https://sre.google/books/)
-* promteus - node exporter - alert manager
+* prometeus - node exporter - alert manager
 * logstash kibana grafana
 * доступ в kibana или grafana+loki
 * elasticsearch - источник данных для kibana про логи, посмотреть для чего его вкрячивают
@@ -17,9 +16,34 @@
 * kubernetes или docker compose - иерархия микросервисов
 * artifactory или аналоги docker hub
 
+* `Cowell C., Lotz N., Timberlake C. Коуэлл К., Лотц Н., Тимберлейк К. - Automating DevOps with GitLab CI CD Pipelines Автоматиза`
+* `Gopalakrishnan Shivakumar Гопалакришнан Шивакумар - Kubernetes for Jobseekers DevOps and Kubernetes interview questions and ans`
+* `Krief Mikael Криф Микаэль - Learning DevOps A comprehensive guide to accelerating DevOps culture adoption with Terraform, Azure`
+* `Levan M. - 50 Kubernetes Concepts Every DevOps Engineer Should Know [2023, EPUB, ENG]`
+* `[LiveLessons Pearson O'Reilly Media] Practical Python for DevOps Engineers LiveLessons by Chris Jackson [2021, ENG + Sub]`
+* `Oggl Bernd, Kofler Michael Оггл Бернд, Кофлер Майкл - Docker Practical Guide for Developers and Devops Teams Docker Практиче`
+* `[Packt Publishing O'Reilly Media] Ansible for the Absolute Beginner - Hands-On - DevOps by Mumshad Mannambeth [2020, ENG + Sub]`
+* `[Pluralsight] Integrating HashiCorp Vault in DevOps Workflows [2021, ENG]`
+* `[Rahul Miglani] Webinar DevOps Observability at Scale [2022, ENG]`
+* `Sandilands D. - Puppet 8 for DevOps Engineers [2023, EPUB, ENG]`
+* `Smith Bradley Смит Брэдли - DevOps for the Desperate A Hands-On Survival Guide DevOps для отчаявшихся практическое руководст`
+* `[ZeroToMastery]DevOps Bootcamp Terraform[2022, ENG]`
+* `Бестселлеры O'Reilly - Gift N,, Behrman K., Deza A. Гифт Н., Берман К., Деза А., Георгиу Г. - Python for DevOps Learn Ruthlessl`
+
+
 ## курсы
 
  * https://devops-factory.com/
+ * `[Skillbox] DevOps-инженер. Часть 1. Основы [2022-2023, RUS]`
+ * `[Skillbox] DevOps-инженер. Часть 2. Advanced [2022-2023, RUS]`
+ * `[Skillbox] DevOps-инженер. Часть 3. Docker [2022-2023, RUS]`
+ * `[Skillbox] Старт в DevOps системное администрирование для начинающих [2022-2023, RUS]`
+ * `[Udemy] GitLab CI Pipelines, CI CD and DevOps for Beginners [2022, ENG]`
+ * `[Udemy] Practical Devops Kubernetes & Istio with Google Cloud [2023, ENG]`
+ * `[Udemy] Prometheus MasterClass DevOps Infra Monitoring & Alerting [2023, ENG]`
+ * `[PacktPub] DevOps Complete Course [Video] [2022, ENG]`
+ * `[PacktPub] DevOps Project - 2022 CI CD with Jenkins Ansible Kubernetes [Video][2022, ENG]`
+ * `[Packt Publishing O'Reilly Media] DevOps Complete Course by Valaxy Technologies [2022, ENG + Sub]`
 
 ## собесы
 
@@ -71,7 +95,61 @@
  * https://medium.com/@ericsimons/introducing-turbo-5x-faster-than-yarn-npm-and-runs-natively-in-browser-cc2c39715403
  * https://parceljs.org/
 
-### bazel
+## оркестраторы ОС
+
+ * ansible
+	* нет агентов
+		* меньше векторов атаки
+		* лёгкое внедрение в организации, без изменений в инфраструктуре
+		* https://galaxy.ansible.com
+		* playbook
+		* module
+		* role
+		* group
+	* on-permise self-hosted
+	* vSphere
+	* https://ansible.readthedocs.io/projects/awx/en/latest/
+ * terraform
+	* нужен файл состояния
+	* облака AWS, Y, M, S
+
+## kubernetes
+
+ * [kubernetes](./kubernetes.md)
+
+## docker
+
+ * [docker](./docker.md)
+
+## ansible - оркестратор ОС
+
+ * аналоги - chef/puppet, у них агенты
+ * [Основы Ansible 2.9 для сетевых инженеров](https://ansible-for-network-engineers.readthedocs.io/ru/latest/)
+ * [Ansible. Часть 1. Основы](https://www.youtube.com/watch?v=n27bpkAtyf4&ab_channel=Unixway)
+ * [Ansible. Часть 2. Playbook](https://www.youtube.com/watch?v=5JcL3c6rPE8&ab_channel=Unixway)
+
+## terraform - оркестратор ОС в облаке
+
+* [Terraform. Часть 1. Введение](https://www.youtube.com/watch?v=VS9wxyNkP6c&ab_channel=Unixway)
+* [Terraform. Часть 2. Модули](https://www.youtube.com/watch?v=v8WkEZemQos&ab_channel=Unixway)
+
+
+## Linux
+
+ * https://www.geeksforgeeks.org/
+ * https://learning.lpi.org/en/learning-materials/101-500/
+ * https://learning.lpi.org/en/learning-materials/102-500/
+ *
+ * [Run Levels in Linux](https://www.geeksforgeeks.org/run-levels-linux/)
+	0 	System halt i.e., the system can be safely powered off with no activity.
+	1 	Single user mode.
+	2 	Multiple user mode with no NFS (network file system).
+	3 	Multiple user modes under the command line interface and not under the graphical user interface.
+	4 	User-definable.
+	5 	Multiple user mode under GUI (graphical user interface) and this is the standard runlevel for most of the LINUX-based systems.
+	6 	Reboot which is used to restart the system.
+
+### сборщик bazel
 
  * технология google, со своей спецификой, запуск параллельно, аналог gulp, умеет кэшировать
 
