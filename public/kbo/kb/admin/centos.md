@@ -73,26 +73,7 @@ clear_env = no # выключить очистку глобальных пере
 
 ## selinux
 
- * https://www.techrepublic.com/article/how-to-use-semanage-and-avoid-disabling-selinux/
-
-```
-cat /etc/selinux/config
-
-policycoreutils-python-utils
-semanage port -l | grep ssh
-semanage port -a -t ssh_port_t -p tcp 33000
-firewall-cmd --add-port=33000/tcp --permanent
-firewall-cmd --reload
-
-selinuxenabled
-getenforce
-
-setenforce 0
-
-mcedit /etc/selinux/config
-SELINUX=disabled
-
-```
+ * [](./devops.md#security)
 
 ## yum rpm
 

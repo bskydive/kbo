@@ -18,7 +18,7 @@
 ## теория
 
  * основой контейнеризации являются Linux namespace
- * [Основы безопасности в Docker-контейнерах](https://selectel.ru/blog/courses/docker-security/)
+
 
 ## лучшие практики для dockerfile
 
@@ -80,7 +80,46 @@ dockerenjoyer@ubuntu:~$ docker exec -it ubuntu1 bash # запуск консол
 
 ## security
 
+ * [Основы безопасности в Docker-контейнерах](https://selectel.ru/blog/courses/docker-security/)
+	* 
  * [Часто забываемые правила безопасности Docker: заметки энтузиаста ИБ](https://habr.com/ru/company/dataline/blog/567790/)
+	* Ограничить доступ к сокету Docker Daemon. Владельцем сокет-файла должен быть пользователь root.
+	* Не прокидывать сокет в контейнер (Docker-in-Docker). для сборки можно использовать kaniko. для подписи образов можно использовать стороннюю систему и подключить ее через API.
+	* Помнить о настройке авторизации Docker TCP через сертификат SSL.
+	* Во время сборки контейнера мы создаем юзера и переходим на него.
+		```bash
+			FROM alpine
+			RUN groupadd -r myuser && useradd -r -g myuser
+			#<Здесь еще можно выполнять команды от root-пользователя, например, ставить пакеты>
+			USER myuser
+		```
+	*
+	```bash
+		docker run -u 4000 alpine #Запуск контейнеров от непривилегированного пользователя
+		--userns-remap=default #включаем поддержку user namespace в Docker daemon
+		docker run
+		--cap-drop all --cap-add CHOWN alpine #Отключить все возможности ядра (capabilities)
+		--security-opt=no-new-privileges #Запретить  эскалацию привилегий (смену юзера на uid0). Используем опцию при запуске
+		--icc=false #Отключить межконтейнерное взаимодействие через сеть docker0
+	```
+    * Ограничить ресурсы. Так мы сократим риск несанкционированного майнинга:
+    ```bash
+		-m или --memory #доступная память до OOM;
+		--cpus 	#сколько процессоров доступно, например 1.5;
+		--cpuset-cpus #какие именно процессоры доступны (ядра);
+		--restart=on-failure:<number_of_restarts> #убираем вариант Restart Always, чтобы контролировать количество перезапусков и вовремя обнаруживать проблемы;
+		--read-only #файловая система настраивается только на чтение при запуске, особенно если контейнер отдает статику.
+	```
+    * Не отключать профили безопасности. По умолчанию Docker уже использует профили для модулей безопасности Linux. Эти  правила можно ужесточать, но не наоборот
+	* seccomp — механизм ядра Linuх, позволяющий определять доступные системные вызовы. В стандартной поставке Docker блокирует около 44 вызовов из 300+
+	* Кроме Seccomp можно использовать также профили AppArmor или SELinux
+	* Анализировать содержимое контейнера
+		* бесплатный Clair, условно бесплатные Snyk, anchore, Harbor
+		* платные JFrog XRay и Qualys
+		* системы асессмента ИБ в целом, например, Open Policy agent
+ * запуск не от рута, без демона [kaniko](https://github.com/GoogleContainerTools/kaniko)
+	* [Создание образов Docker, без Docker, с использованием Kaniko + Gitlab CI и AWS - 2023](https://teletype.in/@bh_cat/9GeFQhwtf06)
+	* https://github.com/GoogleContainerTools/kaniko/blob/main/docs/tutorial.md
  * install
 
 	```bash

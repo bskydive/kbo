@@ -48,7 +48,7 @@
 ## собесы
 
  * [Пришёл Intern - оказался JUNIOR Strong / Интервью на позицию DevOps Engineer / Мок собес / 1 - Александр Донской | DevOps фабрика ](https://www.youtube.com/watch?v=pLU3zrUq87Y)
- * [из ЭНИКЕЙЩИКА с двух ног В ДЕВОПС / Интервью на позицию DevOps Engineer / 2](https://www.youtube.com/watch?v=4Srds1XzXwU)
+
 
 ## Performance
 
@@ -57,6 +57,12 @@
  * http://nickcraver.com/blog/2016/02/17/stack-overflow-the-architecture-2016-edition/
  * [tarantool in-memory nosql db](https://habrahabr.ru/company/oleg-bunin/blog/310690/)
  * [Разбираемся в DevOps и Js на примере Dillinger.io](https://habrahabr.ru/post/280968/)
+
+ * утилита nice
+	* -20 (наивысший приоритет) до +19 (низший приоритет)
+	* только root может указать отрицательное смещение
+	* Приоритет nice и приоритет планировщика процессов ядра ОС — разные числа.
+	* Планировщик может стремиться назначить процессу приоритет, близкий к nice, но это не всегда возможно, так как в системе может выполняться множество процессов с разными приоритетами.
 
 ## monorepo монорепа
 
@@ -121,12 +127,70 @@
 
  * [docker](./docker.md)
 
+
+## monitoring
+
+```bash
+ss -lptn 'sport = :53' #socket
+
+```
+
+## security
+
+ * https://losst.pro/bezopasnost-servera-linux
+ * [devsecops](https://swordfish-security.ru/)
+ * SELinux
+	* [](https://redos.red-soft.ru/base/manual/safe-redos/selinux/)
+	* audit2allow audit2why secon
+	* предоставляет в дополнение к дискреционной модели ролевую и мандатную
+	* дискреционная модель доступа - разграничение по пользователям и группам
+		* ACL - getfacl setfacl
+		* chown chgroup
+		* chmod suid sgid sticky
+	* ролевая - разграничение по типу операций
+	* мандатная - введение политик от обратного - "всё что явно не разрешено, то запрещено", т.е. увеличение кода политик доступа, группировка по типам ресурсов: ОС/сеть/процессы/файлы
+	* SELinux чуть сложнее, AppArmor чуть проще
+	* https://www.techrepublic.com/article/how-to-use-semanage-and-avoid-disabling-selinux/
+
+	```bash
+		cat /etc/selinux/config
+
+		policycoreutils-python-utils
+		semanage port -l | grep ssh
+		semanage port -a -t ssh_port_t -p tcp 33000
+		firewall-cmd --add-port=33000/tcp --permanent
+		firewall-cmd --reload
+
+		selinuxenabled
+		getenforce
+
+		setenforce 0
+
+		mcedit /etc/selinux/config
+		SELINUX=disabled
+
+	```
+ *  PAM предоставляют гибкую модульную архитектуру для управления:
+    * аутентификацией - проверяет, существует ли пользователь, под которым пытаются зайти.
+    * учётными записями - проверяет, что пароль пользователя не истёк или имеет ли пользователь право обращаться к определённому сервису.
+    * сеансами - выполняет определённые задачи во время входа или выхода пользователя из системы (аудит, монтирование файловых систем и так далее).
+    * паролями - предлагает интерфейс для сброса пароля и тому подобное.
+
+
 ## ansible - оркестратор ОС
 
  * аналоги - chef/puppet, у них агенты
  * [Основы Ansible 2.9 для сетевых инженеров](https://ansible-for-network-engineers.readthedocs.io/ru/latest/)
  * [Ansible. Часть 1. Основы](https://www.youtube.com/watch?v=n27bpkAtyf4&ab_channel=Unixway)
  * [Ansible. Часть 2. Playbook](https://www.youtube.com/watch?v=5JcL3c6rPE8&ab_channel=Unixway)
+
+```bash
+ANSIBLE_LOAD_CALLBACK_PLUGINS=true ANSIBLE_STDOUT_CALLBACK=json ansible ... | jq
+
+```
+
+ * plays --> play
+ * tasks --> task
 
 ## terraform - оркестратор ОС в облаке
 
