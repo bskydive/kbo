@@ -74,6 +74,70 @@ dockerenjoyer@ubuntu:~$ docker exec -it ubuntu1 bash # запуск консол
 
 ```
 
+## control
+
+ * https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
+ * https://docs.docker.com/reference/dockerfile/
+	* ADD - Add local or remote files and directories.
+	* COPY - Copy files and directories.
+	* ARG - Use build-time variables.
+	* CMD - Specify default commands.
+	* ENTRYPOINT - Specify default executable.
+	* ENV - Set environment variables.
+	* EXPOSE - Describe which ports your application is listening on.
+	* FROM - Create a new build stage from a base image.
+	* HEALTHCHECK - Check a container's health on startup.
+	* LABEL - Add metadata to an image.
+	* MAINTAINER - Specify the author of an image.
+	* ONBUILD - Specify instructions for when the image is used in a build.
+	* [RUN](https://docs.docker.com/reference/dockerfile/#run) - Execute build commands.
+		* [exec form](https://docs.docker.com/reference/dockerfile/#shell-and-exec-form) лучше `shell`, т.к. всегда запускает процесс с PID=1, это обязательный атрибут запущенного контейнера
+		* `INSTRUCTION ["executable","param1","param2"] (exec form)`
+    	* `INSTRUCTION command param1 param2 (shell form)`
+	* SHELL - Set the default shell of an image.
+	* STOPSIGNAL - Specify the system call signal for exiting a container.
+	* USER - Set user and group ID.
+	* VOLUME - Create volume mounts.
+	* WORKDIR - Change working directory.
+ * ENTRYPOINT+CMD
+ * обязательные атрибуты
+	* FROM
+	*
+
+
+## network
+
+ * port mapping
+ * type
+	* host
+	* bridge
+	* none
+
+## storage
+
+ * bind
+ * volume
+ * nfs
+ * mount
+	* overlay
+	* custom - driver
+
+ * COPY
+ * ADD - распаковка
+ * build context
+
+
+## registry
+
+ * --disable-content-trust
+
+ * cloud docker registry
+ 	* AWS ECR/ECS
+	* azure
+	* redhat quey
+	* Harbor
+
+
 ## performance
 
  * docker network mode host отключает накладные расходы на NAT
@@ -81,7 +145,7 @@ dockerenjoyer@ubuntu:~$ docker exec -it ubuntu1 bash # запуск консол
 ## security
 
  * [Основы безопасности в Docker-контейнерах](https://selectel.ru/blog/courses/docker-security/)
-	* 
+	*
  * [Часто забываемые правила безопасности Docker: заметки энтузиаста ИБ](https://habr.com/ru/company/dataline/blog/567790/)
 	* Ограничить доступ к сокету Docker Daemon. Владельцем сокет-файла должен быть пользователь root.
 	* Не прокидывать сокет в контейнер (Docker-in-Docker). для сборки можно использовать kaniko. для подписи образов можно использовать стороннюю систему и подключить ее через API.
