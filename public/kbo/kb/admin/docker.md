@@ -107,17 +107,48 @@ dockerenjoyer@ubuntu:~$ docker exec -it ubuntu1 bash # запуск консол
 
 ## compse file
 
-
+ * https://docs.docker.com/compose/release-notes/
  * синтакс
 	* map
 	* array
 	* .env
- * network
+ * service
+	* https://docs.docker.com/compose/compose-file/05-services/#healthcheck
+		```yaml
+			backend:
+				image: example/backend
+				healthcheck:
+					test: ["CMD", "curl", "-f", "http://localhost"]
+					interval: 1m30s
+					timeout: 10s
+					retries: 3
+					start_period: 40s
+					start_interval: 5s
+		```
+ * profiles
+	* profile позволяет запускать из командной строки группы сервисов
+	*
+	*
+ * networks
+	* https://docs.docker.com/compose/compose-file/05-services/#networks
 	* external: true|false
 	* internal: true|false
 	*
 	*
-	*
+	```yaml
+		services:
+		app:
+			image: busybox
+			command: top
+			networks:
+			app_net:
+				link_local_ips:
+				- 57.123.22.11
+				- 57.123.22.13
+		networks:
+		app_net:
+			driver: bridge
+	```
  * хранилище
 	* `services-->volumes:-->- name: path`
 	* `volumes:-->name:-->options`
