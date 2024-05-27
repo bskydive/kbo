@@ -105,6 +105,86 @@ dockerenjoyer@ubuntu:~$ docker exec -it ubuntu1 bash # запуск консол
 	*
 
 
+## compse file
+
+
+ * синтакс
+	* map
+	* array
+	* .env
+ * network
+	* external: true|false
+	* internal: true|false
+	*
+	*
+	*
+ * хранилище
+	* `services-->volumes:-->- name: path`
+	* `volumes:-->name:-->options`
+	* https://docs.docker.com/compose/compose-file/05-services/#volumes
+		```yaml
+			services:
+				backend:
+					image: example/backend
+					volumes:
+					- type: volume
+						source: db-data
+						target: /data
+						volume:
+						nocopy: true
+						subpath: sub
+					- type: bind
+						source: /var/run/postgres/postgres.sock
+						target: /var/run/postgres/postgres.sock
+			volumes:
+				db-data:
+			volumes:
+				example:
+					driver_opts:
+					type: "nfs"
+					o: "addr=10.40.0.199,nolock,soft,rw"
+					device: ":/docker/example"
+			volumes:
+				db-data:
+					name: ${DATABASE_VOLUME} #DATABASE_VOLUME=my_volume_001
+		```
+	* https://docs.docker.com/reference/cli/docker/volume/create/
+
+		```bash
+			docker volume create --driver local \
+				--opt type=tmpfs \
+				--opt device=tmpfs \
+				--opt o=size=100m,uid=1000 \
+				foo
+
+			docker volume create --driver local \
+				--opt type=btrfs \
+				--opt device=/dev/sda2 \
+				foo
+
+			docker volume create --driver local \
+				--opt type=nfs \
+				--opt o=addr=192.168.1.1,rw \
+				--opt device=:/path/to/dir \
+				foo
+		```
+
+ * secrets
+	*
+	```yaml
+		services:
+			frontend:
+				image: example/webapp
+				secrets:
+				- server-certificate
+		secrets:
+			server-certificate:
+				file: ./server.cert
+	```
+
+	* `docker secrete create`-->`/run/secrets`
+	*
+
 ## network
 
  * port mapping
