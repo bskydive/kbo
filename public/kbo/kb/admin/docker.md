@@ -18,7 +18,32 @@
 ## теория
 
  * основой контейнеризации являются Linux namespace
+ * https://www.kernel.org/doc/html/latest/admin-guide/cgroup-v1/cgroups.html
+	```bash
+		#1) mount -t tmpfs cgroup_root /sys/fs/cgroup
+		#2) mkdir /sys/fs/cgroup/cpuset
+		#3) mount -t cgroup -ocpuset cpuset /sys/fs/cgroup/cpuset
+		#4) Create the new cgroup by doing mkdir's and write's (or echo's) in the /sys/fs/cgroup/cpuset virtual file system.
+		#5) Start a task that will be the "founding father" of the new job.
+		#6) Attach that task to the new cgroup by writing its PID to the /sys/fs/cgroup/cpuset tasks file for that cgroup.
+		#7) fork, exec or clone the job tasks from this founding father task.
 
+		mount -t tmpfs cgroup_root /sys/fs/cgroup
+		mkdir /sys/fs/cgroup/cpuset
+		mount -t cgroup cpuset -ocpuset /sys/fs/cgroup/cpuset
+		cd /sys/fs/cgroup/cpuset
+		mkdir Charlie
+		cd Charlie
+		/bin/echo 2-3 > cpuset.cpus
+		/bin/echo 1 > cpuset.mems
+		/bin/echo $$ > tasks
+		sh
+		# The subshell 'sh' is now running in cgroup Charlie
+		# The next line should display '/Charlie'
+		cat /proc/self/cgroup
+	```
+ * https://www.redhat.com/sysadmin/cgroups-part-one
+ * https://docs.docker.com/get-started/overview/#docker-architecture
 
 ## лучшие практики для dockerfile
 
@@ -83,6 +108,7 @@ dockerenjoyer@ubuntu:~$ docker exec -it ubuntu1 bash # запуск консол
  * https://docs.docker.com/reference/dockerfile/
 	* ADD - Add local or remote files and directories.
 	* COPY - Copy files and directories.
+	* VOLUME - Create volume mounts.
 	* ARG - Use build-time variables.
 	* CMD - Specify default commands.
 	* ENTRYPOINT - Specify default executable.
@@ -90,22 +116,35 @@ dockerenjoyer@ubuntu:~$ docker exec -it ubuntu1 bash # запуск консол
 	* EXPOSE - Describe which ports your application is listening on.
 	* FROM - Create a new build stage from a base image.
 	* HEALTHCHECK - Check a container's health on startup.
+		* https://docs.docker.com/compose/compose-file/05-services/#healthcheck
 	* LABEL - Add metadata to an image.
 	* MAINTAINER - Specify the author of an image.
 	* ONBUILD - Specify instructions for when the image is used in a build.
 	* [RUN](https://docs.docker.com/reference/dockerfile/#run) - Execute build commands.
-		* [exec form](https://docs.docker.com/reference/dockerfile/#shell-and-exec-form) лучше `shell`, т.к. всегда запускает процесс с PID=1, это обязательный атрибут запущенного контейнера
-		* `INSTRUCTION ["executable","param1","param2"] (exec form)`
-    	* `INSTRUCTION command param1 param2 (shell form)`
+		* [exec form](https://docs.docker.com/reference/dockerfile/#shell-and-exec-form) лучше `shell`
+			* всегда запускает процесс с PID=1, это обязательный атрибут запущенного контейнера
+			* строковая форма запускает bash, и не принимает SIGTERM снаружи
+		* `INSTRUCTION ["executable","param1","param2"] #exec form`
+    	* `INSTRUCTION command param1 param2 #shell form`
 	* SHELL - Set the default shell of an image.
 	* STOPSIGNAL - Specify the system call signal for exiting a container.
 	* USER - Set user and group ID.
-	* VOLUME - Create volume mounts.
 	* WORKDIR - Change working directory.
  * ENTRYPOINT+CMD
  * обязательные атрибуты
 	* FROM
 	*
+
+ * https://docs.docker.com/compose/startup-order/
+
+### prod
+
+ * https://docs.docker.com/compose/production/
+ * Removing any volume bindings for application code, so that code stays inside the container and can't be changed from outside
+ * Binding to different ports on the host
+ * Setting environment variables differently, such as reducing the verbosity of logging, or to specify settings for external services such as an email server
+ * Specifying a restart policy like restart: alwaysto avoid downtime
+ * Adding extra services such as a log aggregator
 
 ## monitoring
 
@@ -120,9 +159,16 @@ dockerenjoyer@ubuntu:~$ docker exec -it ubuntu1 bash # запуск консол
 	* map
 	* array
 	* .env
+### шаблоны конфигов
 
-### optimization/diagnostics
+ * https://docs.docker.com/samples/
+ * https://github.com/docker/awesome-compose
+ * https://docs.docker.com/compose/samples-for-compose/
+ * https://docs.docker.com/compose/faq/
 
+### optimization/diagnostics/performance
+
+ * docker network mode host отключает накладные расходы на NAT
  * https://docs.docker.com/reference/cli/docker/compose/#configuring-parallelism
  * [PID 1 init](https://docs.docker.com/compose/compose-file/05-services/#init)
  *
@@ -151,19 +197,66 @@ dockerenjoyer@ubuntu:~$ docker exec -it ubuntu1 bash # запуск консол
 * profile позволяет запускать из командной строки группы сервисов
 * https://docs.docker.com/reference/cli/docker/compose/#use-profiles-to-enable-optional-services
 * https://docs.docker.com/compose/compose-file/05-services/#profiles
-```bash
-	services:
-	frontend:
-		image: frontend
-		profiles: ["frontend"]
+	```yaml
+		services:
+		frontend:
+			image: frontend
+			profiles: ["frontend"]
 
-	phpmyadmin:
-		image: phpmyadmin
-		depends_on:
-		- db
-		profiles:
-		- debug
-```
+		phpmyadmin:
+			image: phpmyadmin
+			depends_on:
+			- db
+			profiles:
+			- debug
+	```
+* https://docs.docker.com/compose/profiles/
+
+	```bash
+		#services:
+		#  frontend:
+		#    image: frontend
+		#    profiles: [frontend]
+		#
+		#  phpmyadmin:
+		#    image: phpmyadmin
+		#    depends_on: [db]
+		#    profiles: [debug]
+		#
+		#  backend:
+		#    image: backend
+		#
+		#  db:
+		#    image: mysql
+
+		docker compose --profile debug up
+		COMPOSE_PROFILES=debug docker compose up
+		docker compose --profile frontend --profile debug up
+		COMPOSE_PROFILES=frontend,debug docker compose up
+		docker compose --profile "*"
+
+		#services:
+		#  backend:
+		#    image: backend
+		#
+		#  db:
+		#    image: mysql
+		#
+		#  db-migrations:
+		#    image: backend
+		#    command: myapp migrate
+		#    depends_on:
+		#      - db
+		#    profiles:
+		#      - tools
+
+		# Only start backend and db
+		$ docker compose up -d
+
+		# This runs db-migrations (and,if necessary, start db)
+		# by implicitly enabling the profiles `tools`
+		$ docker compose run db-migrations
+	```
 
 ### ENVironment
 
@@ -288,15 +381,114 @@ dockerenjoyer@ubuntu:~$ docker exec -it ubuntu1 bash # запуск консол
 ```
 
 * `docker secrete create`-->`/run/secrets`
-*
+* https://docs.docker.com/compose/use-secrets/
+
+```yaml
+services:
+   db:
+     image: mysql:latest
+     volumes:
+       - db_data:/var/lib/mysql
+     environment:
+       MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
+       MYSQL_DATABASE: wordpress
+       MYSQL_USER: wordpress
+       MYSQL_PASSWORD_FILE: /run/secrets/db_password
+     secrets:
+       - db_root_password
+       - db_password
+
+   wordpress:
+     depends_on:
+       - db
+     image: wordpress:latest
+     ports:
+       - "8000:80"
+     environment:
+       WORDPRESS_DB_HOST: db:3306
+       WORDPRESS_DB_USER: wordpress
+       WORDPRESS_DB_PASSWORD_FILE: /run/secrets/db_password
+     secrets:
+       - db_password
+
+
+secrets:
+   db_password:
+     file: db_password.txt
+   db_root_password:
+     file: db_root_password.txt
+
+volumes:
+    db_data:
+```
 
 ## network
 
+ * https://docs.docker.com/reference/cli/docker/network/create/
+	```bash
+		docker network create \
+		--driver=bridge \
+		--subnet=172.28.0.0/16 \
+		--ip-range=172.28.5.0/24 \
+		--gateway=172.28.5.254 \
+		br0
+
+		docker network create -d overlay \
+		--subnet=192.168.10.0/25 \
+		--subnet=192.168.20.0/25 \
+		--gateway=192.168.10.100 \
+		--gateway=192.168.20.100 \
+		--aux-address="my-router=192.168.10.5" --aux-address="my-switch=192.168.10.6" \
+		--aux-address="my-printer=192.168.20.5" --aux-address="my-nas=192.168.20.6" \
+		my-multihost-network
+	```
+ * https://docs.docker.com/network/drivers/
+	* [bridge](https://docs.docker.com/network/drivers/bridge/): The default network driver. If you don't specify a driver, this is the type of network you are creating. Bridge networks are commonly used when your application runs in a container that needs to communicate with other containers on the same host.
+	* [host](): Remove network isolation between the container and the Docker host, and use the host's networking directly.
+	* [overlay](): Overlay networks connect multiple Docker daemons together and enable Swarm services and containers to communicate across nodes. This strategy removes the need to do OS-level routing. See Overlay network driver.
+	* [ipvlan](): IPvlan networks give users total control over both IPv4 and IPv6 addressing. The VLAN driver builds on top of that in giving operators complete control of layer 2 VLAN tagging and even IPvlan L3 routing for users interested in underlay network integration.
+	* [macvlan](): Macvlan networks allow you to assign a MAC address to a container, making it appear as a physical device on your network. The Docker daemon routes traffic to containers by their MAC addresses. Using the macvlan driver is sometimes the best choice when dealing with legacy applications that expect to be directly connected to the physical network, rather than routed through the Docker host's network stack.
+	* [none](): Completely isolate a container from the host and other containers. none is not available for Swarm services.
+	Network plugins: You can install and use third-party network plugins with Docker.
+ * Be sure that your subnetworks do not overlap. If they do, the network create fails and Docker Engine returns an error
  * port mapping
+	* https://docs.docker.com/compose/compose-file/05-services/#ports
+	```yaml
+		#[HOST:]CONTAINER[/PROTOCOL]
+		ports:
+		- "3000"
+		- "3000-3005"
+		- "8000:8000"
+		- "9090-9091:8080-8081"
+		- "49100:22"
+		- "8000-9000:80"
+		- "127.0.0.1:8001:8001"
+		- "127.0.0.1:5000-5010:5000-5010"
+		- "6060:6060/udp"
+
+		ports:
+		- name: web
+			target: 80
+			host_ip: 127.0.0.1
+			published: "8080"
+			protocol: tcp
+			app_protocol: http
+			mode: host
+
+		- name: web-secured
+			target: 443
+			host_ip: 127.0.0.1
+			published: "8083-9000"
+			protocol: tcp
+			app_protocol: https
+			mode: host
+	```
  * type
 	* host
 	* bridge
 	* none
+ * https://docs.docker.com/reference/dockerfile/#expose - inform, but not publish
+ * https://docs.docker.com/compose/compose-file/05-services/#expose
 
 ## storage
 
@@ -306,11 +498,30 @@ dockerenjoyer@ubuntu:~$ docker exec -it ubuntu1 bash # запуск консол
  * mount
 	* overlay
 	* custom - driver
-
- * COPY
- * ADD - распаковка
+ * [подходы к созданию хранилища](https://docs.docker.com/compose/faq/#should-i-include-my-code-with-copyadd-or-a-volume)
+	* COPY - копирование для изоляции
+	* ADD - плюс распаковка
+	* VOLUME - если необходимо отлаживать или разрабатывать, менять файлы после запуска контейнера
+	* https://docs.docker.com/compose/file-watch/
+	```yaml
+		services:
+		web:
+			build: .
+			command: npm start
+			develop:
+			watch:
+				- action: sync
+				path: ./web
+				target: /src/web
+				ignore:
+					- node_modules/
+				- action: rebuild
+				path: package.json
+	```
  * build context
-
+ * context
+	* папка на хосте
+	* https://docs.docker.com/compose/compose-file/build/#context
 
 ## registry
 
@@ -322,10 +533,6 @@ dockerenjoyer@ubuntu:~$ docker exec -it ubuntu1 bash # запуск консол
 	* redhat quey
 	* Harbor
 
-
-## performance
-
- * docker network mode host отключает накладные расходы на NAT
 
 ## security
 
