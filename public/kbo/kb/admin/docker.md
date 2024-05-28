@@ -74,6 +74,9 @@ dockerenjoyer@ubuntu:~$ docker exec -it ubuntu1 bash # запуск консол
 
 ```
 
+ * https://docs.docker.com/reference/cli/docker/image/build/#target
+ * https://docs.docker.com/reference/cli/docker/compose/#use-profiles-to-enable-optional-services
+
 ## control
 
  * https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
@@ -104,117 +107,188 @@ dockerenjoyer@ubuntu:~$ docker exec -it ubuntu1 bash # запуск консол
 	* FROM
 	*
 
+## monitoring
 
-## compse file
+ * https://opentelemetry.io/docs/
+ * https://docs.docker.com/config/otel/
+ * https://docs.docker.com/reference/cli/docker/inspect/
+
+## compose file
 
  * https://docs.docker.com/compose/release-notes/
  * синтакс
 	* map
 	* array
 	* .env
- * service
-	* https://docs.docker.com/compose/compose-file/05-services/#healthcheck
-		```yaml
-			backend:
-				image: example/backend
-				healthcheck:
-					test: ["CMD", "curl", "-f", "http://localhost"]
-					interval: 1m30s
-					timeout: 10s
-					retries: 3
-					start_period: 40s
-					start_interval: 5s
-		```
- * profiles
-	* profile позволяет запускать из командной строки группы сервисов
-	*
-	*
- * networks
-	* https://docs.docker.com/compose/compose-file/05-services/#networks
-	* external: true|false
-	* internal: true|false
-	*
-	*
+
+### optimization/diagnostics
+
+ * https://docs.docker.com/reference/cli/docker/compose/#configuring-parallelism
+ * [PID 1 init](https://docs.docker.com/compose/compose-file/05-services/#init)
+ *
+
+### service
+
+* https://docs.docker.com/compose/compose-file/05-services/#healthcheck
 	```yaml
-		services:
-		app:
-			image: busybox
-			command: top
-			networks:
-			app_net:
-				link_local_ips:
-				- 57.123.22.11
-				- 57.123.22.13
+		backend:
+			image: example/backend
+			healthcheck:
+				test: ["CMD", "curl", "-f", "http://localhost"]
+				interval: 1m30s
+				timeout: 10s
+				retries: 3
+				start_period: 40s
+				start_interval: 5s
+	```
+ * [два вида](https://docs.docker.com/compose/compose-file/build/#using-build-and-image)
+	* [image](https://docs.docker.com/compose/compose-file/05-services/#image)
+	* [build](https://docs.docker.com/compose/compose-file/build/)
+ * [зависимости](https://docs.docker.com/compose/compose-file/05-services/#depends_on)
+
+### profiles
+
+* profile позволяет запускать из командной строки группы сервисов
+* https://docs.docker.com/reference/cli/docker/compose/#use-profiles-to-enable-optional-services
+* https://docs.docker.com/compose/compose-file/05-services/#profiles
+```bash
+	services:
+	frontend:
+		image: frontend
+		profiles: ["frontend"]
+
+	phpmyadmin:
+		image: phpmyadmin
+		depends_on:
+		- db
+		profiles:
+		- debug
+```
+
+### ENVironment
+
+ * https://docs.docker.com/compose/compose-file/05-services/#environment
+	```yaml
+		#Map syntax:
+
+		environment:
+		RACK_ENV: development
+		SHOW: "true"
+		USER_INPUT:
+
+		#Array syntax:
+
+		environment:
+		- RACK_ENV=development
+		- SHOW=true
+		- USER_INPUT
+	```
+ * https://docs.docker.com/compose/environment-variables/set-environment-variables/#compose-file
+
+	```bash
+		cat .env
+		#TAG=v1.5
+
+		cat compose.yml
+		#services:
+		#web:
+		#	image: "webapp:${TAG}"
+		docker compose config
+		#services:
+		#  web:
+		#    image: 'webapp:v1.5'
+	```
+
+### networks
+
+* https://docs.docker.com/compose/compose-file/05-services/#networks
+* external: true|false
+* internal: true|false
+*
+*
+```yaml
+	services:
+	app:
+		image: busybox
+		command: top
 		networks:
 		app_net:
-			driver: bridge
-	```
- * хранилище
-	* `services-->volumes:-->- name: path`
-	* `volumes:-->name:-->options`
-	* https://docs.docker.com/compose/compose-file/05-services/#volumes
-		```yaml
-			services:
-				backend:
-					image: example/backend
-					volumes:
-					- type: volume
-						source: db-data
-						target: /data
-						volume:
-						nocopy: true
-						subpath: sub
-					- type: bind
-						source: /var/run/postgres/postgres.sock
-						target: /var/run/postgres/postgres.sock
-			volumes:
-				db-data:
-			volumes:
-				example:
-					driver_opts:
-					type: "nfs"
-					o: "addr=10.40.0.199,nolock,soft,rw"
-					device: ":/docker/example"
-			volumes:
-				db-data:
-					name: ${DATABASE_VOLUME} #DATABASE_VOLUME=my_volume_001
-		```
-	* https://docs.docker.com/reference/cli/docker/volume/create/
+			link_local_ips:
+			- 57.123.22.11
+			- 57.123.22.13
+	networks:
+	app_net:
+		driver: bridge
+```
 
-		```bash
-			docker volume create --driver local \
-				--opt type=tmpfs \
-				--opt device=tmpfs \
-				--opt o=size=100m,uid=1000 \
-				foo
+### хранилище
 
-			docker volume create --driver local \
-				--opt type=btrfs \
-				--opt device=/dev/sda2 \
-				foo
-
-			docker volume create --driver local \
-				--opt type=nfs \
-				--opt o=addr=192.168.1.1,rw \
-				--opt device=:/path/to/dir \
-				foo
-		```
-
- * secrets
-	*
+* `services-->volumes:-->- name: path`
+* `volumes:-->name:-->options`
+* https://docs.docker.com/compose/compose-file/05-services/#volumes
 	```yaml
 		services:
-			frontend:
-				image: example/webapp
-				secrets:
-				- server-certificate
-		secrets:
-			server-certificate:
-				file: ./server.cert
+			backend:
+				image: example/backend
+				volumes:
+				- type: volume
+					source: db-data
+					target: /data
+					volume:
+					nocopy: true
+					subpath: sub
+				- type: bind
+					source: /var/run/postgres/postgres.sock
+					target: /var/run/postgres/postgres.sock
+		volumes:
+			db-data:
+		volumes:
+			example:
+				driver_opts:
+				type: "nfs"
+				o: "addr=10.40.0.199,nolock,soft,rw"
+				device: ":/docker/example"
+		volumes:
+			db-data:
+				name: ${DATABASE_VOLUME} #DATABASE_VOLUME=my_volume_001
+	```
+* https://docs.docker.com/reference/cli/docker/volume/create/
+
+	```bash
+		docker volume create --driver local \
+			--opt type=tmpfs \
+			--opt device=tmpfs \
+			--opt o=size=100m,uid=1000 \
+			foo
+
+		docker volume create --driver local \
+			--opt type=btrfs \
+			--opt device=/dev/sda2 \
+			foo
+
+		docker volume create --driver local \
+			--opt type=nfs \
+			--opt o=addr=192.168.1.1,rw \
+			--opt device=:/path/to/dir \
+			foo
 	```
 
-	* `docker secrete create`-->`/run/secrets`
-	*
+### secrets
+
+*
+```yaml
+	services:
+		frontend:
+			image: example/webapp
+			secrets:
+			- server-certificate
+	secrets:
+		server-certificate:
+			file: ./server.cert
+```
+
+* `docker secrete create`-->`/run/secrets`
+*
 
 ## network
 
@@ -255,6 +329,13 @@ dockerenjoyer@ubuntu:~$ docker exec -it ubuntu1 bash # запуск консол
 
 ## security
 
+ * [System for Cross-domain Identity Management (SCIM) 2.0](https://docs.docker.com/security/for-admins/provisioning/scim/)
+	* Creating new users
+	* Push user profile updates
+	* Remove users
+	* Deactivate users
+	* Re-activate users
+	* Group mapping
  * [Основы безопасности в Docker-контейнерах](https://selectel.ru/blog/courses/docker-security/)
 	*
  * [Часто забываемые правила безопасности Docker: заметки энтузиаста ИБ](https://habr.com/ru/company/dataline/blog/567790/)
@@ -289,7 +370,8 @@ dockerenjoyer@ubuntu:~$ docker exec -it ubuntu1 bash # запуск консол
 	* seccomp — механизм ядра Linuх, позволяющий определять доступные системные вызовы. В стандартной поставке Docker блокирует около 44 вызовов из 300+
 	* Кроме Seccomp можно использовать также профили AppArmor или SELinux
 	* Анализировать содержимое контейнера
-		* бесплатный Clair, условно бесплатные Snyk, anchore, Harbor
+		* бесплатный Clair
+		* условно бесплатные Snyk, anchore, Harbor
 		* платные JFrog XRay и Qualys
 		* системы асессмента ИБ в целом, например, Open Policy agent
  * запуск не от рута, без демона [kaniko](https://github.com/GoogleContainerTools/kaniko)
@@ -342,7 +424,7 @@ dockerenjoyer@ubuntu:~$ docker exec -it ubuntu1 bash # запуск консол
  * https://selectel.ru/blog/docker-security-1/
 
  * нельзя пробрасывать сокет внутрь контейнера `docker run -it -v /var/run/docker.sock:/var/run/docker.sock myapp`
- * Хорошая практика в CI/CD, особенно в enterprise, — не использовать Docker. Одна из важных его проблем в безопасности — это объединение в себе двух абсолютно разных функционалов: сборки образов и управления рантаймом контейнеров.
+ * Хорошая практика в CI/CD, особенно в enterprise, — не использовать Docker daemon. Одна из важных его проблем в безопасности — это объединение в себе двух абсолютно разных функционалов: сборки образов и управления рантаймом контейнеров.
  * Чтобы разделить build и run можно использовать альтернативные утилиты для сборки образов контейнеров, не полагающихся на Docker Daemon: BuildKit, kaniko, buildah, которые работают без использования полномочий root-пользователя. С 23.0 версии Docker BuildKit был встроен в билдер вместо устаревшего.
  * настроить запуск контейнера от имени непривилегированных пользователей
  * В файле /etc/docker/daemon.json (если его нет, то создайте) укажем параметр userns-remap:

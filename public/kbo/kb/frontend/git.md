@@ -2,24 +2,23 @@
 
 ## документация
 
+ * [GIT CHANGELOG](https://github.com/git/git/tree/master/Documentation/RelNotes)
  * https://marklodato.github.io/visual-git-guide/index-en.html
  * https://github.com/k88hudson/git-flight-rules
  * https://services.github.com/on-demand/downloads/github-git-cheat-sheet/
  * https://medium.com/@ABatickaya/%D1%88%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0-%D0%BF%D0%BE-git-55eeea487676#.38x1yx7en
  * http://www.alexkras.com/19-git-tips-for-everyday-use/
  * [~/.gitconfig](http://cheat.errtheblog.com/s/git)
- * http://habrahabr.ru/post/125799/
- * https://sites.google.com/site/alextestprojects/obzor-instrumentov/git/primer-modeli-vetvlenia-git
- * http://habrahabr.ru/post/174467/#typicalscenario
- * https://www.gerritcodereview.com/
- * http://endoflineblog.com/gitflow-considered-harmful
- * http://endoflineblog.com/follow-up-to-gitflow-considered-harmful
+ * [Как начать работать с GitHub: быстрый старт - 2011](http://habrahabr.ru/post/125799/)
+ * x https://sites.google.com/site/alextestprojects/obzor-instrumentov/git/primer-modeli-vetvlenia-git
+ * [Ежедневная работа с Git - 2013](http://habrahabr.ru/post/174467/#typicalscenario)
+ * [a Perforce based code review tool](https://www.gerritcodereview.com/)
  * [fuzzy search history](https://github.com/junegunn/fzf-bin/releases)
- * [mindmap](https://alexkras.com/git/git.png)
+ * [git mindmap cheatsheet](https://alexkras.com/git/git.png)
  * https://developer.atlassian.com/blog/2015/12/tips-tools-to-solve-git-conflicts/
  * http://zeroturnaround.com/rebellabs/git-commands-and-best-practices-cheat-sheet/
  * https://ericdouglas.github.io/2016/04/01/Git-Useful-Tips/
- * [conventionalcommits](https://www.conventionalcommits.org/en/v1.0.0/)
+
 
 ### тренажёры
 
@@ -83,6 +82,32 @@
  * https://www.pluralsight.com/product/flow
  * https://linearb.io/
  * [Next-level software developer metrics](https://www.gitclear.com/)
+
+## монорепы
+
+### mercurial
+
+* [Почему Facebook* не использует Git](https://habr.com/ru/articles/798881/)
+* mercurial быстрее для миллионов строк, потому что сразу высчитывает diff
+* концепция stacked diff вместо простого копирования файлов и вычисления [git-stat](https://pubs.opengroup.org/onlinepubs/009696799/functions/stat.html)
+* mercurial написан на python, а git на bash+C
+
+### для git
+
+ * [Внешние зависимости в гите: submodule или subtree? - 2009](https://habr.com/ru/articles/75964/)
+ * submodules
+	* Каждый человек, работающий с основным репозиторием должен иметь доступ к репозиторию, из которого взят подмодуль.
+	* В общем случае невозможно получить целостную рабочую копию одной командой. Теперь после git checkout нужно делать git submodule update --init.
+	* git archive игнорирует подмодули — больше нельзя одной командой запаковать весь проект в архив.
+	* Из проекта верхнего уровня не видно изменений внутри подмодулей и наоборот. Чтобы узнать полного состояние рабочей копии проекта, необходимо запрашивать его для каждого подмодуля и для родительского проекта по отдельности. Без подмодулей достаточно сказать git status в любом месте внутри рабочей копии.
+	* После замены корневой директории подмодуля на что-нибудь другое (например другой подмодуль), нужно вручную удалять старую версию во всех рабочих копиях.
+	* Команда git submodule не понимает стандартных опций --git-dir и --work-tree. Её можно запускать только из корня рабочей копии. Это затрудняет автоматизацию.
+ * subtree
+	* git-subtree - Merge subtrees together and split repository into subtrees
+	* Unlike submodules, subtrees do not need any special constructions (like .gitmodule files or gitlinks), and do not force to do anything special or to understand how subtrees work. A subtree is just a subdirectory that can be committed to, branched, and merged along with your project in
+	* Unlike the subtree merge strategy you can also extract the entire history of a subdirectory from your project and make it into a standalone project. If the standalone library gets updated, you can automatically merge the changes into your project; if you update the library inside your project, you can "split" the changes back out again and merge them back into the library project.
+	* https://github.com/apenwarr/git-subtree/blob/master/git-subtree.txt
+	* [Git subtree в деталях - 2018](https://habr.com/ru/articles/429014/)
 
 ## аналитика git
 
@@ -212,6 +237,7 @@
 
 ## справочник команд
 
+ * [giteveryday - A useful minimum set of commands for Everyday Git](https://github.com/git/git/blob/master/Documentation/giteveryday.txt)
  * [малоизвестные команды](https://habr.com/ru/company/mailru/blog/318508/)
  * http://mindspill.net/computing/linux-notes/git-notes/
  * git reset
@@ -484,6 +510,10 @@ git merge upstream/master
 
 ## workflow
 
+ * [SDCast #18: в гостях Михаил Лопаткин ](https://sdcast.ksdaemon.ru/2015/02/sdcast-18/)
+	* Мы подсмотрели у гугла. У хромиума по всем исходникам разложены файлы owners, в них записаны кто из разработчиков отвечает за конкретную папку или подсистему. Тот кто знает как эта часть работает. Т.е. во-первых знаем кого звать на ревью кода, а во вторых на кого повесить операцию разруливания конфликтов, если такое случилось при мерже. т.е. owner кусочка кода разрешает конфликты при мерже.
+ * [merging-vs-rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
+ * [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)
  * http://nvie.com/posts/a-successful-git-branching-model/
  * http://endoflineblog.com/gitflow-considered-harmful
  * http://endoflineblog.com/follow-up-to-gitflow-considered-harmful
@@ -494,25 +524,15 @@ git merge upstream/master
  * [git flow](http://danielkummer.github.io/git-flow-cheatsheet/index.ru_RU.html)
  * [git flow ](http://internetdevels.ru/blog/git-flow-model)
 
-все зависит от того как вы выкатываете релизы, есть ли тесты (CI/CD), что за методолгию юзаете
-Git flow подразумевает что на каждом спринте вы создаете (обновляете текущую) ветку developer из которой потом каждый программер выделяет ветку feature и в ней решает конкретный issue, после того как он все сделал он (можно через pull request) слвиает feature в develop, после определенного момента (по срокам) разработка фич останавливаеться из ветки develop создается ветка release которая тестируется. Далее все сливается в maste и так покругу.
+### Git flow
 
-удобнее когда есть четкая дата релиза + фаза стабилизации. Наличие тестов желательно но не обязательно т.к. есть тестирование перед деплоем и время закрыть все косяки руками.
+ * подразумевает что на каждом спринте вы создаете (обновляете текущую) ветку developer из которой потом каждый программер выделяет ветку feature и в ней решает конкретный issue, после того как он все сделал он (можно через pull request) слвиает feature в develop, после определенного момента (по срокам) разработка фич останавливаеться из ветки develop создается ветка release которая тестируется. Далее все сливается в maste и так покругу.
+ * удобнее когда есть четкая дата релиза + фаза стабилизации. Наличие тестов желательно но не обязательно т.к. есть тестирование перед деплоем и время закрыть все косяки руками.
 
-GitHub flow ставит своей целью короткий релизный цикл (время от производства feature до deploy на продакшен может быть очень коротким), так сказать что бы пользователь как можно раньше получил свои новые фичи. Здесь очень важно наличие хороших тестов + CI. ну и высокая ответственность программиста.
+### GitHub flow
 
-Обычно из master выделяется ветка feature по конкретном issue прогер берет делает ее, далее делает pull request на добавление feature в master, она прохоидт автотесты + делается код ревью, заливаеться в master и автоматически деплоится на прод.
-
-Еще важно то как разбиваются задачи.
-
-
- * [SDCast #18: в гостях Михаил Лопаткин ](https://sdcast.ksdaemon.ru/2015/02/sdcast-18/)
-
-Кто отвечает за сливание upstream'а сhromium'a? Как организован сам процесс?
-Мы подсмотрели у гугла. У хромиума по всем исходникам разложены файлы owners, в них записаны кто из разработчиков отвечает за конкретную папку или подсистему. Тот кто знает как эта часть работает. Т.е. во-первых знаем кого звать на ревью кода, а во вторых на кого повесить операцию разруливания конфликтов, если такое случилось при мерже. т.е. owner кусочка кода разрешает конфликты при мерже.
-
- * [merging-vs-rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
-
+ * ставит своей целью короткий релизный цикл (время от производства feature до deploy на продакшен может быть очень коротким), так сказать что бы пользователь как можно раньше получил свои новые фичи. Здесь очень важно наличие хороших тестов + CI. ну и высокая ответственность программиста.
+ * Обычно из master выделяется ветка feature по конкретном issue прогер берет делает ее, далее делает pull request на добавление feature в master, она прохоидт автотесты + делается код ревью, заливаеться в master и автоматически деплоится на прод.
 
 ## git server
 
