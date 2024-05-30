@@ -1,7 +1,7 @@
 
 ## centos7
 
-## [bash](kbo/kb/admin/bash.md)
+## [bash](./bash.md)
 
 ### urandom
 
@@ -69,7 +69,7 @@ clear_env = no # выключить очистку глобальных пере
 
 ## datetime
 
- * [datetime](/kbo/admin/zabbix#datetime)
+ * [datetime](./zabbix#datetime)
 
 ## selinux
 
