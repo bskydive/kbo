@@ -1,5 +1,6 @@
 #  devops
 
+ * https://www.redhat.com/sysadmin/
  * [утилиты документирования](https://github.com/documentationjs)
  * [SRE site reliability engineering](https://sre.google/books/)
 * prometeus - node exporter - alert manager
@@ -126,6 +127,9 @@
 ## docker
 
  * [docker](./docker.md)
+
+## gitlab ci/cd
+
 
 
 ## monitoring
