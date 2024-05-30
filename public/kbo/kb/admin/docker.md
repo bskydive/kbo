@@ -203,7 +203,11 @@ dockerenjoyer@ubuntu:~$ docker exec -it ubuntu1 bash # запуск консол
  * docker network mode host отключает накладные расходы на NAT
  * https://docs.docker.com/reference/cli/docker/compose/#configuring-parallelism
  * [PID 1 init](https://docs.docker.com/compose/compose-file/05-services/#init)
- *
+ * parallelism
+	* https://docs.docker.com/reference/cli/docker/compose/#configuring-parallelism
+		* `docker compose --parallel 1 pull`
+	* https://docs.docker.com/build/guide/multi-stage/#parallelism
+	*
 
 ### service
 
