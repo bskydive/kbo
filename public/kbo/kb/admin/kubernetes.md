@@ -3,20 +3,24 @@
  * https://selectel.ru/blog/courses/dive-into-kubernetes/
  * [Урок 1: Введение в Kubernetes. Вечерняя школа «Kubernetes для разработчиков»](https://www.youtube.com/watch?v=Mw_rEH2pElw)
  * https://ru.werf.io/guides.html
+ * [Исследование VK Cloud о том, как компании работают с Kubernetes в России](https://cloud.vk.com/promopage/state-of-kubernetes/)
+ * [Весна идёт — весне дорогу! Итоги сезона Kubernetes](https://habr.com/ru/article/720322/)
+ * https://habr.com/ru/hub/kubernetes/
+ * [Крупномасштабный стриминг видео с использованием Kubernetes и RabbitMQ](https://habr.com/ru/companies/timeweb/articles/785050/)
 
-## ликбез
+##
 
- * [Механизмы контейнеризации: cgroups](https://habr.com/ru/companies/selectel/articles/303190/)
- * cgroups v2
-	* blkio — устанавливает лимиты на чтение и запись с блочных устройств;
-	* cpuacct — генерирует отчёты об использовании ресурсов процессора;
-	* cpu — обеспечивает доступ процессов в рамках контрольной группы к CPU;
-	* cpuset — распределяет задачи в рамках контрольной группы между процессорными ядрами;
-	* devices — разрешает или блокирует доступ к устройствам;
-	* freezer — приостанавливает и возобновляет выполнение задач в рамках контрольной группы
-	* hugetlb — активирует поддержку больших страниц памяти для контрольных групп;
-	* memory — управляет выделением памяти для групп процессов;
-	* net_cls — помечает сетевые пакеты специальным тэгом, что позволяет идентифицировать пакеты, порождаемые определённой задачей в рамках контрольной группы;
-	* netprio — используется для динамической установки приоритетов по трафику;
-	* pids — используется для ограничения количества процессов в рамках контрольной группы.
+ * control plane
+	* etcd - коняигурация
+	* controller-manager - мониторинг
+	* cloud control manager
+	* api - прокси/шина
+	* scheduler - оркестратор, центральный узел
+	* proxy
+	* storage provisioner
+ * nodes
+	* kubelet - cli agent
+	* kubeproxy - routing
+	* pod
+		* контейнеры
 

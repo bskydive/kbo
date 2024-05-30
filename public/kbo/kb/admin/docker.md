@@ -44,6 +44,26 @@
 	```
  * https://www.redhat.com/sysadmin/cgroups-part-one
  * https://docs.docker.com/get-started/overview/#docker-architecture
+ * [Механизмы контейнеризации: cgroups](https://habr.com/ru/companies/selectel/articles/303190/)
+ * cgroups v2
+	* blkio — устанавливает лимиты на чтение и запись с блочных устройств;
+	* cpuacct — генерирует отчёты об использовании ресурсов процессора;
+	* cpu — обеспечивает доступ процессов в рамках контрольной группы к CPU;
+	* cpuset — распределяет задачи в рамках контрольной группы между процессорными ядрами;
+	* devices — разрешает или блокирует доступ к устройствам;
+	* freezer — приостанавливает и возобновляет выполнение задач в рамках контрольной группы
+	* hugetlb — активирует поддержку больших страниц памяти для контрольных групп;
+	* memory — управляет выделением памяти для групп процессов;
+	* net_cls — помечает сетевые пакеты специальным тэгом, что позволяет идентифицировать пакеты, порождаемые определённой задачей в рамках контрольной группы;
+	* netprio — используется для динамической установки приоритетов по трафику;
+	* pids — используется для ограничения количества процессов в рамках контрольной группы.
+ * спецификации
+	* CRI - container runtime interface - образ
+	* OCI - open container initiative - API
+ * движки
+	* CRI-O - k8s
+	* containerd
+	* runc(фундамент)
 
 ## лучшие практики для dockerfile
 
@@ -145,6 +165,18 @@ dockerenjoyer@ubuntu:~$ docker exec -it ubuntu1 bash # запуск консол
  * Setting environment variables differently, such as reducing the verbosity of logging, or to specify settings for external services such as an email server
  * Specifying a restart policy like restart: alwaysto avoid downtime
  * Adding extra services such as a log aggregator
+
+### daemon.json
+
+ * cli-->api-->daemond
+ * daemond может общаться через fd/socket/tcp
+ * https://docs.docker.com/config/daemon/troubleshoot/
+ * https://docs.docker.com/engine/alternative-runtimes/
+
+### plugins
+
+ * https://docs.docker.com/engine/extend/
+ * `docker plugin ls`
 
 ## monitoring
 
@@ -318,6 +350,15 @@ dockerenjoyer@ubuntu:~$ docker exec -it ubuntu1 bash # запуск консол
 
 * `services-->volumes:-->- name: path`
 * `volumes:-->name:-->options`
+* [драйверы](https://docs.docker.com/storage/storagedriver/select-storage-driver/)
+	* overlay 2
+	* btrfs/zfs - снимки
+	* devicemapper - потоки блоков
+	* old
+		* vfs
+		* overlay 1
+		* fuse-overlayfs
+		* aufs
 * https://docs.docker.com/compose/compose-file/05-services/#volumes
 	```yaml
 		services:
@@ -667,9 +708,80 @@ volumes:
 		#165536          	389598          	389575          	0               	10:53           	pts/0           	00:00:00        	/bin/bash
 	```
 
-# kubernetes
+## swarm
 
- * [Исследование VK Cloud о том, как компании работают с Kubernetes в России](https://cloud.vk.com/promopage/state-of-kubernetes/)
- * [Весна идёт — весне дорогу! Итоги сезона Kubernetes](https://habr.com/ru/article/720322/)
- * https://habr.com/ru/hub/kubernetes/
- * [Крупномасштабный стриминг видео с использованием Kubernetes и RabbitMQ](https://habr.com/ru/companies/timeweb/articles/785050/)
+ * https://docs.docker.com/engine/swarm/
+ * для роя необходим репозиторий, мастер ноды и воркер ноды
+ * для создания реплик необходимо указать их количество
+ * rolling update автоматически применит изменения в образах на все реплики
+ * вместо compose необходимо создать [stack.yaml](https://docs.docker.com/engine/swarm/stack-deploy/)
+	* в нём можно указать один общий сервис, и разделяемые реплики
+```bash
+docker swarm init --advertise-addr 192.168.99.100
+#Swarm initialized: current node (dxn1zf6l61qsb1josjja83ngz) is now a manager.
+#
+#To add a worker to this swarm, run the following command:
+#
+#    docker swarm join \
+#    --token SWMTKN-1-49nj1cmql0jkz5s954yi3oex3nedyz0fb0xx14ie39trti4wxv-8vxv8rssmk743ojnwacrr2e7c \
+#    192.168.99.100:2377
+#
+#To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
+
+docker info
+#Containers: 2
+#Running: 0
+#Paused: 0
+#Stopped: 2
+#  ...snip...
+#Swarm: active
+#  NodeID: dxn1zf6l61qsb1josjja83ngz
+#  Is Manager: true
+#  Managers: 1
+#  Nodes: 1
+
+docker node ls
+#ID                           HOSTNAME  STATUS  AVAILABILITY  MANAGER STATUS
+#dxn1zf6l61qsb1josjja83ngz *  manager1  Ready   Active        Leader
+
+docker swarm join-token worker
+#To add a worker to this swarm, run the following command:
+#
+#    docker swarm join \
+#    --token SWMTKN-1-49nj1cmql0jkz5s954yi3oex3nedyz0fb0xx14ie39trti4wxv-8vxv8rssmk743ojnwacrr2e7c \
+#    192.168.99.100:2377
+
+docker swarm join \
+  --token SWMTKN-1-49nj1cmql0jkz5s954yi3oex3nedyz0fb0xx14ie39trti4wxv-8vxv8rssmk743ojnwacrr2e7c \
+  192.168.99.100:2377
+
+#This node joined a swarm as a worker.
+#Open a terminal and ssh into the machine where the manager node runs
+docker node ls
+#ID                           HOSTNAME  STATUS  AVAILABILITY  MANAGER STATUS
+#03g1y59jwfg7cf99w4lt0f662    worker2   Ready   Active
+#9j68exjopxe7wfl6yuxml7a7j    worker1   Ready   Active
+#dxn1zf6l61qsb1josjja83ngz *  manager1  Ready   Active        Leader
+
+docker service create --replicas 1 --name helloworld alpine ping docker.com
+
+#9uk4639qpg7npwf3fn2aasksr
+
+docker service scale helloworld=5
+
+#helloworld scaled to 5
+
+docker service ps helloworld
+
+#NAME                                    IMAGE   NODE      DESIRED STATE  CURRENT STATE
+#helloworld.1.8p1vev3fq5zm0mi8g0as41w35  alpine  worker2   Running        Running 7 minutes
+#helloworld.2.c7a7tcdq5s0uk3qr88mf8xco6  alpine  worker1   Running        Running 24 seconds
+#helloworld.3.6crl09vdcalvtfehfh69ogfb1  alpine  worker1   Running        Running 24 seconds
+#helloworld.4.auky6trawmdlcne8ad8phb0f1  alpine  manager1  Running        Running 24 seconds
+#helloworld.5.ba19kca06l18zujfwxyc5lkyn  alpine  worker2   Running        Running 24 seconds
+
+docker service rm helloworld
+
+#helloworld
+
+```
