@@ -31,6 +31,9 @@
 * `[ZeroToMastery]DevOps Bootcamp Terraform[2022, ENG]`
 * `Бестселлеры O'Reilly - Gift N,, Behrman K., Deza A. Гифт Н., Берман К., Деза А., Георгиу Г. - Python for DevOps Learn Ruthlessl`
 
+## блоги
+
+ * https://www.jedi.be/blog/
 
 ## курсы
 
@@ -70,6 +73,51 @@
  * [nrwl/NX](https://nx.dev/)
 	* https://github.com/nrwl/nx
 
+## Yandex Cloud
+
+ * [ЦОД](https://yandex.cloud/ru/docs/troubleshooting/legal/how-to/data-centers-physical-addresses)
+	* МО Ивантеевка
+    * В городе Мытищи — г. Мытищи, ул. Силикатная 19 - 2010
+    * Владимирская область — г. Владимир, мкр. Энергетик, ул. Поисковая 1 к. 2
+    * Рязанская область — г. Сасово, ул. Пушкина 21
+    * Калужская область — г. Калуга, 1-й Автомобильный пр-д 8, индустриальный парк «Грабцево» - 2024
+ * [Сервисы Yandex Cloud](https://yandex.cloud/ru/docs/overview/concepts/services)
+ * [Правила тарификации для Compute Cloud](https://yandex.cloud/ru/docs/compute/pricing#prices-storage)
+ 	* [Квоты и лимиты для сервисов Yandex Cloud](https://cloud.yandex.ru/ru/docs/overview/concepts/quotas-limits)
+	* [Операции чтения и записи](https://cloud.yandex.ru/ru/docs/compute/concepts/storage-read-write)
+	* ![](articles-manager/техника/справочная.md#памятка по числовым значениям)
+ * https://yandex.cloud/ru/docs/overview/
+ * https://practicum.yandex.ru/trainer/ycloud-deploy/lesson/f6d509ce-5fa7-4b83-a342-eb4149de65e6/
+
+```bash
+	yc config profile activate <profile>
+
+	yc vpc security-group create --name yc-security-group --network-name default \
+		--rule 'direction=ingress,port=443,protocol=tcp,v4-cidrs=0.0.0.0/0' \
+		--rule 'direction=ingress,port=80,protocol=tcp,v4-cidrs=0.0.0.0/0' \
+		--rule 'direction=ingress,from-port=0,to-port=65535,protocol=any,predefined=self_security_group' \
+		--rule 'direction=ingress,from-port=0,to-port=65535,protocol=any,v4-cidrs=[10.96.0.0/16,10.112.0.0/16]' \
+		--rule 'direction=ingress,from-port=0,to-port=65535,protocol=tcp,v4-cidrs=[198.18.235.0/24,198.18.248.0/24]' \
+		--rule 'direction=egress,from-port=0,to-port=65535,protocol=any,v4-cidrs=0.0.0.0/0' \
+		--rule 'direction=ingress,protocol=icmp,v4-cidrs=[10.0.0.0/8,192.168.0.0/16,172.16.0.0/12]'
+
+	export SG_ID=$(yc vpc security-group get --name yc-security-group | head -1 | awk '{print $2}')
+
+```
+ * common
+	* https://yandex.cloud/ru/docs/managed-kubernetes/operations/connect/security-groups
+ * gitlab
+	* https://yandex.cloud/ru/docs/managed-gitlab/operations/configure-security-group
+ * terraform
+	* https://yandex.cloud/ru/blog/posts/2023/05/terraform-modules-yandex-cloud
+	* https://yandex.cloud/ru/docs/tutorials/infrastructure-management/terraform-quickstart
+ * kubernetes
+	* https://yandex.cloud/ru/blog/posts/2023/03/kubernetes-get-started
+	* https://yandex.cloud/ru/blog/posts/2021/12/marketplace-kubernetes
+ * Packer
+	* [Packer: мультисборка, пост-процессоры и пользовательские плагины - otus - 2024](https://habr.com/ru/companies/otus/articles/796135/)
+	* https://developer.hashicorp.com/packer/docs/intro
+
 ## Load balancing
 
  * [Введение в современную сетевую балансировку и проксирование - 2018](https://habrahabr.ru/company/mailru/blog/347026/)
@@ -94,7 +142,7 @@
 
 ##  инфраструктура
 
-[https://habrahabr.ru/post/319582/](https://habrahabr.ru/post/319582/)
+ * [https://habrahabr.ru/post/319582/](https://habrahabr.ru/post/319582/)
 
 ##  автоматизация
 
