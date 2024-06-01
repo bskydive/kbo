@@ -176,6 +176,46 @@
 
  * [docker](./docker.md)
 
+
+## databases
+
+### mysql
+
+```bash
+# connect
+
+# create db
+# create user
+# create table
+# create index
+# change isolation level
+# backup/restore
+# tune cache
+# data path
+# config path
+# deadlock
+
+```
+
+
+### postgresql
+
+```bash
+# connect
+
+# create db
+# create user
+# create table
+# create index
+# change isolation level
+# backup/restore
+# tune cache
+# data path
+# config path
+# deadlock
+
+```
+
 ## gitlab ci/cd
 
 
