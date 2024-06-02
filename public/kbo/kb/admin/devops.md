@@ -176,24 +176,64 @@
 
  * [docker](./docker.md)
 
+```bash
+	docker container commit -m "Add node" base-container node-base
+	docker image history node-base
+	docker run -d -p HOST_PORT:CONTAINER_PORT nginx
+
+```
 
 ## databases
 
 ### mysql
 
 ```bash
-# connect
+	# connect
 
-# create db
-# create user
-# create table
-# create index
-# change isolation level
-# backup/restore
-# tune cache
-# data path
-# config path
-# deadlock
+	# create db
+	# create user
+	# create table
+	# create index
+	# change isolation level
+	# backup/restore
+		mysqldump
+	# tune cache
+		mysql -e "SHOW ENGINE INNODB STATUS"
+		#https://dev.mysql.com/doc/refman/8.4/en/innodb-buffer-pool.html
+	# data path
+	# config path
+		dpkg --listfiles mysql-server
+		rpm -q --list mysql-server
+		mysql -e "SHOW VARIABLES LIKE 'datadir';"
+		#+---------------+-----------------+
+		#| Variable_name | Value           |
+		#+---------------+-----------------+
+		#| datadir       | /var/lib/mysql/ |
+		strace mysql ";" 2>&1  | grep cnf
+		#newfstatat(AT_FDCWD, "/etc/my.cnf", 0x7ffea7b0bc80, 0) = -1 ENOENT (No such file or directory)
+		#newfstatat(AT_FDCWD, "/etc/mysql/my.cnf", {st_mode=S_IFREG|0644, st_size=682, ...}, 0) = 0
+		#openat(AT_FDCWD, "/etc/mysql/my.cnf", O_RDONLY) = 3
+		#newfstatat(AT_FDCWD, "/etc/mysql/conf.d/mysql.cnf", {st_mode=S_IFREG|0644, st_size=8, ...}, 0) = 0
+		#openat(AT_FDCWD, "/etc/mysql/conf.d/mysql.cnf", O_RDONLY) = 4
+		#newfstatat(AT_FDCWD, "/etc/mysql/conf.d/mysqldump.cnf", {st_mode=S_IFREG|0644, st_size=55, ...}, 0) = 0
+		#openat(AT_FDCWD, "/etc/mysql/conf.d/mysqldump.cnf", O_RDONLY) = 4
+		#newfstatat(AT_FDCWD, "/etc/mysql/mysql.conf.d/mysql.cnf", {st_mode=S_IFREG|0644, st_size=132, ...}, 0) = 0
+		#openat(AT_FDCWD, "/etc/mysql/mysql.conf.d/mysql.cnf", O_RDONLY) = 4
+		#newfstatat(AT_FDCWD, "/etc/mysql/mysql.conf.d/mysqld.cnf", {st_mode=S_IFREG|0644, st_size=2220, ...}, 0) = 0
+		#openat(AT_FDCWD, "/etc/mysql/mysql.conf.d/mysqld.cnf", O_RDONLY) = 4
+		#newfstatat(AT_FDCWD, "/root/.my.cnf", 0x7ffea7b0bc80, 0) = -1 ENOENT (No such file or directory)
+		#newfstatat(AT_FDCWD, "/root/.mylogin.cnf", 0x7ffea7b0bc80, 0) = -1 ENOENT (No such file or directory)
+		#openat(AT_FDCWD, "/usr/lib/ssl/openssl.cnf", O_RDONLY) = 3
+		update-alternatives --config my.cnf
+		#Есть 2 варианта для альтернативы my.cnf (предоставляет /etc/mysql/my.cnf).
+		#Выбор   Путь                    Приор Состояние
+		#------------------------------------------------------------
+		#* 0            /etc/mysql/mysql.cnf         200       автоматический режим
+		#1            /etc/mysql/my.cnf.fallback   100       ручной режим
+		#2            /etc/mysql/mysql.cnf         200       ручной режим
+
+
+	# deadlock
 
 ```
 
@@ -201,24 +241,57 @@
 ### postgresql
 
 ```bash
-# connect
-
-# create db
-# create user
-# create table
-# create index
-# change isolation level
-# backup/restore
-# tune cache
-# data path
-# config path
-# deadlock
+	# connect
+		su - postgres -c "psql -U mo_user mo_db"
+	# create db
+		su - postgres -c "createdb --encoding=UNICODE --owner=mo_user mo_db"
+	# create user
+		su - postgres -c "createuser --pwprompt --encrypted --no-adduser --no-createdb --no-createrole --no-inherit mo_user"
+	# create table
+	# create index
+	# change isolation level
+	# backup/restore
+		sudo -U postgres -c "pg_dump $DBNAME | qzip > /distr/backup/$DBNAME_dump_`date`.gz"
+		pg_restore
+		#https://www.dbvis.com/thetable/a-complete-guide-to-pg_dump-with-examples-tips-and-tricks/
+	# tune cache
+		shared_buffers = 128MB                  # min 128kB
+		#huge_pages = try                       # on, off, or try
+		#huge_page_size = 0                     # zero for system default
+		#temp_buffers = 8MB                     # min 800kB
+		#max_prepared_transactions = 0          # zero disables the feature
+		#work_mem = 4MB                         # min 64kB
+		#hash_mem_multiplier = 2.0              # 1-1000.0 multiplier on hash table work_mem
+		#maintenance_work_mem = 64MB            # min 1MB
+		#autovacuum_work_mem = -1               # min 1MB, or -1 to use maintenance_work_mem
+		#logical_decoding_work_mem = 64MB       # min 64kB
+		#max_stack_depth = 2MB                  # min 100kB
+	# data path
+	# config path
+		#https://www.postgresql.org/docs/current/runtime-config-file-locations.html
+		sudo -u postgres psql -c 'SHOW config_file'
+		#               config_file
+		#-----------------------------------------
+		# /etc/postgresql/16/main/postgresql.conf
+	# deadlock
 
 ```
+
+ *  schema
+	* Включает в себя таблицы, операторы, функции. Изолирует пространство имён.
+
 
 ## gitlab ci/cd
 
 
+## ubuntu
+
+```bash
+	snap services
+	snap stop --disable docker
+	systemctl list-units --type=service
+
+```
 
 ## monitoring
 

@@ -38,6 +38,20 @@
 ## утилиты
 
  * https://github.com/NikolayS/postgres_dba
+ * https://github.com/bucardo/check_postgres
+ * https://gitlab.com/postgres-ai/postgres-checkup
+    * Jehan-Guillaume (ioguix) de Rorthais https://github.com/ioguix/pgsql-bloat-estimation
+    * Alexey Lesovsky, Alexey Ermakov, Maxim Boguk, Ilya Kosmodemiansky et al. from Data Egret (aka PostgreSQL-Consulting) https://github.com/dataegret/pg-utils
+    * Josh Berkus, Quinn Weaver et al. from PostgreSQL Experts, Inc. https://github.com/pgexperts/pgx_scripts
+
+## monitoring
+
+ * https://gitlab.com/postgres-ai/postgres-guides
+
+## SQL style guide
+
+ * https://docs.telemetry.mozilla.org/concepts/sql_style.html
+ * https://www.sqlstyle.guide/
 
 ## postgres remote access
 

@@ -4,25 +4,15 @@
 
  * безопастность-уведомления-уведомлять о неудачных попытках входа-админ
  * логин на главной
-
-```
-Site Admin > Security > Site Policies > Force users to login
-```
-
+	* Site Admin > Security > Site Policies > Force users to login
  * Заблокировать изменение имени/фамилии
  * http://portal.dulubs.ru/admin/auth_config.php?auth=manual
  * В начало  Администрирование Плагины  Аутентификация  Ручная регистрация
  * оценки за тест по всем ученикам --> вкладка отчёт на тесте
  * добавить группу --> курс - manage - +user - добавить глобальную группу(перед этим переключить её контекст)
-
-```
-    Home /    Site administration /    Plugins /    Activity modules /    Manage activities
-```
+	* Home /    Site administration /    Plugins /    Activity modules /    Manage activities
  * отключить изображения пользователей
-
-```
- В начало / ► Администрирование / ► Безопасность / ► Политика безопасности сайта
-```
+	* В начало / ► Администрирование / ► Безопасность / ► Политика безопасности сайта
 
 ## upgrade
 
@@ -89,7 +79,7 @@ chmod -R u=rwX,g=rwX,o=rX /home/mo_user/moodle
 
  * (files are owned by the administrator/superuser and are only writeable by them - readable by everyone else)
  * If you want to use the built-in plugin installer you need to make the directory writable by web server user.
- * It is strongly recommended to use ACL when your server supports it, for example if your Apache 
+ * It is strongly recommended to use ACL when your server supports it, for example if your Apache
  * server uses account www-data:
 
 ```bash
@@ -97,7 +87,7 @@ chmod -R +a "www-data allow read,delete,write,append,file_inherit,directory_inhe
 ```
 
 
-If you are planning to execute PHP scripts from the command line you should set the same permissions 
+If you are planning to execute PHP scripts from the command line you should set the same permissions
 for the current user:
 
 ```bash
@@ -121,4 +111,4 @@ usermod -s /sbin/nologin www-data
  * mkdir /usr/local/src/moodle/plugins/om/
  * cd /usr/local/src/moodle/plugins/om/
  * wget http://mirror.quintex.com/apache/incubator/openmeetings/moodle-plugin-1.4-incubating/apache-openmeetings-moodle-plugin-incubating-1.4.tar.gz
- * После этого нужно указать учетные данные администратора OpenMeetings в интерфейсе настроек планига в Moodle 
+ * После этого нужно указать учетные данные администратора OpenMeetings в интерфейсе настроек планига в Moodle
