@@ -2,8 +2,28 @@
 
 
  * configuration management
+	* packer+pxe
+	* argoCD
  * https://galaxy.ansible.com/ui/search/?keywords=nginx
  * https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_intro.html#playbook-syntax
+ * [Андрей Девяткин — Почему я советую людям не учить Ansible - 2021](https://youtu.be/vTLHuyYAswo?t=738)
+
+ * основная проблема - ползучие недокументированные изменения
+ * выход - переложить изменения в скрипты и регулярно проверять накатываемость конфигурации с нуля
+ * инструмент расследования - filesystem snapshot diff, версионируемые ФС
+ * https://12factor.net/ru/
+	* Одна кодовая база, отслеживаемая в системе контроля версий, - множество развёртываний
+	* Явно объявляйте и изолируйте зависимости
+	* Сохраняйте конфигурацию в ENV переменных
+	* Сделайте сторонние службы подключаемыми ресурсами
+	* Строго разделяйте стадии build release deploy
+	* СДелайте stateless приложение
+	* Экспортируйте сервисы через привязку портов
+	* Масштабируйте приложение с помощью изолируемых процессов, а не потоков
+	* Максимизируйте надёжность с помощью быстрого запуска и корректного завершения работы
+	* Держите окружения dev/staging/production максимально похожими
+	* Рассматривайте журнал как поток событий
+	* Выполняйте задачи администрирования/управления с помощью разовых процессов
 
 ## performance
 
@@ -25,6 +45,15 @@ https://www.redhat.com/sysadmin/faster-ansible-playbook-execution
 7. Use execution strategies
 8. Use async tasks
 
+## install
+
+
+```bash
+
+#https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#create-and-use-virtual-environments
+
+
+```
 
 ## sec
 
