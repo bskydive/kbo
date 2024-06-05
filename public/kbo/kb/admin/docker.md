@@ -109,15 +109,15 @@
 
 ## cli
 
-```bash
-curl -s --unix-socket /var/run/docker.sock http://localhost/containers/json | jq .
-curl --unix-socket /var/run/docker.sock -XPOST http://localhost/containers/bdeee2239e44b563939d7122ee3f73c0b27923de53bb212076ad62471b3b2098/stop
-docker ps
-docker run -v /:/host <образ> #смонтировать в контейнере корень хоста
-docker run -itd --name ubuntu1 ubuntu:22.04 # запуск контейнера
-dockerenjoyer@ubuntu:~$ docker exec -it ubuntu1 bash # запуск консоли внутри контейнера
-
-```
+ * https://docs.docker.com/reference/cli/docker/container/run/
+	```bash
+		curl -s --unix-socket /var/run/docker.sock http://localhost/containers/json | jq .
+		curl --unix-socket /var/run/docker.sock -XPOST http://localhost/containers/bdeee2239e44b563939d7122ee3f73c0b27923de53bb212076ad62471b3b2098/stop
+		docker ps
+		docker run -v /:/host <образ> #смонтировать в контейнере корень хоста
+		docker run -itd --name ubuntu1 ubuntu:22.04 # запуск контейнера
+		dockerenjoyer@ubuntu:~$ docker exec -it ubuntu1 bash # запуск консоли внутри контейнера
+	```
 
  * https://docs.docker.com/reference/cli/docker/image/build/#target
  * https://docs.docker.com/reference/cli/docker/compose/#use-profiles-to-enable-optional-services
@@ -577,7 +577,11 @@ volumes:
 	* azure
 	* redhat quey
 	* Harbor
-
+ * зеркала
+	```bash
+	#/etc/docker/daemon.json
+	"registry-mirrors": ["cr.yandex.ru/mirror"]
+	```
 
 ## security
 
@@ -588,6 +592,14 @@ volumes:
 	* Deactivate users
 	* Re-activate users
 	* Group mapping
+ * [Escalate container privileges (--privileged)](https://docs.docker.com/reference/cli/docker/container/run/#privileged)
+	* Enables all Linux kernel capabilities
+    * Disables the default seccomp profile
+    * Disables the default AppArmor profile
+    * Disables the SELinux process label
+    * Grants access to all host devices
+    * Makes /sys read-write
+    * Makes cgroups mounts read-write
  * [Основы безопасности в Docker-контейнерах](https://selectel.ru/blog/courses/docker-security/)
 	*
  * [Часто забываемые правила безопасности Docker: заметки энтузиаста ИБ](https://habr.com/ru/company/dataline/blog/567790/)

@@ -143,7 +143,8 @@
 ##  инфраструктура
 
  * [https://habrahabr.ru/post/319582/](https://habrahabr.ru/post/319582/)
-
+ * https://lachlanwhite.com/posts/medium/21-01-20-visualising-a-cloud-native-operating-model/21-1-20-visualising-a-cloud-native-operating-model-for-enterprise-adoption/
+ * ![](./devops/cloud_native.jpg)
 ##  автоматизация
 
  * [Пересмотренное руководство по Grunt для начинающих - 2014](https://habrahabr.ru/post/244721/)
