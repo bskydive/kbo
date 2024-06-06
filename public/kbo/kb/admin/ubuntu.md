@@ -29,3 +29,14 @@
 
 		aptitude install language-pack-kde-ru firefox-locale-ru libreoffice-l10n-ru libreoffice-help-ru thunderbird-locale-ru
 	```
+
+ * `aptitude search`
+	* first character - current state of the package
+		* p - no trace of the package exists on the system, c - the package was deleted but its configuration files remain on the system
+		* i - installed
+		* v - virtual
+	* second character - stored action to be performed
+		* i - installed
+		* d - deleted
+		* p - the package and its configuration files will be removed.
+		* A - automatically installed

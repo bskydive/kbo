@@ -173,6 +173,11 @@
 
  * [kubernetes](./kubernetes.md)
 
+## gitlab ce
+
+ * https://about.gitlab.com/install/
+ * https://docs.gitlab.com/ee/install/docker.html
+
 ## docker
 
  * [docker](./docker.md)

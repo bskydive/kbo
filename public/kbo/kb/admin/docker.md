@@ -107,6 +107,106 @@
  * https://docs.docker.com/build/building/multi-stage/
  * Используйте инструкцию COPY вместо ADD, т.к. add может выполнять команды распаковки
 
+## install
+
+ * https://docs.docker.com/engine/install/ubuntu/
+
+```bash
+	# Add Docker's official GPG key:
+	apt-get update
+	apt-get install ca-certificates curl
+	install -m 0755 -d /etc/apt/keyrings
+	curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+	chmod a+r /etc/apt/keyrings/docker.asc
+
+	# Add the repository to Apt sources:
+	cat >> /etc/apt/sources.list.d/docker.list
+
+	deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu noble stable
+
+
+	apt-get update
+	apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+	cat /etc/docker/docker.json
+
+	docker run hello-world
+```
+ * https://docs.docker.com/engine/install/linux-postinstall/
+
+```bash
+	usermod -aG docker $USER
+	chown "$USER":"$USER" /home/"$USER"/.docker -R
+	chmod g+rwx "$HOME/.docker" -R
+	systemctl enable docker.service
+	systemctl enable containerd.service
+```
+ * https://docs.docker.com/config/containers/logging/json-file/
+ * https://docs.docker.com/reference/cli/dockerd/#daemon-configuration-file
+
+```bash
+	dockerd --validate --config-file=/etc/docker/daemon.json
+	configuration OK
+	ll /var/snap/docker/current/config/daemon.json
+	ll /etc/docker/daemon.json
+```
+
+ * alias
+
+	```bash
+		zypper in docker python3-docker-compose
+		# allow in firewall docker-swarm and docker-registry
+		systemctl enable docker
+		cd ./docker
+		docker build -t dff docker-foo-frontend
+		docker build -t dfb docker-foo-backend
+		alias ffrs="docker rm dff; docker run -p 4200:4200 --name dff docker-foo-frontend; docker ps"
+		alias fbrs="docker rm dfb; docker run -p 5000:5000 --name dff docker-foo-backend; docker ps"
+		alias ffr="docker start dff; docker ps"
+		alias fbr="docker start dfb; docker ps"
+		alias ds="docker stop dff dfb; docker ps"
+
+		alias dcr="docker-compose down && docker volume prune && docker-compose up -d"
+		alias dcd="docker-compose down"
+		alias dcpu="docker-compose pull"
+		alias dpr="docker volume prune"
+		alias dps="docker ps"
+		alias dpsa="docker ps -a"
+		alias di="docker images -a"
+		alias dpsf="docker ps -a --format 'table {{.ID}}\t{{.Image}}\t{{.Ports}}\t{{.State}}'"
+	```
+
+### registry
+
+ * --disable-content-trust
+ * https://docs.docker.com/reference/cli/dockerd/#insecure-registries
+ * cloud docker registry
+ 	* AWS ECR/ECS
+	* azure
+	* redhat quey
+	* Harbor
+ * [зеркала](https://docs.docker.com/docker-hub/mirror/?highlight=mirror#configure-the-docker-daemon)
+ * https://tproger.ru/articles/docker-hub-v-rossii---vse--gajd--kak-obojti-blokirovku
+
+```bash
+	cat >> /etc/docker/daemon.json
+{
+	"registry-mirrors": [
+		"https://cr.yandex.ru/mirror",
+		"https://mirror.gcr.io",
+		"https://registry.gitversвe.ru",
+		"https://dockerhub.timeweb.cloud/",
+		"https://dockerhub1.beget.com",
+		"https://daocloud.io",
+		"https://c.163.com",
+		"https://registry.docker-cn.com"
+	],
+	"add-registry": ["192.168.100.100:5001"],
+	"block-registry": ["docker.io"],
+}
+```
+ * https://stackoverflow.com/questions/33054369/how-to-change-the-default-docker-registry-from-docker-io-to-my-private-registry
+
 ## cli
 
  * https://docs.docker.com/reference/cli/docker/container/run/
@@ -568,19 +668,37 @@ volumes:
 	* папка на хосте
 	* https://docs.docker.com/compose/compose-file/build/#context
 
-## registry
+### container
 
- * --disable-content-trust
+ * https://docs.docker.com/reference/cli/docker/container/commit/
+ * https://docs.docker.com/reference/cli/docker/container/diff/
 
- * cloud docker registry
- 	* AWS ECR/ECS
-	* azure
-	* redhat quey
-	* Harbor
- * зеркала
+```bash
+docker diff 1fdfd1f54c1b
+# A	A file or directory was added
+# D	A file or directory was deleted
+# C	A file or directory was changed
+
+```
+
+### cleanup
+
+ * https://docs.docker.com/config/pruning/#prune-everything
+ * https://docs.docker.com/config/pruning/#prune-volumes
+ * [How to cleanup unused resources](https://gist.github.com/bastman/5b57ddb3c11942094f8d0a97d461b430)
+
 	```bash
-	#/etc/docker/daemon.json
-	"registry-mirrors": ["cr.yandex.ru/mirror"]
+		docker images
+		docker images -a
+		docker rmi 800e8b15fa9b
+		# Error response from daemon: conflict: unable to delete 800e8b15fa9b (must be forced) - image is being used by stopped container d0e2e5f44b23
+		docker rm d0e2e5f44b23
+
+		ls /var/lib/docker/volumes
+		docker volume prune
+
+		docker logs $id
+		docker inspect $id
 	```
 
 ## security
@@ -641,47 +759,6 @@ volumes:
  * запуск не от рута, без демона [kaniko](https://github.com/GoogleContainerTools/kaniko)
 	* [Создание образов Docker, без Docker, с использованием Kaniko + Gitlab CI и AWS - 2023](https://teletype.in/@bh_cat/9GeFQhwtf06)
 	* https://github.com/GoogleContainerTools/kaniko/blob/main/docs/tutorial.md
- * install
-
-	```bash
-		zypper in docker python3-docker-compose
-		# allow in firewall docker-swarm and docker-registry
-		systemctl enable docker
-		cd ./docker
-		docker build -t dff docker-foo-frontend
-		docker build -t dfb docker-foo-backend
-		alias ffrs="docker rm dff; docker run -p 4200:4200 --name dff docker-foo-frontend; docker ps"
-		alias fbrs="docker rm dfb; docker run -p 5000:5000 --name dff docker-foo-backend; docker ps"
-		alias ffr="docker start dff; docker ps"
-		alias fbr="docker start dfb; docker ps"
-		alias ds="docker stop dff dfb; docker ps"
-
-		alias dcr="docker-compose down && docker volume prune && docker-compose up -d"
-		alias dcd="docker-compose down"
-		alias dcpu="docker-compose pull"
-		alias dpr="docker volume prune"
-		alias dps="docker ps"
-		alias dpsa="docker ps -a"
-		alias di="docker images -a"
-		alias dpsf="docker ps -a --format 'table {{.ID}}\t{{.Image}}\t{{.Ports}}\t{{.State}}'"
-	```
-
- * [How to cleanup unused resources](https://gist.github.com/bastman/5b57ddb3c11942094f8d0a97d461b430)
-
-	```bash
-		docker images
-		docker images -a
-		docker rmi 800e8b15fa9b
-		# Error response from daemon: conflict: unable to delete 800e8b15fa9b (must be forced) - image is being used by stopped container d0e2e5f44b23
-		docker rm d0e2e5f44b23
-
-		ls /var/lib/docker/volumes
-		docker volume prune
-
-		docker logs $id
-		docker inspect $id
-	```
-
  * https://www.cisecurity.org/benchmark/docker
  * https://github.com/docker/docker-bench-security
  * https://github.com/CISOfy/lynis
