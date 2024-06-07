@@ -27,72 +27,12 @@ MaxRequestsPerChild  4000
 StartServers         2
 MaxClients         300
 MinSpareThreads     2
-MaxSpareThreads     75 
+MaxSpareThreads     75
 ThreadsPerChild     5
 MaxRequestsPerChild  0
 </IfModule>
 
 ```
-
-## datetime 
-
-### ntpd
-
-```bash
-# ntpdate -d ru.pool.ntp.org
-# ntpdate ntp1.stratum1.ru
-# mcedit /etc/ntp.conf
-logfile /var/log/ntp.log
-server ntp1.stratum1.ru iburst burst prefer
-server ntp1.stratum2.ru iburst burst 
-server ntp2.stratum2.ru iburst burst
-server ntp4.stratum2.ru iburst burst
-server ntp1.vniiftri.ru iburst burst
-server ntp2.vniiftri.ru iburst burst
-server ntp3.vniiftri.ru iburst burst
-server ntp4.vniiftri.ru iburst burst
-
-
-Создаем симлинк для нужного часового пояса в /etc/localtime:
-
-# cp -sf /usr/share/zoneinfo/Europe/Moscow /etc/localtime
-
-Теперь время синхронизирует корректно.
-Далее выставляем время в BIOS равное времени в UTC (время по Гринвичу):
-
-# hwclock --systohc --utc
-
-Для того, чтобы время системы не устанавливалось равным времени в BIOS, а правильно показывало в соответствии с часовым поясом редактируем файл /etc/sysconfig/clock как показано ниже:
-
-ZONE="Europe/Moscow"
-UTC=true
-ARC=false
-
-# chkconfig --level 2345 ntpd on
-
-проверка демона:
-# ntpq -p
-     remote           refid      st t when poll reach   delay   offset  jitter
-==============================================================================
- ns.davydkovo.ne 89.109.251.21    2 u    1   64    1    3.784  -65.046   0.000
-
-
-```
-
-### tzdata
-
-перевод часов
-
-```bash
- zdump -v Europe/Moscow |grep 2014
-Europe/Moscow  Sat Oct 25 21:59:59 2014 UT = Sun Oct 26 01:59:59 2014 MSK isdst=0 gmtoff=14400
-Europe/Moscow  Sat Oct 25 22:00:00 2014 UT = Sun Oct 26 01:00:00 2014 MSK isdst=0 gmtoff=10800
-# strings /etc/localtime | grep MSK
-MSK-3
-
-```
-
-
 
 ## vnstat
 
@@ -103,24 +43,24 @@ yum install vnstat
 vnstat --oneline
 1;eth0;08/30/14;38 KiB;41 KiB;79 KiB;0.08 kbit/s;Aug '14;38 KiB;41 KiB;79 KiB;0.00 kbit/s;38 KiB;41 KiB;79 KiB
 
-Show traffic summary for selected interface using one line with a parseable format. 
+Show traffic summary for selected interface using one line with a parseable format.
 The output contains 15 fields with ; used as field delimeter. The 1st field contains
-the version information of the output that will be changed in future versions of 
-vnStat if the field structure changes. 
-The following fields in order 
+the version information of the output that will be changed in future versions of
+vnStat if the field structure changes.
+The following fields in order
 2) interface name,
-3) timestamp  for  today,  
-4) rx  for today, 
-5) tx for today, 
-6) total for today, 
-7) average traffic rate for today, 
-8) timestamp for current month, 
-9) rx for current month, 
-10) tx for current month, 
-11) total for current month, 
-12) average traffic rate for today, 
-13) all time total rx, 
-14) all time total tx, 
+3) timestamp  for  today,
+4) rx  for today,
+5) tx for today,
+6) total for today,
+7) average traffic rate for today,
+8) timestamp for current month,
+9) rx for current month,
+10) tx for current month,
+11) total for current month,
+12) average traffic rate for today,
+13) all time total rx,
+14) all time total tx,
 15) all time total traf-fic.
 
 ```
@@ -215,7 +155,7 @@ http://www.catonmat.net/blog/ten-awk-tips-tricks-and-pitfalls/
 
 ```bash
 
-# mcedit /etc/selinux/config 
+# mcedit /etc/selinux/config
 disabled
 # setenforce 0
 
@@ -223,15 +163,15 @@ disabled
 # yum install zabbix-server-pgsql zabbix-web-pgsql --disablerepo=ius ##php54 conflicts php53
 
 Installed:
-  zabbix-agent.x86_64 0:2.2.6-1.el6                              zabbix-server-pgsql.x86_64 0:2.2.6-1.el6                              zabbix-web-pgsql.noarch 0:2.2.6-1.el6                             
+  zabbix-agent.x86_64 0:2.2.6-1.el6                              zabbix-server-pgsql.x86_64 0:2.2.6-1.el6                              zabbix-web-pgsql.noarch 0:2.2.6-1.el6
 Dependency Installed:
-  OpenIPMI-libs.x86_64 0:2.0.16-14.el6                  apr-util-ldap.x86_64 0:1.3.9-3.el6_0.1         dejavu-fonts-common.noarch 0:2.30-2.el6         dejavu-sans-fonts.noarch 0:2.30-2.el6            
-  fontpackages-filesystem.noarch 0:1.41-1.1.el6         fping.x86_64 0:3.10-1.el6.rf                   httpd.x86_64 0:2.2.15-31.el6.centos             httpd-tools.x86_64 0:2.2.15-31.el6.centos        
-  iksemel.x86_64 0:1.4-2.el6                            libXpm.x86_64 0:3.5.10-2.el6                   libxslt.x86_64 0:1.1.26-2.el6_3.1               lm_sensors-libs.x86_64 0:3.1.1-17.el6            
-  net-snmp.x86_64 1:5.5-49.el6_5.2                      net-snmp-libs.x86_64 1:5.5-49.el6_5.2          php.x86_64 0:5.3.3-27.el6_5.1                   php-bcmath.x86_64 0:5.3.3-27.el6_5.1             
-  php-cli.x86_64 0:5.3.3-27.el6_5.1                     php-common.x86_64 0:5.3.3-27.el6_5.1           php-gd.x86_64 0:5.3.3-27.el6_5.1                php-mbstring.x86_64 0:5.3.3-27.el6_5.1           
-  php-pdo.x86_64 0:5.3.3-27.el6_5.1                     php-pgsql.x86_64 0:5.3.3-27.el6_5.1            php-xml.x86_64 0:5.3.3-27.el6_5.1               unixODBC.x86_64 0:2.2.14-12.el6_3                
-  zabbix.x86_64 0:2.2.6-1.el6                           zabbix-server.x86_64 0:2.2.6-1.el6             zabbix-web.noarch 0:2.2.6-1.el6                
+  OpenIPMI-libs.x86_64 0:2.0.16-14.el6                  apr-util-ldap.x86_64 0:1.3.9-3.el6_0.1         dejavu-fonts-common.noarch 0:2.30-2.el6         dejavu-sans-fonts.noarch 0:2.30-2.el6
+  fontpackages-filesystem.noarch 0:1.41-1.1.el6         fping.x86_64 0:3.10-1.el6.rf                   httpd.x86_64 0:2.2.15-31.el6.centos             httpd-tools.x86_64 0:2.2.15-31.el6.centos
+  iksemel.x86_64 0:1.4-2.el6                            libXpm.x86_64 0:3.5.10-2.el6                   libxslt.x86_64 0:1.1.26-2.el6_3.1               lm_sensors-libs.x86_64 0:3.1.1-17.el6
+  net-snmp.x86_64 1:5.5-49.el6_5.2                      net-snmp-libs.x86_64 1:5.5-49.el6_5.2          php.x86_64 0:5.3.3-27.el6_5.1                   php-bcmath.x86_64 0:5.3.3-27.el6_5.1
+  php-cli.x86_64 0:5.3.3-27.el6_5.1                     php-common.x86_64 0:5.3.3-27.el6_5.1           php-gd.x86_64 0:5.3.3-27.el6_5.1                php-mbstring.x86_64 0:5.3.3-27.el6_5.1
+  php-pdo.x86_64 0:5.3.3-27.el6_5.1                     php-pgsql.x86_64 0:5.3.3-27.el6_5.1            php-xml.x86_64 0:5.3.3-27.el6_5.1               unixODBC.x86_64 0:2.2.14-12.el6_3
+  zabbix.x86_64 0:2.2.6-1.el6                           zabbix-server.x86_64 0:2.2.6-1.el6             zabbix-web.noarch 0:2.2.6-1.el6
 
 mkdir /home/zabbix
 chown zabbix:zabbix /home/zabbix
@@ -244,8 +184,8 @@ echo "SSHKeyLocation=/home/zabbix/.ssh" >> /etc/zabbix/zabbix_server.conf
 # mcedit /var/lib/pgsql/data/pg_hba.conf
     local   zabbix      zabbix                            md5
 
-#   su - postgres -c "createuser --pwprompt --encrypted --no-adduser --no-createdb --no-createrole --no-inherit zabbix" 
-#   su - postgres -c "createdb --encoding=UNICODE --owner=zabbix zabbix" 
+#   su - postgres -c "createuser --pwprompt --encrypted --no-adduser --no-createdb --no-createrole --no-inherit zabbix"
+#   su - postgres -c "createdb --encoding=UNICODE --owner=zabbix zabbix"
 
 #  cd /usr/share/doc/zabbix-server-pgsql-2.2.6/create/
 #  cat schema.sql|  su - postgres -c "psql -U zabbix zabbix"

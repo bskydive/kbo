@@ -177,6 +177,7 @@
 
  * https://about.gitlab.com/install/
  * https://docs.gitlab.com/ee/install/docker.html
+ * https://hub.docker.com/r/gitlab/gitlab-ce/tags/
 
 ## docker
 
@@ -305,6 +306,73 @@
 ss -lptn 'sport = :53' #socket
 
 ```
+
+## datetime
+
+### ntpd
+
+```bash
+	ntpdate -d ru.pool.ntp.org
+	ntpdate ntp1.stratum1.ru
+	mcedit /etc/ntp.conf
+	#logfile /var/log/ntp.log
+	#server ntp1.stratum1.ru iburst burst prefer
+	#server ntp1.stratum2.ru iburst burst
+	#server ntp2.stratum2.ru iburst burst
+	#server ntp4.stratum2.ru iburst burst
+	#server ntp1.vniiftri.ru iburst burst
+	#server ntp2.vniiftri.ru iburst burst
+	#server ntp3.vniiftri.ru iburst burst
+	#server ntp4.vniiftri.ru iburst burst
+
+
+	#Создаем симлинк для нужного часового пояса в /etc/localtime:
+	cp -sf /usr/share/zoneinfo/Europe/Moscow /etc/localtime
+
+	#Далее выставляем время в BIOS равное времени в UTC (время по Гринвичу):
+
+	hwclock --systohc --utc
+
+	#Для того, чтобы время системы не устанавливалось равным времени в BIOS, а правильно показывало в соответствии с часовым поясом редактируем файл
+
+	mcedit /etc/sysconfig/clock
+	#ZONE="Europe/Moscow"
+	#UTC=true
+	#ARC=false
+
+	chkconfig --level 2345 ntpd on
+
+	#проверка демона:
+	ntpq -p
+		remote           refid      st t when poll reach   delay   offset  jitter
+	==============================================================================
+	ns.davydkovo.ne 89.109.251.21    2 u    1   64    1    3.784  -65.046   0.000
+```
+
+### tzdata
+
+перевод часов
+
+```bash
+	zdump -v Europe/Moscow |grep 2014
+	#Europe/Moscow  Sat Oct 25 21:59:59 2014 UT = Sun Oct 26 01:59:59 2014 MSK isdst=0 gmtoff=14400
+	#Europe/Moscow  Sat Oct 25 22:00:00 2014 UT = Sun Oct 26 01:00:00 2014 MSK isdst=0 gmtoff=10800
+	strings /etc/localtime | grep MSK
+	#MSK-3
+
+```
+
+### chrony
+
+*https://stackoverflow.com/questions/49730407/how-to-do-one-shot-time-sync-using-chrony
+
+```bash
+chronyd -q 'pool pool.ntp.org iburst'
+
+keyfile /etc/chrony.keys
+chronyc -a makestep
+```
+
 
 ## security
 

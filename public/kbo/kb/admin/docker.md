@@ -186,20 +186,21 @@
 	* redhat quey
 	* Harbor
  * [зеркала](https://docs.docker.com/docker-hub/mirror/?highlight=mirror#configure-the-docker-daemon)
+ * [Блокировка Docker Hub для России. Без паники разбираемся как работать дальше](https://habr.com/ru/articles/818565/)
  * https://tproger.ru/articles/docker-hub-v-rossii---vse--gajd--kak-obojti-blokirovku
 
 ```bash
 	cat >> /etc/docker/daemon.json
 {
 	"registry-mirrors": [
-		"https://cr.yandex.ru/mirror",
+		#"https://cr.yandex.ru/mirror", #нужна учётка yandex.cloud
 		"https://mirror.gcr.io",
-		"https://registry.gitversвe.ru",
+		"https://registry.gitverse.ru",
 		"https://dockerhub.timeweb.cloud/",
 		"https://dockerhub1.beget.com",
-		"https://daocloud.io",
-		"https://c.163.com",
-		"https://registry.docker-cn.com"
+		#"https://daocloud.io", #slow
+		#"https://c.163.com",
+		#"https://registry.docker-cn.com"
 	],
 	"add-registry": ["192.168.100.100:5001"],
 	"block-registry": ["docker.io"],
@@ -730,6 +731,7 @@ docker diff 1fdfd1f54c1b
 			RUN groupadd -r myuser && useradd -r -g myuser
 			#<Здесь еще можно выполнять команды от root-пользователя, например, ставить пакеты>
 			USER myuser
+			# https://docs.docker.com/reference/dockerfile/#user
 		```
 	*
 	```bash
