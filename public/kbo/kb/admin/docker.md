@@ -326,11 +326,28 @@ docker run -e "deep=purple" -e today --rm alpine env
 				"max-size": "10m",
 				"max-file": "3",
 				"labels": "production_status",
-				"env": "os,customer"
+				"env": "os,customer",
+				"mode": "non-blocking",
+				"tag":"{{.ImageName}}/{{.Name}}/{{.ID}}"
 			}
 		}
 
+	docker ps -qa | xargs docker inspect --format='{{.LogPath}}' | xargs ls -hl
+	#https://stackoverflow.com/questions/33017329/where-is-a-log-file-with-logs-from-a-container
 ```
+	* none - No logs are available for the container and docker logs does not return any output.
+	* local - Logs are stored in a custom format designed for minimal overhead.
+	* json - file	The logs are formatted as JSON. The default logging driver for Docker.
+	* syslog - Writes logging messages to the syslog facility. The syslog daemon must be running on the host machine.
+	* journald - Writes log messages to journald. The journald daemon must be running on the host machine.
+	* gelf - Writes log messages to a Graylog Extended Log Format (GELF) endpoint such as Graylog or Logstash.
+	* fluentd - Writes log messages to fluentd (forward input). The fluentd daemon must be running on the host machine.
+	* awslogs - Writes log messages to Amazon CloudWatch Logs.
+	* splunk - Writes log messages to splunk using the HTTP Event Collector.
+	* etwlogs - Writes log messages as Event Tracing for Windows (ETW) events. Only available on Windows platforms.
+	* gcplogs - Writes log messages to Google Cloud Platform (GCP) Logging.
+ * https://docs.docker.com/reference/cli/docker/compose/logs/
+ * https://docs.docker.com/compose/compose-file/05-services/#logging
 
 ## monitoring
 
@@ -345,6 +362,12 @@ docker run -e "deep=purple" -e today --rm alpine env
 	* map
 	* array
 	* .env
+ * https://docs.docker.com/reference/cli/docker/compose/config/
+ * validate
+
+```bash
+	docker-compose -f /path/to/the/docker-compose.yaml config --quiet && echo OKOK
+```
 
 ### шаблоны конфигов
 
@@ -485,10 +508,15 @@ docker run -e "deep=purple" -e today --rm alpine env
 
 ### networks
 
+* https://blog.oddbit.com/post/2014-08-11-four-ways-to-connect-a-docker/
 * https://docs.docker.com/compose/compose-file/05-services/#networks
-* external: true|false
-* internal: true|false
-*
+	* external: true|false
+	* internal: true|false
+* https://docs.docker.com/network/drivers/macvlan/
+* https://docs.docker.com/network/drivers/ipvlan/
+* https://training.play-with-docker.com/docker-networking-hol/
+* https://stackoverflow.com/questions/51873123/docker-container-with-dhcp-assigned-address
+* https://docs.docker.com/reference/cli/docker/container/run/#add-host
 *
 ```yaml
 	services:
@@ -500,9 +528,53 @@ docker run -e "deep=purple" -e today --rm alpine env
 			link_local_ips:
 			- 57.123.22.11
 			- 57.123.22.13
-	networks:
-	app_net:
-		driver: bridge
+        front_tier:
+		  ipv4_address: 172.16.238.10
+          ipv6_address: 2001:3984:3989::10
+
+networks:
+  front-tier:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.16.238.0/24"
+        - subnet: "2001:3984:3989::/64"
+  bridge-net:
+      driver: bridge
+    macvlan-net:
+      driver: macvlan
+      driver_opts:
+        #parent: "eth3"
+	  ipam:
+	    config:
+          - subnet: "192.168.0.0/24"
+          - gateway: "192.168.0.252"
+    ipvlan-net:
+      driver: ipvlan
+      driver_opts:
+        #parent: "eth3"
+        ipvlan_mode: l2
+	  ipam:
+	    config:
+          - subnet: "192.168.0.0/24"
+          - gateway: "192.168.0.252"
+
+```
+
+```bash
+docker network create -d ipvlan \
+    --subnet=192.168.0.0/24 \
+    --gateway=192.168.0.252 \
+    -o ipvlan_mode=l2 \
+    -o parent=eth3 ipvlan_net
+docker network create \
+  --driver=bridge \
+  --subnet=192.168.0./24 \
+  --gateway=192.168.0.252 \
+  bridge-net
+
+docker run --add-host=my-hostname=8.8.8.8
+
 ```
 
 ### хранилище
@@ -566,9 +638,9 @@ docker run -e "deep=purple" -e today --rm alpine env
 			foo
 	```
 
-### secrets
+### swarm secrets
 
-* swarm secret
+ * https://earthly.dev/blog/docker-secrets/
 
 ```yaml
 	services:

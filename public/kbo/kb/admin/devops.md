@@ -181,42 +181,53 @@
 
 ```bash
 
-cat >> /etc/hosts
-0.0.0.0 gitlab.example.com
-
-docker pull gitlab/gitlab-ce
-useradd -m -s /bin/bash gitlab
-sudo -u gitlab /bin/bash
-cat >> ~/data/docker-compose.yml
-
-version: '3.6'
+#version: '3.6'
 services:
   gitlab:
     image: gitlab/gitlab-ce
     container_name: gitlab
-    restart: always
-    hostname: 'gitlab.example.com'
-	#user: gitlab
+    restart: unless-stopped
+    hostname: 'gitlab'
+    #user: gitlab
     environment:
-	  GITLAB_HOME: '~/data'
-      #GITLAB_OMNIBUS_CONFIG: |
-        # Add any other gitlab.rb configuration here, each on its own line
-        #external_url 'https://gitlab.example.com'
+      #- GITLAB_OMNIBUS_CONFIG='https://gitlab'
+      - GITLAB_HOME='/home/gitlab/data'
     ports:
-      - '180:80'
-      - '1443:443'
-      - '122:22'
+      - '80:80'
+      - '443:443'
+      - '22:22'
     volumes:
       - '$GITLAB_HOME/config:/etc/gitlab'
       - '$GITLAB_HOME/logs:/var/log/gitlab'
       - '$GITLAB_HOME/data:/var/opt/gitlab'
     shm_size: '256m'
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "3"
+        labels: "TEST"
+        mode: "non-blocking"
+        tag: "{{.ImageName}}/{{.Name}}/{{.ID}}"
+    networks:
+      gitlab-net:
+        ipv4_address: 192.168.0.101
+networks:
+  gitlab-net:
+    driver: default
+    ipam:
+      config:
+        - subnet: "192.168.0.0/24"
+        #- gateway: "192.168.0.252"
+
 
 docker-compose run -u $(id gitlab -u):$(id gitlab -g) gitlab
 docker-compose up -d
 
-docker logs -f gitlab
+docker logs -f gitlab|less
 docker exec -it gitlab grep 'Password:' /etc/gitlab/initial_root_password
+# http://gitlab:180
+# root@pass
 docker exec -it gitlab /bin/bash
 docker exec -it gitlab editor /etc/gitlab/gitlab.rb
 docker restart gitlab
@@ -252,7 +263,8 @@ exec -t gitlab gitlab-backup create
 	# backup/restore
 		mysqldump
 	# tune cache
-		mysql -e "SHOW ENGINE INNODB STATUS"
+		mysql -e "SHOW ENGINE
+		INNODB STATUS"
 		#https://dev.mysql.com/doc/refman/8.4/en/innodb-buffer-pool.html
 	# data path
 	# config path
