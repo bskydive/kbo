@@ -61,6 +61,7 @@
 	* CRI - container runtime interface - образ
 	* OCI - open container initiative - API
  * движки
+	* https://docs.docker.com/engine/alternative-runtimes/
 	* CRI-O - k8s
 	* containerd
 	* runc(фундамент)
@@ -128,7 +129,7 @@
 	apt-get update
 	apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-	cat /etc/docker/docker.json
+	cat >> /etc/docker/daemon.json
 
 	docker run hello-world
 ```
@@ -136,8 +137,9 @@
 
 ```bash
 	usermod -aG docker $USER
-	chown "$USER":"$USER" /home/"$USER"/.docker -R
-	chmod g+rwx "$HOME/.docker" -R
+	mkdir ~/.docker
+	#chown "$USER":"$USER" /home/"$USER"/.docker -R
+	#chmod g+rwx ~/.docker -R
 	systemctl enable docker.service
 	systemctl enable containerd.service
 ```
@@ -175,6 +177,7 @@
 		alias di="docker images -a"
 		alias dpsf="docker ps -a --format 'table {{.ID}}\t{{.Image}}\t{{.Ports}}\t{{.State}}'"
 	```
+ * https://docs.docker.com/engine/security/rootless/
 
 ### registry
 
@@ -193,20 +196,26 @@
 	cat >> /etc/docker/daemon.json
 {
 	"registry-mirrors": [
-		#"https://cr.yandex.ru/mirror", #нужна учётка yandex.cloud
 		"https://mirror.gcr.io",
 		"https://registry.gitverse.ru",
 		"https://dockerhub.timeweb.cloud/",
-		"https://dockerhub1.beget.com",
+		"https://dockerhub1.beget.com"
+	],
+		#"https://cr.yandex.ru/mirror", #нужна учётка yandex.cloud
 		#"https://daocloud.io", #slow
 		#"https://c.163.com",
 		#"https://registry.docker-cn.com"
-	],
 	"add-registry": ["192.168.100.100:5001"],
 	"block-registry": ["docker.io"],
 }
 ```
  * https://stackoverflow.com/questions/33054369/how-to-change-the-default-docker-registry-from-docker-io-to-my-private-registry
+ *
+
+```bash
+	cat >> /etc/hosts
+	127.0.0.1 index.docker.io auth.docker.io registry-1.docker.io production.cloudflare.docker.com
+```
 
 ## cli
 
@@ -279,6 +288,50 @@
  * https://docs.docker.com/engine/extend/
  * `docker plugin ls`
 
+### ENV
+
+ * https://stackoverflow.com/questions/532155/linux-where-are-environment-variables-stored
+
+```bash
+	cat /proc/$PID/environ | tr '\0' '\n'
+```
+* https://docs.docker.com/compose/environment-variables/
+
+```
+services:
+  api:
+    image: 'node:6-alpine'
+    env_file:
+     - ./Docker/api/api.env
+    environment:
+     - NODE_ENV=production
+```
+ * https://docs.docker.com/engine/reference/run/#environment-variables
+
+ ```
+docker run -e "deep=purple" -e today --rm alpine env
+ ```
+
+## logging
+
+ * https://docs.docker.com/config/containers/logging/configure/
+
+```bash
+
+	cat >> /etc/docker/daemon.json
+
+		{
+			"log-driver": "json-file",
+			"log-opts": {
+				"max-size": "10m",
+				"max-file": "3",
+				"labels": "production_status",
+				"env": "os,customer"
+			}
+		}
+
+```
+
 ## monitoring
 
  * https://opentelemetry.io/docs/
@@ -292,6 +345,7 @@
 	* map
 	* array
 	* .env
+
 ### шаблоны конфигов
 
  * https://docs.docker.com/samples/
@@ -514,7 +568,8 @@
 
 ### secrets
 
-*
+* swarm secret
+
 ```yaml
 	services:
 		frontend:
@@ -525,9 +580,14 @@
 		server-certificate:
 			file: ./server.cert
 ```
+ * https://docs.docker.com/reference/cli/docker/secret/
 
-* `docker secrete create`-->`/run/secrets`
-* https://docs.docker.com/compose/use-secrets/
+```bash
+	docker secret create`-->`/run/secrets
+```
+ * https://blog.gitguardian.com/how-to-handle-secrets-in-docker/
+ * https://docs.docker.com/compose/compose-file/09-secrets/
+ * https://docs.docker.com/compose/use-secrets/
 
 ```yaml
 services:
@@ -681,6 +741,18 @@ docker diff 1fdfd1f54c1b
 # C	A file or directory was changed
 
 ```
+ * https://docs.docker.com/guides/docker-concepts/building-images/understanding-image-layers/
+```bash
+docker image history node-base
+#IMAGE          CREATED          CREATED BY                                      SIZE      COMMENT
+#d5c1fca2cdc4   10 seconds ago   /bin/bash                                       126MB     Add node
+#2b7cc08dcdbb   5 weeks ago      /bin/sh -c #(nop)  CMD ["/bin/bash"]            0B
+#<missing>      5 weeks ago      /bin/sh -c #(nop) ADD file:07cdbabf782942af0…   69.2MB
+#<missing>      5 weeks ago      /bin/sh -c #(nop)  LABEL org.opencontainers.…   0B
+#<missing>      5 weeks ago      /bin/sh -c #(nop)  LABEL org.opencontainers.…   0B
+#<missing>      5 weeks ago      /bin/sh -c #(nop)  ARG LAUNCHPAD_BUILD_ARCH     0B
+#<missing>      5 weeks ago      /bin/sh -c #(nop)  ARG RELEASE                  0B
+```
 
 ### cleanup
 
@@ -720,7 +792,7 @@ docker diff 1fdfd1f54c1b
     * Makes /sys read-write
     * Makes cgroups mounts read-write
  * [Основы безопасности в Docker-контейнерах](https://selectel.ru/blog/courses/docker-security/)
-	*
+	* https://docs.docker.com/engine/security/userns-remap/
  * [Часто забываемые правила безопасности Docker: заметки энтузиаста ИБ](https://habr.com/ru/company/dataline/blog/567790/)
 	* Ограничить доступ к сокету Docker Daemon. Владельцем сокет-файла должен быть пользователь root.
 	* Не прокидывать сокет в контейнер (Docker-in-Docker). для сборки можно использовать kaniko. для подписи образов можно использовать стороннюю систему и подключить ее через API.
