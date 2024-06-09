@@ -193,9 +193,9 @@ services:
       #- GITLAB_OMNIBUS_CONFIG='https://gitlab'
       - GITLAB_HOME='/home/gitlab/data'
     ports:
-      - '80:80'
-      - '443:443'
-      - '22:22'
+      - '180:80'
+      - '1443:443'
+      - '122:22'
     volumes:
       - '$GITLAB_HOME/config:/etc/gitlab'
       - '$GITLAB_HOME/logs:/var/log/gitlab'
@@ -209,16 +209,6 @@ services:
         labels: "TEST"
         mode: "non-blocking"
         tag: "{{.ImageName}}/{{.Name}}/{{.ID}}"
-    networks:
-      gitlab-net:
-        ipv4_address: 192.168.0.101
-networks:
-  gitlab-net:
-    driver: default
-    ipam:
-      config:
-        - subnet: "192.168.0.0/24"
-        #- gateway: "192.168.0.252"
 
 
 docker-compose run -u $(id gitlab -u):$(id gitlab -g) gitlab
@@ -233,7 +223,7 @@ docker exec -it gitlab editor /etc/gitlab/gitlab.rb
 docker restart gitlab
 
 exec -t gitlab gitlab-backup create
-
+g clone ssh://git@gitlab:122/group1/frontend.git
 
 ```
 
