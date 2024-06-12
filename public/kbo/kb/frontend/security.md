@@ -150,12 +150,14 @@ body {
 	```
  * [обзор видов авторизации](https://flowers-for-all.com/post/28443)
  * локальный стенд с ssl(необходимо разрешить https://localhost:4200 в настройках CORS серверов)
-  ```bash
+
+```bash
     mkdir ./util
-    openssl req -x509 -nodes -days 365 -newkey rsa:4096 -keyout ./util/nginx.key -out ./util/ssl.crt
+    #openssl req -x509 -nodes -days 365 -newkey rsa:4096 -keyout ./util/nginx.key -out ./util/ssl.crt
     npm run start:proxy:africa:ssl
     # https://localhost:4200/
-  ```
+```
+
  * JWT
 	* [Продвинутая JWT авторизация на React и Node js. Access, refresh, активация по почте](https://www.youtube.com/watch?v=fN25fMQZ2v0)
 		* access: 15 минут, хранится в localstorage

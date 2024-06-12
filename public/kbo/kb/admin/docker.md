@@ -637,6 +637,68 @@ docker run --add-host=my-hostname=8.8.8.8
 			--opt device=:/path/to/dir \
 			foo
 	```
+ * https://docs.docker.com/storage/bind-mounts/
+ * If you use -v or --volume to bind-mount a file or directory that does not yet exist on the Docker host, -v creates the endpoint for you. It is always created as a directory.
+ * If you use --mount to bind-mount a file or directory that does not yet exist on the Docker host, Docker does not automatically create it for you, but generates an error.
+```bash
+	docker run -d \
+	-it \
+	--name devtest \
+	--mount type=bind,source="$(pwd)"/target,target=/app \
+	nginx:latest
+	docker inspect devtest
+	#"Mounts": [
+	#    {
+	#        "Type": "bind",
+	#        "Source": "/tmp/source/target",
+	#        "Destination": "/app",
+	#        "Mode": "",
+	#        "RW": true,
+	#        "Propagation": "rprivate"
+	#    }
+	#],
+	docker run -d \
+	-it \
+	--name devtest \
+	--mount type=bind,source="$(pwd)"/target,target=/app,readonly \
+	nginx:latest
+
+```
+ * https://docs.docker.com/storage/bind-mounts/#use-a-bind-mount-with-compose
+
+```bash
+services:
+  frontend:
+    image: node:lts
+    volumes:
+      - type: bind
+        source: ./static
+        target: /opt/app/static
+volumes:
+  myapp:
+```
+ * https://docs.docker.com/compose/compose-file/05-services/#volumes
+ * https://docs.docker.com/compose/compose-file/07-volumes/
+
+```bash
+services:
+  backend:
+    image: example/database
+    volumes:
+      - db-data:/etc/data
+volumes:
+  example:
+	external: true
+	labels:
+	  com.example.description: "Database volume"
+	  com.example.department: "IT/Ops"
+	  com.example.label-with-empty-value: ""
+    name: ${DATABASE_VOLUME}
+	driver_opts:
+	  type: "nfs"
+	  o: "addr=10.40.0.199,nolock,soft,rw"
+	  device: ":/docker/example"
+```
 
 ### swarm secrets
 

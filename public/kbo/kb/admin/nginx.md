@@ -44,13 +44,14 @@
 
  * самоподписанный ключ [тыц](https://www.digitalocean.com/community/tutorials/how-to-create-an-ssl-certificate-on-nginx-for-ubuntu-14-04)
 
-	```bash
-		#putty
-		openssl req -x509 -nodes -days 365 -newkey rsa:4096 -keyout ./nginx.key -out ./nginx.crt
-		#для IIS
-		pkcs12 -export -out nginx_iis.pfx -inkey ./nginx.key -in nginx.crt -name 'nginx'
-
-	```
+```bash
+	#putty
+	openssl req -x509 -nodes -days 365 -newkey rsa:4096 -keyout ./nginx.key -out ./nginx.crt
+	#для IIS
+	pkcs12 -export -out nginx_iis.pfx -inkey ./nginx.key -in nginx.crt -name 'nginx'
+	#2023 openssl 1.1.1+
+	openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes -keyout gitlab.key -out gitlab.crt -subj "/CN=gitlab"
+```
 
  * [strict trabsport security](https://www.nginx.com/blog/http-strict-transport-security-hsts-and-nginx/)
  * [ssl getting started](https://www.nginx.com/blog/nginx-https-101-ssl-basics-getting-started/)

@@ -220,12 +220,30 @@ docker exec -it gitlab grep 'Password:' /etc/gitlab/initial_root_password
 # root@pass
 docker exec -it gitlab /bin/bash
 docker exec -it gitlab editor /etc/gitlab/gitlab.rb
+#gitlab_rails['gitlab_shell_ssh_port'] = 122
+#letsencrypt['enable'] = false
+mkdir -p /etc/gitlab/ssl
+chmod 755 /etc/gitlab/ssl
+openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes -keyout gitlab.key -out gitlab.crt -subj "/CN=gitlab"
+cp gitlab.key gitlab.crt /etc/gitlab/ssl/
+docker exec -it gitlab gitlab-ctl reconfigure
 docker restart gitlab
 
 exec -t gitlab gitlab-backup create
 g clone ssh://git@gitlab:122/group1/frontend.git
 
 ```
+
+ * https://docs.gitlab.com/omnibus/settings/ssl/index.html#configure-https-manually
+ * https://docs.gitlab.com/omnibus/settings/configuration.html#configuring-the-external-url-for-gitlab
+
+## ssl ca
+
+ * https://letsencrypt.org/docs/rate-limits/
+ * https://zerossl.com/documentation/acme/
+ * https://www.buypass.com/products/tls-ssl-certificates/go-ssl
+ * https://www.ssl.com/guide/ssl-tls-certificate-issuance-and-revocation-with-acme/
+ * https://smallstep.com/docs/step-ca/index.html
 
 ## docker
 
