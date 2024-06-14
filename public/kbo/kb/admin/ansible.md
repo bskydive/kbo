@@ -26,7 +26,84 @@
 	* Выполняйте задачи администрирования/управления с помощью разовых процессов
  * [Ansible - путь сильных духом: Kubernetes/Helm/ArgoCD/Jenkins](https://habr.com/ru/companies/slurm/articles/810933/)
  * [44 совета по Ansible: рекомендации и Best Practices - 2023](https://habr.com/ru/companies/slurm/articles/725788/)
- * []()
+* нет агентов
+	* меньше векторов атаки
+	* лёгкое внедрение в организации, без изменений в инфраструктуре
+	* https://galaxy.ansible.com
+	* playbook
+	* module
+	* role
+	* group
+* on-permise self-hosted
+* vSphere
+* https://ansible.readthedocs.io/projects/awx/en/latest/
+ * аналоги - chef/puppet, у них агенты
+ * [Основы Ansible 2.9 для сетевых инженеров](https://ansible-for-network-engineers.readthedocs.io/ru/latest/)
+ * [Ansible. Часть 1. Основы](https://www.youtube.com/watch?v=n27bpkAtyf4&ab_channel=Unixway)
+ * [Ansible. Часть 2. Playbook](https://www.youtube.com/watch?v=5JcL3c6rPE8&ab_channel=Unixway)
+
+```bash
+ANSIBLE_LOAD_CALLBACK_PLUGINS=true ANSIBLE_STDOUT_CALLBACK=json ansible ... | jq
+
+```
+
+## ЧАВО
+
+ * https://docs.ansible.com/ansible/latest/command_guide/cheatsheet.html
+ * https://www.digitalocean.com/community/cheatsheets/how-to-use-ansible-cheat-sheet-guide
+    * Control Machine: a system where Ansible is installed
+    * Playbook: series of tasks to be executed on a remote server.
+    * Role: a collection of playbooks and other files that are relevant to a goal such as installing a web server.
+    * Play: a full Ansible run. A play can have several playbooks and roles, included from a single playbook that acts as entry point.
+	* иерархия конфигов
+		* node
+			* подчинённый узел
+		* Inventory
+			* описание nodes
+			* /etc/ansible/hosts
+		* Плейбуки
+			* связывают inventory, role, collection
+		* Роли
+			* это набор задач или обработчик переменных, файлов и других артефактов, которые подключаются к плейбуку
+		* Коллекции
+			* набор ролей, модулей, плагинов
+		* модули
+			* их пишут для конкретной роли. Модули хранятся вместе с ней и там же используются.
+```bash
+# module ping
+ansible all -m ping --private-key=~/.ssh/custom_id -u user
+# exec
+ansible all -a "uname -a"
+# module apt
+ansible server1 -m apt -a "name=vim"
+# playbook
+ansible-playbook -l server1 myplaybook.yml
+ansible-playbook myplaybook.yml --list-tasks
+ --list-hosts
+ --list-tags
+# run
+ansible-playbook myplaybook.yml --start-at-task="Set Up Nginx"
+ --tags=mysql,nginx
+ --skip-tags=mysql
+
+#vault
+ansible-vault create credentials.yml
+ encrypt
+ view
+ edit
+ decrypt
+
+ansible-vault create --vault-id dev@prompt credentials_dev.yml
+ansible-vault create --vault-id dev@path/to/passfile credentials_dev.yml
+ansible-vault edit credentials_dev.yml --vault-id dev@prompt
+ansible-playbook myplaybook.yml -vvvv
+
+
+```
+
+## best practices
+
+ * [ansible playbook best practices](https://docs.ansible.com/ansible/2.8/user_guide/playbooks_best_practices.html#best-practices)
 
 ## борьба со сложностью
 
@@ -38,20 +115,15 @@
  * что можно переиспользовать в больших командах - [В далекой-далекой Galaxy: как организовать общее пространство для Ansible-контента - 2024](https://habr.com/ru/companies/yadro/articles/817639/)
 	* что переиспользовать
 		* Inventory нельзя
-			* это нефункциональная единица
 			* их может быть много — окружения у всех свои
 		* Плейбуки нельзя
-			* это YAML-файлы, которые описывают целевые системы и их целевое состояние
-			* они зависят от inventory, role, collection
+			* описывают целевые системы и их целевое состояние
 		* Роли можно
-			* это набор задач или обработчик переменных, файлов и других артефактов, которые подключаются к плейбуку
 			* роль должна не зависеть от состояния хостов, inventory и окружения, её можно использовать в любом playbook
 			* её можно легко преобразовать в плейбук и отправить коллегам.
 		* Коллекции можно
-			* это формат распространения связанного между собой набора ролей, модулей, плагинов. Например, для мониторинга или СУБД
 			* В них могут быть тысячи файлов, а нужен какой-то определенный модуль или роль. Нельзя загружать их все
 		* модули можно
-			* их пишут для конкретной роли. Модули хранятся вместе с ней и там же используются.
 			* Их можно вынести в отдельную коллекцию, но коллекция ради одного модуля не имеет смысла.
 	* как переиспользовать
 		* Когда роли хранятся отдельно от плейбуков, то изменения в плейбуках и ролях могут делать разные люди. Возрастает риск нарваться на мажорные изменения, которые поломают автоматизацию.

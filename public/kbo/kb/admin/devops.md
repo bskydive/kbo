@@ -3,19 +3,9 @@
  * https://www.redhat.com/sysadmin/
  * [утилиты документирования](https://github.com/documentationjs)
  * [SRE site reliability engineering](https://sre.google/books/)
-* prometeus - node exporter - alert manager
-* logstash kibana grafana
-* доступ в kibana или grafana+loki
-* elasticsearch - источник данных для kibana про логи, посмотреть для чего его вкрячивают
-* prometeus - источник данных(agentless node exporter) для kibana про события
-* victoria metrics - аналог prometeus
 * где посмотреть ограничения технологий, их предельную нагрузку? ноды, события, потоки
-* ansible - хранит в себе конфиги, оркестратор, 100-200 строк в файле, есть гуй tower(500 хостов платный), avx - бесплатный гуй
-* terraform(go) - оркестратор виртуалок/сетей в облаках, у провайдера должен быть коннектор
 * для мониторинга облаков и биллинга - prometeus+grafana
-* grafana умеет в математику
 * kubernetes или docker compose - иерархия микросервисов
-* artifactory или аналоги docker hub
 
 * `Cowell C., Lotz N., Timberlake C. Коуэлл К., Лотц Н., Тимберлейк К. - Automating DevOps with GitLab CI CD Pipelines Автоматиза`
 * `Gopalakrishnan Shivakumar Гопалакришнан Шивакумар - Kubernetes for Jobseekers DevOps and Kubernetes interview questions and ans`
@@ -53,6 +43,62 @@
 
  * [Пришёл Intern - оказался JUNIOR Strong / Интервью на позицию DevOps Engineer / Мок собес / 1 - Александр Донской | DevOps фабрика ](https://www.youtube.com/watch?v=pLU3zrUq87Y)
 
+## собесник
+
+ * типичные вопросы собесов
+	*
+The 7 Cs of DevOps are Continuous:
+    * Integration: Regularly merging code changes into a shared repository.
+	* Testing: Automatically running tests to ensure code quality.
+	* Delivery: Ensuring code is always in a deployable state.
+	* Deployment: Automatically deploying code to production.
+	* Monitoring: Tracking system performance and issues in real-time.
+	* Feedback: Gathering and responding to user and system feedback.
+	* Operations: Maintaining system stability and uptime through automated processes.
+* zero-downtime deployments, strategies like canary releases and rolling updates are used. Blue/Green Deployment is a method where you maintain two identical production environments, with only one active at a time. Updates are deployed to the inactive “blue” environment, then traffic is switched to it, ensuring seamless transitions and mitigating downtime.
+* Immutable infrastructure is a paradigm where servers and components are never modified after deployment, but instead replaced with updated versions. Benefits include easier deployment, improved scalability, and better fault tolerance. Drawbacks may include initial setup complexity and challenges in managing stateful applications.
+* проблема - контекст - решение
+* UI
+	* grafana
+		* умеет в математику
+* log management
+	* elasticsearch - источник данных для kibana про логи, посмотреть для чего его вкрячивают
+	* logstash
+	* loki
+* event management
+	* prometheus
+		* node exporter - alert manager
+		* источник данных(agentless node exporter) для kibana про события
+	* victoria metrics - аналог prometeus
+* OS/infra management
+	* [ansible](./ansible)
+		* хранит в себе конфиги, оркестратор, 100-200 строк в файле
+		* есть гуй tower(500 хостов платный), avx - бесплатный гуй
+		* role, playbook, collection
+* cloud management
+	* terraform(go) - оркестратор виртуалок/сетей в облаках, у провайдера должен быть коннектор
+* CICD
+	* jenkins
+	* gitlab
+* artifact management
+	* artifactory
+	* docker registry
+	* harbor
+* function/microservice management
+	* kubernetes
+	* docker swarm
+* функции
+	* горизонтальное/вертикальное масштабирование
+	* резервирование
+	* источники сложности и их митигация
+	* мониторинг
+	* разработка
+	* бэкап/восстановление
+		* многопоточный
+		* сжатие
+		* инкремент
+* СУБД
+	* host vars
 
 ## Performance
 
@@ -145,6 +191,7 @@
  * [https://habrahabr.ru/post/319582/](https://habrahabr.ru/post/319582/)
  * https://lachlanwhite.com/posts/medium/21-01-20-visualising-a-cloud-native-operating-model/21-1-20-visualising-a-cloud-native-operating-model-for-enterprise-adoption/
  * ![](./devops/cloud_native.jpg)
+
 ##  автоматизация
 
  * [Пересмотренное руководство по Grunt для начинающих - 2014](https://habrahabr.ru/post/244721/)
@@ -153,21 +200,14 @@
 
 ## оркестраторы ОС
 
- * ansible
-	* нет агентов
-		* меньше векторов атаки
-		* лёгкое внедрение в организации, без изменений в инфраструктуре
-		* https://galaxy.ansible.com
-		* playbook
-		* module
-		* role
-		* group
-	* on-permise self-hosted
-	* vSphere
-	* https://ansible.readthedocs.io/projects/awx/en/latest/
- * terraform
-	* нужен файл состояния
-	* облака AWS, Y, M, S
+### ansible
+
+* [](./ansible.md)
+
+### terraform
+
+* нужен файл состояния
+* облака AWS, Y, M, S
 
 ## kubernetes
 
@@ -178,6 +218,15 @@
  * https://about.gitlab.com/install/
  * https://docs.gitlab.com/ee/install/docker.html
  * https://hub.docker.com/r/gitlab/gitlab-ce/tags/
+ * иерархия конфигов
+ 	* stages
+	* needs
+	* dependencies
+	* artifacts
+	* trigger
+	* dynamic pipelines
+	* rollout&rollback
+	* parallel exec
 
 ```bash
 
@@ -481,22 +530,6 @@ chronyc -a makestep
     * учётными записями - проверяет, что пароль пользователя не истёк или имеет ли пользователь право обращаться к определённому сервису.
     * сеансами - выполняет определённые задачи во время входа или выхода пользователя из системы (аудит, монтирование файловых систем и так далее).
     * паролями - предлагает интерфейс для сброса пароля и тому подобное.
-
-
-## ansible - оркестратор ОС
-
- * аналоги - chef/puppet, у них агенты
- * [Основы Ansible 2.9 для сетевых инженеров](https://ansible-for-network-engineers.readthedocs.io/ru/latest/)
- * [Ansible. Часть 1. Основы](https://www.youtube.com/watch?v=n27bpkAtyf4&ab_channel=Unixway)
- * [Ansible. Часть 2. Playbook](https://www.youtube.com/watch?v=5JcL3c6rPE8&ab_channel=Unixway)
-
-```bash
-ANSIBLE_LOAD_CALLBACK_PLUGINS=true ANSIBLE_STDOUT_CALLBACK=json ansible ... | jq
-
-```
-
- * plays --> play
- * tasks --> task
 
 ## terraform - оркестратор ОС в облаке
 

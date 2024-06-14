@@ -68,10 +68,9 @@
 
 ## лучшие практики для dockerfile
 
- * [ansible playbook best practices](https://docs.ansible.com/ansible/2.8/user_guide/playbooks_best_practices.html#best-practices)
  * [Best practices for Dockerfile instructions](https://docs.docker.com/develop/develop-images/instructions/)
  * [General best practices for writing Dockerfiles](https://docs.docker.com/develop/develop-images/guidelines/)
- *
+ * [Image-building best practices](https://docs.docker.com/guides/workshop/09_image_best/)
  *
  * [https://kazarin.online/index.php/2021/03/17/docker-antipatterns/](10 Антипаттернов использования Docker).
  * низкая связность
@@ -107,6 +106,11 @@
 	```
  * https://docs.docker.com/build/building/multi-stage/
  * Используйте инструкцию COPY вместо ADD, т.к. add может выполнять команды распаковки
+
+## image development
+
+ * dockerfile - /var/lib/docker/image/overlay2/imagedb/content/sha256
+ *
 
 ## install
 
@@ -910,6 +914,7 @@ docker image history node-base
 
 ## security
 
+ * [docker scout](https://docs.docker.com/scout/quickstart/) analyzes image contents and generates a detailed report of packages and vulnerabilities that it detects
  * [System for Cross-domain Identity Management (SCIM) 2.0](https://docs.docker.com/security/for-admins/provisioning/scim/)
 	* Creating new users
 	* Push user profile updates
