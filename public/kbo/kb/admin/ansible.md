@@ -56,19 +56,13 @@ ANSIBLE_LOAD_CALLBACK_PLUGINS=true ANSIBLE_STDOUT_CALLBACK=json ansible ... | jq
     * Role: a collection of playbooks and other files that are relevant to a goal such as installing a web server.
     * Play: a full Ansible run. A play can have several playbooks and roles, included from a single playbook that acts as entry point.
 	* иерархия конфигов
-		* node
-			* подчинённый узел
-		* Inventory
-			* описание nodes
-			* /etc/ansible/hosts
-		* Плейбуки
-			* связывают inventory, role, collection
-		* Роли
-			* это набор задач или обработчик переменных, файлов и других артефактов, которые подключаются к плейбуку
-		* Коллекции
-			* набор ролей, модулей, плагинов
-		* модули
-			* их пишут для конкретной роли. Модули хранятся вместе с ней и там же используются.
+		* node - подчинённый узел
+		* Inventory - описание nodes /etc/ansible/hosts
+		* модули - скрипты
+		* плагины - 
+		* Плейбуки - связывают inventory, role, collection
+		* Роли - набор для конкретного действия
+		* Коллекции - набор ролей, модулей, плагинов
 ```bash
 # module ping
 ansible all -m ping --private-key=~/.ssh/custom_id -u user
@@ -124,6 +118,7 @@ ansible-playbook myplaybook.yml -vvvv
 		* Коллекции можно
 			* В них могут быть тысячи файлов, а нужен какой-то определенный модуль или роль. Нельзя загружать их все
 		* модули можно
+			* их пишут для конкретной роли. Модули хранятся вместе с ней и там же используются.
 			* Их можно вынести в отдельную коллекцию, но коллекция ради одного модуля не имеет смысла.
 	* как переиспользовать
 		* Когда роли хранятся отдельно от плейбуков, то изменения в плейбуках и ролях могут делать разные люди. Возрастает риск нарваться на мажорные изменения, которые поломают автоматизацию.
