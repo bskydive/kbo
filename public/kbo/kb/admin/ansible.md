@@ -55,14 +55,30 @@ ANSIBLE_LOAD_CALLBACK_PLUGINS=true ANSIBLE_STDOUT_CALLBACK=json ansible ... | jq
     * Playbook: series of tasks to be executed on a remote server.
     * Role: a collection of playbooks and other files that are relevant to a goal such as installing a web server.
     * Play: a full Ansible run. A play can have several playbooks and roles, included from a single playbook that acts as entry point.
-	* иерархия конфигов
-		* node - подчинённый узел
-		* Inventory - описание nodes /etc/ansible/hosts
-		* модули - скрипты
-		* плагины - 
-		* Плейбуки - связывают inventory, role, collection
-		* Роли - набор для конкретного действия
-		* Коллекции - набор ролей, модулей, плагинов
+### иерархия конфигов
+* node - подчинённый узел
+* [Inventory](https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html#inventory-basics-formats-hosts-and-groups)
+```yaml
+# описание nodes
+# /etc/ansible/hosts
+# ENV
+atlanta:
+  hosts:
+    host1:
+      http_port: 80
+      maxRequestsPerChild: 808
+    host2:
+      http_port: 303
+      maxRequestsPerChild: 909
+	  ansible_port: 5555
+      ansible_host: 192.0.2.50
+```
+* модули - скрипты
+* плагины -
+* Плейбуки - связывают inventory, role, collection
+* Роли - набор для конкретного действия
+* Коллекции - набор ролей, модулей, плагинов
+
 ```bash
 # module ping
 ansible all -m ping --private-key=~/.ssh/custom_id -u user
