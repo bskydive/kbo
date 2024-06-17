@@ -11,19 +11,6 @@
  * основная проблема - ползучие недокументированные изменения
  * выход - переложить изменения в скрипты и регулярно проверять накатываемость конфигурации с нуля
  * инструмент расследования - filesystem snapshot diff, версионируемые ФС
- * https://12factor.net/ru/
-	* Одна кодовая база, отслеживаемая в системе контроля версий, - множество развёртываний
-	* Явно объявляйте и изолируйте зависимости
-	* Сохраняйте конфигурацию в ENV переменных
-	* Сделайте сторонние службы подключаемыми ресурсами
-	* Строго разделяйте стадии build release deploy
-	* СДелайте stateless приложение
-	* Экспортируйте сервисы через привязку портов
-	* Масштабируйте приложение с помощью изолируемых процессов, а не потоков
-	* Максимизируйте надёжность с помощью быстрого запуска и корректного завершения работы
-	* Держите окружения dev/staging/production максимально похожими
-	* Рассматривайте журнал как поток событий
-	* Выполняйте задачи администрирования/управления с помощью разовых процессов
  * [Ansible - путь сильных духом: Kubernetes/Helm/ArgoCD/Jenkins](https://habr.com/ru/companies/slurm/articles/810933/)
  * [44 совета по Ansible: рекомендации и Best Practices - 2023](https://habr.com/ru/companies/slurm/articles/725788/)
 * нет агентов
@@ -188,11 +175,31 @@ https://www.redhat.com/sysadmin/faster-ansible-playbook-execution
 
 ## install
 
+ * https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#control-node-requirements
+ * https://4sysops.com/archives/how-to-deploy-ansible-inside-a-docker-container/
+```yaml
+FROM ubuntu:18.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && \
+  apt-get install -y gcc python-dev libkrb5-dev && \
+  apt-get install python3-pip -y && \
+  pip3 install --upgrade pip && \
+  pip3 install --upgrade virtualenv && \
+  pip3 install pywinrm[kerberos] && \
+  apt install krb5-user -y && \
+  pip3 install pywinrm && \
+  pip3 install ansible
+```
+
+ * [runner in docker](https://ansible.readthedocs.io/en/latest/getting_started_ee/)
 
 ```bash
 
 #https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#create-and-use-virtual-environments
 
+docker pull alpinelinux/ansible
 
 ```
 

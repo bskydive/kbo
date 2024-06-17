@@ -102,6 +102,14 @@ The 7 Cs of DevOps are Continuous:
 
 ## Performance
 
+ * [Linux Performance](https://www.brendangregg.com/linuxperf.html)
+    * perf: perf one-liners, examples, visualizations.
+    * eBPF tools: BPF/bcc tracing tools and examples.
+    * perf-tools: Ftrace perf tools (github).
+    * bcc: BPF/bcc perf tools (github).
+    * bpftrace: BPF/bpftrace perf tools (github).
+    * Flame Graphs: using perf and other profilers.
+
  * http://techblog.netflix.com/2015/08/netflix-at-velocity-2015-linux.html
  * http://habrahabr.ru/company/odnoklassniki/blog/266005/
  * http://nickcraver.com/blog/2016/02/17/stack-overflow-the-architecture-2016-edition/
@@ -113,6 +121,46 @@ The 7 Cs of DevOps are Continuous:
 	* только root может указать отрицательное смещение
 	* Приоритет nice и приоритет планировщика процессов ядра ОС — разные числа.
 	* Планировщик может стремиться назначить процессу приоритет, близкий к nice, но это не всегда возможно, так как в системе может выполняться множество процессов с разными приоритетами.
+
+### debug
+
+ * [ltrace](https://gitlab.com/cespedes/ltrace) - библиотеки
+ * strace
+	* [Strace в Linux: история, устройство и использование](https://habr.com/ru/companies/badoo/articles/493856/)
+	```bash
+		# сеть
+		strace -p 15329 -f -e trace=network -s 10000
+		# файлы
+		strace -y -P/tmp/test_file.log -o write-file.log ./write-file /tmp/test_file.log
+		# много потоков fork запись в файл
+		strace -f -e trace="%process,write" -othread-write.log ./thread-write
+		# стэк
+		strace -k -e trace=write -o write-simple.log ./write-simple
+		# инъекция ошибок
+		strace -e trace=write -e inject=write:error=EBADF:when=2 -owrite-twice.log ./write-twice
+	```
+ * [stap](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html-single/systemtap_beginners_guide/index)
+ * [perf](https://www.brendangregg.com/perf.html)
+	* data            Data file related processing
+	* diff            Read perf.data files and display the differential profile
+	* evlist          List the event names in a perf.data file
+	* inject          Filter to augment the events stream with additional information
+	* kmem            Tool to trace/measure kernel memory properties
+	* kvm             Tool to trace/measure kvm guest os
+	* list            List all symbolic event types
+	* lock            Analyze lock events
+	* mem             Profile memory accesses
+	* record          Run a command and record its profile into perf.data
+	* report          Read perf.data (created by perf record) and display the profile
+	* sched           Tool to trace/measure scheduler properties (latencies)
+	* script          Read perf.data (created by perf record) and display trace output
+	* stat            Run a command and gather performance counter statistics
+	* test            Runs sanity tests.
+	* timechart       Tool to visualize total system behavior during a workload
+	* top             System profiling tool.
+	* probe           Define new dynamic tracepoints
+	* trace           strace inspired tool
+	* ![](	./devops/perf_events.jpg)
 
 ## monorepo монорепа
 
@@ -309,96 +357,13 @@ g clone ssh://git@gitlab:122/group1/frontend.git
 
 ### mysql
 
-```bash
-	# connect
-
-	# create db
-	# create user
-	# create table
-	# create index
-	# change isolation level
-	# backup/restore
-		mysqldump
-	# tune cache
-		mysql -e "SHOW ENGINE
-		INNODB STATUS"
-		#https://dev.mysql.com/doc/refman/8.4/en/innodb-buffer-pool.html
-	# data path
-	# config path
-		dpkg --listfiles mysql-server
-		rpm -q --list mysql-server
-		mysql -e "SHOW VARIABLES LIKE 'datadir';"
-		#+---------------+-----------------+
-		#| Variable_name | Value           |
-		#+---------------+-----------------+
-		#| datadir       | /var/lib/mysql/ |
-		strace mysql ";" 2>&1  | grep cnf
-		#newfstatat(AT_FDCWD, "/etc/my.cnf", 0x7ffea7b0bc80, 0) = -1 ENOENT (No such file or directory)
-		#newfstatat(AT_FDCWD, "/etc/mysql/my.cnf", {st_mode=S_IFREG|0644, st_size=682, ...}, 0) = 0
-		#openat(AT_FDCWD, "/etc/mysql/my.cnf", O_RDONLY) = 3
-		#newfstatat(AT_FDCWD, "/etc/mysql/conf.d/mysql.cnf", {st_mode=S_IFREG|0644, st_size=8, ...}, 0) = 0
-		#openat(AT_FDCWD, "/etc/mysql/conf.d/mysql.cnf", O_RDONLY) = 4
-		#newfstatat(AT_FDCWD, "/etc/mysql/conf.d/mysqldump.cnf", {st_mode=S_IFREG|0644, st_size=55, ...}, 0) = 0
-		#openat(AT_FDCWD, "/etc/mysql/conf.d/mysqldump.cnf", O_RDONLY) = 4
-		#newfstatat(AT_FDCWD, "/etc/mysql/mysql.conf.d/mysql.cnf", {st_mode=S_IFREG|0644, st_size=132, ...}, 0) = 0
-		#openat(AT_FDCWD, "/etc/mysql/mysql.conf.d/mysql.cnf", O_RDONLY) = 4
-		#newfstatat(AT_FDCWD, "/etc/mysql/mysql.conf.d/mysqld.cnf", {st_mode=S_IFREG|0644, st_size=2220, ...}, 0) = 0
-		#openat(AT_FDCWD, "/etc/mysql/mysql.conf.d/mysqld.cnf", O_RDONLY) = 4
-		#newfstatat(AT_FDCWD, "/root/.my.cnf", 0x7ffea7b0bc80, 0) = -1 ENOENT (No such file or directory)
-		#newfstatat(AT_FDCWD, "/root/.mylogin.cnf", 0x7ffea7b0bc80, 0) = -1 ENOENT (No such file or directory)
-		#openat(AT_FDCWD, "/usr/lib/ssl/openssl.cnf", O_RDONLY) = 3
-		update-alternatives --config my.cnf
-		#Есть 2 варианта для альтернативы my.cnf (предоставляет /etc/mysql/my.cnf).
-		#Выбор   Путь                    Приор Состояние
-		#------------------------------------------------------------
-		#* 0            /etc/mysql/mysql.cnf         200       автоматический режим
-		#1            /etc/mysql/my.cnf.fallback   100       ручной режим
-		#2            /etc/mysql/mysql.cnf         200       ручной режим
-
-
-	# deadlock
-
-```
+* [](./mysql.md)
 
 
 ### postgresql
 
-```bash
-	# connect
-		su - postgres -c "psql -U mo_user mo_db"
-	# create db
-		su - postgres -c "createdb --encoding=UNICODE --owner=mo_user mo_db"
-	# create user
-		su - postgres -c "createuser --pwprompt --encrypted --no-adduser --no-createdb --no-createrole --no-inherit mo_user"
-	# create table
-	# create index
-	# change isolation level
-	# backup/restore
-		sudo -U postgres -c "pg_dump $DBNAME | qzip > /distr/backup/$DBNAME_dump_`date`.gz"
-		pg_restore
-		#https://www.dbvis.com/thetable/a-complete-guide-to-pg_dump-with-examples-tips-and-tricks/
-	# tune cache
-		shared_buffers = 128MB                  # min 128kB
-		#huge_pages = try                       # on, off, or try
-		#huge_page_size = 0                     # zero for system default
-		#temp_buffers = 8MB                     # min 800kB
-		#max_prepared_transactions = 0          # zero disables the feature
-		#work_mem = 4MB                         # min 64kB
-		#hash_mem_multiplier = 2.0              # 1-1000.0 multiplier on hash table work_mem
-		#maintenance_work_mem = 64MB            # min 1MB
-		#autovacuum_work_mem = -1               # min 1MB, or -1 to use maintenance_work_mem
-		#logical_decoding_work_mem = 64MB       # min 64kB
-		#max_stack_depth = 2MB                  # min 100kB
-	# data path
-	# config path
-		#https://www.postgresql.org/docs/current/runtime-config-file-locations.html
-		sudo -u postgres psql -c 'SHOW config_file'
-		#               config_file
-		#-----------------------------------------
-		# /etc/postgresql/16/main/postgresql.conf
-	# deadlock
+ * [](./postgres.md)
 
-```
 
  *  schema
 	* Включает в себя таблицы, операторы, функции. Изолирует пространство имён.
