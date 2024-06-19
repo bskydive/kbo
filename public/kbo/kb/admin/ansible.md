@@ -42,9 +42,29 @@ ANSIBLE_LOAD_CALLBACK_PLUGINS=true ANSIBLE_STDOUT_CALLBACK=json ansible ... | jq
     * Playbook: series of tasks to be executed on a remote server.
     * Role: a collection of playbooks and other files that are relevant to a goal such as installing a web server.
     * Play: a full Ansible run. A play can have several playbooks and roles, included from a single playbook that acts as entry point.
+
 ### иерархия конфигов
+
 * node - подчинённый узел
+* [основной конфиг](https://docs.ansible.com/ansible/latest/installation_guide/intro_configuration.html)
+
+```bash
+#  -t {all,base,become,cache,callback,cliconf,connection,httpapi,inventory,lookup,netconf,shell,vars}, --type {all,base,become,cache,callback,cliconf,connection,httpapi,inventory,lookup,netconf,shell,vars}
+#                        Filter down to a specific plugin type.
+#  -f {ini,env,vars} Output format for init
+#  --disabled Prefixes all entries with a comment character to disable them
+
+ansible-config init --disabled -t all > .ansible.cfg
+
+#[defaults]
+#nocows=1
+#deprecation_warnings=false
+
+
+```
+
 * [Inventory](https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html#inventory-basics-formats-hosts-and-groups)
+
 ```yaml
 # описание nodes
 # /etc/ansible/hosts
@@ -60,8 +80,9 @@ atlanta:
 	  ansible_port: 5555
       ansible_host: 192.0.2.50
 ```
-* модули - скрипты
-* плагины -
+
+* модули - скрипты, команды cli
+* плагины - шаблоны настроек для модулей
 * Плейбуки - связывают inventory, role, collection
 * Роли - набор для конкретного действия
 * Коллекции - набор ролей, модулей, плагинов
@@ -110,17 +131,19 @@ ansible-playbook myplaybook.yml -vvvv
 	* плохое документирование
 	*
  * что можно переиспользовать в больших командах - [В далекой-далекой Galaxy: как организовать общее пространство для Ansible-контента - 2024](https://habr.com/ru/companies/yadro/articles/817639/)
-	* что переиспользовать
-		* Inventory нельзя
+	* что нельзя переиспользовать
+		* Inventory
 			* их может быть много — окружения у всех свои
-		* Плейбуки нельзя
+		* Плейбуки
 			* описывают целевые системы и их целевое состояние
-		* Роли можно
+			* связан с inventory
+	* что можно переиспользовать
+		* Роли
 			* роль должна не зависеть от состояния хостов, inventory и окружения, её можно использовать в любом playbook
 			* её можно легко преобразовать в плейбук и отправить коллегам.
-		* Коллекции можно
+		* Коллекции
 			* В них могут быть тысячи файлов, а нужен какой-то определенный модуль или роль. Нельзя загружать их все
-		* модули можно
+		* модули
 			* их пишут для конкретной роли. Модули хранятся вместе с ней и там же используются.
 			* Их можно вынести в отдельную коллекцию, но коллекция ради одного модуля не имеет смысла.
 	* как переиспользовать
@@ -152,6 +175,8 @@ ansible-playbook myplaybook.yml -vvvv
  * YAMLLint
  * ansible-lint
  * ansible-later
+ * тестирование конфигов https://ansible.readthedocs.io/projects/molecule/
+
 
 ## performance
 
@@ -175,6 +200,47 @@ https://www.redhat.com/sysadmin/faster-ansible-playbook-execution
 
 ## install
 
+```bash
+python3 -m pip install --user ansible
+# error: externally-managed-environment
+#
+# × This environment is externally managed
+# ╰─> To install Python packages system-wide, try apt install
+#     python3-xyz, where xyz is the package you are trying to
+#     install.
+#
+#     If you wish to install a non-Debian-packaged Python package,
+#     create a virtual environment using python3 -m venv path/to/venv.
+#     Then use path/to/venv/bin/python and path/to/venv/bin/pip. Make
+#     sure you have python3-full installed.
+#
+#     If you wish to install a non-Debian packaged Python application,
+#     it may be easiest to use pipx install xyz, which will manage a
+#     virtual environment for you. Make sure you have pipx installed.
+#
+#     See /usr/share/doc/python3.12/README.venv for more information.
+#
+# note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.
+# hint: See PEP 668 for the detailed specification.
+
+aptitude install python3-venv python3-pip
+useradd -m -s /bin/bash ansible
+su - ansible
+ssh-keygen -t rsa -b 4096
+cat >> ~/.profile
+#source ${HOME}/venv3-ansible/bin/activate
+bash
+python3 -m pip install ansible
+python3 -m pip install argcomplete
+ansible-config init --disabled -t all > .ansible.cfg
+mcedit .ansible.cfg
+#[defaults]
+#nocows=1
+#deprecation_warnings=false
+
+```
+ * https://kislyuk.github.io/argcomplete/
+ * [Ansible для начинающих - 2023](https://habr.com/ru/companies/slurm/articles/714000/)
  * https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#control-node-requirements
  * https://4sysops.com/archives/how-to-deploy-ansible-inside-a-docker-container/
 ```yaml
@@ -216,3 +282,23 @@ docker pull alpinelinux/ansible
 ## plugins
 
 https://docs.ansible.com/ansible/latest/collections/all_plugins.html
+
+
+## ansible aws
+
+ * https://docs.ansible.com/ansible/latest/collections/amazon/aws/index.html#description
+ * https://docs.ansible.com/ansible/latest/collections/amazon/aws/docsite/aws_ec2_guide.html#minimal-example
+
+```yaml
+# Простейший пример подготовки инфраструктуры
+- amazon.aws.ec2:
+    key_name: mykey
+    instance_type: t2.micro
+    image: ami-123456
+    wait: yes
+    group: webserver
+    count: 3
+    vpc_subnet_id: subnet-29e63245
+    assign_public_ip: yes
+```
+
