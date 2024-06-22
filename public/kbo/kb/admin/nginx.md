@@ -14,6 +14,48 @@
  * http://nginx.org/en/docs/http/ngx_http_core_module.html#alias
  * https://www.digitalocean.com/community/tutorials/understanding-nginx-server-and-location-block-selection-algorithms
 
+## nginx cli
+
+```bash
+nginx -s #сигнал
+    #stop — быстрое завершение
+    #quit — плавное завершение
+    #reload — перезагрузка конфигурационного файла
+    #reopen — переоткрытие лог-файлов
+
+```
+
+## load balancing
+
+ * [Using nginx as HTTP load balancer](https://nginx.org/en/docs/http/load_balancing.html)
+    * round-robin — requests to the application servers are distributed in a round-robin fashion,
+    * least-connected — next request is assigned to the server with the least number of active connections,
+    * ip-hash — a hash-function is used to determine what server should be selected for the next request (based on the client's IP address).
+ * [](https://docs.nginx.com/nginx/admin-guide/load-balancer/tcp-udp-load-balancer/)
+ * []()
+ * []()
+
+```json
+http {
+    upstream myapp1 {
+		#least_conn;
+		#ip_hash;
+        server srv1.example.com;
+        server srv2.example.com;
+        server srv3.example.com;
+    }
+
+    server {
+        listen 80;
+
+        location / {
+            proxy_pass http://myapp1;
+        }
+    }
+}
+
+```
+
 ## SSL nginx
 
  * [ликбез ispsystem](https://doc.ispsystem.ru/index.php/Установка_SSL-сертификата/)

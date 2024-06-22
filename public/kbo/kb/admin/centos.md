@@ -93,44 +93,7 @@ yum install elasticsearch-5.0.2-1
 
 ## SSH
 
- * [https://habr.com/ru/company/vdsina/blog/472746/](Терминальный сервер для админа; Ни единого SSH-разрыва)
- * [Магия SSH](https://habr.com/post/331348/)
-
-```bash
-ssh-keygen -b 2048 -t rsa -f /distr/mykey.priv
-засылай в редмайн /distr/mykey.priv.pub
-заходи от ПОЛЬЗОВАТЕЛЯ:
-ssh -p0000 user@11.12.11.12 -i /distr/mykey.priv
-
-```
- * проброс портов
- 	* from local to remote `ssh -L LOCAL_PORT:localhost:REMOTE_PORT REMOTE_USER@REMOTE_HOST`
-	* from remote to local `ssh -R REMOTE_PORT:localhost:LOCAL_PORT REMOTE_USER@REMOTE_HOST`
-	* `ssh -fNL`
-
-## SSHD
-
-```bash
-useradd -m user-ssh
-passwd user-ssh
-passwd
-vi /etc/ssh/sshd_config
-
-Ports 0000
-AllowUsers user-ssh
-PermitRootLogin no
-PubkeyAuthentication yes
-AuthorizedKeysFile      .ssh/authorized_keys
-
-service ssh reload
-service ssh restart
-
-mkdir /home/user-ssh/.ssh
-cat >> /home/user-ssh/.ssh/authorized_keys
-chown -R user-ssh:user-ssh /home/user-ssh
-chmod 700 /home/user-ssh/.ssh
-
-```
+ * [](./ssh.md)
 
 ## LocalTime
 

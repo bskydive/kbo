@@ -162,6 +162,12 @@ The 7 Cs of DevOps are Continuous:
 	* trace           strace inspired tool
 	* ![](	./devops/perf_events.jpg)
 
+```bash
+perf record -F 99 -p 1308 -g -- sleep 10
+perf report -f --stdio
+
+```
+
 ## monorepo монорепа
 
  * [nrwl/NX](https://nx.dev/)

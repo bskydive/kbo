@@ -24,5 +24,5 @@ mount
 ```
 ## свой сервер
 
-[свой сервер](/kbo/admin/home-cloud#syncthing)
+[свой сервер](./home-cloud#syncthing)
 

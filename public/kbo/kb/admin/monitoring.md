@@ -101,6 +101,7 @@ zypper in sysstat operf
 
  * https://linoxide.com/linux-command/linux-pidstat-monitor-statistics-procesess/
  * https://www.thegeekstuff.com/2014/11/pidstat-examples/
+
 ```bash
 pidstat -utdrhl |less
 pidstat -utdrhl |sort -k9 |less

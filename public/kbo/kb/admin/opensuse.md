@@ -205,46 +205,7 @@ In the above examples, the video stream will be copied over using -c:v copy. If 
 ffmpeg -i ./*.mp4 -vn -sn -dn -af "volume=5dB" audio.m4a
 ```
 
-## X11Forwarding
 
-
-```bash
-linux-it9h:~ # ssh user@192.168.0.203 -X
-Password:
-Last login: Wed Nov  5 21:43:15 2014 from 192.168.0.207
-Have a lot of fun...
-ifconfig: command not found
-user@linux-rbo1:~> xclock
-user@linux-rbo1:~> echo $DISPLAY
-linux-rbo1.site:10.0
-user@linux-rbo1:~> xhost
-access control enabled, only authorized clients can connect
-INET:192.168.0.203
-user@linux-rbo1:~>
-linux-rbo1:~ # ps axjf|grep X
-  931   989   989   989 tty7       989 Ss+      0   0:22  \_ /usr/bin/X -background none :0 vt07 -nolisten tcp
-  931  1189  1189  1189 ?           -1 Ssl   1000   0:00  \_ /usr/bin/lxsession -s LXDE -e LXDE
-    1  1379  1189  1189 ?           -1 S     1000   0:00 /usr/bin/dbus-launch --sh-syntax --exit-with-session /etc/X11/xinit/xinitrc
-
-linux-it9h:~ # grep -i x11 /etc/ssh/sshd_config
-X11Forwarding yes
-#X11DisplayOffset 10
-X11UseLocalhost no
-#       X11Forwarding no
-linux-it9h:~ # grep -i x11 /etc/ssh/ssh_config
-#   ForwardX11 no
-# should not forward X11 connections to your local X11-display for
-# keystrokes as you type, just like any other X11 client could do.
-# file if you want to have the remote X11 authentification data to
-ForwardX11Trusted yes
-linux-it9h:~ #
-
-#xauth
-xauth list
-xauth +localhost
-xauth -
-
-```
 
 ## PDF
 
@@ -1118,9 +1079,9 @@ acpitool  -W 17
 	systemctl disable lvm2-monitor.service
 	systemctl stop lvm2-monitor.service
 
-	zypper rm snapper snapper-zypp-plugin yast2-snapper libsnapper5 grub2-snapper-plugin
-	zypper rm PackageKit PackageKit-backend-zypp PackageKit-branding-openSUSE PackageKit-gstreamer-plugin PackageKit-gtk3-module PackageKit-lang discover-backend-packagekit libpackagekit-glib2-18
-	zypper rm btrfsprogs btrfsmaintenance btrfsprogs-udev-rules
+zypper rm snapper snapper-zypp-plugin yast2-snapper libsnapper5 grub2-snapper-plugin
+zypper rm PackageKit PackageKit-backend-zypp PackageKit-branding-openSUSE PackageKit-gstreamer-plugin PackageKit-gtk3-module PackageKit-lang discover-backend-packagekit libpackagekit-glib2-18
+zypper rm btrfsprogs btrfsmaintenance btrfsprogs-udev-rules
 
 ```
 
@@ -1135,7 +1096,20 @@ ibus-lang m17n-db-lang ibus-branding-openSUSE-KDE
 
 chmod a-x /usr/bin/ibus-autostart
 ```
- *
+ * https://github.com/systemd/systemd/issues/12262
+
+```bash
+#A stop job is running for User Manager for UID 1000
+systemctl --user list-jobs
+systemctl enable --now debug-shell.service
+systemctl disable --now debug-shell.service
+systemctl --user list-sockets
+dbus.service
+/etc/systemd/system.conf
+#DefaultTimeoutStopSec to 20 sec
+/usr/lib/systemd/system/user@.service
+#TimeouStopSec 20 sec
+```
 
 ## ms teams
 
@@ -1515,6 +1489,13 @@ http://www.liberatedcomputing.net/mm2fm
 
 ## vmware
 
+ * [vmhgfs-fuse keeping one core at 99% CPU](https://github.com/vmware/open-vm-tools/issues/126)
+	* https://kb.vmware.com/s/article/1018414
+	* Open the virtual machine's configuration file (.vmx) in a text editor.
+	* `isolation.tools.hgfs.oplockmonitor.enable = "FALSE"`
+	* https://github.com/vmware/open-vm-tools
+	* https://github.com/vmware/open-vm-tools/issues/246
+
  * netwok manager, сеть отвалилась
  ```
 nmcli networking on
@@ -1588,15 +1569,6 @@ install: kernel development template
 ```bash
 cd /lib/modules/`uname -r`/build/include
 ln -s   generated/uapi/linux/ .
-```
-
-http://www.redhat.com/archives/rhl-list/2007-June/msg05664.html
-
-```bash
-cat>>/etc/vmware-fuse.conf
-/etc/modprobe.d/vmware-fuse.conf
-options loop max_loop=64
-rmmod loop && modprobe loop && echo okok
 ```
 
 ### loop

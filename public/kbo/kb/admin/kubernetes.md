@@ -7,11 +7,12 @@
  * [Весна идёт — весне дорогу! Итоги сезона Kubernetes](https://habr.com/ru/article/720322/)
  * https://habr.com/ru/hub/kubernetes/
  * [Крупномасштабный стриминг видео с использованием Kubernetes и RabbitMQ](https://habr.com/ru/companies/timeweb/articles/785050/)
+ * https://opensource.com/article/22/2/kubernetes-architecture
 
-##
+## ЧАВО
 
  * control plane
-	* etcd - коняигурация
+	* etcd - конфигурация
 	* controller-manager - мониторинг
 	* cloud control manager
 	* api - прокси/шина
@@ -23,4 +24,12 @@
 	* kubeproxy - routing
 	* pod
 		* контейнеры
+
+## security
+
+
+## performance
+
+
+## backup
 

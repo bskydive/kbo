@@ -42,13 +42,14 @@ ANSIBLE_LOAD_CALLBACK_PLUGINS=true ANSIBLE_STDOUT_CALLBACK=json ansible ... | jq
     * Playbook: series of tasks to be executed on a remote server.
     * Role: a collection of playbooks and other files that are relevant to a goal such as installing a web server.
     * Play: a full Ansible run. A play can have several playbooks and roles, included from a single playbook that acts as entry point.
-
-### иерархия конфигов
-
 * node - подчинённый узел
-* [основной конфиг](https://docs.ansible.com/ansible/latest/installation_guide/intro_configuration.html)
+
+### основной конфиг
+
+ * https://docs.ansible.com/ansible/latest/installation_guide/intro_configuration.html
 
 ```bash
+ansible-config -h
 #  -t {all,base,become,cache,callback,cliconf,connection,httpapi,inventory,lookup,netconf,shell,vars}, --type {all,base,become,cache,callback,cliconf,connection,httpapi,inventory,lookup,netconf,shell,vars}
 #                        Filter down to a specific plugin type.
 #  -f {ini,env,vars} Output format for init
@@ -63,7 +64,40 @@ ansible-config init --disabled -t all > .ansible.cfg
 
 ```
 
-* [Inventory](https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html#inventory-basics-formats-hosts-and-groups)
+### дерево конфигов
+
+ * https://dev.to/admantium/ansible-idempotent-playbooks-4e67
+
+```
+├── ansible.cfg
+├── host_vars
+│   ├── raspi-3-1.yml
+│   ├── ...
+├── group_vars
+├── roles
+│   ├── consul
+│   ├── docker-arch
+│   ├── docker-arm
+│   ├── nfs-client
+│   ├── nfs-server
+│   └── nomad
+├── scripts
+│   ├── consul
+│   ├── nomad
+│       ├── configs
+│       ├── jobs
+│   ├── system
+│       ├── update_packages.yaml
+│   ├── tutorial
+│   └── uninstall
+├── hosts
+└── site.yml
+
+```
+
+### Inventory
+
+ * https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html#inventory-basics-formats-hosts-and-groups
 
 ```yaml
 # описание nodes
@@ -79,13 +113,62 @@ atlanta:
       maxRequestsPerChild: 909
 	  ansible_port: 5555
       ansible_host: 192.0.2.50
+ungrouped:
+  hosts:
+    mail.example.com:
+webservers:
+  hosts:
+    foo.example.com:
+    bar.example.com:
+dbservers:
+  hosts:
+    one.example.com:
+    two.example.com:
+    three.example.com:
+east:
+  hosts:
+    foo.example.com:
+    one.example.com:
+    two.example.com:
+west:
+  hosts:
+    bar.example.com:
+    three.example.com:
+prod:
+  children:
+    east:
+test:
+  children:
+    west:
 ```
 
-* модули - скрипты, команды cli
-* плагины - шаблоны настроек для модулей
-* Плейбуки - связывают inventory, role, collection
-* Роли - набор для конкретного действия
-* Коллекции - набор ролей, модулей, плагинов
+### модули
+
+ * скрипты, команды cli
+
+### плагины
+
+ * шаблоны настроек для модулей
+
+### Плейбуки
+
+ * связывают inventory, role, collection
+
+### Роли
+
+ * набор для конкретного действия
+
+### Коллекции
+
+ * набор ролей, модулей, плагинов
+
+```bash
+
+ansible-galaxy collection install <namespace.collection>
+
+```
+
+### примеры cli
 
 ```bash
 # module ping
@@ -269,7 +352,7 @@ docker pull alpinelinux/ansible
 
 ```
 
-## sec
+## security
 
  * https://docs.ansible.com/ansible/latest/vault_guide/index.html
 

@@ -518,19 +518,30 @@ git merge upstream/master
  * http://endoflineblog.com/gitflow-considered-harmful
  * http://endoflineblog.com/follow-up-to-gitflow-considered-harmful
  * https://habrahabr.ru/post/106912/ - это модель для гиков или документации, или огромной ко, или для предметной области, где от выпускаемого ПО зависит жизнь человека, или высоконагруженный проект
- * [GitHub flow](https://guides.github.com/introduction/flow/)
- * [Github-flow - немного сложнее, чем на бумаге. 2gis](https://www.youtube.com/watch?v=EwdXZXfQdQY)
+
+### git hooks
+
+ * [husky](https://typicode.github.io/husky/)
+
+```bash
+git commit -am "msg" --no-verify
+```
+
+### GitLab Flow
+
  * [Introduction to GitLab Flow](https://docs.gitlab.com/ee/topics/gitlab_flow.html)
- * [git flow](http://danielkummer.github.io/git-flow-cheatsheet/index.ru_RU.html)
- * [git flow ](http://internetdevels.ru/blog/git-flow-model)
 
 ### Git flow
 
+ * [git flow](http://danielkummer.github.io/git-flow-cheatsheet/index.ru_RU.html)
+ * [git flow ](http://internetdevels.ru/blog/git-flow-model)
  * подразумевает что на каждом спринте вы создаете (обновляете текущую) ветку developer из которой потом каждый программер выделяет ветку feature и в ней решает конкретный issue, после того как он все сделал он (можно через pull request) слвиает feature в develop, после определенного момента (по срокам) разработка фич останавливаеться из ветки develop создается ветка release которая тестируется. Далее все сливается в maste и так покругу.
  * удобнее когда есть четкая дата релиза + фаза стабилизации. Наличие тестов желательно но не обязательно т.к. есть тестирование перед деплоем и время закрыть все косяки руками.
 
 ### GitHub flow
 
+ * [GitHub flow](https://guides.github.com/introduction/flow/)
+ * [Github-flow - немного сложнее, чем на бумаге. 2gis](https://www.youtube.com/watch?v=EwdXZXfQdQY)
  * ставит своей целью короткий релизный цикл (время от производства feature до deploy на продакшен может быть очень коротким), так сказать что бы пользователь как можно раньше получил свои новые фичи. Здесь очень важно наличие хороших тестов + CI. ну и высокая ответственность программиста.
  * Обычно из master выделяется ветка feature по конкретном issue прогер берет делает ее, далее делает pull request на добавление feature в master, она прохоидт автотесты + делается код ревью, заливаеться в master и автоматически деплоится на прод.
 
