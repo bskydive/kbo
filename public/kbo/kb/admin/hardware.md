@@ -76,6 +76,7 @@ https://github.com/hsoft/collapseos
 
  * i5-8250U/8Gb/1Tb/AMD 530 2Gb/15.6"/TN/FHD/Lin
  * https://1001zip.ru/products/ventilyator-dlya-noutbuka-dell-inspiron-15-5570-5575-latitude-3590-l3590-e3590
+ * https://sp-laptop.ru/dell
 
 ### память
 
