@@ -71,7 +71,6 @@ du -sm /*|sort -n
 
 	 ```
 
- * [pulseaudio-equalizer](files/equalizer-preset.png)
  * в pavucontrol выбрать воспроизведение через LADSPA Plugin, чтобы эквалайзер заработал
  * удаление pulseaudio-equalizer
     ```
@@ -131,8 +130,8 @@ du -sm /*|sort -n
 ### ogg to mp3
 
 ```bash
- ./ -iname "*.ogg" -exec oggdec {} \;
- ./ -iname "*.wav" -exec lame {} {}.mp3 \;
+find ./ -iname "*.ogg" -exec oggdec {} \;
+find ./ -iname "*.wav" -exec lame {} {}.mp3 \;
  "*.wav.mp3" "#1.mp3"
   *.ogg *.wav
 ```
@@ -243,14 +242,14 @@ ffmpeg -i ./*.mp4 -vn -sn -dn -af "volume=5dB" audio.m4a
 		nmcli device show
 		nmcli connection show
 		cat > /etc/NetworkManager/NetworkManager.conf
-		[main]
-		plugins=keyfile
-		dhcp=dhclient
+[main]
+plugins=keyfile
+dhcp=dhclient
 
-		[connectivity]
-		uri=https://77.88.8.8/
-		interval=10
-		response=Not Found
+[connectivity]
+uri=https://77.88.8.8/
+interval=10
+response=Not Found
 		#uri=http://conncheck.opensuse.org
 
 		nmcli general reload

@@ -146,11 +146,11 @@ ulimit -Sn
 cat /proc/sys/fs/inotify/max_user_watches
 #524288
 
-	cat /etc/security/limits.conf
-	# user hard nofile 16384
-	# user soft nofile 9216
-	ulimit -Sn
-	ulimit -Hn
+cat /etc/security/limits.conf
+# user hard nofile 16384
+# user soft nofile 9216
+ulimit -Sn
+ulimit -Hn
 ```
 
 ## settings
@@ -208,12 +208,14 @@ cat /proc/sys/fs/inotify/max_user_watches
  * https://code.visualstudio.com/docs/nodejs/nodejs-debugging
  * https://stackoverflow.com/questions/65097694/to-load-an-es-module-set-type-module-in-the-package-json-or-use-the-mjs-e
  * [debug typescript](https://code.visualstudio.com/docs/typescript/typescript-debugging)
+
 	```bash
 		nvm install 16 --default
 		#nvm i 16
 		#nvm alias default 16
 		#nvm alias default node
 	```
+
  * `~/.vscode/launch.json`
 	```json
 		{
@@ -270,9 +272,11 @@ cat /proc/sys/fs/inotify/max_user_watches
  * `"terminal.integrated.setLocaleVariables": true`
  * [gtk ibus emoji подменяет ctrl+shift+e](https://github.com/Microsoft/vscode/issues/48480)
  * не работает [буфер Linux](https://github.com/microsoft/vscode/issues/90297#issuecomment-583779433)
+
 	```
 		editor.action.selectionClipboardPaste
 	```
+
  * font rendering terminal
  	* https://stackoverflow.com/questions/29966747/how-can-i-disable-gpu-rendering-in-visual-studio-code
 	```
