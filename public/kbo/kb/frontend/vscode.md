@@ -67,8 +67,10 @@
 	VisualStudioExptTeam.vscodeintellicode
 ```
 * vscode extensions cli setup
-* https://code.visualstudio.com/docs/setup/linux#_visual-studio-code-is-unable-to-watch-for-file-changes-in-this-large-workspace-error-enospc
-* Each file watch takes up 1080 bytes, so assuming that all 524,288 watches are consumed, that results in an upper bound of around 540 MiB
+* ["Visual Studio Code is unable to watch for file changes in this large workspace" (error ENOSPC)](https://code.visualstudio.com/docs/setup/linux#_visual-studio-code-is-unable-to-watch-for-file-changes-in-this-large-workspace-error-enospc)
+	* [ vscode doesn't start with ulimits #110535 ](https://github.com/microsoft/vscode/issues/110535)
+	* https://stackoverflow.com/questions/71994085/why-ulimit-n-value-is-different-in-vscode-terminal
+	* [](../admin/systemd.md#limits)
 
 ```bash
 	code --disable-extensions
@@ -80,77 +82,6 @@
 	#Windows %APPDATA%\Code\User\settings.json
 	#macOS $HOME/Library/ApplicationSupport/Code/User/settings.json
 	#Linux $HOME/.config/Code/User/settings.json
-
-ulimit -Sn
-#1024
-ulimit -Hn
-#524288
-cat /proc/sys/fs/inotify/max_user_watches
-#65536
-sysctl fs.inotify.max_user_watches
-#fs.inotify.max_user_watches = 65536
-sysctl fs.file-max
-#fs.file-max = 9223372036854775807
-
-
-	cat > /etc/sysctl.d/vscode.sysctl.conf
-	# fs.inotify.max_user_watches=524288
-	# fs.file-max=1632119
-	sysctl -p
-	sysctl --system
-
-sysctl --system
-#* Applying /boot/sysctl.conf-5.14.21-150400.24.100-default ...
-#kernel.hung_task_timeout_secs = 0
-#kernel.msgmax = 65536
-#kernel.msgmnb = 65536
-#kernel.shmmax = 0xffffffffffffffff
-#kernel.shmall = 0x0fffffffffffff00
-#vm.dirty_ratio = 20
-#* Applying /usr/lib/sysctl.d/50-default.conf ...
-#net.ipv4.icmp_echo_ignore_broadcasts = 1
-#net.ipv4.conf.all.rp_filter = 2
-#net.ipv4.conf.default.promote_secondaries = 1
-#net.ipv4.conf.all.promote_secondaries = 1
-#net.ipv6.conf.default.use_tempaddr = 1
-#net.ipv4.ping_group_range = 0 2147483647
-#fs.inotify.max_user_watches = 65536
-#kernel.sysrq = 184
-#fs.protected_hardlinks = 1
-#fs.protected_symlinks = 1
-#kernel.kptr_restrict = 1
-#* Applying /usr/lib/sysctl.d/51-network.conf ...
-#net.ipv4.conf.all.accept_redirects = 0
-#net.ipv4.conf.default.accept_redirects = 0
-#net.ipv4.conf.all.accept_source_route = 0
-#net.ipv4.conf.default.accept_source_route = 0
-#net.ipv6.conf.all.accept_redirects = 0
-#net.ipv6.conf.default.accept_redirects = 0
-#* Applying /etc/sysctl.d/70-yast.conf ...
-#net.ipv4.ip_forward = 1
-#net.ipv6.conf.all.forwarding = 1
-#net.ipv6.conf.all.disable_ipv6 = 0
-#* Applying /usr/lib/sysctl.d/99-sysctl.conf ...
-#* Applying /etc/sysctl.d/vscode.sysctl.conf ...
-#fs.inotify.max_user_watches = 524288
-#fs.file-max = 1632119
-#* Applying /etc/sysctl.conf ...
-sysctl fs.inotify.max_user_watches
-#fs.inotify.max_user_watches = 524288
-sysctl fs.file-max
-#fs.file-max = 1632119
-ulimit -Hn
-#524288
-ulimit -Sn
-#1024
-cat /proc/sys/fs/inotify/max_user_watches
-#524288
-
-cat /etc/security/limits.conf
-# user hard nofile 16384
-# user soft nofile 9216
-ulimit -Sn
-ulimit -Hn
 ```
 
 ## settings

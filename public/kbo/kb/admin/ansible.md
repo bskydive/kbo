@@ -22,6 +22,7 @@
 	* role
 	* group
 * on-permise self-hosted
+* IaaS(vps)/SaaS(managed) - google, M$, AWS, Y, M, $ber, MT$
 * vSphere
 * https://ansible.readthedocs.io/projects/awx/en/latest/
  * аналоги - chef/puppet, у них агенты
@@ -95,6 +96,19 @@ ansible-config init --disabled -t all > .ansible.cfg
 
 ```
 
+### facts
+
+ * параметры системы
+ * собираются автоматически перед запуском playbook
+
+```bash
+
+ansible -m setup # посмотреть какие факты собираются
+ansible -m ansible.builtin.setup
+
+
+```
+
 ### Inventory
 
  * https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html#inventory-basics-formats-hosts-and-groups
@@ -109,10 +123,10 @@ atlanta:
       http_port: 80
       maxRequestsPerChild: 808
     host2:
-      http_port: 303
-      maxRequestsPerChild: 909
-	  ansible_port: 5555
-      ansible_host: 192.0.2.50
+      http_port: 303			# alias
+      maxRequestsPerChild: 909	# alias
+	  ansible_port: 5555		# alias
+      ansible_host: 192.0.2.50	# alias
 ungrouped:
   hosts:
     mail.example.com:
@@ -140,6 +154,43 @@ prod:
 test:
   children:
     west:
+usa:
+  children:
+    southeast:
+      children:
+        atlanta:
+          hosts:
+            host1:
+            host2:
+        raleigh:
+          hosts:
+            host2:
+            host3:
+      vars:
+        some_server: foo.southeast.example.com
+        halon_system_timeout: 30
+        self_destruct_countdown: 60
+        escape_pods: 2
+    northeast:
+    northwest:
+    southwest:
+```
+ * https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html#how-variables-are-merged
+    * all group (because it is the 'parent' of all other groups)
+    * parent group
+    * child group
+    * host
+
+ *
+```bash
+ll myinventory/
+  01-openstack.yml          # configure inventory plugin to get hosts from OpenStack cloud
+  02-dynamic-inventory.py   # add additional hosts with dynamic inventory script
+  03-on-prem                # add static hosts and groups
+  04-groups-of-groups       # add parent groups
+
+ansible -i myinventory
+
 ```
 
 ### модули
@@ -158,23 +209,72 @@ test:
 
  * набор для конкретного действия
 
+```bash
+
+cat requirements.yml
+  roles:
+    # Install a role from Ansible Galaxy.
+    - name: geerlingguy.java
+      version: "1.9.6" # note that ranges are not supported for roles
+ansible-galaxy install -r requirements.yml
+ansible-galaxy role install -r
+```
+
 ### Коллекции
 
  * набор ролей, модулей, плагинов
+ * пространство имён
+ * https://docs.ansible.com/ansible/latest/collections_guide/collections_installing.html
 
 ```bash
 
 ansible-galaxy collection install <namespace.collection>
+ansible-galaxy collection install my_namespace.my_collection --upgrade
+ansible-galaxy collection install my_namespace-my_collection-1.0.0.tar.gz -p ./collections
+ansible-galaxy collection install my_namespace.my_collection:==1.0.0-beta.1
+ansible-galaxy collection install 'my_namespace.my_collection:>=1.0.0,<2.0.0'
 
+cat requirements.yml
+
+  collections:
+  # With just the collection name
+  - my_namespace.my_collection
+  # With the collection name, version, and source options
+  - name: my_namespace.my_other_collection
+    version: ">=1.2.0" # Version range identifiers (default: ``*``)
+    source: ... # The Galaxy URL to pull the collection from (default: ``--api-server`` from cmdline)
+    type: galaxy
+    signatures:
+      - https://examplehost.com/detached_signature.asc
+      - file:///path/to/local/detached_signature.asc
+  - name: https://github.com/organization/repo_name.git
+    type: git
+    version: devel
+
+ansible-galaxy install -r requirements.yml
+ansible-galaxy collection install -r
+
+ansible-galaxy collection install /path/to/ns -p ./collections
+# ns/
+# ├── collection1/
+# │   ├── MANIFEST.json
+# │   └── plugins/
+# └── collection2/
+#     ├── galaxy.yml
+#     └── plugins/
 ```
 
 ### примеры cli
 
+ * жёлтый - цвет тревоги, зелёный - без изменений
+
 ```bash
+# -a - argument
 # module ping
 ansible all -m ping --private-key=~/.ssh/custom_id -u user
 # exec
 ansible all -a "uname -a"
+ansible all -m shell -a "uname -a"
 # module apt
 ansible server1 -m apt -a "name=vim"
 # playbook
@@ -199,12 +299,34 @@ ansible-vault create --vault-id dev@path/to/passfile credentials_dev.yml
 ansible-vault edit credentials_dev.yml --vault-id dev@prompt
 ansible-playbook myplaybook.yml -vvvv
 
+```
+
+ * `protocol error: file name does not match request` - remote file name requires quotes to escape spaces or non-ascii characters
+	* If you must use SCP, set the -T arg to tell the SCP client to ignore path validation. You can do this in one of three ways:
+	* Set a host variable or group variable: ansible_scp_extra_args=-T,
+	* Export or pass an environment variable: ANSIBLE_SCP_EXTRA_ARGS=-T
+	* Modify your ansible.cfg file: add scp_extra_args=-T to the \[ssh_connection\] section
+
+### примеры логики
+
+```handlebars
+{{ hostvars[inventory_hostname]['somevar_' ~ other_var] }}
+{{ lookup('vars', 'somevar_' ~ other_var) }}
+original_host: "{{ hostvars[inventory_hostname]['ansible_host']['ansible_port']['ansible_user'] }}"
 
 ```
 
 ## best practices
 
  * [ansible playbook best practices](https://docs.ansible.com/ansible/2.8/user_guide/playbooks_best_practices.html#best-practices)
+ * стремимся к идемпотентости, повторяемости
+	* используем общепринятые модули - проверить, что они идемпотентны, покрыты тестами
+	* накатываем на чистое состояние
+	* пишем тесты
+	* проверяем/очищаем состояние перед действием
+	* логируем действия, конфиги, окружение, состояния, версии
+ * ansible ограничивает кол-во worker(EE - execution envinronment)
+	* --forks
 
 ## борьба со сложностью
 
@@ -235,7 +357,7 @@ ansible-playbook myplaybook.yml -vvvv
 		* https://github.com/cookiecutter/cookiecutter
 		* [Пишем свой драйвер Molecule без костылей и боли - 2023](https://habr.com/ru/companies/yadro/articles/764906/)
 		* при коммите в репозиторий с ролью читаем из meta.yml наборы вида «дистрибутив-версия», где мы должны протестировать роль
-		* Molecule — очень прожорливый инструмент, можно исопльзовать Jenkins, но лучше настроить ограничения количества одновременно поднятых виртуалок(worker pool) в Molecule. Так проще искать ошибку в логах.
+		* Molecule — очень прожорливый инструмент, можно использовать Jenkins, но лучше настроить ограничения количества одновременно поднятых виртуалок(worker pool) в Molecule. Так проще искать ошибку в логах.
 	* как документировать и каталогизировать
 		* https://ansible.readthedocs.io/projects/galaxy-ng/
 			* есть UI
@@ -356,6 +478,10 @@ docker pull alpinelinux/ansible
 
  * https://docs.ansible.com/ansible/latest/vault_guide/index.html
 
+```bash
+ansible --user root --become --become-user user --become-method su --ask-become-pass
+
+```
 ## facts
 
  * специальные переменные
