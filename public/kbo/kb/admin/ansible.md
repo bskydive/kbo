@@ -62,7 +62,25 @@ ansible-config init --disabled -t all > .ansible.cfg
 #nocows=1
 #deprecation_warnings=false
 
-
+```
+ * configuration file will be searched in the following order:
+	* `ANSIBLE_CONFIG` (environment variable if set)
+	* `ansible.cfg` (in the current directory)
+	* `~/.ansible.cfg` (in the home directory)
+	* `/etc/ansible/ansible.cfg`
+ * Ansible will not automatically load a config file from the current working directory if the directory is world-writable
+ * https://stackoverflow.com/questions/35969668/ansible-path-to-ansible-cfg
+```bash
+ansible --version
+#ansible [core 2.17.1]
+#  config file = /home/ansible/.ansible.cfg
+#  configured module search path = ['/home/ansible/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+#  ansible python module location = /home/ansible/venv3-ansible/lib/python3.12/site-packages/ansible
+#  ansible collection location = /home/ansible/.ansible/collections:/usr/share/ansible/collections
+#  executable location = /home/ansible/venv3-ansible/bin/ansible
+#  python version = 3.12.3 (main, Apr 10 2024, 05:33:47) [GCC 13.2.0] (/home/ansible/venv3-ansible/bin/python3)
+#  jinja version = 3.1.4
+#  libyaml = True
 ```
 
 ### дерево конфигов

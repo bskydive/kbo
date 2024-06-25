@@ -122,6 +122,15 @@ The 7 Cs of DevOps are Continuous:
 	* Приоритет nice и приоритет планировщика процессов ядра ОС — разные числа.
 	* Планировщик может стремиться назначить процессу приоритет, близкий к nice, но это не всегда возможно, так как в системе может выполняться множество процессов с разными приоритетами.
 
+### build/compile
+
+
+ * [счётчики тактов cpp c++](https://agner.org/optimize/optimizing_cpp.pdf#page=167)
+ * https://webpack.js.org/concepts/module-federation/
+ * https://docs.oracle.com/en/java/javase/11/tools/jlink.html
+ * [docker сборка JAVA](https://hub.docker.com/_/eclipse-temurin)
+	* https://github.com/adoptium/containers
+
 ### debug
 
  * [ltrace](https://gitlab.com/cespedes/ltrace) - библиотеки

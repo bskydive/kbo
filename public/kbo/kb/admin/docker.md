@@ -71,15 +71,39 @@
  * [Best practices for Dockerfile instructions](https://docs.docker.com/develop/develop-images/instructions/)
  * [General best practices for writing Dockerfiles](https://docs.docker.com/develop/develop-images/guidelines/)
  * [Image-building best practices](https://docs.docker.com/guides/workshop/09_image_best/)
- *
+ * [](./devops.md#buildcompile)
  * [https://kazarin.online/index.php/2021/03/17/docker-antipatterns/](10 Антипаттернов использования Docker).
  * низкая связность
 	* вызов скриптов только из текущего репозитория
 	* вызов внешних сервисов и логика только на уровне оркестратора/CICD систем
  * идемпотентность
 	* работа с git или другими внешними сервисами только на чтение
-	* слой БД загружается только как готовый образ, без модификации
-	* учитываем кэширование слоёв файловой системы, разделяем скрипты по шагам, очищаем
+	* слой БД загружается только как готовый образ, без модификации скриптами SQL
+	* учитываем кэширование слоёв файловой системы, разделяем скрипты по шагам(multistage), очищаем кэши
+	* https://docs.docker.com/guides/docker-concepts/building-images/multi-stage-builds/
+	* https://docs.docker.com/build/building/multi-stage/
+
+```dockerfile
+# stage 1, более толстое окружение для сборки
+FROM eclipse-temurin:21.0.2_13-jdk-jammy AS builder
+WORKDIR /opt/app
+COPY .mvn/ .mvn
+COPY mvnw pom.xml ./
+RUN ./mvnw dependency:go-offline
+COPY ./src ./src
+RUN ./mvnw clean install
+
+# stage 2, маленькое окружение для запуска
+FROM eclipse-temurin:21.0.2_13-jre-jammy AS final
+WORKDIR /opt/app
+EXPOSE 8080
+# -----------v 	`AS builder-------------------^`
+COPY --from=builder /opt/app/target/*.jar /opt/app/*.jar
+ENTRYPOINT ["java", "-jar", "/opt/app/*.jar"]
+#  stage (final) is the default target for building
+# You could use docker build -t spring-helloworld-builder --target builder . to build only the builder stage with the JDK environment
+```
+
  * разделение состава образов по средам/задачам - отдельно CI и CD
 	* CD - только готовые к развёртыванию файлы и окружение: скомпилированные, очищенные
 	* CI - инструменты, фреймворки, исходный код, отладочная информация, тесты
@@ -91,7 +115,7 @@
 		* утилиты для конфигов configmaps, zookeeper, consul
 		* утилиты для секретов vault, keywhiz, confidant, cerberus
  * инструкции, которые мы планируем изменять редко, лучше держать выше других, чтобы они с большей вероятностью взялись из кэша
- * Некоторые команды, как RUN, COPY или FROM, порождают новый слой, который занимает место на локальном диске. Мы можем объединить команды
+ * Объединяйте команды в цепочки. Некоторые команды, как RUN, COPY или FROM, порождают новый слой, который занимает место на локальном диске.
 
 	```bash
 		FROM alpine:3.19
@@ -104,13 +128,12 @@
 		# Если сделать это в следующей инструкции, он останется в предыдущем слое
 
 	```
- * https://docs.docker.com/build/building/multi-stage/
+
  * Используйте инструкцию COPY вместо ADD, т.к. add может выполнять команды распаковки
 
 ## image development
 
- * dockerfile - /var/lib/docker/image/overlay2/imagedb/content/sha256
- *
+ * dockerfile - /var/lib/docker/image/overlay2/imagedb/content/sha256/*
 
 ## install
 
@@ -127,7 +150,7 @@
 	# Add the repository to Apt sources:
 	cat >> /etc/apt/sources.list.d/docker.list
 
-	deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu noble stable
+	#deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu noble stable
 
 
 	apt-get update
