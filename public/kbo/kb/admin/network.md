@@ -337,6 +337,11 @@ ping добавляет 28 бит!
 
 ```
 
+## hosts
+
+ * https://www.baeldung.com/linux/difference-ip-address
+	* 0.0.0.0 - unspecified/all ip's, used in services configs and default routes
+
 ## DNS
 
  * [Составляем DNS-запрос вручную](https://habrahabr.ru/post/346098/)

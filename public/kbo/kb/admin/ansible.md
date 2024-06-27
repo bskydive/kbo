@@ -287,6 +287,10 @@ ansible-galaxy collection install /path/to/ns -p ./collections
  * жёлтый - цвет тревоги, зелёный - без изменений
 
 ```bash
+# list of available modules.
+ansible-doc -l
+ansible-doc <name> # plugin-specific documentation and examples.
+
 # -a - argument
 # module ping
 ansible all -m ping --private-key=~/.ssh/custom_id -u user
@@ -345,6 +349,13 @@ original_host: "{{ hostvars[inventory_hostname]['ansible_host']['ansible_port'][
 	* логируем действия, конфиги, окружение, состояния, версии
  * ansible ограничивает кол-во worker(EE - execution envinronment)
 	* --forks
+
+### идемпотентность
+
+ *
+ *
+ *
+ *
 
 ## борьба со сложностью
 
@@ -446,20 +457,31 @@ python3 -m pip install --user ansible
 # note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.
 # hint: See PEP 668 for the detailed specification.
 
-aptitude install python3-venv python3-pip
+aptitude install python3-venv python3-pip python-is-python3
 useradd -m -s /bin/bash ansible
 su - ansible
 ssh-keygen -t rsa -b 4096
+python -m venv venv3-ansible
 cat >> ~/.profile
 #source ${HOME}/venv3-ansible/bin/activate
 bash
-python3 -m pip install ansible
-python3 -m pip install argcomplete
+python -m pip install ansible
+python -m pip install argcomplete
 ansible-config init --disabled -t all > .ansible.cfg
 mcedit .ansible.cfg
 #[defaults]
-#nocows=1
-#deprecation_warnings=false
+#deprecation_warnings=False
+
+ansible --version
+# ansible [core 2.17.1]
+#  config file = /home/ansible/.ansible.cfg
+#  configured module search path = ['/home/ansible/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+#  ansible python module location = /home/ansible/venv3-ansible/lib/python3.12/site-packages/ansible
+#  ansible collection location = /home/ansible/.ansible/collections:/usr/share/ansible/collections
+#  executable location = /home/ansible/venv3-ansible/bin/ansible
+#  python version = 3.12.3 (main, Apr 10 2024, 05:33:47) [GCC 13.2.0] (/home/ansible/venv3-ansible/bin/python)
+#  jinja version = 3.1.4
+#  libyaml = True
 
 ```
  * https://kislyuk.github.io/argcomplete/
