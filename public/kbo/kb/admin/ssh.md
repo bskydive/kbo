@@ -12,11 +12,36 @@ ssh -p0000 user@11.12.11.12 -i /distr/mykey.priv
 ssh-copy-id -i ~/.ssh/id_rsa.pub user@0.0.0.0
 
 ```
+
  * проброс портов
  	* from local to remote `ssh -L LOCAL_PORT:localhost:REMOTE_PORT REMOTE_USER@REMOTE_HOST`
 	* from remote to local `ssh -R REMOTE_PORT:localhost:LOCAL_PORT REMOTE_USER@REMOTE_HOST`
 	* `ssh -fNL`
  *
+
+## ssh welcome
+
+ * [disable ssh welcome screen](https://linuxconfig.org/disable-dynamic-motd-and-news-on-ubuntu-20-04-focal-fossa-linux)
+ * https://superuser.com/questions/1840229/how-to-disable-motd-from-debian-12
+
+```bash
+/etc/default/motd-news
+#ENABLED=0
+
+chmod -x /etc/update-motd.d/90-updates-available
+chmod -x /etc/update-motd.d/*
+
+/etc/ssh/sshd_config
+#PrintMotd no
+
+/etc/pam.d/sshd
+# # session    optional     pam_motd.so  motd=/run/motd.dynamic
+# # session    optional     pam_motd.so noupdate
+
+grep -ril motd /etc/zsh /etc/bash.bashrc /etc/profile /etc/profile.d
+
+```
+
 
 ## SSHD
 

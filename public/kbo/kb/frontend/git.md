@@ -281,7 +281,11 @@ git ls-files -o --exclude-standard
 
 ### log
 
- * коммиты и Комментарии на дату ститистика
+```bash
+git log --pretty=oneline --format='DEV: %an %cd #%h %s' --date=format:'%c'
+```
+
+ * коммиты и Комментарии на дату сатитистика
 
 	```bash
 		g log  --pretty=format:%s --after="2018-07-27"

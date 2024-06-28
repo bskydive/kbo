@@ -1,11 +1,53 @@
 # ansible
 
 
+## TODO
+
+* идемпотентные playbook
+* жизненный цикл ноды
+	* установка/настройка главного узла
+	* подготовка ОС, очистка, ротация, безопасность
+	* ключи, пользователи ansible
+	* сбор фактов
+	* playbook приложений
+	* playbook linter
+	* служебные playbook
+	* backup/restore/test
+	* агенты мониторинга
+* раскатка ключей ssh по хостам с вводом паролей
+	* с клавиатуры один раз для всех
+	* с клавиатуры каждый раз для всех
+	* то же, из файла
+ * правка конфигов
+	* проверка наличия строки
+	* полнотекстовый поиск
+	* замена строк
+	* валидация конфигов
+ * тесты
+	* состав пакетов
+	* запуск, остановка процессов
+	* размер директорий
+	* права на файлы
+	* наличие пользоватлей, их группы и права
+	* настройки сети, маршруты, адреса, шлюзы
+	* исправность дисков и ФС
+	* исправность снимков ФС
+	* diff снимков ФС
+	* по расписанию
+ * безопасность
+	* шифрование ключей
+	* передача паролей через переменные окружения
+ * производительность
+	* запуск отдельных нод EE по необходимости
+	*
+
+
  * configuration management
 	* packer+pxe
 	* argoCD
  * https://galaxy.ansible.com/ui/search/?keywords=nginx
  * https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_intro.html#playbook-syntax
+
  * [Андрей Девяткин — Почему я советую людям не учить Ansible - 2021](https://youtu.be/vTLHuyYAswo?t=738)
 
  * основная проблема - ползучие недокументированные изменения
@@ -222,6 +264,7 @@ ansible -i myinventory
 ### Плейбуки
 
  * связывают inventory, role, collection
+ * `tasks` -  этапы/задачи/модули
 
 ### Роли
 
@@ -320,6 +363,10 @@ ansible-vault create --vault-id dev@prompt credentials_dev.yml
 ansible-vault create --vault-id dev@path/to/passfile credentials_dev.yml
 ansible-vault edit credentials_dev.yml --vault-id dev@prompt
 ansible-playbook myplaybook.yml -vvvv
+ansible -i ./.inventory.yml --list-hosts hosts
+
+# список установленных модулей
+ansible-galaxy collection list
 
 ```
 
@@ -338,6 +385,14 @@ original_host: "{{ hostvars[inventory_hostname]['ansible_host']['ansible_port'][
 
 ```
 
+## модули
+
+ * [ansible.posix.authorized_key module – Adds or removes an SSH authorized key](https://docs.ansible.com/ansible/latest/collections/ansible/posix/authorized_key_module.html)
+
+```
+
+```
+
 ## best practices
 
  * [ansible playbook best practices](https://docs.ansible.com/ansible/2.8/user_guide/playbooks_best_practices.html#best-practices)
@@ -347,8 +402,13 @@ original_host: "{{ hostvars[inventory_hostname]['ansible_host']['ansible_port'][
 	* пишем тесты
 	* проверяем/очищаем состояние перед действием
 	* логируем действия, конфиги, окружение, состояния, версии
- * ansible ограничивает кол-во worker(EE - execution envinronment)
-	* --forks
+ * ansible ограничивает кол-во параллельных команд
+	* --forks в cli
+	* serial в playbook
+ * worker: EE - execution envinronment
+ * группируй status:changed этапы в конец, чтобы пропускать повторный запуск "зелёных" команд модулей
+ * модули запускаются последовательно, потоки команд на разные ноды параллельно
+	* `strategy: free`  отключает ожидание завершения всех нод предыдущего этапа/модуля
 
 ### идемпотентность
 
@@ -458,6 +518,7 @@ python3 -m pip install --user ansible
 # hint: See PEP 668 for the detailed specification.
 
 aptitude install python3-venv python3-pip python-is-python3
+aptitude install sshpass # для ansible -k
 useradd -m -s /bin/bash ansible
 su - ansible
 ssh-keygen -t rsa -b 4096
@@ -551,3 +612,39 @@ https://docs.ansible.com/ansible/latest/collections/all_plugins.html
     assign_public_ip: yes
 ```
 
+## TODO задачки
+
+
+ * проверить что никого нет на машине и не выполняются задачи, не висят сессии, не смонтированы внешние диски, не запущены сервисы, не загружен диск/сеть/ЦП перед тем как сделать poweroff
+	* w, wall, mount, iftop, hddtop, lsof каталогов с приложениями, ss порты приложений, systemctl приложений, ps/docker ps приложений
+ * как загрузить bash profile remote_user
+ * как закинуть ключи скриптом в root новой машины, если `PermitRootLogin prohibit-password
+`
+
+```yaml
+- name: ssh_pre
+  hosts: vm-guests
+  gather_facts: false
+  serial: 1
+  remote_user: user
+
+  tasks:
+    - name: sendkey
+      ansible.posix.authorized_key:
+        state: present
+        exclusive: false
+        comment: 'ansible host3 automation key'
+        user: root
+        key: "{{ lookup('file', '/home/ansible/.ssh/id_rsa.pub') }}"
+
+
+- name: ex1
+  gather_facts: false
+  hosts: vm-guests # группа в inventory
+  serial: 2 # выполнять для 2 хостов/сессий ssh одновременно
+  remote_user: root # под кем логиниться и выполнять
+
+  tasks:
+     - name: shutdown
+      ansible.builtin.shell: poweroff
+```
