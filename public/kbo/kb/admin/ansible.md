@@ -637,6 +637,41 @@ https://docs.ansible.com/ansible/latest/collections/all_plugins.html
         user: root
         key: "{{ lookup('file', '/home/ansible/.ssh/id_rsa.pub') }}"
 
+- name: ex1
+  gather_facts: true
+  hosts: vm-guests # группа в inventory
+  serial: 2 # выполнять для 2 хостов/сессий ssh одновременно
+  remote_user: root # под кем логиниться и выполнять
+  become_user: ansible
+  become_method: su -
+
+  tasks:
+    - name: pong
+      ansible.builtin.ping:
+
+    - name: namme
+      ansible.builtin.shell: hostname && w
+      register: result # направить результат выполнения и отладочную инфу в произвольную переменную
+
+    - name: result
+      ansible.builtin.debug: # показать значение переменной в stdout
+        var: result # откуда читать
+
+    - name: install
+      ansible.builtin.apt:
+        name:
+          - iftop # имя пакета
+          - cowsay
+          - mtr
+        state: present # установить один раз
+        update_cache: yes # apt-get update
+      when: '"mgmt_server" not in result.stdout' # для всех, кроме сервера управления
+
+    - name: add_user
+      ansible.builtin.user:
+        name: ansible
+        shell: /bin/bash
+        create_home: true
 
 - name: ex1
   gather_facts: false
