@@ -8,6 +8,11 @@
  * https://docs.vmware.com/en/VMware-Tools/index.html
  * http://www.vmware.com/pdf/vmware-tools-cli.pdf
 
+## network
+
+ * https://askubuntu.com/questions/810132/how-do-i-install-the-vmmon-kernel-module-for-vmware
+	* `sudo vmware-modconfig --console --install-all`
+
 ## guest vmware tools
 
  * https://serverfault.com/questions/660080/detect-memory-ballooning-from-within-the-affected-vm
