@@ -37,6 +37,10 @@
 https://support.office.com/en-us/article/Turn-off-or-uninstall-OneDrive-f32a17ce-3336-40fe-9c38-6efb09f944b0
 удалить из "пункта управления" все мобильные приложения
 
+## скрипты
+
+ * завершение винды - время 0 `C:\WINDOWS\system32\shutdown.exe -s -f -t 0`
+
 ## windows 10
 
  * http://www.intowindows.com/how-to-enable-windows-photo-viewer-in-windows-10/

@@ -18,6 +18,7 @@ https://github.com/hsoft/collapseos
  * есть DC UPS или mini UPS
 	* https://bast.ru/products/rapan/bbp-rapan-10p-isp-12
 	* https://aliexpress.ru/wholesale?SearchText=mini+ups
+ * завершение винды - время 0 `C:\WINDOWS\system32\shutdown.exe -s -f -t 0`
 
 ## Бесперебойник APC
 
@@ -101,6 +102,13 @@ https://github.com/hsoft/collapseos
 ## USB
 
  * [hidviz - usb hid debug - rosa2021.1](https://abf.io/build_lists/4827483)
+
+## модемы
+
+```
+AT+CGDCONT=1,"IP","internet.beeline.ru"
+*99**1*1#
+```
 
 ## network hardware
 
