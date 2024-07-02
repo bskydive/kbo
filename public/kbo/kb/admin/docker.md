@@ -234,6 +234,7 @@ ENTRYPOINT ["java", "-jar", "/opt/app/*.jar"]
 		#"https://registry.docker-cn.com"
 	"add-registry": ["192.168.100.100:5001"],
 	"block-registry": ["docker.io"],
+	"insecure-registries" : [ "hostname.cloudapp.net:5000" ]
 }
 ```
  * https://stackoverflow.com/questions/33054369/how-to-change-the-default-docker-registry-from-docker-io-to-my-private-registry
@@ -242,6 +243,28 @@ ENTRYPOINT ["java", "-jar", "/opt/app/*.jar"]
 ```bash
 	cat >> /etc/hosts
 	127.0.0.1 index.docker.io auth.docker.io registry-1.docker.io production.cloudflare.docker.com
+```
+
+ * https://hub.docker.com/_/registry
+ * https://www.docker.com/blog/how-to-use-your-own-registry-2/
+
+```bash
+docker pull registry
+mcedit /etc/docker/daemon.json
+#"insecure-registries" : [ "vm-pc3-mgmt:5000" ]
+docker ps
+systemctl restart docker
+docker run -d -p 5000:5000 --name registry registry:latest
+
+# load image
+docker pull nginx
+# tag in cache
+docker tag nginx vm-pc3-mgmt:5000/nginx-local
+# push from cache to registry container
+docker push vm-pc3-mgmt:5000/nginx-local
+# pull from local
+docker pull vm-pc3-mgmt:5000/nginx-local
+
 ```
 
 ## cli
@@ -258,6 +281,16 @@ ENTRYPOINT ["java", "-jar", "/opt/app/*.jar"]
 
  * https://docs.docker.com/reference/cli/docker/image/build/#target
  * https://docs.docker.com/reference/cli/docker/compose/#use-profiles-to-enable-optional-services
+
+## WTF troubleshooting
+
+ * https://stackoverflow.com/questions/49110092/failed-to-start-docker-application-container-engine
+
+```bash
+docker info
+rm /var/run/docker.pid
+rm /etc/docker/daemon.json
+```
 
 ## control
 

@@ -237,11 +237,12 @@ ffmpeg -i ./*.mp4 -vn -sn -dn -af "volume=5dB" audio.m4a
  * https://wiki.archlinux.org/title/NetworkManager
  * смотреть в /etc/NetworkManager/system-connections/
  *
-	```bash
-		nmcli networking on
-		nmcli device show
-		nmcli connection show
-		cat > /etc/NetworkManager/NetworkManager.conf
+```bash
+nmcli networking on
+nmcli device show
+nmcli connection show
+cat > /etc/NetworkManager/NetworkManager.conf
+
 [main]
 plugins=keyfile
 dhcp=dhclient
@@ -250,11 +251,12 @@ dhcp=dhclient
 uri=https://77.88.8.8/
 interval=10
 response=Not Found
-		#uri=http://conncheck.opensuse.org
 
-		nmcli general reload
+#uri=http://conncheck.opensuse.org
 
-		nmcli c modify <name> wifi-sec.key-mgmt wpa-psk wifi-sec.psk <password>
+nmcli general reload
+
+nmcli c modify <name> wifi-sec.key-mgmt wpa-psk wifi-sec.psk <password>
 	```
  * https://docs.ubuntu.com/core/en/stacks/network/network-manager/docs/configure-wifi-connections
  * http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/

@@ -22,6 +22,11 @@
 	* observum
 	* протокол SNMP
 
+## socket
+
+ * https://www.baeldung.com/cs/raw-sockets
+ * ![](./network/socket_type.jpg)
+
 ## HTTP
 
  * articles-manager/теория/сети.md
