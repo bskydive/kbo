@@ -1,5 +1,22 @@
 # Zabbix
 
+
+## zabbix vs prometheus
+
+ * https://github.com/zabbix/zabbix-docker/wiki/Docker-101---Before-starting-with-containerized-Zabbix
+ * They simply aren't supposed to be docker-compose up -d -f docker-compose_v3_ubuntu_pgsql_latest.yaml. You should instead copy the one you like and then tailor it to your needs. So for example if you choose Postgres as your DB copy the pgsql_latest to docker-compose.yml and just keep the services you need.
+ * if you're new to Zabbix AND Containers you might have a hard time and completely ruin your experience maybe even dropping Zabbix because you just can't get it up and running.
+ * So if you're new to containers as a whole start with a good Docker/Container tutorial first. It's not hard at all. It might set you back 1-2 hours but those will pay off easily not just for Zabbix but also for the rest of your containerized journey
+ * zabbix
+	* C backend, and a PHP front end.
+	* https://blog.zabbix.com/zabbix-network-discovery-for-dynamic-deployments/10175/
+	* discovery protocols and ports: FTP, HTTP, HTTPS, ICMP ping, SNMP
+ * Prometheus
+ 	* can provide a dimensional data model where metrics are identified by a metric name and tags with built-in storage, graphing, and alerting.
+	* time-series database monitoring solution
+	* To manage alerts with Prometheus you need to install Alertmanager.
+	* discovery via 
+
 ## install
 
 ### docker
