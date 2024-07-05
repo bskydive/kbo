@@ -70,6 +70,16 @@
 	* containerd
 	* runc(фундамент)
 
+## выбор образа ОС
+
+ * Alpine
+	* наименьший размер, однако там [musl libc](http://www.musl.libc.org) вместо стандартной [glibc](http://www.etalabs.net/compare_libcs.html). Поэтому некоторое старое ПО может глючить из-за недостаточных libc зависимостей.
+	* See [this Hacker News comment thread](https://news.ycombinator.com/item?id=10782897) for more discussion of the issues that might arise and some pro/con comparisons of using Alpine-based images.
+	* [`alpine` image description](https://hub.docker.com/_/alpine/)
+	* https://wiki.alpinelinux.org/wiki/Running_glibc_programs
+	* https://stackoverflow.com/questions/70243938/use-shared-library-that-uses-glibc-on-alpinelinux
+	* MUSL is lighter and doesn't drag a legacy with it. This is a problem when applications depend on the legacy, like when they want to use pthread.
+
 ## лучшие практики для dockerfile
 
  * [Best practices for Dockerfile instructions](https://docs.docker.com/develop/develop-images/instructions/)
