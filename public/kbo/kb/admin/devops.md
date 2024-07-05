@@ -248,6 +248,7 @@ perf report -f --stdio
  * https://teams.vk.com/
  * https://calls.mail.ru/
  * «МТС Линк», SberJazz, Яндекс.Телемост, «Труконф» trueconf, «VK Звонки»
+ * https://github.com/wireapp/wire
 
 ##  инфраструктура
 
