@@ -133,6 +133,10 @@ The 7 Cs of DevOps are Continuous:
 
 ### debug
 
+ * vnstat
+ * dstat
+ * iotop iftop htop atop
+ * screen multitail
  * [ltrace](https://gitlab.com/cespedes/ltrace) - библиотеки
  * strace
 	* [Strace в Linux: история, устройство и использование](https://habr.com/ru/companies/badoo/articles/493856/)

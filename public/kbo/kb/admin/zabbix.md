@@ -1,5 +1,6 @@
 # Zabbix
 
+ * https://github.com/zabbix/zabbix-docker/issues
 
 ## zabbix vs prometheus
 
@@ -80,62 +81,98 @@ docker run --name zabbix-web-nginx-pgsql -t \
 ### docker compose
 
 ```bash
+mkdir ./ssl/nginx
+mkdir /var/lib/zabbix/mibs
+mkdir /zbx_instance/snmptraps
+```
 
-#docker network create --subnet 172.20.0.0/16 --ip-range 172.20.240.0/20 zabbix-net
-services
-# 2. Start empty PostgreSQL server instance
+```yaml
 
-docker run --name postgres-server -t \
-       -e POSTGRES_USER="zabbix" \
-       -e POSTGRES_PASSWORD="zabbix_pwd" \
-       -e POSTGRES_DB="zabbix" \
-       --network=zabbix-net \
-       --restart unless-stopped \
-       -d postgres:latest
+services:
+  postgres-server:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: "zabbix"
+      POSTGRES_PASSWORD: "zabbix_pwd"
+      POSTGRES_DB: "zabbix"
+    networks:
+      - zabbix-net
+    restart: "no"
 
-# 3. Start Zabbix snmptraps instance
+  zabbix-snmptraps:
+    image: zabbix/zabbix-snmptraps:alpine-7.0-latest
+    volumes:
+      - /zbx_instance/snmptraps:/var/lib/zabbix/snmptraps:rw
+      - /var/lib/zabbix/mibs:/usr/share/snmp/mibs:ro
+    networks:
+      - zabbix-net
+    ports:
+      - 162:1162/udp
+    restart: unless-stopped
 
-docker run --name zabbix-snmptraps -t \
-       -v /zbx_instance/snmptraps:/var/lib/zabbix/snmptraps:rw \
-       -v /var/lib/zabbix/mibs:/usr/share/snmp/mibs:ro \
-       --network=zabbix-net \
-       -p 162:1162/udp \
-       --restart unless-stopped \
-       -d zabbix/zabbix-snmptraps:alpine-7.0-latest
+  zabbix-server-pgsql:
+    image: zabbix/zabbix-server-pgsql:alpine-7.0-latest
+    environment:
+      DB_SERVER_HOST: "postgres-server"
+      POSTGRES_USER: "zabbix"
+      POSTGRES_PASSWORD: "zabbix_pwd"
+      POSTGRES_DB: "zabbix"
+      ZBX_ENABLE_SNMP_TRAPS: "true"
+    networks:
+      - zabbix-net
+    ports:
+      - 10051:10051
+    volumes_from:
+      - zabbix-snmptraps
+    restart: unless-stopped
+    depends_on:
+      postgres-server:
+        restart: false
+        required: true
+        condition: service_started
 
-# 4. Start Zabbix server instance and link the instance with created PostgreSQL server instance
+  zabbix-web-nginx-pgsql:
+    image: zabbix/zabbix-web-nginx-pgsql:alpine-7.0-latest
+    environment:
+      ZBX_SERVER_HOST: "zabbix-server-pgsql"
+      DB_SERVER_HOST: "postgres-server"
+      POSTGRES_USER: "zabbix"
+      POSTGRES_PASSWORD: "zabbix_pwd"
+      POSTGRES_DB: "zabbix"
+    networks:
+      - zabbix-net
+    ports:
+      - 443:8443
+      - 80:8080
+    volumes:
+      - type: bind
+        source: ./ssl/nginx
+        target: /etc/ssl/nginx
+        read_only: true
+    restart: unless-stopped
+    depends_on:
+      postgres-server:
+        restart: false
+        required: true
+        condition: service_started
+      zabbix-server-pgsql:
+        restart: false
+        required: true
+        condition: service_started
 
-docker run --name zabbix-server-pgsql -t \
-       -e DB_SERVER_HOST="postgres-server" \
-       -e POSTGRES_USER="zabbix" \
-       -e POSTGRES_PASSWORD="zabbix_pwd" \
-       -e POSTGRES_DB="zabbix" \
-       -e ZBX_ENABLE_SNMP_TRAPS="true" \
-       --network=zabbix-net \
-       -p 10051:10051 \
-       --volumes-from zabbix-snmptraps \
-       --restart unless-stopped \
-       -d zabbix/zabbix-server-pgsql:alpine-7.0-latest
+networks:
+  zabbix-net:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/16
+          ip_range: 172.20.240.0/20
 
-# 5. Start Zabbix web interface and link the instance with created PostgreSQL server and Zabbix server instances
-
-docker run --name zabbix-web-nginx-pgsql -t \
-       -e ZBX_SERVER_HOST="zabbix-server-pgsql" \
-       -e DB_SERVER_HOST="postgres-server" \
-       -e POSTGRES_USER="zabbix" \
-       -e POSTGRES_PASSWORD="zabbix_pwd" \
-       -e POSTGRES_DB="zabbix" \
-       --network=zabbix-net \
-       -p 443:8443 \
-       -p 80:8080 \
-       -v /etc/ssl/nginx:/etc/ssl/nginx:ro \
-       --restart unless-stopped \
-       -d zabbix/zabbix-web-nginx-pgsql:alpine-7.0-latest
 ```
 
 ## nginx for zabbix
 
-http://habrahabr.ru/company/acronis/blog/198354/
+ * [Zabbix 2.2 верхом на nginx + php-fpm и mariadb - 2013](http://habrahabr.ru/company/acronis/blog/198354/)
 
 ## httpd for zabbix
 

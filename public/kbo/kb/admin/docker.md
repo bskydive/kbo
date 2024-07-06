@@ -80,6 +80,12 @@
 	* https://stackoverflow.com/questions/70243938/use-shared-library-that-uses-glibc-on-alpinelinux
 	* MUSL is lighter and doesn't drag a legacy with it. This is a problem when applications depend on the legacy, like when they want to use pthread.
 	* [Comparison of C/POSIX standard library implementations for Linux](https://www.etalabs.net/compare_libcs.html)
+ * oracle linux
+	* Ksplice for zero-downtime kernel patching, DTrace for real-time diagnostics, Btrfs file system
+ * ubuntu
+	* This is the defacto image. If you are unsure about what your needs are, you probably want to use this one. It is designed to be used both as a throw away container (mount your source code and start the container to start your app), as well as the base to build other images off of.
+ *
+ *
 
 ## лучшие практики для dockerfile
 
@@ -307,7 +313,7 @@ rm /var/run/docker.pid
 rm /etc/docker/daemon.json
 ```
 
-## control
+## docker file
 
  * https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
  * https://docs.docker.com/reference/dockerfile/
@@ -316,7 +322,6 @@ rm /etc/docker/daemon.json
 	* VOLUME - Create volume mounts.
 	* ARG - Use build-time variables.
 	* CMD - Specify default commands.
-	* ENTRYPOINT - Specify default executable.
 	* ENV - Set environment variables.
 	* EXPOSE - Describe which ports your application is listening on.
 	* FROM - Create a new build stage from a base image.
@@ -325,17 +330,25 @@ rm /etc/docker/daemon.json
 	* LABEL - Add metadata to an image.
 	* MAINTAINER - Specify the author of an image.
 	* ONBUILD - Specify instructions for when the image is used in a build.
-	* [RUN](https://docs.docker.com/reference/dockerfile/#run) - Execute build commands.
-		* [exec form](https://docs.docker.com/reference/dockerfile/#shell-and-exec-form) лучше `shell`
+	* RUN
+		* https://docs.docker.com/reference/dockerfile/#run
+		- Execute build commands.
+		* создаёт новый слой в образе
+	* ENTRYPOINT - Specify default executable.
+		* https://docs.docker.com/reference/dockerfile/#entrypoint
+		* exec форма лучше `shell`
+			* https://docs.docker.com/reference/dockerfile/#shell-and-exec-form
 			* всегда запускает процесс с PID=1, это обязательный атрибут запущенного контейнера
-			* строковая форма запускает bash, и не принимает SIGTERM снаружи
+			* exec: `ENTRYPOINT ["executable", "param1", "param2"]`
+			* shell: `ENTRYPOINT command param1 param2`
+			* строковая/shell форма запускает bash, и не принимает SIG* снаружи
 		* `INSTRUCTION ["executable","param1","param2"] #exec form`
     	* `INSTRUCTION command param1 param2 #shell form`
 	* SHELL - Set the default shell of an image.
 	* STOPSIGNAL - Specify the system call signal for exiting a container.
 	* USER - Set user and group ID.
 	* WORKDIR - Change working directory.
- * ENTRYPOINT+CMD
+ * ENTRYPOINT+CMD - для переопределения параметров runtime
  * обязательные атрибуты
 	* FROM
 	*
@@ -345,11 +358,11 @@ rm /etc/docker/daemon.json
 ### prod
 
  * https://docs.docker.com/compose/production/
- * Removing any volume bindings for application code, so that code stays inside the container and can't be changed from outside
- * Binding to different ports on the host
- * Setting environment variables differently, such as reducing the verbosity of logging, or to specify settings for external services such as an email server
- * Specifying a restart policy like restart: alwaysto avoid downtime
- * Adding extra services such as a log aggregator
+ * убрать внешние точки монтирования volume, чтобы контейнер был без изменений снаружи
+ * другие порты
+ * другие environment variables: reducing the verbosity of logging, or to specify settings for external services such as an email server
+ * другие политики downtime `restart: always`
+ * убрать лишние services: log aggregator
 
 ### daemon.json
 
@@ -365,11 +378,12 @@ rm /etc/docker/daemon.json
 
 ### ENV
 
- * https://stackoverflow.com/questions/532155/linux-where-are-environment-variables-stored
+ * [проверить ENV у процесса снаружи](https://stackoverflow.com/questions/532155/linux-where-are-environment-variables-stored)
 
 ```bash
 	cat /proc/$PID/environ | tr '\0' '\n'
 ```
+
 * https://docs.docker.com/compose/environment-variables/
 
 ```
@@ -432,16 +446,45 @@ docker run -e "deep=purple" -e today --rm alpine env
 
 ## compose file
 
+ * https://docs.docker.com/compose/compose-application-model/
+ * [пример python сборки](https://docs.docker.com/compose/gettingstarted/)
+ * конвертер run<>compose
+	* https://www.composerize.com/
+	* https://github.com/composerize/composerize
+	* https://github.com/composerize/decomposerize
+	* https://ray.run/tools/docker-run-to-docker-compose
+	* https://ray.run/tools/docker-compose-to-docker-run
  * https://docs.docker.com/compose/release-notes/
  * синтакс
 	* map
 	* array
 	* .env
+```yaml
+#Map syntax:
+
+environment:
+  RACK_ENV: development
+  SHOW: "true"
+  USER_INPUT:
+
+#Array syntax:
+
+environment:
+  - RACK_ENV=development
+  - SHOW=true
+  - USER_INPUT
+```
+### validate/debug
+
  * https://docs.docker.com/reference/cli/docker/compose/config/
- * validate
+ * https://docs.docker.com/reference/cli/docker/compose/#use-dry-run-mode-to-test-your-command
 
 ```bash
 	docker-compose -f /path/to/the/docker-compose.yaml config --quiet && echo OKOK
+	docker compose -f /path/to/the/docker-compose.yaml config -q && echo OKOK
+	docker compose --dry-run up --build -d
+	docker-compose -f .docker/docker-compose.yml build www-service
+	docker-compose -f .docker/docker-compose.yml up www-service
 ```
 
 ### шаблоны конфигов
@@ -584,18 +627,23 @@ docker run -e "deep=purple" -e today --rm alpine env
 		#    image: 'webapp:v1.5'
 	```
 
+### configs
+
+ *
+
 ### networks
 
+* https://www.docker.com/blog/docker-networking-design-philosophy/
 * https://blog.oddbit.com/post/2014-08-11-four-ways-to-connect-a-docker/
 * https://docs.docker.com/compose/compose-file/05-services/#networks
 	* external: true|false
 	* internal: true|false
 * https://docs.docker.com/network/drivers/macvlan/
 * https://docs.docker.com/network/drivers/ipvlan/
+* https://docs.docker.com/compose/compose-file/06-networks/#ipam
 * https://training.play-with-docker.com/docker-networking-hol/
 * https://stackoverflow.com/questions/51873123/docker-container-with-dhcp-assigned-address
 * https://docs.docker.com/reference/cli/docker/container/run/#add-host
-*
 ```yaml
 	services:
 	app:
@@ -618,7 +666,7 @@ networks:
         - subnet: "172.16.238.0/24"
         - subnet: "2001:3984:3989::/64"
   bridge-net:
-      driver: bridge
+    driver: bridge
     macvlan-net:
       driver: macvlan
       driver_opts:
@@ -655,7 +703,7 @@ docker run --add-host=my-hostname=8.8.8.8
 
 ```
 
-### хранилище
+### volumes
 
 * `services-->volumes:-->- name: path`
 * `volumes:-->name:-->options`
@@ -668,7 +716,21 @@ docker run --add-host=my-hostname=8.8.8.8
 		* overlay 1
 		* fuse-overlayfs
 		* aufs
+ * https://docs.docker.com/compose/compose-file/05-services/#advanced-example
+
+```yaml
+services:
+  proxy:
+    image: nginx
+    volumes:
+      - type: bind
+        source: ./proxy/nginx.conf
+        target: /etc/nginx/conf.d/default.conf
+        read_only: true
+```
+
 * https://docs.docker.com/compose/compose-file/05-services/#volumes
+
 	```yaml
 		services:
 			backend:
@@ -695,6 +757,7 @@ docker run --add-host=my-hostname=8.8.8.8
 			db-data:
 				name: ${DATABASE_VOLUME} #DATABASE_VOLUME=my_volume_001
 	```
+
 * https://docs.docker.com/reference/cli/docker/volume/create/
 
 	```bash
@@ -842,6 +905,38 @@ volumes:
 
 ## network
 
+ * https://docs.docker.com/compose/compose-file/05-services/#links
+ * https://docs.docker.com/compose/networking/
+ * https://docs.docker.com/compose/compose-file/06-networks/
+
+```yaml
+services:
+  proxy:
+    build: ./proxy
+    networks:
+      - frontend
+  app:
+    build: ./app
+    networks:
+      - frontend
+      - backend
+  db:
+    image: postgres
+    networks:
+      - backend
+
+networks:
+  frontend:
+    # Use a custom driver
+    driver: custom-driver-1
+  backend:
+    # Use a custom driver which takes special options
+    driver: custom-driver-2
+    driver_opts:
+      foo: "1"
+      bar: "2"
+```
+
  * https://docs.docker.com/reference/cli/docker/network/create/
 	```bash
 		docker network create \
@@ -871,36 +966,37 @@ volumes:
  * Be sure that your subnetworks do not overlap. If they do, the network create fails and Docker Engine returns an error
  * port mapping
 	* https://docs.docker.com/compose/compose-file/05-services/#ports
-	```yaml
-		#[HOST:]CONTAINER[/PROTOCOL]
-		ports:
-		- "3000"
-		- "3000-3005"
-		- "8000:8000"
-		- "9090-9091:8080-8081"
-		- "49100:22"
-		- "8000-9000:80"
-		- "127.0.0.1:8001:8001"
-		- "127.0.0.1:5000-5010:5000-5010"
-		- "6060:6060/udp"
 
-		ports:
-		- name: web
-			target: 80
-			host_ip: 127.0.0.1
-			published: "8080"
-			protocol: tcp
-			app_protocol: http
-			mode: host
+```yaml
+#[HOST:]CONTAINER[/PROTOCOL]
+ports:
+  - "3000"
+  - "3000-3005"
+  - "8000:8000"
+  - "9090-9091:8080-8081"
+  - "49100:22"
+  - "8000-9000:80"
+  - "127.0.0.1:8001:8001"
+  - "127.0.0.1:5000-5010:5000-5010"
+  - "6060:6060/udp"
 
-		- name: web-secured
-			target: 443
-			host_ip: 127.0.0.1
-			published: "8083-9000"
-			protocol: tcp
-			app_protocol: https
-			mode: host
-	```
+ports:
+  - name: web
+    target: 80
+    host_ip: 127.0.0.1
+    published: "8080"
+    protocol: tcp
+    app_protocol: http
+    mode: host
+
+  - name: web-secured
+    target: 443
+    host_ip: 127.0.0.1
+    published: "8083-9000"
+    protocol: tcp
+    app_protocol: https
+    mode: host
+```
  * type
 	* host
 	* bridge
@@ -908,7 +1004,7 @@ volumes:
  * https://docs.docker.com/reference/dockerfile/#expose - inform, but not publish
  * https://docs.docker.com/compose/compose-file/05-services/#expose
 
-## storage
+## volumes
 
  * bind
  * volume
@@ -921,21 +1017,23 @@ volumes:
 	* ADD - плюс распаковка
 	* VOLUME - если необходимо отлаживать или разрабатывать, менять файлы после запуска контейнера
 	* https://docs.docker.com/compose/file-watch/
-	```yaml
-		services:
-		web:
-			build: .
-			command: npm start
-			develop:
-			watch:
-				- action: sync
-				path: ./web
-				target: /src/web
-				ignore:
-					- node_modules/
-				- action: rebuild
-				path: package.json
-	```
+
+```yaml
+	services:
+	web:
+		build: . # build from ./Dockerfile
+		command: npm start
+		develop:
+		watch:
+			- action: sync
+			path: ./web
+			target: /src/web
+			ignore:
+				- node_modules/
+			- action: rebuild
+			path: package.json
+```
+
  * build context
  * context
 	* папка на хосте
