@@ -79,6 +79,7 @@
 	* https://wiki.alpinelinux.org/wiki/Running_glibc_programs
 	* https://stackoverflow.com/questions/70243938/use-shared-library-that-uses-glibc-on-alpinelinux
 	* MUSL is lighter and doesn't drag a legacy with it. This is a problem when applications depend on the legacy, like when they want to use pthread.
+	* [Comparison of C/POSIX standard library implementations for Linux](https://www.etalabs.net/compare_libcs.html)
 
 ## лучшие практики для dockerfile
 
