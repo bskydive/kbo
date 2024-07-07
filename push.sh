@@ -16,6 +16,53 @@ echo "сделать ПР https://gitlab.com/stepanovv/kbo/merge_requests и п�
 #git push --prune svv develop
 git status
 
+#!/bin/bash
+
+# скрипт проверяет доступность по списку репозиториев, добавляет все новые файлы и отправляет изменения в master из текущей ветки
+
+# usage:
+# ./remote_git_init.sh # once
+# ./push.sh message
+
+result=""
+errcode=0
+
+git add -A ./
+git commit -am 'content'
+
+push() {
+
+	remote=${1}
+	echo "++++++++++PUSH:${remote}:test"
+
+	git remote show ${remote} && {
+
+		echo "++++++++++PUSH:${remote}:start"
+		git push ${remote} master
+
+		errcode=$?
+		[[ ${errcode} -ne 0 ]] && result="${result}\n ++++++++++PUSH:${remote}:ERROR:${errcode}"
+		[[ ${errcode} -eq 0 ]] && result="${result}\n ++++++++++PUSH:${remote}:OK"
+
+		echo "++++++++++PUSH:${remote}:end"
+		return ${errcode}
+	} || result="${result}\n ++++++++++PUSH:${remote}:FAILED REMOTE TEST:$?"
+}
+
+push "gl" || exit ${errcode}
+push "gh"
+#push "local"
+#push "usb"
+
+#сначала в облако, на сервере потом будем из него качать по хуку
+#git push pc-1 master
+##теперь запускаем хук
+##git push --prune svv master
+#git status
+
+echo -e "++++++++++++++++++++++++++++++++++++++++"
+echo -e "\n\n${result}\n\n"
+echo -e "++++++++++++++++++++++++++++++++++++++++"
 
 #============================== EXIT
 exit
