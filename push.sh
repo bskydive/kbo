@@ -8,9 +8,9 @@
 
 result=""
 errcode=0
+message='content'
+[[ -z $1 ]] || message=$1
 
-git add -A ./
-git commit -am 'content'
 
 push() {
 
@@ -31,8 +31,9 @@ push() {
 	} || result="${result}\n ++++++++++PUSH:${remote}:FAILED REMOTE TEST:$?"
 }
 
-git add -A ./*
-git commit -am "${1} add files"
+
+git add -A ./
+git commit -am ${message}
 
 push "gl" develop || exit ${errcode}
 push "gh" develop
