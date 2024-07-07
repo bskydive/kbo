@@ -13,7 +13,7 @@
  * [Контейнеры для взрослых (Часть 01): Практический гид по терминологии](https://habr.com/company/redhatrussia/blog/421663/)
  * [Контейнеры для взрослых (Часть 02): Практический гид по терминологии](https://habr.com/company/redhatrussia/blog/416827/)
  * [Контейнеры для взрослых (Часть 03): 10 вещей, которые не надо делать с контейнерами](https://habr.com/company/redhatrussia/blog/421663/)
- * Docker Tutorial for Beginners [FULL COURSE in 3 Hours] by TechWorld with Nana - https://youtu.be/3c-iBn73dDE
+ * [Docker Tutorial for Beginners FULL COURSE in 3 Hours by TechWorld with Nana](https://youtu.be/3c-iBn73dDE)
  * O'Reilly Online Learning - https://learning.oreilly.com/search/?query=docker
  * Docker Curriculum - https://docker-curriculum.com
  * Docker's own 101 - https://www.docker.com/101-tutorial
