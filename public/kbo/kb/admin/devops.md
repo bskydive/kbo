@@ -2,11 +2,15 @@
 
  * https://www.redhat.com/sysadmin/
  * [утилиты документирования](https://github.com/documentationjs)
- * [SRE site reliability engineering](https://sre.google/books/)
 * где посмотреть ограничения технологий, их предельную нагрузку? ноды, события, потоки
-* для мониторинга облаков и биллинга - prometeus+grafana
-* kubernetes или docker compose - иерархия микросервисов
 
+## ботанство
+
+Azure Functions, Durable Functions и Durable Entities
+
+## книги
+
+ * [SRE site reliability engineering](https://sre.google/books/)
 * `Cowell C., Lotz N., Timberlake C. Коуэлл К., Лотц Н., Тимберлейк К. - Automating DevOps with GitLab CI CD Pipelines Автоматиза`
 * `Gopalakrishnan Shivakumar Гопалакришнан Шивакумар - Kubernetes for Jobseekers DevOps and Kubernetes interview questions and ans`
 * `Krief Mikael Криф Микаэль - Learning DevOps A comprehensive guide to accelerating DevOps culture adoption with Terraform, Azure`
@@ -24,6 +28,7 @@
 ## блоги
 
  * https://www.jedi.be/blog/
+
 
 ## курсы
 
