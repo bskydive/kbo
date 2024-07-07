@@ -542,6 +542,27 @@ git commit -am "msg" --no-verify
  * подразумевает что на каждом спринте вы создаете (обновляете текущую) ветку developer из которой потом каждый программер выделяет ветку feature и в ней решает конкретный issue, после того как он все сделал он (можно через pull request) слвиает feature в develop, после определенного момента (по срокам) разработка фич останавливаеться из ветки develop создается ветка release которая тестируется. Далее все сливается в maste и так покругу.
  * удобнее когда есть четкая дата релиза + фаза стабилизации. Наличие тестов желательно но не обязательно т.к. есть тестирование перед деплоем и время закрыть все косяки руками.
 
+```bash
+#git-flow
+comment="${1}"
+dev="develop"
+origin="origin"
+
+feature=`git branch | grep '*' | awk -F'* ' '{print $2}'`
+
+git add -A ./public/* ./src/*
+git commit -am "${feature}: ${comment}"
+
+git checkout "${dev}"
+git merge --no-ff -m "${feature}: merge ${feature} to ${dev}" ${feature}
+
+git checkout "master"
+git merge --no-ff -m "${feature}: merge ${dev} to master" ${dev}
+
+git checkout "${feature}"
+git push ${origin} --all
+```
+
 ### GitHub flow
 
  * [GitHub flow](https://guides.github.com/introduction/flow/)

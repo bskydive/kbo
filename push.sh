@@ -64,23 +64,3 @@ echo -e "++++++++++++++++++++++++++++++++++++++++"
 echo -e "\n\n${result}\n\n"
 echo -e "++++++++++++++++++++++++++++++++++++++++"
 
-#============================== EXIT
-exit
-#git-flow
-comment="${1}"
-dev="develop"
-origin="gl"
-
-feature=`git branch | grep '*' | awk -F'* ' '{print $2}'`
-
-git add -A ./public/* ./src/*
-git commit -am "${feature}: ${comment}"
-
-git checkout "${dev}"
-git merge --no-ff -m "${feature}: merge ${feature} to ${dev}" ${feature}
-
-git checkout "master"
-git merge --no-ff -m "${feature}: merge ${dev} to master" ${dev}
-
-git checkout "${feature}"
-git push ${origin} --all
