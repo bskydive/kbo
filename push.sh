@@ -2,8 +2,10 @@
 
 git add -A ./*
 git commit -am "${1} add files"
-git push gl develop
+
+git push gl develop || exit $?
 git push gh develop
+
 #git push bb develop
 echo "проверить на одинаковость два index.html и два 404.html для gh+gl"
 echo "npm run prod"

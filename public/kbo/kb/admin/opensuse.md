@@ -1490,64 +1490,8 @@ http://www.liberatedcomputing.net/mm2fm
 
 ## vmware
 
- * [vmhgfs-fuse keeping one core at 99% CPU](https://github.com/vmware/open-vm-tools/issues/126)
-	* https://kb.vmware.com/s/article/1018414
-	* Open the virtual machine's configuration file (.vmx) in a text editor.
-	* `isolation.tools.hgfs.oplockmonitor.enable = "FALSE"`
-	* https://github.com/vmware/open-vm-tools
-	* https://github.com/vmware/open-vm-tools/issues/246
+ * [link](./vmware.md)
 
- * netwok manager, сеть отвалилась
- ```
-nmcli networking on
-nmcli
-
- ```
-
- * [VMWare Workstation 15.5.1 on Kernel Linux 5.4.6 : fail to compile vmci-only](https://communities.vmware.com/thread/623768)
-	```bash
-		git clone https://github.com/mkubecek/vmware-host-modules.git
-		cd vmware-host-modules
-		git checkout workstation-15.5.1
-		make
-		make install
-		After the installation, I ran this command : /etc/init.d/vmware start
-	```
- * зависания cpu has been disabled by guest
-
-	```bash
-		zypper rm snapper snapper-zypp-plugin yast2-snapper PackageKit PackageKit-backend-zypp PackageKit-branding-openSUSE PackageKit-gstreamer-plugin PackageKit-gtk3-module PackageKit-lang discover-backend-packagekit  grub2-snapper-plugin libpackagekit-glib2-18 libsnapper5
-	```
-	* https://www.geekrar.com/how-to-fix-the-cpu-has-been-disabled-by-the-guest-os/
-
-	```
-		Now without closing the .vmx file, copy the following code and paste it at the end of all lines. If you've the config key smc.version = 0 already there, you may remove it and paste this in place of it. It should look like this.
-
-		cpuid.0.eax = "0000:0000:0000:0000:0000:0000:0000:1011"
-		cpuid.0.ebx = "0111:0101:0110:1110:0110:0101:0100:0111"
-		cpuid.0.ecx = "0110:1100:0110:0101:0111:0100:0110:1110"
-		cpuid.0.edx = "0100:1001:0110:0101:0110:1110:0110:1001"
-		cpuid.1.eax = "0000:0000:0000:0001:0000:0110:0111:0001"
-		cpuid.1.ebx = "0000:0010:0000:0001:0000:1000:0000:0000"
-		cpuid.1.ecx = "1000:0010:1001:1000:0010:0010:0000:0011"
-		cpuid.1.edx = "0000:0111:1000:1011:1111:1011:1111:1111"
-		featureCompat.enable = "TRUE"
-	```
-	* https://kb.vmware.com/s/article/2000542
-
-	```
-	Collect information from the current outage:
-
-		Identify the virtual machine and time of the outage
-		Take a screenshot of the virtual machine's console and note the error messages
-		In the inventory, Right Click on the VM, select 'Suspend' for the virtual machine, the checkpoint suspend (.vmss) and memory image (.vmem)  will be generated and can be found in the datastore from the virtual machine directory
-		Convert the checkpoint suspend files (.vmss and .vmem) from the virtual machine into a core dump file using the vmss2core utility. For more information, see the Debugging Virtual Machines with the Checkpoint to Core Tool technical note, and the article Converting a snapshot file to memory dump using the vmss2core tool.
-		Resume the virtual machine to the suspended state, then reset the virtual machine to start the GuestOS.
-		Collect logs from the GuestOS kernel leading up to the outage. For more information, contact the guest operating system vendor.
-		Collect logs from the host leading up to the outage.
-	```
- * [Анализ производительности виртуальной машины в VMware vSphere. Часть 1: CPU](https://habr.com/ru/company/dataline/blog/452884/).
- * выключить memory page trimming и debug logging https://www.vmware.com/support/ws55/doc/ws_performance_diskio.html
 ### звук
 
 усилить громкость на сервере и на госте
