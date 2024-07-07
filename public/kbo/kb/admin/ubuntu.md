@@ -3,6 +3,29 @@
  * [Русификация Ubuntu](http://help.ubuntu.ru/wiki/%D1%80%D1%83%D1%81%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_ubuntu)
  * [](./ssh.md#ssh-welcome)
 
+## grub
+
+ *
+
+```bash
+mcedit /etc/default/grub
+#GRUB_TIMEOUT_STYLE=menu
+#GRUB_TIMEOUT=5
+update-grub
+```
+
+## recovery
+
+ * https://unix.stackexchange.com/questions/42015/mount-is-busy-when-trying-to-mount-as-read-only-so-that-i-can-run-zerofree
+```bash
+# grub-->e-->linux ... 1-->f10
+systemctl stop systemd-journald.socket
+systemctl stop systemd-journald.service
+mount -o remount,ro /
+mount
+fsck /dev/sda4
+```
+
 ## at atq atd
 
  * https://linuxize.com/post/at-command-in-linux/
