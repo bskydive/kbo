@@ -2,7 +2,7 @@
 
 # удаляем стандартный origin, чтобы использовать скрипты pull.sh+push.sh для несокльких реп
 
-repo_name=scripts
+repo_name=kbo
 
 cat .git/config | grep -i url
 
