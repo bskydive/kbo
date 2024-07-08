@@ -254,10 +254,10 @@ plugins=keyfile
 dhcp=dhclient
 
 [connectivity]
-uri=https://mirror.yandex.ru/opensuse/distribution/openSUSE-stable/repo/oss/repodata/repomd.xml
 #uri=http://nmcheck.gnome.org/check_network_status.txt
+#uri=http://conncheck.opensuse.org
 #response=NetworkManager is online
-#http://conncheck.opensuse.org
+uri=https://mirror.yandex.ru/opensuse/distribution/openSUSE-stable/repo/oss/repodata/repomd.xml
 interval=10
 response=<?xml version="1.0" encoding="UTF-8"?>
 
