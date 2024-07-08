@@ -23,6 +23,8 @@ nginx -s #сигнал
     #reload — перезагрузка конфигурационного файла
     #reopen — переоткрытие лог-файлов
 
+# проверить
+nginx -t -c nginx.conf
 ```
 
 ## load balancing

@@ -12,12 +12,15 @@ errcode=0
 pull() {
 
 	remote=${1}
+	branch=${2}
+	[[ -z ${2} ]] && branch=master
+
 	echo "----------PULL:${remote}:test"
 
 	git remote show ${remote} && {
 
 		echo "----------PULL:${remote}:start"
-		git pull ${remote} master
+		git pull ${remote} ${branch}
 
 		errcode=$?
 		[[ ${errcode} -ne 0 ]] && result="${result}\n ----------PULL:${remote}:ERROR:${errcode}"
@@ -31,8 +34,8 @@ pull() {
 }
 
 # делаем хотя бы один pull
-pull "gl"  || exit ${errcode}
-pull "gh"
+pull "gl" develop  || exit ${errcode}
+pull "gh" develop
 #pull "bb"
 #pull "usb"
 #pull "local"

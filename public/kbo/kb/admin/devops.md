@@ -355,10 +355,14 @@ docker exec -it gitlab /bin/bash
 docker exec -it gitlab editor /etc/gitlab/gitlab.rb
 #gitlab_rails['gitlab_shell_ssh_port'] = 122
 #letsencrypt['enable'] = false
+
 mkdir -p /etc/gitlab/ssl
 chmod 755 /etc/gitlab/ssl
+
 openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes -keyout gitlab.key -out gitlab.crt -subj "/CN=gitlab"
+
 cp gitlab.key gitlab.crt /etc/gitlab/ssl/
+
 docker exec -it gitlab gitlab-ctl reconfigure
 docker restart gitlab
 

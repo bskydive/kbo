@@ -234,6 +234,12 @@ ffmpeg -i ./*.mp4 -vn -sn -dn -af "volume=5dB" audio.m4a
 ## network
 
  * [network](/public/kbo/kb/admin/network.md)
+ * https://www.baeldung.com/linux/network-manager#bd-displaying-the-networking-status-of-a-linux-machine
+ * https://www.networkmanager.dev/docs/api/latest/
+	* enabled - to enable connectivity check, a valid uri must also be configured. The value defaults to true, but since the uri is unset by default, connectivity check may be disabled. Note that this setting can also be set via D-Bus API at runtime. In that case, the value gets stored in /var/lib/NetworkManager/NetworkManager-intern.conf file.
+	* uri - The URI of a web page to periodically request when connectivity is being checked. This page should return the header "X-NetworkManager-Status" with a value of "online". Alternatively, its body content should be set to "NetworkManager is online". The body content check can be controlled by the response option. If this option is blank or missing, connectivity checking is disabled.
+	* interval - If set to 0 connectivity checking is disabled. If missing, the default is 300 seconds.
+	* response - Note that this only compares that the HTTP response starts with the specified text, it does not compare the exact string. This behavior might change in the future, so avoid relying on it. If missing, the response defaults to "NetworkManager is online". If set to empty, the HTTP server is expected to answer with status code 204 or send no data.
  * https://wiki.archlinux.org/title/NetworkManager
  * смотреть в /etc/NetworkManager/system-connections/
  *
@@ -248,11 +254,12 @@ plugins=keyfile
 dhcp=dhclient
 
 [connectivity]
-uri=https://77.88.8.8/
-interval=10
-response=Not Found
-
+#uri=http://nmcheck.gnome.org/check_network_status.txt
 #uri=http://conncheck.opensuse.org
+#response=NetworkManager is online
+uri=https://mirror.yandex.ru/opensuse/distribution/openSUSE-stable/repo/oss/repodata/repomd.xml
+interval=10
+response=<?xml version="1.0" encoding="UTF-8"?>
 
 nmcli general reload
 

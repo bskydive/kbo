@@ -13,7 +13,7 @@
  * [Контейнеры для взрослых (Часть 01): Практический гид по терминологии](https://habr.com/company/redhatrussia/blog/421663/)
  * [Контейнеры для взрослых (Часть 02): Практический гид по терминологии](https://habr.com/company/redhatrussia/blog/416827/)
  * [Контейнеры для взрослых (Часть 03): 10 вещей, которые не надо делать с контейнерами](https://habr.com/company/redhatrussia/blog/421663/)
- * Docker Tutorial for Beginners [FULL COURSE in 3 Hours] by TechWorld with Nana - https://youtu.be/3c-iBn73dDE
+ * [Docker Tutorial for Beginners FULL COURSE in 3 Hours by TechWorld with Nana](https://youtu.be/3c-iBn73dDE)
  * O'Reilly Online Learning - https://learning.oreilly.com/search/?query=docker
  * Docker Curriculum - https://docker-curriculum.com
  * Docker's own 101 - https://www.docker.com/101-tutorial
@@ -291,14 +291,15 @@ docker pull vm-pc3-mgmt:5000/nginx-local
 ## cli
 
  * https://docs.docker.com/reference/cli/docker/container/run/
-	```bash
-		curl -s --unix-socket /var/run/docker.sock http://localhost/containers/json | jq .
-		curl --unix-socket /var/run/docker.sock -XPOST http://localhost/containers/bdeee2239e44b563939d7122ee3f73c0b27923de53bb212076ad62471b3b2098/stop
-		docker ps
-		docker run -v /:/host <образ> #смонтировать в контейнере корень хоста
-		docker run -itd --name ubuntu1 ubuntu:22.04 # запуск контейнера
-		dockerenjoyer@ubuntu:~$ docker exec -it ubuntu1 bash # запуск консоли внутри контейнера
-	```
+
+```bash
+	curl -s --unix-socket /var/run/docker.sock http://localhost/containers/json | jq .
+	curl --unix-socket /var/run/docker.sock -XPOST http://localhost/containers/bdeee2239e44b563939d7122ee3f73c0b27923de53bb212076ad62471b3b2098/stop
+	docker ps
+	docker run -v /:/host <образ> #смонтировать в контейнере корень хоста
+	docker run -itd --name ubuntu1 ubuntu:22.04 # запуск контейнера
+	docker exec -it ubuntu1 bash # запуск консоли внутри контейнера
+```
 
  * https://docs.docker.com/reference/cli/docker/image/build/#target
  * https://docs.docker.com/reference/cli/docker/compose/#use-profiles-to-enable-optional-services

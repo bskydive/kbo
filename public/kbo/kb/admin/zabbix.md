@@ -80,95 +80,66 @@ docker run --name zabbix-web-nginx-pgsql -t \
 
 ### docker compose
 
+ * https://www.zabbix.com/documentation/current/en/manual/installation/containers
+	* see devops-infra/docker/zabbix/
+ * https://blog.zabbix.com/securing-the-zabbix-frontend/27700/
 ```bash
-mkdir ./ssl/nginx
-mkdir /var/lib/zabbix/mibs
-mkdir /zbx_instance/snmptraps
-```
+docker exec -it zabbix-zabbix-web-nginx-pgsql-1 /bin/bash
+less /etc/zabbix/nginx_ssl.conf
+# ssl_certificate     /etc/ssl/nginx/ssl.crt;
+# ssl_certificate_key /etc/ssl/nginx/ssl.key;
+# ssl_dhparam /etc/ssl/nginx/dhparam.pem;
 
-```yaml
+# short
 
-services:
-  postgres-server:
-    image: postgres:latest
-    environment:
-      POSTGRES_USER: "zabbix"
-      POSTGRES_PASSWORD: "zabbix_pwd"
-      POSTGRES_DB: "zabbix"
-    networks:
-      - zabbix-net
-    restart: "no"
+openssl dhparam -out ${path}/dhparam.pem 2048
+openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes -keyout ${path}/ssl.key -out ${path}/ssl.crt -subj "/CN=zabbix"
 
-  zabbix-snmptraps:
-    image: zabbix/zabbix-snmptraps:alpine-7.0-latest
-    volumes:
-      - /zbx_instance/snmptraps:/var/lib/zabbix/snmptraps:rw
-      - /var/lib/zabbix/mibs:/usr/share/snmp/mibs:ro
-    networks:
-      - zabbix-net
-    ports:
-      - 162:1162/udp
-    restart: unless-stopped
+# full
 
-  zabbix-server-pgsql:
-    image: zabbix/zabbix-server-pgsql:alpine-7.0-latest
-    environment:
-      DB_SERVER_HOST: "postgres-server"
-      POSTGRES_USER: "zabbix"
-      POSTGRES_PASSWORD: "zabbix_pwd"
-      POSTGRES_DB: "zabbix"
-      ZBX_ENABLE_SNMP_TRAPS: "true"
-    networks:
-      - zabbix-net
-    ports:
-      - 10051:10051
-    volumes_from:
-      - zabbix-snmptraps
-    restart: unless-stopped
-    depends_on:
-      postgres-server:
-        restart: false
-        required: true
-        condition: service_started
+openssl genrsa -out CA.key 2048
+openssl req -new -key CA.key -out CA.csr
+echo "authorityKeyIdentifier=keyid,issuer \
+basicConstraints=CA:FALSE \
+keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment \
+subjectAltName = @alt_names \
+[alt_names] \
+DNS.1 = vm-pc2-mon \
+" > CA.ext
+#IP.1 = 192.168.0.1 \
 
-  zabbix-web-nginx-pgsql:
-    image: zabbix/zabbix-web-nginx-pgsql:alpine-7.0-latest
-    environment:
-      ZBX_SERVER_HOST: "zabbix-server-pgsql"
-      DB_SERVER_HOST: "postgres-server"
-      POSTGRES_USER: "zabbix"
-      POSTGRES_PASSWORD: "zabbix_pwd"
-      POSTGRES_DB: "zabbix"
-    networks:
-      - zabbix-net
-    ports:
-      - 443:8443
-      - 80:8080
-    volumes:
-      - type: bind
-        source: ./ssl/nginx
-        target: /etc/ssl/nginx
-        read_only: true
-    restart: unless-stopped
-    depends_on:
-      postgres-server:
-        restart: false
-        required: true
-        condition: service_started
-      zabbix-server-pgsql:
-        restart: false
-        required: true
-        condition: service_started
+openssl x509 -req -in CA.csr -CA ssl.pem -CAkey CA.key -CAcreateserial -out ${path}/ssl.crt -days 825 -sha256 -extfile CA.ext
 
-networks:
-  zabbix-net:
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.20.0.0/16
-          ip_range: 172.20.240.0/20
+cp CA.crt /etc/pki/tls/certs/
+cp CA.key /etc/pki/tls/private/
+cp CA.pem /etc/pki/ca-trust/source/anchors/CA.crt
+update-ca-trust extract
+
+
+openssl ecparam -out myCA.key -name prime256v1 -genkey
+openssl req -x509 -new -nodes -key myCA.key -sha256 -days 1825 -out myCA.pem
+openssl genrsa -out zabbix.mycompany.internal.key 2048
+openssl req -new -key zabbix.mycompany.internal.key -out zabbix.mycompany.internal.csr
+echo "authorityKeyIdentifier=keyid,issuer \
+basicConstraints=CA:FALSE \
+keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment \
+subjectAltName = @alt_names \
+[alt_names] \
+DNS.1 = vm-pc2-mon \
+" > CA.ext
+#IP.1 = 192.168.0.1 \
+openssl x509 -req -in zabbix.mycompany.internal.csr -CA myCA.pem -CAkey myCA.key -CAcreateserial -out zabbix.mycompany.internal.crt -days 825 -sha256 -extfile zabbix.mycompany.internal.ext
+openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
+
 
 ```
+
+### setup
+
+ * https://www.zabbix.com/documentation/current/en/manual/quickstart/login
+ * `http://zabbix-host` --> `Admin@zabbix`
+
+
 
 ## nginx for zabbix
 

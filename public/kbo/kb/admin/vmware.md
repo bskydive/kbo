@@ -13,6 +13,29 @@
 	* `isolation.tools.hgfs.oplockmonitor.enable = "FALSE"`
 	* https://github.com/vmware/open-vm-tools
 	* https://github.com/vmware/open-vm-tools/issues/246
+ * [Checking and Repairing Virtual Disks](https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.storage.doc/GUID-4460A049-11BF-4924-9B99-3474251261B4.html)
+ * [Map or Mount a Virtual Disk to a Drive on the Host System](https://docs.vmware.com/en/VMware-Workstation-Pro/16.0/com.vmware.ws.using.doc/GUID-896E61F5-0865-4D3B-975E-DE476AFC7168.html)
+	* Select File > Mount Virtual Disks
+```bash
+
+mv /VM/Server/Server-000001.vmdk.lck/ /VM/Server/Server-000001.vmdk.lck.old/
+vmware-vdiskmanager -R /VM/Server/Server-000001.vmdk
+# The virtual disk, '/VM/Server/Server-000001.vmdk', was corrupted and has been successfully repaired.
+
+vmware-mount -p /VM/Server/Server-000001.vmdk
+#Nr      Start       Size Type Id Sytem
+#-- ---------- ---------- ---- -- ------------------------
+# 1       2048       2048  GPT EE Unknown
+# 2       4096   16777216  GPT EE Linux Swap
+# 3   16781312    1024000  GPT EE Linux FS
+# 4   17805312  146800640  GPT EE Linux FS
+
+vmware-mount /VM/Server/Server-000001.vmdk 4 /mnt/vmdk0/
+vmware-mount -L
+# Disks with mounted partitions:
+#	/VM/Server/Server-000001.vmdk
+
+```
 
 ### kernel modules
 
