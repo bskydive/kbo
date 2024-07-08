@@ -15,12 +15,15 @@ message='content'
 push() {
 
 	remote=${1}
+	branch=${2}
+	[[ -z ${2} ]] && branch=master
+
 	echo "++++++++++PUSH:${remote}:test"
 
 	git remote show ${remote} && {
 
 		echo "++++++++++PUSH:${remote}:start"
-		git push ${remote} master
+		git push ${remote} ${branch}
 
 		errcode=$?
 		[[ ${errcode} -ne 0 ]] && result="${result}\n ++++++++++PUSH:${remote}:ERROR:${errcode}"
