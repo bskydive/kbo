@@ -20,7 +20,7 @@ pull() {
 	git remote show ${remote} && {
 
 		echo "----------PULL:${remote}:start"
-		git push ${remote} ${branch}
+		git pull ${remote} ${branch}
 
 		errcode=$?
 		[[ ${errcode} -ne 0 ]] && result="${result}\n ----------PULL:${remote}:ERROR:${errcode}"
