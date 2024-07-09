@@ -159,7 +159,7 @@
 		* на этапе проверки гипотез эффективность низкая, переписываемость высокая
 		* эффективность позволяет понять стиль программирования
 
-## аналоги github
+## аналоги github/gitlab
 
  * https://trends.rbc.ru/trends/industry/622b8b4f9a7947053add4807
 	* русская https://gitflic.ru/
@@ -167,6 +167,15 @@
 	* https://gogs.io/
 	* немецкая https://rhodecode.com/
 	* canonical https://launchpad.net/
+ * gitea
+
+## github
+
+ * [github](../admin/github.md)
+
+## gitlab
+
+ * [gitlab](../admin/gitlab.md)
 
 ## gitignore
 
@@ -191,8 +200,6 @@
 	'-D', '--delay-factor', default=2
 	#The exponential factor to apply to delays in between successive failures (default=%default). If this is zero, delays will increase linearly. Set this to one to have a constant (non-increasing) delay.
 ```
-
-
 
 ## справочник команд
 

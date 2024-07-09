@@ -4,7 +4,7 @@
 
 ##  лучшие практики
 
- * [стили](/kbo/developer/frontend.md)
+ * [стили](./frontend.md)
  * https://proglib.io/p/12-javascript-tricks
  * [Концепции чистого кода адаптированные для TypeScript, вдохновленные clean-code-javascript](https://github.com/Real001/clean-code-typescript)
  * [You don't (may not) need Lodash/Underscore](https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore)
