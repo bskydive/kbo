@@ -1,5 +1,7 @@
 # RxJS
 
+ * [rxjs](../framework/angular2.md#rxjs-реактивное-программирование-reactive-observable)
+
 1. курсы https://app.pluralsight.com/library/courses/rxjs-angular-reactive-development
 1. [под капотом - setTimeout schedulers](https://github.com/ReactiveX/rxjs/blob/master/src/internal/scheduler/timeoutProvider.ts)
 1. В чем преимущество Observable для HttpClient в Angular.
