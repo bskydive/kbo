@@ -19,6 +19,15 @@
  * Docker's own 101 - https://www.docker.com/101-tutorial
  * Tutorialspoint - https://www.tutorialspoint.com/docker/index.htm
 
+## платные сервисы
+
+ * https://www.docker.com/pricing/
+ * https://www.docker.com/products/docker-scout/#scout_pricing
+ * https://www.docker.com/products/build-cloud/#pricing
+ * https://docs.docker.com/subscription/core-subscription/details/
+ * https://docs.docker.com/subscription/scout-details/
+ * https://docs.docker.com/subscription/build-cloud/build-details/
+
 ## теория
 
  * основой контейнеризации являются Linux namespace
@@ -84,16 +93,24 @@
 	* Ksplice for zero-downtime kernel patching, DTrace for real-time diagnostics, Btrfs file system
  * ubuntu
 	* This is the defacto image. If you are unsure about what your needs are, you probably want to use this one. It is designed to be used both as a throw away container (mount your source code and start the container to start your app), as well as the base to build other images off of.
+ * thin os для контейнерных окружений
+	* https://fedoraproject.org/coreos/
+	* RancherOS
+	* Photon OS от VMware
  *
  *
+
+## оптимизация
+
+ * положить временные файлы в память - https://docs.docker.com/storage/tmpfs/
 
 ## лучшие практики для dockerfile
 
  * [Best practices for Dockerfile instructions](https://docs.docker.com/develop/develop-images/instructions/)
  * [General best practices for writing Dockerfiles](https://docs.docker.com/develop/develop-images/guidelines/)
  * [Image-building best practices](https://docs.docker.com/guides/workshop/09_image_best/)
+ * [https://kazarin.online/index.php/2021/03/17/docker-antipatterns/](10 Антипаттернов использования Docker)
  * [](./devops.md#buildcompile)
- * [https://kazarin.online/index.php/2021/03/17/docker-antipatterns/](10 Антипаттернов использования Docker).
  * низкая связность
 	* вызов скриптов только из текущего репозитория
 	* вызов внешних сервисов и логика только на уровне оркестратора/CICD систем
@@ -103,6 +120,20 @@
 	* учитываем кэширование слоёв файловой системы, разделяем скрипты по шагам(multistage), очищаем кэши
 	* https://docs.docker.com/guides/docker-concepts/building-images/multi-stage-builds/
 	* https://docs.docker.com/build/building/multi-stage/
+
+```dockerfile
+# Stage 1: Build Environment
+FROM builder-image AS build-stage
+# Install build tools (e.g., Maven, Gradle)
+# Copy source code
+# Build commands (e.g., compile, package)
+
+# Stage 2: Runtime environment
+FROM runtime-image AS final-stage
+#  Copy application artifacts from the build stage (e.g., JAR file)
+COPY --from=build-stage /path/in/build/stage /path/to/place/in/final/stage
+# Define runtime configuration (e.g., CMD, ENTRYPOINT)
+```
 
 ```dockerfile
 # stage 1, более толстое окружение для сборки
@@ -1040,6 +1071,10 @@ ports:
 	* папка на хосте
 	* https://docs.docker.com/compose/compose-file/build/#context
 
+ * сложные иерархии монтирования
+	* https://docs.docker.com/storage/bind-mounts/#configure-bind-propagation
+
+
 ### container
 
  * https://docs.docker.com/reference/cli/docker/container/commit/
@@ -1088,104 +1123,138 @@ docker image history node-base
 ## security
 
  * [docker scout](https://docs.docker.com/scout/quickstart/) analyzes image contents and generates a detailed report of packages and vulnerabilities that it detects
- * [System for Cross-domain Identity Management (SCIM) 2.0](https://docs.docker.com/security/for-admins/provisioning/scim/)
-	* Creating new users
-	* Push user profile updates
-	* Remove users
-	* Deactivate users
-	* Re-activate users
-	* Group mapping
- * [Escalate container privileges (--privileged)](https://docs.docker.com/reference/cli/docker/container/run/#privileged)
-	* Enables all Linux kernel capabilities
-    * Disables the default seccomp profile
-    * Disables the default AppArmor profile
-    * Disables the SELinux process label
-    * Grants access to all host devices
-    * Makes /sys read-write
-    * Makes cgroups mounts read-write
+ * для платных тарифов
+	* [System for Cross-domain Identity Management (SCIM) 2.0](https://docs.docker.com/security/for-admins/provisioning/scim/)
+		* Creating new users
+		* Push user profile updates
+		* Remove users
+		* Deactivate users
+		* Re-activate users
+		* Group mapping
+	* [Escalate container privileges (--privileged)](https://docs.docker.com/reference/cli/docker/container/run/#privileged)
+		* Enables all Linux kernel capabilities
+		* Disables the default seccomp profile
+		* Disables the default AppArmor profile
+		* Disables the SELinux process label
+		* Grants access to all host devices
+		* Makes /sys read-write
+		* Makes cgroups mounts read-write
  * [Основы безопасности в Docker-контейнерах](https://selectel.ru/blog/courses/docker-security/)
-	* https://docs.docker.com/engine/security/userns-remap/
  * [Часто забываемые правила безопасности Docker: заметки энтузиаста ИБ](https://habr.com/ru/company/dataline/blog/567790/)
-	* Ограничить доступ к сокету Docker Daemon. Владельцем сокет-файла должен быть пользователь root.
-	* Не прокидывать сокет в контейнер (Docker-in-Docker). для сборки можно использовать kaniko. для подписи образов можно использовать стороннюю систему и подключить ее через API.
 	* Помнить о настройке авторизации Docker TCP через сертификат SSL.
-	* Во время сборки контейнера мы создаем юзера и переходим на него.
-		```bash
-			FROM alpine
-			RUN groupadd -r myuser && useradd -r -g myuser
-			#<Здесь еще можно выполнять команды от root-пользователя, например, ставить пакеты>
-			USER myuser
-			# https://docs.docker.com/reference/dockerfile/#user
-		```
-	*
-	```bash
-		docker run -u 4000 alpine #Запуск контейнеров от непривилегированного пользователя
-		--userns-remap=default #включаем поддержку user namespace в Docker daemon
-		docker run
-		--cap-drop all --cap-add CHOWN alpine #Отключить все возможности ядра (capabilities)
-		--security-opt=no-new-privileges #Запретить  эскалацию привилегий (смену юзера на uid0). Используем опцию при запуске
-		--icc=false #Отключить межконтейнерное взаимодействие через сеть docker0
-	```
+	* Во время сборки контейнера мы создаем юзера и переходим на него. https://docs.docker.com/reference/dockerfile/#user
+
+```bash
+FROM alpine
+RUN groupadd -r myuser && useradd -r -g myuser
+#<Здесь еще можно выполнять команды от root-пользователя, например, ставить пакеты>
+USER myuser
+#
+```
     * Ограничить ресурсы. Так мы сократим риск несанкционированного майнинга:
-    ```bash
-		-m или --memory #доступная память до OOM;
-		--cpus 	#сколько процессоров доступно, например 1.5;
-		--cpuset-cpus #какие именно процессоры доступны (ядра);
-		--restart=on-failure:<number_of_restarts> #убираем вариант Restart Always, чтобы контролировать количество перезапусков и вовремя обнаруживать проблемы;
-		--read-only #файловая система настраивается только на чтение при запуске, особенно если контейнер отдает статику.
-	```
+
+```bash
+-m или --memory #доступная память до OOM;
+--cpus 	#сколько процессоров доступно, например 1.5;
+--cpuset-cpus #какие именно процессоры доступны (ядра);
+--restart=on-failure:<number_of_restarts> #убираем вариант Restart Always, чтобы контролировать количество перезапусков и вовремя обнаруживать проблемы;
+--read-only #файловая система настраивается только на чтение при запуске, особенно если контейнер отдает статику.
+```
     * Не отключать профили безопасности. По умолчанию Docker уже использует профили для модулей безопасности Linux. Эти  правила можно ужесточать, но не наоборот
 	* seccomp — механизм ядра Linuх, позволяющий определять доступные системные вызовы. В стандартной поставке Docker блокирует около 44 вызовов из 300+
 	* Кроме Seccomp можно использовать также профили AppArmor или SELinux
-	* Анализировать содержимое контейнера
-		* бесплатный Clair
-		* условно бесплатные Snyk, anchore, Harbor
-		* платные JFrog XRay и Qualys
-		* системы асессмента ИБ в целом, например, Open Policy agent
- * запуск не от рута, без демона [kaniko](https://github.com/GoogleContainerTools/kaniko)
-	* [Создание образов Docker, без Docker, с использованием Kaniko + Gitlab CI и AWS - 2023](https://teletype.in/@bh_cat/9GeFQhwtf06)
-	* https://github.com/GoogleContainerTools/kaniko/blob/main/docs/tutorial.md
+	* Анализировать содержимое контейнера [линтерами](#линтеры-linters)
+ * https://selectel.ru/blog/docker-security-1/
+
+
+### замена dockerd
+
+ * Ограничить доступ к сокету Docker Daemon. Владельцем сокет-файла должен быть пользователь root.
+ * Не прокидывать сокет в контейнер (Docker-in-Docker) `docker run -it -v /var/run/docker.sock:/var/run/docker.sock myapp` .
+ 	* для сборки можно использовать kaniko.
+	* для подписи образов можно использовать стороннюю систему и подключить ее через API.
+	* https://docs.docker.com/engine/security/userns-remap/
+```bash
+docker run -u 4000 alpine #Запуск контейнеров от непривилегированного пользователя
+--userns-remap=default #включаем поддержку user namespace в Docker daemon
+docker run
+--cap-drop all --cap-add CHOWN alpine #Отключить все возможности ядра (capabilities)
+--security-opt=no-new-privileges #Запретить  эскалацию привилегий (смену юзера на uid0). Используем опцию при запуске
+--icc=false #Отключить межконтейнерное взаимодействие через сеть docker0
+```
+
+ * Хорошая практика в CI/CD, особенно в enterprise, — не использовать Docker daemon. Одна из важных его проблем в безопасности — это объединение в себе двух абсолютно разных функционалов: сборки образов и управления рантаймом контейнеров.
+ * Чтобы разделить build и run можно использовать альтернативные утилиты для сборки образов контейнеров, не полагающихся на Docker Daemon, которые работают без использования полномочий root-пользователя. С 23.0 версии Docker BuildKit был встроен в билдер вместо устаревшего.
+	* BuildKit
+	* [kaniko](https://github.com/GoogleContainerTools/kaniko)
+		* [Создание образов Docker, без Docker, с использованием Kaniko + Gitlab CI и AWS - 2023](https://teletype.in/@bh_cat/9GeFQhwtf06)
+		* https://github.com/GoogleContainerTools/kaniko/blob/main/docs/tutorial.md
+	* buildah
+
+### subuid
+
+ * настроить запуск контейнера от имени непривилегированных пользователей
+ * В файле /etc/docker/daemon.json (если его нет, то создайте) укажем параметр userns-remap:
+
+```bash
+ps -u
+#USER     	PID %CPU %MEM	VSZ   RSS TTY  	STAT START   TIME COMMAND
+#root       	1  0.0  0.1   4628  3804 pts/0	Ss+  10:36   0:00 /bin/bash
+#root      	16  0.0  0.1   4628  3840 pts/1	Ss   10:38   0:00 bash
+#root      	23  0.0  0.0   7064  1560 pts/1	R+   10:38   0:00 ps -u
+docker container top ubuntu1
+#UID             	PID             	PPID            	C               	STIME           	TTY             	TIME            	CMD
+#root            	389168          	389145          	0               	10:36           	pts/0           	00:00:00        	/bin/bash
+
+echo '{ "userns-remap": "default" }' > /etc/docker/daemon.json
+#Убедимся, что пользователь действительно был создан:
+id dockremap
+#uid=111(dockremap) gid=119(dockremap) groups=119(dockremap)
+cat /etc/subuid
+#dockerenjoyer:100000:65536
+#dockremap:165536:65536
+
+docker run -itd --name ubuntu1 ubuntu:22.04
+docker exec -it ubuntu1 bash
+ps -u
+#USER     	PID %CPU %MEM	VSZ   RSS TTY  	STAT START   TIME COMMAND
+#root       	1  0.0  0.1   4628  3700 pts/0	Ss+  10:53   0:00 /bin/bash
+#root       	8  0.0  0.1   4628  3768 pts/1	Ss   10:54   0:00 bash
+#root      	16  0.0  0.0   7064  1608 pts/1	R+   10:54   0:00 ps -u
+
+docker container top ubuntu1
+#UID             	PID             	PPID            	C               	STIME           	TTY             	TIME            	CMD
+#165536          	389598          	389575          	0               	10:53           	pts/0           	00:00:00        	/bin/bash
+```
+
+### линтеры linters
+
  * https://www.cisecurity.org/benchmark/docker
  * https://github.com/docker/docker-bench-security
  * https://github.com/CISOfy/lynis
- * https://selectel.ru/blog/docker-security-1/
+* бесплатный Clair
+* условно бесплатные Snyk, anchore, Harbor
+* платные JFrog XRay и Qualys
+* системы асессмента ИБ в целом, например, Open Policy agent
 
- * нельзя пробрасывать сокет внутрь контейнера `docker run -it -v /var/run/docker.sock:/var/run/docker.sock myapp`
- * Хорошая практика в CI/CD, особенно в enterprise, — не использовать Docker daemon. Одна из важных его проблем в безопасности — это объединение в себе двух абсолютно разных функционалов: сборки образов и управления рантаймом контейнеров.
- * Чтобы разделить build и run можно использовать альтернативные утилиты для сборки образов контейнеров, не полагающихся на Docker Daemon: BuildKit, kaniko, buildah, которые работают без использования полномочий root-пользователя. С 23.0 версии Docker BuildKit был встроен в билдер вместо устаревшего.
- * настроить запуск контейнера от имени непривилегированных пользователей
- * В файле /etc/docker/daemon.json (если его нет, то создайте) укажем параметр userns-remap:
-	```bash
-		ps -u
-		#USER     	PID %CPU %MEM	VSZ   RSS TTY  	STAT START   TIME COMMAND
-		#root       	1  0.0  0.1   4628  3804 pts/0	Ss+  10:36   0:00 /bin/bash
-		#root      	16  0.0  0.1   4628  3840 pts/1	Ss   10:38   0:00 bash
-		#root      	23  0.0  0.0   7064  1560 pts/1	R+   10:38   0:00 ps -u
-		docker container top ubuntu1
-		#UID             	PID             	PPID            	C               	STIME           	TTY             	TIME            	CMD
-		#root            	389168          	389145          	0               	10:36           	pts/0           	00:00:00        	/bin/bash
+### selinux
 
-		echo '{ "userns-remap": "default" }' > /etc/docker/daemon.json
-		#Убедимся, что пользователь действительно был создан:
-		id dockremap
-		uid=111(dockremap) gid=119(dockremap) groups=119(dockremap)
-		cat /etc/subuid
-		#dockerenjoyer:100000:65536
-		#dockremap:165536:65536
+* https://docs.docker.com/storage/bind-mounts/#configure-the-selinux-label
+* https://projectatomic.io/blog/2015/06/using-volumes-with-docker-can-cause-problems-with-selinux/
+```bash
+docker run -v /var/db:/var/db:z rhel7 /bin/sh
 
-		docker run -itd --name ubuntu1 ubuntu:22.04
-		docker exec -it ubuntu1 bash
-		ps -u
-		#USER     	PID %CPU %MEM	VSZ   RSS TTY  	STAT START   TIME COMMAND
-		#root       	1  0.0  0.1   4628  3700 pts/0	Ss+  10:53   0:00 /bin/bash
-		#root       	8  0.0  0.1   4628  3768 pts/1	Ss   10:54   0:00 bash
-		#root      	16  0.0  0.0   7064  1608 pts/1	R+   10:54   0:00 ps -u
-		exit
-		exit
-		docker container top ubuntu1
-		#UID             	PID             	PPID            	C               	STIME           	TTY             	TIME            	CMD
-		#165536          	389598          	389575          	0               	10:53           	pts/0           	00:00:00        	/bin/bash
-	```
+# Will automatically do the
+chcon -Rt svirt_sandbox_file_t /var/db
+
+# Even better, you can use Z.
+
+docker run -v /var/db:/var/db:Z rhel7 /bin/sh
+
+# This will label the content inside the container with the exact MCS label that the container will run with, basically it runs
+chcon -Rt svirt_sandbox_file_t -l s0:c1,c2 /var/db
+# where s0:c1,c2 differs for each container.
+```
 
 ## swarm
 
