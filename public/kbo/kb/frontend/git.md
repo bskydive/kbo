@@ -192,48 +192,7 @@
 	#The exponential factor to apply to delays in between successive failures (default=%default). If this is zero, delays will increase linearly. Set this to one to have a constant (non-increasing) delay.
 ```
 
-## gitlab
 
- * http://doc.gitlab.com/ce/
-
-### backup
-
- * http://doc.gitlab.com/ce/raketasks/README.html
-
-    ```bash
-    gitlab-rake gitlab:backup:create
-    ```
-### restore
-
- * http://doc.gitlab.com/ce/raketasks/backup_restore.html#for-omnibus-installations
-
-```bash
-	# Stop processes that are connected to the database
-	sudo gitlab-ctl stop unicorn
-	sudo gitlab-ctl stop sidekiq
-
-	# This command will overwrite the contents of your GitLab database!
-	sudo gitlab-rake gitlab:backup:restore BACKUP=1393513186
-
-	# Start GitLab
-	sudo gitlab-ctl start
-
-	# Check GitLab
-	sudo gitlab-rake gitlab:check SANITIZE=true
-```
-
- * http://doc.gitlab.com/ce/logs/logs.html
-
-```bash
-	# Tail all logs; press Ctrl-C to exit
-	sudo gitlab-ctl tail
-
-	# Drill down to a sub-directory of /var/log/gitlab
-	sudo gitlab-ctl tail gitlab-rails
-
-	# Drill down to an individual file
-	sudo gitlab-ctl tail nginx/gitlab_error.log
-```
 
 ## справочник команд
 
@@ -246,6 +205,74 @@
 	```
 		Обратите внимание, изменяется не сам HEAD (что происходит при выполнении команды checkout); reset перемещает ветку, на которую указывает HEAD. Таким образом, если HEAD указывает на ветку master (то есть вы сейчас работаете с веткой master), выполнение команды git reset 9e5e6a4 сделает так, что master будет указывать на 9e5e6a4.
 	```
+
+### вывод для скриптов
+
+ * https://stackoverflow.com/questions/48341920/git-branch-command-behaves-like-less
+
+```bash
+git --no-pager branch -r -l 'origin/*release*'
+  origin/release-v1.4.0
+```
+
+### Клонирование ветки без истории
+
+```bash
+mkdir git-sandbox && cd git-sandbox
+git clone https://gitlab.com/stepanovv/webpack-dep-graph.git
+# Клонирование в «webpack-dep-graph»…
+# remote: Enumerating objects: 1444, done.
+# remote: Counting objects: 100% (93/93), done.
+# remote: Compressing objects: 100% (50/50), done.
+# remote: Total 1444 (delta 54), reused 67 (delta 43), pack-reused 1351 (from 1)
+# Получение объектов: 100% (1444/1444), 79.84 МиБ | 11.37 МиБ/с, готово.
+# Определение изменений: 100% (735/735), готово.
+ll webpack-dep-graph/push.sh
+# ls: невозможно получить доступ к 'webpack-dep-graph/push.sh': Нет такого файла или каталога
+du -sm webpack-dep-graph/
+# 94      webpack-dep-graph/
+rm -rf webpack-dep-graph/
+g clone --depth 1 --single-branch --branch release-v1.4.0 https://gitlab.com/stepanovv/webpack-dep-graph.git
+# Клонирование в «webpack-dep-graph»…
+# remote: Enumerating objects: 138, done.
+# remote: Counting objects: 100% (138/138), done.
+# remote: Compressing objects: 100% (125/125), done.
+# remote: Total 138 (delta 11), reused 115 (delta 4), pack-reused 0 (from 0)
+# Получение объектов: 100% (138/138), 11.23 МиБ | 8.79 МиБ/с, готово.
+# Определение изменений: 100% (11/11), готово.
+du -sm webpack-dep-graph/
+25      webpack-dep-graph/
+ll webpack-dep-graph/push.sh
+# -rwxr-xr-x 1 bsk users 242 июл  9 12:17 webpack-dep-graph/push.sh
+git status
+# На ветке release-v1.4.0
+# Ваша ветка обновлена в соответствии с «origin/release-v1.4.0».
+#
+# нечего коммитить, нет изменений в рабочем каталоге
+
+```
+
+### Получение информации из удалённого репозитория
+
+ * https://stackoverflow.com/questions/1178389/browse-and-display-files-in-a-git-repo-without-cloning
+
+```bash
+# если есть локальный клон
+git --no-pager branch -r -l 'origin/*release*'
+#  origin/release-v1.4.0
+
+# если его нет, можно склонировать минимальный
+git clone --no-checkout --depth 1 URL
+
+# у CI/CD есть cli и seb api
+
+wget -qO- https://api.github.com/repos/bskydive/webpack-dep-graph/branches | grep -i release | awk -F: '{print $2}' | awk -F\" '{print $2}'
+# release-v1.4.0
+
+# https://docs.gitlab.com/ee/api/branches.html
+curl --header "PRIVATE-TOKEN: <your_access_token>" --url "https://gitlab.example.com/api/v4/projects/5/repository/branches/main"
+
+```
 
 ### git credential
 
