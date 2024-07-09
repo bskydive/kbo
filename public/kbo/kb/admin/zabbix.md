@@ -287,7 +287,7 @@ Field 11 -- weighted # of milliseconds spent doing I/Os
 
 http://www.catonmat.net/blog/ten-awk-tips-tricks-and-pitfalls/
 
-## zabbix
+## ssh/bash макросы
 
 Ограничения использования макросов:
  * https://www.zabbix.com/documentation/2.2/manual/appendix/macros/supported_by_location
@@ -348,3 +348,7 @@ Admin/zabbix
 
 ```
 
+## discovery
+
+ * https://www.zabbix.com/documentation/current/en/manual/discovery/network_discovery
+ * https://www.zabbix.com/documentation/current/en/manual/discovery/low_level_discovery - автоматическое создание items/triggers/graphs

@@ -149,6 +149,20 @@ The 7 Cs of DevOps are Continuous:
 
 ### debug
 
+ * nstat lnstat
+	* https://loicpefferkorn.net/2018/09/linux-network-statistics-reference/
+    * dstat - Combines vmstat, iostat, ifstat, netstat information and more
+    * iftop - Amazing network bandwidth utility to analyse what is really happening on your eth
+    * netio - Measures the net throughput of a network via TCP/IP
+    * inq - CLI troubleshooting utility that displays info on storage, typically Symmetrix. By default, INQ returns the device name, Symmetrix ID, Symmetrix LUN, and capacity.
+    * send_arp - Sends out an arp broadcast on the specified network device (defaults to eth0), reporting an old and new IP address mapping to a MAC address.
+    * EtherApe - is a graphical network monitor for Unix modeled after etherman. Featuring link layer, IP and TCP modes, it displays network activity graphically.
+    * iptraf - An IP traffic monitor that shows information on the IP traffic passing over your network.
+ * vmstat
+ * vnstat - собирает статистику в базу
+	* https://www.thegeekstuff.com/2011/11/vnstat-network-traffic-monitor/
+ * pidstat
+ * iostat
  * vnstat
  * dstat
  * iotop iftop htop atop
