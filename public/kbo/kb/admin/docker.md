@@ -96,7 +96,12 @@
 
 ## thin os для управления контейнерами
 
- * итого есть ОС от redhat+suse+vmware, есть сборщики дистрибутивов от suse+ubuntu, которые завязаны на облачный сервис сборки. ОС от vmware стар/superstar. ОС от suse в основе rpm/zypper+btrfs, от Ubuntu - snapd пакеты для пакетов. Был ещё Ranch, но от него отвалилась ОС, осталась экосистема для контейнеров.
+ * итого есть ОС от redhat/fedora+suse+ubuntu+vmware.
+ 	* Сборщики дистрибутивов от suse+ubuntu завязаны на облачный сервис сборки.
+	* ОС от vmware стар/superstar.
+	* Fedora не умеет в железо, конфиги ОС на json/yaml.
+	* ОС от suse в основе rpm/zypper+btrfs и bash(!) для конфига ОС.
+	* От Ubuntu - snapd пакеты для пакетов. Был ещё Ranch, но от него отвалилась ОС, осталась экосистема для контейнеров.
  * https://fedoraproject.org/coreos/
 	* бывший coreos
 	* containerd 1.6.23, kernel 6.8.11
@@ -120,7 +125,10 @@
 	* The Transactional Updates technology leverages btrfs snapshots to apply package updates without interfering with the running system
 	* health-checker to verify the OS is operational after updates. Automatically rolls back in case of trouble.
 	* cloud-init for initial system configuration during first boot on Cloud (includes OpenStack)
-	* Combustion and Ignition for initial system configuration during first boot on all other images.
+	* три конфига для сборки ОС
+		* Ignition - has its origins in Fedora CoreOS and is fully supported by openSUSE MicroOS. Best choice for beginners.
+		* Combustion - is part of openSUSE's MicroOS project and is more powerful and flexible than Ignition and requires bash programming skills.
+		* Cloud-Init - is used only for the OpenStack Cloud variant of openSUSE MicroOS. Learn more from the Cloud-Init Quick Start Documentation.
 	* Podman Container Runtime available
 	* Rolling Release: Every new openSUSE Tumbleweed snapshot also automatically produces a new openSUSE MicroOS release. The Leap based version automatically updates when maintenance updates for Leap are published.
 	* https://github.com/clearlinux/tallow - fail2ban/lard replacement that uses systemd's native journal API to scan for attempted ssh logins, and issues temporary IP bans for clients that violate certain login patterns
