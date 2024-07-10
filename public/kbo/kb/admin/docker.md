@@ -96,12 +96,21 @@
 
 ## thin os для управления контейнерами
 
- * итого есть ОС от redhat/fedora+suse+ubuntu+vmware.
- 	* Сборщики дистрибутивов от suse+ubuntu завязаны на облачный сервис сборки.
-	* ОС от vmware стар/superstar.
-	* Fedora не умеет в железо, конфиги ОС на json/yaml.
-	* ОС от suse в основе rpm/zypper+btrfs и bash(!) для конфига ОС.
-	* От Ubuntu - snapd пакеты для пакетов. Был ещё Ranch, но от него отвалилась ОС, осталась экосистема для контейнеров.
+ * основные приколы thinOS
+	* минимум пакетов, максимум заявлений о security first: offline сборки для установки/обновления ОС в airgap окружениях, шифрованные диски и вот это вот всё.
+	* конфиги для сборки/установки ОС в ассортименте - json/yaml/bash
+	* предпочитают установку поверх гипервизора, чтобы выкинуть слой поддержки железа.
+	* новый или обёрнутый в скрипты менеджер пакетов/сервисов для изоляции и версионирования
+	* система сужения maintenance window через снимки/откаты, либо на уровне ФС, либо отдельным сервисом пакетов для пакетов.
+	* ессно, пачка самых-самых утилит и фреймворков для управления контейнерами docker/podman.
+	* итого тихой сапой идёт замещение гипервизоров/виртуализации на thinOS+kubernetes. Ведь по сути экосистемы гипервизоров делают то же самое, что и экосистема kubernetes.
+ * итого есть ОС от:
+	* vmware - Умеет в realtime kernel. SLES под капотом. tdnf вместо zypper для управления пакетами.  Работает поверх виртуализации. Выбор стабильных корпоратов, plugNpray.
+	* Fedora не умеет в железо, сборка через rpm-ostree, конфиги ОС на json/yaml. Выбор неопределившихся.
+	* suse в основе rpm/zypper+btrfs и bash(!) для конфига ОС(есть UI WYSWYG). Выбор дедов.
+	* Ubuntu - snapd пакеты для пакетов, конфиги на json, нужен облачный аккаунт для сборки. Выбор смелых.
+	* Flatcar - это gentoo и аналог coreOS/Fedora, но умеет в железо и сборку из исходников kernel.org. Выбор пытливых.
+	* Ranch, от него отвалилась ОС, вместо неё теперь Harvester HCI с экосистемой для kuber. Умеет в железо. Под капотом SLES. Выбор любителей кубических форм.
  * https://fedoraproject.org/coreos/
 	* бывший coreos
 	* containerd 1.6.23, kernel 6.8.11
@@ -113,12 +122,22 @@
 	* [rpm-ostree](https://ubuntu.com/core/docs/snaps-in-ubuntu-core) для управления пакетами, версионирования, откатов
 	* KVM/libvirt
 	* Currently, the OSTree and SELinux tooling conflict a bit. If you have permanently applied local policy modifications then policy updates delivered by the OS will no longer apply; your policy stays frozen. This means any policy "fixes" needed to enable new functionality will not get applied. See coreos/fedora-coreos-tracker#701 for more details.
+ * [flatcar](https://www.flatcar.org/)
+	* аналог fedoraCoreOs, да, тоже наследник
+	* два конфига - ignition/json + butane/yaml есть [конвертер](https://www.flatcar.org/docs/latest/provisioning/config-transpiler/)
+	* A minimum of 2 GB of RAM is required to boot Flatcar Container Linux via ISO
+	* The Flatcar Linux kernel build is split over multiple `gentoo` ebuild files
+	* https://www.flatcar.org/docs/latest/reference/developer-guides/sdk-modifying-flatcar/
+	* https://github.com/flatcar
+	* подкостыленный systemd-sysext для управления версиями системных сервисов
+	* https://github.com/flatcar/sysext-bakery
+	* [не умеет](https://www.flatcar.org/docs/latest/setup/debug/manual-rollbacks/) в OTA(обновления без перезагрузки)
 * https://microos.opensuse.org/
 	* minimum 1 GB physical RAM
 	* The package list is similar to the SUSE Linux Enterprise Server minimal system.
 	* MicroOS 5.2 based on Leap 15.3
 	* [kernel 6.9+](https://distrowatch.com/table.php?distribution=opensuse&pkglist=true&version=tumbleweed#pkglist)
-	* btrfs - основа, откаты и версионирование пакетов/системы через снимки
+	* btrfs+snapper - основа, откаты и версионирование пакетов/системы через снимки
 	* / (root) partition: 5 GB available disk space minimum, 20 GB maximum
 	* /var partition: 5 GB available disk space minimum, 40 GB or more recommended
 	* read-only root filesystem to avoid accidental modifications of the OS
@@ -126,17 +145,20 @@
 	* health-checker to verify the OS is operational after updates. Automatically rolls back in case of trouble.
 	* cloud-init for initial system configuration during first boot on Cloud (includes OpenStack)
 	* три конфига для сборки ОС
-		* Ignition - has its origins in Fedora CoreOS and is fully supported by openSUSE MicroOS. Best choice for beginners.
-		* Combustion - is part of openSUSE's MicroOS project and is more powerful and flexible than Ignition and requires bash programming skills.
+		* [Ignition](https://en.opensuse.org/Portal:MicroOS/Ignition) - has its origins in Fedora CoreOS and is fully supported by openSUSE MicroOS. Best choice for beginners.
+		* [Combustion](https://en.opensuse.org/Portal:MicroOS/Combustion) - is part of openSUSE's MicroOS project and is more powerful and flexible than Ignition and requires bash programming skills.
 		* Cloud-Init - is used only for the OpenStack Cloud variant of openSUSE MicroOS. Learn more from the Cloud-Init Quick Start Documentation.
+	* UI для конфигов ОС https://opensuse.github.io/fuel-ignition/
 	* Podman Container Runtime available
 	* Rolling Release: Every new openSUSE Tumbleweed snapshot also automatically produces a new openSUSE MicroOS release. The Leap based version automatically updates when maintenance updates for Leap are published.
 	* https://github.com/clearlinux/tallow - fail2ban/lard replacement that uses systemd's native journal API to scan for attempted ssh logins, and issues temporary IP bans for clients that violate certain login patterns
 * https://ubuntu.com/core
 	* минимальная установка, остальное через snapcraft
 	* kernel 5.15 Ubuntu 22.04 Jammy
+	* new: Ubintu 24 Noble https://ubuntu.com/core/docs/uc24
 	* https://ubuntu.com/core/docs/build-an-image
-	* new https://ubuntu.com/core/docs/uc24 Ubintu 24 Noble
+	* конфиг ОС на json https://ubuntu.com/core/docs/create-model-assertion
+	* умеет в [железо](https://ubuntu.com/core/docs/supported-platforms)
 * Rancher
 	* SUSE, остались только утилиты/экосистема для работы внутри ОС
 	* https://github.com/docker/machine - устарел, но используется для управления в простых окружениях workstation
@@ -169,10 +191,18 @@
 		* A Longhorn volume itself cannot shrink in size if you've removed content from your volume. This happens because Longhorn operates on the block level, not the filesystem level.
 * [Photon OS](https://github.com/vmware/photon/tree/master) от VMware
 	* https://vmware.github.io/photon/
-	* Photon OS 3.0 contains the 4.4 LTS kernel
-	* VMWare ESXi
-	* Vagrant
+	* [Photon OS 5.0](https://vmware.github.io/photon/docs-v5/whats-new/) contains: Linux kernel 6.1.10, Gcc : 12.2, Glibc 2.36
+	* дружит с VMWare ESXi и Vagrant
 	* Open virtualization
+	* Real Time Kernel Support
+	* умеет в железо
+	* для сборки образа ОС зачем-то требует [Ubuntu 14+](https://vmware.github.io/photon/docs-v5/installation-guide/building-images/build-prerequisites/)
+	* works with the most common container formats, including Docker, Rocket, and Garden
+	* Deployment using RPM-OStree. OSTree is a tool to manage bootable, immutable, versioned filesystem trees. Unlike traditional package managers like rpm or dpkg that know how to install, uninstall, configure packages, OSTree has no knowledge of the relationship between files. But when you add rpm capabilities on top of OSTree, it becomes RPM-OSTree, meaning a filetree replication system that is also package-aware.
+	* управление пакетами через новое поколение yum/dnf - tdnf - tiny dandified yum. It is a C implementation of the DNF package manager without Python dependencies.
+	* управление сервисами через [systemd](https://vmware.github.io/photon/docs-v5/administration-guide/managing-services-withsystemd/)
+	* https://github.com/vmware/pmd-next-gen photon-mgmt для управления/мониторинга сервисов
+	* cntrctl для управления контейнерами
  *
  *
 
