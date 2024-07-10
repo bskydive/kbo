@@ -79,7 +79,7 @@
 	* containerd
 	* runc(фундамент)
 
-## выбор образа ОС
+## образ ОС для контейнера
 
  * Alpine
 	* наименьший размер, однако там [musl libc](http://www.musl.libc.org) вместо стандартной [glibc](http://www.etalabs.net/compare_libcs.html). Поэтому некоторое старое ПО может глючить из-за недостаточных libc зависимостей.
@@ -93,10 +93,78 @@
 	* Ksplice for zero-downtime kernel patching, DTrace for real-time diagnostics, Btrfs file system
  * ubuntu
 	* This is the defacto image. If you are unsure about what your needs are, you probably want to use this one. It is designed to be used both as a throw away container (mount your source code and start the container to start your app), as well as the base to build other images off of.
- * thin os для контейнерных окружений
-	* https://fedoraproject.org/coreos/
-	* RancherOS
-	* Photon OS от VMware
+
+## thin os для управления контейнерами
+
+ * итого есть ОС от redhat+suse+vmware, есть сборщики дистрибутивов от suse+ubuntu, которые завязаны на облачный сервис сборки. ОС от vmware стар/superstar. ОС от suse в основе rpm/zypper+btrfs, от Ubuntu - snapd пакеты для пакетов. Был ещё Ranch, но от него отвалилась ОС, осталась экосистема для контейнеров.
+ * https://fedoraproject.org/coreos/
+	* бывший coreos
+	* containerd 1.6.23, kernel 6.8.11
+	* Fedora CoreOS does not have a separate install disk. Instead, every instance starts from a generic disk image which is customized on first boot via Ignition.
+	* Fedora CoreOS ships with both the docker CLI tool (as provided via Moby) and podman installed.
+	* https://mobyproject.org/ для управления docker
+	* два несовместимых формата файлов конфигурации/сборки ОС - ignition(json) и butane(yaml)
+	* запутанная [документация](https://docs.fedoraproject.org/en-US/fedora-coreos/tutorial-setup/)
+	* [rpm-ostree](https://ubuntu.com/core/docs/snaps-in-ubuntu-core) для управления пакетами, версионирования, откатов
+	* KVM/libvirt
+	* Currently, the OSTree and SELinux tooling conflict a bit. If you have permanently applied local policy modifications then policy updates delivered by the OS will no longer apply; your policy stays frozen. This means any policy "fixes" needed to enable new functionality will not get applied. See coreos/fedora-coreos-tracker#701 for more details.
+* https://microos.opensuse.org/
+	* minimum 1 GB physical RAM
+	* The package list is similar to the SUSE Linux Enterprise Server minimal system.
+	* MicroOS 5.2 based on Leap 15.3
+	* [kernel 6.9+](https://distrowatch.com/table.php?distribution=opensuse&pkglist=true&version=tumbleweed#pkglist)
+	* btrfs - основа, откаты и версионирование пакетов/системы через снимки
+	* / (root) partition: 5 GB available disk space minimum, 20 GB maximum
+	* /var partition: 5 GB available disk space minimum, 40 GB or more recommended
+	* read-only root filesystem to avoid accidental modifications of the OS
+	* The Transactional Updates technology leverages btrfs snapshots to apply package updates without interfering with the running system
+	* health-checker to verify the OS is operational after updates. Automatically rolls back in case of trouble.
+	* cloud-init for initial system configuration during first boot on Cloud (includes OpenStack)
+	* Combustion and Ignition for initial system configuration during first boot on all other images.
+	* Podman Container Runtime available
+	* Rolling Release: Every new openSUSE Tumbleweed snapshot also automatically produces a new openSUSE MicroOS release. The Leap based version automatically updates when maintenance updates for Leap are published.
+	* https://github.com/clearlinux/tallow - fail2ban/lard replacement that uses systemd's native journal API to scan for attempted ssh logins, and issues temporary IP bans for clients that violate certain login patterns
+* https://ubuntu.com/core
+	* минимальная установка, остальное через snapcraft
+	* kernel 5.15 Ubuntu 22.04 Jammy
+	* https://ubuntu.com/core/docs/build-an-image
+	* new https://ubuntu.com/core/docs/uc24 Ubintu 24 Noble
+* Rancher
+	* SUSE, остались только утилиты/экосистема для работы внутри ОС
+	* https://github.com/docker/machine - устарел, но используется для управления в простых окружениях workstation
+	* https://github.com/rancher/os сдох 5 лет назад, его не поддержали разработчики linux
+		* all is docker
+		* ext4
+		* virtualbox, vmware, aws
+		* docker+system docker
+	* https://docs.k3s.io/ - kuber IoT
+	* https://docs.harvesterhci.io/v1.3
+		* bare metal. provides virtualization and distributed storage capabilities. In addition to traditional virtual machines (VMs), Harvester supports containerized environments automatically through integration with Rancher.
+		* Linux OS. Elemental for SLE-Micro 5.3 is at the core of Harvester and is an immutable Linux distribution designed to remove as much OS maintenance as possible in a Kubernetes cluster.
+		* Harvester is an HCI solution with Kubernetes under the hood.
+		* KubeVirt provides virtualization management using KVM on top of Kubernetes.
+		* Longhorn provides distributed block storage and tiering.
+		* Grafana and Prometheus provide robust monitoring and logging.
+	* https://longhorn.io/docs/1.6.2/what-is-longhorn/
+		* DFS для kubernetes volumes, платформонезависимый
+		* The Longhorn CSI driver takes the block device, formats it, and mounts it on the node. Then the kubelet bind-mounts the device inside a Kubernetes Pod. This allows the Pod to access the Longhorn volume.
+		* Ubuntu	22.04, SLES	15 SP5, RHEL	9.3
+		* Minimum Recommended Hardware
+		* 3 nodes
+		* 4 vCPUs per node
+		* 4 GiB per node
+		* 10 Gbps network bandwidth between nodes
+		* SSD/NVMe or similar performance block device on the node for storage (recommended)
+		* 500/250 max IOPS per volume (1 MiB I/O)
+		* 500/250 max throughput per volume (MiB/s)
+		* periodically delete all types of snapshots, trim the filesystem
+		* A Longhorn volume itself cannot shrink in size if you've removed content from your volume. This happens because Longhorn operates on the block level, not the filesystem level.
+* [Photon OS](https://github.com/vmware/photon/tree/master) от VMware
+	* https://vmware.github.io/photon/
+	* Photon OS 3.0 contains the 4.4 LTS kernel
+	* VMWare ESXi
+	* Vagrant
+	* Open virtualization
  *
  *
 
@@ -1166,6 +1234,19 @@ USER myuser
 	* Анализировать содержимое контейнера [линтерами](#линтеры-linters)
  * https://selectel.ru/blog/docker-security-1/
 
+### rootless docker
+
+ * https://docs.docker.com/engine/security/rootless/
+```bash
+apt-get install dbus-user-session uidmap systemd-container docker-ce-rootless-extras
+machinectl shell TheUser@
+systemctl disable --now docker.service docker.socket
+rm /var/run/docker.sock
+dockerd-rootless-setuptool.sh install
+dockerd-rootless-setuptool.sh uninstall
+```
+
+ * [](https://kernel.ubuntu.com/git/ubuntu/ubuntu-bionic.git/commit/fs/overlayfs?id=3b7da90f28fe1ed4b79ef2d994c81efbc58f1144)
 
 ### замена dockerd
 
@@ -1232,10 +1313,21 @@ docker container top ubuntu1
  * https://www.cisecurity.org/benchmark/docker
  * https://github.com/docker/docker-bench-security
  * https://github.com/CISOfy/lynis
-* бесплатный Clair
-* условно бесплатные Snyk, anchore, Harbor
-* платные JFrog XRay и Qualys
-* системы асессмента ИБ в целом, например, Open Policy agent
+ * бесплатный Clair
+ * условно бесплатные Snyk, anchore, Harbor
+ * платные JFrog XRay и Qualys
+ * системы асессмента ИБ в целом, например, Open Policy agent
+ * https://open-docs.neuvector.com/basics/requirements/
+	* end-to-end container security platform. This includes end-to-end vulnerability scanning and complete run-time protection for containers, pods and hosts
+    * CI/CD Vulnerability Management & Admission Control. Scan images with a Jenkins plug-in, scan registries, and enforce admission control rules for deployments into production.
+    * Violation Protection. Discovers behavior and creates a whitelist based policy to detect violations of normal behavior.
+    * Threat Detection. Detects common application attacks such as DDoS and DNS attacks on containers.
+    * DLP and WAF Sensors. Inspect network traffic for Data Loss Prevention of sensitive data, and detect common OWASP Top10 WAF attacks.
+    * Run-time Vulnerability Scanning. Scans registries, images and running containers orchestration platforms and hosts for common (CVE) as well as application specific vulnerabilities.
+    * Compliance & Auditing. Runs Docker Bench tests and Kubernetes CIS Benchmarks automatically.
+    * Endpoint/Host Security. Detects privilege escalations, monitors processes and file activity on hosts and within containers, and monitors container file systems for suspicious activity.
+    * Multi-cluster Management. Monitor and manage multiple Kubernetes clusters from a single console.
+
 
 ### selinux
 
