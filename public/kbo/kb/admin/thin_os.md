@@ -1,4 +1,4 @@
-## thin os для управления контейнерами
+# thin os для управления контейнерами
 
  * основные приколы thinOS
 	* минимум пакетов, максимум заявлений о security first: offline сборки для установки/обновления ОС в airgap окружениях, шифрованные диски и вот это вот всё.
@@ -9,12 +9,13 @@
 	* ессно, пачка самых-самых утилит и фреймворков для управления контейнерами docker/podman.
 	* итого тихой сапой идёт замещение гипервизоров/виртуализации на thinOS+kubernetes. Ведь по сути экосистемы гипервизоров делают то же самое, что и экосистема kubernetes.
  * итого, есть ОС от:
-	* vmware - Умеет в realtime kernel. SLES под капотом. tdnf вместо zypper для управления пакетами. Выбор стабильных корпоратов, plugNpray.
-	* Fedora не умеет в железо, сборка через rpm-ostree, конфиги ОС на json/yaml. Выбор неопределившихся.
-	* suse в основе rpm/zypper+btrfs и bash(!) для конфига ОС(есть UI WYSWYG). Выбор дедов.
-	* Ubuntu - snapd пакеты для пакетов, конфиги на json, нужен облачный аккаунт для сборки. Выбор смелых.
-	* Flatcar - это gentoo и аналог coreOS/Fedora, но умеет в железо и сборку из исходников kernel.org. Выбор пытливых.
+	* vmware - Умеет в realtime kernel. SLES под капотом. tdnf вместо zypper для управления пакетами.
+	* Fedora не умеет в железо, сборка через rpm-ostree, конфиги ОС на json/yaml.
+	* suse в основе rpm/zypper+btrfs и bash(!) для конфига ОС(есть UI WYSWYG).
+	* Ubuntu - snapd пакеты для пакетов, конфиги на json, нужен облачный аккаунт для сборки.
+	* Flatcar - это gentoo и аналог coreOS/Fedora, но умеет в железо и сборку из исходников kernel.org.
 	* Ranch, от него отвалилась ОС, вместо неё теперь Harvester HCI с экосистемой для kuber. Умеет в железо. Под капотом SLES. Выбор любителей кубических форм.
+	* Talos - собрали ОС из исходников, без ssh, написали обвязку на go, конфиги на yaml
 
 ## [Fedora CoreOS](https://fedoraproject.org/coreos/)
 
@@ -65,7 +66,6 @@
 
 ## [Ubuntu Core](https://ubuntu.com/core)
 
-* мы не CoreOS, мы - Core!!!
 * минимальная установка, остальное через snapcraft
 * kernel 5.15 Ubuntu 22.04 Jammy
 * new: Ubintu 24 Noble https://ubuntu.com/core/docs/uc24
@@ -100,8 +100,8 @@
 	* 4 GiB per node
 	* 10 Gbps network bandwidth between nodes
 	* SSD/NVMe or similar performance block device on the node for storage (recommended)
-	* 500/250 max IOPS per volume (1 MiB I/O)
-	* 500/250 max throughput per volume (MiB/s)
+	* r/w 500/250 max IOPS per volume (1 MiB I/O)
+	* r/w 500/250 max throughput per volume (MiB/s)
 	* periodically delete all types of snapshots, trim the filesystem
 	* A Longhorn volume itself cannot shrink in size if you've removed content from your volume. This happens because Longhorn operates on the block level, not the filesystem level.
 
@@ -123,7 +123,7 @@
 
 ## [talos](https://www.talos.dev/)
 
- * The Kubernetes Operating System - от скромности парни не умрут
+ * The Kubernetes Operating System
  * managed via a single declarative configuration file and gRPC API
  * Linux: 6.6.28     etcd: 3.5.11     containerd: 1.7.15     runc: 1.1.12     Flannel: 0.24.4 Talos is built with Go 1.22.2.
  * конфиги на yaml
@@ -132,18 +132,3 @@
  * [air-gapped](https://www.talos.dev/v1.7/advanced/air-gapped/) требует docker+QEMU
  * https://www.siderolabs.com/platform/saas-for-kubernetes/
  * Upgrades use an A-B image scheme in order to facilitate rollbacks. This scheme retains the previous Talos kernel and OS image following each upgrade. If an upgrade fails to boot, Talos will roll back to the previous version. Likewise, Talos may be manually rolled back via API (or talosctl rollback), which will update the boot reference and reboot.
-
-## образ ОС для контейнера
-
- * Alpine
-	* наименьший размер, однако там [musl libc](http://www.musl.libc.org) вместо стандартной [glibc](http://www.etalabs.net/compare_libcs.html). Поэтому некоторое старое ПО может глючить из-за недостаточных libc зависимостей.
-	* See [this Hacker News comment thread](https://news.ycombinator.com/item?id=10782897) for more discussion of the issues that might arise and some pro/con comparisons of using Alpine-based images.
-	* [`alpine` image description](https://hub.docker.com/_/alpine/)
-	* https://wiki.alpinelinux.org/wiki/Running_glibc_programs
-	* https://stackoverflow.com/questions/70243938/use-shared-library-that-uses-glibc-on-alpinelinux
-	* MUSL is lighter and doesn't drag a legacy with it. This is a problem when applications depend on the legacy, like when they want to use pthread.
-	* [Comparison of C/POSIX standard library implementations for Linux](https://www.etalabs.net/compare_libcs.html)
- * oracle linux
-	* Ksplice for zero-downtime kernel patching, DTrace for real-time diagnostics, Btrfs file system
- * ubuntu
-	* This is the defacto image. If you are unsure about what your needs are, you probably want to use this one. It is designed to be used both as a throw away container (mount your source code and start the container to start your app), as well as the base to build other images off of.
