@@ -20,6 +20,16 @@
  * [Алексей Шипилёв об оптимизации в крупных проектах](https://habr.com/company/jugru/blog/338732/)
  * java high dpi -Dsun.java2d.uiScale=2
 
+## компиляторы
+
+ *  jlink из JDK9 должна была сканировать твои либы из проекта и собирать кастомный Java Runtime
+	* https://openjdk.org/jeps/220
+ * jlink is a tool that generates a custom Java runtime image that contains only the platform modules that are required for a given application
+ * на сколько я знаю ей никто не пользуется всерьез
+ * пользуются другой штукой — graalvm
+ * сейчас размер рантайма не так важен и есть слим-образы JRE для докеров всяких
+ * грааль — это компиляция в нативный код вего приложения — один экзешник, при котором меньше памяти и запускается быстро, но там нет JIT-оптимизаций, которые могут делать приложение быстрее
+
 ## Java-doc
 
 http://skipy.ru/technics/serialization.html

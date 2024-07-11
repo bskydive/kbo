@@ -132,3 +132,7 @@
  * [air-gapped](https://www.talos.dev/v1.7/advanced/air-gapped/) требует docker+QEMU
  * https://www.siderolabs.com/platform/saas-for-kubernetes/
  * Upgrades use an A-B image scheme in order to facilitate rollbacks. This scheme retains the previous Talos kernel and OS image following each upgrade. If an upgrade fails to boot, Talos will roll back to the previous version. Likewise, Talos may be manually rolled back via API (or talosctl rollback), which will update the boot reference and reboot.
+
+## не для контейнеров, но тоже thin
+
+ * https://os.kaspersky.ru/appicenter/apps/
