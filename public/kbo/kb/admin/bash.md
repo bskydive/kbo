@@ -46,12 +46,6 @@
  * [monitoring](./monitoring.md)
  * [git](../frontend/git.md#ssh-bash)
 
-```bash
-	date +%H.%M.%S_%d.%m.%Y
-	for (( i=0 ; i<10 ; i++ )); do
-	done
-```
-
 ## xargs
 
  * https://www.commandlinefu.com/commands/browse
@@ -76,6 +70,47 @@
 		#в .inputrc то по <C-n>/<C-p>
 	```
 
+## awk
+
+```bash
+awk -v disk=$2 '{if ($3==disk) printf "%.2f\n", ($1 + $5) / $10 * 10000}' /proc/diskstats
+
+awk '/SwapTotal/ { mem_all = $2 };
+	/SwapFree/ { mem_free = $2 };
+	END { printf "%.2f\n", (mem_free / mem_all) * 100 }' /proc/meminfo
+
+#445258 non-nice user cpu ticks
+#	6 nice user cpu ticks
+#626579 system cpu ticks
+#66787630 idle cpu ticks
+#18648 IO-wait cpu ticks
+#	0 IRQ cpu ticks
+#26985 softirq cpu ticks
+#	0 stolen cpu ticks
+
+vmstat -s | awk '/non-nice/ { nonnice = $1 };
+/nice/ { nice = $1 };
+/system/ { sys = $1 };
+/idle/ { idle = $1 };
+/IO-wait/ { iowait = $1 };
+/IRQ/ { irq = $1 };
+/softirq/ { sirq = $1 };
+/stolen/ { stolen = $1 };
+END { printf "%.2f\n", idle/(nonnice+nice+sys+iowait+irq+sirq+stolen+idle)*100}'
+
+# cpu  453349 6 631415 67354091 18823 0 27200 0 0 0
+awk '/cpu / { nonnice = $2
+nice = $3
+sys = $4
+idle = $5
+iowait = $6
+irq = $7
+sirq = $8
+stolen = $9 };
+END { printf "%.2f\n", idle/(nonnice+nice+sys+iowait)*100}' /proc/stat
+
+```
+
 ## tips
 
  * http://mywiki.wooledge.org/BashFAQ
@@ -83,51 +118,67 @@
  * http://wiki.bash-hackers.org/syntax/ccmd/if_clause
  * [подводные камни bash](https://habr.com/ru/company/mailru/blog/311762)
 
-	```bash
-		for i in *.mp3; do
-			[ -e "$i" ] || continue
-			cp "./$i" /target
-		done
+```bash
 
-		cp -- "$file" "$target"
-		# -- - сигнал прекращения поиска опций
+# целочисленные операции
+result=$(( ${result} + 1 ))
 
-		#posix
-		[ "$foo" = bar ]
-		[ bar = "$foo" ] && [ foo = "$bar" ]
-		[ "$foo" -gt 7 ]
+## дробные
+cpu_cores=$(nproc)
+total_uptime=$(awk '{print $1}' /proc/uptime)
+idle_uptime=$(echo -e "scale=2;$(awk '{print $2}' /proc/uptime ) / ${cpu_cores}" | bc )
+echo -e "scale=2;(${idle_uptime} / ${total_uptime}) * 100" | bc | awk -F. '{print $1}'
 
-		case $foo in
-			*[![:digit:]]*)
-				printf '$foo expanded to a non-digit: %s\n' "$foo" >&2
-				exit 1
-				;;
-			*)
-				[ $foo -gt 7 ]
-		esac
 
-		if [ false ]; then echo "HELP"; fi
-		if test false; then echo "HELP"; fi
-		if [ a = b ] && [ c = d ]; then
-		if test a = b && test c = d; then
-		if [[ a = b && c = d ]]; then
-		if [ false ]; then echo "HELP"; fi
+for i in *.mp3; do
+	[ -e "$i" ] || continue
+	cp "./$i" /target
+done
 
-		# https://linuxhandbook.com/if-else-bash/
-		if [ $(whoami) = 'root' ]; then
-			echo "You are root"
-		else
-			echo "You are not root"
-		fi
+for (( i=0 ; i<10 ; i++ )); do
+done
 
-		#bash/ksh
-		[[ $foo == bar ]]
-		[[ $foo == "$match" ]]
-		[[ $foo = bar && $bar = foo ]]
-		((foo > 7))
+cp -- "$file" "$target"
+# -- - сигнал прекращения поиска опций
 
-		#TODO спарсить после 11 пункта
-	```
+#posix
+[ "$foo" = bar ]
+[ bar = "$foo" ] && [ foo = "$bar" ]
+[ "$foo" -gt 7 ]
+
+case $foo in
+	*[![:digit:]]*)
+		printf '$foo expanded to a non-digit: %s\n' "$foo" >&2
+		exit 1
+		;;
+	*)
+		[ $foo -gt 7 ]
+esac
+
+if [ false ]; then echo "HELP"; fi
+if test false; then echo "HELP"; fi
+if [ a = b ] && [ c = d ]; then
+if test a = b && test c = d; then
+if [[ a = b && c = d ]]; then
+if [ false ]; then echo "HELP"; fi
+
+# https://linuxhandbook.com/if-else-bash/
+if [ $(whoami) = 'root' ]; then
+	echo "You are root"
+else
+	echo "You are not root"
+fi
+
+#bash/ksh
+[[ $foo == bar ]]
+[[ $foo == "$match" ]]
+[[ $foo = bar && $bar = foo ]]
+((foo > 7))
+
+#TODO спарсить после 11 пункта
+
+date +%H.%M.%S_%d.%m.%Y
+```
 
  * https://github.com/you-dont-need/You-Dont-Need-GUI#find-a-stale-file
  * [Bash-скрипты, часть 2: циклы](https://habrahabr.ru/company/ruvds/blog/325928/)

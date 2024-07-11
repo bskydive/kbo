@@ -223,6 +223,19 @@ find . -inum 17040033 -exec mv {} new-directory-name1 \;
 
 ## SMART
 
+ * https://wiki.archlinux.org/title/S.M.A.R.T.
+
+```bash
+mcedit /etc/smartd.conf
+## Monitor all attributes, enable automatic online data collection, automatic Attribute autosave
+## start a short self-test every day except fri 10am
+## start a long self test Fri 10am.
+
+#DEVICESCAN -a -o on -S on -s (S/../../(1|2|3|4|6|7)/10|L/../../(5)/10)
+smartctl restart smartd
+journalctl -u smartd | grep -iE "error|warn"
+```
+
  * https://linuxconfig.org/how-to-check-an-hard-drive-health-from-the-command-line-using-smartctl
 
  ```bash
@@ -256,8 +269,6 @@ find . -inum 17040033 -exec mv {} new-directory-name1 \;
 	# Lifetime    Min/Max Temperature:     24/46 Celsius
  ```
 
- *
- *
 
  * gsmartcontrol
  * smart hdd read-only Mode: включается режим только для чтения при автоматической проверке

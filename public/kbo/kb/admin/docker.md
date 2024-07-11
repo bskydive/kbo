@@ -32,29 +32,29 @@
 
  * основой контейнеризации являются Linux namespace
  * https://www.kernel.org/doc/html/latest/admin-guide/cgroup-v1/cgroups.html
-	```bash
-		#1) mount -t tmpfs cgroup_root /sys/fs/cgroup
-		#2) mkdir /sys/fs/cgroup/cpuset
-		#3) mount -t cgroup -ocpuset cpuset /sys/fs/cgroup/cpuset
-		#4) Create the new cgroup by doing mkdir's and write's (or echo's) in the /sys/fs/cgroup/cpuset virtual file system.
-		#5) Start a task that will be the "founding father" of the new job.
-		#6) Attach that task to the new cgroup by writing its PID to the /sys/fs/cgroup/cpuset tasks file for that cgroup.
-		#7) fork, exec or clone the job tasks from this founding father task.
 
-		mount -t tmpfs cgroup_root /sys/fs/cgroup
-		mkdir /sys/fs/cgroup/cpuset
-		mount -t cgroup cpuset -ocpuset /sys/fs/cgroup/cpuset
-		cd /sys/fs/cgroup/cpuset
-		mkdir Charlie
-		cd Charlie
-		/bin/echo 2-3 > cpuset.cpus
-		/bin/echo 1 > cpuset.mems
-		/bin/echo $$ > tasks
-		sh
-		# The subshell 'sh' is now running in cgroup Charlie
-		# The next line should display '/Charlie'
-		cat /proc/self/cgroup
-	```
+```bash
+mount -t tmpfs cgroup_root /sys/fs/cgroup
+mkdir /sys/fs/cgroup/cpuset
+mount -t cgroup cpuset -ocpuset /sys/fs/cgroup/cpuset
+
+#4) Create the new cgroup by doing mkdir's and write's (or echo's) in the /sys/fs/cgroup/cpuset virtual file system.
+#5) Start a task that will be the "founding father" of the new job.
+#6) Attach that task to the new cgroup by writing its PID to the /sys/fs/cgroup/cpuset tasks file for that cgroup.
+#7) fork, exec or clone the job tasks from this founding father task.
+
+cd /sys/fs/cgroup/cpuset
+mkdir Charlie
+cd Charlie
+/bin/echo 2-3 > cpuset.cpus
+/bin/echo 1 > cpuset.mems
+/bin/echo $$ > tasks
+sh
+# The subshell 'sh' is now running in cgroup Charlie
+# The next line should display '/Charlie'
+cat /proc/self/cgroup
+```
+
  * https://www.redhat.com/sysadmin/cgroups-part-one
  * https://docs.docker.com/get-started/overview/#docker-architecture
  * [Механизмы контейнеризации: cgroups](https://habr.com/ru/companies/selectel/articles/303190/)
@@ -94,9 +94,9 @@
  * ubuntu
 	* This is the defacto image. If you are unsure about what your needs are, you probably want to use this one. It is designed to be used both as a throw away container (mount your source code and start the container to start your app), as well as the base to build other images off of.
 
-## [thin os для управления контейнерами](./thin_os.md)
+## thin os для управления контейнерами
 
-
+ * [thin_os](./thin_os.md)
 
 ## оптимизация
 
@@ -473,6 +473,11 @@ docker run -e "deep=purple" -e today --rm alpine env
  * https://opentelemetry.io/docs/
  * https://docs.docker.com/config/otel/
  * https://docs.docker.com/reference/cli/docker/inspect/
+
+## multi container
+
+ * https://docs.docker.com/guides/docker-concepts/running-containers/multi-container-applications/
+ * https://docs.docker.com/guides/workshop/07_multi_container/
 
 ## compose file
 
