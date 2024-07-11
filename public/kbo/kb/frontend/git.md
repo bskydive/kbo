@@ -2,24 +2,23 @@
 
 ## документация
 
+ * [GIT CHANGELOG](https://github.com/git/git/tree/master/Documentation/RelNotes)
  * https://marklodato.github.io/visual-git-guide/index-en.html
  * https://github.com/k88hudson/git-flight-rules
  * https://services.github.com/on-demand/downloads/github-git-cheat-sheet/
  * https://medium.com/@ABatickaya/%D1%88%D0%BF%D0%B0%D1%80%D0%B3%D0%B0%D0%BB%D0%BA%D0%B0-%D0%BF%D0%BE-git-55eeea487676#.38x1yx7en
  * http://www.alexkras.com/19-git-tips-for-everyday-use/
  * [~/.gitconfig](http://cheat.errtheblog.com/s/git)
- * http://habrahabr.ru/post/125799/
- * https://sites.google.com/site/alextestprojects/obzor-instrumentov/git/primer-modeli-vetvlenia-git
- * http://habrahabr.ru/post/174467/#typicalscenario
- * https://www.gerritcodereview.com/
- * http://endoflineblog.com/gitflow-considered-harmful
- * http://endoflineblog.com/follow-up-to-gitflow-considered-harmful
+ * [Как начать работать с GitHub: быстрый старт - 2011](http://habrahabr.ru/post/125799/)
+ * x https://sites.google.com/site/alextestprojects/obzor-instrumentov/git/primer-modeli-vetvlenia-git
+ * [Ежедневная работа с Git - 2013](http://habrahabr.ru/post/174467/#typicalscenario)
+ * [a Perforce based code review tool](https://www.gerritcodereview.com/)
  * [fuzzy search history](https://github.com/junegunn/fzf-bin/releases)
- * [mindmap](https://alexkras.com/git/git.png)
+ * [git mindmap cheatsheet](https://alexkras.com/git/git.png)
  * https://developer.atlassian.com/blog/2015/12/tips-tools-to-solve-git-conflicts/
  * http://zeroturnaround.com/rebellabs/git-commands-and-best-practices-cheat-sheet/
  * https://ericdouglas.github.io/2016/04/01/Git-Useful-Tips/
- * [conventionalcommits](https://www.conventionalcommits.org/en/v1.0.0/)
+
 
 ### тренажёры
 
@@ -84,6 +83,32 @@
  * https://linearb.io/
  * [Next-level software developer metrics](https://www.gitclear.com/)
 
+## монорепы
+
+### mercurial
+
+* [Почему Facebook* не использует Git](https://habr.com/ru/articles/798881/)
+* mercurial быстрее для миллионов строк, потому что сразу высчитывает diff
+* концепция stacked diff вместо простого копирования файлов и вычисления [git-stat](https://pubs.opengroup.org/onlinepubs/009696799/functions/stat.html)
+* mercurial написан на python, а git на bash+C
+
+### для git
+
+ * [Внешние зависимости в гите: submodule или subtree? - 2009](https://habr.com/ru/articles/75964/)
+ * submodules
+	* Каждый человек, работающий с основным репозиторием должен иметь доступ к репозиторию, из которого взят подмодуль.
+	* В общем случае невозможно получить целостную рабочую копию одной командой. Теперь после git checkout нужно делать git submodule update --init.
+	* git archive игнорирует подмодули — больше нельзя одной командой запаковать весь проект в архив.
+	* Из проекта верхнего уровня не видно изменений внутри подмодулей и наоборот. Чтобы узнать полного состояние рабочей копии проекта, необходимо запрашивать его для каждого подмодуля и для родительского проекта по отдельности. Без подмодулей достаточно сказать git status в любом месте внутри рабочей копии.
+	* После замены корневой директории подмодуля на что-нибудь другое (например другой подмодуль), нужно вручную удалять старую версию во всех рабочих копиях.
+	* Команда git submodule не понимает стандартных опций --git-dir и --work-tree. Её можно запускать только из корня рабочей копии. Это затрудняет автоматизацию.
+ * subtree
+	* git-subtree - Merge subtrees together and split repository into subtrees
+	* Unlike submodules, subtrees do not need any special constructions (like .gitmodule files or gitlinks), and do not force to do anything special or to understand how subtrees work. A subtree is just a subdirectory that can be committed to, branched, and merged along with your project in
+	* Unlike the subtree merge strategy you can also extract the entire history of a subdirectory from your project and make it into a standalone project. If the standalone library gets updated, you can automatically merge the changes into your project; if you update the library inside your project, you can "split" the changes back out again and merge them back into the library project.
+	* https://github.com/apenwarr/git-subtree/blob/master/git-subtree.txt
+	* [Git subtree в деталях - 2018](https://habr.com/ru/articles/429014/)
+
 ## аналитика git
 
  * [Покажи мне свой Git, и я скажу, кто ты](https://habr.com/ru/company/oleg-bunin/blog/691468/)
@@ -134,7 +159,7 @@
 		* на этапе проверки гипотез эффективность низкая, переписываемость высокая
 		* эффективность позволяет понять стиль программирования
 
-## аналоги github
+## аналоги github/gitlab
 
  * https://trends.rbc.ru/trends/industry/622b8b4f9a7947053add4807
 	* русская https://gitflic.ru/
@@ -142,6 +167,15 @@
 	* https://gogs.io/
 	* немецкая https://rhodecode.com/
 	* canonical https://launchpad.net/
+ * gitea
+
+## github
+
+ * [github](../admin/github.md)
+
+## gitlab
+
+ * [gitlab](../admin/gitlab.md)
 
 ## gitignore
 
@@ -167,51 +201,9 @@
 	#The exponential factor to apply to delays in between successive failures (default=%default). If this is zero, delays will increase linearly. Set this to one to have a constant (non-increasing) delay.
 ```
 
-## gitlab
-
- * http://doc.gitlab.com/ce/
-
-### backup
-
- * http://doc.gitlab.com/ce/raketasks/README.html
-
-    ```bash
-    gitlab-rake gitlab:backup:create
-    ```
-### restore
-
- * http://doc.gitlab.com/ce/raketasks/backup_restore.html#for-omnibus-installations
-
-```bash
-	# Stop processes that are connected to the database
-	sudo gitlab-ctl stop unicorn
-	sudo gitlab-ctl stop sidekiq
-
-	# This command will overwrite the contents of your GitLab database!
-	sudo gitlab-rake gitlab:backup:restore BACKUP=1393513186
-
-	# Start GitLab
-	sudo gitlab-ctl start
-
-	# Check GitLab
-	sudo gitlab-rake gitlab:check SANITIZE=true
-```
-
- * http://doc.gitlab.com/ce/logs/logs.html
-
-```bash
-	# Tail all logs; press Ctrl-C to exit
-	sudo gitlab-ctl tail
-
-	# Drill down to a sub-directory of /var/log/gitlab
-	sudo gitlab-ctl tail gitlab-rails
-
-	# Drill down to an individual file
-	sudo gitlab-ctl tail nginx/gitlab_error.log
-```
-
 ## справочник команд
 
+ * [giteveryday - A useful minimum set of commands for Everyday Git](https://github.com/git/git/blob/master/Documentation/giteveryday.txt)
  * [малоизвестные команды](https://habr.com/ru/company/mailru/blog/318508/)
  * http://mindspill.net/computing/linux-notes/git-notes/
  * git reset
@@ -220,6 +212,74 @@
 	```
 		Обратите внимание, изменяется не сам HEAD (что происходит при выполнении команды checkout); reset перемещает ветку, на которую указывает HEAD. Таким образом, если HEAD указывает на ветку master (то есть вы сейчас работаете с веткой master), выполнение команды git reset 9e5e6a4 сделает так, что master будет указывать на 9e5e6a4.
 	```
+
+### вывод для скриптов
+
+ * https://stackoverflow.com/questions/48341920/git-branch-command-behaves-like-less
+
+```bash
+git --no-pager branch -r -l 'origin/*release*'
+  origin/release-v1.4.0
+```
+
+### Клонирование ветки без истории
+
+```bash
+mkdir git-sandbox && cd git-sandbox
+git clone https://gitlab.com/stepanovv/webpack-dep-graph.git
+# Клонирование в «webpack-dep-graph»…
+# remote: Enumerating objects: 1444, done.
+# remote: Counting objects: 100% (93/93), done.
+# remote: Compressing objects: 100% (50/50), done.
+# remote: Total 1444 (delta 54), reused 67 (delta 43), pack-reused 1351 (from 1)
+# Получение объектов: 100% (1444/1444), 79.84 МиБ | 11.37 МиБ/с, готово.
+# Определение изменений: 100% (735/735), готово.
+ll webpack-dep-graph/push.sh
+# ls: невозможно получить доступ к 'webpack-dep-graph/push.sh': Нет такого файла или каталога
+du -sm webpack-dep-graph/
+# 94      webpack-dep-graph/
+rm -rf webpack-dep-graph/
+g clone --depth 1 --single-branch --branch release-v1.4.0 https://gitlab.com/stepanovv/webpack-dep-graph.git
+# Клонирование в «webpack-dep-graph»…
+# remote: Enumerating objects: 138, done.
+# remote: Counting objects: 100% (138/138), done.
+# remote: Compressing objects: 100% (125/125), done.
+# remote: Total 138 (delta 11), reused 115 (delta 4), pack-reused 0 (from 0)
+# Получение объектов: 100% (138/138), 11.23 МиБ | 8.79 МиБ/с, готово.
+# Определение изменений: 100% (11/11), готово.
+du -sm webpack-dep-graph/
+25      webpack-dep-graph/
+ll webpack-dep-graph/push.sh
+# -rwxr-xr-x 1 bsk users 242 июл  9 12:17 webpack-dep-graph/push.sh
+git status
+# На ветке release-v1.4.0
+# Ваша ветка обновлена в соответствии с «origin/release-v1.4.0».
+#
+# нечего коммитить, нет изменений в рабочем каталоге
+
+```
+
+### Получение информации из удалённого репозитория
+
+ * https://stackoverflow.com/questions/1178389/browse-and-display-files-in-a-git-repo-without-cloning
+
+```bash
+# если есть локальный клон
+git --no-pager branch -r -l 'origin/*release*'
+#  origin/release-v1.4.0
+
+# если его нет, можно склонировать минимальный
+git clone --no-checkout --depth 1 URL
+
+# у CI/CD есть cli и seb api
+
+wget -qO- https://api.github.com/repos/bskydive/webpack-dep-graph/branches | grep -i release | awk -F: '{print $2}' | awk -F\" '{print $2}'
+# release-v1.4.0
+
+# https://docs.gitlab.com/ee/api/branches.html
+curl --header "PRIVATE-TOKEN: <your_access_token>" --url "https://gitlab.example.com/api/v4/projects/5/repository/branches/main"
+
+```
 
 ### git credential
 
@@ -255,7 +315,11 @@ git ls-files -o --exclude-standard
 
 ### log
 
- * коммиты и Комментарии на дату ститистика
+```bash
+git log --pretty=oneline --format='DEV: %an %cd #%h %s' --date=format:'%c'
+```
+
+ * коммиты и Комментарии на дату сатитистика
 
 	```bash
 		g log  --pretty=format:%s --after="2018-07-27"
@@ -484,35 +548,61 @@ git merge upstream/master
 
 ## workflow
 
+ * [SDCast #18: в гостях Михаил Лопаткин ](https://sdcast.ksdaemon.ru/2015/02/sdcast-18/)
+	* Мы подсмотрели у гугла. У хромиума по всем исходникам разложены файлы owners, в них записаны кто из разработчиков отвечает за конкретную папку или подсистему. Тот кто знает как эта часть работает. Т.е. во-первых знаем кого звать на ревью кода, а во вторых на кого повесить операцию разруливания конфликтов, если такое случилось при мерже. т.е. owner кусочка кода разрешает конфликты при мерже.
+ * [merging-vs-rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
+ * [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)
  * http://nvie.com/posts/a-successful-git-branching-model/
  * http://endoflineblog.com/gitflow-considered-harmful
  * http://endoflineblog.com/follow-up-to-gitflow-considered-harmful
  * https://habrahabr.ru/post/106912/ - это модель для гиков или документации, или огромной ко, или для предметной области, где от выпускаемого ПО зависит жизнь человека, или высоконагруженный проект
- * [GitHub flow](https://guides.github.com/introduction/flow/)
- * [Github-flow - немного сложнее, чем на бумаге. 2gis](https://www.youtube.com/watch?v=EwdXZXfQdQY)
+
+### git hooks
+
+ * [husky](https://typicode.github.io/husky/)
+
+```bash
+git commit -am "msg" --no-verify
+```
+
+### GitLab Flow
+
  * [Introduction to GitLab Flow](https://docs.gitlab.com/ee/topics/gitlab_flow.html)
+
+### Git flow
+
  * [git flow](http://danielkummer.github.io/git-flow-cheatsheet/index.ru_RU.html)
  * [git flow ](http://internetdevels.ru/blog/git-flow-model)
+ * подразумевает что на каждом спринте вы создаете (обновляете текущую) ветку developer из которой потом каждый программер выделяет ветку feature и в ней решает конкретный issue, после того как он все сделал он (можно через pull request) слвиает feature в develop, после определенного момента (по срокам) разработка фич останавливаеться из ветки develop создается ветка release которая тестируется. Далее все сливается в maste и так покругу.
+ * удобнее когда есть четкая дата релиза + фаза стабилизации. Наличие тестов желательно но не обязательно т.к. есть тестирование перед деплоем и время закрыть все косяки руками.
 
-все зависит от того как вы выкатываете релизы, есть ли тесты (CI/CD), что за методолгию юзаете
-Git flow подразумевает что на каждом спринте вы создаете (обновляете текущую) ветку developer из которой потом каждый программер выделяет ветку feature и в ней решает конкретный issue, после того как он все сделал он (можно через pull request) слвиает feature в develop, после определенного момента (по срокам) разработка фич останавливаеться из ветки develop создается ветка release которая тестируется. Далее все сливается в maste и так покругу.
+```bash
+#git-flow
+comment="${1}"
+dev="develop"
+origin="origin"
 
-удобнее когда есть четкая дата релиза + фаза стабилизации. Наличие тестов желательно но не обязательно т.к. есть тестирование перед деплоем и время закрыть все косяки руками.
+feature=`git branch | grep '*' | awk -F'* ' '{print $2}'`
 
-GitHub flow ставит своей целью короткий релизный цикл (время от производства feature до deploy на продакшен может быть очень коротким), так сказать что бы пользователь как можно раньше получил свои новые фичи. Здесь очень важно наличие хороших тестов + CI. ну и высокая ответственность программиста.
+git add -A ./public/* ./src/*
+git commit -am "${feature}: ${comment}"
 
-Обычно из master выделяется ветка feature по конкретном issue прогер берет делает ее, далее делает pull request на добавление feature в master, она прохоидт автотесты + делается код ревью, заливаеться в master и автоматически деплоится на прод.
+git checkout "${dev}"
+git merge --no-ff -m "${feature}: merge ${feature} to ${dev}" ${feature}
 
-Еще важно то как разбиваются задачи.
+git checkout "master"
+git merge --no-ff -m "${feature}: merge ${dev} to master" ${dev}
 
+git checkout "${feature}"
+git push ${origin} --all
+```
 
- * [SDCast #18: в гостях Михаил Лопаткин ](https://sdcast.ksdaemon.ru/2015/02/sdcast-18/)
+### GitHub flow
 
-Кто отвечает за сливание upstream'а сhromium'a? Как организован сам процесс?
-Мы подсмотрели у гугла. У хромиума по всем исходникам разложены файлы owners, в них записаны кто из разработчиков отвечает за конкретную папку или подсистему. Тот кто знает как эта часть работает. Т.е. во-первых знаем кого звать на ревью кода, а во вторых на кого повесить операцию разруливания конфликтов, если такое случилось при мерже. т.е. owner кусочка кода разрешает конфликты при мерже.
-
- * [merging-vs-rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
-
+ * [GitHub flow](https://guides.github.com/introduction/flow/)
+ * [Github-flow - немного сложнее, чем на бумаге. 2gis](https://www.youtube.com/watch?v=EwdXZXfQdQY)
+ * ставит своей целью короткий релизный цикл (время от производства feature до deploy на продакшен может быть очень коротким), так сказать что бы пользователь как можно раньше получил свои новые фичи. Здесь очень важно наличие хороших тестов + CI. ну и высокая ответственность программиста.
+ * Обычно из master выделяется ветка feature по конкретном issue прогер берет делает ее, далее делает pull request на добавление feature в master, она прохоидт автотесты + делается код ревью, заливаеться в master и автоматически деплоится на прод.
 
 ## git server
 

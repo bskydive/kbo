@@ -1,6 +1,7 @@
 # Filesystems
 
  * [Пишем файловую систему в ядре Linux](https://habr.com/ru/companies/JetBrains-education/articles/218833/)
+ * https://www.baeldung.com/linux/superblock-inode-dentry-file
 
 ## сравнение файловых систем
 
@@ -360,6 +361,7 @@ find . -inum 17040033 -exec mv {} new-directory-name1 \;
 
  * http://www.rodsbooks.com/gdisk/mbr2gpt.html#gpt2mbr
  * https://stewartadam.io/blog/2012/03/05/how-convert-gpt-disk-layout-ms-dosmbr-layout-without-data-loss-and-gigabyte-hybrid
+
 ## RAID
 
 

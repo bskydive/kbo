@@ -27,6 +27,53 @@
  * [SP-GiST индекс деревья с секционированием](https://habr.com/company/postgrespro/blog/337502/)
  * [Декларативное партиционирование](https://habr.com/post/422753/)
 
+## конфигурация
+
+
+```bash
+	# connect
+		su - postgres -c "psql -U mo_user mo_db"
+	# create db
+		su - postgres -c "createdb --encoding=UNICODE --owner=mo_user mo_db"
+	# create user
+		su - postgres -c "createuser --pwprompt --encrypted --no-adduser --no-createdb --no-createrole --no-inherit mo_user"
+	# create table
+	# create index
+	# change isolation level
+	# backup/restore
+		sudo -U postgres -c "pg_dump $DBNAME | qzip > /distr/backup/$DBNAME_dump_`date`.gz"
+		pg_restore
+		#https://www.dbvis.com/thetable/a-complete-guide-to-pg_dump-with-examples-tips-and-tricks/
+	# tune cache
+		shared_buffers = 128MB                  # min 128kB
+		#huge_pages = try                       # on, off, or try
+		#huge_page_size = 0                     # zero for system default
+		#temp_buffers = 8MB                     # min 800kB
+		#max_prepared_transactions = 0          # zero disables the feature
+		#work_mem = 4MB                         # min 64kB
+		#hash_mem_multiplier = 2.0              # 1-1000.0 multiplier on hash table work_mem
+		#maintenance_work_mem = 64MB            # min 1MB
+		#autovacuum_work_mem = -1               # min 1MB, or -1 to use maintenance_work_mem
+		#logical_decoding_work_mem = 64MB       # min 64kB
+		#max_stack_depth = 2MB                  # min 100kB
+	# data path
+	# config path
+		#https://www.postgresql.org/docs/current/runtime-config-file-locations.html
+		sudo -u postgres psql -c 'SHOW config_file'
+		#               config_file
+		#-----------------------------------------
+		# /etc/postgresql/16/main/postgresql.conf
+	# deadlock
+
+```
+
+## восстановление
+
+ * https://www.crunchydata.com/blog/postgres-is-out-of-disk-and-how-to-recover-the-dos-and-donts
+ * https://www.crunchydata.com/blog/how-to-recover-when-postgresql-is-missing-a-wal-file
+ * https://www.postgresql.org/docs/current/continuous-archiving.html
+ * https://www.kernel.org/doc/html/latest/filesystems/ext4/journal.html
+
 ## Древовидные структуры
 
  * http://www.ibase.ru/treedb/
@@ -38,6 +85,20 @@
 ## утилиты
 
  * https://github.com/NikolayS/postgres_dba
+ * https://github.com/bucardo/check_postgres
+ * https://gitlab.com/postgres-ai/postgres-checkup
+    * Jehan-Guillaume (ioguix) de Rorthais https://github.com/ioguix/pgsql-bloat-estimation
+    * Alexey Lesovsky, Alexey Ermakov, Maxim Boguk, Ilya Kosmodemiansky et al. from Data Egret (aka PostgreSQL-Consulting) https://github.com/dataegret/pg-utils
+    * Josh Berkus, Quinn Weaver et al. from PostgreSQL Experts, Inc. https://github.com/pgexperts/pgx_scripts
+
+## monitoring
+
+ * https://gitlab.com/postgres-ai/postgres-guides
+
+## SQL style guide
+
+ * https://docs.telemetry.mozilla.org/concepts/sql_style.html
+ * https://www.sqlstyle.guide/
 
 ## postgres remote access
 

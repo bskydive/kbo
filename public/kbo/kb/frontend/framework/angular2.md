@@ -632,6 +632,7 @@ https://stackblitz.com/edit/angular-jhutmd?file=app%2Fapp.component.html
 
 ## rxjs реактивное программирование reactive observable
 
+ * [rxjs](../../frontend/собесник/rxjs.md)
 
 ### ликбез
 
@@ -683,6 +684,17 @@ https://stackblitz.com/edit/angular-jhutmd?file=app%2Fapp.component.html
  * [Hot vs Cold Observables](https://medium.com/@benlesh/hot-vs-cold-observables-f8094ed53339)
  * [Learning Observable By Building Observable](https://medium.com/@benlesh/learning-observable-by-building-observable-d5da57405d87)
 
+### автодополнение typeahead
+
+```ts
+return Observable.fromEvent(this.element.nativeElement, 'keyup')
+	.map((e:any) => e.target.value)
+	.debounceTime(450)
+	.concat()
+	.distinctUntilChanged()
+	.subscribe(item => this.keywordChange.emit(item));
+```
+
 ### unsubscribe
 
  * [unsubscribe Почему вам НАДО отписываться от Observable?](https://medium.com/ngx/why-do-you-need-unsubscribe-ee0c62b5d21f)
@@ -706,7 +718,31 @@ https://stackblitz.com/edit/angular-jhutmd?file=app%2Fapp.component.html
 		}
 	```
 
+ * подмена конструктора компонента - из доклада на конфе
 
+```ts
+import { Subject } from 'rxjs/Subject';
+
+export function TakeUntilDestroy(constructor: any) {
+	const originalNgOnDestroy = constructor.prototype.ngOnDestroy;
+
+	constructor.prototype.componentDestroy = function () {
+		this._takeUntilDestroy$ = this._takeUntilDestroy$ || new Subject();
+		return this._takeUntilDestroy$.asObservable();
+	}
+
+	constructor.prototype.ngOnDestroy = function () {
+		if (this._takeUntilDestroy$) {
+			this._takeUntilDestroy$.next(true);
+			this._takeUntilDestroy$.complete();
+		}
+		if (originalNgOnDestroy && typeof originalNgOnDestroy === 'function) {
+			originalNgOnDestroy.apply(this, arguments);
+		}
+	}
+}
+
+```
 
 ### тестирование
 
@@ -1894,6 +1930,7 @@ const httpOptions = {
 
 ## SEO
 
+ * [HTML5/AngularJS/Nginx приложение с правильным с google-индексированием](https://habr.com/post/187008/)
  * https://medium.com/madhash/how-to-properly-add-google-analytics-tracking-to-your-angular-web-app-bc7750713c9e
  * title
 	```ts

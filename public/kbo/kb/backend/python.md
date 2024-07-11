@@ -24,6 +24,19 @@
 
 ## install
 
+ * https://docs.python.org/3/library/venv.html
+ * https://www.freecodecamp.org/news/how-to-setup-virtual-environments-in-python/
+```bash
+#pip install virtualenv
+aptitude install python3-venv
+python<version> -m venv <virtual-environment-name>
+cd projectA
+python3.8 -m venv env
+source <venv>/bin/activate
+pip list
+
+```
+
  * 1
 	```bash
 

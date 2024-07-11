@@ -1,5 +1,60 @@
 # Mysql
 
+
+## конфигурация
+
+```bash
+	# connect
+
+	# create db
+	# create user
+	# create table
+	# create index
+	# change isolation level
+	# backup/restore
+		mysqldump
+	# tune cache
+		mysql -e "SHOW ENGINE
+		INNODB STATUS"
+		#https://dev.mysql.com/doc/refman/8.4/en/innodb-buffer-pool.html
+	# data path
+	# config path
+		dpkg --listfiles mysql-server
+		rpm -q --list mysql-server
+		mysql -e "SHOW VARIABLES LIKE 'datadir';"
+		#+---------------+-----------------+
+		#| Variable_name | Value           |
+		#+---------------+-----------------+
+		#| datadir       | /var/lib/mysql/ |
+		strace mysql ";" 2>&1  | grep cnf
+		#newfstatat(AT_FDCWD, "/etc/my.cnf", 0x7ffea7b0bc80, 0) = -1 ENOENT (No such file or directory)
+		#newfstatat(AT_FDCWD, "/etc/mysql/my.cnf", {st_mode=S_IFREG|0644, st_size=682, ...}, 0) = 0
+		#openat(AT_FDCWD, "/etc/mysql/my.cnf", O_RDONLY) = 3
+		#newfstatat(AT_FDCWD, "/etc/mysql/conf.d/mysql.cnf", {st_mode=S_IFREG|0644, st_size=8, ...}, 0) = 0
+		#openat(AT_FDCWD, "/etc/mysql/conf.d/mysql.cnf", O_RDONLY) = 4
+		#newfstatat(AT_FDCWD, "/etc/mysql/conf.d/mysqldump.cnf", {st_mode=S_IFREG|0644, st_size=55, ...}, 0) = 0
+		#openat(AT_FDCWD, "/etc/mysql/conf.d/mysqldump.cnf", O_RDONLY) = 4
+		#newfstatat(AT_FDCWD, "/etc/mysql/mysql.conf.d/mysql.cnf", {st_mode=S_IFREG|0644, st_size=132, ...}, 0) = 0
+		#openat(AT_FDCWD, "/etc/mysql/mysql.conf.d/mysql.cnf", O_RDONLY) = 4
+		#newfstatat(AT_FDCWD, "/etc/mysql/mysql.conf.d/mysqld.cnf", {st_mode=S_IFREG|0644, st_size=2220, ...}, 0) = 0
+		#openat(AT_FDCWD, "/etc/mysql/mysql.conf.d/mysqld.cnf", O_RDONLY) = 4
+		#newfstatat(AT_FDCWD, "/root/.my.cnf", 0x7ffea7b0bc80, 0) = -1 ENOENT (No such file or directory)
+		#newfstatat(AT_FDCWD, "/root/.mylogin.cnf", 0x7ffea7b0bc80, 0) = -1 ENOENT (No such file or directory)
+		#openat(AT_FDCWD, "/usr/lib/ssl/openssl.cnf", O_RDONLY) = 3
+		update-alternatives --config my.cnf
+		#Есть 2 варианта для альтернативы my.cnf (предоставляет /etc/mysql/my.cnf).
+		#Выбор   Путь                    Приор Состояние
+		#------------------------------------------------------------
+		#* 0            /etc/mysql/mysql.cnf         200       автоматический режим
+		#1            /etc/mysql/my.cnf.fallback   100       ручной режим
+		#2            /etc/mysql/mysql.cnf         200       ручной режим
+
+
+	# deadlock
+
+```
+
+
 ## Работа с бекапами
 
 ```bash
@@ -45,7 +100,7 @@ mysqlshow -u USER -pPASSWORD
 mysqlshow -u USER -pPASSWORD DATABASE
 
 Для таблиц InnoDB надо добавлять --single-transaction, это гарантирует целостность данных бекапа.
-Для таблиц MyISAN это не актуально, ибо они не поддерживают транзакционность.
+Для таблиц MyISAM это не актуально, ибо они не поддерживают транзакционность.
 ```
 
 ## Общие факты
@@ -102,4 +157,4 @@ mysqlshow -u USER -pPASSWORD DATABASE
  * А потом оптимизировать запросы через EXPLAIN
  * И наблюдать за запросами удобно через программу mytop
 
- 
+

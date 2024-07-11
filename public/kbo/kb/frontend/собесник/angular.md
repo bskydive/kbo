@@ -1042,6 +1042,8 @@
 	* `<form>`
 	* .reset()
 	* .setControl('formControlName', any[])
+* customFormControl
+	* TODO перенести пример из currencyControl
 1. валидаторы
 	* formControl.clearValidators();
 	* formControl.updateValueAndValidity();

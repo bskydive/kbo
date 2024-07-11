@@ -71,7 +71,6 @@ du -sm /*|sort -n
 
 	 ```
 
- * [pulseaudio-equalizer](files/equalizer-preset.png)
  * в pavucontrol выбрать воспроизведение через LADSPA Plugin, чтобы эквалайзер заработал
  * удаление pulseaudio-equalizer
     ```
@@ -131,8 +130,8 @@ du -sm /*|sort -n
 ### ogg to mp3
 
 ```bash
- ./ -iname "*.ogg" -exec oggdec {} \;
- ./ -iname "*.wav" -exec lame {} {}.mp3 \;
+find ./ -iname "*.ogg" -exec oggdec {} \;
+find ./ -iname "*.wav" -exec lame {} {}.mp3 \;
  "*.wav.mp3" "#1.mp3"
   *.ogg *.wav
 ```
@@ -205,46 +204,7 @@ In the above examples, the video stream will be copied over using -c:v copy. If 
 ffmpeg -i ./*.mp4 -vn -sn -dn -af "volume=5dB" audio.m4a
 ```
 
-## X11Forwarding
 
-
-```bash
-linux-it9h:~ # ssh user@192.168.0.203 -X
-Password:
-Last login: Wed Nov  5 21:43:15 2014 from 192.168.0.207
-Have a lot of fun...
-ifconfig: command not found
-user@linux-rbo1:~> xclock
-user@linux-rbo1:~> echo $DISPLAY
-linux-rbo1.site:10.0
-user@linux-rbo1:~> xhost
-access control enabled, only authorized clients can connect
-INET:192.168.0.203
-user@linux-rbo1:~>
-linux-rbo1:~ # ps axjf|grep X
-  931   989   989   989 tty7       989 Ss+      0   0:22  \_ /usr/bin/X -background none :0 vt07 -nolisten tcp
-  931  1189  1189  1189 ?           -1 Ssl   1000   0:00  \_ /usr/bin/lxsession -s LXDE -e LXDE
-    1  1379  1189  1189 ?           -1 S     1000   0:00 /usr/bin/dbus-launch --sh-syntax --exit-with-session /etc/X11/xinit/xinitrc
-
-linux-it9h:~ # grep -i x11 /etc/ssh/sshd_config
-X11Forwarding yes
-#X11DisplayOffset 10
-X11UseLocalhost no
-#       X11Forwarding no
-linux-it9h:~ # grep -i x11 /etc/ssh/ssh_config
-#   ForwardX11 no
-# should not forward X11 connections to your local X11-display for
-# keystrokes as you type, just like any other X11 client could do.
-# file if you want to have the remote X11 authentification data to
-ForwardX11Trusted yes
-linux-it9h:~ #
-
-#xauth
-xauth list
-xauth +localhost
-xauth -
-
-```
 
 ## PDF
 
@@ -274,27 +234,36 @@ xauth -
 ## network
 
  * [network](/public/kbo/kb/admin/network.md)
+ * https://www.baeldung.com/linux/network-manager#bd-displaying-the-networking-status-of-a-linux-machine
+ * https://www.networkmanager.dev/docs/api/latest/
+	* enabled - to enable connectivity check, a valid uri must also be configured. The value defaults to true, but since the uri is unset by default, connectivity check may be disabled. Note that this setting can also be set via D-Bus API at runtime. In that case, the value gets stored in /var/lib/NetworkManager/NetworkManager-intern.conf file.
+	* uri - The URI of a web page to periodically request when connectivity is being checked. This page should return the header "X-NetworkManager-Status" with a value of "online". Alternatively, its body content should be set to "NetworkManager is online". The body content check can be controlled by the response option. If this option is blank or missing, connectivity checking is disabled.
+	* interval - If set to 0 connectivity checking is disabled. If missing, the default is 300 seconds.
+	* response - Note that this only compares that the HTTP response starts with the specified text, it does not compare the exact string. This behavior might change in the future, so avoid relying on it. If missing, the response defaults to "NetworkManager is online". If set to empty, the HTTP server is expected to answer with status code 204 or send no data.
  * https://wiki.archlinux.org/title/NetworkManager
  * смотреть в /etc/NetworkManager/system-connections/
  *
-	```bash
-		nmcli networking on
-		nmcli device show
-		nmcli connection show
-		cat > /etc/NetworkManager/NetworkManager.conf
-		[main]
-		plugins=keyfile
-		dhcp=dhclient
+```bash
+nmcli networking on
+nmcli device show
+nmcli connection show
+cat > /etc/NetworkManager/NetworkManager.conf
 
-		[connectivity]
-		uri=https://77.88.8.8/
-		interval=10
-		response=Not Found
-		#uri=http://conncheck.opensuse.org
+[main]
+plugins=keyfile
+dhcp=dhclient
 
-		nmcli general reload
+[connectivity]
+#uri=http://nmcheck.gnome.org/check_network_status.txt
+#uri=http://conncheck.opensuse.org
+#response=NetworkManager is online
+uri=https://mirror.yandex.ru/opensuse/distribution/openSUSE-stable/repo/oss/repodata/repomd.xml
+interval=10
+response=<?xml version="1.0" encoding="UTF-8"?>
 
-		nmcli c modify <name> wifi-sec.key-mgmt wpa-psk wifi-sec.psk <password>
+nmcli general reload
+
+nmcli c modify <name> wifi-sec.key-mgmt wpa-psk wifi-sec.psk <password>
 	```
  * https://docs.ubuntu.com/core/en/stacks/network/network-manager/docs/configure-wifi-connections
  * http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/
@@ -900,7 +869,7 @@ acpitool  -W 17
 ## adblock ublock
 
  * [как отписаться от пользователей и рекламных блогов habr](https://habr.com/ru/post/408239/)
-	* geektimes.ru#?#li:-abp-has(a.user-info[href*="username"])
+	* `geektimes.ru#?#li:-abp-has(a.user-info[href*="username"])`
  * [Я никогда не писал расширения для Хрома, но ](https://habr.com/ru/post/525728/)
 	* https://github.com/Drag13/HabrSanitizer
 
@@ -1118,9 +1087,9 @@ acpitool  -W 17
 	systemctl disable lvm2-monitor.service
 	systemctl stop lvm2-monitor.service
 
-	zypper rm snapper snapper-zypp-plugin yast2-snapper libsnapper5 grub2-snapper-plugin
-	zypper rm PackageKit PackageKit-backend-zypp PackageKit-branding-openSUSE PackageKit-gstreamer-plugin PackageKit-gtk3-module PackageKit-lang discover-backend-packagekit libpackagekit-glib2-18
-	zypper rm btrfsprogs btrfsmaintenance btrfsprogs-udev-rules
+zypper rm snapper snapper-zypp-plugin yast2-snapper libsnapper5 grub2-snapper-plugin
+zypper rm PackageKit PackageKit-backend-zypp PackageKit-branding-openSUSE PackageKit-gstreamer-plugin PackageKit-gtk3-module PackageKit-lang discover-backend-packagekit libpackagekit-glib2-18
+zypper rm btrfsprogs btrfsmaintenance btrfsprogs-udev-rules
 
 ```
 
@@ -1135,7 +1104,20 @@ ibus-lang m17n-db-lang ibus-branding-openSUSE-KDE
 
 chmod a-x /usr/bin/ibus-autostart
 ```
- *
+ * https://github.com/systemd/systemd/issues/12262
+
+```bash
+#A stop job is running for User Manager for UID 1000
+systemctl --user list-jobs
+systemctl enable --now debug-shell.service
+systemctl disable --now debug-shell.service
+systemctl --user list-sockets
+dbus.service
+/etc/systemd/system.conf
+#DefaultTimeoutStopSec to 20 sec
+/usr/lib/systemd/system/user@.service
+#TimeouStopSec 20 sec
+```
 
 ## ms teams
 
@@ -1515,57 +1497,8 @@ http://www.liberatedcomputing.net/mm2fm
 
 ## vmware
 
- * netwok manager, сеть отвалилась
- ```
-nmcli networking on
-nmcli
+ * [link](./vmware.md)
 
- ```
-
- * [VMWare Workstation 15.5.1 on Kernel Linux 5.4.6 : fail to compile vmci-only](https://communities.vmware.com/thread/623768)
-	```bash
-		git clone https://github.com/mkubecek/vmware-host-modules.git
-		cd vmware-host-modules
-		git checkout workstation-15.5.1
-		make
-		make install
-		After the installation, I ran this command : /etc/init.d/vmware start
-	```
- * зависания cpu has been disabled by guest
-
-	```bash
-		zypper rm snapper snapper-zypp-plugin yast2-snapper PackageKit PackageKit-backend-zypp PackageKit-branding-openSUSE PackageKit-gstreamer-plugin PackageKit-gtk3-module PackageKit-lang discover-backend-packagekit  grub2-snapper-plugin libpackagekit-glib2-18 libsnapper5
-	```
-	* https://www.geekrar.com/how-to-fix-the-cpu-has-been-disabled-by-the-guest-os/
-
-	```
-		Now without closing the .vmx file, copy the following code and paste it at the end of all lines. If you've the config key smc.version = 0 already there, you may remove it and paste this in place of it. It should look like this.
-
-		cpuid.0.eax = "0000:0000:0000:0000:0000:0000:0000:1011"
-		cpuid.0.ebx = "0111:0101:0110:1110:0110:0101:0100:0111"
-		cpuid.0.ecx = "0110:1100:0110:0101:0111:0100:0110:1110"
-		cpuid.0.edx = "0100:1001:0110:0101:0110:1110:0110:1001"
-		cpuid.1.eax = "0000:0000:0000:0001:0000:0110:0111:0001"
-		cpuid.1.ebx = "0000:0010:0000:0001:0000:1000:0000:0000"
-		cpuid.1.ecx = "1000:0010:1001:1000:0010:0010:0000:0011"
-		cpuid.1.edx = "0000:0111:1000:1011:1111:1011:1111:1111"
-		featureCompat.enable = "TRUE"
-	```
-	* https://kb.vmware.com/s/article/2000542
-
-	```
-	Collect information from the current outage:
-
-		Identify the virtual machine and time of the outage
-		Take a screenshot of the virtual machine's console and note the error messages
-		In the inventory, Right Click on the VM, select 'Suspend' for the virtual machine, the checkpoint suspend (.vmss) and memory image (.vmem)  will be generated and can be found in the datastore from the virtual machine directory
-		Convert the checkpoint suspend files (.vmss and .vmem) from the virtual machine into a core dump file using the vmss2core utility. For more information, see the Debugging Virtual Machines with the Checkpoint to Core Tool technical note, and the article Converting a snapshot file to memory dump using the vmss2core tool.
-		Resume the virtual machine to the suspended state, then reset the virtual machine to start the GuestOS.
-		Collect logs from the GuestOS kernel leading up to the outage. For more information, contact the guest operating system vendor.
-		Collect logs from the host leading up to the outage.
-	```
- * [Анализ производительности виртуальной машины в VMware vSphere. Часть 1: CPU](https://habr.com/ru/company/dataline/blog/452884/).
- * выключить memory page trimming и debug logging https://www.vmware.com/support/ws55/doc/ws_performance_diskio.html
 ### звук
 
 усилить громкость на сервере и на госте
@@ -1588,15 +1521,6 @@ install: kernel development template
 ```bash
 cd /lib/modules/`uname -r`/build/include
 ln -s   generated/uapi/linux/ .
-```
-
-http://www.redhat.com/archives/rhl-list/2007-June/msg05664.html
-
-```bash
-cat>>/etc/vmware-fuse.conf
-/etc/modprobe.d/vmware-fuse.conf
-options loop max_loop=64
-rmmod loop && modprobe loop && echo okok
 ```
 
 ### loop
@@ -1642,10 +1566,14 @@ Restart the networking service
 
 ### archive sparce/sparse files
 
-tar -czSf file.tar.gz file
-
-pigz
-pbzip2
+```bash
+	tar -czSf file.tar.gz file
+	# лучше сразу на флешку
+	zypper in pbzip2 plzip
+	tar -cv -I"pigz -6" -Sf /run/media/file.tar.gzp ./file/
+	tar -cv -I"pbzip2 -6" -Sf /run/media/file.tar.gzp ./file/ # работает в 2 раза быстрее
+	tar -cv -I"pblzip -6" -Sf /run/media/file.tar.gzp ./file/
+```
 
 ### external folder
 

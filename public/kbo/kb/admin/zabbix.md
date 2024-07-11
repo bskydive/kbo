@@ -1,7 +1,149 @@
+# Zabbix
+
+ * https://github.com/zabbix/zabbix-docker/issues
+
+## zabbix vs prometheus
+
+ * https://github.com/zabbix/zabbix-docker/wiki/Docker-101---Before-starting-with-containerized-Zabbix
+ * They simply aren't supposed to be docker-compose up -d -f docker-compose_v3_ubuntu_pgsql_latest.yaml. You should instead copy the one you like and then tailor it to your needs. So for example if you choose Postgres as your DB copy the pgsql_latest to docker-compose.yml and just keep the services you need.
+ * if you're new to Zabbix AND Containers you might have a hard time and completely ruin your experience maybe even dropping Zabbix because you just can't get it up and running.
+ * So if you're new to containers as a whole start with a good Docker/Container tutorial first. It's not hard at all. It might set you back 1-2 hours but those will pay off easily not just for Zabbix but also for the rest of your containerized journey
+ * zabbix
+	* C backend, and a PHP front end.
+	* https://blog.zabbix.com/zabbix-network-discovery-for-dynamic-deployments/10175/
+	* discovery protocols and ports: FTP, HTTP, HTTPS, ICMP ping, SNMP
+ * Prometheus
+ 	* can provide a dimensional data model where metrics are identified by a metric name and tags with built-in storage, graphing, and alerting.
+	* time-series database monitoring solution
+	* To manage alerts with Prometheus you need to install Alertmanager.
+	* discovery via
+
+## install
+
+### docker
+
+1. Create network dedicated for Zabbix component containers:
+
+```bash
+
+docker network create --subnet 172.20.0.0/16 --ip-range 172.20.240.0/20 zabbix-net
+
+# 2. Start empty PostgreSQL server instance
+
+docker run --name postgres-server -t \
+       -e POSTGRES_USER="zabbix" \
+       -e POSTGRES_PASSWORD="zabbix_pwd" \
+       -e POSTGRES_DB="zabbix" \
+       --network=zabbix-net \
+       --restart unless-stopped \
+       -d postgres:latest
+
+# 3. Start Zabbix snmptraps instance
+
+docker run --name zabbix-snmptraps -t \
+       -v /zbx_instance/snmptraps:/var/lib/zabbix/snmptraps:rw \
+       -v /var/lib/zabbix/mibs:/usr/share/snmp/mibs:ro \
+       --network=zabbix-net \
+       -p 162:1162/udp \
+       --restart unless-stopped \
+       -d zabbix/zabbix-snmptraps:alpine-7.0-latest
+
+# 4. Start Zabbix server instance and link the instance with created PostgreSQL server instance
+
+docker run --name zabbix-server-pgsql -t \
+       -e DB_SERVER_HOST="postgres-server" \
+       -e POSTGRES_USER="zabbix" \
+       -e POSTGRES_PASSWORD="zabbix_pwd" \
+       -e POSTGRES_DB="zabbix" \
+       -e ZBX_ENABLE_SNMP_TRAPS="true" \
+       --network=zabbix-net \
+       -p 10051:10051 \
+       --volumes-from zabbix-snmptraps \
+       --restart unless-stopped \
+       -d zabbix/zabbix-server-pgsql:alpine-7.0-latest
+
+# 5. Start Zabbix web interface and link the instance with created PostgreSQL server and Zabbix server instances
+
+docker run --name zabbix-web-nginx-pgsql -t \
+       -e ZBX_SERVER_HOST="zabbix-server-pgsql" \
+       -e DB_SERVER_HOST="postgres-server" \
+       -e POSTGRES_USER="zabbix" \
+       -e POSTGRES_PASSWORD="zabbix_pwd" \
+       -e POSTGRES_DB="zabbix" \
+       --network=zabbix-net \
+       -p 443:8443 \
+       -p 80:8080 \
+       -v /etc/ssl/nginx:/etc/ssl/nginx:ro \
+       --restart unless-stopped \
+       -d zabbix/zabbix-web-nginx-pgsql:alpine-7.0-latest
+```
+
+### docker compose
+
+ * https://www.zabbix.com/documentation/current/en/manual/installation/containers
+	* see devops-infra/docker/zabbix/
+ * https://blog.zabbix.com/securing-the-zabbix-frontend/27700/
+```bash
+docker exec -it zabbix-zabbix-web-nginx-pgsql-1 /bin/bash
+less /etc/zabbix/nginx_ssl.conf
+# ssl_certificate     /etc/ssl/nginx/ssl.crt;
+# ssl_certificate_key /etc/ssl/nginx/ssl.key;
+# ssl_dhparam /etc/ssl/nginx/dhparam.pem;
+
+# short
+
+openssl dhparam -out ${path}/dhparam.pem 2048
+openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes -keyout ${path}/ssl.key -out ${path}/ssl.crt -subj "/CN=zabbix"
+
+# full
+
+openssl genrsa -out CA.key 2048
+openssl req -new -key CA.key -out CA.csr
+echo "authorityKeyIdentifier=keyid,issuer \
+basicConstraints=CA:FALSE \
+keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment \
+subjectAltName = @alt_names \
+[alt_names] \
+DNS.1 = vm-pc2-mon \
+" > CA.ext
+#IP.1 = 192.168.0.1 \
+
+openssl x509 -req -in CA.csr -CA ssl.pem -CAkey CA.key -CAcreateserial -out ${path}/ssl.crt -days 825 -sha256 -extfile CA.ext
+
+cp CA.crt /etc/pki/tls/certs/
+cp CA.key /etc/pki/tls/private/
+cp CA.pem /etc/pki/ca-trust/source/anchors/CA.crt
+update-ca-trust extract
+
+
+openssl ecparam -out myCA.key -name prime256v1 -genkey
+openssl req -x509 -new -nodes -key myCA.key -sha256 -days 1825 -out myCA.pem
+openssl genrsa -out zabbix.mycompany.internal.key 2048
+openssl req -new -key zabbix.mycompany.internal.key -out zabbix.mycompany.internal.csr
+echo "authorityKeyIdentifier=keyid,issuer \
+basicConstraints=CA:FALSE \
+keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment \
+subjectAltName = @alt_names \
+[alt_names] \
+DNS.1 = vm-pc2-mon \
+" > CA.ext
+#IP.1 = 192.168.0.1 \
+openssl x509 -req -in zabbix.mycompany.internal.csr -CA myCA.pem -CAkey myCA.key -CAcreateserial -out zabbix.mycompany.internal.crt -days 825 -sha256 -extfile zabbix.mycompany.internal.ext
+openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
+
+
+```
+
+### setup
+
+ * https://www.zabbix.com/documentation/current/en/manual/quickstart/login
+ * `http://zabbix-host` --> `Admin@zabbix`
+
+
 
 ## nginx for zabbix
 
-http://habrahabr.ru/company/acronis/blog/198354/
+ * [Zabbix 2.2 верхом на nginx + php-fpm и mariadb - 2013](http://habrahabr.ru/company/acronis/blog/198354/)
 
 ## httpd for zabbix
 
@@ -27,72 +169,12 @@ MaxRequestsPerChild  4000
 StartServers         2
 MaxClients         300
 MinSpareThreads     2
-MaxSpareThreads     75 
+MaxSpareThreads     75
 ThreadsPerChild     5
 MaxRequestsPerChild  0
 </IfModule>
 
 ```
-
-## datetime 
-
-### ntpd
-
-```bash
-# ntpdate -d ru.pool.ntp.org
-# ntpdate ntp1.stratum1.ru
-# mcedit /etc/ntp.conf
-logfile /var/log/ntp.log
-server ntp1.stratum1.ru iburst burst prefer
-server ntp1.stratum2.ru iburst burst 
-server ntp2.stratum2.ru iburst burst
-server ntp4.stratum2.ru iburst burst
-server ntp1.vniiftri.ru iburst burst
-server ntp2.vniiftri.ru iburst burst
-server ntp3.vniiftri.ru iburst burst
-server ntp4.vniiftri.ru iburst burst
-
-
-Создаем симлинк для нужного часового пояса в /etc/localtime:
-
-# cp -sf /usr/share/zoneinfo/Europe/Moscow /etc/localtime
-
-Теперь время синхронизирует корректно.
-Далее выставляем время в BIOS равное времени в UTC (время по Гринвичу):
-
-# hwclock --systohc --utc
-
-Для того, чтобы время системы не устанавливалось равным времени в BIOS, а правильно показывало в соответствии с часовым поясом редактируем файл /etc/sysconfig/clock как показано ниже:
-
-ZONE="Europe/Moscow"
-UTC=true
-ARC=false
-
-# chkconfig --level 2345 ntpd on
-
-проверка демона:
-# ntpq -p
-     remote           refid      st t when poll reach   delay   offset  jitter
-==============================================================================
- ns.davydkovo.ne 89.109.251.21    2 u    1   64    1    3.784  -65.046   0.000
-
-
-```
-
-### tzdata
-
-перевод часов
-
-```bash
- zdump -v Europe/Moscow |grep 2014
-Europe/Moscow  Sat Oct 25 21:59:59 2014 UT = Sun Oct 26 01:59:59 2014 MSK isdst=0 gmtoff=14400
-Europe/Moscow  Sat Oct 25 22:00:00 2014 UT = Sun Oct 26 01:00:00 2014 MSK isdst=0 gmtoff=10800
-# strings /etc/localtime | grep MSK
-MSK-3
-
-```
-
-
 
 ## vnstat
 
@@ -103,24 +185,24 @@ yum install vnstat
 vnstat --oneline
 1;eth0;08/30/14;38 KiB;41 KiB;79 KiB;0.08 kbit/s;Aug '14;38 KiB;41 KiB;79 KiB;0.00 kbit/s;38 KiB;41 KiB;79 KiB
 
-Show traffic summary for selected interface using one line with a parseable format. 
+Show traffic summary for selected interface using one line with a parseable format.
 The output contains 15 fields with ; used as field delimeter. The 1st field contains
-the version information of the output that will be changed in future versions of 
-vnStat if the field structure changes. 
-The following fields in order 
+the version information of the output that will be changed in future versions of
+vnStat if the field structure changes.
+The following fields in order
 2) interface name,
-3) timestamp  for  today,  
-4) rx  for today, 
-5) tx for today, 
-6) total for today, 
-7) average traffic rate for today, 
-8) timestamp for current month, 
-9) rx for current month, 
-10) tx for current month, 
-11) total for current month, 
-12) average traffic rate for today, 
-13) all time total rx, 
-14) all time total tx, 
+3) timestamp  for  today,
+4) rx  for today,
+5) tx for today,
+6) total for today,
+7) average traffic rate for today,
+8) timestamp for current month,
+9) rx for current month,
+10) tx for current month,
+11) total for current month,
+12) average traffic rate for today,
+13) all time total rx,
+14) all time total tx,
 15) all time total traf-fic.
 
 ```
@@ -205,7 +287,7 @@ Field 11 -- weighted # of milliseconds spent doing I/Os
 
 http://www.catonmat.net/blog/ten-awk-tips-tricks-and-pitfalls/
 
-## zabbix
+## ssh/bash макросы
 
 Ограничения использования макросов:
  * https://www.zabbix.com/documentation/2.2/manual/appendix/macros/supported_by_location
@@ -215,7 +297,7 @@ http://www.catonmat.net/blog/ten-awk-tips-tricks-and-pitfalls/
 
 ```bash
 
-# mcedit /etc/selinux/config 
+# mcedit /etc/selinux/config
 disabled
 # setenforce 0
 
@@ -223,15 +305,15 @@ disabled
 # yum install zabbix-server-pgsql zabbix-web-pgsql --disablerepo=ius ##php54 conflicts php53
 
 Installed:
-  zabbix-agent.x86_64 0:2.2.6-1.el6                              zabbix-server-pgsql.x86_64 0:2.2.6-1.el6                              zabbix-web-pgsql.noarch 0:2.2.6-1.el6                             
+  zabbix-agent.x86_64 0:2.2.6-1.el6                              zabbix-server-pgsql.x86_64 0:2.2.6-1.el6                              zabbix-web-pgsql.noarch 0:2.2.6-1.el6
 Dependency Installed:
-  OpenIPMI-libs.x86_64 0:2.0.16-14.el6                  apr-util-ldap.x86_64 0:1.3.9-3.el6_0.1         dejavu-fonts-common.noarch 0:2.30-2.el6         dejavu-sans-fonts.noarch 0:2.30-2.el6            
-  fontpackages-filesystem.noarch 0:1.41-1.1.el6         fping.x86_64 0:3.10-1.el6.rf                   httpd.x86_64 0:2.2.15-31.el6.centos             httpd-tools.x86_64 0:2.2.15-31.el6.centos        
-  iksemel.x86_64 0:1.4-2.el6                            libXpm.x86_64 0:3.5.10-2.el6                   libxslt.x86_64 0:1.1.26-2.el6_3.1               lm_sensors-libs.x86_64 0:3.1.1-17.el6            
-  net-snmp.x86_64 1:5.5-49.el6_5.2                      net-snmp-libs.x86_64 1:5.5-49.el6_5.2          php.x86_64 0:5.3.3-27.el6_5.1                   php-bcmath.x86_64 0:5.3.3-27.el6_5.1             
-  php-cli.x86_64 0:5.3.3-27.el6_5.1                     php-common.x86_64 0:5.3.3-27.el6_5.1           php-gd.x86_64 0:5.3.3-27.el6_5.1                php-mbstring.x86_64 0:5.3.3-27.el6_5.1           
-  php-pdo.x86_64 0:5.3.3-27.el6_5.1                     php-pgsql.x86_64 0:5.3.3-27.el6_5.1            php-xml.x86_64 0:5.3.3-27.el6_5.1               unixODBC.x86_64 0:2.2.14-12.el6_3                
-  zabbix.x86_64 0:2.2.6-1.el6                           zabbix-server.x86_64 0:2.2.6-1.el6             zabbix-web.noarch 0:2.2.6-1.el6                
+  OpenIPMI-libs.x86_64 0:2.0.16-14.el6                  apr-util-ldap.x86_64 0:1.3.9-3.el6_0.1         dejavu-fonts-common.noarch 0:2.30-2.el6         dejavu-sans-fonts.noarch 0:2.30-2.el6
+  fontpackages-filesystem.noarch 0:1.41-1.1.el6         fping.x86_64 0:3.10-1.el6.rf                   httpd.x86_64 0:2.2.15-31.el6.centos             httpd-tools.x86_64 0:2.2.15-31.el6.centos
+  iksemel.x86_64 0:1.4-2.el6                            libXpm.x86_64 0:3.5.10-2.el6                   libxslt.x86_64 0:1.1.26-2.el6_3.1               lm_sensors-libs.x86_64 0:3.1.1-17.el6
+  net-snmp.x86_64 1:5.5-49.el6_5.2                      net-snmp-libs.x86_64 1:5.5-49.el6_5.2          php.x86_64 0:5.3.3-27.el6_5.1                   php-bcmath.x86_64 0:5.3.3-27.el6_5.1
+  php-cli.x86_64 0:5.3.3-27.el6_5.1                     php-common.x86_64 0:5.3.3-27.el6_5.1           php-gd.x86_64 0:5.3.3-27.el6_5.1                php-mbstring.x86_64 0:5.3.3-27.el6_5.1
+  php-pdo.x86_64 0:5.3.3-27.el6_5.1                     php-pgsql.x86_64 0:5.3.3-27.el6_5.1            php-xml.x86_64 0:5.3.3-27.el6_5.1               unixODBC.x86_64 0:2.2.14-12.el6_3
+  zabbix.x86_64 0:2.2.6-1.el6                           zabbix-server.x86_64 0:2.2.6-1.el6             zabbix-web.noarch 0:2.2.6-1.el6
 
 mkdir /home/zabbix
 chown zabbix:zabbix /home/zabbix
@@ -244,8 +326,8 @@ echo "SSHKeyLocation=/home/zabbix/.ssh" >> /etc/zabbix/zabbix_server.conf
 # mcedit /var/lib/pgsql/data/pg_hba.conf
     local   zabbix      zabbix                            md5
 
-#   su - postgres -c "createuser --pwprompt --encrypted --no-adduser --no-createdb --no-createrole --no-inherit zabbix" 
-#   su - postgres -c "createdb --encoding=UNICODE --owner=zabbix zabbix" 
+#   su - postgres -c "createuser --pwprompt --encrypted --no-adduser --no-createdb --no-createrole --no-inherit zabbix"
+#   su - postgres -c "createdb --encoding=UNICODE --owner=zabbix zabbix"
 
 #  cd /usr/share/doc/zabbix-server-pgsql-2.2.6/create/
 #  cat schema.sql|  su - postgres -c "psql -U zabbix zabbix"
@@ -266,3 +348,7 @@ Admin/zabbix
 
 ```
 
+## discovery
+
+ * https://www.zabbix.com/documentation/current/en/manual/discovery/network_discovery
+ * https://www.zabbix.com/documentation/current/en/manual/discovery/low_level_discovery - автоматическое создание items/triggers/graphs

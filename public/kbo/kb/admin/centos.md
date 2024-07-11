@@ -1,7 +1,7 @@
 
 ## centos7
 
-## [bash](kbo/kb/admin/bash.md)
+## [bash](./bash.md)
 
 ### urandom
 
@@ -69,30 +69,11 @@ clear_env = no # выключить очистку глобальных пере
 
 ## datetime
 
- * [datetime](/kbo/admin/zabbix#datetime)
+ * [datetime](./zabbix#datetime)
 
 ## selinux
 
- * https://www.techrepublic.com/article/how-to-use-semanage-and-avoid-disabling-selinux/
-
-```
-cat /etc/selinux/config
-
-policycoreutils-python-utils
-semanage port -l | grep ssh
-semanage port -a -t ssh_port_t -p tcp 33000
-firewall-cmd --add-port=33000/tcp --permanent
-firewall-cmd --reload
-
-selinuxenabled
-getenforce
-
-setenforce 0
-
-mcedit /etc/selinux/config
-SELINUX=disabled
-
-```
+ * [](./devops.md#security)
 
 ## yum rpm
 
@@ -112,59 +93,22 @@ yum install elasticsearch-5.0.2-1
 
 ## SSH
 
- * [https://habr.com/ru/company/vdsina/blog/472746/](Терминальный сервер для админа; Ни единого SSH-разрыва)
- * [Магия SSH](https://habr.com/post/331348/)
-
-```bash
-ssh-keygen -b 2048 -t rsa -f /distr/mykey.priv
-засылай в редмайн /distr/mykey.priv.pub
-заходи от ПОЛЬЗОВАТЕЛЯ:
-ssh -p0000 user@11.12.11.12 -i /distr/mykey.priv
-
-```
- * проброс портов
- 	* from local to remote `ssh -L LOCAL_PORT:localhost:REMOTE_PORT REMOTE_USER@REMOTE_HOST`
-	* from remote to local `ssh -R REMOTE_PORT:localhost:LOCAL_PORT REMOTE_USER@REMOTE_HOST`
-	* `ssh -fNL`
-
-## SSHD
-
-```bash
-useradd -m user-ssh
-passwd user-ssh
-passwd
-vi /etc/ssh/sshd_config
-
-Ports 0000
-AllowUsers user-ssh
-PermitRootLogin no
-PubkeyAuthentication yes
-AuthorizedKeysFile      .ssh/authorized_keys
-
-service ssh reload
-service ssh restart
-
-mkdir /home/user-ssh/.ssh
-cat >> /home/user-ssh/.ssh/authorized_keys
-chown -R user-ssh:user-ssh /home/user-ssh
-chmod 700 /home/user-ssh/.ssh
-
-```
+ * [](./ssh.md)
 
 ## LocalTime
 
 ```bash
-[root@centos ~]# cp /etc/localtime /etc/localtime.oldd
-[root@centos ~]# ln -fs /usr/share/zoneinfo/Europe/Moscow /etc/localtime
-[root@centos ~]# ll /etc/localtime
-lrwxrwxrwx 1 root root 33 May 13 11:02 /etc/localtime -> /usr/share/zoneinfo/Europe/Moscow
-[root@centos ~]# date
-Mon May 13 11:02:16 MSK 2013
-[root@centos ~]# cat /etc/adjtime
-0.0 0 0.0
-0
-UTC
-[root@centos ~]#
+cp /etc/localtime /etc/localtime.oldd
+ln -fs /usr/share/zoneinfo/Europe/Moscow /etc/localtime
+ll /etc/localtime
+#lrwxrwxrwx 1 root root 33 May 13 11:02 /etc/localtime -> /usr/share/zoneinfo/Europe/Moscow
+date
+#Mon May 13 11:02:16 MSK 2013
+cat /etc/adjtime
+#0.0 0 0.0
+#0
+#UTC
+
 ```
 
 ## iptables
@@ -172,7 +116,7 @@ UTC
 ```bash
 iptables -L
 cat >> iptables.rackspace.sh
-ssh_port=0000
+#ssh_port=0000
 
 at -f /distr/test.iptables.sh now + 1 min
 atq

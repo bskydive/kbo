@@ -18,6 +18,7 @@ https://github.com/hsoft/collapseos
  * есть DC UPS или mini UPS
 	* https://bast.ru/products/rapan/bbp-rapan-10p-isp-12
 	* https://aliexpress.ru/wholesale?SearchText=mini+ups
+ * завершение винды - время 0 `C:\WINDOWS\system32\shutdown.exe -s -f -t 0`
 
 ## Бесперебойник APC
 
@@ -76,6 +77,7 @@ https://github.com/hsoft/collapseos
 
  * i5-8250U/8Gb/1Tb/AMD 530 2Gb/15.6"/TN/FHD/Lin
  * https://1001zip.ru/products/ventilyator-dlya-noutbuka-dell-inspiron-15-5570-5575-latitude-3590-l3590-e3590
+ * https://sp-laptop.ru/dell
 
 ### память
 
@@ -100,6 +102,13 @@ https://github.com/hsoft/collapseos
 ## USB
 
  * [hidviz - usb hid debug - rosa2021.1](https://abf.io/build_lists/4827483)
+
+## модемы
+
+```
+AT+CGDCONT=1,"IP","internet.beeline.ru"
+*99**1*1#
+```
 
 ## network hardware
 

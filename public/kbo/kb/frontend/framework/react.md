@@ -123,9 +123,12 @@
  * [Full React Tutorial - 2020](https://www.youtube.com/watch?v=j942wKiXFu8&list=PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d&index=1)
 
 ## react DOM
+
+ * отдельная библиотека, работает независимо от браузера
  * работает и на react native и в SSR
  * фаза сравнение - reconciliation
  * фаза отрисовки - render
+ * устанавливает приоритеты событий отрисовки
  * оборачивает события syntetic events
 
 ## hooks

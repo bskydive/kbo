@@ -4,12 +4,10 @@
 
 ## detect virtualization type openVZ
 
-https://serverfault.com/questions/595471/how-to-find-out-the-virtualization-type-of-an-linux-vps
-
-пустой /boot/grub
-
-hostnamectl status
-virt-what
+ * https://serverfault.com/questions/595471/how-to-find-out-the-virtualization-type-of-an-linux-vps
+ * пустой /boot/grub
+ * hostnamectl status
+ * virt-what
 
 ## debian rc.local автозагрузка
 
@@ -98,8 +96,7 @@ http://fileit.in/p/152
 
 sudo dpkg-reconfigure locales
 
-iptables
-для aptitude надо открыть 20,21,443,80 на выход
+iptables порты для aptitude надо открыть 20,21,443,80 на выход
 
 ## DEBIAN 6
 

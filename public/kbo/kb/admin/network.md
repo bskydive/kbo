@@ -22,6 +22,11 @@
 	* observum
 	* протокол SNMP
 
+## socket
+
+ * https://www.baeldung.com/cs/raw-sockets
+ * ![](./network/socket_type.jpg)
+
 ## HTTP
 
  * articles-manager/теория/сети.md
@@ -46,12 +51,16 @@ ip addr add 10.0.2.100/255.255.255.0 dev enp0s3
 * [ss](https://habrahabr.ru/company/ruvds/blog/346744/)
 
 ```bash
-    arp → ip n (ip neighbor)
-    ifconfig → ip a (ip addr), ip link, ip -s (ip -stats)
+    arp → ip n #ip neighbor
+    ifconfig → ip a #ip addr;
+		ip link
+		ip -s #ip -stats
     iptunnel → ip tunnel
     iwconfig → iw
     nameif → ip link, ifrename
-    netstat → ss, ip route (for netstat -r), ip -s link (for netstat -i), ip maddr (for netstat -g)
+    netstat -rn → ip route
+	netstat -i --> ip -s link
+	netstat -g --> ip maddr
 	ss | less  # get all connections
 	ss -t      # get tcp connections not in listen mode (server programs)
 	ss -u      # get udp connections not in listen mode
@@ -74,8 +83,9 @@ ip addr add 10.0.2.100/255.255.255.0 dev enp0s3
 ## mtr
 
 ```bash
-mtr -o "LDRS NBAWV GJMXI" -b -s 1500 -i 0.1 91.240.86.5
+mtr -o "LDRS NBAWV GJMXI" -b -s 1500 -i 0.1 8.8.8.8
 ```
+
 ping добавляет 28 бит!
 
 
@@ -332,9 +342,14 @@ ping добавляет 28 бит!
 
 ```
 
+## hosts
+
+ * https://www.baeldung.com/linux/difference-ip-address
+	* 0.0.0.0 - unspecified/all ip's, used in services configs and default routes
+
 ## DNS
 
- * [DNS вручную](https://habrahabr.ru/post/346098/)
+ * [Составляем DNS-запрос вручную](https://habrahabr.ru/post/346098/)
  * [Что такое DNS](https://habrahabr.ru/post/303446/)
  * [DKIM, DMARC и SPF](https://habrahabr.ru/post/343128/)
  * https://serverfault.com/questions/965368/how-do-i-ask-dig-to-only-return-the-ip-from-a-cname-record

@@ -10,6 +10,8 @@
  * [sensu](https://sensuapp.org/)
  * [monitorix](https://www.monitorix.org/features.html)
  * [Мониторим парк ИБП. Ч.3, заключительная](https://habr.com/ru/post/562952/)
+ * [Человеческим языком про метрики 1: Потерянное введение](https://habr.com/ru/companies/tochka/articles/683608/)
+
 
 ## linux monitoring performance
 
@@ -99,6 +101,7 @@ zypper in sysstat operf
 
  * https://linoxide.com/linux-command/linux-pidstat-monitor-statistics-procesess/
  * https://www.thegeekstuff.com/2014/11/pidstat-examples/
+
 ```bash
 pidstat -utdrhl |less
 pidstat -utdrhl |sort -k9 |less
