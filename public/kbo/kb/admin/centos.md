@@ -57,7 +57,7 @@ http://habrahabr.ru/post/270359/
 
 ## datetime
 
- * [datetime](./zabbix#datetime)
+ * [datetime](./devops#datetime)
 
 ## selinux
 
