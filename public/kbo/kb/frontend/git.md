@@ -222,9 +222,11 @@ git --no-pager branch -r -l 'origin/*release*'
   origin/release-v1.4.0
 ```
 
-### Клонирование ветки без истории
+### clone Клонирование ветки без истории
 
 ```bash
+# !!! git clone --recurse-submodules
+
 mkdir git-sandbox && cd git-sandbox
 git clone https://gitlab.com/stepanovv/webpack-dep-graph.git
 # Клонирование в «webpack-dep-graph»…
