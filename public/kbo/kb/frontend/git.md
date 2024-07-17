@@ -216,10 +216,14 @@
 ### вывод для скриптов
 
  * https://stackoverflow.com/questions/48341920/git-branch-command-behaves-like-less
+ * https://stackoverflow.com/questions/2183900/how-do-i-prevent-git-diff-from-using-a-pager
 
 ```bash
 git --no-pager branch -r -l 'origin/*release*'
   origin/release-v1.4.0
+
+git config --global core.pager '/usr/bin/less -R -F -X'
+git config --global core.pager ''
 ```
 
 ### clone Клонирование ветки без истории

@@ -40,6 +40,18 @@
 
 ```
 
+## ENV
+
+ * https://tecadmin.net/bash-special-variables/
+	* `$0` The name of the script being executed.
+	* `$1-9` The first nine command-line arguments.
+	* `$#` The number of command-line arguments.
+	* `$*` All command-line arguments as a single string.
+	* `$@` All command-line arguments as an array.
+	* `$?` The exit status of the last executed command.
+	* `$$`  The process ID of the current shell.
+	* `$!` The process ID of the last background command.
+
 ## bash scripts
 
  * [backup](./backup.md)
