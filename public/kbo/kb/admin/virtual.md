@@ -7,8 +7,19 @@
 
 ## VirtualBox
 
+ * сеть-->сетевой мост-->паравиртуальная сеть(virt-io)
+ * [mount share folder](https://serverfault.com/questions/674974/how-to-mount-a-virtualbox-shared-folder#674978)
+
+```bash
+	mount -t vboxsf share /home/toto
+	 VBoxControl guestproperty set /VirtualBox/GuestAdd/SharedFolders/MountDir /home/toto/
+	VBoxControl guestproperty set /VirtualBox/GuestAdd/SharedFolders/MountDir
+```
+
 
 ## VMWare
+
+ * [vmware](./vmware.md)
 
 ### windows guest
 

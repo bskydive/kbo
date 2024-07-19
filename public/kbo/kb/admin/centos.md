@@ -1,41 +1,17 @@
 
 ## centos7
 
+ * [centos](./centos.md)
+ * [debian](./debian.md)
+ * [ubuntu](./ubuntu.md)
+ * [opensuse](./opensuse.md)
+
 ## [bash](./bash.md)
-
-### urandom
-
- * [мифы о dev/urandom](https://habr.com/ru/company/mailru/blog/273147)
 
 ### iptables
 
-```bash
-systemctl disable firewalld
-yum install iptables-services vnstat dstat nmap mc iotop iftop
+ * [iptables](./network.md#iptables)
 
-vim /etc/sysconfig/iptables-config
-#IPTABLES_SAVE_ON_STOP="yes"   // from no to yes
-#IPTABLES_SAVE_ON_RESTART="yes"  // from no to yes
-mv /etc/sysconfig/iptables /etc/sysconfig/iptables.orig
-bash /distr/scripts/iptables.centos7-web-fv.sh
-iptables-save >> /etc/sysconfig/iptables
-yum install iptables-utils iptables-services
-systemctl enable iptables
-systemctl restart iptables
-
-systemctl enable rc-local.service
-chmod a+x /etc/rc.d/rc.local
-
-yum install policycoreutils-python
-semanage port -a -t http_port_t  -p tcp 31000
-semanage port -l | grep http_port_t
-semanage port -l | grep ssh_port_t
-
-
-mcedit /etc/selinux/config
-##disable
-reboot
-```
 ## php
 
 ### php cache
@@ -61,7 +37,7 @@ http://habrahabr.ru/post/270359/
 
 ## selinux
 
- * [](./devops.md#security)
+ * [security](./devops.md#security)
 
 ## yum rpm
 
@@ -81,7 +57,7 @@ yum install elasticsearch-5.0.2-1
 
 ## SSH
 
- * [](./ssh.md)
+ * [ssh](./ssh.md)
 
 ## LocalTime
 
@@ -99,28 +75,6 @@ cat /etc/adjtime
 
 ```
 
-## iptables
-
-```bash
-iptables -L
-cat >> iptables.rackspace.sh
-#ssh_port=0000
-
-at -f /distr/test.iptables.sh now + 1 min
-atq
-mcedit iptables.rackspace.sh
-
-```
-
-```bash
-# Log dropped outbound packets
-iptables -N LOGGING
-iptables -A OUTPUT -j LOGGING
-iptables -A INPUT -j LOGGING
-iptables -A FORWARD -j LOGGING
-iptables -A LOGGING -m limit --limit 2/min -j LOG --log-prefix "IPTables-Dropped: " --log-level 4
-iptables -A LOGGING -j DROP
-```
 
 ## Repo
 

@@ -32,32 +32,12 @@ cat /etc/anacrontab
 
 ## apt aptitude dpkg
 
-undo update
-http://serverfault.com/questions/21436/transactions-and-rollback-with-debian
-
-```bash
-dpkg --get-selections "*" > my_packages-datestamp
-
-Then later you could rollback by using that package list:
-
-dpkg --set-selections < my_packages-datestamp
-apt-get -u dselect-upgrade
-
-##
-aptitude install foo=1.2-3 # Downgrade to 1.2-3 if you run a higher version
-
-```
+ * [](./ubuntu.md#package-manager)
 
 
+## iptabes save
 
-
-
-## debian iptabes save
-
-aptitude instal iptables-persistent
-iptables-persistent save
-or
-iptalbes-save > /etc/iptables/rules.v4
+ * [](./network.md#iptables)
 
 ## timezone
 

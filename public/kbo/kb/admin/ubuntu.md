@@ -1,7 +1,11 @@
 # Ubuntu
 
+ * [centos](./centos.md)
+ * [debian](./debian.md)
+ * [ubuntu](./ubuntu.md)
+ * [opensuse](./opensuse.md)
  * [Русификация Ubuntu](http://help.ubuntu.ru/wiki/%D1%80%D1%83%D1%81%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_ubuntu)
- * [](./ssh.md#ssh-welcome)
+ * [ssh-welcome](./ssh.md#ssh-welcome)
 
 ## grub
 
@@ -109,3 +113,18 @@ timedatectl
 		* d - deleted
 		* p - the package and its configuration files will be removed.
 		* A - automatically installed
+
+ * undo update http://serverfault.com/questions/21436/transactions-and-rollback-with-debian
+
+```bash
+dpkg --get-selections "*" > my_packages-datestamp
+
+Then later you could rollback by using that package list:
+
+dpkg --set-selections < my_packages-datestamp
+apt-get -u dselect-upgrade
+
+##
+aptitude install foo=1.2-3 # Downgrade to 1.2-3 if you run a higher version
+
+```

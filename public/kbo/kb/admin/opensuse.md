@@ -1,16 +1,13 @@
 # Opensuse
 
+ * [centos](./centos.md)
+ * [debian](./debian.md)
+ * [ubuntu](./ubuntu.md)
+ * [opensuse](./opensuse.md)
 
 ## virtualbox
 
- * сеть-->сетевой мост-->паравиртуальная сеть(virt-io)
- * [mount share folder](https://serverfault.com/questions/674974/how-to-mount-a-virtualbox-shared-folder#674978)
-
-```bash
-	mount -t vboxsf share /home/toto
-	 VBoxControl guestproperty set /VirtualBox/GuestAdd/SharedFolders/MountDir /home/toto/
-	VBoxControl guestproperty set /VirtualBox/GuestAdd/SharedFolders/MountDir
-```
+ * [virtualbox](./virtual.md#virtualbox)
 
 ## просмотр markdown файлов
 

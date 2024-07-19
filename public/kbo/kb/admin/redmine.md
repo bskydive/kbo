@@ -1,7 +1,8 @@
 # Redmine
 
+ * современный аналог [wekan](https://wekan.github.io/)
  * http://habrahabr.ru/post/227155/
- * Rack Mini Profiler 
+ * Rack Mini Profiler
  * RmPlus DevTools
  * OINK
  * Как хранить зеркало инфы в облаке?
@@ -17,7 +18,7 @@
  * mail --> server daemon --> jabber message
  * (mail+ejabberd)
  * https://github.com/peclik/clipboard_image_paste
- 
+
 ```bash
 You cannot specify the same gem twice with different version requirements.
 You specified: capybara (~> 2.1.0) and capybara (~> 2.0)
@@ -62,7 +63,7 @@ Redmine plugins:
 
 
 ### установка
- 
+
  * копировать в каталог плагинов, исключая приставки версий, настроить права для ролей под новые фичи
  * chown -R redmine:redmine /opt/redmine/*
  * su - redmine -c "cd /opt/redmine/;bundle install --without development test"
@@ -73,7 +74,7 @@ Redmine plugins:
 
  * rake db:migrate:plugin NAME=redmine_image_clipboard_paste VERSION=0 RAILS_ENV=production
  * rm -rf plugins/redmine_image_clipboard_paste
- 
+
 
 ## redmine-2.5.1 ruby 1.9.3
 
@@ -86,12 +87,12 @@ https://gist.github.com/vjt/804654
 ```bash
 
 
-gem install passenger 
+gem install passenger
 
 yum install gcc-c++ patch readline readline-devel zlib zlib-devel libyaml-devel libffi-devel openssl-devel make bzip2 autoconf automake libtool bison iconv-devel pcre-devel curl-devel
 yum install zlib-devel curl-devel openssl-devel apr-devel apr-util-devel patch gcc-c++ gcc make zlib-devel openssl-devel readline-devel ImageMagick-devel libpqxx-devel
 curl -L get.rvm.io | bash -s stable
-rvm install 1.9.3 
+rvm install 1.9.3
 usermod -aG rvm redmine
 gem install bundler rails --no-ri --no-rdoc
 
@@ -121,7 +122,7 @@ yum install postgresql95-devel
 
 ## миграция redmine 2.5--3.2.0
 
-сначала поставить 
+сначала поставить
 yum nginx passenger git patch
 
 для корректной миграции плагинов НЕ надо ставить две версии ruby
@@ -163,8 +164,8 @@ relogin
 export RAILS_ENV=production
 
 > bundle exec rake generate_secret_token
-> bundle exec rake redmine:plugins:migrate 
-> bundle exec rake db:migrate 
+> bundle exec rake redmine:plugins:migrate
+> bundle exec rake db:migrate
 
 #тестовый запуск:
 > bundle exec rails server webrick -e production
@@ -176,13 +177,13 @@ export RAILS_ENV=production
 
  * https://habrahabr.ru/post/278843/
 
-## УСТАРЕЛО Установка ruby-enterprise (включает nginx-uwsgi) 
+## УСТАРЕЛО Установка ruby-enterprise (включает nginx-uwsgi)
 
  * https://code.google.com/p/rubyenterpriseedition/downloads/list
 
 ```bash
 wget http://rubyenterpriseedition.googlecode.com/files/ruby-enterprise-1.8.7-2012.02.tar.gz
-tar -xf ruby-enterprise-1.8.7-2012.02.tar.gz 
+tar -xf ruby-enterprise-1.8.7-2012.02.tar.gz
 ```
 
 
@@ -208,10 +209,10 @@ Index: ext/openssl/ossl_pkey_ec.c
                  method = EC_GF2m_simple_method();
 +#endif
              }
- 
+
              if (method) {
 @@ -817,8 +819,10 @@
- 
+
              if (id == s_GFp) {
                  new_curve = EC_GROUP_new_curve_GFp;
 +#if !defined(OPENSSL_NO_EC2M)
@@ -248,20 +249,20 @@ gem install rails -v 3.2.13
 gem install rmagick pg ruby-openid rack-openid
 gem list
 
-*** LOCAL GEMS ***                                                                                                                                                                                         
-                                                                                                                                                                                                           
-actionmailer (3.2.13)                                                                                                                                                                                      
-actionpack (3.2.13)                                                                                                                                                                                        
-activemodel (3.2.13)                                                                                                                                                                                       
-activerecord (3.2.13)                                                                                                                                                                                      
-activeresource (3.2.13)                                                                                                                                                                                    
-activesupport (3.2.13)                                                                                                                                                                                     
-arel (3.0.2)                                                                                                                                                                                               
-builder (3.0.4, 3.0.0)                                                                                                                                                                                     
-bundler (1.3.5)                                                                                                                                                                                            
-coderay (1.0.9)                                                                                                                                                                                            
-daemon_controller (1.1.4)                                                                                                                                                                                  
-erubis (2.7.0)                                                                                                                                                                                             
+*** LOCAL GEMS ***
+
+actionmailer (3.2.13)
+actionpack (3.2.13)
+activemodel (3.2.13)
+activerecord (3.2.13)
+activeresource (3.2.13)
+activesupport (3.2.13)
+arel (3.0.2)
+builder (3.0.4, 3.0.0)
+bundler (1.3.5)
+coderay (1.0.9)
+daemon_controller (1.1.4)
+erubis (2.7.0)
 fastercsv (1.5.5)
 hike (1.2.2)
 i18n (0.6.1)
@@ -299,7 +300,7 @@ tzinfo (0.3.37)
 ```bash
 wget http://rubyforge.org/frs/download.php/76933/redmine-2.3.1.tar.gz
 wget http://rubyforge.org/frs/download.php/76934/redmine-2.3.1.tar.gz.md5
-md5sum -c redmine-2.3.1.tar.gz.md5 
+md5sum -c redmine-2.3.1.tar.gz.md5
 tar -xf redmine-2.3.1.tar.gz
 
 mv /distr/redmine-$version /opt
@@ -312,7 +313,7 @@ ln -s /opt/redmine-$version /opt/redmine
 ## создаем БД
 
 ```
-su - postgres -c "createuser --pwprompt --encrypted --no-adduser --no-createdb --no-createrole --no-inherit USERNAME1" 
+su - postgres -c "createuser --pwprompt --encrypted --no-adduser --no-createdb --no-createrole --no-inherit USERNAME1"
 su - postgres -c "createdb --encoding=UNICODE --owner=USERNAME1 DBNAME1"
 ```
 
@@ -374,18 +375,18 @@ https://bugs.ruby-lang.org/projects/ruby-trunk/repository/revisions/41808/diff
 rake generate_secret_token
 ##export RAILS_ENV=production
 ##test
-su - postgres -c "psql -U USERNAME1 -d DBNAME1" 
+su - postgres -c "psql -U USERNAME1 -d DBNAME1"
 redmine-db-> \l
                                     Список баз данных
-    Имя     |   Владелец   | Кодировка | LC_COLLATE |  LC_CTYPE  |     Права доступа     
+    Имя     |   Владелец   | Кодировка | LC_COLLATE |  LC_CTYPE  |     Права доступа
 ------------+--------------+-----------+------------+------------+-----------------------
- postgres   | postgres     | UTF8      | ru_RU.utf8 | ru_RU.utf8 | 
- redmine-db | redmine-user | UTF8      | ru_RU.utf8 | ru_RU.utf8 | 
+ postgres   | postgres     | UTF8      | ru_RU.utf8 | ru_RU.utf8 |
+ redmine-db | redmine-user | UTF8      | ru_RU.utf8 | ru_RU.utf8 |
 redmine-db=> \q
 ##
 
 
-rake db:migrate 
+rake db:migrate
 RAILS_ENV=production rake redmine:load_default_data
 
 
@@ -573,10 +574,10 @@ https://github.com/makotokw/redmine-theme-gitmike
  * error 413
     * http://forum.slicehost.com/index.php?p=/discussion/1714/x
     * Just a note for future readers, if you're set up for running virtual hosts, and you have your nginx.conf split from your server conf files you can put the
-``` 
+```
  @client_max_body_size 4M;
  client_body_buffer_size 128k;@
-``` 
+```
 
 ## correct all issues load
 
@@ -625,4 +626,4 @@ Processing by IssuesController#index as HTML
   Rendered plugins/clipboard_image_paste/app/views/clipboard_image_paste/_add_form.html.erb (2.5ms)
 Completed 200 OK in 993.5ms (Views: 351.6ms | ActiveRecord: 96.5ms)
 
-``` 
+```
