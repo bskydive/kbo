@@ -52,6 +52,34 @@
 	* `$$`  The process ID of the current shell.
 	* `$!` The process ID of the last background command.
 
+## variables
+
+ * https://stackoverflow.com/questions/1921279/how-to-get-a-variable-value-if-variable-name-is-stored-as-string
+ ```bash
+get_value()
+{
+  declare -n var_name=$1
+  if [[ -v var_name ]]
+  then
+    echo "${var_name}"
+  else
+    echo "variable with name <${!var_name}> is not set"
+  fi
+}
+
+test=123
+get_value test
+123
+
+test="\$(echo \"something nasty\")"
+get_value test
+$(echo "something nasty")
+
+unset test
+get_value test
+variable with name <test> is not set
+ ```
+
 ## bash scripts
 
  * [backup](./backup.md)

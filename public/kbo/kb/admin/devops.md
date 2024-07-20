@@ -287,31 +287,7 @@ perf report -f --stdio
 
 ## terminal
 
- * tmux
- * [темы](https://github.com/Gogh-Co/Gogh)
- * [wezterm](https://github.com/wez/wezterm)
-	* https://wezfurlong.org/wezterm/
-	* Rust
-	* lua
-	* https://github.com/stayradiated/terminal.sexy
-	* https://github.com/mbadolato/iTerm2-Color-Schemes/tree/master/dynamic-colors
- * [terminator](https://github.com/gnome-terminator/terminator)
-	* python
- * [tilix](https://github.com/gnunn1/tilix/)
-	* old
-	* D, GTK3
-	* json
-	* https://gnunn1.github.io/tilix-web/
-	* https://github.com/storm119/Tilix-Themes/blob/master/README.md
-	* https://github.com/isacikgoz/gogh-to-tilix/tree/master
- * [hyper](https://github.com/vercel/hyper)
-	* JS
- * [contour](https://github.com/contour-terminal/contour/)
-	* c++
-	* yml
-	* https://contour-terminal.org/
-	* QT6
- *
+ * [terminal](./terminal.md)
 
 ##  инфраструктура
 

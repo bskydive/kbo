@@ -411,10 +411,11 @@ https://www.youtube.com/watch?v=t0dGLFtRR9c
 
 ### regular expressions Регулярные выражения
 
-https://github.com/VerbalExpressions/JavaVerbalExpressions
-https://regex101.com/
-http://www.regexplanet.com/advanced/java/index.html
- O'Reilly — Регулярные выражения. Сборник рецептов
+ * https://github.com/VerbalExpressions/JavaVerbalExpressions
+ * https://regex101.com/
+ * http://www.regexplanet.com/advanced/java/index.html
+ * O'Reilly — Регулярные выражения. Сборник рецептов
+ * https://unix.stackexchange.com/questions/119905/why-does-my-regular-expression-work-in-x-but-not-in-y
 
 ## интернационализация locale internationalization
 
