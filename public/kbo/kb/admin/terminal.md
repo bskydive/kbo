@@ -130,6 +130,8 @@ launch emacs
  * умеет в разные цвета вкладок
  * меряется скоростью
  * очень много issues
+ * нет вкладок
+ * для разделения окна нужен tmux
 
 ## konsole
 
@@ -157,6 +159,7 @@ launch emacs
  * тормозит с рендерингом фона-картинки, не умеет в crop
  * очень много issues
  * https://github.com/mbadolato/iTerm2-Color-Schemes/tree/master/wezterm
+ * https://ansidev.substack.com/p/wezterm-cheatsheet
 
 ### scripting
 
