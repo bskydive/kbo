@@ -10,8 +10,13 @@
  * https://github.com/mbadolato/iTerm2-Color-Schemes/
  * https://rgbcolorcode.com/color/converter/
 
+## шрифты
+
+ * https://www.nerdfonts.com/
+
 ## kitty
 
+ * слишком много куда лезет, нет в snap/flathub. Из коробки 'portable' не работает su/sudo/ssh. Нет GUI настроек.
  * слишком глубоко лезет в систему, к разработчикам на кривой козе не подъедешь
  * https://sw.kovidgoyal.net/kitty/
  * https://github.com/kovidgoyal/kitty
@@ -142,11 +147,11 @@ launch emacs
  * не умеет растягивать фон-картинку
  * цвет курсора задаётся в конфиге приложения, а не в конфиге цветовой темы
  * есть в репах ОС
-
-* https://github.com/mbadolato/iTerm2-Color-Schemes/tree/master/Konsole
+ * https://github.com/mbadolato/iTerm2-Color-Schemes/tree/master/Konsole
 
 ## wezterm
 
+ * всё работает из коробки, есть в snap/flathub ,можно писать скрипты на lua под любую задачу. Нет GUI настроек.
  * https://wezfurlong.org/wezterm/
  * [wezterm](https://github.com/wez/wezterm)
  * Rust
@@ -163,7 +168,7 @@ launch emacs
 
 ### scripting
 
- *
+ * [Allow brightening bold + default fg, and bolding bright colors](https://github.com/wez/wezterm/issues/3415)
  * [when the tab/pane focus changes](https://wezfurlong.org/wezterm/config/lua/window-events/update-status.html)
  * [for the current window](https://wezfurlong.org/wezterm/config/lua/window/set_config_overrides.html)
  * [the pane is local or one of your remote mux panes](https://wezfurlong.org/wezterm/config/lua/pane/get_domain_name.html)
@@ -192,6 +197,15 @@ local PROCESS_TO_SCHEME = {
 local TEXT_TO_SCHEME = {
     ["monitoring"] = "Green Scheme",
 }
+
+
+-- maximize on startup
+-- https://wezfurlong.org/wezterm/config/lua/gui-events/gui-startup.html
+wezterm.on('gui-startup', function(cmd)
+  local tab, pane, window = mux.spawn_window(cmd or {})
+  window:gui_window():maximize()
+end)
+
 
 -- https://github.com/mbadolato/iTerm2-Color-Schemes/tree/master/wezterm
 local COLOR_SCHEMES = {

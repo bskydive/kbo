@@ -215,8 +215,6 @@ fi
 [[ $foo = bar && $bar = foo ]]
 ((foo > 7))
 
-#TODO спарсить после 11 пункта
-
 date +%H.%M.%S_%d.%m.%Y
 ```
 
