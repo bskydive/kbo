@@ -1571,7 +1571,7 @@ Restart the networking service
 ```bash
 	tar -czSf file.tar.gz file
 	# лучше сразу на флешку
-	zypper in pbzip2 plzip
+	zypper in pbzip2 plzip pigz
 	tar -cv -I"pigz -6" -Sf /run/media/file.tar.gzp ./file/
 	tar -cv -I"pbzip2 -6" -Sf /run/media/file.tar.gzp ./file/ # работает в 2 раза быстрее
 	tar -cv -I"pblzip -6" -Sf /run/media/file.tar.gzp ./file/
