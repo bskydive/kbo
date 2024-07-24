@@ -4,18 +4,35 @@
  * https://github.com/bskydive/ssh-agentless-monitoring/blob/master/monitoring.sh
  * https://github.com/bskydive/mysql_bash_highload_test
 
-## unlimited bash history
+## bash history
 
+ * https://github.com/atuinsh/atuin
+ * https://github.com/cantino/mcfly
+ * https://www.geeksforgeeks.org/histcontrol-command-in-linux-with-examples/
 
 ```bash
+shopt -s histappend
+export HISTSIZE=-1  # unlimited
+export HISTFILESIZE=-1  # unlimited
+export HISTCONTROL=ignoredups
+export HISTTIMEFORMAT=${HISTTIMEFORMAT:-"%F %H:%M:%S "}
+export HISTIGNORE="clear:history:[bf]g:exit:date:* --help"
+export PROMPT_COMMAND='history -a'
+```
+
+```bash
+
+shopt -s histappend
+export HISTFILE=~/.bash_history
+export HISTFILESIZE=
+export HISTSIZE=
+
 
 	##for debian&opensuse
 	cat >> /etc/bash.bashrc
 	##for centos
 	cat >> /etc/bashrc
 
-	##bsk
-	alias ll="ls -la --color=auto"
 	# Append history list instead of override
 	shopt -s histappend
 	# All commands of root will have a time stamp

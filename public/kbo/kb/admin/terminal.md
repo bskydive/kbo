@@ -165,6 +165,8 @@ launch emacs
  * очень много issues
  * https://github.com/mbadolato/iTerm2-Color-Schemes/tree/master/wezterm
  * https://ansidev.substack.com/p/wezterm-cheatsheet
+ * https://github.com/HeyItsGilbert/dotfiles/tree/main
+ * https://gilbertsanchez.com/posts/my-terminal-wezterm/
 
 ### scripting
 

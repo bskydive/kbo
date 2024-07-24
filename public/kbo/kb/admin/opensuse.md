@@ -1568,6 +1568,10 @@ Restart the networking service
 
 ### archive sparce/sparse files
 
+ * Компрессоры: gzip, bzip2, xz, lz4, lzo, zstd
+ * Самым быстрым, пожалуй, является lz4, самым сильным xz (но он ооочееь медленный),
+ * лучшим в плане соотношения скорость-степень сжатия раньше был gzip, но теперь пальму первенства перехватил zstd.
+
 ```bash
 	tar -czSf file.tar.gz file
 	# лучше сразу на флешку
@@ -1576,6 +1580,13 @@ Restart the networking service
 	tar -cv -I"pbzip2 -6" -Sf /run/media/file.tar.gzp ./file/ # работает в 2 раза быстрее
 	tar -cv -I"pblzip -6" -Sf /run/media/file.tar.gzp ./file/
 ```
+
+ * pigz		1m7,644s
+ * zstd		1m55,206s
+ * pbzip2	2m49,499s
+ * gzip		6m50,082s
+ * bzip2	19m42,368s
+ *
 
 ### external folder
 
