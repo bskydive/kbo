@@ -185,6 +185,11 @@ ENTRYPOINT ["java", "-jar", "/opt/app/*.jar"]
 
  * dockerfile - /var/lib/docker/image/overlay2/imagedb/content/sha256/*
 
+```bash
+docker exec -it zabbix-zabbix-server-pgsql-1 ls /etc/zabbix
+docker container cp zabbix-zabbix-server-pgsql-1:/etc/zabbix/zabbix_server.conf ./
+```
+
 ## install
 
  * https://docs.docker.com/engine/install/ubuntu/

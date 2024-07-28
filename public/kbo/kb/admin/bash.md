@@ -71,6 +71,11 @@ export HISTSIZE=
 
 ## variables
 
+ * trailing slash
+```bash
+VAR3=${VAR1#/}               # Remove optional leading slash
+VAR3=${VAR3%/}               # Remove optional trailing slash
+```
  * https://stackoverflow.com/questions/1921279/how-to-get-a-variable-value-if-variable-name-is-stored-as-string
  ```bash
 get_value()

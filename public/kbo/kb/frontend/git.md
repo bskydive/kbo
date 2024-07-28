@@ -408,10 +408,10 @@ git apply patch
 ### автоматический git pull
 
  * предусмотреть, что любой из удалённых репозиториев может не работать
+ * Compared to --bare, --mirror not only maps local branches of the source to local branches of the target, it maps all refs (including remote branches, notes etc.) and sets up a refspec configuration such that all these refs are overwritten by a git remote update in the target repository.
  * [http post](https://gitlab.com/martinpham/GitLab-sync)
  * http://doc.gitlab.com/ce/raketasks/import.html
  * http://stackoverflow.com/questions/3382679/git-how-do-i-update-my-bare-repo#3382703
-
 Once:
 
 ```bash
@@ -443,7 +443,7 @@ Everytime i want to sync
 ```
 
 ```bash
-	[root@localhost scripts]# cat gitlab_import.cron
+	cat gitlab_import.cron
 	#!/bin/bash
 	logfile="/distr/scripts/gitlab_import.cron.log"
 	gitlab_path="/var/opt/gitlab/"

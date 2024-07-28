@@ -175,7 +175,21 @@ su - postgres -c "psql -U userlist_user -d userlist_db --password"
 
 ## Backup
 
-http://habrahabr.ru/post/222311/
+ * [10 способов сделать резервную копию в PostgreSQL](http://habrahabr.ru/post/222311/)
+
+```bash
+#с пониженным приоритетом IO операций
+ionice -c 3 pg_basebackup -x -h db01.example.com -U backup -D /backup
+#с ограничением пропускной полосы до 10Мб
+pg_basebackup -x --format=tar -h 127.0.0.1 -U backup -D - |pv -r -b -L 10M |ssh backup@backup.example.com "bzip2 -9 > /backup/db01/backup-$(date +%Y-%m-%d).tar.bz2"
+#сначала поток сжимается, затем передается по сети и затем разжимается на удаленной стороне
+tar cfO - ./ |lbzip2 -n 2 -5 |ssh postgres@standby "lbunzip2 -c -n 2 |tar xf - -C /var/lib/pgsql/9.3/data"
+#gpg
+pg_basebackup -x --format=tar -h db01.example.com -U backup -D - |gpg -r backup -e |bzip2 -9 > /backup/db01/backup-$(date +%d-%b-%Y).tar.bz2
+bzcat /backup/backup-09-May-2014.tar.bz2 |gpg -r backup -d |tar xf - -C /example/dir/
+
+```
+ *
 
 ```bash
 /etc/init.d/nginx-passenger stop
