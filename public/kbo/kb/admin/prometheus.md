@@ -27,6 +27,7 @@
 
 ## install
 
+ * https://www.youtube.com/watch?v=OxZmn4svOyA
  * To build Prometheus from source code:
     * Go version 1.17 or greater.
     * NodeJS version 16 or greater.
@@ -63,3 +64,8 @@ scrape_configs:
       - targets: ['localhost:9090']
 
 ```
+
+## использование
+
+ * https://demo.promlabs.com/targets?search=
+ * https://www.youtube.com/@PromLabs
