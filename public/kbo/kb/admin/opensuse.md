@@ -874,13 +874,21 @@ acpitool  -W 17
 
  * скачать firefox, chrome
  * zypper rm MozillaFirefox MozillaFirefox-branding-openSUSE MozillaFirefox-translations-common
- ```
-    zypper in zip rar unrar Crystalcursors dmz-icon-theme-cursors oxygen5-cursors tuxcursors oxygen5 oxygen5-icon-theme oxygen5-icon-theme-scalable oxygen5-style yast2-theme-oxygen pulseaudio-equalizer pavucontrol kfind
 
-	zypper rm baloo-file baloo5-tools
+ ```bash
+zypper in zip rar unrar Crystalcursors dmz-icon-theme-cursors oxygen5-cursors tuxcursors oxygen5 oxygen5-icon-theme oxygen5-icon-theme-scalable oxygen5-style yast2-theme-oxygen pulseaudio-equalizer pavucontrol kfind
 
-The following 4 packages are going to be REMOVED:
-  baloo5-file baloo5-file-lang baloo5-tools baloo5-tools-lang
+zypper rm baloo-file baloo5-tools
+
+# The following 4 packages are going to be REMOVED:
+# baloo5-file baloo5-file-lang baloo5-tools baloo5-tools-lang
+
+# file manager
+kcmshell5 kcm_filetypes
+# kde-settings--apps--inode--folder+vlc
+
+zypper in qt6-tools-qdbus
+# konsole save/restore sessions
  ```
 
  * включить numlock
