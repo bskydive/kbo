@@ -547,12 +547,15 @@ environment:
 
 ### service
 
+* https://docs.docker.com/reference/dockerfile/#healthcheck
 * https://docs.docker.com/compose/compose-file/05-services/#healthcheck
+	* start period - initialization time for containers that need time to bootstrap. Probe failure during that period will not be counted towards the maximum number of retries. However, if a health check succeeds during the start period, the container is considered started and all consecutive failures will be counted towards the maximum number of retries.
+	* start interval - time between health checks during the start period. This option requires Docker Engine version 25.0 or later.
 	```yaml
 		backend:
 			image: example/backend
 			healthcheck:
-				test: ["CMD", "curl", "-f", "http://localhost"]
+				test: ["CMD", "curl", "--insecure", "-f", "https://localhost:8080"]
 				interval: 1m30s
 				timeout: 10s
 				retries: 3

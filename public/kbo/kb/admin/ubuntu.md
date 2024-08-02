@@ -9,7 +9,7 @@
 
 ## grub
 
- *
+ * default startup menu timeout
 
 ```bash
 mcedit /etc/default/grub
