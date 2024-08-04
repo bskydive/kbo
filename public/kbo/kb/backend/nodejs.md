@@ -64,7 +64,7 @@
 		> ## ~/.nvm/versions/node/v10.7.0/bin/node
 		>
 	```
- * [debug](../frontend/vscode.md#debug)
+ * [debug](../инструменты/vscode.md#debug)
 
 ## npm local server
 
