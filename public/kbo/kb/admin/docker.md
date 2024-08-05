@@ -104,6 +104,7 @@ cat /proc/self/cgroup
 
 ## лучшие практики для dockerfile
 
+ * https://docs.docker.com/compose/production/
  * [Best practices for Dockerfile instructions](https://docs.docker.com/develop/develop-images/instructions/)
  * [General best practices for writing Dockerfiles](https://docs.docker.com/develop/develop-images/guidelines/)
  * [Image-building best practices](https://docs.docker.com/guides/workshop/09_image_best/)
@@ -555,7 +556,8 @@ environment:
 		backend:
 			image: example/backend
 			healthcheck:
-				test: ["CMD", "curl", "--insecure", "-f", "https://localhost:8080"]
+				#test: ["CMD", "curl", "--insecure", "-f", "https://localhost:8080"]
+      			test: wget --no-verbose --tries=1 --no-check-certificate http://localhost:9090/metrics || exit 1
 				interval: 1m30s
 				timeout: 10s
 				retries: 3
