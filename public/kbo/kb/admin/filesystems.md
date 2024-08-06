@@ -204,9 +204,36 @@ done
 	swapon /mnt/swap.file
 ```
 
-## lsof deleted files
+## recovery deleted files
 
+ * https://unix.stackexchange.com/questions/101237/how-to-recover-files-i-deleted-now-by-running-rm/101247
+ * https://unix.stackexchange.com/questions/2677/recovering-accidentally-deleted-files
+ * https://help.ubuntu.com/community/DataRecovery
+```bash
 lsof -s | grep -iE 'deleted|command'
+
+#1
+lsof | grep "/path/to/file"
+progname 5383 user 22r REG 8,1 16791251 265368 /path/to/file
+cp /proc/5383/fd/22 /path/to/restored/file
+mount -o remount,ro /dev/[partition]
+
+#2
+dd bs=4M if=/dev/[partition] of=/path/to/backup
+# extundelete /path/to/backup --restore-all
+extundelete /dev/<device-file> --restore-all
+
+#3
+photorec
+foremost
+scalpel
+magic rescue
+
+#4
+sudo grep -i -a -B100 -A100 'some_text' /dev/sda1 > file.txt
+sudo grep -F -a -C100 'some_text' /dev/sda1 > file.txt
+
+```
 
 ## fix bad filename encoding using inode
 

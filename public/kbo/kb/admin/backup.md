@@ -1,3 +1,8 @@
+# backup
+
+ * [https://www.youtube.com/watch?v=1u08QZyjguo](https://www.youtube.com/watch?v=1u08QZyjguo)
+ * [sudo rm -rf, или Хроника инцидента с базой данных GitLab.com от 2017/01/31](https://habr.com/ru/companies/slurm/articles/321074/)
+ * [recovery-deleted-files](./filesystems.md#recovery-deleted-files)
 
 ## webdav
 
