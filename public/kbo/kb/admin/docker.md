@@ -489,12 +489,6 @@ docker run -e "deep=purple" -e today --rm alpine env
 
  * https://docs.docker.com/compose/compose-application-model/
  * [пример python сборки](https://docs.docker.com/compose/gettingstarted/)
- * конвертер run<>compose
-	* https://www.composerize.com/
-	* https://github.com/composerize/composerize
-	* https://github.com/composerize/decomposerize
-	* https://ray.run/tools/docker-run-to-docker-compose
-	* https://ray.run/tools/docker-compose-to-docker-run
  * https://docs.docker.com/compose/release-notes/
  * синтакс
 	* map
@@ -515,6 +509,15 @@ environment:
   - SHOW=true
   - USER_INPUT
 ```
+### конвертер dokerfile run compose
+
+* https://www.composerize.com/
+* https://decomposerize.com/
+* https://github.com/composerize/composerize
+* https://github.com/composerize/decomposerize
+* https://ray.run/tools/docker-run-to-docker-compose
+* https://ray.run/tools/docker-compose-to-docker-run
+
 ### validate/debug
 
  * https://docs.docker.com/reference/cli/docker/compose/config/

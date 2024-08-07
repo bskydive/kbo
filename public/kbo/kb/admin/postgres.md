@@ -37,6 +37,8 @@
 		su - postgres -c "createdb --encoding=UNICODE --owner=mo_user mo_db"
 	# create user
 		su - postgres -c "createuser --pwprompt --encrypted --no-adduser --no-createdb --no-createrole --no-inherit mo_user"
+		read pass;sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD '${pass}';"
+		su - postgres -c "tail .psql_history"
 	# create table
 	# create index
 	# change isolation level
