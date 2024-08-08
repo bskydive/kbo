@@ -480,6 +480,15 @@ docker run -e "deep=purple" -e today --rm alpine env
  * https://docs.docker.com/config/otel/
  * https://docs.docker.com/reference/cli/docker/inspect/
 
+## unhealthy container restart
+
+ * add `|| exit 1` in healthcheck
+ * [use podman](https://developers.redhat.com/blog/2019/04/18/monitoring-container-vitality-and-availability-with-podman)
+ * [use swarm](https://github.com/moby/moby/issues/28400)
+ * [use willfarrell/autoheal](https://github.com/willfarrell/docker-autoheal)
+	* https://sdr-enthusiasts.gitbook.io/ads-b/useful-extras/auto-restart-unhealthy-containers
+ * restart via alerting software
+
 ## multi container
 
  * https://docs.docker.com/guides/docker-concepts/running-containers/multi-container-applications/
