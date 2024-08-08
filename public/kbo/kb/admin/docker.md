@@ -531,6 +531,16 @@ environment:
 	docker-compose -f .docker/docker-compose.yml up www-service
 ```
 
+### compose build
+
+* build configuration in the compose.yml
+	* custom Dockerfile
+* Volumes
+* Environment Variables
+* Command Overrides
+* Dockerfile Instructions
+* docker-compose images + docker diff $image1 $image2
+
 ### шаблоны конфигов
 
  * https://docs.docker.com/samples/

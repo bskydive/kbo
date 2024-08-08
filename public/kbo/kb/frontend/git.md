@@ -621,8 +621,17 @@ git push ${origin} --all
  * https://stackoverflow.com/questions/5769568/how-to-set-up-a-git-hook-so-that-after-pushing-to-ssh-peterfoo-com-bar-com#5769715
  * настройка репы
 
-```
-	ssh://USER_NAME@IP_ADDR:PORT_NUM/path_to_repo/repo_name.git
+```bash
+git remote add host1 ssh://USER_NAME@host1:PORT_NUM/path_to_repo/repo_name.git
+
+# https://stackoverflow.com/questions/8170436/git-remote-error-fatal-protocol-error-bad-line-length-character-unab
+g clone ssh://user@pc-3:/home/user/coding/BARE/repo.git/
+# Cloning into 'repo'...
+# fatal: protocol error: bad line length character: SOMETEXT
+ssh user@pc-3 git-receive-pack /home/user/coding/BARE/repo.git
+# SOMETEXT
+# 00b3542f9c6156aa96d8ba44797e9eb5357ec1f8e16a refs/heads/masterreport-status report-status-v2 delete-refs side-band-64k quiet atomic ofs-delta object-format=sha1 agent=git/2.35.3
+# 0000
 ```
 
  * post-update-script

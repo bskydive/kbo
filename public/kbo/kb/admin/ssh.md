@@ -19,6 +19,10 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub user@0.0.0.0
 	* `ssh -fNL`
  *
 
+## ssh git
+
+* [](../frontend/git.md)
+
 ## ssh welcome
 
  * [disable ssh welcome screen](https://linuxconfig.org/disable-dynamic-motd-and-news-on-ubuntu-20-04-focal-fossa-linux)
