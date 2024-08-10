@@ -363,6 +363,7 @@ rm /etc/docker/daemon.json
 	* FROM - Create a new build stage from a base image.
 	* HEALTHCHECK - Check a container's health on startup.
 		* https://docs.docker.com/compose/compose-file/05-services/#healthcheck
+		* [](#healthcheck)
 	* LABEL - Add metadata to an image.
 	* MAINTAINER - Specify the author of an image.
 	* ONBUILD - Specify instructions for when the image is used in a build.
@@ -479,15 +480,8 @@ docker run -e "deep=purple" -e today --rm alpine env
  * https://opentelemetry.io/docs/
  * https://docs.docker.com/config/otel/
  * https://docs.docker.com/reference/cli/docker/inspect/
+ * [](#healthcheck)
 
-## unhealthy container restart
-
- * add `|| exit 1` in healthcheck
- * [use podman](https://developers.redhat.com/blog/2019/04/18/monitoring-container-vitality-and-availability-with-podman)
- * [use swarm](https://github.com/moby/moby/issues/28400)
- * [use willfarrell/autoheal](https://github.com/willfarrell/docker-autoheal)
-	* https://sdr-enthusiasts.gitbook.io/ads-b/useful-extras/auto-restart-unhealthy-containers
- * restart via alerting software
 
 ## multi container
 
@@ -568,7 +562,7 @@ environment:
 	* https://docs.docker.com/build/guide/multi-stage/#parallelism
 	*
 
-### service
+### healthcheck
 
 * https://docs.docker.com/reference/dockerfile/#healthcheck
 * https://docs.docker.com/compose/compose-file/05-services/#healthcheck
@@ -586,6 +580,22 @@ environment:
 				start_period: 40s
 				start_interval: 5s
 	```
+
+ * unhealthy container restart
+	* restart via alerting software - best way
+	* add `|| exit 1` in healthcheck not working
+	* killing PID=1 protected
+	* [use podman](https://developers.redhat.com/blog/2019/04/18/monitoring-container-vitality-and-availability-with-podman)
+	* [use swarm](https://github.com/moby/moby/issues/28400)
+	* [use willfarrell/autoheal](https://github.com/willfarrell/docker-autoheal)
+		* https://sdr-enthusiasts.gitbook.io/ads-b/useful-extras/auto-restart-unhealthy-containers
+	* [custom entrypoint with PID!=1, what can be killed](https://stackoverflow.com/questions/31538314/stopping-docker-container-from-inside)
+ * healthcheck debug
+	* https://adamtuttle.codes/blog/2021/debugging-docker-health-checks/
+	* `docker inspect --format "{{json .State.Health }}" prometheus | jq`
+
+### service
+
  * [два вида](https://docs.docker.com/compose/compose-file/build/#using-build-and-image)
 	* [image](https://docs.docker.com/compose/compose-file/05-services/#image)
 	* [build](https://docs.docker.com/compose/compose-file/build/)
