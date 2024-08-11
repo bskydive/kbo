@@ -379,6 +379,9 @@ ss -lptn 'sport = :53' #socket
 
 ## datetime
 
+ * [centos](./centos.md#localtime)
+ * [ubuntu](./ubuntu.md#timezone)
+
 ### ntpd
 
 ```bash

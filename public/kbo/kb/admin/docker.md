@@ -496,7 +496,7 @@ docker run -e "deep=purple" -e today --rm alpine env
  * синтакс
 	* map
 	* array
-	* .env
+	* [env_file](https://docs.docker.com/compose/environment-variables/set-environment-variables/#use-the-env_file-attribute)
 ```yaml
 #Map syntax:
 
@@ -592,7 +592,9 @@ environment:
 	* [custom entrypoint with PID!=1, what can be killed](https://stackoverflow.com/questions/31538314/stopping-docker-container-from-inside)
  * healthcheck debug
 	* https://adamtuttle.codes/blog/2021/debugging-docker-health-checks/
-	* `docker inspect --format "{{json .State.Health }}" prometheus | jq`
+```bash
+docker inspect --format "{{json .State.Health }}" prometheus | jq
+```
 
 ### service
 
