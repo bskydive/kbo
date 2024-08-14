@@ -200,7 +200,14 @@ sysctl -w net.ipv4.conf.veth0.forwarding=1
 
 ```
 
-## wifi routers маршрутизаторы
+## routers маршрутизаторы
+
+ * keenetic ultra II - KN1810
+	* изоляция маршрутизации портов - `mdns reflector enforce`
+	* https://storage.googleapis.com/docs.help.keenetic.com/cli/3.1/ru/cli_manual_kn-1810_ru.pdf
+	* https://storage.googleapis.com/docs.help.keenetic.com/cli/3.9/ru/cli_manual_kn-1810_ru.pdf
+
+## wifi
 
  * https://wikidevi.wi-cat.ru/ZyXEL/Keenetic_series
  * [Для чего хакерам Микротик и как я спрятал 100 тыс. RouterOS от ботнета](https://habr.com/ru/post/424433/)
@@ -213,30 +220,30 @@ sysctl -w net.ipv4.conf.veth0.forwarding=1
  * [Aircrack-ng](https://www.aircrack-ng.org/downloads.html)
  * [How to Put WiFi Interface into Monitor Mode in Linux](https://www.geeksforgeeks.org/how-to-put-wifi-interface-into-monitor-mode-in-linux/?ref=rp)
 
-	```bash
-        zypper in sysstat iw
-		inxi -n
-		ip link
-		iwconfig
-		iw dev
-		iw wlan1 info
-		iwlist wlan1 freq
-		ip link set wlan1 down
-		iwconfig wlan1 mode monitor
-		ip link set wlan1 up
-		iw dev wlan1 set channel 52
+```bash
+	zypper in sysstat iw
+	inxi -n
+	ip link
+	iwconfig
+	iw dev
+	iw wlan1 info
+	iwlist wlan1 freq
+	ip link set wlan1 down
+	iwconfig wlan1 mode monitor
+	ip link set wlan1 up
+	iw dev wlan1 set channel 52
 
-		iwconfig
-		ip link set wlan1 down
-		iwconfig wlan1 mode managed
-		iw phy phy0 interface add mon0 type monitor
-		iw dev
-		iwconfig
-		ip link set mon0 up
-		iwconfig
-		iw dev mon0 set freq 2437
-		iwconfig
-		iw dev mon0 set channel 52
+	iwconfig
+	ip link set wlan1 down
+	iwconfig wlan1 mode managed
+	iw phy phy0 interface add mon0 type monitor
+	iw dev
+	iwconfig
+	ip link set mon0 up
+	iwconfig
+	iw dev mon0 set freq 2437
+	iwconfig
+	iw dev mon0 set channel 52
 
 
 	ip link set wlp1s0 down
@@ -311,39 +318,39 @@ sysctl -w net.ipv4.conf.veth0.forwarding=1
 			Channel 14 : 2.484 GHz
 	wlist wlan1 freq
 	wlan1     32 channels in total; available frequencies :
-          Channel 01 : 2.412 GHz
-          Channel 02 : 2.417 GHz
-          Channel 03 : 2.422 GHz
-          Channel 04 : 2.427 GHz
-          Channel 05 : 2.432 GHz
-          Channel 06 : 2.437 GHz
-          Channel 07 : 2.442 GHz
-          Channel 08 : 2.447 GHz
-          Channel 09 : 2.452 GHz
-          Channel 10 : 2.457 GHz
-          Channel 11 : 2.462 GHz
-          Channel 12 : 2.467 GHz
-          Channel 13 : 2.472 GHz
-          Channel 36 : 5.18 GHz
-          Channel 40 : 5.2 GHz
-          Channel 44 : 5.22 GHz
-          Channel 48 : 5.24 GHz
-          Channel 52 : 5.26 GHz
-          Channel 56 : 5.28 GHz
-          Channel 60 : 5.3 GHz
-          Channel 64 : 5.32 GHz
-          Channel 100 : 5.5 GHz
-          Channel 104 : 5.52 GHz
-          Channel 108 : 5.54 GHz
-          Channel 112 : 5.56 GHz
-          Channel 116 : 5.58 GHz
-          Channel 120 : 5.6 GHz
-          Channel 124 : 5.62 GHz
-          Channel 128 : 5.64 GHz
-          Channel 132 : 5.66 GHz
-          Channel 136 : 5.68 GHz
-          Channel 140 : 5.7 GHz
-          Current Frequency:5.26 GHz (Channel 52)
+		Channel 01 : 2.412 GHz
+		Channel 02 : 2.417 GHz
+		Channel 03 : 2.422 GHz
+		Channel 04 : 2.427 GHz
+		Channel 05 : 2.432 GHz
+		Channel 06 : 2.437 GHz
+		Channel 07 : 2.442 GHz
+		Channel 08 : 2.447 GHz
+		Channel 09 : 2.452 GHz
+		Channel 10 : 2.457 GHz
+		Channel 11 : 2.462 GHz
+		Channel 12 : 2.467 GHz
+		Channel 13 : 2.472 GHz
+		Channel 36 : 5.18 GHz
+		Channel 40 : 5.2 GHz
+		Channel 44 : 5.22 GHz
+		Channel 48 : 5.24 GHz
+		Channel 52 : 5.26 GHz
+		Channel 56 : 5.28 GHz
+		Channel 60 : 5.3 GHz
+		Channel 64 : 5.32 GHz
+		Channel 100 : 5.5 GHz
+		Channel 104 : 5.52 GHz
+		Channel 108 : 5.54 GHz
+		Channel 112 : 5.56 GHz
+		Channel 116 : 5.58 GHz
+		Channel 120 : 5.6 GHz
+		Channel 124 : 5.62 GHz
+		Channel 128 : 5.64 GHz
+		Channel 132 : 5.66 GHz
+		Channel 136 : 5.68 GHz
+		Channel 140 : 5.7 GHz
+		Current Frequency:5.26 GHz (Channel 52)
 
 	startDeprecatedIface() {
 		iwconfig "${1}" mode monitor > /dev/null 2>&1
@@ -389,41 +396,36 @@ sysctl -w net.ipv4.conf.veth0.forwarding=1
 		14:09:13.714487 1.0 Mb/s 2412 MHz 11b -67dBm signal BAR RA:b8:87:6e:99:24:d4 TA:64:09:80:03:88:cf CTL(4) SEQ(35056)
 		14:09:13.738487 1.0 Mb/s 2412 MHz 11b -67dBm signal Action (64:09:80:03:88:cf): BA ADDBA Request
 	#ротация -W -C -G
- Настройка количества файлов для ротации в tcpdump
+	Настройка количества файлов для ротации в tcpdump
 
-Для ограничения количества создаваемых файлов с захваченными сетевыми пакетами используется опция -W. Эта опция комбинируется с -C (ограничивает размер файлов) и -G (устанавливает время ротации файлов).
+	Для ограничения количества создаваемых файлов с захваченными сетевыми пакетами используется опция -W. Эта опция комбинируется с -C (ограничивает размер файлов) и -G (устанавливает время ротации файлов).
 
-Когда -W используется в паре с -C, то она ограничит лимит количества созданных файлов указанным числом, и будет перезаписывать файлы начиная с первого, таким образом создав буфер «ротации». Дополнительно она будет к имени файла добавлять достаточное количество нулей для поддержки максимального числа файлов — это делается для корректной их сортировки.
+	Когда -W используется в паре с -C, то она ограничит лимит количества созданных файлов указанным числом, и будет перезаписывать файлы начиная с первого, таким образом создав буфер «ротации». Дополнительно она будет к имени файла добавлять достаточное количество нулей для поддержки максимального числа файлов — это делается для корректной их сортировки.
 
-Когда -W используется в паре с -G, она будет ограничивать количество созданных ротируемых файлов дампа и завершит работу со статусом 0 при достижении лимита. Если используется также и с -C, то результатом будет циклическая ротация файлов в указанный промежуток времени.
+	Когда -W используется в паре с -G, она будет ограничивать количество созданных ротируемых файлов дампа и завершит работу со статусом 0 при достижении лимита. Если используется также и с -C, то результатом будет циклическая ротация файлов в указанный промежуток времени.
 
-втоматическое выполнение команды после ротации файлов tcpdump
+	втоматическое выполнение команды после ротации файлов tcpdump
 
-Вместе с опциями -C или -G вы можете дополнительно использовать опцию -z КОМАНДА. В результате tcpdump будет запускать файл КОМАНДА каждый раз, когда файл захвата будет закрываться при переходе к следующему файлу во время ротации. Например, если указать -z gzip или -z bzip2, то каждый файл захвата будет сжат с использованием gzip или bzip2.
+	Вместе с опциями -C или -G вы можете дополнительно использовать опцию -z КОМАНДА. В результате tcpdump будет запускать файл КОМАНДА каждый раз, когда файл захвата будет закрываться при переходе к следующему файлу во время ротации. Например, если указать -z gzip или -z bzip2, то каждый файл захвата будет сжат с использованием gzip или bzip2.
 
-Обратите внимание, что tcpdump будет запускать команду параллельно захвату, используя низший приоритет, то есть он не будет беспокоить процесс захвата.
+	Обратите внимание, что tcpdump будет запускать команду параллельно захвату, используя низший приоритет, то есть он не будет беспокоить процесс захвата.
 
-В случае если вам хочется использовать команду, которая сама принимает опции или различные аргументы, вы всегда можете записать скрипт оболочки, который в качестве единственного аргумента будет принимать имя сохранённого файла захвата и в этом файле вы можете в команде указать любые опции и аргументы.
-
-
-tcpdump -i ИНТЕРФЕЙС -I -w ФАЙЛ.cap -e -U -c 4 'ether proto 0x888e and (wlan addr1 BSSID_ТД or wlan addr1 BSSID_КЛИЕНТА)'
-
-tcpdump -i wlp0s20f0u1 -I -w test.cap -e -U -c 4 'ether proto 0x888e and (wlan addr1 14:9d:09:d0:04:84 or wlan addr1 c0:b6:f9:da:af:3e)'
-
- В этой команде:
+	В случае если вам хочется использовать команду, которая сама принимает опции или различные аргументы, вы всегда можете записать скрипт оболочки, который в качестве единственного аргумента будет принимать имя сохранённого файла захвата и в этом файле вы можете в команде указать любые опции и аргументы.
 
 
+	tcpdump -i ИНТЕРФЕЙС -I -w ФАЙЛ.cap -e -U -c 4 'ether proto 0x888e and (wlan addr1 BSSID_ТД or wlan addr1 BSSID_КЛИЕНТА)'
 
-    -i ИНТЕРФЕЙС — беспроводной интерфейс, который мы перевели в режим монитора и который установили на определённый канал
-    -I — это опция говорит tcpdump перевести интерфейс в режим монитора, в данном случае эта опция используется для того, чтобы tcpdump понимала, что мы хотим захватывать в режиме монитора
-    -w ФАЙЛ.cap — файл, куда будет сохранено четырёх этапное рукопожатие
-    -e — эта опция говорит tcpdump выводить MAC адреса. Её можно пропустить, поскольку при использовании -w на экран вообще ничего выводиться не будет. Но в случае отладки, когда не используется опция -w, эта опция может пригодиться
-    -U — означает немедленно записывать пакеты при их получении. На практике я сталкивался с тем, что без этой опции команда долго (на протяжении нескольких минут) не сохраняет успешно захваченные рукопожатия.
-    -c 4 — эта опция означает завершить работу программы после успешно захваченных четырёх пакетов — можно убрать эту опцию.
-    wlan addr1 BSSID_ТД — здесь нужно указать MAC-адрес Точки Доступа от которой захватывается рукопожатие
-    wlan addr1 BSSID_КЛИЕНТА — здесь нужно указать MAC-адрес одного из клиентов ТД от которой захватывается рукопожатие
+	tcpdump -i wlp0s20f0u1 -I -w test.cap -e -U -c 4 'ether proto 0x888e and (wlan addr1 14:9d:09:d0:04:84 or wlan addr1 c0:b6:f9:da:af:3e)'
 
-
+	В этой команде:
+		-i ИНТЕРФЕЙС — беспроводной интерфейс, который мы перевели в режим монитора и который установили на определённый канал
+		-I — это опция говорит tcpdump перевести интерфейс в режим монитора, в данном случае эта опция используется для того, чтобы tcpdump понимала, что мы хотим захватывать в режиме монитора
+		-w ФАЙЛ.cap — файл, куда будет сохранено четырёх этапное рукопожатие
+		-e — эта опция говорит tcpdump выводить MAC адреса. Её можно пропустить, поскольку при использовании -w на экран вообще ничего выводиться не будет. Но в случае отладки, когда не используется опция -w, эта опция может пригодиться
+		-U — означает немедленно записывать пакеты при их получении. На практике я сталкивался с тем, что без этой опции команда долго (на протяжении нескольких минут) не сохраняет успешно захваченные рукопожатия.
+		-c 4 — эта опция означает завершить работу программы после успешно захваченных четырёх пакетов — можно убрать эту опцию.
+		wlan addr1 BSSID_ТД — здесь нужно указать MAC-адрес Точки Доступа от которой захватывается рукопожатие
+		wlan addr1 BSSID_КЛИЕНТА — здесь нужно указать MAC-адрес одного из клиентов ТД от которой захватывается рукопожатие
 	```
  * [Фильтры tcpdump и pcap. Фильтры захвата Wireshark](https://zalinux.ru/?p=3185&PageSpeed=noscript)
  * https://seclists.org/tcpdump/2009/q2/49
@@ -433,18 +435,18 @@ tcpdump -i wlp0s20f0u1 -I -w test.cap -e -U -c 4 'ether proto 0x888e and (wlan a
  * https://wiki.archlinux.org/title/WPA_supplicant#Connecting_with_wpa_cli
  * []()
  * https://github.com/morrownr/88x2bu-20210702
-    * less /etc/modprobe.d/88x2bu.conf
-    * Realtek drivers do not support more than one adapter with the same chipset in the same computer.
-    * https://github.com/morrownr/88x2bu-20210702#faq
-    * my STRONG recommendation is for Linux users to seek out USB WiFi solutions based on Mediatek chipsets: https://github.com/morrownr/USB-WiFi
-    * https://github.com/morrownr/Monitor_Mode
+	* less /etc/modprobe.d/88x2bu.conf
+	* Realtek drivers do not support more than one adapter with the same chipset in the same computer.
+	* https://github.com/morrownr/88x2bu-20210702#faq
+	* my STRONG recommendation is for Linux users to seek out USB WiFi solutions based on Mediatek chipsets: https://github.com/morrownr/USB-WiFi
+	* https://github.com/morrownr/Monitor_Mode
 
     ```bash
-        ps -A -o pid=PID -o comm=Name | grep -iE "wpa_action|wpa_supplicant|wpa_cli|dhclient|ifplugd|dhcdbd|dhcpcd|udhcpc|NetworkManager|knetworkmanager|avahi-autoipd|avahi-daemon|wlassistant|wifibox|net_applet|wicd-daemon|wicd-client\|iwd|PID"
+		ps -A -o pid=PID -o comm=Name | grep -iE "wpa_action|wpa_supplicant|wpa_cli|dhclient|ifplugd|dhcdbd|dhcpcd|udhcpc|NetworkManager|knetworkmanager|avahi-autoipd|avahi-daemon|wlassistant|wifibox|net_applet|wicd-daemon|wicd-client\|iwd|PID"
 
 		airodump-ng -w dump.log
 		tcpdump
-    ```
+	```
 	* https://www.aircrack-ng.org/doku.php?id=airodump-ng
 	*
 
