@@ -102,7 +102,22 @@ get_value test
 variable with name <test> is not set
  ```
 
-## bash scripts
+## redirections
+
+ * https://linuxize.com/post/bash-heredoc/
+ * https://unix.stackexchange.com/questions/353076/how-to-indent-an-heredoc-inside-an-heredoc-the-right-way
+
+```bash
+
+ssh user@host << EOF
+ls
+mkdir
+cd
+EOF
+
+```
+
+## bash scripts examples in KB
 
  * [backup](./backup.md)
  * [monitoring](./monitoring.md)
