@@ -102,7 +102,7 @@ get_value test
 variable with name <test> is not set
  ```
 
-## redirections
+## multiline
 
  * https://linuxize.com/post/bash-heredoc/
  * https://unix.stackexchange.com/questions/353076/how-to-indent-an-heredoc-inside-an-heredoc-the-right-way
@@ -116,6 +116,8 @@ cd
 EOF
 
 ```
+
+ * https://stackoverflow.com/questions/33416286/how-to-run-2-commands-with-docker-exec
 
 ## bash scripts examples in KB
 
