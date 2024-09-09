@@ -41,10 +41,11 @@ https://support.office.com/en-us/article/Turn-off-or-uninstall-OneDrive-f32a17ce
 
  * завершение винды - время 0 `C:\WINDOWS\system32\shutdown.exe -s -f -t 0`
 
-## WTF
+## WTF windows
 
  * [Permanently Disabling Windows Compatibility Telemetry](https://answers.microsoft.com/en-us/windows/forum/all/permanently-disabling-windows-compatibility/6bf71583-81b0-4a74-ae2e-8fd73305aad1)
- * ![](./windows/win_compat_telemetry.png)
+	* ![](./windows/win_compat_telemetry.png)
+	* C:\Windows\System32\CompatTelRunner.exe
 
 ## windows 10
 
