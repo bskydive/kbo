@@ -190,6 +190,14 @@ END { printf "%.2f\n", idle/(nonnice+nice+sys+iowait)*100}' /proc/stat
 
 ```
 
+### awk replacement
+
+```bash
+cut -f 1
+cut -d" " -f1
+cut -d\@ -f1
+```
+
 ## tips
 
  * http://mywiki.wooledge.org/BashFAQ

@@ -78,6 +78,8 @@
  * CSS переменные
  * colors
  * fonts
+	* https://web-standards.ru/articles/introduction-to-variable-fonts/
+	* https://fonts.google.com/knowledge/introducing_type/introducing_variable_fonts
  * Блочная модель box-model
  * [Позиционирование](https://developer.mozilla.org/ru/docs/Web/CSS/position)
 	* static

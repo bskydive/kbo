@@ -385,110 +385,27 @@ http://glivera-team.github.io/svg/2016/06/13/svg-sprites-2.html
  * https://github.com/swagger-api/swagger-codegen#generating-a-client-from-local-files
  * https://github.com/wcandillon/swagger-js-codegen
  * https://github.com/swagger-api/swagger-js
-
- ### api codegen
-
- * https://github.com/jnwltr/swagger-angular-generator
  * [UI редактор апи](https://stoplight.io/studio/)
- * [Build OpenAPI3.0 specification from HAR](https://www.avantation.in/)
  * [swagger](https://github.com/wcandillon/swagger-js-codegen)
  * [A list of awesome projects related to OpenAPI 3.0.x](https://apis.guru/awesome-openapi3/category.html)
- * [конвертер форматов api](https://www.apimatic.io/transformer/#supported-formats)
- * [конвертер openapi to swagger](https://mermade.org.uk/openapi-converter)
- * [устаревший генератор клиентских сервисов из api](https://openapi-generator.tech/docs/integrations)
+ * конвертеры
+	* [Build OpenAPI3.0 specification from HAR - OBSOLETE](https://github.com/anbuksv/avantation)
+	* https://tools.openapis.org/categories/converters.html
+	* [apimatic](https://www.apimatic.io/solution/transformer#supported-formats)
+		* ![](./files/apimatic_api_formats.jpeg)
+	* [Converts a 1.x or 2.x Swagger definition to the OpenAPI 3.0.1 format](https://converter.swagger.io/)
 
-	```
-		ada-server
-		akka-scala
-		android
-		apache2
-		apex
-		aspnetcore
-		bash
-		csharp
-		clojure
-		cwiki
-		cpprest
-		csharp-dotnet2
-		dart
-		dart-jaguar
-		elixir
-		elm
-		eiffel
-		erlang-client
-		erlang-server
-		finch
-		flash
-		python-flask
-		go
-		go-server
-		groovy
-		haskell-http-client
-		haskell
-		jmeter
-		jaxrs-cxf-client
-		jaxrs-cxf
-		java
-		inflector
-		jaxrs-cxf-cdi
-		jaxrs-spec
-		jaxrs
-		msf4j
-		java-pkmst
-		java-play-framework
-		jaxrs-resteasy-eap
-		jaxrs-resteasy
-		javascript
-		javascript-closure-angular
-		java-vertx
-		kotlin
-		lua
-		lumen
-		nancyfx
-		nodejs-server
-		objc
-		perl
-		php
-		powershell
-		pistache-server
-		python
-		qt5cpp
-		r
-		rails5
-		restbed
-		ruby
-		rust
-		rust-server
-		scala
-		scala-gatling
-		scala-lagom-server
-		scalatra
-		scalaz
-		php-silex
-		sinatra
-		slim
-		spring
-		dynamic-html
-		html2
-		html
-		swagger
-		swagger-yaml
-		swift4
-		swift3
-		swift
-		php-symfony
-		tizen
-		typescript-aurelia
-		typescript-angular
-		typescript-inversify
-		typescript-angularjs
-		typescript-fetch
-		typescript-jquery
-		typescript-node
-		undertow
-		ze-ph
-	kotlin-server
-	```
+### api codegen
+
+ * https://github.com/jnwltr/swagger-angular-generator
+ * генераторы
+ 	* https://github.com/OpenAPITools/openapi-generator
+		* API clients
+		* Server stubs
+		* API documentation generators - HTML, Confluence Wiki, Asciidoc, Markdown, PlantUML
+		* Configuration files(apache2)
+		* GraphQL, JMeter, Ktorm, MySQL Schema, Postman Collection, Protocol Buffer, WSDL
+ 	* [генератор клиентских сервисов из api](https://openapi-generator.tech/)
  *
 
 	```ts
