@@ -54,6 +54,16 @@ du -sm /*|sort -n
 
  * ffmpegyag
  * paplay /usr/share/sounds/Oxygen-Sys-Log-In-Short.ogg
+ * https://en.opensuse.org/SDB:Audio_troubleshooting
+
+```
+journalctl -b | grep firmware
+systemctl list-units --no-pager |egrep "alsa|sound"
+pactl list cards
+systemctl --user list-units | egrep "wire|pulse"
+aplay -lL
+PulseAudio: Unable to connect
+```
 
 ### pulse
 
@@ -240,6 +250,7 @@ ffmpeg -i ./*.mp4 -vn -sn -dn -af "volume=5dB" audio.m4a
  * https://wiki.archlinux.org/title/NetworkManager
  * смотреть в /etc/NetworkManager/system-connections/
  *
+
 ```bash
 nmcli networking on
 nmcli device show
@@ -261,7 +272,7 @@ response=<?xml version="1.0" encoding="UTF-8"?>
 nmcli general reload
 
 nmcli c modify <name> wifi-sec.key-mgmt wpa-psk wifi-sec.psk <password>
-	```
+```
  * https://docs.ubuntu.com/core/en/stacks/network/network-manager/docs/configure-wifi-connections
  * http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/
 
@@ -876,6 +887,9 @@ acpitool  -W 17
  * zypper rm MozillaFirefox MozillaFirefox-branding-openSUSE MozillaFirefox-translations-common
 
  ```bash
+rm /etc/xdg/autostart/geoclue-demo-agent.desktop
+systemctl disable gpsd
+
 zypper in zip rar unrar Crystalcursors dmz-icon-theme-cursors oxygen5-cursors tuxcursors oxygen5 oxygen5-icon-theme oxygen5-icon-theme-scalable oxygen5-style yast2-theme-oxygen pulseaudio-equalizer pavucontrol kfind
 
 zypper rm baloo-file baloo5-tools

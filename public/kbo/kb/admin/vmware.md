@@ -1,5 +1,24 @@
 # vmware
 
+
+ * https://support.broadcom.com/group/ecx/productfiles?subFamily=VMware%20Workstation%20Pro&displayGroup=VMware%20Workstation%20Pro%2017.0%20for%20Linux&release=17.6.1&os=&servicePk=524584&language=EN
+ SHA256 7b539aafa8251e7af3b49dc12a299b127938ef0355d3de68f616ceac3e59e016
+ md5 20567d4ee560385119cf8a8d4f7fbf18
+ VMware-Workstation-Full-17.6.1-24319023.x86_64.bundle(372.46 MB)
+ Build Number: 24319023
+
+ * https://support.broadcom.com/group/ecx/productfiles?subFamily=VMware%20Tools&displayGroup=VMware%20Tools%2012.x&release=12.5.0&os=&servicePk=524287&language=EN
+VMware-Tools-windows-12.5.0-24276846.zip(96.58 MB)
+Build Number: 24276846
+sha256 abda50471c03724800675642b202a349d8bceb56198717891dd29c0dd330c849
+md5 98bf4b6068a24c0779c5524dba9f6e47
+
+ * VMware Tools for Windows, 64-bit in-guest installer
+VMware-tools-12.5.0-24276846-x64.exe.zip(94.37 MB)
+Build Number: 24276846
+	sha256 9f1703a3551668d70de29f8241243a2450d0aa921673f3af1da4ef6c84950a35
+	md5 77a1f48e8946ea8c49c750929f6a301c
+
 ## звук
 
 усилить громкость на сервере и на госте
