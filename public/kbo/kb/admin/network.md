@@ -194,6 +194,8 @@ ping добавляет 28 бит!
 
 ## openvpn
 
+ * https://github.com/angristan/openvpn-install
+	* [openvpn-install-master.zip](./network/openvpn-install-master.zip)
  * https://www.digitalocean.com/community/tutorials/how-to-set-up-and-configure-an-openvpn-server-on-centos-8-ru
  * https://linuxize.com/post/how-to-configure-and-manage-firewall-on-centos-8/#opening-a-source-port
  * https://gist.github.com/ndc33/5a7656af6b5a27762b7eea390e125985
