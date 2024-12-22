@@ -113,6 +113,9 @@
 
  * [google colab выборы в питере](https://habr.com/ru/post/475258)
 
+ * [Крутая база с промтами для Midjourney, Flux и других нейронок](https://prompthero.com/)
+ * https://t.me/chatsgpts_bot
+
 ## игра жизнь
 
  * http://www.marekfiser.com/Projects/Conways-Game-of-Life-on-GPU-using-CUDA

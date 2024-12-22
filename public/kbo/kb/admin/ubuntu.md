@@ -128,3 +128,71 @@ apt-get -u dselect-upgrade
 aptitude install foo=1.2-3 # Downgrade to 1.2-3 if you run a higher version
 
 ```
+
+## kvm libvirt
+
+ * https://ubuntu.com/server/docs/libvirt
+
+```bash
+apt-get install aptitude
+# настройка клавиатуры
+aptitude install gnome-tweaks mtr
+apt install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virtinst virt-manager
+usermod -aG libvirt $USER
+usermod -aG kvm $USER
+kvm-ok
+systemctl start libvirtd
+
+virsh list --all
+virsh start <guestname>
+
+virsh net-list --all
+virsh net-start default
+virsh net-autostart default
+
+virsh pool-define-as --name vmpool --type dir --target /var/lib/libvirt/images
+virsh pool-build vmpool
+virsh pool-start vmpool
+virsh pool-autostart vmpool
+
+
+virt-manager
+
+virt-convert -i vmdk source_vm.vmdk -o qcow2 destination_vm.qcow2
+virt-install --name imported-vm --ram 2048 --vcpus 2 --disk path=destination_vm.qcow2 --import --os-variant ubuntu20.04
+
+```
+
+### display
+
+ * выбрать x вместо wayland
+
+```bash
+xrandr
+
+gtf 2560 1440 60
+# 2560x1440 @ 60.00 Hz (GTF) hsync: 89.40 kHz; pclk: 311.83 MHz
+#Modeline "2560x1440_60.00"  311.83  2560 2744 3024 3488  1440 1441 1444 1490  -HSync +Vsync
+cvt 2560 1440
+# 2560x1440 59.96 Hz (CVT 3.69M9) hsync: 89.52 kHz; pclk: 312.25 MHz
+#Modeline "2560x1440_60.00"  312.25  2560 2752 3024 3488  1440 1443 1448 1493 -hsync +vsync
+
+xrandr --newmode "2560x1440_60.00"  312.25  2560 2752 3024 3488  1440 1443 1448 1493 -hsync +vsync
+xrandr --addmode HDMI-1 "2560x1440_60.00"
+xrandr --output HDMI-1 --mode 2560x1440_60.00 --scale 1x1
+
+```
+
+### network
+
+ * [bridge netplan dhcp](https://ubuntu.com/server/docs/configuring-networks#bridging-multiple-interfaces)
+ * https://wiki.libvirt.org/VirtualNetworking.html#routed-mode-example
+ * https://linuxconfig.org/how-to-use-bridged-networking-with-libvirt-and-kvm
+
+```bash
+virsh net-destroy default
+virsh net-start default
+virsh net-edit default
+
+
+```
