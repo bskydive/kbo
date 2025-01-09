@@ -7,6 +7,25 @@
  * [Русификация Ubuntu](http://help.ubuntu.ru/wiki/%D1%80%D1%83%D1%81%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_ubuntu)
  * [ssh-welcome](./ssh.md#ssh-welcome)
 
+## remote desktop
+
+ * https://askubuntu.com/questions/1513394/ubuntu-24-04-fresh-install-system-settings-freezes-when-going-system-remot
+
+```bash
+apt-get reinstall gnome-remote-desktop
+```
+
+ * freerdp3
+
+
+
+## dual boot
+
+ * [Как установить Ubuntu на отдельном диске с dual boot Windows](https://habr.com/ru/articles/760858/)
+	* ПКМ -> "Manage flags"--> убрать флаги boot+esp
+
+ * https://linuxconfig.org/how-to-install-ubuntu-alongside-windows-11-dual-boot
+
 ## grub
 
  * default startup menu timeout
@@ -16,6 +35,25 @@ mcedit /etc/default/grub
 #GRUB_TIMEOUT_STYLE=menu
 #GRUB_TIMEOUT=5
 update-grub
+```
+
+ * [grub recover](https://askubuntu.com/questions/1404859/can-not-boot-ubuntu-22-04-dual-boot-installation-no-grub-loader)
+
+```bash
+lsblk -f
+mcedit /etc/default/grub
+#GRUB_DISABLE_OS_PROBER=false
+update-grub
+
+#additional
+bcdedit /set {bootmgr} path \EFI\ubuntu\grubx64.efi
+```
+
+ * https://help.ubuntu.com/community/Boot-Repair
+
+```bash
+apt-get install boot-repair
+boot-repair
 ```
 
 ## recovery

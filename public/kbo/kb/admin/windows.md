@@ -47,6 +47,47 @@ https://support.office.com/en-us/article/Turn-off-or-uninstall-OneDrive-f32a17ce
 	* ![](./windows/win_compat_telemetry.png)
 	* C:\Windows\System32\CompatTelRunner.exe
 
+## windows 11
+
+### set up Win11 without a network connection
+
+Bypass Out-of-the-Box-Experience (OOBE) Internet Requirement
+
+    In the "Let's connect you to a network" screen, press Shift+F10 to launch cmd;
+    Type the following command: OOBE\BYPASSNRO
+    After successful execution, the system will restart and restart the OOBE session box, when you reach the "Let's connect you to a network" screen, click "I don't have Internet", continue to click "limited setup", accept the license agreement and continue to create a local user account.
+
+### fix mbr
+
+ * https://learn.microsoft.com/en-gb/answers/questions/1179311/windows-11-setup-without-internet#
+ * 
+
+```bash
+diskpart
+list disk
+select disk 0
+list partition
+select partition 1
+# boot files of Windows
+format
+assign letter=a:
+#WIndows partition
+select partition 3
+asssign letter=c:
+exit
+bootsect /nt60 all /force
+#? bootsect /nt60 a:
+#This just updates all the target volumes to be compatible with the bootloader.
+c:
+bcdboot c:\windows /s a: /f all
+bootrec /scanos
+bootrec /fixmbr
+bootrec /fixboot
+#this can give you a pemission denied error. Just skip this step if you have that error and continue with the next command. It still worked for me.
+bootrec /rebuildbcd
+
+```
+
 ## windows 10
 
  * http://www.intowindows.com/how-to-enable-windows-photo-viewer-in-windows-10/

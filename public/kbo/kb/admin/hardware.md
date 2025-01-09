@@ -63,6 +63,11 @@ https://github.com/hsoft/collapseos
 	* https://termux.com/
 	* https://www.urbackup.org/download.html
 
+## планшеты
+
+ * https://www.devicespecifications.com/en/
+ * https://www.gsmarena.com/compare.php3?idPhone1=13071&idPhone2=5677
+
 ## ноутбуки
 
  * полная клавиатура
