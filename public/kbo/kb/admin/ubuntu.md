@@ -83,6 +83,52 @@ systemctl start atd
 
 ```
 
+## audio sound
+
+ * https://itsfoss.com/sound-switcher-indicator-ubuntu/
+
+## rdp
+
+ * https://itsfoss.community/t/what-is-the-correct-configuration-for-remmina-to-receive-produce-audio-from-the-source/11709
+	* advanced --> audio --> local|sys:alsa
+ * https://askubuntu.com/questions/1515538/fixing-no-sound-dummy-output-issue-in-ubuntu-24-04
+
+
+
+## network
+
+```
+sudo hostnamectl set-hostname linuxconfig
+```
+
+ * https://askubuntu.com/questions/1355066/i-want-my-network-connections-immutable-instead-of-getting-system-policy-preve
+ * https://www.reddit.com/r/Kubuntu/comments/1d067in/2404_system_policy_prevents_control_of_network/
+ 	* The /etc/polkit-1/localauthority/50-local.d directory is provided by the polkitd-pkla package
+
+## lang switch
+
+ * install gnome-tweaks
+ * https://askubuntu.com/questions/10223/display-current-layout-language-code-country-flag-in-keyboard-indicator
+
+## widgets
+
+```
+aptitude install extension-manager
+# dash-to-panel
+# dash-to-dock
+# just perfection
+# resource monitor
+# vitals
+# removable drive menu
+```
+
+## sound
+
+```
+aptitude install pavucontrol paprefs pulseaudio
+aptitude install alsa-tools-gui
+```
+
 ## timezone
 
  * [](./centos.md#localtime)
