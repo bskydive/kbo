@@ -93,7 +93,14 @@ systemctl start atd
 	* advanced --> audio --> local|sys:alsa
  * https://askubuntu.com/questions/1515538/fixing-no-sound-dummy-output-issue-in-ubuntu-24-04
 
+ * https://ubuntuforums.org/showthread.php?t=2398526
 
+```bash
+/etc/systemd/logind.conf
+HandleLidSwitch=ignore     # Was suspend
+IdleAction=ignore    # Was commented out... I know it says it's a default, but I wanted to be sure it was being set properly
+IdleActionSec=30min    # Was commented out. Not sure if it's required when the above is uncommented.
+```
 
 ## network
 
