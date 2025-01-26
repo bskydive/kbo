@@ -18,10 +18,24 @@
 ## оптимизация
 
  * [Алексей Шипилёв об оптимизации в крупных проектах](https://habr.com/company/jugru/blog/338732/)
- * java high dpi -Dsun.java2d.uiScale=2
 
 ## компиляторы
 
+ * java high dpi
+```bash
+java -Dsun.java2d.uiScale=2.5 -jar ~/jars/NearInfinity.jar
+export GDK_SCALE=2
+-Dsun.java2d.dpiaware=false
+export _JAVA_OPTIONS="-Dswing.systemlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.aatext=true -Dawt.useSystemAAFontSettings=on $_JAVA_OPTIONS"
+#
+     -Djogamp.gluegen.UseTempJarCache=false \
+     -Dcom.eteks.sweethome3d.applicationId=SweetHome3D#Installer \
+     -Dcom.eteks.sweethome3d.resolutionScale=2 \
+     -Dswing.defaultlaf=javax.swing.plaf.metal.MetalLookAndFeel \
+     -Dswing.plaf.metal.controlFont=Dialog-11 \
+     -Dswing.plaf.metal.userFont=SansSerif-11 \
+     -Dswing.plaf.metal.systemFont=SansSerif-11 \
+```
  *  jlink из JDK9 должна была сканировать твои либы из проекта и собирать кастомный Java Runtime
 	* https://openjdk.org/jeps/220
  * jlink is a tool that generates a custom Java runtime image that contains only the platform modules that are required for a given application
