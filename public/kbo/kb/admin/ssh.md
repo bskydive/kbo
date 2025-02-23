@@ -14,9 +14,9 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub user@0.0.0.0
 ```
 
  * проброс портов
- 	* from local to remote `ssh -L LOCAL_PORT:localhost:REMOTE_PORT REMOTE_USER@REMOTE_HOST`
-	* from remote to local `ssh -R REMOTE_PORT:localhost:LOCAL_PORT REMOTE_USER@REMOTE_HOST`
-	* `ssh -fNL`
+ 	* from local to remote `ssh -gL LOCAL_PORT:localhost:REMOTE_PORT REMOTE_USER@REMOTE_HOST`
+	* from remote to local `ssh -gR REMOTE_PORT:localhost:LOCAL_PORT REMOTE_USER@REMOTE_HOST`
+	* `ssh -gfNL`
  *
 
 ## ssh git

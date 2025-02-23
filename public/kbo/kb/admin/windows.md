@@ -60,7 +60,7 @@ Bypass Out-of-the-Box-Experience (OOBE) Internet Requirement
 ### fix mbr
 
  * https://learn.microsoft.com/en-gb/answers/questions/1179311/windows-11-setup-without-internet#
- * 
+ *
 
 ```bash
 diskpart
@@ -128,6 +128,14 @@ bootrec /rebuildbcd
 	Note, Windows Setup automatically installs from this file, so long as you name it install.swm.
  ```
  *
+
+### win 11 keys
+
+ * https://github.com/massgravel/Microsoft-Activation-Scripts
+
+```shell
+irm https://get.activated.win | iex
+```
 
 ### переключение языка ввода
 

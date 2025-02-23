@@ -1,5 +1,9 @@
 # vmware
 
+ * https://www.techspot.com/downloads/189-vmware-workstation-for-windows.html
+ * [страница выбора продукта workstation](https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Workstation%20Pro)
+ * [страница загрузки 17.6.1](https://support.broadcom.com/group/ecx/productfiles?subFamily=VMware%20Workstation%20Pro&displayGroup=VMware%20Workstation%20Pro%2017.0%20for%20Linux&release=17.6.1&os=&servicePk=524584&language=EN) - можно выбрать версию
+ * [загрузка файла 17.6.2](https://downloads2.broadcom.com/?file=VMware-Workstation-Full-17.6.2-24409262.x86_64.bundle&oid=35597126&id=NVBT9EDOfBPY8f6wD1XebMkbYeM3Cns4PTr_r8ePFI0DpBOQ_zhyRUjZmimiGQ==&verify=1738084366-AxZHYYlsz53539c%2FM1KvJuLozOuMSk023kD82wWApgE%3D)
 
  * https://support.broadcom.com/group/ecx/productfiles?subFamily=VMware%20Workstation%20Pro&displayGroup=VMware%20Workstation%20Pro%2017.0%20for%20Linux&release=17.6.1&os=&servicePk=524584&language=EN
  SHA256 7b539aafa8251e7af3b49dc12a299b127938ef0355d3de68f616ceac3e59e016
@@ -33,6 +37,15 @@ The following 10 NEW packages are going to be installed:
   libvorbis0-32bit libvorbisenc2-32bit libwrap0-32bit
 
 ```
+
+## ubuntu
+
+```bash
+ sudo apt-get install build-essential linux-headers-$(uname -r)
+ sudo ln -s /usr/src/linux-headers-$(uname -r)/include/generated/uapi/linux/version.h /usr/src/linux-headers-$(uname -r)/include/linux/version.h
+```
+
+
 
 ## workstation 12
 
@@ -153,6 +166,94 @@ vmware-mount -L
 
 ```
 
+### vmware startup opensuse
+
+ * после обновления ядра необходимо обновлять ключи UEFI
+ * выключить secureboot или добавить хэши в uefi
+ * пропатчить модули скриптом
+ * выключить chkconfig скрипты, они не запускаются
+ * добавить systemd скрипт
+ * https://www.freedesktop.org/software/systemd/man/latest/systemd.service.html
+
+```conf
+[Unit]
+Description=VMWare workstation modules
+After=multi-user.target
+
+[Service]
+Type=exec
+RemainAfterExit=yes
+
+ExecStart=/etc/init.d/vmware start
+ExecStartPost=/etc/init.d/vmware-USBArbitrator start
+
+ExecStop=/etc/init.d/vmware-USBArbitrator stop
+ExecStopPost=/bin/bash /etc/init.d/vmware stop
+
+
+[Install]
+WantedBy=multi-user.target
+
+
+```
+
+
+```bash
+cat > /usr/lib/systemd/systemd-sysv-install
+#!/bin/bash
+echo "systemd-sysv-install deprecated"
+
+cp /mnt/ssd480_2_data/distr/vmware/vmware.service /etc/systemd/system/
+systemctl daemon-reload
+
+
+chkconfig vmware-USBArbitrator off
+chkconfig vmware off
+#Synchronizing state of vmware.service with SysV service script with /usr/lib/systemd/systemd-sysv-install.
+#Executing: /usr/lib/systemd/systemd-sysv-install disable vmware
+#Failed to execute /usr/lib/systemd/systemd-sysv-install: No such file or directory
+
+
+
+
+
+#####
+
+
+/etc/init.d/vmware status
+/etc/init.d/vmware-USBArbitrator status
+
+/etc/rc.d/vmware --help
+/etc/rc.d/vmware-USBArbitrator --help
+
+vmwareLoadModule vmmon
+vmwareLoadModule vmnet "$BINDIR"/vmware-networks --start
+
+vmware_exec 'Virtual machine monitor' vmwareStartVmmon
+vmware_exec 'Virtual machine communication interface' vmwareProbeVmci
+vmware_exec 'VM communication interface socket family' vmwareProbeVsock
+vmware_exec 'Blocking file system' vmware_start_vmblock
+/sbin/modprobe parport_pc
+vmware_exec 'Virtual ethernet' vmwareStartVmnet
+vmware_exec 'VMware Authentication Daemon' vmware_start_authdlauncher
+vmware_exec "Shared Memory Available"  vmwareCheckSharedMemory
+
+vmware_exec 'VMware USB Arbitrator' vmwareStartUSBArbitrator
+
+
+
+less /etc/vmware/config
+
+
+libdir = "/usr/lib/vmware"
+bindir = "/usr/bin"
+initdir = "/etc/init.d"
+initscriptdir = "/etc/init.d"
+gksu.rootMethod = "su"
+NETWORKING = "yes"
+authd.fullpath = "/usr/sbin/vmware-authd"
+```
+
 ### kernel modules
 
 * https://thelinuxforum.com/articles/969-how-to-compile-the-vmware-workstation-pro-kernel-modules-on-ubuntu-debian
@@ -161,15 +262,95 @@ vmware-mount -L
 sudo vmware-modconfig --console --install-all
 ```
 
+* https://github.com/bytium/vm-host-modules/
+```bash
+git clone https://github.com/bytium/vm-host-modules.git
+cd vm-host-modules
+git checkout 17.6.x
+make clean && make && make install && echo okokok
+
+#This command will:
+#
+#    Compile the patched vmmon and vmnet modules.
+#    Create vmmon.tar and vmnet.tar files.
+#    Copy the compiled .ko (kernel object) files to /lib/modules/$(uname -r)/misc/.
+#    Copy the generated vmmon.tar and vmnet.tar to /usr/lib/vmware/modules/source/.
+#    Run vmware-modconfig --console --install-all to rebuild and configure VMware with the new patched modules.
+vmware-modconfig --console --install-all
+
+```
+* https://community.broadcom.com/vmware-cloud-foundation/discussion/workstation-pro-1752-1760-fail-to-install-virtual-machine-monitor-virtual-ethernet-fail-to-start-kde-neon
+* [[SOLVED] VMWare Workstation Pro 16.1.2 - Unable to recompile vmmon/vmnet since OpenSuSE Kern. 5.12.4 ](https://community.broadcom.com/vmware-cloud-foundation/communities/community-home/digestviewer/viewthread?MessageKey=733d41bc-dbc3-4d2a-9dd5-7bfd1605a02d&)CommunityKey=fb707ac3-9412-4fad-b7af-018f5da56d9f
 * [VMWare Workstation 15.5.1 on Kernel Linux 5.4.6 : fail to compile vmci-only](https://communities.vmware.com/thread/623768)
+ * [How to fix VMWare Could not open /dev/vmmon](https://stackoverflow.com/questions/53058681/vmware-on-linux-could-not-open-dev-vmmon)
+ * https://github.com/codiobert/vmware-vmmon-fix/tree/main
+ * https://www.linuxquestions.org/questions/slackware-14/vmware-modules-build-broken-w-kernel-6-9-a-4175737459/
 
 ```bash
-	git clone https://github.com/mkubecek/vmware-host-modules.git
-	cd vmware-host-modules
-	git checkout workstation-15.5.1
-	make
-	make install
-	After the installation, I ran this command : /etc/init.d/vmware start
+#!/bin/bash
+
+MOK_PRIV=vmware-mok.priv
+MOK_DER=vmware-mok.der
+
+if [ "$EUID" -ne 0 ]
+    then echo "Please run this script as root"
+    exit
+fi
+
+echo
+echo "Generate and sign $MOK_PRIV and $MOK_DER files"
+openssl req -new -x509 -newkey rsa:2048 -keyout ~/$MOK_PRIV -outform DER -out ~/$MOK_DER -nodes -days 36500 -subj "/CN=VMware/" &&\
+# ubuntu
+# /usr/src/linux-headers-`uname -r`/scripts/sign-file sha256 ~/$MOK_PRIV ~/$MOK_DER $(modinfo -n vmmon) &&\
+# /usr/src/linux-headers-`uname -r`/scripts/sign-file sha256 ~/$MOK_PRIV ~/$MOK_DER $(modinfo -n vmnet) || exit 1
+# opensuse
+/lib/modules/$(uname -r)/build/scripts/sign-file sha256 ~/$MOK_PRIV ~/$MOK_DER $(modinfo -n vmmon) &&\
+/lib/modules/$(uname -r)/build/scripts/sign-file sha256 ~/$MOK_PRIV ~/$MOK_DER $(modinfo -n vmnet) || exit 1
+#modprobe vmmon
+#modprobe vmnet
+#modprobe vmw_vsock_vmci_transport
+#modprobe vmw_vmci
+#tail $(modinfo vmmon) | grep "Module signature appended"
+
+echo
+echo "Please set a password (BIOS will ask you for this password when the computer is rebooted to apply the key)"
+mokutil --import ~/$MOK_DER
+
+cp ~/$MOK_DER ./
+cp ~/$MOK_PRIV ./
+
+echo
+echo "### IMPORTANT: Reboot your computer and follow BIOS instructions to finish the installation ###"
+echo
+
+```
+
+```bash
+openssl req -new -x509 -newkey rsa:2048 -keyout MOK.priv -outform DER -out MOK.der -nodes -days 36500 -subj "/CN=VMware/"
+/usr/src/linux-headers-`uname -r`/scripts/sign-file sha256 ./MOK.priv ./MOK.der $(modinfo -n vmmon)
+
+/usr/src/linux-6.4.0-150600.23.33-obj/x86_64/default/scripts/sign-file sha256 ./MOK.priv ./MOK.der $(modinfo -n vmmon)
+/usr/src/linux-6.4.0-150600.23.33-obj/x86_64/default/scripts/sign-file sha256 ./MOK.priv ./MOK.der $(modinfo -n vmnet)
+
+mokutil --import MOK.der
+modinfo vmmon
+mokutil --sb-state
+
+update-secureboot-policy --enroll-key
+efibootmgr -v
+od -An -t u1 /sys/firmware/efi/efivars/od -An -t u1 /sys/firmware/efi/efivars/SecureBoot-8be4df61-93ca-11d2-aa0d-00e098032b8c/data
+od -An -t u1 /sys/firmware/efi/efivars/od -An -t u1 /sys/firmware/efi/efivars/SecureBootSetup-7b59104a-c00d-4158-87ff-f04d6396a915/data
+mokutil --list-new
+
+mokutil --import /mnt/ssd480_2_data/distr/vmware/MOK.der
+depmod
+reboot
+zypper search uefi
+zypper in UEFITool
+mokutil --list-enrolled
+mokutil --export
+mokutil --delete ./MOK-0002.der
+mokutil --delete ./MOK-0003.der
 ```
 
 ### зависания
