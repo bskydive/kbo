@@ -133,6 +133,8 @@ bootrec /rebuildbcd
 
  * https://github.com/massgravel/Microsoft-Activation-Scripts
 
+
+
 ```shell
 irm https://get.activated.win | iex
 ```
