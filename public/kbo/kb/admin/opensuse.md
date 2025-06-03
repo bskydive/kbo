@@ -1367,8 +1367,13 @@ x11uselocalhost no
  	* проверенные пакеты https://github.com/vinifmor/bauh-files/blob/master/appimage/apps.txt
  * https://en.opensuse.org/images/1/17/Zypper-cheat-sheet-1.pdf
  * gcc++33 gcc++5 `https://download.opensuse.org/repositories/devel:/gcc/openSUSE_Leap_15.3/`
- * multimedia codecs https://opensuse-guide.org/codecs.php
+
+### multimedia codecs
+
+ * https://opensuse-guide.org/codecs.php
  * https://github.com/cb400f/opensuse-guide.org/blob/master/codecs.php
+
+ * https://en.opensuse.org/SDB:Installing_codecs_from_Packman_repositories
  * 15.3
 
     ```bash
