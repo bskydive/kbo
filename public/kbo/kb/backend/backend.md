@@ -26,6 +26,7 @@ https://habrahabr.ru/post/276731/
  * https://proglib.io/p/7-besplatnyh-api-o-kotoryh-nikto-ne-govorit-2020-12-07
  * https://medium.com/javascript-in-plain-english/7-free-apis-that-nobody-is-talking-about-cf974e15917
  * https://github.com/public-apis/public-apis
+ * ![train-travel.yaml](../../files/train-travel.yaml)
 
 ### REST API
 

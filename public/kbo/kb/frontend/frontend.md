@@ -388,6 +388,7 @@ http://glivera-team.github.io/svg/2016/06/13/svg-sprites-2.html
  * [UI редактор апи](https://stoplight.io/studio/)
  * [swagger](https://github.com/wcandillon/swagger-js-codegen)
  * [A list of awesome projects related to OpenAPI 3.0.x](https://apis.guru/awesome-openapi3/category.html)
+ * ![train-travel.yaml](../../files/train-travel.yaml)
  * конвертеры
 	* [Build OpenAPI3.0 specification from HAR - OBSOLETE](https://github.com/anbuksv/avantation)
 	* https://tools.openapis.org/categories/converters.html
