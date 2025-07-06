@@ -1373,6 +1373,15 @@ x11uselocalhost no
  * https://opensuse-guide.org/codecs.php
  * https://github.com/cb400f/opensuse-guide.org/blob/master/codecs.php
 
+
+ * 15.6
+ ```
+ zypper install opi
+opi codecs
+
+zypper in --allow-vendor-change --from packman libopenh264-7 mozilla-openh264 gstreamer-plugin-openh264 dav1d gstreamer-plugins-good-extra libfdk-aac2
+
+ ```
  * https://en.opensuse.org/SDB:Installing_codecs_from_Packman_repositories
  * 15.3
 

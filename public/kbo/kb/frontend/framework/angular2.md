@@ -1900,13 +1900,18 @@ const httpOptions = {
 
 ### цвета color
 
- * необходимо вручную сгенерировать набор фон-текст для нормальной читаемости, есть [генератор контрастов](http://mcg.mbitson.com/)
-    материал не умеет делать это автоматом
- * далее делаем тему на основе сгенерированной палитры(primary/secondary/accent) [полное руководство](https://blog.thoughtram.io/angular/2017/05/23/custom-themes-with-angular-material.html)
-    и присваиваем на все стили [вручную из переменных палитры](https://stackoverflow.com/questions/47497743/how-to-create-a-custom-color-theme-with-angular5-and-angular-materials)
- * [наставление](https://material.io/design/color/the-color-system.html#color-usage-palettes)
- * [очень ограниченный инструмент для просмотра сгенерированных тем](https://material.io/tools/color/)
- * [подробнее про расширенный набор из 12 категорий цвета](https://material.io/design/material-theming/implementing-your-theme.html)
+ * [наставление v2](https://material.io/design/color/the-color-system.html#color-usage-palettes)
+	* [подробнее про расширенный набор из 12 категорий цвета](https://material.io/design/material-theming/implementing-your-theme.html)
+ * [наставление v3](https://m3.material.io/styles/color/system/overview)
+ * [теория цветов](https://colorandcontrast.com/#/)
+ * [material UI color tool](https://mui.com/material-ui/customization/color/)
+ * https://coolors.co/colors
+
+ * старые ссылки, нужно проверять
+	* необходимо вручную сгенерировать набор фон-текст для нормальной читаемости, есть генератор контрастов материал не умеет делать это автоматом
+		* [старый](https://github.com/mbitson/mcg)
+	* далее делаем тему на основе сгенерированной палитры(primary/secondary/accent) [полное руководство](https://blog.thoughtram.io/angular/2017/05/23/custom-themes-with-angular-material.html) и присваиваем на все стили [вручную из переменных палитры](https://stackoverflow.com/questions/47497743/how-to-create-a-custom-color-theme-with-angular5-and-angular-materials)
+	* инструмент для просмотра сгенерированных тем
 
 ### типографика шрифты font
 

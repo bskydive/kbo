@@ -53,7 +53,7 @@ https://habrahabr.ru/post/276731/
 
 ##  DB Хранение данных
 
-https://habrahabr.ru/company/badoo/blog/342564/
+ * [CubeDB: минималистичное хранилище счётчиков с многомерными ключами](https://habrahabr.ru/company/badoo/blog/342564/)
 
 ## Поиск
 
