@@ -34,10 +34,10 @@
 
 Для улучшения взаимопонимания в команде и экономии времени на поиск.
 Зачастую люди не понимают смысла английских слов, или не знают перевода русских.
- * [словарик 1](https://github.com/web-standards-ru/dictionary/blob/master/dictionary.md)
- * [словарик 2](http://www.paratype.ru/help/term/)
+ * [англо-русский словарик веб-разработчика](https://github.com/web-standards-ru/dictionary/blob/master/dictionary.md)
+ * [словарик типографических терминов](https://info.paratype.ru/glossary/)
  * [контекстный словарь](https://context.reverso.net/translation/english-russian/)
- * [словарь](https://multitran.org)
+ * [онлайн словарь multitran](https://www.multitran.com/)
  * [национальный корпус русского языка](https://ruscorpora.ru/new/search-para-en.html)
 
 
