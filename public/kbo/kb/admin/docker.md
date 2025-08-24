@@ -292,6 +292,8 @@ docker container cp zabbix-zabbix-server-pgsql-1:/etc/zabbix/zabbix_server.conf 
 	"block-registry": ["docker.io"],
 	"insecure-registries" : [ "hostname.cloudapp.net:5000" ]
 }
+
+dockerd --validate --config-file=/etc/docker/daemon.json 
 ```
  * https://stackoverflow.com/questions/33054369/how-to-change-the-default-docker-registry-from-docker-io-to-my-private-registry
  *
