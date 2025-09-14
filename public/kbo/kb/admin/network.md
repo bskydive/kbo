@@ -210,6 +210,7 @@ ping добавляет 28 бит!
 	firewall-cmd --zone=public --add-port=443/udp
 	firewall-cmd --runtime-to-permanent
 	firewall-cmd --zone=public --list-ports
+	firewall-cmd --zone=public --list-all-zones
 
 ```
 
