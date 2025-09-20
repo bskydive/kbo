@@ -115,6 +115,7 @@
 
  * [Крутая база с промтами для Midjourney, Flux и других нейронок](https://prompthero.com/)
  * https://t.me/chatsgpts_bot
+ * [визуализация LLM моделирование](https://bbycroft.net/llm)
 
 ## игра жизнь
 
