@@ -51,6 +51,8 @@ https://support.office.com/en-us/article/Turn-off-or-uninstall-OneDrive-f32a17ce
 
 ### set up Win11 without a network connection
 
+`start ms-cxh:localonly`
+
 Bypass Out-of-the-Box-Experience (OOBE) Internet Requirement
 
     In the "Let's connect you to a network" screen, press Shift+F10 to launch cmd;
