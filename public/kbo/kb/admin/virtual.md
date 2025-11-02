@@ -4,6 +4,31 @@
 
 * [удалённая консоль kvm over ip](https://habr.com/ru/company/selectel/blog/464565)
 
+### сжатие диска qemu-kvm qcov2
+
+* Backup: Create a backup of your qcow2 image before proceeding.
+* Zero free space Inside the guest OS
+	On Windows: `sdelete -z c:`
+	On Linux: If virtio-scsi is enabled with discard support, use the `fstrim`
+* Shrink the qcow2 file
+	* Method 1: qemu-img convert
+		* `qemu-img convert -O qcow2 -c old_disk.qcow2 new_disk.qcow2`
+		* -O qcow2: Specifies the output format.
+		* -c: Creates a compressed file, which can result in a smaller size.
+	* Method 2: qemu-img resize
+		* `qemu-img resize old_disk.qcow2 --shrink -1500G`
+		* --shrink: This option tells qemu-img to shrink the image.
+		* -1500G: Specifies the new desired size in gigabytes.
+* Fix the GPT table (if necessary)
+	* `sudo sgdisk -e /dev/sda`
+
+### драйвер видео win11
+
+https://pve.proxmox.com/wiki/Windows_11_guest_best_practices
+https://pve.proxmox.com/wiki/Windows_VirtIO_Drivers
+https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso
+https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/virtio-win-0.1.285-1/
+
 
 ## VirtualBox
 

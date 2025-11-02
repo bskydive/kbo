@@ -1,0 +1,375 @@
+{
+ "replacerules.rules": {
+    "Normalize em-dash/en-dash to hyphen": {
+      "find": "[\\u2013\\u2014]",
+      "replace": "-",
+      "flags": "gu"
+    },
+    "Normalize curly quotes to straight": {
+      "find": "[\\u201C\\u201D]",
+      "replace": "\"",
+      "flags": "gu"
+    },
+    "Normalize apostrophe": {
+      "find": "[\\u2019]",
+      "replace": "'",
+      "flags": "gu"
+    },
+
+    // --- Emoji & Icons (comprehensive) ---
+    "Drop icons: Dingbats (U+2700-U+27BF)": {
+      "find": "[\\u2700-\\u27BF]",
+      "replace": "",
+      "flags": "gu"
+    },
+    "Drop icons: Misc Symbols (U+2600-U+26FF)": {
+      "find": "[\\u2600-\\u26FF]",
+      "replace": "",
+      "flags": "gu"
+    },
+    "Drop icons: Enclosed/CJK symbols (U+1F200-U+1F2FF)": {
+      "find": "[\\u{1F200}-\\u{1F2FF}]",
+      "replace": "",
+      "flags": "gu"
+    },
+    "Drop icons: Emoticons (U+1F600-U+1F64F)": {
+      "find": "[\\u{1F600}-\\u{1F64F}]",
+      "replace": "",
+      "flags": "gu"
+    },
+    "Drop icons: Misc & Supplemental & Extended-A Pictographs (U+1F300-U+1FAFF)": {
+      "find": "[\\u{1F300}-\\u{1FAFF}]",
+      "replace": "",
+      "flags": "gu"
+    },
+    "Drop icons: Regional Indicator Symbols (flags, U+1F1E6-U+1F1FF)": {
+      "find": "[\\u{1F1E6}-\\u{1F1FF}]",
+      "replace": "",
+      "flags": "gu"
+    },
+    "Drop icons: Mahjong/Domino (U+1F000-U+1F02F)": {
+      "find": "[\\u{1F000}-\\u{1F02F}]",
+      "replace": "",
+      "flags": "gu"
+    },
+    "Drop icons: Playing Cards (U+1F0A0-U+1F0FF)": {
+      "find": "[\\u{1F0A0}-\\u{1F0FF}]",
+      "replace": "",
+      "flags": "gu"
+    },
+
+    // --- Emoji components (sequences) ---
+    "Drop Emoji Variation Selector-16 (U+FE0F)": {
+      "find": "[\\uFE0F]",
+      "replace": "",
+      "flags": "gu"
+    },
+    "Drop Emoji Skin Tone Modifiers (U+1F3FB-U+1F3FF)": {
+      "find": "[\\u{1F3FB}-\\u{1F3FF}]",
+      "replace": "",
+      "flags": "gu"
+    },
+    "Drop Keycap combining (U+20E3)": {
+      "find": "[\\u20E3]",
+      "replace": "",
+      "flags": "gu"
+    },
+    "Drop Emoji Tag characters (U+E0020-U+E007F incl. CANCEL TAG)": {
+      "find": "[\\u{E0020}-\\u{E007F}]",
+      "replace": "",
+      "flags": "gu"
+    },
+
+    // --- Collapse section dividers like: " \n---" -> "\n"
+    "Collapse ' \\n---' to single newline": {
+      "find": "(?:\\s*\\n---+)",
+      "replace": "\n",
+      "flags": "gu"
+    },
+
+    // --- Invisible and control symbols ---
+    "Remove ZERO WIDTH SPACE (U+200B)": {
+      "find": "[\\u200B]",
+      "replace": "",
+      "flags": "gu"
+    },
+    "Remove ZERO WIDTH NON-JOINER (U+200C)": {
+      "find": "[\\u200C]",
+      "replace": "",
+      "flags": "gu"
+    },
+    "Remove ZERO WIDTH JOINER (U+200D)": {
+      "find": "[\\u200D]",
+      "replace": "",
+      "flags": "gu"
+    },
+    "Remove LEFT-TO-RIGHT MARK (U+200E)": {
+      "find": "[\\u200E]",
+      "replace": "",
+      "flags": "gu"
+    },
+    "Remove RIGHT-TO-LEFT MARK (U+200F)": {
+      "find": "[\\u200F]",
+      "replace": "",
+      "flags": "gu"
+    },
+    "Remove WORD JOINER (U+2060)": {
+      "find": "[\\u2060]",
+      "replace": "",
+      "flags": "gu"
+    },
+    "Remove INVISIBLE FORMAT chars (U+2061-U+206F)": {
+      "find": "[\\u2061-\\u206F]",
+      "replace": "",
+      "flags": "gu"
+    },
+    "Remove BYTE ORDER MARK (U+FEFF)": {
+      "find": "[\\uFEFF]",
+      "replace": "",
+      "flags": "gu"
+    },
+
+    // --- Non-breaking and exotic spaces -> replace with normal space ---
+    "Replace NO-BREAK SPACE (U+00A0)": {
+      "find": "[\\u00A0]",
+      "replace": " ",
+      "flags": "gu"
+    },
+    "Replace NARROW NO-BREAK SPACE (U+202F)": {
+      "find": "[\\u202F]",
+      "replace": " ",
+      "flags": "gu"
+    },
+    "Replace THIN SPACE (U+2009)": {
+      "find": "[\\u2009]",
+      "replace": " ",
+      "flags": "gu"
+    },
+    "Replace EN/EM/FIGURE SPACE (U+2000-U+200A)": {
+      "find": "[\\u2000-\\u200A]",
+      "replace": " ",
+      "flags": "gu"
+    },
+    "Replace IDEOGRAPHIC SPACE (U+3000)": {
+      "find": "[\\u3000]",
+      "replace": " ",
+      "flags": "gu"
+    },
+
+    // --- Optional cleanup for uncommon separators ---
+    "Remove General Punctuation (U+2028-U+202E)": {
+      "find": "[\\u2028-\\u202E]",
+      "replace": "",
+      "flags": "gu"
+    },
+
+    // ===== AUDIT: Emoji & Icons =====
+    "AUDIT: Misc Symbols (U+2600-U+26FF)": {
+      "find": "[\\u2600-\\u26FF]",
+      "replace": "⟦$&⟧",
+      "flags": "gu"
+    },
+    "AUDIT: Dingbats (U+2700-U+27BF)": {
+      "find": "[\\u2700-\\u27BF]",
+      "replace": "⟦$&⟧",
+      "flags": "gu"
+    },
+    "AUDIT: Enclosed/CJK symbols (U+1F200-U+1F2FF)": {
+      "find": "[\\u{1F200}-\\u{1F2FF}]",
+      "replace": "⟦$&⟧",
+      "flags": "gu"
+    },
+    "AUDIT: Emoticons (U+1F600-U+1F64F)": {
+      "find": "[\\u{1F600}-\\u{1F64F}]",
+      "replace": "⟦$&⟧",
+      "flags": "gu"
+    },
+    "AUDIT: Pictographs (U+1F300-U+1FAFF)": {
+      "find": "[\\u{1F300}-\\u{1FAFF}]",
+      "replace": "⟦$&⟧",
+      "flags": "gu"
+    },
+    "AUDIT: Regional Indicators (flags, U+1F1E6-U+1F1FF)": {
+      "find": "[\\u{1F1E6}-\\u{1F1FF}]",
+      "replace": "⟦$&⟧",
+      "flags": "gu"
+    },
+    "AUDIT: Mahjong/Domino (U+1F000-U+1F02F)": {
+      "find": "[\\u{1F000}-\\u{1F02F}]",
+      "replace": "⟦$&⟧",
+      "flags": "gu"
+    },
+    "AUDIT: Playing Cards (U+1F0A0-U+1F0FF)": {
+      "find": "[\\u{1F0A0}-\\u{1F0FF}]",
+      "replace": "⟦$&⟧",
+      "flags": "gu"
+    },
+
+    // ===== AUDIT: Emoji components (sequences) =====
+    "AUDIT: Variation Selector-16 (U+FE0F)": {
+      "find": "[\\uFE0F]",
+      "replace": "⟦VS16⟧",
+      "flags": "gu"
+    },
+    "AUDIT: Skin Tone Modifiers (U+1F3FB-U+1F3FF)": {
+      "find": "[\\u{1F3FB}-\\u{1F3FF}]",
+      "replace": "⟦SKIN⟧",
+      "flags": "gu"
+    },
+    "AUDIT: Keycap combining (U+20E3)": {
+      "find": "[\\u20E3]",
+      "replace": "⟦KEYCAP⟧",
+      "flags": "gu"
+    },
+    "AUDIT: Emoji Tags (U+E0020-U+E007F)": {
+      "find": "[\\u{E0020}-\\u{E007F}]",
+      "replace": "⟦TAG⟧",
+      "flags": "gu"
+    },
+
+    // ===== AUDIT: Invisible & control =====
+    "AUDIT: ZERO WIDTH SPACE (U+200B)": {
+      "find": "[\\u200B]",
+      "replace": "⟦ZWSP⟧",
+      "flags": "gu"
+    },
+    "AUDIT: ZERO WIDTH NON-JOINER (U+200C)": {
+      "find": "[\\u200C]",
+      "replace": "⟦ZWNJ⟧",
+      "flags": "gu"
+    },
+    "AUDIT: ZERO WIDTH JOINER (U+200D)": {
+      "find": "[\\u200D]",
+      "replace": "⟦ZWJ⟧",
+      "flags": "gu"
+    },
+    "AUDIT: LEFT-TO-RIGHT MARK (U+200E)": {
+      "find": "[\\u200E]",
+      "replace": "⟦LRM⟧",
+      "flags": "gu"
+    },
+    "AUDIT: RIGHT-TO-LEFT MARK (U+200F)": {
+      "find": "[\\u200F]",
+      "replace": "⟦RLM⟧",
+      "flags": "gu"
+    },
+    "AUDIT: WORD JOINER (U+2060)": {
+      "find": "[\\u2060]",
+      "replace": "⟦WJ⟧",
+      "flags": "gu"
+    },
+    "AUDIT: INVISIBLE FORMAT (U+2061-U+206F)": {
+      "find": "[\\u2061-\\u206F]",
+      "replace": "⟦U206x⟧",
+      "flags": "gu"
+    },
+    "AUDIT: BYTE ORDER MARK (U+FEFF)": {
+      "find": "[\\uFEFF]",
+      "replace": "⟦BOM⟧",
+      "flags": "gu"
+    },
+
+    // ===== AUDIT: Non-breaking & exotic spaces =====
+    "AUDIT: NO-BREAK SPACE (U+00A0)": {
+      "find": "[\\u00A0]",
+      "replace": "⟦NBSP⟧",
+      "flags": "gu"
+    },
+    "AUDIT: NARROW NO-BREAK SPACE (U+202F)": {
+      "find": "[\\u202F]",
+      "replace": "⟦NNBSP⟧",
+      "flags": "gu"
+    },
+    "AUDIT: THIN SPACE (U+2009)": {
+      "find": "[\\u2009]",
+      "replace": "⟦THIN⟧",
+      "flags": "gu"
+    },
+    "AUDIT: EN/EM/FIGURE SPACE (U+2000-U+200A)": {
+      "find": "[\\u2000-\\u200A]",
+      "replace": "⟦SP⟧",
+      "flags": "gu"
+    },
+    "AUDIT: IDEOGRAPHIC SPACE (U+3000)": {
+      "find": "[\\u3000]",
+      "replace": "⟦IDEOSP⟧",
+      "flags": "gu"
+    }
+
+  },
+
+  "replacerules.rulesets": {
+    "Clean Icons & Normalize Punctuation": {
+      "rules": [
+        "Normalize em-dash/en-dash to hyphen",
+        "Normalize curly quotes to straight",
+        "Normalize apostrophe",
+
+        "Drop icons: Misc Symbols (U+2600-U+26FF)",
+        "Drop icons: Dingbats (U+2700-U+27BF)",
+        "Drop icons: Enclosed/CJK symbols (U+1F200-U+1F2FF)",
+        "Drop icons: Emoticons (U+1F600-U+1F64F)",
+        "Drop icons: Misc & Supplemental & Extended-A Pictographs (U+1F300-U+1FAFF)",
+        "Drop icons: Regional Indicator Symbols (flags, U+1F1E6-U+1F1FF)",
+        "Drop icons: Mahjong/Domino (U+1F000-U+1F02F)",
+        "Drop icons: Playing Cards (U+1F0A0-U+1F0FF)",
+
+        "Drop Emoji Variation Selector-16 (U+FE0F)",
+        "Drop Emoji Skin Tone Modifiers (U+1F3FB-U+1F3FF)",
+        "Drop Keycap combining (U+20E3)",
+        "Drop Emoji Tag characters (U+E0020-U+E007F incl. CANCEL TAG)",
+
+        "Collapse ' \\n---' to single newline",
+
+        "Remove ZERO WIDTH SPACE (U+200B)",
+        "Remove ZERO WIDTH NON-JOINER (U+200C)",
+        "Remove ZERO WIDTH JOINER (U+200D)",
+        "Remove LEFT-TO-RIGHT MARK (U+200E)",
+        "Remove RIGHT-TO-LEFT MARK (U+200F)",
+        "Remove WORD JOINER (U+2060)",
+        "Remove INVISIBLE FORMAT chars (U+2061-U+206F)",
+        "Remove BYTE ORDER MARK (U+FEFF)",
+
+        "Replace NO-BREAK SPACE (U+00A0)",
+        "Replace NARROW NO-BREAK SPACE (U+202F)",
+        "Replace THIN SPACE (U+2009)",
+        "Replace EN/EM/FIGURE SPACE (U+2000-U+200A)",
+        "Replace IDEOGRAPHIC SPACE (U+3000)",
+
+        "Remove General Punctuation (U+2028-U+202E)"
+      ]
+    },
+    "Audit only: Icons/Emoji/Invisible/Spaces": {
+      "rules": [
+        "AUDIT: Misc Symbols (U+2600-U+26FF)",
+        "AUDIT: Dingbats (U+2700-U+27BF)",
+        "AUDIT: Enclosed/CJK symbols (U+1F200-U+1F2FF)",
+        "AUDIT: Emoticons (U+1F600-U+1F64F)",
+        "AUDIT: Pictographs (U+1F300-U+1FAFF)",
+        "AUDIT: Regional Indicators (flags, U+1F1E6-U+1F1FF)",
+        "AUDIT: Mahjong/Domino (U+1F000-U+1F02F)",
+        "AUDIT: Playing Cards (U+1F0A0-U+1F0FF)",
+
+        "AUDIT: Variation Selector-16 (U+FE0F)",
+        "AUDIT: Skin Tone Modifiers (U+1F3FB-U+1F3FF)",
+        "AUDIT: Keycap combining (U+20E3)",
+        "AUDIT: Emoji Tags (U+E0020-U+E007F)",
+
+        "AUDIT: ZERO WIDTH SPACE (U+200B)",
+        "AUDIT: ZERO WIDTH NON-JOINER (U+200C)",
+        "AUDIT: ZERO WIDTH JOINER (U+200D)",
+        "AUDIT: LEFT-TO-RIGHT MARK (U+200E)",
+        "AUDIT: RIGHT-TO-LEFT MARK (U+200F)",
+        "AUDIT: WORD JOINER (U+2060)",
+        "AUDIT: INVISIBLE FORMAT (U+2061-U+206F)",
+        "AUDIT: BYTE ORDER MARK (U+FEFF)",
+
+        "AUDIT: NO-BREAK SPACE (U+00A0)",
+        "AUDIT: NARROW NO-BREAK SPACE (U+202F)",
+        "AUDIT: THIN SPACE (U+2009)",
+        "AUDIT: EN/EM/FIGURE SPACE (U+2000-U+200A)",
+        "AUDIT: IDEOGRAPHIC SPACE (U+3000)"
+      ]
+    }
+  }
+}

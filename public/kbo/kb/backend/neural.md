@@ -1,4 +1,4 @@
-# Neural Нейронные сети
+# Neural Нейронные сети LLM GPT
 
  * [bigdata](../frontend/bigdata.md)
 
@@ -116,6 +116,65 @@
  * [Крутая база с промтами для Midjourney, Flux и других нейронок](https://prompthero.com/)
  * https://t.me/chatsgpts_bot
  * [визуализация LLM моделирование](https://bbycroft.net/llm)
+
+### поиск и замена текстовых символов, очистка вывода LLM
+
+[\u2000-\u206F\u2E00-\u2E7F] - все нестандартные символы
+
+|regexp search|replacement|
+|---|---|
+|(\s\n---)|\n|
+|[-—]|-|
+|[”“]|"|
+|[’]|'|
+|[\u{1F600}-\u{1F64F}]||
+|[\u{1F000}-\u{1F02F}]||
+|[\u{1F0A0}-\u{1F0FF}]||
+|[\u{1F200}-\u{1F2FF}]||
+
+
+* расширение vscode [Replace Rules - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=bhughes339.replacerules)
+* [Why won't this regular expression match anything in ...](https://stackoverflow.com/questions/60047671/why-wont-this-regular-expression-match-anything-in-vscode-search-replace?utm_source=chatgpt.com)
+* [Replace U+00a0 (nbsp) (or other unicode) characters with VS ...](https://kthoms.wordpress.com/2022/01/10/replace-u00a0-nbsp-or-other-unicode-characters-with-vs-code/?utm_source=chatgpt.com)
+
+Ниже готовый конфиг, который:
+
+* нормализует тире и кавычки;
+* удаляет «иконки» (эмодзи/пиктограммы) из указанных тобой диапазонов;
+* опционально (закомментированно) может вычистить всё, что не латиница/кириллица/числа/математические символы.
+
+* добавь в settings.json [replace_unicode_symbols.json](./replace_unicode_symbols.json)
+
+Открой `Keyboard Shortcuts (JSON)` и добавь:
+
+```json
+{
+  "key": "ctrl+alt+.",
+  "command": "replacerules.runRuleset",
+  "when": "editorTextFocus && !editorReadonly",
+  "args": { "rulesetName": "Clean Icons & Normalize Punctuation" }
+}
+```
+
+---
+
+Хочешь — добавлю ещё правила под конкретные юникод-диапазоны или под списки «запрещённых» символов (например, ZWSP/U+200B, NBSP/U+00A0 и т.п.), и соберу тебе полный профиль под твои тексты. (Кстати, NBSP часто встречается: его можно прибить правилом `"[\\u00A0]" -> " "`.) ([Karsten's Blog][3])
+
+{
+  "replacerules.rules": {
+
+
+  "replacerules.rulesets": {
+    "Remove Invisible and Forbidden Spaces": {
+      "rules": [
+
+      ]
+    }
+  }
+}
+
+
+
 
 ## игра жизнь
 

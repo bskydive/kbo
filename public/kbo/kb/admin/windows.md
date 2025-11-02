@@ -59,6 +59,27 @@ Bypass Out-of-the-Box-Experience (OOBE) Internet Requirement
     Type the following command: OOBE\BYPASSNRO
     After successful execution, the system will restart and restart the OOBE session box, when you reach the "Let's connect you to a network" screen, click "I don't have Internet", continue to click "limited setup", accept the license agreement and continue to create a local user account.
 
+### win 11 keys
+
+ * https://github.com/massgravel/Microsoft-Activation-Scripts
+
+Open PowerShell
+Click the Start Menu, type PowerShell, then open it.
+Copy and paste the code below, then press enter.
+    For Windows 8, 10, 11:
+    `irm https://get.activated.win | iex`
+If the above is blocked (by ISP/DNS), try this (needs updated Windows 10 or 11):
+	`iex (curl.exe -s --doh-url https://1.1.1.1/dns-query https://get.activated.win | Out-String)`
+For Windows 7 and later:
+	`iex ((New-Object Net.WebClient).DownloadString('https://get.activated.win'))`
+
+### office 365
+
+https://massgrave.dev/genuine-installation-media
+
+https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=O365AppsBasicRetail&platform=x64&language=en-us&version=O16GA
+
+
 ### fix mbr
 
  * https://learn.microsoft.com/en-gb/answers/questions/1179311/windows-11-setup-without-internet#
@@ -130,12 +151,6 @@ bootrec /rebuildbcd
 	Note, Windows Setup automatically installs from this file, so long as you name it install.swm.
  ```
  *
-
-### win 11 keys
-
- * https://github.com/massgravel/Microsoft-Activation-Scripts
-
-
 
 ```shell
 irm https://get.activated.win | iex
@@ -310,7 +325,7 @@ irm https://get.activated.win | iex
  * putty home+end key
  * Edit /root/.bashrc
  * export TERM=linux
- * https://putty.org.ru/articles/putty-ssh-tunnels.html
+ * https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
 
 ## Центр оценки ПО
 
