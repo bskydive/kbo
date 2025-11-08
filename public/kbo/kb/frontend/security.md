@@ -254,3 +254,10 @@ let img=new Image(); img.src="https://LULsite.com/?credit="+$('.credit')[0].valu
 
   * https://github.com/ValdikSS/GoodbyeDPI
   * https://github.com/bol-van/zapret
+
+## угрозы threats
+
+https://internet.cnews.ru/news/top/2025-11-06_oboronnye_predpriyatiya_rossii
+
+протокол obfs4
+открытый порт ssh

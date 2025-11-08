@@ -45,7 +45,9 @@ The following 10 NEW packages are going to be installed:
  sudo ln -s /usr/src/linux-headers-$(uname -r)/include/generated/uapi/linux/version.h /usr/src/linux-headers-$(uname -r)/include/linux/version.h
 ```
 
+## workstation 25H2
 
+* system scripts path: `/etc/systemd/system`
 
 ## workstation 12
 

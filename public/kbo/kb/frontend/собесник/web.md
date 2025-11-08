@@ -58,6 +58,11 @@
  * Методологии
 	* BEM, OOCSS, SMACSS, ITCSS, Atomic CSS
  * семантичная вёрстка
+ * selectors
+	* `+` [sibling](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/Next-sibling_combinator) следующий смежный
+	* `>` [child](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/Child_combinator) вложенный
+	* `~` [subsequent-sibling](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/Subsequent-sibling_combinator) ближайший смежный
+	* `:nth-of-type()` [количественный](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:nth-of-type) псевдокласс
  * [Медиа запросы](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Media_queries)
 	* `@media media-type and (media-feature-rule) {`
 	* media-type: all, print, screen
@@ -114,7 +119,7 @@
  * подходы к кроссбраузерной вёрстке: сброс и нормализация(более предсказуемый вид ранее не использованных тэгов)
  * https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM
 
-### HTML
+## HTML
 
  * iframe - браузер в браузере, browsing context, своя история сессии
  * семантичная вёрстка
