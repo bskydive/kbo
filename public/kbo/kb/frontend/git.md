@@ -1,5 +1,58 @@
 # GIT
 
+## настройка
+
+```bash
+git config --global user.name "stepanovv"
+git config --global user.email stepanovv.ru@yandex.ru
+```
+
+ * подмодули
+```bash
+	git config -l
+	git remote show origin
+	git pull --recurse-submodules
+	git submodule status --recursive
+```
+
+ * самоподписанный сертификат, три способа обхода
+```bash
+	git config http.sslVerify false
+	git config --global http.sslVerify false
+	git -c http.sslVerify=false remote show origin
+```
+
+* запрет удалений
+```bash
+	git config --system receive.denyNonFastforwards true
+	git config --system receive.denyDeletes true
+```
+
+ * кириллица без конвертации
+```bash
+	git config core.quotepath off
+```
+
+### git credential хранение паролей
+
+ * win https://stackoverflow.com/questions/15381198/remove-credentials-from-git
+ * https://git-scm.com/book/en/v2/Git-Tools-Credential-Storage
+ * https://stackoverflow.com/questions/44246876/how-to-remove-cached-credentials-from-git
+
+ ```bash
+ 	git config --global -l
+	git config --local  -l
+	git config --system -l
+	git config --global --unset credential.helper
+	git config --local --unset credential.helper
+	git config --system --unset credential.helper
+
+	mcedit ./.git/config
+	#origin
+	#https://**username**@gitlab.com/user/projectgit
+
+ ```
+
 ## документация
 
  * [GIT CHANGELOG](https://github.com/git/git/tree/master/Documentation/RelNotes)
@@ -287,26 +340,6 @@ curl --header "PRIVATE-TOKEN: <your_access_token>" --url "https://gitlab.example
 
 ```
 
-### git credential
-
- * win https://stackoverflow.com/questions/15381198/remove-credentials-from-git
- * https://git-scm.com/book/en/v2/Git-Tools-Credential-Storage
- * https://stackoverflow.com/questions/44246876/how-to-remove-cached-credentials-from-git
-
- ```bash
- 	git config --global -l
-	git config --local  -l
-	git config --system -l
-	git config --global --unset credential.helper
-	git config --local --unset credential.helper
-	git config --system --unset credential.helper
-
-	mcedit ./.git/config
-	#origin
-	#https://**username**@gitlab.com/user/projectgit
-
- ```
-
 ### модифицированные файлы
 
 ```bash
@@ -481,32 +514,6 @@ git checkout master
 c. сделать объединение
 git merge upstream/master
 ```
-
-### git config
-
- * подмодули
-	```bash
-		git config -l
-		git remote show origin
-		git pull --recurse-submodules
-		git submodule status --recursive
-	```
- * самоподписанный сертификат, три способа обхода
-	```bash
-		git config http.sslVerify false
-		git config --global http.sslVerify false
-		git -c http.sslVerify=false remote show origin
-
-	```
-* запрет удалений
-	```bash
-		git config --system receive.denyNonFastforwards true
-		git config --system receive.denyDeletes true
-	```
- * кириллица без конвертации
-	```bash
-		git config core.quotepath off
-	```
 
 ### edit commit message
 

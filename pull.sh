@@ -36,9 +36,9 @@ pull() {
 # делаем хотя бы один pull
 pull "gl" develop  || exit ${errcode}
 pull "gh" develop
-#pull "bb"
-#pull "usb"
-#pull "local"
+pull "usb" develop
+#pull "bb" develop
+#pull "local" develop
 
 echo -e "----------------------------------------"
 echo -e "\n\n${result}\n\n"

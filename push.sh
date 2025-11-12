@@ -40,6 +40,7 @@ git commit -am ${message}
 
 push gl develop || exit ${errcode}
 push gh develop
+push usb develop
 
 #сначала в облако, на сервере потом будем из него качать по хуку
 #git push pc-1 master
