@@ -38,7 +38,7 @@ push() {
 git add -A ./
 git commit -am ${message}
 
-push gl develop || exit ${errcode}
+push gl develop || exit 1
 push gh develop
 
 #сначала в облако, на сервере потом будем из него качать по хуку

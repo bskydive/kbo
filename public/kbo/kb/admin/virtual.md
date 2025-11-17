@@ -24,6 +24,7 @@
 
 ### драйвер видео win11
 
+в настройках поменять  borcsh на virtio
 https://pve.proxmox.com/wiki/Windows_11_guest_best_practices
 https://pve.proxmox.com/wiki/Windows_VirtIO_Drivers
 https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso

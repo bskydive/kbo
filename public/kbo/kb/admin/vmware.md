@@ -49,6 +49,24 @@ The following 10 NEW packages are going to be installed:
 
 * system scripts path: `/etc/systemd/system`
 
+```bash
+modinfo -n vmmon
+/usr/lib/modules/6.12.0-160000.5-default/misc/vmmon.ko
+
+/etc/systemd/system/multi-user.target.wants/vmware
+/etc/systemd/system/multi-user.target.wants/vmware-USBArbitrator
+
+/usr/lib/systemd/system/vmware.service
+ExecStart=/usr/lib/vmware/scripts/init/vmware start
+
+vmware-installer -l
+Product Name         Product Version     
+==================== ====================
+vmware-workstation   25.0.0.24995812
+
+
+```
+
 ## workstation 12
 
 install: kernel development template

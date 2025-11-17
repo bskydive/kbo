@@ -34,7 +34,7 @@ pull() {
 }
 
 # делаем хотя бы один pull
-pull "gl" develop  || exit ${errcode}
+pull "gl" develop  || exit 1
 pull "gh" develop
 #pull "bb"
 #pull "usb"
