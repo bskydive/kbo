@@ -1375,17 +1375,20 @@ x11uselocalhost no
 
 
  * 15.6
- ```
- zypper install opi
-opi codecs
+ ```bash
+ 	zypper dist-upgrade --from packman --allow-vendor-change
+	zypper install -f ffmpeg gstreamer-plugins-{good,bad,ugly,libav} libavcodec vlc-codecs
 
-zypper in --allow-vendor-change --from packman libopenh264-7 mozilla-openh264 gstreamer-plugin-openh264 dav1d gstreamer-plugins-good-extra libfdk-aac2
+	zypper install opi
+	opi codecs
+
+	zypper in --allow-vendor-change --from packman libopenh264-7 mozilla-openh264 gstreamer-plugin-openh264 dav1d gstreamer-plugins-good-extra libfdk-aac2
 
  ```
  * https://en.opensuse.org/SDB:Installing_codecs_from_Packman_repositories
  * 15.3
 
-    ```bash
+```bash
     #1) Add the needed repositories:
     zypper addrepo -f http://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_15.3/ packman
     zypper addrepo -f http://opensuse-guide.org/repo/openSUSE_Leap_15.3/ dvd
@@ -1400,11 +1403,11 @@ zypper in --allow-vendor-change --from packman libopenh264-7 mozilla-openh264 gs
 
     #3) Make sure all your multimedia packages are coming from the Packman Repository:
     zypper dup --allow-vendor-change --from http://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_15.3/
-    ```
+```
 
  * 15.2
 
-	```bash
+```bash
 		#1) Add the needed repositories:
 		zypper addrepo -f http://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_15.2/ packman
 		zypper addrepo -f http://opensuse-guide.org/repo/openSUSE_Leap_15.2/ dvd
@@ -1433,18 +1436,30 @@ zypper in --allow-vendor-change --from packman libopenh264-7 mozilla-openh264 gs
 		zypper ref
 
 		zypper install libxine2-codecs ffmpeg lame gstreamer-0_10-plugins-good gstreamer-0_10-plugins-bad gstreamer-0_10-plugins-ugly gstreamer-0_10-plugins-bad-orig-addon gstreamer-0_10-plugins-good-extra gstreamer-0_10-plugins-ugly-orig-addon gstreamer-0_10-plugins-ffmpeg libdvdcss2 dvdauthor07 gstreamer-plugins-base gstreamer-plugins-bad gstreamer-plugins-bad-orig-addon gstreamer-plugins-good gstreamer-plugins-ugly gstreamer-plugins-ugly-orig-addon gstreamer-plugins-good-extra gstreamer-0_10-plugins-fluendo_mpegdemux gstreamer-0_10-plugins-fluendo_mpegmux k3b-codecs vlc-beta h264enc x264 gstreamer-plugins-libav vlc-beta-codecs
-	```
+```
  * общие
 
-	```bash
+```bash
 		zypper repos -Pu
 		zypper locks
 		zypper ps -s
-	```
+```
 
  * ya repos
 
-	```bash
+```bash
+zypper addrepo -f https://mirror.yandex.ru/opensuse/distribution/leap/15.6/repo/oss/ ya_oss
+zypper addrepo -f https://mirror.yandex.ru/opensuse/distribution/leap/15.6/repo/non-oss/ ya_non_oss
+zypper addrepo -f https://mirror.yandex.ru/opensuse/update/leap/15.6/oss/ ya_up_oss
+zypper addrepo -f https://mirror.yandex.ru/opensuse/update/leap/15.6/non-oss/ ya_up_non_oss
+zypper addrepo -f https://mirror.yandex.ru/opensuse/update/leap/15.6/backports/ ya_up_backports
+zypper addrepo -f https://mirror.yandex.ru/opensuse/update/leap/15.6/sle/ ya_up_sle
+zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.6/ ya_pack_main
+zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.6/Extra/ ya_pack_Extra
+zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.6/Multimedia/ ya_pack_Multimedia
+zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.6/Essentials/ ya_pack_Essentials
+zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.6/Games/ ya_pack_Games
+
 		zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/ ya_packman_repodata
 		zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Multimedia/ ya_packman_Multimedia
 		zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Games/ ya_packman_Games
@@ -1474,7 +1489,7 @@ zypper in --allow-vendor-change --from packman libopenh264-7 mozilla-openh264 gs
 		zypper modifyrepo -f -p99 ya_distribution_oss
 		zypper modifyrepo -f -p99 ya_update_non-oss
 		zypper modifyrepo -f -p99 ya_update_oss
-	```
+```
 
  * ya repos remove
 
