@@ -10,6 +10,18 @@ https://github.com/hsoft/collapseos
  * https://cpu.userbenchmark.com/
  * https://www.pcbenchmarks.net/
 
+## BIOS
+
+https://www.wch-ic.com/search?t=all&q=CH341&e=124105561
+https://www.wch-ic.com/products/CH341.html
+https://github.com/nofeletru/UsbAsp-flash
+https://pitfalls.ru/ch341a-programmer/
+https://github.com/bigbigmdm/Performance_of_chip_programmers?tab=readme-ov-file
+https://github.com/bigbigmdm/IMSProg
+https://pitfalls.ru/ch341a-programmer/
+
+[Прошивка Bios программатором CH341A Programmer](https://4pda.to/forum/index.php?showtopic=1063137)
+
 ## ИБП UPS
 
  * [Смена аккумуляторов: ИБП на технологии Li-Ion](https://habr.com/ru/companies/bigdatahosting/articles/351140/)
@@ -77,6 +89,13 @@ https://github.com/hsoft/collapseos
  * без ОС
  * большой аккумулятор
  * разгон как можно меньше, базовая частота как можно больше, больше ядер
+
+### Lenovo Legion 5
+
+Lenovo Legion 5-15 15ACH6H Ryzen 7 5800H 16Gb SSD 512Gb NVIDIA RTX 3060 для ноутбуков 6Gb 15,6 FHD IPS Cam 80Вт*ч Win10 Синий 82JU0010RU
+
++32Gb RAM
++SSD 512 m2
 
 ### Dell Ноутбук Inspiron 5570-5840
 
