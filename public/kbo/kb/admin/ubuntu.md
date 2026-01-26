@@ -120,7 +120,7 @@ sudo hostnamectl set-hostname linuxconfig
 ## widgets
 
 ```
-aptitude install extension-manager
+aptitude install gnome-shell-extension-manager smartmontools
 # dash-to-panel
 # dash-to-dock
 # just perfection
