@@ -1012,7 +1012,7 @@ zypper in qt6-tools-qdbus
 		sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/zypp/repos.d/vscode.repo'
 	```
 
- * [extensions](../frontend/vscode)
+ * [extensions](../инструменты/vscode.md)
  * настроить цвета
 	* оформление рабочей среды - breeze
 	* оформление рабочего стола - breeze
@@ -1448,6 +1448,19 @@ x11uselocalhost no
  * ya repos
 
 ```bash
+zypper addrepo -f https://mirror.yandex.ru/opensuse/distribution/leap/16.0/repo/oss/ ya_oss
+zypper addrepo -f https://mirror.yandex.ru/opensuse/distribution/leap/16.0/repo/non-oss/ ya_non_oss
+zypper addrepo -f https://mirror.yandex.ru/opensuse/update/leap/16.0/oss/ ya_up_oss
+zypper addrepo -f https://mirror.yandex.ru/opensuse/update/leap/16.0/non-oss/ ya_up_non_oss
+zypper addrepo -f https://mirror.yandex.ru/opensuse/update/leap/16.0/backports/ ya_up_backports
+zypper addrepo -f https://mirror.yandex.ru/opensuse/update/leap/16.0/sle/ ya_up_sle
+zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_16.0/ ya_pack_main
+zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_16.0/Extra/ ya_pack_Extra
+zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_16.0/Multimedia/ ya_pack_Multimedia
+zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_16.0/Essentials/ ya_pack_Essentials
+zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_16.0/Games/ ya_pack_Games
+
+# 15.6
 zypper addrepo -f https://mirror.yandex.ru/opensuse/distribution/leap/15.6/repo/oss/ ya_oss
 zypper addrepo -f https://mirror.yandex.ru/opensuse/distribution/leap/15.6/repo/non-oss/ ya_non_oss
 zypper addrepo -f https://mirror.yandex.ru/opensuse/update/leap/15.6/oss/ ya_up_oss
@@ -1460,35 +1473,36 @@ zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.6/M
 zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.6/Essentials/ ya_pack_Essentials
 zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.6/Games/ ya_pack_Games
 
-		zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/ ya_packman_repodata
-		zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Multimedia/ ya_packman_Multimedia
-		zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Games/ ya_packman_Games
-		zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Extra/ ya_packman_Extra
-		zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Essentials/ ya_packman_Essentials
-		zypper addrepo -f https://mirror.yandex.ru/opensuse/distribution/leap/15.2/repo/non-oss/ ya_distribution_non_oss
-		zypper addrepo -f https://mirror.yandex.ru/opensuse/distribution/leap/15.2/repo/oss/ ya_distribution_oss
-		zypper addrepo -f https://mirror.yandex.ru/opensuse/update/leap/15.2/non-oss/ ya_update_non-oss
-		zypper addrepo -f https://mirror.yandex.ru/opensuse/update/leap/15.2/oss/ ya_update_oss
+## 15.2
+zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/ ya_packman_repodata
+zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Multimedia/ ya_packman_Multimedia
+zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Games/ ya_packman_Games
+zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Extra/ ya_packman_Extra
+zypper addrepo -f https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_15.2/Essentials/ ya_packman_Essentials
+zypper addrepo -f https://mirror.yandex.ru/opensuse/distribution/leap/15.2/repo/non-oss/ ya_distribution_non_oss
+zypper addrepo -f https://mirror.yandex.ru/opensuse/distribution/leap/15.2/repo/oss/ ya_distribution_oss
+zypper addrepo -f https://mirror.yandex.ru/opensuse/update/leap/15.2/non-oss/ ya_update_non-oss
+zypper addrepo -f https://mirror.yandex.ru/opensuse/update/leap/15.2/oss/ ya_update_oss
 
-		zypper modifyrepo -f -p80 ya_packman_repodata
-		zypper modifyrepo -f -p80 ya_packman_Multimedia
-		zypper modifyrepo -f -p80 ya_packman_Games
-		zypper modifyrepo -f -p80 ya_packman_Extra
-		zypper modifyrepo -f -p80 ya_packman_Essentials
-		zypper modifyrepo -f -p80 ya_distribution_non_oss
-		zypper modifyrepo -f -p80 ya_distribution_oss
-		zypper modifyrepo -f -p80 ya_update_non-oss
-		zypper modifyrepo -f -p80 ya_update_oss
+zypper modifyrepo -f -p80 ya_packman_repodata
+zypper modifyrepo -f -p80 ya_packman_Multimedia
+zypper modifyrepo -f -p80 ya_packman_Games
+zypper modifyrepo -f -p80 ya_packman_Extra
+zypper modifyrepo -f -p80 ya_packman_Essentials
+zypper modifyrepo -f -p80 ya_distribution_non_oss
+zypper modifyrepo -f -p80 ya_distribution_oss
+zypper modifyrepo -f -p80 ya_update_non-oss
+zypper modifyrepo -f -p80 ya_update_oss
 
-		zypper modifyrepo -f -p99 ya_packman_repodata
-		zypper modifyrepo -f -p99 ya_packman_Multimedia
-		zypper modifyrepo -f -p99 ya_packman_Games
-		zypper modifyrepo -f -p99 ya_packman_Extra
-		zypper modifyrepo -f -p99 ya_packman_Essentials
-		zypper modifyrepo -f -p99 ya_distribution_non_oss
-		zypper modifyrepo -f -p99 ya_distribution_oss
-		zypper modifyrepo -f -p99 ya_update_non-oss
-		zypper modifyrepo -f -p99 ya_update_oss
+zypper modifyrepo -f -p99 ya_packman_repodata
+zypper modifyrepo -f -p99 ya_packman_Multimedia
+zypper modifyrepo -f -p99 ya_packman_Games
+zypper modifyrepo -f -p99 ya_packman_Extra
+zypper modifyrepo -f -p99 ya_packman_Essentials
+zypper modifyrepo -f -p99 ya_distribution_non_oss
+zypper modifyrepo -f -p99 ya_distribution_oss
+zypper modifyrepo -f -p99 ya_update_non-oss
+zypper modifyrepo -f -p99 ya_update_oss
 ```
 
  * ya repos remove

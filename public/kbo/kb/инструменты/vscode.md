@@ -7,6 +7,12 @@
 	* [Плагин для синхронизации настроек с github](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync)
  * для перехода по ссылокам: alt+ctrl+click
 
+## vscodium
+
+```bash
+/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=com.vscodium.codium --file-forwarding com.vscodium.codium
+```
+
 ## extensions
 
  * articles-manager/карьера/инструменты.md
