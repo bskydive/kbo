@@ -26,6 +26,7 @@
 ```bash
 pip uninstall asttokens comm contourpy cycler decorator executing fonttools ipympl ipython ipython_pygments_lexers ipywidgets jedi jupyterlab_widgets kiwisolver matplotlib matplotlib-inline numpy parso pexpect pillow prompt_toolkit ptyprocess pure_eval Pygments pyparsing stack-data traitlets wcwidth widgetsnbextension
 
+alts -l pip
 update-alternatives --display pip
 # pip - auto mode
 #   link best version is /usr/bin/pip-3.12
