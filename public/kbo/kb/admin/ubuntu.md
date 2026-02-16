@@ -26,11 +26,70 @@ apt-get reinstall gnome-remote-desktop
 
  * https://linuxconfig.org/how-to-install-ubuntu-alongside-windows-11-dual-boot
 
+## setup
+
+```bash
+add-apt-repository ppa:danielrichter2007/grub-customizer
+aptitude install grub-customizer grub2-themes-ubuntu-mate grub-theme-starfield grub-splashimages grub2-themes-ubuntustudio
+
+apt-get install aptitude
+
+aptitude update
+aptitude upgrade
+
+aptitude install openssh-server vlc smartmontools gparted gsmartcontrol git mc mtr iotop iftop ubuntu-restricted-extras fonts-roboto fonts-jetbrains-mono 
+aptitude install xubuntu-community-wallpapers xubuntu-wallpapers ubuntu-mate-wallpapers ubuntu-gnome-wallpapers
+
+# для Gnome
+aptitude install pavucontrol paprefs pulseaudio alsa-tools-gui
+aptitude install gnome-tweaks gnome-shell-extension-manager
+```
+
+### widgets
+
+```
+aptitude install gnome-shell-extension-manager
+# dash-to-panel
+# dash-to-dock
+# just perfection
+# resource monitor
+# removable drive menu
+```
+
+## video vmware
+
+```bash
+aptitude install open-vm-tools open-vm-tools-desktop
+
+add-apt-repository ppa:oibaf/graphics-drivers
+```
+
+## drivers bios
+
+* https://documentation.ubuntu.com/project/SRU/reference/exception-firmware-updates/
+* https://fwupd.org/
+
+```bash
+
+sudo fwupdmgr refresh
+sudo fwupdmgr update
+```
+
 ## grub
 
+* grub-customizer
  * default startup menu timeout
 
 ```bash
+ufw status
+ufw status verbose
+ufw enable
+ufw allow 443/tcp
+ufw allow 22/tcp
+ufw allow 3306/tcp
+
+
+
 mcedit /etc/default/grub
 #GRUB_TIMEOUT_STYLE=menu
 #GRUB_TIMEOUT=5
@@ -116,18 +175,6 @@ sudo hostnamectl set-hostname linuxconfig
 
  * install gnome-tweaks
  * https://askubuntu.com/questions/10223/display-current-layout-language-code-country-flag-in-keyboard-indicator
-
-## widgets
-
-```
-aptitude install gnome-shell-extension-manager smartmontools
-# dash-to-panel
-# dash-to-dock
-# just perfection
-# resource monitor
-# vitals
-# removable drive menu
-```
 
 ## sound
 
