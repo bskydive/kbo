@@ -354,21 +354,31 @@ journalctl -u smartd | grep -iE "error|warn"
 		2      118GB   119GB   790MB                   primary  bios_grub
 
 	#принудительная проверка с автоблокировкой плохих секторов
-	#> e2fsck -cCVf /dev/sda3
-	> e2fsck -ckttf -j fsck.log -z fsck.undo /dev/sda1
+	#-c - badblock
+	#-D - optimize directory tree
+	#-f - check clean fs
+	#-j - log file
+	#-tt - advanced timing stats
+	#-z - undo file
+	#-k - save current bad blocks
+	e2fsck -ttf /dev/sdaX
+	e2fsck -ttD -j fsck.log /dev/sdaX
+	#> e2fsck -cCVf /dev/sdaX
+	e2fsck -cttf -j fsck.log -z fsck.undo /dev/sdaX
 		#e2fsck 1.46.4 (18-Aug-2021)
 		#Overwriting existing filesystem; this can be undone using the command:
 		#	e2undo fsck.undo /dev/sda1
 		#Checking for bad blocks (read-only test):  30.64% done, 0:29 elapsed. (0/0/0 errors)
+	# откат
+	e2undo fsck.undo /dev/sdaX
 	#поиск резервных суперблоков
 	> dumpe2fs /dev/sda3|grep -i superblock
 	#бэкап
 	> dd if=/dev/sda2 of=/disk2/backup-sda2.img
 	#замена суперблока
-	> e2fsck -f -b 8193 /dev/sda3
-
+	> e2fsck -f -b 8193 /dev/sdaX
 	# обнуление свободного места
-	e2fsck -E discard /dev/sde1 -y
+	e2fsck -E discard /dev/sdeX -y
  ```
 
 ## noexec permission denied
