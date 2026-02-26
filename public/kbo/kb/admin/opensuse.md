@@ -1102,6 +1102,25 @@ zypper in qt6-tools-qdbus
  * ssh_keys
  * apcupsd установить, настроить
 
+### kde wallet
+
+rm -f ~/.local/share/kwalletd/kdew*
+
+GUI Method (Recommended):
+
+    Open System Settings.
+    Go to Account Details > KDE Wallet.
+    Uncheck "Enable the KDE wallet subsystem".
+    Click Apply.
+
+Set Empty Password: If you do not want to disable it entirely but want to stop the pop-up, you can set the password to an empty string.
+Config File Method:
+
+    Edit ~/.kde4/share/config/kwalletrc.
+    Add or change Enabled=false under the [Wallet] section.
+
+Via kwalletmanager: If the setting is unavailable, install kwalletmanager, open it, and disable the wallet system in its settings
+
 ### зависает при выключении
 
  * выключить ntp автозапуск--> синхронизировать без демона раз в 50 минут
@@ -1373,6 +1392,19 @@ x11uselocalhost no
  * https://opensuse-guide.org/codecs.php
  * https://github.com/cb400f/opensuse-guide.org/blob/master/codecs.php
 
+ * 16.0
+
+
+```bash
+zypper rm MozillaFirefo MozillaFirefox-branding-openSUSE
+zypper in yast2-firewall firewall-applet
+zypper lr openSUSE:repo-openh264
+zypper addrepo -f http://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_16.0/ packman
+zypper dist-upgrade --from ya-pack --allow-vendor-change
+zypper install -f ffmpeg gstreamer-plugins-{good,bad,ugly,libav} libavcodec vlc-codecs
+zypper in --allow-vendor-change --from ya-pack libopenh264-7 mozilla-openh264 gstreamer-plugin-openh264 dav1d gstreamer-plugins-good-extra libfdk-aac2
+zypper in gnu-free-fonts gnu-unifont-otf-fonts google-droid-fonts google-noto-fonts mozilla-fira-fonts mozilla-zilla-slab-fonts suse-fonts ubuntu-fonts
+```
 
  * 15.6
  ```bash

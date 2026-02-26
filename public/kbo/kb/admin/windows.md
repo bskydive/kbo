@@ -49,6 +49,56 @@ https://support.office.com/en-us/article/Turn-off-or-uninstall-OneDrive-f32a17ce
 
 ## windows 11
 
+### disable update
+
+Using Services (Recommended):
+
+    Press Win + R, type services.msc, and hit Enter.
+    Locate Windows Update in the list, right-click it, and select Properties.
+    Set the Startup type
+    to
+    Disabled
+    .
+    Click Stop if the service is running, then click Apply and OK.
+    Optional: In the Recovery tab, change "First failure" to "Take No Action" to prevent the service from restarting.
+
+Using Group Policy (Pro/Enterprise only):
+
+    Press Win + R, type gpedit.msc, and hit Enter.
+    Navigate to Computer Configuration > Administrative Templates > Windows Components > Windows Update > Manage end user experience.
+    Double-click Configure Automatic Updates.
+    Select Disabled, then click Apply and OK.
+
+Using Settings (Temporary):
+
+    Go to Settings > Windows Update.
+    Click the Pause updates dropdown to halt updates for up to 5 weeks.
+
+Using Registry Editor (Advanced):
+
+    Open regedit, navigate to HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows.
+    Create a new key named WindowsUpdate, then under it, a key named AU.
+    Create a new DWORD (32-bit) Value named NoAutoUpdate and set it to 1
+
+### Methods to Remove BitLocker on Windows 11:
+
+    Control Panel Method (Pro/Enterprise):
+        Search for Manage BitLocker in the taskbar and select the result.
+        Click Turn off BitLocker next to the specific drive.
+        Confirm by clicking Turn off BitLocker again in the popup.
+    Settings Method (Home Edition):
+        Go to Settings > Privacy & security > Device encryption.
+        Toggle Device encryption to Off.
+    Command Prompt (Advanced):
+        Open Command Prompt as Administrator.
+        Run manage-bde -off C: (replace C: with the relevant drive letter).
+
+Important Notes:
+
+    If your drive is locked, you must input the encryption password to initiate the removal process.
+    If you cannot find the key, you may need to reset your device, which will delete files.
+    Decryption speed depends on the amount of data.
+
 ### set up Win11 without a network connection
 
 `start ms-cxh:localonly`

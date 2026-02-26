@@ -29,6 +29,9 @@ apt-get reinstall gnome-remote-desktop
 ## setup
 
 ```bash
+apt-cdrom add /media/user/Kubuntu\ 24.04.4\ LTS\ amd64/
+add-apt-repository deb https://mirror.yandex.ru/ubuntu/ noble main universe restricted multiverse
+
 add-apt-repository ppa:danielrichter2007/grub-customizer
 aptitude install grub-customizer grub2-themes-ubuntu-mate grub-theme-starfield grub-splashimages grub2-themes-ubuntustudio
 
@@ -37,12 +40,20 @@ apt-get install aptitude
 aptitude update
 aptitude upgrade
 
-aptitude install openssh-server vlc smartmontools gparted gsmartcontrol git mc mtr iotop iftop ubuntu-restricted-extras fonts-roboto fonts-jetbrains-mono 
+aptitude install openssh-server vlc smartmontools gparted gsmartcontrol git mc mtr iotop iftop ubuntu-restricted-extras fonts-roboto fonts-jetbrains-mono
 aptitude install xubuntu-community-wallpapers xubuntu-wallpapers ubuntu-mate-wallpapers ubuntu-gnome-wallpapers
 
 # для Gnome
 aptitude install pavucontrol paprefs pulseaudio alsa-tools-gui
 aptitude install gnome-tweaks gnome-shell-extension-manager
+```
+### repo
+
+```bash
+cat >> /etc/apt/sources.list.d/yandex.sources
+
+deb https://mirror.yandex.ru/ubuntu/ noble main universe restricted multiverse
+# deb-src https://mirror.yandex.ru/ubuntu/ noble main universe restricted multiverse
 ```
 
 ### widgets
