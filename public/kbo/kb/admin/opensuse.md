@@ -1396,11 +1396,25 @@ x11uselocalhost no
 
 
 ```bash
-zypper rm MozillaFirefo MozillaFirefox-branding-openSUSE
-zypper in yast2-firewall firewall-applet
+zypper rr ya-pack
+
+zypper ar -p95 https://mirror.yandex.ru/opensuse/distribution/leap/16.0/repo/oss/ ya-oss
+zypper ar -p95 https://mirror.yandex.ru/opensuse/distribution/leap/16.0/repo/non-oss/ ya-non-oss
+zypper ar -f http://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_16.0/ packman
+zypper ar -p98 https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_16.0/ ya-pack
+zypper ar -p98 https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_16.0/Multimedia/ ya-pack-m
+zypper ar -p98 https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_16.0/Games/ ya-pack-g
+zypper ar -p98 https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_16.0/Extra/ ya-pack-ex
+zypper ar -p98 https://mirror.yandex.ru/opensuse/packman/openSUSE_Leap_16.0/Essentials/ ya-pack-es
+zypper ar https://download.opensuse.org/repositories/system:/snappy/openSUSE_Leap_16.0 snappy
+
+zypper refresh
+zypper --gpg-auto-import-keys refresh
+
 zypper lr openSUSE:repo-openh264
-zypper addrepo -f http://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_16.0/ packman
 zypper dist-upgrade --from ya-pack --allow-vendor-change
+zypper rm MozillaFirefo MozillaFirefox-branding-openSUSE
+zypper in yast2-firewall firewall-applet snapd
 zypper install -f ffmpeg gstreamer-plugins-{good,bad,ugly,libav} libavcodec vlc-codecs
 zypper in --allow-vendor-change --from ya-pack libopenh264-7 mozilla-openh264 gstreamer-plugin-openh264 dav1d gstreamer-plugins-good-extra libfdk-aac2
 zypper in gnu-free-fonts gnu-unifont-otf-fonts google-droid-fonts google-noto-fonts mozilla-fira-fonts mozilla-zilla-slab-fonts suse-fonts ubuntu-fonts
