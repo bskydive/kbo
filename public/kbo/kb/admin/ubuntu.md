@@ -250,6 +250,9 @@ timedatectl
 		aptitude install npm nodejs nodejs-legacy openssh-server
 
 		aptitude install language-pack-kde-ru firefox-locale-ru libreoffice-l10n-ru libreoffice-help-ru thunderbird-locale-ru
+
+		aptitude install snapd
+		snap install snap-store
 	```
 
  * `aptitude search`

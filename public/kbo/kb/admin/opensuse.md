@@ -239,6 +239,18 @@ ffmpeg -i ./*.mp4 -vn -sn -dn -af "volume=5dB" audio.m4a
 	```
 
 ## network
+ * 15.6
+
+	```bash
+		mcedit /etc/sysconfig/network/config
+		#WAIT_FOR_INTERFACES="3"
+		#NM_ONLINE_TIMEOUT="0"
+		mcedit /etc/systemd/system/network-online.target.wants/NetworkManager-wait-online.service
+		#Environment=NM_ONLINE_TIMEOUT=0
+		systemctl daemon-reload
+		systemctl restart NetworkManager
+		nmcli general reload
+	```
 
  * [network](/public/kbo/kb/admin/network.md)
  * https://www.baeldung.com/linux/network-manager#bd-displaying-the-networking-status-of-a-linux-machine
