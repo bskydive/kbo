@@ -1775,8 +1775,18 @@ http://www.liberatedcomputing.net/mm2fm
 		rm -rf /etc/NX/
 	```
 
+## remote desktop
 
-## x2go
+* chrome remote desktop
+	* https://g.co/crd/headless
+	* Windows: https://dl.google.com/edgedl/chrome-remote-desktop/chromeremotedesktophost.msi
+	* Debian Linux: https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb
+* rustdesk onprem
+	* https://github.com/rustdesk/rustdesk/releases/tag/1.4.6
+* anydesk
+	* https://anydesk.com/ru/downloads/linux
+
+### x2go
 
  * 2m-png-jpeg
  * XFCE
