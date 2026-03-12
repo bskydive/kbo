@@ -60,7 +60,7 @@ modinfo -n vmmon
 ExecStart=/usr/lib/vmware/scripts/init/vmware start
 
 vmware-installer -l
-Product Name         Product Version     
+Product Name         Product Version
 ==================== ====================
 vmware-workstation   25.0.0.24995812
 
@@ -275,6 +275,48 @@ authd.fullpath = "/usr/sbin/vmware-authd"
 ```
 
 ### kernel modules
+
+* https://github.com/Hyphaed/vmware-vmmon-vmnet-linux-6.17.x
+	* https://github.com/mkubecek/vmware-host-modules/issues/319
+```
+conda list
+conda info
+
+     active environment : None
+            shell level : 0
+       user config file : /home/svetlics/.condarc
+ populated config files : /home/svetlics/.miniforge3/.condarc
+          conda version : 4.12.0
+    conda-build version : not installed
+         python version : 3.8.20.final.0
+       virtual packages : __linux=6.4.0=0
+                          __glibc=2.38=0
+                          __unix=0=0
+                          __archspec=1=skylake
+       base environment : /home/svetlics/.miniforge3  (writable)
+      conda av data dir : /home/svetlics/.miniforge3/etc/conda
+  conda av metadata url : None
+           channel URLs : https://conda.anaconda.org/conda-forge/linux-64
+                          https://conda.anaconda.org/conda-forge/noarch
+          package cache : /home/svetlics/.miniforge3/pkgs
+                          /home/svetlics/.conda/pkgs
+       envs directories : /home/svetlics/.miniforge3/envs
+                          /home/svetlics/.conda/envs
+               platform : linux-64
+             user-agent : conda/4.12.0 requests/2.32.3 CPython/3.8.20 Linux/6.4.0-150600.23.87-default opensuse-leap/15.6 glibc/2.38
+                UID:GID : 1000:100
+             netrc file : None
+           offline mode : False
+rm -rf ~/.condarc
+rm -rf ~/.conda
+rm -rf ~/.miniforge3
+
+psutil pygments rich pyyaml click markdown-it-py yaml numpy typing_extensions tabulate libgfortran5 libgfortran libblas py-cpuinfo libcblas libopenblas mdurl python_abi liblapack
+
+pip libgcc libsqlite setuptools libgomp bzip2 ca-certificates libxcrypt libexpat libnsl wheel libgcc-ng libstdcxx _openmp_mutex python
+
+conda remove _libgcc_mutex _openmp_mutex archspec backports.zstd boltons brotli-python bzip2 c-ares ca-certificates certifi cffi charset-normalizer conda conda-libmamba-solver conda-package-handling conda-package-streaming cpp-expected distro fmt frozendict h2 hpack hyperframe icu idna jsonpatch jsonpointer keyutils krb5 ld_impl_linux-64 libarchive libcurl libedit libev libexpat libffi libgcc libgcc-ng libgomp libiconv liblzma libmamba libmamba-spdlog libmambapy libmpdec libnghttp2 libsolv libsqlite libssh2 libstdcxx libstdcxx-ng libuuid libxml2 libxml2-16 libzlib lz4-c lzo mamba menuinst msgpack-python ncurses nlohmann_json-abi openssl packaging pip platformdirs pluggy pybind11-abi pycosat pycparser pysocks python python_abi readline reproc reproc-cpp requests ruamel.yaml ruamel.yaml.clib setuptools simdjson spdlog tk tqdm truststore tzdata urllib3 yaml-cpp zstandard zstd
+```
 
 * https://thelinuxforum.com/articles/969-how-to-compile-the-vmware-workstation-pro-kernel-modules-on-ubuntu-debian
 
