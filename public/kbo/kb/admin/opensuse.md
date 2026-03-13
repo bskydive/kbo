@@ -893,6 +893,24 @@ acpitool  -W 17
  * [Я никогда не писал расширения для Хрома, но ](https://habr.com/ru/post/525728/)
 	* https://github.com/Drag13/HabrSanitizer
 
+## save restore window manager sessions
+
+Key Session Management Options
+* Restore previous session: Automatically saves state on logout and restores it on next login.
+* Restore manually saved session: Enables a "Save Session" option in the Leave menu to freeze a specific configuration.
+* Start with an empty session: Disables all restoration.
+
+Manual Session Saving
+* Navigate to System Settings > Startup and Shutdown > Desktop Session.
+* Select Restore manually saved session and apply.
+* Go to the Application Launcher, select Leave, then choose Save Session.
+
+Troubleshooting & Tips
+* Wayland Issues: While Wayland is improving, some users have reported issues with window positions being restored to Desktop 1.
+* Command Line: Use qdbus org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.saveCurrentSession to trigger a save.
+* Clearing Sessions: Delete files in ~/.config/session to reset if restoration bugs out.
+* Konsole Specifics: For terminal tabs/paths, you can use specialized scripts or konsole --tabs-from-file
+
 ## installation migration OS
 
  * скачать firefox, chrome
