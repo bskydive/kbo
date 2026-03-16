@@ -907,8 +907,17 @@ Manual Session Saving
 
 Troubleshooting & Tips
 * Wayland Issues: While Wayland is improving, some users have reported issues with window positions being restored to Desktop 1.
-* Command Line: Use qdbus org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.saveCurrentSession to trigger a save.
+* Command Line: Use
+```bash
+dbus-send --dest=org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.saveCurrentSession
+qdbus org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.saveCurrentSession
+```
+to trigger a save.
 * Clearing Sessions: Delete files in ~/.config/session to reset if restoration bugs out.
+Session data is stored in:
+    KDE 4: ~/.kde4/share/config/ksmserverrc
+    KDE 5: ~/.config/ksmserverrc
+
 * Konsole Specifics: For terminal tabs/paths, you can use specialized scripts or konsole --tabs-from-file
 
 ## installation migration OS

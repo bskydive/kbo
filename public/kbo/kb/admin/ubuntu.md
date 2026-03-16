@@ -26,11 +26,64 @@ apt-get reinstall gnome-remote-desktop
 
  * https://linuxconfig.org/how-to-install-ubuntu-alongside-windows-11-dual-boot
 
+## kubuntu 24.04
+
+```
+aptitude install mcedit
+Следующие пакеты будут УДАЛЕНЫ:
+  fonts-mathjax{u} jsmath{u} jsmath-fonts{u} kdeedu-data{u} labplot-data{u} libcantorlibs28{u} libcerf2{u} libjs-mathjax{u} libmatio11{u} libmotif-common{u} libqscintilla2-qt5-15{u} libqscintilla2-qt5-l10n{u}
+  libreadstat1t64{u} libxbae4m{u} libxm4{u} libxmhtml1.1t64{u} pycodestyle{u} python3-pep8{u} python3-pycodestyle{u} python3-pyqt5.qsci{u} python3-stemmer{u} python3-veusz{u} python3-veusz.helpers{u}
+```
+### repo
+
+```bash
+grep -Rh ^deb /etc/apt/sources.list*
+deb http://archive.ubuntu.com/ubuntu/ noble main restricted universe multiverse
+deb http://security.ubuntu.com/ubuntu/ noble-security main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu/ noble-updates main restricted universe multiverse
+
+grep -Rh ^deb /etc/apt/sources.list*
+deb cdrom:[Kubuntu 24.04.4 LTS _Noble Numbat_ - Release amd64 (20260210)]/ noble main multiverse restricted universe
+deb https://mirror.yandex.ru/ubuntu/ noble main universe restricted multiverse
+
+```
+
+### очистка системы
+
+* aptitude
+```bash
+# Если вы хотите повторить логику aptitude и удалить все пакеты, помеченные как u (unused)
+ptitude purge ~c
+
+# чтобы удалить автоматически установленные, но ненужные пакеты
+aptitude remove '?automatic?and(?narrow(?not(?depends(.*)),?installed))'
+
+# Эта команда без аргументов попытается привести систему к идеальному состоянию, часто предлагая удалить ненужные пакеты. Но будьте осторожны и внимательно читайте, что он предлагает.
+aptitude install
+```
+
+* apt
+```bash
+# Удалить ненужные автоматические зависимости
+apt autoremove --dry-run
+sudo apt autoremove
+
+# Удалить скачанные .deb пакеты из кеша (освободит место на диске)
+sudo apt autoclean
+# Или более агрессивно (удалить все кешированные пакеты)
+sudo apt clean
+```
+
 ## setup
 
 ```bash
 apt-cdrom add /media/user/Kubuntu\ 24.04.4\ LTS\ amd64/
 add-apt-repository deb https://mirror.yandex.ru/ubuntu/ noble main universe restricted multiverse
+
+cat >> /etc/apt/preferences.d/ya-repo-priority.pref
+# Package: *
+# Pin: origin "mirror.yandex.ru"
+# Pin-Priority: 600
 
 add-apt-repository ppa:danielrichter2007/grub-customizer
 aptitude install grub-customizer grub2-themes-ubuntu-mate grub-theme-starfield grub-splashimages grub2-themes-ubuntustudio
@@ -40,7 +93,7 @@ apt-get install aptitude
 aptitude update
 aptitude upgrade
 
-aptitude install openssh-server vlc smartmontools gparted gsmartcontrol git mc mtr iotop iftop ubuntu-restricted-extras fonts-roboto fonts-jetbrains-mono
+aptitude install nvtop radeontop openssh-server vlc smartmontools gparted gsmartcontrol git mc mtr iotop iftop ubuntu-restricted-extras fonts-roboto fonts-jetbrains-mono
 aptitude install xubuntu-community-wallpapers xubuntu-wallpapers ubuntu-mate-wallpapers ubuntu-gnome-wallpapers
 
 # для Gnome

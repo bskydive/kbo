@@ -1,6 +1,6 @@
 # Железо
 
-https://github.com/hsoft/collapseos
+* https://github.com/hsoft/collapseos
 
 ## конфигураторы
 
@@ -75,6 +75,10 @@ https://pitfalls.ru/ch341a-programmer/
 	* https://termux.com/
 	* https://www.urbackup.org/download.html
 
+## смартфоны
+
+* [смартфоны](../вещи/смартфон.md)
+
 ## планшеты
 
  * https://www.devicespecifications.com/en/
@@ -82,31 +86,7 @@ https://pitfalls.ru/ch341a-programmer/
 
 ## ноутбуки
 
- * полная клавиатура
- * отличный монитор
- * отличный процессор
- * 24+ Гб памяти
- * без ОС
- * большой аккумулятор
- * разгон как можно меньше, базовая частота как можно больше, больше ядер
-
-### Lenovo Legion 5
-
-Lenovo Legion 5-15 15ACH6H Ryzen 7 5800H 16Gb SSD 512Gb NVIDIA RTX 3060 для ноутбуков 6Gb 15,6 FHD IPS Cam 80Вт*ч Win10 Синий 82JU0010RU
-
-+32Gb RAM
-+SSD 512 m2
-
-### Dell Ноутбук Inspiron 5570-5840
-
- * i5-8250U/8Gb/1Tb/AMD 530 2Gb/15.6"/TN/FHD/Lin
- * https://1001zip.ru/products/ventilyator-dlya-noutbuka-dell-inspiron-15-5570-5575-latitude-3590-l3590-e3590
- * https://sp-laptop.ru/dell
-
-### память
-
- * [M471A1K43CB1-CRC](https://www.nix.ru/autocatalog/notebook_memory/Original-SAMSUNG-DDR4-SODIMM-8Gb-PC4-19200-for-NoteBook_294412.html)
- * https://www.samsung.com/semiconductor/dram/module/M471A1K43CB1-CRC/
+* kbs/hardware.md
 
 ## периферия
 
