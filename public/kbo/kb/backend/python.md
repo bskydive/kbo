@@ -23,23 +23,44 @@
 
 ## python opensuse
 
-```bash
-pip uninstall asttokens comm contourpy cycler decorator executing fonttools ipympl ipython ipython_pygments_lexers ipywidgets jedi jupyterlab_widgets kiwisolver matplotlib matplotlib-inline numpy parso pexpect pillow prompt_toolkit ptyprocess pure_eval Pygments pyparsing stack-data traitlets wcwidth widgetsnbextension
+### pip upgrade
 
-alts -l pip
-update-alternatives --display pip
+```bash
+pip3 list --outdated
+
+# grep ver
+pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip3 install -U
+# ERROR: List format 'freeze' cannot be used with the --outdated option.
+# Defaulting to user installation because normal site-packages is not writeable
+# ERROR: You must give at least one requirement to install (see "pip help install")
+
+# awk ver
+pip3 list -o | cut -f1 -d' ' | tr " " "\n" | awk '{if(NR>=3)print}' | cut -d' ' -f1 | xargs -n1 pip3 install -U
+
+```
+
+### pip install
+
+
+```bash
+
+
+pip3 uninstall asttokens comm contourpy cycler decorator executing fonttools ipympl ipython ipython_pygments_lexers ipywidgets jedi jupyterlab_widgets kiwisolver matplotlib matplotlib-inline numpy parso pexpect pillow prompt_toolkit ptyprocess pure_eval Pygments pyparsing stack-data traitlets wcwidth widgetsnbextension
+
+alts -l pip3
+update-alternatives --display pip3
 # pip - auto mode
 #   link best version is /usr/bin/pip-3.12
 #   link currently points to /usr/bin/pip-3.12
 #   link pip is /usr/bin/pip
 # /usr/bin/pip-3.12 - priority 312
 # /usr/bin/pip3.6 - priority 36
-update-alternatives --config pip
+update-alternatives --config pip3
 
-pip check
-pip install ipykernel numpy matplotlib
+pip3 check
+pip3 install ipykernel numpy matplotlib
 
-/usr/bin/python3.12 -m pip install ipykernel -U --user --force-reinstall
+/usr/bin/python3.12 -m pip3 install ipykernel -U --user --force-reinstall
 
 zypper rm jupyter jupyter-ipykernel jupyter-ipyparallel jupyter-jupyter_console jupyter-nbconvert jupyter-notebook jupyter-qtconsole libqt5-qtconnectivity-tools openmpi2-config pandoc-cli python3-Genshi python3-Pygments python3-Twisted python3-gevent python3-ipykernel python3-ipyparallel python3-ipython python3-ipywidgets python3-mpi4py python3-numpy python3-paramiko python3-pexpect python3-pycares python3-pymongo python3-qt5 python3-qtwebengine-qt5 python3-service_identity python3-simplejson python3-tornado rdma-ndd
 zypper rm accerciser accerciser-lang accerciser-plugin-IPython at-spi2-core at-spi2-core-lang ghc-Glob ghc-JuicyPixels ghc-OneTuple ghc-Only ghc-QuickCheck ghc-SHA ghc-StateVar ghc-aeson ghc-aeson-pretty ghc-ansi-terminal ghc-ansi-terminal-types ghc-appar ghc-array ghc-asn1-encoding ghc-asn1-parse ghc-asn1-types ghc-assoc ghc-async ghc-attoparsec ghc-base ghc-base-compat ghc-base-compat-batteries ghc-base-orphans

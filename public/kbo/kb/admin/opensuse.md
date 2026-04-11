@@ -5,6 +5,56 @@
  * [ubuntu](./ubuntu.md)
  * [opensuse](./opensuse.md)
 
+## проблемы opensuse 16
+
+### раскладка SDDM
+
+```bash
+localectl set-keymap us
+
+cat /etc/X11/xorg.conf.d/00-keyboard.conf:
+
+# Written by systemd-localed(8), read by systemd-localed and Xorg. It's
+# probably wise not to edit this file manually. Use localectl(1) to
+# update this file.
+Section "InputClass"
+        Identifier "LocalKeyboard"
+        MatchIsKeyboard "on"
+        Option "XkbLayout" "us"
+        Option "XkbVariant" ""
+EndSection
+# Section "InputClass"
+#         Identifier "system-keyboard"
+#         MatchIsKeyboard "on"
+#         Option "XkbLayout" "ru"
+#         Option "XkbModel" "microsoftpro"
+#         Option "XkbVariant" "ruchey_en"
+#         Option "XkbOptions" "terminate:ctrl_alt_bksp"
+# EndSection
+
+```
+
+### отвал сети vmware guest
+
+```bash
+cat >> /etc/sysctl.d/70-ipv6.conf
+
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+net.ipv6.conf.lo.disable_ipv6 = 1
+
+```
+
+### установка docker
+
+```
+zypper install docker docker-compose docker-buildx
+systemctl enable docker
+systemctl start docker
+usermod -aG docker
+
+```
+
 ## virtualbox
 
  * [virtualbox](./virtual.md#virtualbox)
@@ -1431,7 +1481,7 @@ x11uselocalhost no
  * https://opensuse-guide.org/codecs.php
  * https://github.com/cb400f/opensuse-guide.org/blob/master/codecs.php
 
- * 16.0
+### 16.0
 
 
 ```bash
@@ -1459,7 +1509,7 @@ zypper in --allow-vendor-change --from ya-pack libopenh264-7 mozilla-openh264 gs
 zypper in gnu-free-fonts gnu-unifont-otf-fonts google-droid-fonts google-noto-fonts mozilla-fira-fonts mozilla-zilla-slab-fonts suse-fonts ubuntu-fonts
 ```
 
- * 15.6
+### 15.6
  ```bash
  	zypper dist-upgrade --from packman --allow-vendor-change
 	zypper install -f ffmpeg gstreamer-plugins-{good,bad,ugly,libav} libavcodec vlc-codecs
@@ -1490,7 +1540,7 @@ zypper in gnu-free-fonts gnu-unifont-otf-fonts google-droid-fonts google-noto-fo
     zypper dup --allow-vendor-change --from http://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_15.3/
 ```
 
- * 15.2
+### 15.2
 
 ```bash
 		#1) Add the needed repositories:
@@ -1522,7 +1572,7 @@ zypper in gnu-free-fonts gnu-unifont-otf-fonts google-droid-fonts google-noto-fo
 
 		zypper install libxine2-codecs ffmpeg lame gstreamer-0_10-plugins-good gstreamer-0_10-plugins-bad gstreamer-0_10-plugins-ugly gstreamer-0_10-plugins-bad-orig-addon gstreamer-0_10-plugins-good-extra gstreamer-0_10-plugins-ugly-orig-addon gstreamer-0_10-plugins-ffmpeg libdvdcss2 dvdauthor07 gstreamer-plugins-base gstreamer-plugins-bad gstreamer-plugins-bad-orig-addon gstreamer-plugins-good gstreamer-plugins-ugly gstreamer-plugins-ugly-orig-addon gstreamer-plugins-good-extra gstreamer-0_10-plugins-fluendo_mpegdemux gstreamer-0_10-plugins-fluendo_mpegmux k3b-codecs vlc-beta h264enc x264 gstreamer-plugins-libav vlc-beta-codecs
 ```
- * общие
+### общие
 
 ```bash
 		zypper repos -Pu
@@ -1590,54 +1640,55 @@ zypper modifyrepo -f -p99 ya_update_non-oss
 zypper modifyrepo -f -p99 ya_update_oss
 ```
 
- * ya repos remove
+### ya repos remove
 
-	```
-		zypper removerepo ya_packman_repodata
-		zypper removerepo ya_packman_Multimedia
-		zypper removerepo ya_packman_Games
-		zypper removerepo ya_packman_Extra
-		zypper removerepo ya_packman_Essentials
-		zypper removerepo ya_distribution_non_oss
-		zypper removerepo ya_distribution_oss
-		zypper removerepo ya_update_non_oss
-		zypper removerepo ya_update_oss
-	```
+```bash
+	zypper removerepo ya_packman_repodata
+	zypper removerepo ya_packman_Multimedia
+	zypper removerepo ya_packman_Games
+	zypper removerepo ya_packman_Extra
+	zypper removerepo ya_packman_Essentials
+	zypper removerepo ya_distribution_non_oss
+	zypper removerepo ya_distribution_oss
+	zypper removerepo ya_update_non_oss
+	zypper removerepo ya_update_oss
+```
 
- * old repos
+### old repos
 
-	```bash
-		http://mirror.yandex.ru/opensuse/packman/12.3/repodata/
-		http://download.opensuse.org/repositories/home:/hillwood/openSUSE_12.3/
-		http://code.google.com/p/vpnpptp/downloads/list
-		http://geeko.ioda.net/mirror/amd-fglrx/openSUSE_13.1/ radeon
- 	 	http://software.opensuse.org/package/opensuse-codecs-installer?search_term=opensuse-codecs-installer
-	```
- * hosts
+```bash
+	http://mirror.yandex.ru/opensuse/packman/12.3/repodata/
+	http://download.opensuse.org/repositories/home:/hillwood/openSUSE_12.3/
+	http://code.google.com/p/vpnpptp/downloads/list
+	http://geeko.ioda.net/mirror/amd-fglrx/openSUSE_13.1/ radeon
+	http://software.opensuse.org/package/opensuse-codecs-installer?search_term=opensuse-codecs-installer
+```
 
-	```bash
-		13.80.99.124		packages.microsoft.com
-		13.80.99.124		csd-apt-weu-d-1.westeurope.cloudapp.azure.com
+### repo hosts
 
-		104.73.92.137		repo.skype.com
-		104.73.92.137		a104-73-92-137.deploy.static.akamaitechnologies.com
+```bash
+	13.80.99.124		packages.microsoft.com
+	13.80.99.124		csd-apt-weu-d-1.westeurope.cloudapp.azure.com
 
-		46.30.215.58		opensuse-guide.org
-		46.30.215.58		webcluster2.webpod5-cph3.one.com
+	104.73.92.137		repo.skype.com
+	104.73.92.137		a104-73-92-137.deploy.static.akamaitechnologies.com
 
-		195.135.221.134		download.opensuse.org
+	46.30.215.58		opensuse-guide.org
+	46.30.215.58		webcluster2.webpod5-cph3.one.com
 
-		192.229.220.191		download.nvidia.com
-		192.229.220.191		cs486284.wpc.phicdn.net
+	195.135.221.134		download.opensuse.org
 
-		142.250.74.46		dl.google.com
-		142.250.74.46		arn09s22-in-f14.1e100.net
+	192.229.220.191		download.nvidia.com
+	192.229.220.191		cs486284.wpc.phicdn.net
 
-		148.251.201.107		packages.x2go.org
-		148.251.201.107		ymir.das-netzwerkteam.de
+	142.250.74.46		dl.google.com
+	142.250.74.46		arn09s22-in-f14.1e100.net
 
-		134.76.12.6			ftp.gwdg.de
-	```
+	148.251.201.107		packages.x2go.org
+	148.251.201.107		ymir.das-netzwerkteam.de
+
+	134.76.12.6			ftp.gwdg.de
+```
 
 ## freemind
 

@@ -28,11 +28,11 @@ apt-get reinstall gnome-remote-desktop
 
 ## kubuntu 24.04
 
-```
-aptitude install mcedit
-Следующие пакеты будут УДАЛЕНЫ:
-  fonts-mathjax{u} jsmath{u} jsmath-fonts{u} kdeedu-data{u} labplot-data{u} libcantorlibs28{u} libcerf2{u} libjs-mathjax{u} libmatio11{u} libmotif-common{u} libqscintilla2-qt5-15{u} libqscintilla2-qt5-l10n{u}
-  libreadstat1t64{u} libxbae4m{u} libxm4{u} libxmhtml1.1t64{u} pycodestyle{u} python3-pep8{u} python3-pycodestyle{u} python3-pyqt5.qsci{u} python3-stemmer{u} python3-veusz{u} python3-veusz.helpers{u}
+```bash
+aptitude install mcedit snap-store
+snap refresh --hold # выключить автообновление snap-store
+rm /etc/xdg/autostart/geoclue-demo-agent.desktop
+
 ```
 ### repo
 
@@ -53,7 +53,7 @@ deb https://mirror.yandex.ru/ubuntu/ noble main universe restricted multiverse
 * aptitude
 ```bash
 # Если вы хотите повторить логику aptitude и удалить все пакеты, помеченные как u (unused)
-ptitude purge ~c
+aptitude purge ~c
 
 # чтобы удалить автоматически установленные, но ненужные пакеты
 aptitude remove '?automatic?and(?narrow(?not(?depends(.*)),?installed))'
