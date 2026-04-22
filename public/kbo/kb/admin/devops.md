@@ -1,5 +1,6 @@
 #  devops
 
+ * [отдельная БЗ](https://gitlab.com/stepanovv/devops-infra/-/blob/master/README.md)
  * https://www.redhat.com/sysadmin/
  * [утилиты документирования](https://github.com/documentationjs)
 * где посмотреть ограничения технологий, их предельную нагрузку? ноды, события, потоки
