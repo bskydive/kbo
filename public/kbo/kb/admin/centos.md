@@ -6,6 +6,48 @@
  * [ubuntu](./ubuntu.md)
  * [opensuse](./opensuse.md)
 
+## file manager
+
+
+ * https://github.com/vifm/vifm
+
+```bash
+yum install vifm
+
+~/.config/vifm/vifmrc
+```
+
+```
+" --- MC-like Key Mappings ---
+
+" Use Insert key to select files
+nnoremap <Insert> %l
+vnoremap <Insert> %l
+
+" Function keys for file operations
+nnoremap <F1> :help<CR>
+nnoremap <F3> :view<CR>
+nnoremap <F4> :edit<CR>
+nnoremap <F5> :copy<CR>
+nnoremap <F6> :move<CR>
+nnoremap <F7> :mkdir<Space>
+nnoremap <F8> :delete<CR>
+nnoremap <F9> :command<CR>
+
+" Use Tab to switch panels
+nnoremap <Tab> <C-W>w
+
+" Use Alt-i/o/a (or similar) for MC-like behavior
+nnoremap <A-i> :cd! %D<CR>
+nnoremap <A-o> :cd! %d<CR>
+
+" Use Enter to open files
+nnoremap <CR> :file<CR>
+
+" View as MC (Name, Size, Time)
+set viewcolumns=-{name},12{size},19{mtime}
+```
+
 ## [bash](./bash.md)
 
 ### iptables

@@ -2,8 +2,11 @@
 
 ## Что это?
 
-База знаний, заметки, удобные для использования разработчиком ПО.
-Заметки ведутся давно, часть информации устарела.
+* База знаний, заметки, удобные для использования разработчиком ПО. Заметки ведутся с 2014, часть информации устарела.
+* Есть несколько других баз знаний: продакта, аналитика, менеджера, сисадмина
+* веб-страница портфолио
+* несколько примеров веб-приложений
+* репозиторий для статей
 
 ## Зачем это?
 
@@ -12,15 +15,11 @@
 ## Как увидеть рабочий проект?
 
 * [База знаний программиста](https://stepanovv.ru/kbo)
-* [База знаний человека-мужика](https://stepanovv.ru/kbb): сорян, часть ссылок в формате dokuwiki
+* [База знаний человека-мужика](https://stepanovv.ru/kbb). Сорян, часть ссылок в формате dokuwiki
 
 ## Где документация по проекту?
 
- * https://gitlab.com/stepanovv/kbo/-/blob/master/README.md
- * https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
- * http://prismjs.com/
- * https://docsify.js.org/#/markdown
- * https://marked.js.org/#/README.md
+ * [там](https://gitlab.com/stepanovv/kbo/-/blob/master/src/README.md#where-is-the-documentation-for-code) или [тут](../../src/README.md#where-is-the-documentation-for-code)
 
 ## Какие особенности проекта?
 
@@ -31,8 +30,8 @@
  * текстовый поиск без необходимости индексации
  * можно настроить оповещение об изменениях через bitbucket git web hooks в slack
  * Нет автоматического оглавления. Новые файлы добавляются вручную в [sidebar.md](https://gitlab.com/stepanovv/kbo/-/blob/master/public/kbo/sidebar.md)
-    * Пути указываются от [web корня](https://gitlab.com/stepanovv/kbo/-/tree/master/public)
-    * Подзаголовки в оглавлении будут добавлены автоматически
+	* Пути указываются от [web корня](https://gitlab.com/stepanovv/kbo/-/tree/master/public)
+	* Подзаголовки в оглавлении будут добавлены автоматически
  * [Плагины](http://prismjs.com/) подсветки добавляются в [index.html](https://gitlab.com/stepanovv/kbo/-/blob/master/public/index.html)
  * по отношению к оригинальному docsify добавлены собственные шрифты, изменены стили
  * есть markdown таблицы и плагин для предпросмотра картинок

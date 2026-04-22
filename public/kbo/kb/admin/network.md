@@ -196,6 +196,19 @@ ping добавляет 28 бит!
 
  * https://github.com/angristan/openvpn-install
 	* [openvpn-install-master.zip](./network/openvpn-install-master.zip)
+	* `
+```bash
+curl -O https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh
+
+./openvpn-install.sh install --port 443 --protocol tcp
+./openvpn-install.sh server status
+
+./openvpn-install.sh client add user1
+./openvpn-install.sh client list
+
+./openvpn-install.sh uninstall
+
+```
  * https://www.digitalocean.com/community/tutorials/how-to-set-up-and-configure-an-openvpn-server-on-centos-8-ru
  * https://linuxize.com/post/how-to-configure-and-manage-firewall-on-centos-8/#opening-a-source-port
  * https://gist.github.com/ndc33/5a7656af6b5a27762b7eea390e125985
