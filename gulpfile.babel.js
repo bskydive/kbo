@@ -98,6 +98,7 @@ const gitRemoteMain = "gl";
 const gitremoteReserve = "bb";
 
 //путь во все подпапки заставляет галп делать подпапки на выходе /**/ поэтому надо вписывать все названия файлов
+// exclude: '!**/*.png/**/*',
 const pathImgSrc = [`src/img/*`]; //['src/img/*.png', 'src/img/*.jpg', 'src/img/*.gif', 'src/img/*.jpeg']
 const pathImgClean = `${staticPath}/img/*`;
 const pathImgDest = `./${staticPath}/img`;

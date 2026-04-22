@@ -316,6 +316,9 @@
     font-weight: 600;
   }
 }
+.c-portfolio-header .c-portfolio-teaser-img > img {
+  height: 113px;
+}
 @media (max-width: 767px) {
   .c-portfolio-spacer-b {
     padding-top: 15px;
