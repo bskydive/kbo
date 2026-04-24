@@ -61,10 +61,14 @@ PermitRootLogin no
 PubkeyAuthentication yes
 AuthorizedKeysFile      .ssh/authorized_keys
 
-firewall-cmd --permament --zone=public --add-port=0000/tcp
+firewall-cmd --permanent --zone=public --add-port=0000/tcp
+firewall-cmd --runtime-to-permanent
 firewall-cmd --zone=public --list-ports
 firewall-cmd --list-all-zones
 firewall-cmd --reload
+
+firewall-cmd --permanent --remove-service ssh
+firewall-cmd --permanent --zone=trusted --remove-service ssh
 
 service ssh reload
 service ssh restart

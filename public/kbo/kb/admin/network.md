@@ -192,6 +192,16 @@ ping добавляет 28 бит!
 	* https://bitbucket.org/padavan/rt-n56u/wiki/Home
 	* https://github.com/Entware/Entware-ng
 
+## nmap
+
+https://nmap.org/download.html#linux-rpm
+
+```bash
+rpm -vhU https://nmap.org/dist/nmap-7.99-1.x86_64.rpm
+rpm -vhU https://nmap.org/dist/ncat-7.99-1.x86_64.rpm
+rpm -vhU https://nmap.org/dist/nping-7.99-1.x86_64.rpm
+```
+
 ## openvpn
 
  * https://github.com/angristan/openvpn-install
@@ -200,8 +210,9 @@ ping добавляет 28 бит!
 ```bash
 curl -O https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh
 
-./openvpn-install.sh install --port 443 --protocol tcp
+./openvpn-install.sh install --port 443 --protocol tcp --dns google
 ./openvpn-install.sh server status
+systemctl status openvpn-server@server.service
 
 ./openvpn-install.sh client add user1
 ./openvpn-install.sh client list
