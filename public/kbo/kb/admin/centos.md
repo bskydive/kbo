@@ -104,7 +104,7 @@ yum install elasticsearch-5.0.2-1
 ## LocalTime
 
 ```bash
-cp /etc/localtime /etc/localtime.oldd
+cp /etc/localtime /etc/localtime.old
 ln -fs /usr/share/zoneinfo/Europe/Moscow /etc/localtime
 ll /etc/localtime
 #lrwxrwxrwx 1 root root 33 May 13 11:02 /etc/localtime -> /usr/share/zoneinfo/Europe/Moscow
