@@ -1349,6 +1349,16 @@ x11forwarding yes
 x11uselocalhost no
 ```
 
+## chrome chromium
+
+боковые вкладки
+
+chrome://flags/
+#vertical-tabs
+
+chrome://settings/appearance
+Расположение панели вкладок - сторона
+
 ## firefox
 
 * profiles https://support.mozilla.org/en-US/kb/profile-manager-create-remove-switch-firefox-profiles#w_starting-the-profile-manager
