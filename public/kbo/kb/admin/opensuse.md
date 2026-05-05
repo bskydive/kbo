@@ -7,30 +7,52 @@
 
 ## проблемы opensuse 16
 
-### раскладка SDDM
+### раскладка SDDM на экране логина
 
 ```bash
-localectl set-keymap us
+# Установить системную локаль: русский язык и UTF-8
+sudo localectl set-locale LANG=ru_RU.UTF-8
 
-cat /etc/X11/xorg.conf.d/00-keyboard.conf:
+# Установить английскую раскладку для текстовой консоли Ctrl+Alt+F2
+sudo localectl set-keymap us
 
-# Written by systemd-localed(8), read by systemd-localed and Xorg. It's
-# probably wise not to edit this file manually. Use localectl(1) to
-# update this file.
-Section "InputClass"
-        Identifier "LocalKeyboard"
-        MatchIsKeyboard "on"
-        Option "XkbLayout" "us"
-        Option "XkbVariant" ""
-EndSection
-# Section "InputClass"
-#         Identifier "system-keyboard"
-#         MatchIsKeyboard "on"
-#         Option "XkbLayout" "ru"
-#         Option "XkbModel" "microsoftpro"
-#         Option "XkbVariant" "ruchey_en"
-#         Option "XkbOptions" "terminate:ctrl_alt_bksp"
-# EndSection
+# Установить X11-раскладки: English US + Russian, без специальных вариантов dead keys
+sudo localectl set-x11-keymap "us,ru" pc104 "," "terminate:ctrl_alt_bksp,caps:none,grp:caps_select"
+
+# Сделать резервную копию пользовательского KDE-конфига раскладок
+cp ~/.config/kxkbrc ~/.config/kxkbrc.bak
+
+# Убрать вариант раскладки вроде intl, alt-intl или chr; оставить пустой VariantList
+sed -i 's/^VariantList=.*/VariantList=,/' ~/.config/kxkbrc
+
+# Применить настройки раскладки в текущей X11/KDE-сессии без перезагрузки
+setxkbmap -layout us,ru -model pc104 -variant "," -option terminate:ctrl_alt_bksp,caps:none,grp:caps_select
+
+# проверка
+
+setxkbmap -query
+# rules:      evdev
+# model:      pc104
+# layout:     us,ru
+# variant:    ,
+# options:    terminate:ctrl_alt_bksp,caps:none,grp:caps_select
+
+localectl
+# System Locale: LANG=ru_RU.UTF-8
+#     VC Keymap: (unset)
+#    X11 Layout: us,ru
+#     X11 Model: pc104
+#   X11 Variant: ,
+#   X11 Options: terminate:ctrl_alt_bksp,caps:none,grp:caps_select
+
+cat ~/.config/kxkbrc
+# [Layout]
+# DisplayNames=,
+# LayoutList=us,ru
+# Options=terminate:ctrl_alt_bksp,caps:none,grp:caps_select
+# ResetOldOptions=true
+# Use=true
+# VariantList=,
 
 ```
 

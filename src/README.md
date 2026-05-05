@@ -69,6 +69,7 @@ cat >> ~/.bashrc
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 nvm list
+nvm ls-remote
 nvm install 20 --default
 nvm alias default 20
 nvm alias default node
