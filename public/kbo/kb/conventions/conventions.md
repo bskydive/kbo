@@ -139,7 +139,7 @@
  | charitable |  | снисходительный |
  | honest |  | честный |
  | asset | ценный актив | ресурс |
- | judgement |  | обоснование |
+ | judgement |  | суждение |
  | conduct |  | руководство |
  | excellence |  | совершенство |
  | raise |  | повышение |
