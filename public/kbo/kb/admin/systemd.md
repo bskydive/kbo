@@ -236,7 +236,7 @@ systemctl stop name.service					 # остановка сервиса
 systemctl restart name.service				 # перезапуск сервиса
 systemctl try-restart name.service			 # ерезапуск сервиса только, если он запущен
 systemctl reload name.service				 # перезагрузка конфигурации сервиса
-systemctl status name.service				 # проверка, запущен ли сервис с детальным выводом состояния сервиса
+systemctl status name.service --no-pager     # проверка, запущен ли сервис с детальным выводом состояния сервиса
 systemctl is-active name.service			 # проверка, запущен ли сервис с простым ответом: active или inactive
 systemctl list-units --type service --all	 # отображение статуса всех сервисов
 systemctl enable name.service				 # активирует сервис (позволяет стартовать во время запуска системы)
@@ -269,6 +269,14 @@ systemctl get-default					 # Для определения, какой целе�
 systemctl list-units --type target --all # Для просмотра всех загруженных целевых юнитов воспользуйтесь командой systemctl list-units --type target, а для просмотра вообще всех целевых юнитов командой:
 systemctl set-default name.target		 # Для изменения цели по умолчанию
 systemctl isolate name.target			 # Для изменения текущей цели:  Команда запустит целевой юнит и все его зависимости и немедленно остановит все остальные.
+```
+
+## предотвращение выключения ноутбука
+
+* https://dev.to/amarao/the-most-useful-command-in-the-age-of-agentic-f87
+
+```bash
+systemd-inhibit --what=handle-lid-switch:idle --who='manual' --why='nosleep script' sleep infinity
 ```
 
 ## Выключение и перезагрузка системы

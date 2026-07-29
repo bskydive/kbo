@@ -270,7 +270,7 @@ https://en.opensuse.org/SDB:PostgreSQL
 ```bash
 	zypper in postgresql12 postgresql12-server
 
-	systemctl status postgresql
+	systemctl status postgresql --no-pager
 
 	useradd -m postgres
 

@@ -300,7 +300,7 @@ journalctl -u smartd | grep -iE "error|warn"
  * gsmartcontrol
  * smart hdd read-only Mode: включается режим только для чтения при автоматической проверке
     ```bash
-		systemctl status smartd
+		systemctl status smartd --no-pager
 		systemctl stop smartd
 		systemctl disable smartd
 		grep -ivE '#' /etc/smartd.conf

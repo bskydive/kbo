@@ -49,6 +49,12 @@ https://support.office.com/en-us/article/Turn-off-or-uninstall-OneDrive-f32a17ce
 
 ## windows 11
 
+### win11bugs
+
+размер файла больше 100Гб
+C:\ProgramData\Microsoft\Windows\CapabilityAccessManager\CapabilityAccessManager.db-wal
+должна пофиксить в апдейте KB5095093
+
 ### disable update
 
 Using Services (Recommended):

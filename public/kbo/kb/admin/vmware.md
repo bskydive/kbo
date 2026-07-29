@@ -38,6 +38,118 @@ The following 10 NEW packages are going to be installed:
 
 ```
 
+## lubuntu
+
+```bash
+sudo apt remove xserver-xorg-video-vmware
+sudo apt-mark hold xserver-xorg-video-vmware
+sudo apt install open-vm-tools open-vm-tools-desktop mesa-utils
+
+apt install qpdfview
+xdg-mime default qpdfview.desktop application/pdf
+
+apt install retext
+
+```
+
+### For QTerminal: add `Ctrl+Insert` and `Shift+Insert`
+
+Open QTerminal, then:
+
+```text
+QTerminal → File → Preferences → Shortcuts
+```
+
+Find:
+
+```text
+Copy
+Paste
+```
+
+Set:
+
+```text
+Copy  = Ctrl+Insert
+Paste = Shift+Insert
+```
+
+You can usually keep the defaults too:
+
+```text
+Copy  = Ctrl+Shift+C
+Paste = Ctrl+Shift+V
+```
+
+The reason terminal copy/paste often uses `Ctrl+Shift+C/V` is that plain `Ctrl+C` is reserved for sending interrupt/SIGINT to shell programs. `Shift+Insert` is also a traditional paste shortcut in many Linux terminals. Lubuntu's manual documents QTerminal separately as the default terminal app, and LXQt global shortcuts separately, so terminal copy/paste should be configured in QTerminal itself rather than as a global desktop shortcut. ([manual.lubuntu.me][1])
+
+### For LXQt global shortcuts
+
+Use this only for things like launching terminal/browser, locking screen, etc.
+
+Open:
+
+```text
+Menu → Preferences → LXQt settings → Shortcut Keys
+```
+
+Or run:
+
+```bash
+lxqt-config-globalkeyshortcuts
+```
+
+Then:
+
+```text
+Add → Command
+```
+
+Example for terminal:
+
+```text
+Description: Open terminal
+Command: qterminal
+Shortcut: Ctrl+Alt+T
+```
+
+LXQt global shortcuts are managed by `lxqt-globalkeysd`; LXQt maintainers point users to `lxqt-config-globalkeyshortcuts` for editing them. ([GitHub][2])
+
+### Important: don't make `Ctrl+C` global
+
+Do **not** set global:
+
+```text
+Ctrl+C = copy
+Ctrl+V = paste
+```
+
+That will conflict with terminal behavior and many apps. Better use:
+
+```text
+Ctrl+Insert = Copy
+Shift+Insert = Paste
+Ctrl+Shift+C = Copy in terminal
+Ctrl+Shift+V = Paste in terminal
+```
+
+### Quick config check
+
+After changing shortcuts, restart QTerminal or log out/in.
+
+You can also check LXQt global shortcut config files:
+
+```bash
+ls ~/.config/lxqt/
+ls ~/.config/openbox/
+```
+
+But for your case, start with **QTerminal → Preferences → Shortcuts**.
+
+[1]: https://manual.lubuntu.me/stable/3/3.1/3.1.2/qterminal.html?highlight=start+menu&utm_source=chatgpt.com "https://manual.lubuntu.me/stable/3/3.1/3.1.2/qterm..."
+[2]: https://github.com/lxqt/lxqt/issues/1775?utm_source=chatgpt.com "Disabling Super/Meta/Windows key in global ..."
+
+
 ## ubuntu
 
 ```bash
@@ -65,6 +177,22 @@ Product Name         Product Version
 vmware-workstation   25.0.0.24995812
 
 
+```
+
+## 3D vmware host
+
+```bash
+pkill -f vmware || true
+
+mkdir -p ~/.vmware
+cp -a ~/.vmware/preferences ~/.vmware/preferences.bak.$(date +%F-%H%M%S) 2>/dev/null || true
+
+grep -v '^mks.gl.allowBlacklistedDrivers' ~/.vmware/preferences 2>/dev/null > /tmp/vmware-preferences || true
+mv /tmp/vmware-preferences ~/.vmware/preferences
+
+cat >> ~/.vmware/preferences <<'EOF'
+mks.gl.allowBlacklistedDrivers = "TRUE"
+EOF
 ```
 
 ## workstation 12
@@ -544,7 +672,7 @@ vmrun -T ws enableSharedFolders "c:\my VMs\myVM.vmx"
 Usage: vmrun [AUTHENTICATION-FLAGS] COMMAND [PARAMETERS]
 
 AUTHENTICATION-FLAGS
---------------------
+
 These must appear before the command and any command parameters.
 
    -T <hostType> (ws|fusion||player)
@@ -553,7 +681,7 @@ These must appear before the command and any command parameters.
    -gp <password in guest OS>
 
 POWER COMMANDS           PARAMETERS           DESCRIPTION
---------------           ----------           -----------
+           ----------           -----------
 start                    Path to vmx file     Start a VM or Team
                          [gui|nogui]
 stop                     Path to vmx file     Stop a VM or Team
@@ -566,7 +694,7 @@ pause                    Path to vmx file     Pause a VM
 unpause                  Path to vmx file     Unpause a VM
 
 SNAPSHOT COMMANDS        PARAMETERS           DESCRIPTION
------------------        ----------           -----------
+        ----------           -----------
 listSnapshots            Path to vmx file     List all snapshots in a VM
                          [showTree]
 snapshot                 Path to vmx file     Create a snapshot of a VM
@@ -578,7 +706,7 @@ revertToSnapshot         Path to vmx file     Set VM state to a snapshot
                          Snapshot name
 
 GUEST OS COMMANDS        PARAMETERS           DESCRIPTION
------------------        ----------           -----------
+        ----------           -----------
 runProgramInGuest        Path to vmx file     Run a program in Guest OS
                          [-noWait]
                          [-activeWindow]
@@ -656,7 +784,7 @@ getGuestIPAddress        Path to vmx file     Gets the IP address of the guest
 
 
 GENERAL COMMANDS         PARAMETERS           DESCRIPTION
-----------------         ----------           -----------
+         ----------           -----------
 list                                          List all running VMs
 
 upgradevm                Path to vmx file     Upgrade VM file format, virtual hw
@@ -676,7 +804,7 @@ clone                    Path to vmx file     Create a copy of the VM
 
 
 Template VM COMMANDS     PARAMETERS           DESCRIPTION
----------------------    ----------           -----------
+    ----------           -----------
 downloadPhotonVM         Path for new VM      Download Photon VM
 
 ```

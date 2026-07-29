@@ -1,5 +1,27 @@
 # VSCode
 
+## install vscode
+
+https://code.visualstudio.com/docs/setup/linux
+
+```bash
+sudo bash
+echo "code code/add-microsoft-repo boolean true" | debconf-set-selections
+apt install wget gpg && wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor -o /usr/share/keyrings/microsoft.gpg
+
+cat > /etc/apt/sources.list.d/vscode.sources
+Types: deb
+URIs: https://packages.microsoft.com/repos/code
+Suites: stable
+Components: main
+Architectures: amd64,arm64,armhf
+Signed-By: /usr/share/keyrings/microsoft.gpg
+
+apt update && apt install code
+
+
+```
+
 ## sync
 
  * deprecated [Настройки в github](https://gist.github.com/bskydive/8878b3d6d3e679358935d34983d9ffe1)

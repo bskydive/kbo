@@ -210,12 +210,19 @@ rpm -vhU https://nmap.org/dist/nping-7.99-1.x86_64.rpm
 ```bash
 curl -O https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh
 
-./openvpn-install.sh install --port 443 --protocol tcp --dns google
-./openvpn-install.sh server status
-systemctl status openvpn-server@server.service
+bash ./openvpn-install.sh install --port 443 --protocol tcp --dns google
+bash ./openvpn-install.sh server status
+systemctl status openvpn-server@server.service --no-pager
 
-./openvpn-install.sh client add user1
-./openvpn-install.sh client list
+bash ./openvpn-install.sh client add user1
+bash ./openvpn-install.sh client list
+
+firewall-cmd --zone=public --add-port=443/tcp
+firewall-cmd --zone=public --add-port=443/udp
+firewall-cmd --runtime-to-permanent
+firewall-cmd --reload
+firewall-cmd --zone=public --list-ports
+firewall-cmd --list-all-zones
 
 ./openvpn-install.sh uninstall
 
@@ -228,14 +235,6 @@ systemctl status openvpn-server@server.service
 ```bash
 	yum install epel-release
 	yum install openvpn easy-rsa
-
-
-	firewall-cmd --zone=public --add-port=443/tcp
-	firewall-cmd --zone=public --add-port=443/udp
-	firewall-cmd --runtime-to-permanent
-	firewall-cmd --zone=public --list-ports
-	firewall-cmd --list-all-zones
-
 ```
 
 ```bash
@@ -374,7 +373,7 @@ systemctl status openvpn-server@server.service
 	firewall-cmd --reload
 	systemctl enable openvpn-server@server.service
 	systemctl start openvpn-server@server.service
-	systemctl status openvpn-server@server.service
+	systemctl status openvpn-server@server.service --no-pager
 
 	# Создание инфраструктуры конфигурации клиентских систем
 
@@ -434,7 +433,7 @@ systemctl status openvpn-server@server.service
 
 	openvpn --config client1.ovpn
 
-	systemctl status openvpn-server@server.service
+	systemctl status openvpn-server@server.service --no-pager
 
 
 
