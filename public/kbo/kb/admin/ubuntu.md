@@ -77,14 +77,6 @@ sudo apt clean
 ## setup
 
 ```bash
-apt-cdrom add /media/user/Kubuntu\ 24.04.4\ LTS\ amd64/
-add-apt-repository deb https://mirror.yandex.ru/ubuntu/ noble main universe restricted multiverse
-
-cat >> /etc/apt/preferences.d/ya-repo-priority.pref
-# Package: *
-# Pin: origin "mirror.yandex.ru"
-# Pin-Priority: 600
-
 add-apt-repository ppa:danielrichter2007/grub-customizer
 aptitude install grub-customizer grub2-themes-ubuntu-mate grub-theme-starfield grub-splashimages grub2-themes-ubuntustudio
 
@@ -93,7 +85,7 @@ apt-get install aptitude
 aptitude update
 aptitude upgrade
 
-aptitude install nvtop radeontop openssh-server vlc smartmontools gparted gsmartcontrol git mc mtr iotop iftop ubuntu-restricted-extras fonts-roboto fonts-jetbrains-mono
+aptitude install nvtop radeontop openssh-server vlc smartmontools gparted gsmartcontrol git mc mtr wget curl make iotop iftop ubuntu-restricted-extras fonts-roboto fonts-jetbrains-mono
 aptitude install xubuntu-community-wallpapers xubuntu-wallpapers ubuntu-mate-wallpapers ubuntu-gnome-wallpapers
 
 # для Gnome
@@ -102,11 +94,63 @@ aptitude install gnome-tweaks gnome-shell-extension-manager
 ```
 ### repo
 
+* ru
+
 ```bash
 cat >> /etc/apt/sources.list.d/yandex.sources
 
 deb https://mirror.yandex.ru/ubuntu/ noble main universe restricted multiverse
 # deb-src https://mirror.yandex.ru/ubuntu/ noble main universe restricted multiverse
+
+apt-cdrom add /media/user/Kubuntu\ 24.04.4\ LTS\ amd64/
+add-apt-repository deb https://mirror.yandex.ru/ubuntu/ noble main universe restricted multiverse
+
+cat >> /etc/apt/preferences.d/ya-repo-priority.pref
+# Package: *
+# Pin: origin "mirror.yandex.ru"
+# Pin-Priority: 600
+
+```
+
+* en
+
+```bash
+deb http://archive.ubuntu.com/ubuntu/ noble main restricted universe multiverse
+# deb-src http://archive.ubuntu.com/ubuntu/ noble main restricted universe multiverse
+
+deb http://archive.ubuntu.com/ubuntu/ noble-updates main restricted universe multiverse
+# deb-src http://archive.ubuntu.com/ubuntu/ noble-updates main restricted universe multiverse
+
+deb http://archive.ubuntu.com/ubuntu/ noble-security main restricted universe multiverse
+# deb-src http://archive.ubuntu.com/ubuntu/ noble-security main restricted universe multiverse
+
+deb http://archive.ubuntu.com/ubuntu/ noble-backports main restricted universe multiverse
+# deb-src http://archive.ubuntu.com/ubuntu/ noble-backports main restricted universe multiverse
+
+deb http://archive.ubuntu.com/ubuntu/ noble-proposed main restricted universe multiverse
+# deb-src http://archive.ubuntu.com/ubuntu/ noble-proposed main restricted universe multiverse
+```
+
+### ubuntu fonts
+
+```bash
+mkdir -p ~/fonts && mkdir -p ~/.fonts && cd ~/fonts
+
+wget https://github.com/adobe-fonts/source-code-pro/releases/download/2.042R-u%2F1.062R-i%2F1.026R-vf/OTF-source-code-pro-2.042R-u_1.062R-i.zip && \
+unzip OTF-source-code-pro-2.042R-u_1.062R-i.zip && \
+cp OTF/*.otf ~/.fonts/ && echo okok1
+
+wget https://github.com/adobe-fonts/source-serif/releases/download/4.005R/source-serif-4.005_Desktop.zip && \
+unzip source-serif-4.005_Desktop.zip && \
+cp source-serif-4.005_Desktop/OTF/*.otf ~/.fonts/ && echo okok2
+
+wget https://github.com/adobe-fonts/source-sans/releases/download/3.052R/OTF-source-sans-3.052R.zip && \
+unzip OTF-source-sans-3.052R.zip && \
+cp OTF/*.otf ~/.fonts/ && echo okok3
+
+fc-cache -f -v
+
+# rm -rf ~/fonts
 ```
 
 ### widgets

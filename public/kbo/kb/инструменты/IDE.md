@@ -13,3 +13,21 @@
 	* https://github.com/mawww/kakoune
  * secured airgap - https://github.com/ActiveState/OpenKomodoIDE
  * https://codeberg.org/JakobDev/jdTextEdit
+
+
+## Zed IDE
+
+https://cloud.zed.dev/releases/stable/latest/download?asset=zed&arch=x86_64&os=linux&source=install.sh
+
+curl -f https://zed.dev/install.sh | sh
+
+
+## sublime IDE
+
+https://cloud.zed.dev/releases/stable/latest/download?asset=zed&arch=x86_64&os=linux&source=install.sh
+
+zypper addrepo -g -f https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo
+
+zypper install sublime-text
+
+https://packagecontrol.io/packages/Outline
