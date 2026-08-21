@@ -279,10 +279,10 @@ docker container cp zabbix-zabbix-server-pgsql-1:/etc/zabbix/zabbix_server.conf 
 	cat >> /etc/docker/daemon.json
 {
 	"registry-mirrors": [
-		"https://mirror.gcr.io",
-		"https://registry.gitverse.ru",
+		# "https://mirror.gcr.io",
+		# "https://registry.gitverse.ru",
 		"https://dockerhub.timeweb.cloud/",
-		"https://dockerhub1.beget.com"
+		# "https://dockerhub1.beget.com"
 	],
 		#"https://cr.yandex.ru/mirror", #нужна учётка yandex.cloud
 		#"https://daocloud.io", #slow
@@ -293,7 +293,7 @@ docker container cp zabbix-zabbix-server-pgsql-1:/etc/zabbix/zabbix_server.conf 
 	"insecure-registries" : [ "hostname.cloudapp.net:5000" ]
 }
 
-dockerd --validate --config-file=/etc/docker/daemon.json 
+dockerd --validate --config-file=/etc/docker/daemon.json
 ```
  * https://stackoverflow.com/questions/33054369/how-to-change-the-default-docker-registry-from-docker-io-to-my-private-registry
  *

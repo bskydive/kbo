@@ -1033,6 +1033,8 @@ zypper in qt6-tools-qdbus
     * для управления gcr keyring `zypper in seahorse`
  * flatpak
 	* `zypper in flatpak`
+	* `flatpak list`
+	* `flatpak uninstall name`
 	* от пользователя! flatpak `flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo`
 	* или в discover - настройка - add flathub
  * перенос /home

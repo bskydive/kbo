@@ -21,6 +21,18 @@ https://cloud.zed.dev/releases/stable/latest/download?asset=zed&arch=x86_64&os=l
 
 curl -f https://zed.dev/install.sh | sh
 
+```
+md_heading: #cc8242
+kbs_project: #470110
+kbo_project: #65c89b
+```
+
+https://zed.dev/docs/reference/all-settings#auto-install-extensions
+https://zed.dev/docs/extensions/installing-extensions
+
+ls ~/.local/share/zed/extensions/installed
+
+ls ~/.config/zed/
 
 ## sublime IDE
 
