@@ -312,6 +312,8 @@ vmware-mount -L
 # Disks with mounted partitions:
 #	/VM/Server/Server-000001.vmdk
 
+# unmount
+vmware-mount -d /mnt/vmdk0/
 ```
 
 ### vmware startup opensuse

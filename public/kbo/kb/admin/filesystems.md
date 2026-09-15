@@ -248,6 +248,8 @@ find . -inum 17040033 -exec mv {} new-directory-name1 \;
  * https://1victoria.ru/victoria-hdd-4-47/
  * https://forum.ixbt.com/topic.cgi?id=11:48406
 
+* https://github.com/ISpillMyDrink/OpenSuperClone/releases
+
 ## SMART
 
  * https://wiki.archlinux.org/title/S.M.A.R.T.
@@ -361,6 +363,7 @@ journalctl -u smartd | grep -iE "error|warn"
 	#-tt - advanced timing stats
 	#-z - undo file
 	#-k - save current bad blocks
+	#-C0 - write completion information to the specified file descriptor
 	e2fsck -ttf /dev/sdaX
 	e2fsck -ttD -j fsck.log /dev/sdaX
 	#> e2fsck -cCVf /dev/sdaX
@@ -380,6 +383,27 @@ journalctl -u smartd | grep -iE "error|warn"
 	# обнуление свободного места
 	e2fsck -E discard /dev/sdeX -y
  ```
+
+## копирование с повреждённого диска
+
+```bash
+mkdir -p /mnt/damaged
+mount -t ext4 -o ro,noload /dev/sdXN /mnt/damaged
+
+rsync -aHAX --numeric-ids \
+  --info=progress2 --partial \
+  --log-file=/mnt/healthy/recovery-rsync.log \
+  /mnt/damaged/important/ \
+  /mnt/healthy/recovered/important/
+```
+
+* WD30EFRX-68EUZN0 Прошивка **82.00A82**. Обсуждаются ошибки чтения и спасение данных.
+	* **[Зависание SMART extended на 90% — Reddit](https://www.reddit.com/r/homelab/comments/8fl90w/zfs_degrade_smartctl_extended_stuck/)**
+	Прошивка **82.00A82**. После остановки теста и завершения ZFS resilver повторный тест прошёл. Это совпадение симптома зависания, но причина не доказана.
+	* **[Ошибки чтения при успешных SMART-тестах — TrueNAS](https://www.truenas.com/community/threads/pool-degraded-smart-test-passes-but-logs-errors.116055/)**
+	Прошивка **80.00A80**, как у вас. Ошибки **UNC**, при этом счётчики Reallocated/Pending/Offline_Uncorrectable остаются нулевыми. **Наиболее близкий случай к вашим исходным логам.**
+	* **[UNC и «auto reallocate failed» — openSUSE](https://forums.opensuse.org/t/hard-drive-dying-help-to-rescue-data/172420)**
+
 
 ## noexec permission denied
 

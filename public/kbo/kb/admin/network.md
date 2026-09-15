@@ -217,6 +217,18 @@ systemctl status openvpn-server@server.service --no-pager
 bash ./openvpn-install.sh client add user1
 bash ./openvpn-install.sh client list
 
+cat > /etc/sysctl.d/90-openvpn-lossy-link.conf >/dev/null
+net.core.default_qdisc=fq
+net.ipv4.tcp_congestion_control=bbr
+net.ipv4.conf.all.rp_filter=0
+net.ipv4.conf.default.rp_filter=0
+net.core.rmem_max=16777216
+net.core.wmem_max=16777216
+net.core.netdev_max_backlog=250000
+
+
+sudo sysctl --system
+
 firewall-cmd --zone=public --add-port=443/tcp
 firewall-cmd --zone=public --add-port=443/udp
 firewall-cmd --runtime-to-permanent
