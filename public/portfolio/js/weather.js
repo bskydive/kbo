@@ -124,7 +124,6 @@ function weatherController() {
 				let inputLatitude = parseFloat(this.inputLat);
 				let inputLongitude = parseFloat(this.inputLon);
 
-
 				getCoordinates(inputLatitude, inputLongitude)
 					.then(getWeather)
 					.then(parseResponse)
@@ -143,7 +142,6 @@ function weatherController() {
 					.catch(err => {
 
 						this.locationHeader = vm.localization.locationRestricted[vm.langIdActive] + err;
-						console.error('portfolio/src/app/weather/weather.js:471', err);
 					});
 			}
 		}
@@ -261,7 +259,6 @@ function weatherController() {
 
 		let coordsParsed = coords.coords;
 
-		console.log('portfolio/src/app/weather/weather.js:454', coordsParsed, typeof(coordsParsed.latitude));
 
 		if (typeof (coordsParsed.latitude) === 'number' && coordsParsed.latitude >= 0 &&
 			typeof (coordsParsed.longitude) === 'number' && coordsParsed.longitude >= 0) {
