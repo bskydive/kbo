@@ -20,3 +20,6 @@ The weather showing app
 * Show current lat,lon in app header
 * Switch translation of the app
 
+##
+
+* [weather API response example](./weatherResponseExample.json)

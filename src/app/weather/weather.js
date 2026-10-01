@@ -33,7 +33,7 @@
 function weatherController() {
 	let app = this;
 
-	const apiKey = "9810b9f35c8f7b1ee6ae08d2d6f49e06";
+	const apiKey = "b6250e9ef7d28f4b1933e164ada7315f";
 
 	//==============================================================================VUE===============================================================================
 
@@ -101,9 +101,9 @@ function weatherController() {
 				locationHeader: '',
 				localization: {
 					locationHeader: ["Weather geo location: ", "Точка определения погоды: "],
-					loadingHeader: ["Waiting for server response ... ", "Ожидаем ответа сервера ..."],
+					loadingHeader: ["Waiting for server response(~1min) ... ", "Ожидаем ответа сервера(~1мин) ..."],
 					locationNameEmpty: ['Unknown', 'Неизвестно'],
-					locationRestricted: ['Allow browser to show your coordinates or enter coordinates manually', 'Разрешите браузеру передать Ваши координаты или ведите координаты вручную'],
+					locationRestricted: ['Weather request failed. Allow browser to show your coordinates or enter coordinates manually', 'Ошибка запроса погоды. Разрешите браузеру передать Ваши координаты или ведите координаты вручную'],
 					locationLonDesc: ["Longitude", "Долгота"],
 					locationLatDesc: ["Latitude", "Широта"],
 					pressureDesc: ["Atmospheric pressure", "Атмосферное давление"],
@@ -197,29 +197,22 @@ function weatherController() {
 				this.inputLon = '';
 			},
 			refreshData() {
-				//			console.log('portfolio/src/app/weather/weather.js:443', this.weatherList);
+				//			console.log('portfolio/src/app/weather/weather.js:200', this.weatherList);
 				//todo get country&units from BOM
-				this.locationHeader = this.localization.loadingHeader[this.langIdActive]; //загружаем данные
+				this.locationHeader = this.localization.loadingHeader[this.langIdActive]; //загружаем перевод надписей
 				this.weatherList = [];
 				this.locationLabels = [];
 
 				//костыль пока не решена проблема проброса изнутри цепочки промисов в vm
+				//если пользователь ввёл координаты вручную
 				let inputLatitude = parseFloat(this.inputLat);
 				let inputLongitude = parseFloat(this.inputLon);
-
-				if (inputLatitude.isNaN || inputLongitude.isNaN) {
-					let coords = getCoordLocal();
-					if (coords.latitude >= 0 && coords.longitude >= 0) { //если есть локально сохранённые координаты
-						this.inputLat = String(coords.latitude);
-						this.inputLon = String(coords.longitude);
-					}
-				}
 
 				getCoordinates(inputLatitude, inputLongitude)
 					.then(getWeather)
 					.then(parseResponse)
 					.then(weatherListParsed => {
-						//						console.log('portfolio/src/app/weather/weather.js:465', this.weatherList);
+						// console.log('portfolio/src/app/weather/weather.js:215', this.weatherList);
 						weatherListParsed.locationLabels.forEach(item => { //да, надо ещё раз пушить, чтобы сработала реактивность
 							this.locationLabels.push(item);
 						});
@@ -230,12 +223,12 @@ function weatherController() {
 
 						this.locationHeader = this.localization.locationHeader[this.langIdActive];
 
-						//						console.log('portfolio/src/app/weather/weather.js:469', this.weatherList);
+						//						console.log('portfolio/src/app/weather/weather.js:226', this.weatherList);
 					})
 					.catch(err => {
 
-						this.locationHeader = vm.localization.locationRestricted[vm.langIdActive];
-						console.error('portfolio/src/app/weather/weather.js:471', err);
+						this.locationHeader = vm.localization.locationRestricted[vm.langIdActive] + err;
+						// console.log('portfolio/src/app/weather/weather.js:231', err);
 					});
 			}
 		}
@@ -252,6 +245,8 @@ function weatherController() {
 	 * todo разнообразить возврат ошибок, надо переводить
 	 */
 	function getResponse(remoteUrl) {
+	//https://api.openweathermap.org/data/2.5/weather?units=metric&lang=ru&lat=38.96&lon=35.24&cnt=3&appid=b6250e9ef7d28f4b1933e164ada7315f
+	// ./weatherRespnoseExample.json
 		return new Promise((resolve, reject) => {
 
 			let request = new XMLHttpRequest();
@@ -278,7 +273,7 @@ function weatherController() {
 						//todo add empty response type parser
 					}
 
-					//				console.debug("Loaded content:",request);
+					// console.log("Loaded content:",request);
 					resolve(request.response);
 				} else {
 					reject({
@@ -330,7 +325,8 @@ function weatherController() {
 	 * @returns {string} - url иконки
 	 */
 	function getWeatherIcon(weatherIcon) {
-		return "https://openweathermap.org/img/w/" + weatherIcon + ".png";
+		return "https://openweathermap.org/payload/api/media/file/" + weatherIcon + ".png";
+		// return "https://openweathermap.org/img/w/" + weatherIcon + ".png";
 	}
 
 	//var jsonOWMDesc = {//openweathermap.org
@@ -400,7 +396,7 @@ function weatherController() {
 		};
 
 		if ((typeof (response) === 'object') && (typeof (response.list) === 'object') && (response.list.length > 0)) {
-			//		console.log('portfolio/src/app/weather/weather.js:202',response);
+			//		console.log('portfolio/src/app/weather/weather.js:408',response);
 			response.list.forEach(item => {
 
 				result.locationLabels.push(item.name);
@@ -428,10 +424,10 @@ function weatherController() {
 					description: vm.localization.windDesc[vm.langIdActive]
 				}]);
 			});
-			//		console.log('portfolio/src/app/weather/weather.js:243', result);
+			//		console.log('portfolio/src/app/weather/weather.js:436', result);
 			return Promise.resolve(result);
 		} else {
-			//		console.log('invalid response=' + response);
+			//		console.log('portfolio/src/app/weather/weather.js:439','invalid response=' + response);
 			return Promise.reject(['invalid response=', response]);
 		}
 	}
@@ -443,26 +439,29 @@ function weatherController() {
 	 */
 	function getWeather(coords) {
 
+		// координаты из геолокации браузера или введённые вручную, сохранённые в localstorage
 		let coordsParsed = coords.coords;
 
-		//		console.log('portfolio/src/app/weather/weather.js:414', coordsParsed, typeof(coordsParsed.latitude));
+		// console.log('portfolio/src/app/weather/weather.js:454', coordsParsed, typeof(coordsParsed.latitude));
+
 		if (typeof (coordsParsed.latitude) === 'number' && coordsParsed.latitude >= 0 &&
 			typeof (coordsParsed.longitude) === 'number' && coordsParsed.longitude >= 0) {
 
+			// let httpText = "https://api.openweathermap.org/data/4.0/onecall/current?" +
 			let httpText = "https://api.openweathermap.org/data/2.5/find?" +
 				"units=" + vm.localization.unitsJson[vm.unitNameIdActive] +
 				"&lang=" + vm.localization.langJson[vm.langIdActive] +
 				"&lat=" + (Math.round(coordsParsed.latitude * 100) / 100).toString() +
 				"&lon=" + (Math.round(coordsParsed.longitude * 100) / 100).toString() +
 				"&cnt=3" +
-				"&appid=" + apiKey; //2de143494c0b295cca9337e1e96b00e0
-			//		console.log("httpText:", httpText);
+				"&appid=" + apiKey; //b6250e9ef7d28f4b1933e164ada7315f
+			// console.log('portfolio/src/app/weather/weather.js:467',"httpText:", httpText);
 			return getResponse(httpText);
 			//				.then(jsonResponse => parseResponse(jsonResponse))
-			//				.catch(err => {console.error(err);});
+			//				.catch(err => {console.log(err);});
 		} else {
-			//			console.log('Введите координаты вручную',coords);
-			return Promise.reject(['Введите координаты вручную', coords]);
+			//			console.log('src/app/weather/weather.js:472','Сервер не отвечает. Введите координаты вручную',coords);
+			return Promise.reject(['Сервер не отвечает. Введите координаты вручную', coords]);
 		}
 	}
 
@@ -475,7 +474,7 @@ function weatherController() {
 			latitude: parseFloat(window.localStorage.getItem('input-latitude')),
 			longitude: parseFloat(window.localStorage.getItem('input-longitude'))
 		};
-		//		console.log('portfolio/src/app/weather/weather.js:445', app.vm);
+		//		console.log('portfolio/src/app/weather/weather.js:486', app.vm);
 		return result;
 	};
 
@@ -502,10 +501,8 @@ function weatherController() {
 	 * @returns {Promise<function(object), object>} - resolve(getWeather(coords)) или reject({message:string})
 	 * todo сделать синхронизацию из внешней функции-промиса внутрь vm.
 	 */
-	function getCoordinates(inputLat, inputLon) {
-		//		console.log('portfolio/src/app/weather/weather.js:468', inputLat, inputLon);//vm=undefined
-		let inputLatitude = parseFloat(this.inputLat);
-		let inputLongitude = parseFloat(this.inputLon);
+	function getCoordinates(inputLatitude, inputLongitude) {
+		//		console.log('portfolio/src/app/weather/weather.js:514', inputLat, inputLon);//vm=undefined
 
 		return new Promise((resolve, reject) => {
 			let coords = {
@@ -515,23 +512,18 @@ function weatherController() {
 				}
 			};
 
+			// console.log('portfolio/src/app/weather/weather.js:524', inputLatitude, inputLongitude, this.inputLat, this.inputLon);
 			if (inputLatitude >= 0 && inputLongitude >= 0) { //если пользователь ввёл координаты вручную
 				coords.coords.latitude = inputLatitude;
 				coords.coords.longitude = inputLongitude;
 
-				setCoordsLocal(inputLatitude, inputLongitude); //сохраняем их локально
+				setCoordsLocal(inputLatitude, inputLongitude); //сохраняем их в localstorage
 
-				//				console.log('portfolio/src/app/weather/weather.js:468', coords);
+				// console.log('portfolio/src/app/weather/weather.js:531', coords);
 				return resolve(coords);
 			}
 
-			//			coords.coords = getCoordLocal();//костыль
-
-			if (coords.coords.latitude >= 0 && coords.coords.longitude >= 0) { //если есть локально сохранённые координаты
-				//				console.log('portfolio/src/app/weather/weather.js:478', coords);
-				return resolve(coords);
-			}
-
+			// console.log('portfolio/src/app/weather/weather.js:536', coords , 'getBrowserCoordinates');
 			return getBrowserCoordinates(resolve, reject); //берём из браузера
 		});
 	}
@@ -547,16 +539,17 @@ function weatherController() {
 	function getBrowserCoordinates(resolve, reject) {
 		let options = { //https://developer.mozilla.org/en-US/docs/Web/API/PositionOptions
 			enableHighAccuracy: true,
-			timeout: 5000,
+			timeout: 60000,
 			maximumAge: 75000
 		};
 
-		if (navigator.geolocation) {
-			//			console.log('portfolio/src/app/weather/weather.js:502', navigator.geolocation);
+		// https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API/Using_the_Geolocation_API
+		if ("geolocation" in navigator) {
+			// console.log('portfolio/src/app/weather/weather.js:558', navigator.geolocation);
 			navigator.geolocation.getCurrentPosition(resolve, reject, options); //передаём координаты в обработчик resolve
 		} else {
-			//			console.log('Введите координаты вручную',coords);
-			return Promise.reject(['Введите координаты вручную', coords]);
+			// console.log('portfolio/src/app/weather/weather.js:561', 'Введите координаты вручную',coords);
+			return Promise.reject(['Геолокация недоступна. Введите координаты вручную', coords]);
 		}
 	}
 

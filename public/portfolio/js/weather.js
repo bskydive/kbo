@@ -5,7 +5,7 @@
 function weatherController() {
 	let app = this;
 
-	const apiKey = "9810b9f35c8f7b1ee6ae08d2d6f49e06";
+	const apiKey = "b6250e9ef7d28f4b1933e164ada7315f";
 
 
 
@@ -24,9 +24,9 @@ function weatherController() {
 				locationHeader: '',
 				localization: {
 					locationHeader: ["Weather geo location: ", "Точка определения погоды: "],
-					loadingHeader: ["Waiting for server response ... ", "Ожидаем ответа сервера ..."],
+					loadingHeader: ["Waiting for server response(~1min) ... ", "Ожидаем ответа сервера(~1мин) ..."],
 					locationNameEmpty: ['Unknown', 'Неизвестно'],
-					locationRestricted: ['Allow browser to show your coordinates or enter coordinates manually', 'Разрешите браузеру передать Ваши координаты или ведите координаты вручную'],
+					locationRestricted: ['Weather request failed. Allow browser to show your coordinates or enter coordinates manually', 'Ошибка запроса погоды. Разрешите браузеру передать Ваши координаты или ведите координаты вручную'],
 					locationLonDesc: ["Longitude", "Долгота"],
 					locationLatDesc: ["Latitude", "Широта"],
 					pressureDesc: ["Atmospheric pressure", "Атмосферное давление"],
@@ -124,13 +124,6 @@ function weatherController() {
 				let inputLatitude = parseFloat(this.inputLat);
 				let inputLongitude = parseFloat(this.inputLon);
 
-				if (inputLatitude.isNaN || inputLongitude.isNaN) {
-					let coords = getCoordLocal();
-					if (coords.latitude >= 0 && coords.longitude >= 0) { 
-						this.inputLat = String(coords.latitude);
-						this.inputLon = String(coords.longitude);
-					}
-				}
 
 				getCoordinates(inputLatitude, inputLongitude)
 					.then(getWeather)
@@ -149,7 +142,7 @@ function weatherController() {
 					})
 					.catch(err => {
 
-						this.locationHeader = vm.localization.locationRestricted[vm.langIdActive];
+						this.locationHeader = vm.localization.locationRestricted[vm.langIdActive] + err;
 						console.error('portfolio/src/app/weather/weather.js:471', err);
 					});
 			}
@@ -221,7 +214,7 @@ function weatherController() {
 
 
 	function getWeatherIcon(weatherIcon) {
-		return "https://openweathermap.org/img/w/" + weatherIcon + ".png";
+		return "https://openweathermap.org/payload/api/media/file/" + weatherIcon + ".png";
 	}
 
 	function parseResponse(response) {
@@ -268,6 +261,8 @@ function weatherController() {
 
 		let coordsParsed = coords.coords;
 
+		console.log('portfolio/src/app/weather/weather.js:454', coordsParsed, typeof(coordsParsed.latitude));
+
 		if (typeof (coordsParsed.latitude) === 'number' && coordsParsed.latitude >= 0 &&
 			typeof (coordsParsed.longitude) === 'number' && coordsParsed.longitude >= 0) {
 
@@ -280,7 +275,7 @@ function weatherController() {
 				"&appid=" + apiKey; 
 			return getResponse(httpText);
 		} else {
-			return Promise.reject(['Введите координаты вручную', coords]);
+			return Promise.reject(['Сервер не отвечает. Введите координаты вручную', coords]);
 		}
 	}
 
@@ -297,9 +292,7 @@ function weatherController() {
 		window.localStorage.setItem('input-longitude', String(inputLongitude));
 	};
 
-	function getCoordinates(inputLat, inputLon) {
-		let inputLatitude = parseFloat(this.inputLat);
-		let inputLongitude = parseFloat(this.inputLon);
+	function getCoordinates(inputLatitude, inputLongitude) {
 
 		return new Promise((resolve, reject) => {
 			let coords = {
@@ -318,11 +311,6 @@ function weatherController() {
 				return resolve(coords);
 			}
 
-
-			if (coords.coords.latitude >= 0 && coords.coords.longitude >= 0) { 
-				return resolve(coords);
-			}
-
 			return getBrowserCoordinates(resolve, reject); 
 		});
 	}
@@ -330,14 +318,14 @@ function weatherController() {
 	function getBrowserCoordinates(resolve, reject) {
 		let options = { 
 			enableHighAccuracy: true,
-			timeout: 5000,
+			timeout: 60000,
 			maximumAge: 75000
 		};
 
-		if (navigator.geolocation) {
+		if ("geolocation" in navigator) {
 			navigator.geolocation.getCurrentPosition(resolve, reject, options); 
 		} else {
-			return Promise.reject(['Введите координаты вручную', coords]);
+			return Promise.reject(['Геолокация недоступна. Введите координаты вручную', coords]);
 		}
 	}
 
