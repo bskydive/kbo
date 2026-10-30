@@ -63,6 +63,8 @@
 		> yum install gcc-c++ ##node_gyp g++ fix
 		> ## ~/.nvm/versions/node/v10.7.0/bin/node
 		>
+
+		dnf install gcc libatomic
 	```
  * [debug](../инструменты/vscode.md#debug)
 
