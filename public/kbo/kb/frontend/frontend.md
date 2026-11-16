@@ -221,7 +221,7 @@
  * https://github.com/rmurphey/js-assessment
  * http://webdesign-master.ru/uploads/images/_blogs/adaptive/
  * https://university.mongodb.com/courses/M101J/about
- * [инструменты](https://www.youtube.com/watch?v=y9ERi0PhHEo)
+ * [Автоматизация для фронтендеров HTML Academy](https://www.youtube.com/watch?v=y9ERi0PhHEo)
  * [css5](http://javarush.ru/cs50.html)
  * https://habrahabr.ru/post/346010/
  * http://krekotun.ru/ui-developer-skills#html-css

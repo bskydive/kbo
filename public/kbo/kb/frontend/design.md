@@ -134,6 +134,5 @@
  * https://www.elegantthemes.com/
  * https://themeforest.net/
  * https://elements.envato.com/ru/web-templates/admin-templates
- * https://wonw.xyz/iotask/
  * https://themeforest.net/item/iotask-project-management-ui-kit/22794376?s_rank=1
 
