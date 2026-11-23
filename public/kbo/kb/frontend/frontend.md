@@ -56,10 +56,10 @@
  * https://github.com/FrontendMasters/front-end-handbook-2018
 	* https://frontendmasters.com/books/front-end-handbook/2018/
 
-###  Много всего
+### Документация и форумы
 
  * http://devdocs.io/
-
+ * https://doka.guide/
  * http://www.cyberguru.ru/web/html.html
  * http://www.tutorialrepublic.com/
  * http://www.cheat-sheets.org/
@@ -104,6 +104,33 @@
  * https://github.com/melnik909/frontend-whitelist/blob/master/README.md
  * [Вы не гугл - обзор ограничений популярных технологий](https://habr.com/ru/post/450230/)
 
+## 2026 динамический CSS и web components
+
+ * [container queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Containment/Container_queries)
+ * [fluid typography](https://fluidtypography.com/)
+ * [style queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Containment/Container_size_and_style_queries)
+ * [:has](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:has)
+ * [CSS logical properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Logical_properties_and_values)
+ * [anchor positioning](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Anchor_positioning)
+ * [media prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-color-scheme)
+
+* https://developer.mozilla.org/en-US/docs/Web/API/Web_components
+* custom elements + css nesting
+* [TAC CSS methodology](https://jordanbrennan.hashnode.dev/tac-a-new-css-methodology)
+* Custom attributes + attr()
+* Custom elements API
+* прогрессивное улучшение
+* [Kelp UI](https://kelpui.com/)
+* [lite-youtube](https://github.com/justinribeiro/lite-youtube)
+* [островная архитектура](https://docs.astro.build/en/concepts/islands/)
+	* https://www.zachleat.com/web/is-land/
+* [библиотеки веб компонентов](https://webawesome.com/docs/components/)
+	* https://vaadin.com/docs/latest/flow/component-internals/web-components
+	* https://plainvanillaweb.com/pages/components.html
+* дизайн системы
+	* IBM
+	* adobe
+	* Microsoft
 
 ## микрофронтенд
 
@@ -120,6 +147,7 @@
  * https://www.smashingmagazine.com/2021/01/front-end-performance-2021-free-pdf-checklist/
  * https://proglib.io/p/33-priema-optimizacii-javascript-kotorye-vy-dolzhny-znat-v-2021-godu-2021-01-12
  * [Hacking Web Performance - freecodecamp](https://www.youtube.com/watch?v=UgSFxtIPc4c)
+
 ##  трюки
 
  * http://www.habrahabr.net/habr/312812/
